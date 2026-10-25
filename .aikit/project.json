@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "name": "fluid-universe",
+  "test_command": "python -m pytest -q",
+  "topics": [
+    "aikit",
+    "physics",
+    "koide",
+    "lepton-masses"
+  ],
+  "gates": {},
+  "ui_required": false,
+  "created": "2026-10-25"
+}
