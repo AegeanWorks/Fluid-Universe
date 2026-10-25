@@ -1,1 +1,1 @@
-"""Simulation package placeholder. No validated core exists yet; see README.md."""
+"""Simulation package: validated 1D core, no 3D production run."""

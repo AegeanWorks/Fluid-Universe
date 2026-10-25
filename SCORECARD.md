@@ -20,16 +20,22 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 5c | FALSIFIED | \(E_1=E_2\) exactly; naive map yields two distinct roots. |
 | 5d | FALSIFIED | \(c/a\le1/2\) is false; \((10,1,1)\) gives \(c/a=0.75\). |
 | 6a | PROVEN | \(T=(8/3)\sqrt\mu\) verified analytically and by quadrature. |
-| 6b | UNVERIFIED | Dimensional-reduction/BPS proof not written; effective moment of inertia may diverge. |
-| 7 | UNVERIFIED | Neutrino scan not done. |
-| 8 | UNVERIFIED | Quark extension not re-derived (literature \(\sim0.89,\sim0.74\)). |
-| 9 | UNVERIFIED | No closed-form \(\delta\) search with a stated prior. |
-| 10 | UNVERIFIED | Frank-Oseen mode analysis not done. |
-| 11 | UNVERIFIED | Emergent-metric claim unsupported. |
-| 12 | UNVERIFIED | Lorentz-violation bounds not computed. |
-| 13 | UNVERIFIED | Z3 not derived from nematic topology; \(\cos3\phi\) inserted by hand. |
-| 14 | UNVERIFIED | Derrick/virial analysis not done. |
-| 15 | UNVERIFIED / NOT ACHIEVED | No validated 3D run; lost numbers not cited. |
-| 16 | UNVERIFIED | No new falsifiable prediction found so far. |
+| 6b | PROVEN (trivial) | \(E_{2D}\ge T L_y\); equality iff \(\partial_y\phi=0\). |
+| 6c | FALSIFIED | Exact reduction false; \(I_{\rm eff}\) log-divergent for a \(1/r^4\) tail. |
+| 7a | NUMERIC (negative) | \(Q_\nu^{\rm max}=0.585612\) (NO), \(0.500007\) (IO); never reaches \(2/3\). |
+| 7b | FALSIFIED (ill-posed) | Both minimal circulant branches excluded; \(\theta_{13}\)-only wording is not general. |
+| 8 | FALSIFIED | \(Q_U\in[0.8876,0.8926]\), \(Q_D\in[0.7385,0.7481]\); no scale reaches \(2/3\). |
+| 9 | UNVERIFIED (null) | 2/9 closest at 0.407\(\sigma\); look-elsewhere \(p=7.93\times10^{-4}\); not promoted. |
+| 10 | PROVEN (equal K) | \(\omega^2=(K/\rho)k^2\); 2 transverse modes; no photon; preferred frame. |
+| 11a | FALSIFIED | No metric; preferred frame; \(\xi=1.00348\) for \(K=(1,2,3)\). |
+| 11b | UNVERIFIED | No one-loop anisotropy/RG analysis. |
+| 12a | UNVERIFIED (not applicable) | Photon bounds do not directly constrain neutral director modes. |
+| 12b | PROVEN (conditional) | Equal \(K\): \(\xi=0\); O(1) \(\xi\) excluded if a photon coupling existed. |
+| 13a | FALSIFIED | \(RP^2\) has no Z3 factor; \(\cos3\phi\) inserted by hand. |
+| 13b | UNVERIFIED (null) | Rank-3, three-nematic, and 3-fold-lattice extensions all require an inserted Z3. |
+| 14a | PROVEN | \(d=3\) exponents \((1,-1,3)\); virial \(E_2-E_4+3V=0\). |
+| 14b | UNVERIFIED | Necessary region \(\kappa>0\); Hopfion existence not proved. |
+| 15 | UNVERIFIED / NOT ACHIEVED | 1D baselines 1,2,3,6 pass; Hopf preimage and grid agree; baseline 4 passes; no 3D/Z3 run. |
+| 16 | UNVERIFIED (none found) | Seven candidate classes audited; no new falsifiable prediction. |
 
-Claim audit: two separate runs agree per claim, 66/66 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 141/141 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

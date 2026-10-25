@@ -1,0 +1,62 @@
+{
+  "meta": {
+    "config": {
+      "homotopy": {
+        "pi1": "Z2",
+        "pi2": "Z",
+        "pi3": "Z"
+      },
+      "source": "standard homotopy groups of RP^2"
+    },
+    "config_sha256": "a9fc09d913c1a4e299368f503f7e7cc9c2eeb49dc478bcfa3593cc10353b854b",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "verdict": {
+    "13a_direct_z3_from_nematic_topology": false,
+    "13b_natural_extension_yields_z3_without_insertion": false,
+    "cos3phi_inserted_by_hand": true,
+    "direct": {
+      "cos3phi_inserted_by_hand": true,
+      "direct_claim": "Z3 is derived from nematic topology alone",
+      "direct_claim_falsified": true,
+      "homotopy": {
+        "pi1": "Z2",
+        "pi2": "Z",
+        "pi3": "Z"
+      },
+      "order_parameter_space": "RP^2",
+      "reason": "The listed homotopy groups contain Z2 and Z, not Z3. A three-fold sector cannot be read off the RP^2 topology without extra structure.",
+      "z3_factor_present": false
+    },
+    "direct_claim_status": "FALSIFIED",
+    "extensions": {
+      "rank_three_order_parameter": {
+        "requires": "An explicit rank-3 tensor with a three-fold symmetric invariant. The Z3 is a property of the chosen invariant, not of RP^2.",
+        "z3_derived": false
+      },
+      "three_coupled_nematics": {
+        "requires": "An S3 permutation symmetry of the three fields. Its Z3 subgroup is imposed by the coupling, so the symmetry is inserted.",
+        "z3_derived": false
+      },
+      "three_fold_lattice": {
+        "requires": "A lattice with a three-fold axis. The lattice breaks continuous rotation and supplies the Z3 label; nematic topology alone does not.",
+        "z3_derived": false
+      }
+    },
+    "extensions_status": "UNVERIFIED (null for the three standard extensions)",
+    "note": "The strong claim is false: RP^2 has no Z3 factor and the cos(3 phi) term is inserted. None of the three standard extensions produces Z3 without an explicit three-fold structure. A different, specified extension is not excluded, but it would have to be constructed and tested explicitly."
+  }
+}

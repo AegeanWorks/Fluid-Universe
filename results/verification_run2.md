@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**66/66 checks passed.**
+**141/141 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -50,6 +50,31 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 6a: tension quadrature mu=0.5 | PASS | 1.885618083164 vs 1.885618083164 |
 | 6a: tension quadrature mu=1.0 | PASS | 2.666666666667 vs 2.666666666667 |
 | 6a: tension quadrature mu=7.3 | PASS | 7.204936579257 vs 7.204936579257 |
+| 7a: Q_nu at m_light=0 (NO and IO) | PASS | NO=0.585612009369, IO=0.500006739587 |
+| 7a: 3-sigma corner maximum | PASS | corner max=0.590606037134; stored=0.590606037134 |
+| 7a: no scanned point reaches 2/3 | PASS | scan max=0.585612009369; margin=0.081055 |
+| 8: Q_up and Q_down at M_Z | PASS | Q_up=0.887569231319, Q_down=0.748065054803 |
+| 8: six-scale ranges and no 2/3 | PASS | Q_up range [0.887569231,0.892553734], Q_down range [0.738535231,0.748065055] |
+| 7b: minimal PMNS branch angles | PASS | DFT={'theta12_deg': 45.000000000000014, 'theta13_deg': 35.264389682754654, 'theta23_deg': 45.000000000000014}; identity={'theta12_deg': 0.0, 'theta13_deg': 0.0, 'theta23_deg': 0.0} |
+| 7b: both branches excluded; theta13-only claim ill-posed | PASS | measured theta13=8.58, DFT=35.264, identity=0 |
+| 9: delta closed-form search | PASS | best=2/9, diff=2.540e-06, sigma=0.407, p_LEE=7.927e-04 |
+| 10: Frank-Oseen elastic matrix | PASS | equal=[28.0, 28.0], x=[4.0, 8.0], z=[12.0, 12.0] |
+| 10: two modes and no photon | PASS | two transverse director components; no gauge field or vector potential in the F-O energy |
+| 14a: Derrick derivative equals virial | PASS | numeric dE/dlambda=2.499999998, virial=2.500000000 |
+| 14a: stationary scale and curvature | PASS | lambda^2=0.387425887, second derivative=5.000000 |
+| 14b: kappa>0 necessary, existence unproved | PASS | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
+| 13a: RP2 homotopy has no Z3 factor | PASS | homotopy={'pi1': 'Z2', 'pi2': 'Z', 'pi3': 'Z'} |
+| 13b: standard extensions do not derive Z3 | PASS | extensions=['rank_three_order_parameter', 'three_coupled_nematics', 'three_fold_lattice'] |
+| 6b: trivial 2D lower bound | PASS | T=2.666666666667, T*L_y(2)=5.333333333333 |
+| 6c: moment convergence and log divergence | PASS | I_eff finite iff alpha>4; alpha=4 log-divergent; alpha=2 power-divergent |
+| 16: no new prediction found | PASS | 7 candidate classes, none new |
+| 11a: axis speeds for K=(1,2,3) | PASS | x=[1.0, 1.4142135623730951], z=[1.7320508075688772, 1.7320508075688772] |
+| 11a/F23: residual anisotropy xi | PASS | xi(K=1,2,3)=1.003479956; xi(equal)=0 |
+| 12a: photon bounds are not directly applicable | PASS | all four bounds flagged non-applicable; director modes are neutral |
+| 12b: conditional bound | PASS | equal K is exactly isotropic; O(1) xi fails every Delta c/c bound |
+| 15/4: preimage linking converges to 1 | PASS | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
+| 15/4: reflection, rotation, shear | PASS | reflection=-0.999832946, rotation=0.999832946, shear=0.999834138 |
+| 15/4: grid estimator matches known answer | PASS | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -68,6 +93,56 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: paper MSbar Q | PASS | searched for '0.667823994' |
 | docs: paper E0 | PASS | searched for '0.8911861597' |
 | docs: paper E1 | PASS | searched for '1.3170345140' |
+| docs: claims Q_nu max | PASS | searched for '0.585612' |
+| docs: claims Q_up | PASS | searched for '0.887569' |
+| docs: claims Q_down | PASS | searched for '0.748065' |
+| docs: claims trimaximal theta13 | PASS | searched for '35.26' |
+| docs: scorecard Q_nu | PASS | searched for '0.585612' |
+| docs: scorecard Q_up range | PASS | searched for '0.8876' |
+| docs: scorecard Q_down range | PASS | searched for '0.7385' |
+| docs: README Q_nu | PASS | searched for '0.585612' |
+| docs: README Q_up | PASS | searched for '0.888' |
+| docs: README Q_down | PASS | searched for '0.748' |
+| docs: paper Q_nu | PASS | searched for '0.585612' |
+| docs: paper Q_up | PASS | searched for '0.887569' |
+| docs: paper Q_down | PASS | searched for '0.748065' |
+| docs: summary Q_nu | PASS | searched for '0.585612' |
+| docs: claims delta sigma | PASS | searched for '0.407' |
+| docs: claims Q_nu | PASS | searched for '0.585612' |
+| docs: scorecard delta sigma | PASS | searched for '0.407' |
+| docs: README delta sigma | PASS | searched for '0.407' |
+| docs: paper delta sigma | PASS | searched for '0.41\sigma' |
+| docs: paper B Derrick virial | PASS | searched for 'E_2-E_4+3V=0' |
+| docs: paper B Frank-Oseen dispersion | PASS | searched for '\omega^2=(K/\rho)k^2' |
+| docs: summary Derrick virial | PASS | searched for 'E2-E4+3V' |
+| docs: claims exact reduction row | PASS | searched for '6c' |
+| docs: claims direct topology row | PASS | searched for '13a' |
+| docs: claims extension row | PASS | searched for '13b' |
+| docs: claims no new prediction | PASS | searched for 'none found' |
+| docs: scorecard I_eff | PASS | searched for 'log-divergent' |
+| docs: README I_eff | PASS | searched for 'log-divergent' |
+| docs: summary I_eff | PASS | searched for 'log-divergent' |
+| docs: paper B I_eff | PASS | searched for 'logarithmically divergent' |
+| docs: paper A no prediction | PASS | searched for 'No genuinely new prediction' |
+| docs: claims xi | PASS | searched for '1.00348' |
+| docs: scorecard xi | PASS | searched for '1.00348' |
+| docs: README xi | PASS | searched for '1.00348' |
+| docs: summary xi | PASS | searched for '1.00348' |
+| docs: paper B xi | PASS | searched for '1.00348' |
+| docs: paper B GRB order | PASS | searched for '10^{-18}' |
+| docs: claims Hopf preimage | PASS | searched for '0.999958' |
+| docs: README Hopf preimage | PASS | searched for '0.999958' |
+| docs: summary Hopf preimage | PASS | searched for '0.999958' |
+| docs: paper B Hopf preimage | PASS | searched for '0.999958' |
+| docs: claims grid Hopf | PASS | searched for '1.000000' |
+| docs: README grid Hopf | PASS | searched for '1.000000' |
+| docs: summary grid Hopf | PASS | searched for '1.000000' |
+| docs: paper B grid Hopf | PASS | searched for '1.00000004' |
+| docs: claims baseline 4 | PASS | searched for 'baseline 4 passes' |
+| docs: summary 6b row | PASS | searched for '| 6b | 2D reduction lower bound' |
+| docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |
+| docs: registry preimage rows | PASS | searched for 'F16a' |
+| docs: registry grid rows | PASS | searched for 'F16b' |
 | docs: summary lists the rotor result | PASS | summary.md must describe the rotor output it now includes |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
 | docs: F10 not overstated as an exact verification | PASS | F10 is cross-checked only at the few-percent level against three-loop literature |

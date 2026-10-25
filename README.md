@@ -18,7 +18,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```bash
   python -m phenomenology.run_all
   ```
-  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
+  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, `results/neutrinos.json`, `results/neutrinos.md`, `results/quarks.json`, `results/quarks.md`, `results/pmns.json`, `results/pmns.md`, `results/delta_search.json`, `results/delta_search.md`, `results/frank_oseen.json`, `results/frank_oseen.md`, `results/derrick.json`, `results/derrick.md`, `results/topology.json`, `results/topology.md`, `results/reduction.json`, `results/reduction.md`, `results/predictions.json`, `results/predictions.md`, `results/lorentz.json`, `results/lorentz.md`, `results/sim_core.json`, `results/sim_core.md`, `results/hopf.json`, `results/hopf.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
 - **Verify every claim independently (two runs)**:
   ```bash
   python -m verification.verify
@@ -30,7 +30,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 66/66 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 141/141 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -55,7 +55,25 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Rotor spectrum and free-rotor limit | PROVEN numerically | `theory/rotor.py`, `results/rotor.json` |
 | Rotor \(\to\) three distinct masses | FALSIFIED: sectors 1 and 2 are exactly degenerate | `results/rotor.json` |
 | Domain-wall tension \((8/3)\sqrt\mu\) | PROVEN | `results/rotor.json` |
-| Nematic-fluid UV picture | SPECULATION; no validated claim | `sims/README.md` |
+| Closed form for \(\delta\) | UNVERIFIED (null): 2/9 at 0.407\(\sigma\), look-elsewhere \(p=7.9\times10^{-4}\), not promoted | `results/delta_search.json` |
+| Frank-Oseen equal-\(K\) dispersion | PROVEN for that statement only: 2 transverse modes, no photon | `results/frank_oseen.json` |
+| Derrick scaling | PROVEN: \(d=3\) exponents \((1,-1,3)\), virial \(E_2-E_4+3V=0\) | `results/derrick.json` |
+| Stable Hopfion existence | UNVERIFIED; \(\kappa>0\) is necessary, not sufficient | `results/derrick.json` |
+| 2D reduction lower bound | PROVEN (trivial): \(E_{2D}\ge T L_y\); equality only for \(y\)-independent walls | `results/reduction.json` |
+| Exact reduction / finite \(I_{\rm eff}\) | FALSIFIED: \(1/r^4\) tail gives log-divergent \(I_{\rm eff}\) | `results/reduction.json` |
+| Z3 from nematic topology | FALSIFIED: \(RP^2\) has no Z3 factor; \(\cos3\phi\) inserted by hand | `results/topology.json` |
+| New prediction beyond Koide | UNVERIFIED (none found): seven candidate classes audited | `results/predictions.json` |
+| Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
+| One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
+| Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |
+| 1D simulation baseline | PASS: kink, gradient, monotone flow, rotor; Hessian partial | `results/sim_core.json` |
+| Hopf preimage linking | PASS: H=0.999958 at 400 samples; reflection flips sign; rotation/shear invariant | `results/hopf.json` |
+| Hopf grid Chern-Simons estimator | PASS (normalized): 1.000000 at N=64; agrees with preimage | `results/hopf.json` |
+| 3D Hopfion + Z3 order | NOT ACHIEVED: baseline 4 passes, but no 3D/Z3 run | `sims/README.md` |
+| Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
+| Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |
+| Direct quark Koide extension | FALSIFIED: \(Q_U\approx0.888\), \(Q_D\approx0.748\) at \(M_Z\) | `results/quarks.json` |
+| Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `sims/README.md` |
 
 ## What's Inside
 
@@ -75,7 +93,7 @@ fluid-universe/
 ├── phenomenology/            <- PDG data, circulant fit, one-loop SM RGE
 ├── tests/                    <- pytest identities, limits, regression numbers
 ├── verification/             <- independent re-derivation of verified claims
-├── sims/                     <- simulation protocol; no validated core yet
+├── sims/                     <- validated 1D core; no 3D production run
 ├── paper/                    <- two LaTeX documents, separate scopes
 └── results/                  <- machine-generated outputs only
 ```
@@ -84,7 +102,7 @@ fluid-universe/
 
 - Every number in prose must regenerate from `python -m phenomenology.run_all`; the JSON records seed, config hash, package versions, and git commit.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
-- No simulation number is cited until `sims/core.py` passes the baselines listed in `sims/README.md`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
+- No production 3D simulation number is cited until `sims/core.py` passes the full baseline set in `sims/README.md`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
 - The Z3/Koide/RG paper must stand without any fluid-universe material.
 

@@ -31,7 +31,8 @@ $M_Z$ to $10^{16}$ GeV. The full-SM $\overline{\mathrm{MS}}$ masses at $M_Z$
 give $Q=0.6678240$, and the one-pass QED conversion of the pole masses alone
 gives $0.6679160$; both are about $0.18\%$ above $2/3$. These are
 scheme/matching effects, not RG running. We find no new falsifiable prediction beyond the built-in Koide
-value. The $Z_3$ origin and the value $c/a=1/\sqrt2$ remain assumptions.
+value. No neutrino or quark extension reaches $2/3$ in the ranges tested. The
+$Z_3$ origin and the value $c/a=1/\sqrt2$ remain assumptions.
 \end{abstract}
 
 \section{Setup and conventions}
@@ -144,6 +145,15 @@ spectrum invariant. Its minimal representative is numerically close to $2/9$
 significance to this near-miss. Without a stated prior, rational
 approximations of $\delta$ are not evidence.
 
+\paragraph{The phase.} The fitted representative is
+$\delta=0.22222476$ rad modulo $2\pi/3$. The nearest candidate in a stated
+post-hoc prior (rationals with denominator $\le20$, rational multiples of
+$\pi$ with denominator $\le12$, and simple roots/arctangents) is $2/9$,
+differing by $2.54\times10^{-6}$ rad, or $0.41\sigma$. The look-elsewhere
+penalty over that prior is $p=7.9\times10^{-4}$. Because the candidate set
+includes $2/9$ and the search was performed after the fit, this is a recorded
+near-miss, not evidence for a closed form; we do not promote it.
+
 \section{One-loop running}
 \label{sec:rg}
 
@@ -194,6 +204,45 @@ percent. No claim here uses absolute high-scale masses. A genuine two-loop run
 is future work. An earlier estimate of a two-loop drift
 $\sim4\times10^{-9}$ per decade had no supporting calculation and is retracted.
 
+\section{Neutrino and quark checks}
+\label{sec:nuquark}
+
+\emph{Numeric (negative).} Using the NuFit 5.2 (2022) splittings with SK-atm,
+we scan the lightest neutrino mass from $0$ to $0.2$ eV for both orderings.
+The Koide ratio is
+\begin{equation}
+Q_\nu=\frac{m_1+m_2+m_3}{(\sqrt{m_1}+\sqrt{m_2}+\sqrt{m_3})^2}.
+\label{eq:Qnu}
+\end{equation}
+The maximum is $Q_\nu=0.585612$ for normal ordering at $m_{\rm light}=0$ and
+$0.500007$ for inverted ordering; the maximum over the $3\sigma$ corners of the
+splittings is $0.590606$. No scanned point reaches $2/3$. This is a negative
+result for a direct Koide extension to neutrinos, not a constraint on
+circulant neutrino models with additional structure.
+
+\emph{Numeric (negative).} For quarks we use the full-SM
+$\overline{\rm MS}$ masses of Huang and Zhou (2021, Table II) at six scales.
+At $M_Z$,
+\begin{equation}
+Q_U=0.887569,\qquad Q_D=0.748065,
+\label{eq:Qquark}
+\end{equation}
+and over the six scales $Q_U\in[0.887569,0.892554]$,
+$Q_D\in[0.738535,0.748065]$. Neither ratio approaches $2/3$; the direct quark
+extension is falsified. The values are scale- and scheme-dependent, so the
+scale must be quoted with them.
+
+\emph{Assumption-dependent.} A ``circulant PMNS'' is not a single model. If
+both charged-lepton and neutrino mass matrices are Hermitian circulants in the
+same basis, they share the DFT eigenvectors and the prediction is no mixing,
+$(\theta_{12},\theta_{13},\theta_{23})=(0,0,0)$. If only the neutrino matrix
+is circulant and the charged-lepton matrix is diagonal, the prediction is
+trimaximal mixing, $(45^\circ,35.264^\circ,45^\circ)$. The measured values are
+$(33.41^\circ,8.58^\circ,42.20^\circ)$ (NuFit 5.2, NO). Both branches are
+excluded. The original statement that a circulant PMNS is ``ruled out by
+$\theta_{13}$'' is therefore not well-posed: only the trimaximal branch makes
+it a $\theta_{13}$ statement; the same-basis branch fails on all three angles.
+
 \section{What does not survive}
 \label{sec:negative}
 
@@ -204,6 +253,11 @@ $c/a=1/\sqrt2$. The value of $c/a$ is not derived.
 $M_Z$, where the full-SM matching gives $Q=0.6678240$.
 \item $c/a$ is not one-loop RG-invariant.
 \item The rotor-to-circulant map cannot give three masses: $E_1=E_2$ exactly.
+\item No genuinely new prediction beyond Koide was found; the framework's only built-in number is $Q=2/3$.
+\item Neutrinos: $Q_\nu$ never reaches $2/3$ in the scanned range (max $0.585612$).
+\item Quarks: $Q_U\approx0.888$, $Q_D\approx0.748$ at $M_Z$; the direct extension is falsified.
+\item The minimal circulant PMNS branches predict either no mixing or trimaximal mixing; both are excluded.
+\item No closed form for $\delta$ is established; $2/9$ is a post-hoc near-miss.
 \item The bound $c/a\le1/2$ is false.
 \item No new falsifiable prediction beyond Koide has been found.
 \end{itemize}

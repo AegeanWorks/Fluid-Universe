@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `19`
-- **Total Classes**: `4`
-- **Total Top-Level Functions**: `129`
+- **Total Python Modules**: `48`
+- **Total Classes**: `6`
+- **Total Top-Level Functions**: `296`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `2934`
+- **Total Source Lines**: `6792`
 
 ---
 
@@ -20,6 +20,22 @@
 > *Phenomenology: PDG input, circulant fit, and one-loop SM running.*
 
 **Size**: `1` lines (`72` bytes)
+
+---
+
+### [`phenomenology/delta_search.py`](phenomenology/delta_search.py)
+> *Search for a closed form of the circulant phase delta, with a stated prior.*
+
+**Size**: `185` lines (`6508` bytes)
+
+**Functions:**
+- `def rational_candidates()`
+- `def pi_candidates()`
+- `def simple_candidates()`
+- `def all_candidates()`
+- `def search(delta, sigma)`
+- `def run_delta_search(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -42,6 +58,72 @@
 
 ---
 
+### [`phenomenology/hopf_report.py`](phenomenology/hopf_report.py)
+> *Hopf estimator validation result payload.*
+
+**Size**: `66` lines (`2420` bytes)
+
+**Functions:**
+- `def run_hopf_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/lv_bounds.py`](phenomenology/lv_bounds.py)
+> *Residual anisotropy and Lorentz-violation bounds (claims 11-12).*
+
+**Size**: `105` lines (`3912` bytes)
+
+**Functions:**
+- `def run_lorentz_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/neutrinos.py`](phenomenology/neutrinos.py)
+> *Neutrino Koide ratio scan.*
+
+**Size**: `242` lines (`8651` bytes)
+
+**Classes:**
+- `class NuFitParameters`
+
+**Functions:**
+- `def load_parameters(path)`
+- `def masses_normal(m_light, dm21_sq, dm31_sq_no)` - *Return (m1, m2, m3) for normal ordering, m_light = m1.*
+- `def masses_inverted(m_light, dm21_sq, dm31_sq_io)` - *Return (m1, m2, m3) for inverted ordering, m_light = m3.*
+- `def q_nu(masses)`
+- `def scan_ordering(ordering, params, m_light_max, points)`
+- `def corner_max(ordering, params)` - *Maximum Q at m_light = 0 over the 3-sigma corners of the splittings.*
+- `def run_neutrino_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/pmns.py`](phenomenology/pmns.py)
+> *What a minimal circulant lepton sector predicts for PMNS mixing.*
+
+**Size**: `143` lines (`5592` bytes)
+
+**Functions:**
+- `def dft_matrix()`
+- `def angles_from_pmns(U)` - *Standard three-neutrino angles in degrees from |U|.*
+- `def run_pmns_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/predictions.py`](phenomenology/predictions.py)
+> *Search for a genuinely new prediction beyond Q=2/3 (claim 16).*
+
+**Size**: `112` lines (`3965` bytes)
+
+**Functions:**
+- `def run_prediction_audit(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/provenance.py`](phenomenology/provenance.py)
 > *Small reproducibility helpers: git state, versions, config hashes.*
 
@@ -54,6 +136,23 @@
 - `def metadata(config)`
 - `def write_text_atomic(path, text)` - *Write a generated file atomically (temp file + fsync + replace).*
 - `def write_json(path, payload)`
+
+---
+
+### [`phenomenology/quarks.py`](phenomenology/quarks.py)
+> *Quark Koide ratios from the full-SM MS-bar masses of Huang & Zhou (2021).*
+
+**Size**: `154` lines (`5293` bytes)
+
+**Classes:**
+- `class QuarkRow`
+
+**Functions:**
+- `def load_rows(path)`
+- `def q_up(row)`
+- `def q_down(row)`
+- `def run_quark_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -87,20 +186,83 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `214` lines (`8715` bytes)
+**Size**: `435` lines (`20968` bytes)
 
 **Functions:**
 - `def rotor_payload()`
 - `def render_rotor_markdown(payload)`
-- `def build_summary(fit, rg, rotor)`
+- `def extra_summary(delta, fo, derrick)`
+- `def negatives_summary(topology, reduction, predictions)`
+- `def lorentz_summary(lorentz)`
+- `def sim_summary(sim)`
+- `def hopf_summary(hopf)`
+- `def build_summary(fit, rg, rotor, neutrino, quarks, pmns)`
 - `def main()`
 
 ---
 
-### [`sims/__init__.py`](sims/__init__.py)
-> *Simulation package placeholder. No validated core exists yet; see README.md.*
+### [`phenomenology/sim_report.py`](phenomenology/sim_report.py)
+> *Result payload for the 1D simulation baseline.*
 
-**Size**: `1` lines (`83` bytes)
+**Size**: `162` lines (`6286` bytes)
+
+**Functions:**
+- `def run_1d_baseline(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
+> *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
+
+**Size**: `187` lines (`7228` bytes)
+
+**Functions:**
+- `def run_frank_oseen_check(write)`
+- `def render_frank_oseen(payload)`
+- `def run_derrick_check(write)`
+- `def render_derrick(payload)`
+
+---
+
+### [`phenomenology/uv_negatives.py`](phenomenology/uv_negatives.py)
+> *Result payloads for the topology, reduction, and prediction negatives.*
+
+**Size**: `63` lines (`2201` bytes)
+
+**Functions:**
+- `def run_topology_check(write)`
+- `def run_reduction_check(write)`
+
+---
+
+### [`sims/__init__.py`](sims/__init__.py)
+> *Simulation package: validated 1D core, no 3D production run.*
+
+**Size**: `1` lines (`67` bytes)
+
+---
+
+### [`sims/core.py`](sims/core.py)
+> *Validated 1D core for the Z3 sine-Gordon sector.*
+
+**Size**: `210` lines (`6823` bytes)
+
+**Functions:**
+- `def grid(length, n)`
+- `def potential(phi, mu)`
+- `def potential_prime(phi, mu)`
+- `def potential_second(phi, mu)`
+- `def analytic_kink(x, mu, x0)`
+- `def kink_tension(mu)`
+- `def energy(phi, dx, mu)`
+- `def force(phi, dx, mu)` - *- (1/dx) dE/dphi on interior nodes; boundaries are fixed.*
+- `def gradient_error(phi, dx, mu, eps)` - *Max relative error between the analytic force and a central difference.*
+- `def gradient_flow(phi, dx, mu, dt, steps)` - *Explicit Euler flow dphi/dt = force; boundaries fixed.*
+- `def relax_kink(phi, dx, mu, tolerance)` - *Minimise the discrete energy on interior nodes (L-BFGS-B).*
+- `def hessian(phi, dx, mu)` - *Hessian of E/dx on interior nodes (Dirichlet boundaries).*
+- `def kink_convergence(mu, length, sizes)`
+- `def rotor_crosscheck()`
 
 ---
 
@@ -131,6 +293,36 @@
 
 ---
 
+### [`tests/test_delta_search.py`](tests/test_delta_search.py)
+> *Tests for the delta closed-form search (claim 9).*
+
+**Size**: `31` lines (`1000` bytes)
+
+**Functions:**
+- `def test_two_ninths_is_in_the_prior()`
+- `def test_all_candidates_are_in_range_and_unique()`
+- `def test_search_finds_two_ninths_and_does_not_promote()`
+
+---
+
+### [`tests/test_derrick.py`](tests/test_derrick.py)
+> *Derrick scaling tests for claim 14.*
+
+**Size**: `86` lines (`2596` bytes)
+
+**Functions:**
+- `def test_exponents_in_three_dimensions()`
+- `def test_virial_relation()`
+- `def test_scaling_energy_derivative_matches_virial()`
+- `def test_zero_potential_minimizer()`
+- `def test_positive_potential_minimizer_is_stable()`
+- `def test_no_skyrme_means_no_scaling_minimum()`
+- `def test_negative_skyrme_is_unbounded()`
+- `def test_positive_skyrme_region_and_no_existence_claim()`
+- `def test_symbolic_virial_identity()`
+
+---
+
 ### [`tests/test_fit.py`](tests/test_fit.py)
 > *Regression tests for the PDG pole-mass fit.*
 
@@ -143,6 +335,112 @@
 - `def test_monte_carlo_is_reproducible()`
 - `def test_two_thirds_is_inside_one_sigma_of_pole_fit()`
 - `def test_tau_prediction_consistency()`
+
+---
+
+### [`tests/test_frank_oseen.py`](tests/test_frank_oseen.py)
+> *Frank-Oseen mode and dispersion checks (claim 10).*
+
+**Size**: `62` lines (`1945` bytes)
+
+**Functions:**
+- `def test_symbolic_hessian_matches_numeric_matrix()`
+- `def test_one_constant_is_isotropic()`
+- `def test_axis_dispersions_for_unequal_constants()`
+- `def test_anisotropy_zero_for_equal_constants_positive_for_unequal()`
+- `def test_mode_count_and_no_photon()`
+- `def test_equal_constant_dispersion_formula()`
+
+---
+
+### [`tests/test_hopf.py`](tests/test_hopf.py)
+> *Hopf-charge estimator tests (claim 15, baseline 4).*
+
+**Size**: `56` lines (`1968` bytes)
+
+**Functions:**
+- `def test_hopf_map_is_unit_and_boundary_condition()`
+- `def test_preimage_linking_converges_to_one()`
+- `def test_reflection_flips_sign_and_rotation_shear_preserve()`
+- `def test_grid_integral_matches_known_answer()`
+
+---
+
+### [`tests/test_lorentz.py`](tests/test_lorentz.py)
+> *Residual anisotropy and LV-bound tests (claims 11-12).*
+
+**Size**: `57` lines (`1999` bytes)
+
+**Functions:**
+- `def test_equal_K_is_isotropic()`
+- `def test_unequal_K_has_order_one_anisotropy()`
+- `def test_bounds_are_marked_not_directly_applicable()`
+- `def test_conditional_bound_excludes_order_one_anisotropy()`
+- `def test_verdict_downgrades_claims_11_and_12()`
+
+---
+
+### [`tests/test_neutrinos.py`](tests/test_neutrinos.py)
+> *Neutrino Q_nu scan tests (claim 7a).*
+
+**Size**: `65` lines (`2049` bytes)
+
+**Functions:**
+- `def test_normal_ordering_mass_formula()`
+- `def test_inverted_ordering_mass_formula()`
+- `def test_q_nu_regression_values()`
+- `def test_scan_never_reaches_two_thirds()`
+- `def test_three_sigma_corners_stay_below_two_thirds()`
+- `def test_q_nu_matches_generic_mass_ratio()`
+
+---
+
+### [`tests/test_pmns.py`](tests/test_pmns.py)
+> *Minimal circulant PMNS branches (claim 7b).*
+
+**Size**: `32` lines (`1168` bytes)
+
+**Functions:**
+- `def test_identity_has_no_mixing()`
+- `def test_dft_is_trimaximal()`
+- `def test_both_branches_excluded_and_claim_ill_posed()`
+
+---
+
+### [`tests/test_predictions.py`](tests/test_predictions.py)
+> *New-prediction audit tests (claim 16).*
+
+**Size**: `20` lines (`680` bytes)
+
+**Functions:**
+- `def test_candidate_table_is_complete()`
+- `def test_no_new_prediction_is_found()`
+
+---
+
+### [`tests/test_quarks.py`](tests/test_quarks.py)
+> *Quark Koide ratios from full-SM MS-bar masses (claim 8).*
+
+**Size**: `38` lines (`1174` bytes)
+
+**Functions:**
+- `def test_data_has_six_scales()`
+- `def test_mz_regression_values()`
+- `def test_direct_extension_falsified()`
+- `def test_ranges_are_scale_dependent()`
+
+---
+
+### [`tests/test_reduction.py`](tests/test_reduction.py)
+> *Dimensional-reduction and moment-of-inertia tests (claim 6b).*
+
+**Size**: `52` lines (`1635` bytes)
+
+**Functions:**
+- `def test_wall_tension_and_bound()`
+- `def test_moment_convergence_criterion()`
+- `def test_numeric_moment_log_and_power()`
+- `def test_verdict_downgrades_exact_reduction()`
 
 ---
 
@@ -184,6 +482,35 @@
 
 ---
 
+### [`tests/test_sim_core.py`](tests/test_sim_core.py)
+> *1D simulation-core baselines (claim 15, validation only).*
+
+**Size**: `87` lines (`2704` bytes)
+
+**Functions:**
+- `def test_analytic_kink_limits_and_tension()`
+- `def test_kink_energy_converges_quadratically()`
+- `def test_gradient_matches_finite_difference()`
+- `def test_gradient_flow_decreases_energy()`
+- `def test_relaxed_hessian_is_symmetric_and_stable()`
+- `def test_rotor_fourier_and_grid_agree()`
+- `def test_report_makes_no_production_claim()`
+
+---
+
+### [`tests/test_topology.py`](tests/test_topology.py)
+> *Nematic topology tests (claim 13).*
+
+**Size**: `33` lines (`1148` bytes)
+
+**Functions:**
+- `def test_homotopy_groups_are_recorded()`
+- `def test_no_z3_factor_in_rp2()`
+- `def test_standard_extensions_do_not_derive_z3()`
+- `def test_verdict_and_json_shape()`
+
+---
+
 ### [`theory/__init__.py`](theory/__init__.py)
 > *Exact theory utilities for the Z3/Koide core.*
 
@@ -214,6 +541,94 @@
 
 ---
 
+### [`theory/derrick.py`](theory/derrick.py)
+> *Derrick scaling for the exact Frank-Oseen + Skyrme + Z3 energy.*
+
+**Size**: `128` lines (`4684` bytes)
+
+**Functions:**
+- `def exponents(d)`
+- `def scaling_energy(lambda_, e2, e4, potential, d)`
+- `def virial(e2, e4, potential, d)`
+- `def second_derivative(e2, e4, potential, d)`
+- `def stationary_scale_squared(e2, e4, potential, d)` - *Return lambda^2 at the stationary point for d=3, or None if none exists.*
+- `def scaling_minimum(e2, e4, potential)`
+- `def stable_region(k, kappa, mu)` - *Necessary conditions for a stable scaling soliton in d=3.*
+- `def symbolic_virial()` - *Verify d/dlambda E(lambda) at lambda=1 equals the virial expression.*
+
+---
+
+### [`theory/frank_oseen.py`](theory/frank_oseen.py)
+> *Linearised Frank-Oseen director modes.*
+
+**Size**: `143` lines (`4577` bytes)
+
+**Functions:**
+- `def elastic_matrix(kx, ky, kz, k1, k2, k3)` - *2x2 elastic matrix for the two transverse director components.*
+- `def dispersion(kx, ky, kz, k1, k2, k3, rho)` - *omega^2 for the two transverse modes; rho is the effective inertia.*
+- `def equal_constant_dispersion(k, K, rho)` - *omega for K1=K2=K3=K: omega = sqrt(K/rho) |k|.*
+- `def anisotropy(direction, k1, k2, k3, rho)` - *Fractional split of the two omega^2 values at unit |k|.*
+- `def modes()` - *Mode counting and the photon question.*
+- `def symbolic_elastic_matrix()` - *Sympy Hessian of the quadratic form; equals the numeric matrix.*
+- `def symbolic_matches_numeric()`
+
+---
+
+### [`theory/hopf.py`](theory/hopf.py)
+> *Hopf-charge estimators for the analytic H=1 map.*
+
+**Size**: `236` lines (`9068` bytes)
+
+**Functions:**
+- `def hopf_map(x, y, z)`
+- `def _target_of_quaternion(q)`
+- `def _jacobian(q)`
+- `def fiber_curve(base, samples, dphi)` - *Trace one fiber on S^3 by integrating the null space of dn, then stereographically project.*
+- `def linking_number(curve_a, curve_b)` - *Gauss linking integral for two closed curves.*
+- `def _bases()`
+- `def preimage_charge(samples)`
+- `def target_pair_charge(samples)`
+- `def reflection_charge(samples)`
+- `def rotation_charge(samples)`
+- `def shear_charge(samples)`
+- `def grid_charge(n, length, reflect)` - *Normalized grid Chern-Simons integral on a periodic box.*
+- `def validate()`
+
+---
+
+### [`theory/lorentz.py`](theory/lorentz.py)
+> *Linearised director dispersion and the emergent-metric question (claims 11-12).*
+
+**Size**: `185` lines (`6318` bytes)
+
+**Functions:**
+- `def elastic_matrix(k, k1, k2, k3)`
+- `def speeds(direction, k1, k2, k3, rho)`
+- `def residual_anisotropy(k1, k2, k3, rho, n_samples, seed)` - *Sample directions on the sphere and return the max fractional speed split.*
+- `def axis_speeds(k1, k2, k3, rho)`
+- `def verdict(k1, k2, k3)`
+- `def conditional_bound(k1, k2, k3)`
+
+---
+
+### [`theory/reduction.py`](theory/reduction.py)
+> *Dimensional reduction and the effective moment of inertia (claim 6b).*
+
+**Size**: `118` lines (`4335` bytes)
+
+**Functions:**
+- `def wall_tension(mu)`
+- `def wall_lower_bound_2d(mu, length_y)`
+- `def moment_power(alpha)` - *Power of r in the 2D moment integrand for rho ~ r^-alpha.*
+- `def moment_finite(alpha)`
+- `def moment_log_divergent(alpha)`
+- `def moment_numeric(alpha, r_min, r_max)` - *2*pi int rho r^3 dr for rho = r^-alpha on [r_min, r_max].*
+- `def moment_profile(profile, r_max, points)` - *Numerical 2*pi int_0^rmax profile(r) r^3 dr; profile must be regular at 0.*
+- `def verdict(stated_alpha)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`theory/rotor.py`](theory/rotor.py)
 > *Quantum rotor H = L^2/(2I) + mu (1 - cos 3 phi) and its spectra.*
 
@@ -237,6 +652,20 @@
 
 ---
 
+### [`theory/topology.py`](theory/topology.py)
+> *Topology of a nematic director and the Z3 question.*
+
+**Size**: `113` lines (`4186` bytes)
+
+**Functions:**
+- `def has_z3_factor()` - *True only if one of the listed homotopy groups has a Z3 factor.*
+- `def direct_result()`
+- `def extensions()`
+- `def verdict()`
+- `def render_markdown(payload)`
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -247,7 +676,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `742` lines (`28357` bytes)
+**Size**: `1184` lines (`47193` bytes)
 
 **Classes:**
 - `class Audit`
@@ -273,6 +702,11 @@
 - `def audit_rg(audit)`
 - `def rotor_levels(I, mu, sector, n_max)`
 - `def audit_rotor(audit)`
+- `def audit_neutrinos_quarks(audit)`
+- `def audit_delta_modes_derrick(audit)`
+- `def audit_negatives(audit)`
+- `def audit_lorentz(audit)`
+- `def audit_hopf(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -298,7 +732,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `77` lines (`2093` bytes)
+**Size**: `101` lines (`2573` bytes)
 
 **Functions:**
 - `def _source_files()`

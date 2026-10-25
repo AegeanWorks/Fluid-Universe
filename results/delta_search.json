@@ -1,0 +1,115 @@
+{
+  "best": {
+    "abs_diff": 2.5396818043033065e-06,
+    "label": "2/9",
+    "sigma_diff": 0.4071022365908744,
+    "value": 0.222222222222222
+  },
+  "look_elsewhere": {
+    "expected_candidates_within_best_distance": 0.0007930461153754838,
+    "p_look_elsewhere": 0.0007927317374157861,
+    "p_single_candidate": 2.425217478212489e-06
+  },
+  "meta": {
+    "config": {
+      "delta_mod": "2*pi/3",
+      "delta_rad": 0.2222247619040263,
+      "prior": {
+        "pi_multiples_qmax": 12,
+        "rationals_qmax": 20,
+        "simple_nmax": 12,
+        "span": 2.0943951023931953,
+        "uniform_over": "enumerated candidate set"
+      },
+      "sigma_delta_rad": 6.238437365441475e-06,
+      "source_fit": "results/pdg_fit.json"
+    },
+    "config_sha256": "5947ca1f7edce9428e29811388c938328a636f09d8d9a05de85fbd945f87ccd3",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "n_candidates": 327,
+  "prior": {
+    "pi_multiples_qmax": 12,
+    "rationals_qmax": 20,
+    "simple_nmax": 12,
+    "span": 2.0943951023931953,
+    "uniform_over": "enumerated candidate set"
+  },
+  "promoted": false,
+  "top10": [
+    {
+      "abs_diff": 2.5396818043033065e-06,
+      "label": "2/9",
+      "sigma_diff": 0.4071022365908744,
+      "value": 0.222222222222222
+    },
+    {
+      "abs_diff": 0.007939047618312295,
+      "label": "3/14",
+      "sigma_diff": 1272.6019599541933,
+      "value": 0.214285714285714
+    },
+    {
+      "abs_diff": 0.008544468865204713,
+      "label": "3/13",
+      "sigma_diff": 1369.6488983824313,
+      "value": 0.230769230769231
+    },
+    {
+      "abs_diff": 0.011698446114552286,
+      "label": "4/19",
+      "sigma_diff": 1875.2205767676924,
+      "value": 0.210526315789474
+    },
+    {
+      "abs_diff": 0.013069355743032696,
+      "label": "4/17",
+      "sigma_diff": 2094.97266341598,
+      "value": 0.235294117647059
+    },
+    {
+      "abs_diff": 0.02222476190402628,
+      "label": "1/5",
+      "sigma_diff": 3562.5527038458135,
+      "value": 0.2
+    },
+    {
+      "abs_diff": 0.022753901222837714,
+      "label": "atan(1/4)",
+      "sigma_diff": 3647.371912217234,
+      "value": 0.244978663126864
+    },
+    {
+      "abs_diff": 0.024829202054145294,
+      "label": "atan(1/5)",
+      "sigma_diff": 3980.035479988859,
+      "value": 0.197395559849881
+    },
+    {
+      "abs_diff": 0.02777523809597371,
+      "label": "1/4",
+      "sigma_diff": 4452.274899775024,
+      "value": 0.25
+    },
+    {
+      "abs_diff": 0.03472476190402629,
+      "label": "3/16",
+      "sigma_diff": 5566.259604751025,
+      "value": 0.1875
+    }
+  ],
+  "verdict": "No closed form is established. The closest candidate is 2/9 at 0.407 sigma; the post-hoc look-elsewhere p-value over the stated prior is 7.927e-04. This is a recorded near-miss, not evidence."
+}

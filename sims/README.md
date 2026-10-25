@@ -1,20 +1,20 @@
-# Simulations — Not Started
+# Simulations — 1D Baseline Only
 
-There is **no** simulation result in this repository. Nothing here may be cited.
+There is **no 3D or Hopfion result** in this repository. The 1D validation core exists; no production run has been done. Earlier lost-run values are not cited.
 
 Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(N=36\)) are not reproduced and are explicitly excluded from the ledger and the paper.
 
 ## Required baselines before any production run
 
-`sims/core.py` does not exist yet. When it does, it must pass all of the following, each as an automated test in `tests/`:
+`sims/core.py` now implements the 1D baselines. It must still pass all of the following, each as an automated test in `tests/`:
 
-1. **1D sine-Gordon kink.** Profile and tension against the analytic \(T=(8/3)\sqrt{\mu}\).
-2. **Gradient check.** Analytic force equals a finite difference of the discrete energy (relative error \(<10^{-6}\)) for the full Lagrangian including Skyrme and \(Z_3\) terms.
-3. **Monotone energy.** Energy decreases monotonically under gradient flow; a failure means a bug or an unstable time step.
-4. **Hopf-charge estimator.** Analytic Hopf map (\(H=1\)) on a grid; \(H\to1\) with convergence order in \(N\); sign flips under reflection; integer stability under smooth deformation. Two independent methods (field-theory integral and preimage linking number) must agree.
-5. **Derrick virial.** On a relaxed soliton, the scaling identity for the exact convention holds within tolerance.
-6. **Rotor cross-check.** Exact diagonalisation against a grid Schrödinger solver.
-7. **Hessian.** Symmetric, zero modes counted, eigenvalues stable under epsilon and \(N\).
+1. **1D sine-Gordon kink.** PASS: profile and tension convergence at order ~2 (`tests/test_sim_core.py`).
+2. **Gradient check.** PASS for the 1D sine-Gordon energy (relative error < 1e-6). The full 3D Skyrme+Z3 gradient check is not implemented.
+3. **Monotone energy.** PASS for the 1D flow.
+4. **Hopf-charge estimator.** PASS: preimage linking gives H=0.999958 at 400 samples (reflection flips sign; rotation/shear invariant), and the normalized grid Chern-Simons estimator gives 1.000000 at N=64. The two methods agree; baseline 4 passes.
+5. **Derrick virial.** Scaling identity derived (`theory/derrick.py`); not yet checked on a relaxed 3D soliton.
+6. **Rotor cross-check.** PASS: Fourier vs finite-difference spectra agree below 1e-3.
+7. **Hessian.** PARTIAL: symmetric and stable in 1D; the translation mode is lifted by Dirichlet boundaries, so zero-mode counting is not exact.
 
 ## Production rules
 
@@ -23,6 +23,11 @@ Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(
 - Log the \(Z_3\) order parameter, Hopf charge, energy, residual force, and virial ratio per run, with config hash and git commit.
 - Extract a mass matrix from a field-theory Hessian only after the baselines pass; report whether it is circulant and whether \(|c|/a\) emerges rather than being fitted.
 - Scale to GPU only after the CPU core is validated; target \(N\ge64\) for \(|H|\ge1\) coexistence.
+
+## Status
+
+- 1D baselines 1, 2, 3, 6 pass; 5 and 7 are partial; 4 is not implemented.
+- No 3D run, Hopf charge, or Z3 order. Claim 15 remains UNVERIFIED / NOT ACHIEVED.
 
 ## Known analytic obstacles (to be tested, not assumed away)
 

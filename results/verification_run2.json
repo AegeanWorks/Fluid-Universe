@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-25T21:41:53+00:00",
-    "git_commit": "dea2f9e20f6af587d427c2cb8a958c87cfe9378d",
+    "generated_utc": "2026-10-25T23:48:24+00:00",
+    "git_commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "d4cc8037573cc0f2d6526cb3523c7c5c8b71f330871e30770fc2fa3fe93dd47a",
-      "results_sha256": "9a9193615176a5d3de07a24c9ee2c1e0a92016264f7cf33c8b1a8e823d2b7a4f"
+      "source_sha256": "64c79258eac8033639740e8e8098988d5f1f5e3869de3f54451451f9eae9ad68",
+      "results_sha256": "5f7abf9e157b803f93f77e15ed01533e7395a2b2dd45371af6777d68e63185a7"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -326,6 +326,181 @@
       "observed": null
     },
     {
+      "claim": "7a: Q_nu at m_light=0 (NO and IO)",
+      "passed": true,
+      "detail": "NO=0.585612009369, IO=0.500006739587",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "7a: 3-sigma corner maximum",
+      "passed": true,
+      "detail": "corner max=0.590606037134; stored=0.590606037134",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "7a: no scanned point reaches 2/3",
+      "passed": true,
+      "detail": "scan max=0.585612009369; margin=0.081055",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "8: Q_up and Q_down at M_Z",
+      "passed": true,
+      "detail": "Q_up=0.887569231319, Q_down=0.748065054803",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "8: six-scale ranges and no 2/3",
+      "passed": true,
+      "detail": "Q_up range [0.887569231,0.892553734], Q_down range [0.738535231,0.748065055]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "7b: minimal PMNS branch angles",
+      "passed": true,
+      "detail": "DFT={'theta12_deg': 45.000000000000014, 'theta13_deg': 35.264389682754654, 'theta23_deg': 45.000000000000014}; identity={'theta12_deg': 0.0, 'theta13_deg': 0.0, 'theta23_deg': 0.0}",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "7b: both branches excluded; theta13-only claim ill-posed",
+      "passed": true,
+      "detail": "measured theta13=8.58, DFT=35.264, identity=0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "9: delta closed-form search",
+      "passed": true,
+      "detail": "best=2/9, diff=2.540e-06, sigma=0.407, p_LEE=7.927e-04",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "10: Frank-Oseen elastic matrix",
+      "passed": true,
+      "detail": "equal=[28.0, 28.0], x=[4.0, 8.0], z=[12.0, 12.0]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "10: two modes and no photon",
+      "passed": true,
+      "detail": "two transverse director components; no gauge field or vector potential in the F-O energy",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14a: Derrick derivative equals virial",
+      "passed": true,
+      "detail": "numeric dE/dlambda=2.499999998, virial=2.500000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14a: stationary scale and curvature",
+      "passed": true,
+      "detail": "lambda^2=0.387425887, second derivative=5.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: kappa>0 necessary, existence unproved",
+      "passed": true,
+      "detail": "kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "13a: RP2 homotopy has no Z3 factor",
+      "passed": true,
+      "detail": "homotopy={'pi1': 'Z2', 'pi2': 'Z', 'pi3': 'Z'}",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "13b: standard extensions do not derive Z3",
+      "passed": true,
+      "detail": "extensions=['rank_three_order_parameter', 'three_coupled_nematics', 'three_fold_lattice']",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6b: trivial 2D lower bound",
+      "passed": true,
+      "detail": "T=2.666666666667, T*L_y(2)=5.333333333333",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6c: moment convergence and log divergence",
+      "passed": true,
+      "detail": "I_eff finite iff alpha>4; alpha=4 log-divergent; alpha=2 power-divergent",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "16: no new prediction found",
+      "passed": true,
+      "detail": "7 candidate classes, none new",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "11a: axis speeds for K=(1,2,3)",
+      "passed": true,
+      "detail": "x=[1.0, 1.4142135623730951], z=[1.7320508075688772, 1.7320508075688772]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "11a/F23: residual anisotropy xi",
+      "passed": true,
+      "detail": "xi(K=1,2,3)=1.003479956; xi(equal)=0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "12a: photon bounds are not directly applicable",
+      "passed": true,
+      "detail": "all four bounds flagged non-applicable; director modes are neutral",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "12b: conditional bound",
+      "passed": true,
+      "detail": "equal K is exactly isotropic; O(1) xi fails every Delta c/c bound",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15/4: preimage linking converges to 1",
+      "passed": true,
+      "detail": "H(100/200/400)=0.999331467/0.999832946/0.999958242",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15/4: reflection, rotation, shear",
+      "passed": true,
+      "detail": "reflection=-0.999832946, rotation=0.999832946, shear=0.999834138",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15/4: grid estimator matches known answer",
+      "passed": true,
+      "detail": "grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -452,6 +627,356 @@
       "observed": null
     },
     {
+      "claim": "docs: claims Q_nu max",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Q_up",
+      "passed": true,
+      "detail": "searched for '0.887569'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Q_down",
+      "passed": true,
+      "detail": "searched for '0.748065'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims trimaximal theta13",
+      "passed": true,
+      "detail": "searched for '35.26'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard Q_nu",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard Q_up range",
+      "passed": true,
+      "detail": "searched for '0.8876'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard Q_down range",
+      "passed": true,
+      "detail": "searched for '0.7385'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README Q_nu",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README Q_up",
+      "passed": true,
+      "detail": "searched for '0.888'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README Q_down",
+      "passed": true,
+      "detail": "searched for '0.748'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper Q_nu",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper Q_up",
+      "passed": true,
+      "detail": "searched for '0.887569'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper Q_down",
+      "passed": true,
+      "detail": "searched for '0.748065'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary Q_nu",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims delta sigma",
+      "passed": true,
+      "detail": "searched for '0.407'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Q_nu",
+      "passed": true,
+      "detail": "searched for '0.585612'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard delta sigma",
+      "passed": true,
+      "detail": "searched for '0.407'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README delta sigma",
+      "passed": true,
+      "detail": "searched for '0.407'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper delta sigma",
+      "passed": true,
+      "detail": "searched for '0.41\\sigma'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B Derrick virial",
+      "passed": true,
+      "detail": "searched for 'E_2-E_4+3V=0'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B Frank-Oseen dispersion",
+      "passed": true,
+      "detail": "searched for '\\omega^2=(K/\\rho)k^2'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary Derrick virial",
+      "passed": true,
+      "detail": "searched for 'E2-E4+3V'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims exact reduction row",
+      "passed": true,
+      "detail": "searched for '6c'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims direct topology row",
+      "passed": true,
+      "detail": "searched for '13a'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims extension row",
+      "passed": true,
+      "detail": "searched for '13b'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims no new prediction",
+      "passed": true,
+      "detail": "searched for 'none found'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard I_eff",
+      "passed": true,
+      "detail": "searched for 'log-divergent'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README I_eff",
+      "passed": true,
+      "detail": "searched for 'log-divergent'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary I_eff",
+      "passed": true,
+      "detail": "searched for 'log-divergent'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B I_eff",
+      "passed": true,
+      "detail": "searched for 'logarithmically divergent'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper A no prediction",
+      "passed": true,
+      "detail": "searched for 'No genuinely new prediction'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims xi",
+      "passed": true,
+      "detail": "searched for '1.00348'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard xi",
+      "passed": true,
+      "detail": "searched for '1.00348'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README xi",
+      "passed": true,
+      "detail": "searched for '1.00348'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary xi",
+      "passed": true,
+      "detail": "searched for '1.00348'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B xi",
+      "passed": true,
+      "detail": "searched for '1.00348'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B GRB order",
+      "passed": true,
+      "detail": "searched for '10^{-18}'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Hopf preimage",
+      "passed": true,
+      "detail": "searched for '0.999958'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README Hopf preimage",
+      "passed": true,
+      "detail": "searched for '0.999958'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary Hopf preimage",
+      "passed": true,
+      "detail": "searched for '0.999958'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B Hopf preimage",
+      "passed": true,
+      "detail": "searched for '0.999958'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims grid Hopf",
+      "passed": true,
+      "detail": "searched for '1.000000'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README grid Hopf",
+      "passed": true,
+      "detail": "searched for '1.000000'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary grid Hopf",
+      "passed": true,
+      "detail": "searched for '1.000000'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B grid Hopf",
+      "passed": true,
+      "detail": "searched for '1.00000004'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims baseline 4",
+      "passed": true,
+      "detail": "searched for 'baseline 4 passes'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary 6b row",
+      "passed": true,
+      "detail": "searched for '| 6b | 2D reduction lower bound'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary 6c row",
+      "passed": true,
+      "detail": "searched for '| 6c | Exact dimensional reduction'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: registry preimage rows",
+      "passed": true,
+      "detail": "searched for 'F16a'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: registry grid rows",
+      "passed": true,
+      "detail": "searched for 'F16b'",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: summary lists the rotor result",
       "passed": true,
       "detail": "summary.md must describe the rotor output it now includes",
@@ -480,8 +1005,8 @@
       "observed": null
     }
   ],
-  "total": 66,
-  "passed": 66,
+  "total": 141,
+  "passed": 141,
   "failed": 0,
   "failures": []
 }

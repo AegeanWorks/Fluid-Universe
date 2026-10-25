@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "config": {
+      "data_sha256": "bedb29918d77915913c6b7917f0e8562677427bbfeef5ac25502705256cb3781",
+      "koide_target": 0.6666666666666666,
+      "mass_definition": "MS-bar, full SM, Huang & Zhou (2021) Table II"
+    },
+    "config_sha256": "e1a32d5cfb6e7f5bc307e762afe8b3536e809b0bcfb77068e1392dcdc3b7c5aa",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "points": [
+    {
+      "Q_down": 0.7480650548031402,
+      "Q_down_minus_2_3": 0.0813983881364736,
+      "Q_up": 0.8875692313187327,
+      "Q_up_minus_2_3": 0.22090256465206604,
+      "scale_GeV": 91.1876,
+      "scale_label": "MZ"
+    },
+    {
+      "Q_down": 0.7477743223876179,
+      "Q_down_minus_2_3": 0.08110765572095124,
+      "Q_up": 0.8876728383536937,
+      "Q_up_minus_2_3": 0.22100617168702708,
+      "scale_GeV": 125.1,
+      "scale_label": "Mh"
+    },
+    {
+      "Q_down": 0.7474797033594331,
+      "Q_down_minus_2_3": 0.08081303669276652,
+      "Q_up": 0.8878044857707983,
+      "Q_up_minus_2_3": 0.22113781910413166,
+      "scale_GeV": 173.1,
+      "scale_label": "Mt"
+    },
+    {
+      "Q_down": 0.7436372936919348,
+      "Q_down_minus_2_3": 0.07697062702526813,
+      "Q_up": 0.8899040373109949,
+      "Q_up_minus_2_3": 0.22323737064432825,
+      "scale_GeV": 100000.0,
+      "scale_label": "1e5"
+    },
+    {
+      "Q_down": 0.7410130642007927,
+      "Q_down_minus_2_3": 0.07434639753412609,
+      "Q_up": 0.8913046980142838,
+      "Q_up_minus_2_3": 0.22463803134761717,
+      "scale_GeV": 100000000.0,
+      "scale_label": "1e8"
+    },
+    {
+      "Q_down": 0.7385352310508178,
+      "Q_down_minus_2_3": 0.07186856438415112,
+      "Q_up": 0.892553733690027,
+      "Q_up_minus_2_3": 0.22588706702336037,
+      "scale_GeV": 1000000000000.0,
+      "scale_label": "1e12"
+    }
+  ],
+  "ranges": {
+    "Q_down_max": 0.7480650548031402,
+    "Q_down_min": 0.7385352310508178,
+    "Q_up_max": 0.892553733690027,
+    "Q_up_min": 0.8875692313187327
+  },
+  "verdict": {
+    "closest_Q_down": 0.7385352310508178,
+    "closest_Q_up": 0.892553733690027,
+    "closest_scale": "1e12",
+    "direct_extension_falsified": true,
+    "min_abs_Q_minus_2_3": 0.07186856438415112,
+    "note": "Both quark ratios stay far from 2/3 at every tabulated scale. The original Q_up~0.85, Q_down~0.73 values are scale-dependent; at M_Z the full-SM values are about 0.888 and 0.748."
+  }
+}

@@ -12,6 +12,30 @@ Do not edit these files by hand.
 | `rg_run.md` | Human-readable version of the same |
 | `rotor.json` | Rotor spectrum, degeneracy, convergence, domain-wall tension |
 | `rotor.md` | Human-readable version of the same |
+| `neutrinos.json` | Neutrino Q_nu scan, both orderings and 3-sigma corners |
+| `neutrinos.md` | Human-readable version of the same |
+| `quarks.json` | Quark Q_up/Q_down at six full-SM MS-bar scales |
+| `quarks.md` | Human-readable version of the same |
+| `pmns.json` | Minimal circulant PMNS branches and measured angles |
+| `pmns.md` | Human-readable version of the same |
+| `delta_search.json` | Delta closed-form search with prior and look-elsewhere penalty |
+| `delta_search.md` | Human-readable version of the same |
+| `frank_oseen.json` | Frank-Oseen elastic matrix, modes, anisotropy |
+| `frank_oseen.md` | Human-readable version of the same |
+| `derrick.json` | Derrick exponents, virial, scaling minima, parameter region |
+| `derrick.md` | Human-readable version of the same |
+| `topology.json` | RP2 homotopy, direct Z3 claim, standard extensions |
+| `topology.md` | Human-readable version of the same |
+| `reduction.json` | 2D lower bound and effective moment of inertia |
+| `reduction.md` | Human-readable version of the same |
+| `predictions.json` | Seven-class new-prediction audit |
+| `predictions.md` | Human-readable version of the same |
+| `lorentz.json` | Residual anisotropy and conditional LV bounds |
+| `lorentz.md` | Human-readable version of the same |
+| `sim_core.json` | 1D kink/gradient/flow/Hessian/rotor baselines |
+| `sim_core.md` | Human-readable version of the same |
+| `hopf.json` | Hopf preimage/grid estimator validation |
+| `hopf.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

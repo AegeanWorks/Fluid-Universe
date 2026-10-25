@@ -5,7 +5,7 @@
     "last_phase": "phase 4",
     "active_phase": 4,
     "status": "in_progress",
-    "updated_at": 1792963987.351241,
+    "updated_at": 1792971415.7011232,
     "owner": "kilo:1",
     "started_by": "kilo:1",
     "continuations": []
@@ -80,6 +80,131 @@
         "failed": "none",
         "open": "claims 6b,7-16, no two-loop run, no simulation",
         "evidence": "results/verification.md, 38 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[4/6] Claims 7-8 complete: neutrino Q_nu negative, quark extension falsified, PMNS branches excluded; 87/87 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792966541.9480863,
+      "timestamp_str": "2026-10-26 01:15:41",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "claim 6b or 9-16",
+        "failed": "none",
+        "open": "6b,9-16, no simulation",
+        "evidence": "results/neutrinos.json, results/quarks.json, results/pmns.json, 51 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[5/6] Claims 9/10/14: delta null, Frank-Oseen equal-K proven, Derrick scaling proven; 101/101 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792967668.3203776,
+      "timestamp_str": "2026-10-26 01:34:28",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "claim 13/16 or simulation core",
+        "failed": "none",
+        "open": "6b,11,12,13,14b,15,16",
+        "evidence": "results/delta_search.json, results/frank_oseen.json, results/derrick.json, 69 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[6/6] Claims 6b/13/16: exact reduction falsified, direct Z3 topology falsified, no new prediction; 115/115 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792968329.678818,
+      "timestamp_str": "2026-10-26 01:45:29",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "simulation core baselines or claim 11/12",
+        "failed": "none",
+        "open": "11,12,14b,15",
+        "evidence": "results/topology.json, results/reduction.json, results/predictions.json, 79 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[done] Claims 11/12: tree-level metric falsified, RG downgraded, LV bounds not directly applicable; 125/125 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792968979.6826465,
+      "timestamp_str": "2026-10-26 01:56:19",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "simulation core",
+        "failed": "none",
+        "open": "14b,15",
+        "evidence": "results/lorentz.json, 84 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/4] Build validated 1D simulation core: sine-Gordon kink, gradient check, monotone flow, Hessian; rotor cross-check",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792968994.595906,
+      "timestamp_str": "2026-10-26 01:56:34",
+      "agent": "kilo:1",
+      "impact_assessment": {
+        "why": "Claim 15 requires a validated simulation core before any 3D or production run; the repository currently has no core and earlier lost-run numbers are inadmissible.",
+        "benefits": "Reusable tested core, quantitative baselines, and a defensible base for the Hopf estimator and 3D runs.",
+        "risks": "contract: sims only, no claim changes beyond validation; dependency: numpy/scipy already declared; concurrency: none; state: new results/sim_core.json/md and tests; numerical: discretization and boundary conditions",
+        "mitigation": "Fix Dirichlet boundary values from the analytic profile; verify energy convergence in N; finite-difference gradient check <1e-6; small explicit time step; test Hessian symmetry and eps/N stability."
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[1/4] 1D simulation core validated: kink, gradient, monotone flow, rotor pass; Hessian partial; 125/125 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792969571.9961681,
+      "timestamp_str": "2026-10-26 02:06:11",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "Hopf estimator baseline",
+        "failed": "none",
+        "open": "Hopf estimator, 3D core, production, claim 15",
+        "evidence": "results/sim_core.json, 91 tests, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/4] Hopf estimator validated both ways: preimage 0.999958, normalized grid 1.000000 at N=64; baseline 4 passes; 137/137 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792971415.7011232,
+      "timestamp_str": "2026-10-26 02:36:55",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "verification accepted",
+        "next": "3D Skyrme+Z3 core",
+        "failed": "none",
+        "open": "3D core, Z3 order, production, claim 15",
+        "evidence": "results/hopf.json, 95 tests, direct gates 4/4"
       }
     }
   ]

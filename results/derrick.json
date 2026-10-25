@@ -1,0 +1,96 @@
+{
+  "exponents": {
+    "gradient": 1,
+    "potential": 3,
+    "skyrme": -1
+  },
+  "meta": {
+    "config": {
+      "d": 3,
+      "example_E2": 2.0,
+      "example_E4": 1.0,
+      "example_V": 0.5,
+      "symbolic_virial": true
+    },
+    "config_sha256": "d0ef56d8f61041f2785a740d2c835b801287e3e90b5944232a80aa8534d0eb69",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "minimum_no_potential": {
+    "E2": 2.0,
+    "E4": 8.0,
+    "details": {
+      "curvature": 16.0,
+      "energy": 8.0,
+      "is_minimum": true,
+      "lambda": 2.0,
+      "lambda_squared": 4.0,
+      "virial_at_lambda_one": -6.0
+    },
+    "lambda_squared": 4.0
+  },
+  "minimum_with_potential": {
+    "E2": 2.0,
+    "E4": 8.0,
+    "V": 0.5,
+    "details": {
+      "curvature": 19.0,
+      "energy": 9.850567441059047,
+      "is_minimum": true,
+      "lambda": 1.3179659265863664,
+      "lambda_squared": 1.7370341836426595,
+      "virial_at_lambda_one": -4.5
+    },
+    "lambda_squared": 1.7370341836426595
+  },
+  "regions": {
+    "kappa_negative": {
+      "K_positive": true,
+      "energy_bounded_below": false,
+      "hopfion_existence_proved": false,
+      "kappa_positive": false,
+      "mu_non_negative": true,
+      "note": "k=0 or kappa<=0: no stable scaling soliton in d=3. kappa>0: a scaling minimum exists for any E2>0, E4>0, V>=0, but existence of a Hopfion solution is not proved by Derrick scaling.",
+      "scaling_minimum_exists": false
+    },
+    "kappa_positive": {
+      "K_positive": true,
+      "energy_bounded_below": true,
+      "hopfion_existence_proved": false,
+      "kappa_positive": true,
+      "mu_non_negative": true,
+      "note": "k=0 or kappa<=0: no stable scaling soliton in d=3. kappa>0: a scaling minimum exists for any E2>0, E4>0, V>=0, but existence of a Hopfion solution is not proved by Derrick scaling.",
+      "scaling_minimum_exists": true
+    },
+    "kappa_zero": {
+      "K_positive": true,
+      "energy_bounded_below": true,
+      "hopfion_existence_proved": false,
+      "kappa_positive": false,
+      "mu_non_negative": true,
+      "note": "k=0 or kappa<=0: no stable scaling soliton in d=3. kappa>0: a scaling minimum exists for any E2>0, E4>0, V>=0, but existence of a Hopfion solution is not proved by Derrick scaling.",
+      "scaling_minimum_exists": false
+    }
+  },
+  "second_derivative_example": 5.0,
+  "verdict": {
+    "hopfion_existence_proved": false,
+    "note": "Derrick scaling gives a necessary condition, not an existence proof. No Hopfion solution is claimed.",
+    "scaling_exponents_proven": true,
+    "stable_scaling_region": "K>0, kappa>0, mu>=0",
+    "virial_relation_proven": true
+  },
+  "virial_example": 2.5
+}

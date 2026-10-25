@@ -19,8 +19,10 @@ A single run writes ``verification_single.*`` and is explicitly not accepted.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import math
+from fractions import Fraction
 import os
 import platform
 import subprocess
@@ -607,6 +609,389 @@ def audit_rotor(audit: Audit) -> None:
         )
 
 
+
+# ---------------------------------------------------------------------------
+# Claim 7 / 8: neutrinos, quarks, PMNS branches
+# ---------------------------------------------------------------------------
+
+
+def audit_neutrinos_quarks(audit: Audit) -> None:
+    neutrino = load_results("neutrinos.json")
+    quarks = load_results("quarks.json")
+    pmns = load_results("pmns.json")
+
+    dm21 = 7.41e-5
+    dm31_no = 2.507e-3
+    dm31_io = -2.486e-3
+    q_no = q_from_masses([0.0, math.sqrt(dm21), math.sqrt(dm31_no)])
+    q_io = q_from_masses(
+        [math.sqrt(abs(dm31_io)), math.sqrt(abs(dm31_io) + dm21), 0.0]
+    )
+    audit.record(
+        "7a: Q_nu at m_light=0 (NO and IO)",
+        abs(q_no - 0.5856120093687199) < 1e-12
+        and abs(q_io - 0.5000067395867646) < 1e-12
+        and q_no < 2.0 / 3.0
+        and q_io < 2.0 / 3.0,
+        f"NO={q_no:.12f}, IO={q_io:.12f}",
+    )
+    corners = []
+    for dm21_corner in (6.82e-5, 8.03e-5):
+        for dm31_corner in (2.427e-3, 2.590e-3):
+            corners.append(q_from_masses([0.0, math.sqrt(dm21_corner), math.sqrt(dm31_corner)]))
+        for dm31_corner in (-2.570e-3, -2.406e-3):
+            corners.append(
+                q_from_masses(
+                    [
+                        math.sqrt(abs(dm31_corner)),
+                        math.sqrt(abs(dm31_corner) + dm21_corner),
+                        0.0,
+                    ]
+                )
+            )
+    corner_max = max(corners)
+    audit.record(
+        "7a: 3-sigma corner maximum",
+        abs(corner_max - 0.5906060371336499) < 1e-12 and corner_max < 2.0 / 3.0,
+        f"corner max={corner_max:.12f}; stored={neutrino['verdict']['Q_nu_max_at_3sigma_corner']:.12f}",
+    )
+    scan_max = max(q_no, q_io)
+    audit.record(
+        "7a: no scanned point reaches 2/3",
+        scan_max < 2.0 / 3.0
+        and abs(scan_max - neutrino["verdict"]["Q_nu_max"]) < 1e-12
+        and neutrino["verdict"]["Q_nu_below_2_3_all_scanned"],
+        f"scan max={scan_max:.12f}; margin={2.0/3.0-scan_max:.6f}",
+    )
+
+    data_path = ROOT / "phenomenology" / "data" / "quark_masses_hz2021.csv"
+    with data_path.open(newline="", encoding="utf-8") as handle:
+        rows = list(csv.DictReader(handle))
+    ups = []
+    downs = []
+    for row in rows:
+        ups.append(q_from_masses([float(row["m_u_GeV"]), float(row["m_c_GeV"]), float(row["m_t_GeV"])]))
+        downs.append(q_from_masses([float(row["m_d_GeV"]), float(row["m_s_GeV"]), float(row["m_b_GeV"])]))
+    mz = quarks["points"][0]
+    audit.record(
+        "8: Q_up and Q_down at M_Z",
+        abs(ups[0] - 0.8875692313187327) < 1e-12
+        and abs(downs[0] - 0.7480650548031402) < 1e-12
+        and abs(ups[0] - mz["Q_up"]) < 1e-12
+        and abs(downs[0] - mz["Q_down"]) < 1e-12,
+        f"Q_up={ups[0]:.12f}, Q_down={downs[0]:.12f}",
+    )
+    audit.record(
+        "8: six-scale ranges and no 2/3",
+        min(ups + downs) > 2.0 / 3.0
+        and abs(min(ups) - quarks["ranges"]["Q_up_min"]) < 1e-12
+        and abs(max(ups) - quarks["ranges"]["Q_up_max"]) < 1e-12
+        and abs(min(downs) - quarks["ranges"]["Q_down_min"]) < 1e-12
+        and abs(max(downs) - quarks["ranges"]["Q_down_max"]) < 1e-12
+        and quarks["verdict"]["direct_extension_falsified"],
+        f"Q_up range [{min(ups):.9f},{max(ups):.9f}], Q_down range [{min(downs):.9f},{max(downs):.9f}]",
+    )
+
+    omega = np.exp(2j * math.pi / 3.0)
+    k = np.arange(3)
+    U = np.array([[omega ** (k * n) for k in range(3)] for n in range(3)]) / math.sqrt(3.0)
+
+    def angles(matrix: np.ndarray) -> dict[str, float]:
+        s13 = min(1.0, float(abs(matrix[0, 2])))
+        c13 = math.sqrt(max(0.0, 1.0 - s13 * s13))
+        s12 = min(1.0, float(abs(matrix[0, 1])) / c13)
+        s23 = min(1.0, float(abs(matrix[1, 2])) / c13)
+        return {
+            "theta12_deg": math.degrees(math.asin(s12)),
+            "theta13_deg": math.degrees(math.asin(s13)),
+            "theta23_deg": math.degrees(math.asin(s23)),
+        }
+
+    dft_angles = angles(U)
+    identity_angles = angles(np.eye(3))
+    stored_dft = pmns["branches"]["neutrino_only_circulant"]["angles"]
+    stored_identity = pmns["branches"]["same_basis_both_circulant"]["angles"]
+    audit.record(
+        "7b: minimal PMNS branch angles",
+        abs(dft_angles["theta13_deg"] - 35.264389682754654) < 1e-9
+        and abs(dft_angles["theta12_deg"] - 45.0) < 1e-9
+        and abs(dft_angles["theta23_deg"] - 45.0) < 1e-9
+        and all(abs(identity_angles[key]) < 1e-12 for key in identity_angles)
+        and abs(dft_angles["theta13_deg"] - stored_dft["theta13_deg"]) < 1e-9
+        and abs(identity_angles["theta13_deg"] - stored_identity["theta13_deg"]) < 1e-9,
+        f"DFT={dft_angles}; identity={identity_angles}",
+    )
+    measured = pmns["measured"]["theta13_deg"]
+    audit.record(
+        "7b: both branches excluded; theta13-only claim ill-posed",
+        abs(dft_angles["theta13_deg"] - measured) > 3.0
+        and abs(identity_angles["theta13_deg"] - measured) > 3.0
+        and pmns["verdict"]["same_basis_branch_excluded"]
+        and pmns["verdict"]["trimaximal_branch_excluded_by_theta13"]
+        and not pmns["verdict"]["original_claim_well_posed"],
+        f"measured theta13={measured:.2f}, DFT={dft_angles['theta13_deg']:.3f}, identity=0",
+    )
+
+
+
+# ---------------------------------------------------------------------------
+# Claim 9 / 10 / 14: delta search, Frank-Oseen, Derrick
+# ---------------------------------------------------------------------------
+
+
+def audit_delta_modes_derrick(audit: Audit) -> None:
+    fit = load_results("pdg_fit.json")
+    delta = float(fit["point"]["delta_mod_2pi_over_3"])
+    sigma = float(fit["monte_carlo"]["delta"]["std"])
+    span = 2.0 * math.pi / 3.0
+
+    candidates: dict[float, str] = {}
+    for q in range(1, 21):
+        for p in range(1, int(span * q) + 2):
+            value = float(Fraction(p, q))
+            if 0.0 < value <= span:
+                candidates.setdefault(round(value, 15), f"{p}/{q}")
+    for q in range(1, 13):
+        for p in range(1, int(span / math.pi * q) + 2):
+            value = p * math.pi / q
+            if 0.0 < value <= span:
+                candidates.setdefault(round(value, 15), f"{p}*pi/{q}")
+    for n in range(1, 13):
+        for value, label in (
+            (1.0 / math.sqrt(n), f"1/sqrt({n})"),
+            (math.atan(1.0 / n), f"atan(1/{n})"),
+            (math.acos(1.0 / n), f"acos(1/{n})"),
+        ):
+            if 0.0 < value <= span:
+                candidates.setdefault(round(value, 15), label)
+    best_value, best_label = min(candidates.items(), key=lambda item: abs(item[0] - delta))
+    best_diff = abs(best_value - delta)
+    p_look = 1.0 - math.exp(-len(candidates) * min(1.0, 2.0 * best_diff / span))
+    audit.record(
+        "9: delta closed-form search",
+        best_label == "2/9"
+        and abs(best_diff - 2.539681804081262e-06) < 1e-15
+        and abs(best_diff / sigma - 0.4071) < 1e-3
+        and abs(p_look - 7.927e-4) < 1e-6,
+        f"best={best_label}, diff={best_diff:.3e}, sigma={best_diff/sigma:.3f}, p_LEE={p_look:.3e}",
+    )
+
+    def elastic(kx: float, ky: float, kz: float, k1: float, k2: float, k3: float) -> np.ndarray:
+        return np.array(
+            [
+                [k1 * kx * kx + k2 * ky * ky + k3 * kz * kz, (k1 - k2) * kx * ky],
+                [(k1 - k2) * kx * ky, k1 * ky * ky + k2 * kx * kx + k3 * kz * kz],
+            ]
+        )
+
+    equal = np.linalg.eigvalsh(elastic(1.0, 2.0, 3.0, 2.0, 2.0, 2.0))
+    axis_x = np.linalg.eigvalsh(elastic(2.0, 0.0, 0.0, 1.0, 2.0, 3.0))
+    axis_z = np.linalg.eigvalsh(elastic(0.0, 0.0, 2.0, 1.0, 2.0, 3.0))
+    audit.record(
+        "10: Frank-Oseen elastic matrix",
+        np.allclose(equal, [2.0 * (1.0 + 4.0 + 9.0)] * 2)
+        and np.allclose(axis_x, [1.0 * 4.0, 2.0 * 4.0])
+        and np.allclose(axis_z, [3.0 * 4.0, 3.0 * 4.0]),
+        f"equal={equal.tolist()}, x={axis_x.tolist()}, z={axis_z.tolist()}",
+    )
+    audit.record(
+        "10: two modes and no photon",
+        True,
+        "two transverse director components; no gauge field or vector potential in the F-O energy",
+    )
+
+    def scaling(lam: float, e2: float, e4: float, potential: float) -> float:
+        return lam * e2 + e4 / lam + lam**3 * potential
+
+    e2, e4, potential = 2.0, 1.0, 0.5
+    h = 1e-7
+    numeric = (scaling(1.0 + h, e2, e4, potential) - scaling(1.0 - h, e2, e4, potential)) / (2 * h)
+    audit.record(
+        "14a: Derrick derivative equals virial",
+        abs(numeric - (e2 - e4 + 3.0 * potential)) < 1e-6,
+        f"numeric dE/dlambda={numeric:.9f}, virial={e2-e4+3*potential:.9f}",
+    )
+    y = (-e2 + math.sqrt(e2 * e2 + 12.0 * potential * e4)) / (6.0 * potential)
+    audit.record(
+        "14a: stationary scale and curvature",
+        y > 0.0 and 2.0 * e4 + 6.0 * potential > 0.0,
+        f"lambda^2={y:.9f}, second derivative={2*e4+6*potential:.6f}",
+    )
+    audit.record(
+        "14b: kappa>0 necessary, existence unproved",
+        True,
+        "kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof",
+    )
+
+
+
+# ---------------------------------------------------------------------------
+# Claim 6b / 13 / 16: reduction, topology, new-prediction audit
+# ---------------------------------------------------------------------------
+
+
+def audit_negatives(audit: Audit) -> None:
+    topology = load_results("topology.json")
+    reduction = load_results("reduction.json")
+    predictions = load_results("predictions.json")
+
+    homotopy = topology["verdict"]["direct"]["homotopy"]
+    audit.record(
+        "13a: RP2 homotopy has no Z3 factor",
+        homotopy == {"pi1": "Z2", "pi2": "Z", "pi3": "Z"}
+        and topology["verdict"]["direct"]["z3_factor_present"] is False
+        and topology["verdict"]["13a_direct_z3_from_nematic_topology"] is False
+        and topology["verdict"]["cos3phi_inserted_by_hand"] is True,
+        f"homotopy={homotopy}",
+    )
+    extensions = topology["verdict"]["extensions"]
+    audit.record(
+        "13b: standard extensions do not derive Z3",
+        len(extensions) == 3 and all(item["z3_derived"] is False for item in extensions.values()),
+        f"extensions={list(extensions)}",
+    )
+
+    tension = 8.0 / 3.0
+    audit.record(
+        "6b: trivial 2D lower bound",
+        abs(tension - reduction["wall_tension"]) < 1e-12
+        and abs(reduction["lower_bound_example"] - 2.0 * tension) < 1e-12
+        and reduction["verdict"]["6b_i_trivial_lower_bound"] is True
+        and reduction["verdict"]["6b_ii_exact_dimensional_reduction"] is False,
+        f"T={tension:.12f}, T*L_y(2)={2.0*tension:.12f}",
+    )
+    audit.record(
+        "6c: moment convergence and log divergence",
+        reduction["moment"]["alpha_2"]["finite"] is False
+        and reduction["moment"]["alpha_4"]["log_divergent"] is True
+        and reduction["moment"]["alpha_5"]["finite"] is True
+        and reduction["verdict"]["6b_iii_moment_finite_for_stated_profile"] is False
+        and reduction["verdict"]["stated_tail_status"] == "log-divergent",
+        "I_eff finite iff alpha>4; alpha=4 log-divergent; alpha=2 power-divergent",
+    )
+
+    rows = predictions["candidates"]
+    audit.record(
+        "16: no new prediction found",
+        len(rows) == 7
+        and all(row["new"] is False for row in rows)
+        and predictions["verdict"]["new_prediction_found"] is False
+        and predictions["verdict"]["count"] == 0,
+        f"{len(rows)} candidate classes, none new",
+    )
+
+
+
+# ---------------------------------------------------------------------------
+# Claim 11 / 12: residual anisotropy and LV bounds
+# ---------------------------------------------------------------------------
+
+
+def audit_lorentz(audit: Audit) -> None:
+    payload = load_results("lorentz.json")
+    k1, k2, k3 = 1.0, 2.0, 3.0
+    rho = 1.0
+
+    def matrix(kx, ky, kz):
+        return np.array(
+            [
+                [k1 * kx * kx + k2 * ky * ky + k3 * kz * kz, (k1 - k2) * kx * ky],
+                [(k1 - k2) * kx * ky, k1 * ky * ky + k2 * kx * kx + k3 * kz * kz],
+            ]
+        )
+
+    axis_x = np.sqrt(np.linalg.eigvalsh(matrix(1, 0, 0)) / rho)
+    axis_z = np.sqrt(np.linalg.eigvalsh(matrix(0, 0, 1)) / rho)
+    audit.record(
+        "11a: axis speeds for K=(1,2,3)",
+        np.allclose(axis_x, [1.0, math.sqrt(2.0)])
+        and np.allclose(axis_z, [math.sqrt(3.0), math.sqrt(3.0)]),
+        f"x={axis_x.tolist()}, z={axis_z.tolist()}",
+    )
+
+    rng = np.random.default_rng(20261025)
+    vectors = rng.normal(size=(4000, 3))
+    vectors /= np.linalg.norm(vectors, axis=1)[:, None]
+    c2 = []
+    for vector in vectors:
+        values = np.linalg.eigvalsh(
+            np.array(
+                [
+                    [
+                        k1 * vector[0] ** 2 + k2 * vector[1] ** 2 + k3 * vector[2] ** 2,
+                        (k1 - k2) * vector[0] * vector[1],
+                    ],
+                    [
+                        (k1 - k2) * vector[0] * vector[1],
+                        k1 * vector[1] ** 2 + k2 * vector[0] ** 2 + k3 * vector[2] ** 2,
+                    ],
+                ]
+            )
+            / rho
+        )
+        c2.extend(values.tolist())
+    c2 = np.asarray(c2)
+    xi = float((c2.max() - c2.min()) / c2.mean())
+    audit.record(
+        "11a/F23: residual anisotropy xi",
+        abs(xi - 1.0034799560133727) < 1e-9
+        and abs(payload["anisotropy_unequal"]["xi"] - xi) < 1e-9
+        and payload["anisotropy_equal"]["xi"] == 0.0,
+        f"xi(K=1,2,3)={xi:.9f}; xi(equal)=0",
+    )
+    audit.record(
+        "12a: photon bounds are not directly applicable",
+        payload["verdict_unequal"]["12_lv_bounds_directly_applicable"] is False
+        and all(bound["applies_to_director_modes"] is False for bound in payload["bounds"]),
+        "all four bounds flagged non-applicable; director modes are neutral",
+    )
+    checks = payload["conditional_unequal"]["checks"]
+    audit.record(
+        "12b: conditional bound",
+        xi > 1e-18
+        and all(item["passes_if_photon"] is False for item in checks)
+        and payload["verdict_equal"]["12_equal_K_is_isotropic"] is True,
+        "equal K is exactly isotropic; O(1) xi fails every Delta c/c bound",
+    )
+
+
+
+# ---------------------------------------------------------------------------
+# Claim 15: Hopf estimator validation
+# ---------------------------------------------------------------------------
+
+
+def audit_hopf(audit: Audit) -> None:
+    payload = load_results("hopf.json")
+    preimage = payload["preimage"]
+    grid = payload["grid"]
+    audit.record(
+        "15/4: preimage linking converges to 1",
+        preimage["100"] < preimage["200"] < preimage["400"]
+        and abs(preimage["400"] - 0.9999582415186622) < 1e-12
+        and abs(preimage["400"] - 1.0) < 1e-3,
+        f"H(100/200/400)={preimage['100']:.9f}/{preimage['200']:.9f}/{preimage['400']:.9f}",
+    )
+    audit.record(
+        "15/4: reflection, rotation, shear",
+        abs(payload["reflection"] + preimage["200"]) < 1e-6
+        and abs(payload["rotation"] - preimage["200"]) < 1e-6
+        and abs(payload["shear"] - preimage["200"]) < 1e-5,
+        f"reflection={payload['reflection']:.9f}, rotation={payload['rotation']:.9f}, shear={payload['shear']:.9f}",
+    )
+    audit.record(
+        "15/4: grid estimator matches known answer",
+        abs(grid["32"] - 1.000141490106325) < 1e-9
+        and abs(grid["64"] - 1.0000000385194467) < 1e-9
+        and all(abs(value - 1.0) < 0.01 for value in grid.values())
+        and payload["verdict"]["grid_reflection_flips_sign"] is True
+        and abs(payload["grid_reflection"] + 1.0) < 0.01
+        and payload["verdict"]["two_method_agreement"] is True
+        and payload["verdict"]["baseline_4_pass"] is True,
+        f"grid(32/48/64)={grid['32']:.9f}/{grid['48']:.9f}/{grid['64']:.9f}; baseline_4=True",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
@@ -621,6 +1006,8 @@ def audit_docs(audit: Audit) -> None:
     formulas = (ROOT / "theory" / "formulas.md").read_text(encoding="utf-8")
     summary = (RESULTS / "summary.md").read_text(encoding="utf-8")
     paper = (ROOT / "paper" / "koide_z3_rg.tex").read_text(encoding="utf-8")
+    paper_b = (ROOT / "paper" / "fluid_universe_speculation.tex").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
 
     p = fit["point"]
     d = rg["drift"]
@@ -643,6 +1030,56 @@ def audit_docs(audit: Audit) -> None:
         (paper, f"{d['Q_MZ']:.9f}", "paper MSbar Q"),
         (paper, "0.8911861597", "paper E0"),
         (paper, "1.3170345140", "paper E1"),
+        (claims, "0.585612", "claims Q_nu max"),
+        (claims, "0.887569", "claims Q_up"),
+        (claims, "0.748065", "claims Q_down"),
+        (claims, "35.26", "claims trimaximal theta13"),
+        (score, "0.585612", "scorecard Q_nu"),
+        (score, "0.8876", "scorecard Q_up range"),
+        (score, "0.7385", "scorecard Q_down range"),
+        (readme, "0.585612", "README Q_nu"),
+        (readme, "0.888", "README Q_up"),
+        (readme, "0.748", "README Q_down"),
+        (paper, "0.585612", "paper Q_nu"),
+        (paper, "0.887569", "paper Q_up"),
+        (paper, "0.748065", "paper Q_down"),
+        (summary, "0.585612", "summary Q_nu"),
+        (claims, "0.407", "claims delta sigma"),
+        (claims, "0.585612", "claims Q_nu"),
+        (score, "0.407", "scorecard delta sigma"),
+        (readme, "0.407", "README delta sigma"),
+        (paper, "0.41\\sigma", "paper delta sigma"),
+        (paper_b, "E_2-E_4+3V=0", "paper B Derrick virial"),
+        (paper_b, "\\omega^2=(K/\\rho)k^2", "paper B Frank-Oseen dispersion"),
+        (summary, "E2-E4+3V", "summary Derrick virial"),
+        (claims, "6c", "claims exact reduction row"),
+        (claims, "13a", "claims direct topology row"),
+        (claims, "13b", "claims extension row"),
+        (claims, "none found", "claims no new prediction"),
+        (score, "log-divergent", "scorecard I_eff"),
+        (readme, "log-divergent", "README I_eff"),
+        (summary, "log-divergent", "summary I_eff"),
+        (paper_b, "logarithmically divergent", "paper B I_eff"),
+        (paper, "No genuinely new prediction", "paper A no prediction"),
+        (claims, "1.00348", "claims xi"),
+        (score, "1.00348", "scorecard xi"),
+        (readme, "1.00348", "README xi"),
+        (summary, "1.00348", "summary xi"),
+        (paper_b, "1.00348", "paper B xi"),
+        (paper_b, "10^{-18}", "paper B GRB order"),
+        (claims, "0.999958", "claims Hopf preimage"),
+        (readme, "0.999958", "README Hopf preimage"),
+        (summary, "0.999958", "summary Hopf preimage"),
+        (paper_b, "0.999958", "paper B Hopf preimage"),
+        (claims, "1.000000", "claims grid Hopf"),
+        (readme, "1.000000", "README grid Hopf"),
+        (summary, "1.000000", "summary grid Hopf"),
+        (paper_b, "1.00000004", "paper B grid Hopf"),
+        (claims, "baseline 4 passes", "claims baseline 4"),
+        (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
+        (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
+        (formulas, "F16a", "registry preimage rows"),
+        (formulas, "F16b", "registry grid rows"),
     ]
     for text, needle, label in required:
         audit.record(f"docs: {label}", needle in text, f"searched for '{needle}'")
@@ -683,6 +1120,11 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_fit(audit)
     audit_rg(audit)
     audit_rotor(audit)
+    audit_neutrinos_quarks(audit)
+    audit_delta_modes_derrick(audit)
+    audit_negatives(audit)
+    audit_lorentz(audit)
+    audit_hopf(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

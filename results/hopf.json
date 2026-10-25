@@ -1,0 +1,50 @@
+{
+  "grid": {
+    "32": 1.000141490106325,
+    "48": 0.9999997875102209,
+    "64": 1.0000000385194467
+  },
+  "grid_reflection": -0.9999997875102211,
+  "meta": {
+    "config": {
+      "source": "analytic H=1 Hopf map"
+    },
+    "config_sha256": "ea007c16579c8a2c6ddd2e87066169562ff7a91c6b755c8a756b4dd8d6850d36",
+    "generated_utc": "2026-10-25T23:48:05+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "preimage": {
+    "100": 0.999331466569681,
+    "200": 0.9998329461638071,
+    "400": 0.9999582415186622
+  },
+  "reflection": -0.9998329461638071,
+  "rotation": 0.9998329461638071,
+  "shear": 0.9998341380259279,
+  "target_pair": 0.9997520117220612,
+  "verdict": {
+    "baseline_4_pass": true,
+    "claim_15_status": "NOT ACHIEVED",
+    "grid_integral_matches_one": true,
+    "grid_reflection_flips_sign": true,
+    "note": "Preimage linking and the normalized grid Chern-Simons integral both pass the analytic H=1 test and agree. The grid normalization is a documented convention fixed by that map. Baseline 4 passes; no 3D run or Hopfion claim.",
+    "preimage_converges_to_one": true,
+    "production_ready": false,
+    "reflection_flips_sign": true,
+    "rotation_invariant": true,
+    "shear_invariant": true,
+    "two_method_agreement": true
+  }
+}

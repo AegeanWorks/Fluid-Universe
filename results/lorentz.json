@@ -1,0 +1,150 @@
+{
+  "anisotropy_equal": {
+    "c2_max": 2.0,
+    "c2_mean": 2.0,
+    "c2_min": 2.0,
+    "n_samples": 4000,
+    "seed": 20261025,
+    "xi": 0.0
+  },
+  "anisotropy_unequal": {
+    "c2_max": 2.9997054392527622,
+    "c2_mean": 1.9927704051592854,
+    "c2_min": 1.0000002807387716,
+    "n_samples": 4000,
+    "seed": 20261025,
+    "xi": 1.0034799560133727
+  },
+  "axis_speeds_equal": {
+    "along_x": [
+      1.4142135623730951,
+      1.4142135623730951
+    ],
+    "along_y": [
+      1.4142135623730951,
+      1.4142135623730951
+    ],
+    "along_z": [
+      1.4142135623730951,
+      1.4142135623730951
+    ]
+  },
+  "axis_speeds_unequal": {
+    "along_x": [
+      1.0,
+      1.4142135623730951
+    ],
+    "along_y": [
+      1.0,
+      1.4142135623730951
+    ],
+    "along_z": [
+      1.7320508075688772,
+      1.7320508075688772
+    ]
+  },
+  "bounds": [
+    {
+      "applies_to_director_modes": false,
+      "limit": 1e-34,
+      "limit_order": -34,
+      "name": "vacuum birefringence (spectropolarimetry)",
+      "quantity": "dimensionless LV coefficient",
+      "why": "The bound is on photon-polarisation coefficients; director modes are neutral."
+    },
+    {
+      "applies_to_director_modes": false,
+      "limit": 1e-18,
+      "limit_order": -18,
+      "name": "GRB dispersion (Fermi-LAT, linear, 10 GeV)",
+      "quantity": "Delta c / c",
+      "why": "The bound is on photon time-of-flight; no photon coupling in the model."
+    },
+    {
+      "applies_to_director_modes": false,
+      "limit": 1e-05,
+      "limit_order": -5,
+      "name": "CMB isotropy",
+      "quantity": "Delta T / T",
+      "why": "Indirect, and requires the director modes to source the CMB; not modelled."
+    },
+    {
+      "applies_to_director_modes": false,
+      "limit": 1e-17,
+      "limit_order": -17,
+      "name": "clock/cavity comparison",
+      "quantity": "Delta c / c",
+      "why": "Bounds photon/cavity propagation; no coupling to the director sector."
+    }
+  ],
+  "conditional_unequal": {
+    "checks": [
+      {
+        "limit": 1e-18,
+        "name": "GRB dispersion (Fermi-LAT, linear, 10 GeV)",
+        "passes_if_photon": false,
+        "xi": 1.0034799560133727
+      },
+      {
+        "limit": 1e-17,
+        "name": "clock/cavity comparison",
+        "passes_if_photon": false,
+        "xi": 1.0034799560133727
+      }
+    ],
+    "xi": 1.0034799560133727
+  },
+  "meta": {
+    "config": {
+      "bounds": "order-of-magnitude experimental limits; see theory/lorentz.py",
+      "equal_K": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "n_samples": 4000,
+      "rho": 1.0,
+      "seed": 20261025,
+      "unequal_K": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    "config_sha256": "b3c75e3d54892bab8af69f107828f2dfb371a883f2703defb09b30ebb7408f3d",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "verdict_equal": {
+    "11a_emergent_metric_at_tree_level": false,
+    "11b_one_loop_RG_to_Lorentz_invariant_IR": "UNVERIFIED",
+    "12_conditional_xi_above_grb_bound": false,
+    "12_equal_K_is_isotropic": true,
+    "12_lv_bounds_directly_applicable": false,
+    "equal_K": true,
+    "note": "The linearised model has a preferred frame and no metric. The two transverse modes have equal speed only for K1=K2=K3. The director modes are neutral, so photon-birefringence and GRB bounds do not directly apply. If a coupling to photons were added, equal K would pass all bounds exactly, while an O(1) anisotropy would be excluded by the GRB/clock/birefringence limits.",
+    "xi": 0.0
+  },
+  "verdict_unequal": {
+    "11a_emergent_metric_at_tree_level": false,
+    "11b_one_loop_RG_to_Lorentz_invariant_IR": "UNVERIFIED",
+    "12_conditional_xi_above_grb_bound": true,
+    "12_equal_K_is_isotropic": false,
+    "12_lv_bounds_directly_applicable": false,
+    "equal_K": false,
+    "note": "The linearised model has a preferred frame and no metric. The two transverse modes have equal speed only for K1=K2=K3. The director modes are neutral, so photon-birefringence and GRB bounds do not directly apply. If a coupling to photons were added, equal K would pass all bounds exactly, while an O(1) anisotropy would be excluded by the GRB/clock/birefringence limits.",
+    "xi": 1.0034799560133727
+  }
+}

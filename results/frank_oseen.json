@@ -1,0 +1,87 @@
+{
+  "anisotropy": {
+    "equal_K_direction_111": {
+      "direction": [
+        0.5773502691896258,
+        0.5773502691896258,
+        0.5773502691896258
+      ],
+      "fractional_split": 0.0,
+      "omega2": [
+        2.0000000000000004,
+        2.0000000000000004
+      ]
+    },
+    "unequal_K_direction_x": {
+      "direction": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "fractional_split": 0.6666666666666666,
+      "omega2": [
+        1.0,
+        2.0
+      ]
+    }
+  },
+  "equal_K_dispersion": {
+    "omega2_along_x": [
+      1.0,
+      2.0
+    ],
+    "omega2_along_z": [
+      3.0,
+      3.0
+    ],
+    "omega2_x": [
+      2.0,
+      2.0
+    ]
+  },
+  "meta": {
+    "config": {
+      "equal_K": 2.0,
+      "k": 1.0,
+      "rho": 1.0,
+      "unequal_K": [
+        1.0,
+        2.0,
+        3.0
+      ]
+    },
+    "config_sha256": "6b4200a1c07612333ee6dd6a4d24df1b98eb0708c678a629b869bb85484c1bb5",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "modes": {
+    "can_be_photon": false,
+    "electric_charge": 0,
+    "gauge_field": false,
+    "lorentz_invariance": "Not emergent: the background n0 selects a preferred frame even when K1=K2=K3. The equal-K dispersion is relativistic-looking only for the two transverse modes.",
+    "polarisations": "two transverse director components (a,b); the longitudinal component is constrained by |n|=1",
+    "propagating_modes": 2,
+    "reason": "Frank-Oseen describes neutral director fluctuations. A photon requires an independent U(1) gauge field and a coupling to it; neither is present.",
+    "vector_potential": false
+  },
+  "symbolic_matrix_matches": true,
+  "verdict": {
+    "emergent_lorentz_invariance": false,
+    "equal_K_dispersion_proven": true,
+    "note": "K1=K2=K3 gives omega^2=(K/rho)k^2 for the two transverse modes. The background n0 selects a preferred frame, and no gauge field is present.",
+    "photon_candidate": false,
+    "propagating_modes": 2
+  }
+}

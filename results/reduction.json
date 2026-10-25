@@ -1,0 +1,49 @@
+{
+  "lower_bound_example": 5.333333333333333,
+  "meta": {
+    "config": {
+      "moment_definition": "2*pi int rho(r) r^3 dr",
+      "moment_integrand_power": -1.0,
+      "stated_tail_alpha": 4.0,
+      "wall_tension_mu": 1.0
+    },
+    "config_sha256": "a812ba2cc84d36853e2798d2ed3276bfc5a3a12a134e263720c7c31588c4c0ec",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "moment": {
+    "alpha_2": {
+      "finite": false,
+      "power": 1.0
+    },
+    "alpha_4": {
+      "finite": false,
+      "log_divergent": true
+    },
+    "alpha_5": {
+      "finite": true,
+      "power": -2.0
+    }
+  },
+  "verdict": {
+    "6b_i_trivial_lower_bound": true,
+    "6b_ii_exact_dimensional_reduction": false,
+    "6b_iii_moment_finite_for_stated_profile": false,
+    "note": "E_2D >= T L_y is a trivial positive-gradient bound, not an exact reduction. The stated 1/r^4 profile makes I_eff logarithmically divergent; a finite I_eff requires a tail steeper than r^-4.",
+    "stated_tail_alpha": 4.0,
+    "stated_tail_status": "log-divergent"
+  },
+  "wall_tension": 2.6666666666666665
+}

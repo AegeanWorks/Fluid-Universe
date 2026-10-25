@@ -12,8 +12,8 @@ status report, not a result}
 \begin{abstract}
 This is a status report on a speculative ultraviolet completion in which the
 vacuum is a continuous nematic director field and particles are topological
-defects. No calculation in this note passes the repository's validation gates.
-The only defensible statements are negative: a nematic director has target
+defects. The structural checks below pass their algebra and scaling gates; no dynamical UV claim does.
+The only defensible statements about the UV dynamics are negative: a nematic director has target
 space $RP^2$ with $\pi_1=Z_2$, $\pi_2=Z$, $\pi_3=Z$, so a three-fold sector is
 not automatic; the $\cos3\phi$ term used elsewhere is inserted by hand; and the
 naive rotor-to-circulant map cannot produce three distinct lepton masses
@@ -37,6 +37,80 @@ transverse director modes. \emph{This is not an emergent Lorentz invariance
 claim.} It is one mode's dispersion in a medium with a preferred frame, and the
 mode count, polarisations, and coupling to matter have not been computed.
 
+\section{What the structural checks establish}
+\label{sec:structural}
+
+\emph{Derived.} For the quadratic Frank-Oseen energy with background
+$n_0=z$ and transverse components $(a,b)$,
+\begin{equation}
+M=\begin{pmatrix}
+K_1k_x^2+K_2k_y^2+K_3k_z^2 & (K_1-K_2)k_xk_y\\
+(K_1-K_2)k_xk_y & K_1k_y^2+K_2k_x^2+K_3k_z^2
+\end{pmatrix}.
+\end{equation}
+For $K_1=K_2=K_3=K$, $M=Kk^2 I$: two degenerate transverse modes with
+$\omega^2=(K/\rho)k^2$. There is no longitudinal propagating mode, no gauge
+field or vector potential, and therefore no photon candidate. This is a
+statement about one dispersion relation; it is not emergent Lorentz
+invariance, because the background $n_0$ selects a preferred frame.
+
+\emph{Derived.} For the exact energy $E=E_2+E_4+V$ with a quartic Skyrme term
+and a non-negative potential, scaling $x\to\lambda x$ gives
+\begin{equation}
+E(\lambda)=\lambda^{d-2}E_2+\lambda^{d-4}E_4+\lambda^d V.
+\end{equation}
+At $d=3$, a stationary soliton satisfies $E_2-E_4+3V=0$, and the second
+derivative is $2(E_4+3V)>0$. The necessary region for a stable scaling
+soliton is $K>0$, $\kappa>0$, $\mu\ge0$; $\kappa=0$ has no stationary point,
+and $\kappa<0$ is unbounded below. This is not an existence proof. No Hopfion
+solution is claimed.
+
+For a configuration connecting adjacent vacua at fixed $y$,
+$E_{2D}\ge T L_y$, with equality only when $\partial_y\phi=0$; this is a
+trivial positivity bound, not an exact dimensional reduction. The effective
+moment of inertia is $I_{\rm eff}=2\pi\int\rho(r)r^3dr$. For a $1/r^4$ tail
+it is logarithmically divergent; a finite $I_{\rm eff}$ requires a tail
+steeper than $r^{-4}$. The reduction used in the original sketch is therefore
+not finite.
+
+\emph{Numeric (1D only).} The 1D sine-Gordon core passes its validation
+baselines: the kink energy converges to $T=(8/3)\sqrt{\mu}$ at observed order
+two, the analytic force matches finite differences below $10^{-6}$, gradient
+flow decreases the energy monotonically, and the rotor Fourier and
+finite-difference spectra agree below $10^{-3}$. The Hessian is symmetric and
+stable, but its zero-mode count is only partial because Dirichlet boundaries
+lift the translation. No 3D lattice, Hopf charge, or Z3 order run exists, so
+claim 15 is not achieved.
+
+\emph{Numeric (Hopf estimator).} For the analytic $H=1$ map, the preimage
+linking estimator gives $H=0.999331$, $0.999833$, and $0.999958$ at 100, 200,
+and 400 samples; reflection flips the sign, and rotation and shear leave it
+unchanged. The normalized grid Chern-Simons estimator (spectral derivatives,
+smooth compactification, convention $-1/(16\pi^2)$) gives $1.000141$,
+$0.9999998$, and $1.00000004$ at $N=32,48,64$. The two methods agree, so
+baseline 4 passes. No 3D lattice or Z3-order run is attempted.
+
+\paragraph{Residual anisotropy and Lorentz bounds.} The two transverse
+director speeds are equal only when $K_1=K_2=K_3$. Define
+\begin{equation}
+\xi=\frac{c_{\max}^2-c_{\min}^2}{\overline{c^2}}.
+\end{equation}
+At tree level $\xi=0$ for equal $K$, while $K=(1,2,3)$ gives $\xi=1.00348$ over
+4000 sampled directions. Hence there is no emergent metric and no
+Lorentz-invariant IR point at tree level; the background $n_0$ selects a
+preferred frame.
+
+The director modes are neutral. Photon birefringence, GRB dispersion, CMB
+isotropy, and clock/cavity limits therefore do not directly constrain them.
+For orientation, the relevant orders are $10^{-34}$ (birefringence
+coefficient), $10^{-18}$ (GRB linear dispersion at 10 GeV), $10^{-5}$ (CMB
+isotropy), and $10^{-17}$ (clock/cavity); these are order-of-magnitude
+estimates, not calibrated bounds on this model. A conditional statement is
+possible: if a model identified the director modes with photons with O(1)
+coupling, equal $K$ would pass every $\Delta c/c$ bound exactly, whereas
+$\xi=1.00348$ would be excluded by many orders of magnitude. That identification
+is not made here.
+
 \section{Known topological obstruction}
 \label{sec:topology}
 
@@ -46,11 +120,13 @@ $RP^2$. Its homotopy groups are
 \pi_1(RP^2)=Z_2,\qquad \pi_2(RP^2)=Z,\qquad \pi_3(RP^2)=Z.
 \label{eq:pi}
 \end{equation}
-There is no three-fold factor. A $Z_3$ sector must come from an extension:
-a rank-three order parameter, three coupled nematics, or a three-fold lattice.
-Testing whether any such extension produces $Z_3$ without inserting a
-$\cos3\phi$ potential is an open, falsifiable task. The null result is
-acceptable.
+There is no three-fold factor. The direct claim that nematic topology
+produces $Z_3$ is therefore falsified. We checked the three standard
+extensions: a rank-three order parameter, three coupled nematics, and a
+three-fold lattice. Each requires an explicit three-fold structure; none
+derives $Z_3$ from $RP^2$ alone. The $\cos3\phi$ term is inserted by hand.
+A different, specified extension is not excluded, but it would have to be
+constructed and tested explicitly.
 
 \section{The rotor map fails on degeneracy}
 \label{sec:rotor}
@@ -73,19 +149,13 @@ gives only two distinct roots. The naive rotor route is dropped.
 \label{sec:tests}
 
 \begin{enumerate}
-\item Symbolic derivation of the Derrick scaling exponents for the exact
-Lagrangian (Frank-Oseen plus Skyrme plus potential), including whether the
-effective moment of inertia is finite. The profile used in the original sketch
-makes $\int\rho\,r^2$ logarithmically divergent.
-\item Verification of the domain-wall tension
-$T=\int_0^{2\pi/3}\sqrt{2\mu(1-\cos3\phi)}\,d\phi=(8/3)\sqrt{\mu}$,
-symbolically and numerically.
 \item A validated Hopf-charge estimator on an analytic $H=1$ configuration,
 using two independent methods, with convergence order in $N$.
+\item A numerical Hopfion solution, since Derrick scaling is only a necessary
+condition.
 \item A one-loop analysis of anisotropy parameters, or an explicit downgrade of
-any emergent-metric claim.
-\item Quantitative comparison of residual anisotropy with birefringence, GRB
-dispersion, CMB isotropy, and clock/cavity limits.
+any emergent-metric claim. No physical calibration of the $K_i$ or the UV
+scale exists, so no quantitative Lorentz-violation bound is possible yet.
 \item A 3D run achieving $|H|\ge1$ \emph{and} $Z_3$ order with at least ten
 random seeds. No such run exists. Earlier lost-run values are not cited.
 \end{enumerate}

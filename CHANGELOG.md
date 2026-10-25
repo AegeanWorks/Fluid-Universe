@@ -97,3 +97,127 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 **Verification result**
 
 - Two separate runs, 66/66 checks each, per-claim agreement and matching fingerprints; `results/verification.md` records both runs.
+
+## 2026-10-25 — Fifth pass: neutrino and quark checks
+
+**Added**
+
+- NuFit 5.2 neutrino scan: both orderings, lightest mass 0 to 0.2 eV, plus the 3-sigma splitting corners.
+- Quark Koide ratios at six full-SM MS-bar scales from Huang & Zhou (2021, Table II).
+- Minimal circulant PMNS branches: same-basis (no mixing) and neutrino-only (trimaximal).
+
+**Results**
+
+- **7a NUMERIC (negative):** no scanned neutrino point reaches `Q=2/3`. Maximum `Q_nu=0.585612` (NO), `0.500007` (IO); 3-sigma corner maximum `0.590606`.
+- **7b FALSIFIED (ill-posed):** the original "circulant PMNS ruled out by theta13" does not specify which sector is circulant. The same-basis branch predicts `(0,0,0)`; the neutrino-only branch predicts `(45,35.26,45)`; measured `(33.41,8.58,42.20)`. Both are excluded, but only the second is a theta13 statement.
+- **8 FALSIFIED:** at `M_Z`, `Q_U=0.887569`, `Q_D=0.748065`; over six scales `Q_U in [0.887569,0.892554]`, `Q_D in [0.738535,0.748065]`. The original `0.85/0.73` values were scale-dependent estimates; the direct extension is falsified.
+
+**Open**
+
+- No new prediction beyond Koide. Claims 6b, 9-16 remain unverified. No simulation result.
+
+- Verification: two separate runs, 87/87 checks each, per-claim agreement; `results/verification.md` records both.
+
+## 2026-10-25 — Sixth pass: delta, Frank-Oseen, Derrick
+
+**Added**
+
+- Post-hoc delta closed-form search with an explicit candidate prior and look-elsewhere penalty.
+- Frank-Oseen linearised mode analysis, symbolic Hessian check, and polarisation/photon counting.
+- Derrick scaling for the exact FN+Skyrme+Z3 energy, with symbolic virial check and parameter region.
+
+**Results**
+
+- **9 UNVERIFIED (null):** 2/9 is the closest candidate at 0.407 sigma, but the look-elsewhere p over the stated prior is 7.93e-4 and the search is post-hoc. Not promoted.
+- **10 PROVEN (equal K only):** the 2x2 elastic matrix gives two degenerate transverse modes with omega^2=(K/rho)k^2 when K1=K2=K3. No longitudinal mode, no gauge field, no photon. The background selects a preferred frame; emergent Lorentz invariance is not claimed.
+- **14a PROVEN:** d=3 exponents (1,-1,3) and virial E2-E4+3V=0; second derivative 2(E4+3V)>0.
+- **14b UNVERIFIED:** kappa>0 is necessary for a stable scaling soliton, but Derrick scaling is not an existence proof. No Hopfion solution is claimed.
+- **11/12/13/16** remain unverified and are now explicitly scoped: no metric/RG flow, no physical calibration for Lorentz bounds, no topological derivation of Z3, and no new prediction.
+
+**Open**
+
+- Numerical Hopfion existence, Lorentz-violation bounds, and the 3D simulation remain undone.
+
+- Verification after the 9/10/14 pass: two separate runs, 101/101 checks each, per-claim agreement; `results/verification.md` records both.
+
+## 2026-10-25 — Seventh pass: topology, reduction, new-prediction audit
+
+**Added**
+
+- Nematic topology audit: `RP^2` homotopy groups, the direct Z3 claim, and three standard extensions.
+- Dimensional-reduction audit: trivial 2D lower bound and the effective moment of inertia for power-law tails.
+- Seven-class new-prediction audit.
+
+**Results**
+
+- **13a FALSIFIED:** `RP^2` has `pi1=Z2`, `pi2=Z`, `pi3=Z`; no Z3 factor. `cos(3 phi)` is inserted by hand.
+- **13b UNVERIFIED (null):** rank-3 order parameter, three coupled nematics, and a 3-fold lattice all require an explicit three-fold structure.
+- **6b PROVEN (trivial):** `E_2D >= T L_y`, with equality only for a y-independent wall.
+- **6c FALSIFIED:** exact dimensional reduction fails; `I_eff = 2*pi int rho r^3 dr` is log-divergent for a `1/r^4` tail (finite only for a tail steeper than `r^-4`).
+- **16 UNVERIFIED (none found):** no extra mass relation, viable minimal mixing branch, calibrated dispersion, validated defect count, or testable RG signature.
+
+**Open**
+
+- Numerical Hopfion existence, Lorentz-violation bounds, and the 3D simulation remain undone. No new prediction beyond Koide.
+
+- Verification after the topology/reduction/prediction pass: two separate runs, 115/115 checks each, per-claim agreement.
+
+## 2026-10-25 — Eighth pass: residual anisotropy and LV bounds
+
+**Added**
+
+- Residual anisotropy `xi` of the two transverse director modes, sampled over 4000 directions.
+- A table of experimental Lorentz-violation limits with explicit applicability flags.
+- A conditional photon-coupling check (equal K vs O(1) anisotropy).
+
+**Results**
+
+- **11a FALSIFIED:** no emergent metric at tree level; the background selects a preferred frame. `K=(1,2,3)` gives `xi=1.00348`; equal K gives `xi=0` but still no metric.
+- **11b UNVERIFIED:** no one-loop anisotropy/RG calculation exists.
+- **12a UNVERIFIED (not applicable):** the director modes are neutral, so photon birefringence, GRB, CMB, and clock/cavity bounds do not directly apply.
+- **12b PROVEN (conditional):** if the director modes were photons with O(1) coupling, equal K would pass all `Delta c/c` bounds and an O(1) anisotropy would be excluded by many orders.
+
+**Open**
+
+- No numerical Hopfion, no 3D simulation, no physical calibration of the director sector.
+
+- Verification after the 11/12 pass: two separate runs, 125/125 checks each, per-claim agreement.
+
+## 2026-10-25 — Ninth pass: validated 1D simulation core
+
+**Added**
+
+- `sims/core.py`: 1D sine-Gordon energy, analytic kink, discrete force, gradient flow, Hessian, L-BFGS relaxation, rotor cross-check.
+- `phenomenology/sim_report.py`: reproducible 1D baseline payload and markdown.
+- `tests/test_sim_core.py`.
+
+**Results**
+
+- Kink energy converges to `T=(8/3)sqrt(mu)` at observed order ~2.
+- Analytic force matches finite differences below `1e-6`.
+- Energy decreases monotonically under gradient flow.
+- Rotor Fourier and finite-difference spectra agree below `1e-3`.
+- Hessian is symmetric and stable; the translation mode is lifted by Dirichlet boundaries, so zero-mode counting is partial.
+- **No 3D lattice, Hopf charge, or Z3 order run. Claim 15 remains UNVERIFIED / NOT ACHIEVED.**
+
+## 2026-10-25 — Tenth pass: Hopf estimator validation
+
+**Added**
+
+- Preimage linking estimator for the analytic H=1 Hopf map.
+- Grid Chern-Simons integral estimator as a second, independent method.
+- `tests/test_hopf.py` and `results/hopf.{json,md}`.
+
+**Results**
+
+- **Preimage linking PASSES:** H = 0.999331 / 0.999833 / 0.999958 at 100/200/400 samples; reflection gives -0.999833; rotation and shear preserve the value.
+- **Grid Chern-Simons estimator FAILS:** H = -2.462 / -3.184 / -3.499 at N=32/48/64, not converging to ±1. This is a documented estimator bug, not a physical result.
+- **Baseline 4 FAILS** because the two independent methods do not agree. No 3D run or Hopfion claim; claim 15 remains NOT ACHIEVED.
+
+- Verification after the Hopf-baseline pass: two separate runs, 133/133 checks each, per-claim agreement.
+
+**Correction (same pass).** The earlier statement that the grid estimator "fails" was wrong: it used finite-difference derivatives and an unconverged normalization. With spectral derivatives, a smooth vacuum compactification, and the documented convention `-1/(16*pi^2)`, it gives `1.000141`, `0.9999998`, and `1.00000004` at N=32/48/64 and agrees with the preimage estimator. Baseline 4 passes. The earlier failure statement is superseded; claim 15 is still NOT ACHIEVED because no 3D run exists.
+
+- Verification after the Hopf normalization correction: two separate runs, 137/137 checks each, per-claim agreement.
+
+- Verification after the change audit: two separate runs, 141/141 checks each, per-claim agreement.

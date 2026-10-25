@@ -1,0 +1,116 @@
+{
+  "flow": {
+    "energy_final": 2.726098348898386,
+    "energy_initial": 2.834069209594968,
+    "max_increase": -0.00031246764679870864,
+    "monotone": true
+  },
+  "gradient": {
+    "max_relative_error": 4.167921313635858e-09,
+    "passes": true,
+    "tolerance": 1e-06
+  },
+  "hessian": {
+    "kink_max_eigenvalue": 720.0656983914987,
+    "kink_min_eigenvalue": -5.208286070701422e-08,
+    "near_zero_count": 1,
+    "relaxation": {
+      "energy": 2.6647853554317136,
+      "force_max": 8.259728917911968e-07,
+      "iterations": 50,
+      "message": "CONVERGENCE: RELATIVE REDUCTION OF F <= FACTR*EPSMCH",
+      "success": true
+    },
+    "symmetric_kink": true,
+    "vacuum_max_eigenvalue": 720.1001449403695,
+    "vacuum_min_eigenvalue": 9.010966170741456,
+    "zero_mode_counting": "one lifted translation mode counted as near-zero; no exact zero mode with Dirichlet boundaries"
+  },
+  "kink": {
+    "observed_orders": [
+      1.9898546738449174,
+      1.99744907330216,
+      1.9993612661473765
+    ],
+    "rows": [
+      {
+        "dx": 0.15,
+        "energy": 2.659236767620291,
+        "error_vs_tension": -0.007429899046375699,
+        "n": 201,
+        "relative_error": -0.002786212142390887
+      },
+      {
+        "dx": 0.075,
+        "energy": 2.664796083727543,
+        "error_vs_tension": -0.0018705829391234552,
+        "n": 401,
+        "relative_error": -0.0007014686021712957
+      },
+      {
+        "dx": 0.0375,
+        "energy": 2.6661981933243677,
+        "error_vs_tension": -0.0004684733422988252,
+        "n": 801,
+        "relative_error": -0.00017567750336205945
+      },
+      {
+        "dx": 0.01875,
+        "energy": 2.6665494964670415,
+        "error_vs_tension": -0.00011717019962498298,
+        "n": 1601,
+        "relative_error": -4.393882485936862e-05
+      }
+    ],
+    "tension": 2.6666666666666665
+  },
+  "meta": {
+    "config": {
+      "flow_dt": 0.00028125,
+      "flow_n": 401,
+      "flow_steps": 200,
+      "kink_sizes": [
+        201,
+        401,
+        801,
+        1601
+      ],
+      "length": 30.0,
+      "mu": 1.0,
+      "seed": "none (fixed perturbation)"
+    },
+    "config_sha256": "d7d364e4c8477fa288d3c3bd105f2fe7e3d2e03ccd1c2ebbf302a6967b461d23",
+    "generated_utc": "2026-10-25T23:48:05+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "rotor": {
+    "E0_fourier": 0.8911861597357422,
+    "E0_grid": 0.8911854159043943,
+    "E1_fourier": 1.3170345140424493,
+    "E1_grid": 1.3170332122436434,
+    "abs_delta_E0": 7.438313479601888e-07,
+    "abs_delta_E1": 1.3017988058638963e-06
+  },
+  "verdict": {
+    "baseline_1_kink": true,
+    "baseline_2_gradient": true,
+    "baseline_3_monotone": true,
+    "baseline_6_rotor": true,
+    "baseline_7_hessian_partial": true,
+    "claim_15_status": "UNVERIFIED / NOT ACHIEVED",
+    "note": "1D baselines only. No 3D lattice, no Hopf charge, no Z3 order parameter, and no production run. The earlier lost-run numbers are not used.",
+    "production_ready": false
+  }
+}

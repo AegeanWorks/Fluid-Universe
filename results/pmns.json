@@ -1,0 +1,66 @@
+{
+  "branches": {
+    "neutrino_only_circulant": {
+      "U": "DFT (trimaximal, |U_alpha i| = 1/sqrt(3))",
+      "angles": {
+        "theta12_deg": 45.000000000000014,
+        "theta13_deg": 35.264389682754654,
+        "theta23_deg": 45.000000000000014
+      },
+      "delta_vs_measured": {
+        "theta12_deg": 11.590000000000018,
+        "theta13_deg": 26.684389682754656,
+        "theta23_deg": 2.8000000000000114
+      }
+    },
+    "same_basis_both_circulant": {
+      "U": "identity (up to diagonal phases and permutations)",
+      "angles": {
+        "theta12_deg": 0.0,
+        "theta13_deg": 0.0,
+        "theta23_deg": 0.0
+      },
+      "delta_vs_measured": {
+        "theta12_deg": -33.41,
+        "theta13_deg": -8.58,
+        "theta23_deg": -42.2
+      }
+    }
+  },
+  "measured": {
+    "theta12_deg": 33.41,
+    "theta13_deg": 8.58,
+    "theta23_deg": 42.2
+  },
+  "meta": {
+    "config": {
+      "measured_angles_deg": {
+        "theta12_deg": 33.41,
+        "theta13_deg": 8.58,
+        "theta23_deg": 42.2
+      },
+      "source": "NuFit 5.2 (2022) with SK-atm; DFT basis for a Hermitian circulant"
+    },
+    "config_sha256": "5da0c58e80e9eb663df6af3af1d878d9c1816d635124861a5fbcc519bd929c1a",
+    "generated_utc": "2026-10-25T23:48:04+00:00",
+    "git": {
+      "commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "verdict": {
+    "note": "A circulant PMNS is not a single model. If both mass matrices are circulant in the same basis the prediction is no mixing; if only the neutrino matrix is circulant the prediction is trimaximal mixing. Both are excluded, but only the second is specifically a theta13 statement.",
+    "original_claim_well_posed": false,
+    "same_basis_branch_excluded": true,
+    "trimaximal_branch_excluded_by_theta13": true
+  }
+}
