@@ -9,3 +9,4 @@ Persisted state carries a format version. A loader refuses a version it does not
 without modifying or quarantining that file; older versions migrate when a migration exists.
 
 ## Rules
+- **G-001** (user): Every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFIED must be independently re-derived in two separate runs (separate processes), never twice inside one run; the per-claim results must agree before the claim is accepted. This applies to claims, not to the pytest suite; tests remain a single run unless explicitly requested.

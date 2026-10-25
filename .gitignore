@@ -6,3 +6,6 @@
 __pycache__/
 *.py[cod]
 node_modules/
+.hypothesis/
+.pytest_cache/
+*.egg-info/

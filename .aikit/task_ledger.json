@@ -1,5 +1,86 @@
 {
   "version": 1,
-  "active_task": null,
-  "checkpoints": []
+  "active_task": {
+    "task_id": "z3-koide-core",
+    "last_phase": "phase 4",
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1792963987.351241,
+    "owner": "kilo:1",
+    "started_by": "kilo:1",
+    "continuations": []
+  },
+  "checkpoints": [
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 2",
+      "phase_num": 2,
+      "description": "[1/6] Scaffold falsification-first repo, claim ledger, formula registry, and symbolic core for claims 1-2",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792952158.8210313,
+      "timestamp_str": "2026-10-25 21:15:58",
+      "agent": "kilo:1",
+      "impact_assessment": {
+        "why": "The user wants a reproducible, falsification-first research codebase for a Z3 circulant/Koide hypothesis with a separable nematic-fluid UV track; without a ledger and formula registry, claims cannot be audited.",
+        "benefits": "Auditable claim statuses, machine-checked algebra, and a reproducible base for PDG and RG work.",
+        "risks": "contract: new project only, no AIKit core edits; dependency: sympy/numpy/scipy/hypothesis added to project pyproject; concurrency: single agent, no shared files; state: new repo, ledger checkpointed before writes",
+        "mitigation": "Declare deps in pyproject, keep all claims in claims.md, regenerate every number from scripts, run pytest before any commit."
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[2/6] Complete: rotor exact diagonalisation, degeneracy falsification, domain-wall tension; 36 tests; 4/4 gates; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792955977.034098,
+      "timestamp_str": "2026-10-25 22:19:37",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "results regenerate via python -m phenomenology.run_all",
+        "next": "neutrino and quark checks with explicit mass definitions (claims 7-8)",
+        "failed": "rotor map closed",
+        "open": "claims 6b, 7-16",
+        "evidence": "results/rotor.json, results/summary.md"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[3/6] Verification pass complete: two separate per-claim audit runs agree 65/65; gauge-coupling RHS bug fixed; F9/F10 downgraded; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792961062.6997557,
+      "timestamp_str": "2026-10-25 23:44:22",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "make results then make verify",
+        "next": "verify claims 6b and 7-16",
+        "failed": "none",
+        "open": "claims 6b,7-16",
+        "evidence": "results/verification.md, results/summary.md, 37 tests passed, 4/4 gates"
+      }
+    },
+    {
+      "task_id": "z3-koide-core",
+      "phase": "phase 4",
+      "phase_num": 4,
+      "description": "[3/6] Verification hardened: G-001 scoped, stale-run fingerprints, single-run guard, cross-platform verifier, 66/66 twice; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1792963987.351241,
+      "timestamp_str": "2026-10-26 00:33:07",
+      "agent": "kilo:1",
+      "handoff": {
+        "state": "python -m verification.verify accepted",
+        "next": "claims 6b and 7-16",
+        "failed": "none",
+        "open": "claims 6b,7-16, no two-loop run, no simulation",
+        "evidence": "results/verification.md, 38 tests, 4/4 gates"
+      }
+    }
+  ]
 }

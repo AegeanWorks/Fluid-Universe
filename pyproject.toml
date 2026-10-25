@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fluid-universe"
+version = "0.1.0"
+description = "Falsification-first tests of a Z3 circulant origin of the Koide relation, with a separable nematic-fluid UV speculation."
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=2.0",
+    "scipy>=1.13",
+    "sympy>=1.12",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "hypothesis>=6.100",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+filterwarnings = [
+    "error::RuntimeWarning",
+]
+
+[tool.setuptools]
+packages = ["theory", "phenomenology", "sims", "verification"]

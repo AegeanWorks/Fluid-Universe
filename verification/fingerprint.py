@@ -1,0 +1,77 @@
+"""Stable fingerprints for the two-run claim audit.
+
+The audit must reject stale results: if the code, docs, or physics outputs
+change between the two runs, the two runs are not verifying the same object.
+`source_fingerprint` covers code and prose; `results_fingerprint` covers the
+generated physics outputs. The verification files themselves are included in
+the source set, so editing the harness invalidates earlier runs.
+"""
+
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+
+EXCLUDED_DIRS = {
+    ".git",
+    ".aikit",
+    "__pycache__",
+    ".pytest_cache",
+    ".hypothesis",
+    ".mypy_cache",
+    "results",
+}
+
+SOURCE_SUFFIXES = {".py", ".md", ".tex", ".toml", ".yaml", ".yml", ".txt", ".csv"}
+SOURCE_NAMES = {"Makefile"}
+
+RESULT_FILES = (
+    "pdg_fit.json",
+    "pdg_fit.md",
+    "rg_run.json",
+    "rg_run.md",
+    "rotor.json",
+    "rotor.md",
+    "summary.md",
+)
+
+
+def _source_files() -> list[Path]:
+    files: list[Path] = []
+    for path in ROOT.rglob("*"):
+        if not path.is_file():
+            continue
+        if any(part in EXCLUDED_DIRS for part in path.relative_to(ROOT).parts):
+            continue
+        if path.name in SOURCE_NAMES or path.suffix.lower() in SOURCE_SUFFIXES:
+            files.append(path)
+    return sorted(files, key=lambda p: p.relative_to(ROOT).as_posix())
+
+
+def _digest(files: list[Path]) -> str:
+    hasher = hashlib.sha256()
+    for path in files:
+        relative = path.relative_to(ROOT).as_posix().encode("utf-8")
+        hasher.update(relative)
+        hasher.update(b"\0")
+        hasher.update(path.read_bytes())
+        hasher.update(b"\0")
+    return hasher.hexdigest()
+
+
+def source_fingerprint() -> str:
+    return _digest(_source_files())
+
+
+def results_fingerprint() -> str:
+    files = [ROOT / "results" / name for name in RESULT_FILES if (ROOT / "results" / name).is_file()]
+    return _digest(files)
+
+
+def fingerprints() -> dict[str, str]:
+    return {
+        "source_sha256": source_fingerprint(),
+        "results_sha256": results_fingerprint(),
+    }

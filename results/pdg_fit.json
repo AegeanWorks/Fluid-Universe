@@ -1,0 +1,132 @@
+{
+  "inputs": [
+    {
+      "definition": "pole",
+      "name": "m_e",
+      "source": "PDG 2024 S. Navas et al. PRD 110 030001; https://pdg.lbl.gov/2024/tables/rpp2024-sum-leptons.pdf",
+      "uncertainty_MeV": 1.5e-10,
+      "value_MeV": 0.51099895
+    },
+    {
+      "definition": "pole",
+      "name": "m_mu",
+      "source": "PDG 2024 S. Navas et al. PRD 110 030001; https://pdg.lbl.gov/2024/tables/rpp2024-sum-leptons.pdf",
+      "uncertainty_MeV": 2.3e-06,
+      "value_MeV": 105.6583755
+    },
+    {
+      "definition": "pole",
+      "name": "m_tau",
+      "source": "PDG 2024 S. Navas et al. PRD 110 030001; https://pdg.lbl.gov/2024/tables/rpp2024-sum-leptons.pdf",
+      "uncertainty_MeV": 0.09,
+      "value_MeV": 1776.93
+    }
+  ],
+  "interpretation": {
+    "data_points": 3,
+    "fit_is_exact_by_construction": true,
+    "free_parameters": 3,
+    "note": "Q=2/3 is the independent condition r=1/sqrt(2), not a consequence of Z3.",
+    "predicts_Q": false
+  },
+  "meta": {
+    "config": {
+      "definitions": "pole masses",
+      "inputs": [
+        {
+          "name": "m_e",
+          "sigma_MeV": 1.5e-10,
+          "value_MeV": 0.51099895
+        },
+        {
+          "name": "m_mu",
+          "sigma_MeV": 2.3e-06,
+          "value_MeV": 105.6583755
+        },
+        {
+          "name": "m_tau",
+          "sigma_MeV": 0.09,
+          "value_MeV": 1776.93
+        }
+      ],
+      "koide_target": 0.6666666666666666,
+      "n_mc": 100000,
+      "r_target": 0.7071067811865475,
+      "seed": 20261025
+    },
+    "config_sha256": "9c7e7d1f9321d9fc116f666cea368de093d68d2921c7af87a520b725747b2be6",
+    "generated_utc": "2026-10-25T21:41:28+00:00",
+    "git": {
+      "commit": "dea2f9e20f6af587d427c2cb8a958c87cfe9378d",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "monte_carlo": {
+    "Q": {
+      "mean": 0.6666644744707559,
+      "p16": 0.6666594721985485,
+      "p84": 0.6666695291348053,
+      "std": 5.0628900263053404e-06
+    },
+    "a_sqrt_MeV": {
+      "mean": 17.71583925780739,
+      "p16": 17.715488938983867,
+      "p84": 17.716193245838006,
+      "std": 0.0003545754042421686
+    },
+    "c_sqrt_MeV": {
+      "mean": 12.526948882656932,
+      "p16": 12.526607186552374,
+      "p84": 12.527294152377314,
+      "std": 0.0003458563025188982
+    },
+    "delta": {
+      "circular_mean": 2.31661985076217,
+      "mean": 2.3166198507621703,
+      "p16": 2.3166136226631053,
+      "p84": 2.3166260146921003,
+      "std": 6.238437365441475e-06
+    },
+    "r": {
+      "mean": 0.7071044559874426,
+      "p16": 0.7070991502595817,
+      "p84": 0.7071098172859769,
+      "std": 5.370023592815463e-06
+    },
+    "tau_prediction_MeV": {
+      "mean": 1776.9690272001326,
+      "p16": 1776.9689919661862,
+      "p84": 1776.9690623320841,
+      "std": 3.5346699305739106e-05
+    }
+  },
+  "point": {
+    "Q": 0.6666644634145,
+    "Q_from_ac": 0.6666644634145003,
+    "Q_minus_2_3": -2.2032521665993343e-06,
+    "a": 17.71583847806219,
+    "all_roots_positive": true,
+    "c": 12.526948121999721,
+    "delta": 2.3166198642972216,
+    "delta_minus_2_over_9": 2.539681804081262e-06,
+    "delta_mod_2pi_over_3": 0.2222247619040263,
+    "max_abs_residual": 9.992007221626409e-15,
+    "r": 0.7071044442808646,
+    "r_minus_1_sqrt2": -2.3369056828537182e-06,
+    "tau_prediction_MeV": 1776.9690270830142
+  },
+  "tests": {
+    "Q_deviation_sigma": -0.4351767775226918,
+    "r_deviation_sigma": -0.4351760550885208,
+    "tau_measured_minus_predicted_sigma": -0.4336342222698292
+  }
+}

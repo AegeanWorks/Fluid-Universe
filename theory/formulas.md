@@ -1,0 +1,34 @@
+# Formula Registry
+
+Every formula that may appear in the paper gets a row. A row is not trusted until all four checks are recorded. Test names refer to `tests/`.
+
+Conventions: \(\omega=e^{2\pi i/3}\), \(M=\mathrm{circ}(a,b,b^*)\), \(b=ce^{i\delta}\), \(a,c,\delta\in\mathbb R\), \(c\ge0\). Eigenvalues are \(\lambda_k=a+2c\cos(\delta+2\pi k/3)\), \(k=0,1,2\). The DFT eigenvectors are \(v_k=(1,\omega^k,\omega^{2k})/\sqrt3\).
+
+| ID | Statement | Source | Symbolic check | Numeric check | Limits / special cases | Dimensions | Status |
+|---|---|---|---|---|---|---|---|
+| F1 | Eigenvalues of \(M\) are \(\lambda_k=a+2c\cos(\delta+2\pi k/3)\). | derived (circulant algebra) | `test_symbolic_eigenvalues` | 1e4 random draws vs `numpy.linalg.eigvalsh` | \(\delta=0\): \((a+2c,a-c,a-c)\); \(c=0\): all \(a\) | \(a,c\) carry mass\(^{1/2}\); \(\lambda_k\) same | **VERIFIED** |
+| F2 | \(Q_{\rm signed}=\sum\lambda_k^2/(\sum\lambda_k)^2=1/3+2c^2/(3a^2)\). | derived | `test_q_identity_symbolic` | `test_q_identity_numeric` (1e4 draws) | \(c=0\Rightarrow Q=1/3\); \(c^2/a^2=1/2\Rightarrow Q=2/3\); \(c^2/a^2=1\Rightarrow Q=1\) | dimensionless | **VERIFIED** |
+| F3 | \(Q_{\rm signed}=2/3\iff c^2/a^2=1/2\) (for \(a\ne0\)). | derived (F2) | `test_koide_condition` | spot checks | also \(Q=1/3\iff c=0\), \(Q=1\iff c^2=a^2\) | dimensionless | **VERIFIED** |
+| F4 | \(M=M^\dagger\); for generic \(\delta\), \(M\ne M^T\). | derived | `test_hermitian_not_symmetric` | numeric | \(\delta=0,\pi\): real symmetric; otherwise not complex symmetric | mass\(^{1/2}\) | **VERIFIED** |
+| F5 | \(Mv_k=\lambda_kv_k\), with \(v_k\) independent of \(\delta\). | derived | `test_dft_eigenvectors` | `numpy.linalg.eigh` comparison | cyclic relabeling permutes \(k\); reflection sends \(\delta\to-\delta\) | dimensionless vectors | **VERIFIED** |
+| F6 | \(\frac13\sum_k x_k\omega^{-k}=ce^{i\delta}\), hence \(a=\bar x\), \(c=\lvert\frac13\sum_k x_k\omega^{-k}\rvert\), \(\delta=\arg(\frac13\sum_k x_k\omega^{-k})\). | derived (inverse DFT) | `test_extract_roundtrip` | random roundtrip 1e4 | \(c=0\) leaves \(\delta\) undefined; fix \(\delta=0\) | \(x\) mass\(^{1/2}\); \(a,c\) same | **VERIFIED** |
+| F7 | For physical masses \(m_k=\lambda_k^2\), \(Q_{\rm phys}=\sum m_k/(\sum\sqrt{m_k})^2=\sum\lambda_k^2/(\sum\lvert\lambda_k\rvert)^2\). F2 holds for \(Q_{\rm phys}\) only if all \(\lambda_k\ge0\). | derived | `test_sign_caveat` | counterexample \(a=1,c=0.9,\delta=\pi\): \(Q_{\rm signed}=0.8733\), \(Q_{\rm phys}=0.3715\) | \(\lambda_k\ge0\) in the lepton fit; not universal | dimensionless | **VERIFIED (conditional)** |
+| F8 | If all \(\lambda_k>0\), then \(1/3\le Q\le1\), hence \(0\le c/a\le1\). The universal bound \(c/a\le1/2\) is false. | derived (Cauchy–Schwarz) + counterexample | `test_bound_half_is_false` | \(x=(10,1,1)\): \(c/a=0.75\), \(Q=0.7083\) | equality \(Q=1\) in the hierarchical limit; \(Q=1/3\) for degenerate masses | dimensionless | **VERIFIED; 1/2 bound FALSIFIED** |
+| F9 | Pole-to-MS-bar one-loop conversion \(m_{\rm pole}=m(\mu)\left[1+\frac{\alpha}{\pi}\left(1+\frac34\ln\frac{\mu^2}{m^2}\right)\right]\). | cited (Xing & Zhang 2006, Eq. 5-6; Sumino 2009, Eq. 1.2) | one-pass algebra checked by hand; conversion implemented twice (explicit and fixed-point) | `test_published_conversion_reproduced`, `verification/audit.py` F9 | \(\alpha\to0\): equality; \(\mu=m\): residual \(\alpha/\pi\) | mass | **REPRODUCED at one loop (2e-4 vs published)** |
+| F10 | One-loop SM charged-lepton RGE: \(16\pi^2\,d\ln y_k/dt=\frac32y_k^2+T-\frac94g_2^2-\frac{15}{4}g_1^2\), with \(g_1\) SU(5)-normalised and \(T=\mathrm{Tr}(3Y_u^\dagger Y_u+3Y_d^\dagger Y_d+Y_e^\dagger Y_e)\). | cited (Machacek–Vaughn; Arason et al.; Xing & Zhang) | coefficients checked by hand; independent RK45 and DOP853 implementations agree | `test_initial_state_sanity`, `test_high_scale_literature_agreement` | gauge and \(T\) are scalar; only \(y_k^2\) differentiates generations | dimensionless | **CITED + partial cross-check** (absolute masses 3-5%; \(Q\) to \(4\times10^{-5}\)) |
+| F11 | Exact one-loop invariance of \(r=c/a\) under F10. | claimed (original hypothesis) | analytic counterterm: \(d\ln y_k/dt=A+B y_k^2\), so ratios run unless \(y_i=y_j\) | `test_exact_invariance_is_false` | drift \(\approx3.06\times10^{-6}\) for leptons over 16 decades | dimensionless | **FALSIFIED** |
+| F12 | Rotor sector Hamiltonian in the Fourier basis \(n=k+3j\): \(\langle n\lvert H\rvert m\rangle=\frac{n^2}{2I}\delta_{nm}+\mu\left(\delta_{nm}-\frac12\delta_{n,m+3}-\frac12\delta_{n,m-3}\right)\). | derived | `test_hamiltonian_is_symmetric_and_banded` | `test_sector_degeneracy_is_exact`, `test_free_rotor_limit` | free rotor \(E_n=n^2/(2I)\); \(E_1=E_2\) exactly; truncation converges | \(I\): mass\(\cdot\)length\(^2\); \(\mu\): energy | **VERIFIED** |
+| F13 | Domain-wall tension \(T=\int_0^{2\pi/3}\sqrt{2\mu(1-\cos3\phi)}\,d\phi=(8/3)\sqrt\mu\). | derived | sympy: \(1-\cos3\phi=2\sin^2(3\phi/2)\), \(\sin\ge0\) on the interval, integral \(=8/3\) (`verification/audit.py`) | `test_domain_wall_tension_analytic_and_quadrature` | \(\mu\to0\): \(T\to0\); \(T(4)=16/3\) | energy/length | **VERIFIED** |
+| F14 | Derrick virial relation for the exact FN+Skyrme+Z3 Lagrangian. | derived (claimed) | not yet implemented | not yet | scaling exponents depend on spacetime dimension and Skyrme convention | energy | **UNVERIFIED** |
+| F15 | Frank-Oseen linearised dispersion \(\omega^2=c^2k^2\) for \(K_1=K_2=K_3\). | derived (claimed) | not yet implemented | not yet | only the equal-\(K\) statement; "emergent Lorentz invariance" is separate | \(\omega\): 1/time; \(c\): speed | **UNVERIFIED** |
+| F16 | Hopf-charge density and normalisation. | cited/derived | not yet implemented | not yet | must give \(H=1\) for the analytic Hopf map; two independent estimators | dimensionless | **UNVERIFIED** |
+
+## Check protocol (enforced in `tests/`)
+
+1. **Symbolic:** sympy simplification of LHS\(-\)RHS to zero for every identity.
+2. **Numeric:** at least \(10^4\) random-parameter draws at machine precision for algebraic identities; fixed-seed Monte Carlo for data.
+3. **Limits:** \(a\to\infty\), \(c\to0\), \(c^2/a^2=1/2\), \(c^2/a^2=1\), cyclic relabeling, reflection.
+4. **Dimensions:** every term in a Lagrangian/action/tension/moment of inertia has stated units.
+5. **Cross-implementation:** circulant eigenvalues by DFT vs `numpy.linalg.eigvalsh`; rotor by Fourier basis vs finite differences (when implemented); RGE by full system vs the ratio ODE.
+6. **Literature cross-check:** F9 and F10 reproduce a published running before any new RG number is trusted.
+7. **Two-run verification:** every PROVEN/VERIFIED/NUMERIC claim row is re-derived in two separate audit processes and the per-claim results must match (project guideline G-001). This applies to claims, not to the pytest suite.

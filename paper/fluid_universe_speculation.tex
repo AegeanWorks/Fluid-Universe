@@ -1,0 +1,101 @@
+% Paper B. Speculative. Contains no results and must never be merged into Paper A.
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb}
+\title{A nematic-fluid ultraviolet picture for a $Z_3$ lepton sector:\\
+status report, not a result}
+\author{Research note from the \texttt{fluid-universe} repository}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This is a status report on a speculative ultraviolet completion in which the
+vacuum is a continuous nematic director field and particles are topological
+defects. No calculation in this note passes the repository's validation gates.
+The only defensible statements are negative: a nematic director has target
+space $RP^2$ with $\pi_1=Z_2$, $\pi_2=Z$, $\pi_3=Z$, so a three-fold sector is
+not automatic; the $\cos3\phi$ term used elsewhere is inserted by hand; and the
+naive rotor-to-circulant map cannot produce three distinct lepton masses
+because the $k=1$ and $k=2$ sectors are degenerate. We list the tests required
+before any positive claim can be made.
+\end{abstract}
+
+\section{What is assumed, not derived}
+\label{sec:assumed}
+
+\emph{Speculation.} Take a real unit-vector (director) field $n(x)$ with
+Frank-Oseen free energy
+\begin{equation}
+E_{\rm FO}=\frac12\int d^3x\left[
+K_1(\nabla\cdot n)^2+K_2(n\cdot\nabla\times n)^2
++K_3|n\times(\nabla\times n)|^2\right].
+\label{eq:fo}
+\end{equation}
+The one-constant case $K_1=K_2=K_3$ linearises to $\omega^2=c^2k^2$ for
+transverse director modes. \emph{This is not an emergent Lorentz invariance
+claim.} It is one mode's dispersion in a medium with a preferred frame, and the
+mode count, polarisations, and coupling to matter have not been computed.
+
+\section{Known topological obstruction}
+\label{sec:topology}
+
+A nematic director is headless: $n\sim-n$, so the order-parameter space is
+$RP^2$. Its homotopy groups are
+\begin{equation}
+\pi_1(RP^2)=Z_2,\qquad \pi_2(RP^2)=Z,\qquad \pi_3(RP^2)=Z.
+\label{eq:pi}
+\end{equation}
+There is no three-fold factor. A $Z_3$ sector must come from an extension:
+a rank-three order parameter, three coupled nematics, or a three-fold lattice.
+Testing whether any such extension produces $Z_3$ without inserting a
+$\cos3\phi$ potential is an open, falsifiable task. The null result is
+acceptable.
+
+\section{The rotor map fails on degeneracy}
+\label{sec:rotor}
+
+\emph{Derived (conditional).} For a quantum rotor
+\begin{equation}
+H=\frac{L^2}{2I}+\mu\left(1-\cos3\phi\right),
+\label{eq:rotor}
+\end{equation}
+the potential is even in $\phi$ and invariant under $\phi\to-\phi$. In the
+Fourier basis $n=k+3j$, the sectors $k=1$ and $k=2$ are therefore degenerate:
+$E_1=E_2$. A map that assigns one eigenvalue per sector,
+$a=(\ell_0+2\ell_1)/3$, $c=(\ell_1-\ell_0)/3$, produces at most two distinct
+values and cannot reproduce three charged-lepton masses. This is a structural
+failure of the naive map, not a numerical accident. Exact diagonalisation
+confirms it: at $I=\mu=1$, $E_0=0.891186$ and $E_1=E_2=1.317035$, so the map
+gives only two distinct roots. The naive rotor route is dropped.
+
+\section{Required tests before any positive claim}
+\label{sec:tests}
+
+\begin{enumerate}
+\item Symbolic derivation of the Derrick scaling exponents for the exact
+Lagrangian (Frank-Oseen plus Skyrme plus potential), including whether the
+effective moment of inertia is finite. The profile used in the original sketch
+makes $\int\rho\,r^2$ logarithmically divergent.
+\item Verification of the domain-wall tension
+$T=\int_0^{2\pi/3}\sqrt{2\mu(1-\cos3\phi)}\,d\phi=(8/3)\sqrt{\mu}$,
+symbolically and numerically.
+\item A validated Hopf-charge estimator on an analytic $H=1$ configuration,
+using two independent methods, with convergence order in $N$.
+\item A one-loop analysis of anisotropy parameters, or an explicit downgrade of
+any emergent-metric claim.
+\item Quantitative comparison of residual anisotropy with birefringence, GRB
+dispersion, CMB isotropy, and clock/cavity limits.
+\item A 3D run achieving $|H|\ge1$ \emph{and} $Z_3$ order with at least ten
+random seeds. No such run exists. Earlier lost-run values are not cited.
+\end{enumerate}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The nematic-fluid picture currently supplies a vocabulary, not a calculation.
+It is kept separate from Paper~A so that the $Z_3$/Koide/RG analysis stands or
+falls on its own. On present evidence the fluid-universe track has no
+falsifiable prediction and no validated simulation.
+
+\end{document}

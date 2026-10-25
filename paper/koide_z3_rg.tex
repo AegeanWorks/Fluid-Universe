@@ -1,0 +1,245 @@
+% Paper A. Must stand without any fluid-universe material.
+% Every number here regenerates from `python -m phenomenology.run_all`.
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,booktabs,hyperref}
+\title{A $Z_3$ circulant reparametrisation of the charged-lepton masses:\\
+algebra, pole-mass fit, and one-loop running}
+\author{Research note generated from the \texttt{fluid-universe} repository}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We test the claim that a $Z_3$ multiplet structure forces a Hermitian circulant
+matrix whose eigenvalues are the square roots of the charged-lepton masses.
+The algebra is correct and, in this form, is already present in the unpublished
+circulant treatment of Brannen (2006): a Hermitian circulant with three real
+parameters $(a,c,\delta)$ has eigenvalues
+$\lambda_k=a+2c\cos(\delta+2\pi k/3)$, the Koide ratio is
+$Q=1/3+2c^2/(3a^2)$, and $Q=2/3$ is equivalent to $c/a=1/\sqrt2$.
+The construction does \emph{not} predict $Q=2/3$: three parameters reproduce
+three masses exactly, and Koide is one additional condition. The natural
+quantum-rotor route is excluded: with a real $\cos3\phi$ potential the $k=1$
+and $k=2$ sectors are exactly degenerate, so the naive map yields only two
+distinct roots. Fitting PDG pole
+masses gives $Q=0.66666446$ and $c/a=0.70710444$. The exact statement that
+$c/a$ is one-loop renormalisation-group invariant is false; the
+generation-dependent $y_k^2$ term breaks it. For charged leptons the numerical
+drift is only $\Delta Q=+2.89\times10^{-6}$, $\Delta r=+3.06\times10^{-6}$ from
+$M_Z$ to $10^{16}$ GeV. The full-SM $\overline{\mathrm{MS}}$ masses at $M_Z$
+give $Q=0.6678240$, and the one-pass QED conversion of the pole masses alone
+gives $0.6679160$; both are about $0.18\%$ above $2/3$. These are
+scheme/matching effects, not RG running. We find no new falsifiable prediction beyond the built-in Koide
+value. The $Z_3$ origin and the value $c/a=1/\sqrt2$ remain assumptions.
+\end{abstract}
+
+\section{Setup and conventions}
+\label{sec:setup}
+
+Let $\omega=e^{2\pi i/3}$ and
+\begin{equation}
+M=\mathrm{circ}(a,b,b^*)
+=\begin{pmatrix}
+a & b & b^*\\
+b^* & a & b\\
+b & b^* & a
+\end{pmatrix},
+\qquad b=c\,e^{i\delta},
+\label{eq:M}
+\end{equation}
+with $a,c,\delta\in\mathbb{R}$ and $c\ge0$. \emph{Derived:} $M=M^\dagger$; for
+generic $\delta$, $M\ne M^T$, so the matrix is Hermitian but not complex
+symmetric. \emph{Assumed:} the three charged leptons form a $Z_3$ multiplet and
+$M$ acts on the vector of signed square roots
+$x=(\sqrt{m_e},\sqrt{m_\mu},\sqrt{m_\tau})$. The second assumption is the
+content of the hypothesis; nothing below derives it.
+
+\section{Algebra}
+\label{sec:algebra}
+
+\emph{Derived.} The eigenvectors of \eqref{eq:M} are the DFT columns
+$v_k=(1,\omega^k,\omega^{2k})/\sqrt3$, independent of $\delta$, and
+\begin{equation}
+\lambda_k=a+2c\cos\!\left(\delta+\frac{2\pi k}{3}\right),\qquad k=0,1,2.
+\label{eq:eig}
+\end{equation}
+Consequently
+\begin{equation}
+\sum_k\lambda_k=3a,\qquad
+\sum_k\lambda_k^2=3a^2+6c^2,
+\end{equation}
+and, for the signed roots,
+\begin{equation}
+Q\equiv\frac{\sum_k\lambda_k^2}{\left(\sum_k\lambda_k\right)^2}
+=\frac13+\frac{2c^2}{3a^2}.
+\label{eq:Q}
+\end{equation}
+Equation \eqref{eq:Q} is verified symbolically and by $10^4$ random numeric
+draws; $Q=1/3$ at $c=0$, $Q=2/3$ at $c^2/a^2=1/2$, and $Q=1$ at $c^2/a^2=1$.
+Hence
+\begin{equation}
+Q=\frac23 \iff \frac{c}{a}=\frac{1}{\sqrt2}.
+\label{eq:koide}
+\end{equation}
+
+\paragraph{Sign caveat.} Physical masses use $m_k=\lambda_k^2$ and
+$Q_{\rm phys}=\sum m_k/(\sum\sqrt{m_k})^2=\sum\lambda_k^2/(\sum|\lambda_k|)^2$.
+Equation \eqref{eq:Q} holds for $Q_{\rm phys}$ only when every $\lambda_k\ge0$.
+Counterexample: $a=1$, $c=0.9$, $\delta=\pi$ gives signed roots
+$(-0.8,1.9,1.9)$, $Q_{\rm signed}=0.8733$ but $Q_{\rm phys}=0.3715$. The lepton
+fit below satisfies $\lambda_k>0$, so the caveat is inactive there but it
+forbids stating \eqref{eq:Q} as a universal mass identity.
+
+\paragraph{No prediction.} Equation \eqref{eq:koide} is a condition on a free
+ratio. The map $(a,c,\delta)\mapsto(\sqrt{m_e},\sqrt{m_\mu},\sqrt{m_\tau})$ is
+invertible on positive roots, so the fit is exact for \emph{any} three masses.
+A $Z_3$ multiplet alone therefore does not explain Koide. The universal bound
+$c/a\le1/2$ is false: positive roots $(10,1,1)$ give $c/a=0.75$ with $Q=0.7083$.
+
+\paragraph{The rotor route is excluded.} A natural attempt is to generate the
+three roots from a quantum rotor $H=L^2/(2I)+\mu(1-\cos3\phi)$. Exact
+diagonalisation in the Fourier sector $n=k+3j$ gives, at $I=\mu=1$,
+\begin{equation}
+E_0=0.8911861597,\qquad E_1=E_2=1.3170345140,
+\label{eq:rotor}
+\end{equation}
+with the degeneracy exact because $\phi\to-\phi$ maps sector $1$ to sector $2$.
+The naive map $a=(\ell_0+2\ell_1)/3$, $c=(\ell_1-\ell_0)/3$ therefore produces
+roots $(1.45898,1.03314,1.03314)$: only two distinct values, not three. The
+spectrum converges to $10^{-9}$ between cutoff $n_{\max}=20$ and $160$, and the
+free-rotor limit reproduces $E_n=n^2/(2I)$. Thus the rotor model, as stated, is
+falsified rather than merely unverified. The associated domain-wall tension
+$T=(8/3)\sqrt{\mu}$ is verified analytically and numerically, but that identity
+alone does not rescue the mass map.
+
+\section{Pole-mass fit}
+\label{sec:fit}
+
+\emph{Numeric.} Inputs are the PDG 2024 pole masses
+$m_e=0.51099895000(15)$ MeV, $m_\mu=105.6583755(23)$ MeV, and
+$m_\tau=1776.93(9)$ MeV. Inverting \eqref{eq:eig} gives
+\begin{center}
+\begin{tabular}{lr}
+\toprule
+$a$ & $17.715838478\ \mathrm{MeV}^{1/2}$\\
+$c$ & $12.526948122\ \mathrm{MeV}^{1/2}$\\
+$c/a$ & $0.707104444$\\
+$\delta \bmod 2\pi/3$ & $0.22222476$ rad\\
+$Q$ & $0.666664463$\\
+$\max|\text{residual}|$ & $1.0\times10^{-14}\ \mathrm{MeV}^{1/2}$\\
+\bottomrule
+\end{tabular}
+\end{center}
+A fixed-seed Monte Carlo ($10^5$ draws, PDG $1\sigma$ errors) gives
+$\sigma_Q=5.1\times10^{-6}$ and $\sigma_{c/a}=5.4\times10^{-6}$, so
+$(Q-2/3)/\sigma_Q=-0.44$. Solving $Q=2/3$ with the measured $m_e,m_\mu$ gives
+$m_\tau=1776.969$ MeV, to be compared with $1776.93(9)$ MeV. This is a
+post-hoc consistency check of a two-parameter relation, not a prediction of
+this paper; it is the known Koide prediction.
+
+The phase has a cyclic ambiguity $\delta\to\delta+2\pi/3$ that leaves the
+spectrum invariant. Its minimal representative is numerically close to $2/9$
+(difference $2.5\times10^{-6}$ rad). \emph{Speculation:} we attach no
+significance to this near-miss. Without a stated prior, rational
+approximations of $\delta$ are not evidence.
+
+\section{One-loop running}
+\label{sec:rg}
+
+\emph{Derived (standard).} The one-loop Standard-Model RGE for a charged-lepton
+Yukawa eigenvalue is
+\begin{equation}
+16\pi^2\frac{d\ln y_k}{dt}
+=\frac32 y_k^2+T-\frac94 g_2^2-\frac{15}{4}g_1^2,
+\qquad
+T=\mathrm{Tr}\!\left(3Y_u^\dagger Y_u+3Y_d^\dagger Y_d+Y_e^\dagger Y_e\right),
+\label{eq:rge}
+\end{equation}
+with $g_1$ SU(5)-normalised. The gauge and $T$ terms are generation-blind; only
+$\frac32y_k^2$ distinguishes the three leptons. Therefore $Q$ and $r=c/a$ are
+\emph{not} exactly RG-invariant, contrary to the original hypothesis.
+
+\emph{Numeric.} We integrate \eqref{eq:rge} with the full-SM
+$\overline{\mathrm{MS}}$ masses of Huang and Zhou (2021) at $M_Z$,
+$m_e=0.48307$ MeV, $m_\mu=101.766$ MeV, $m_\tau=1728.56$ MeV, together with
+$m_t(M_Z)=168.26$ GeV and $m_b(M_Z)=2.839$ GeV, and one-loop gauge running.
+The result is
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+ & $M_Z$ & $10^{16}$ GeV\\
+\midrule
+$Q$ & $0.667823994$ & $0.667826882$\\
+$c/a$ & $0.708333249$ & $0.708336306$\\
+\bottomrule
+\end{tabular}
+\end{center}
+so $\Delta Q=+2.89\times10^{-6}$ and $\Delta r=+3.06\times10^{-6}$ over 32.3
+e-folds. The exact-invariance claim is falsified; the numerical stability is
+real but is a consequence of the smallness of $y_\tau^2$, not a symmetry.
+
+\paragraph{Scheme versus running.} Converting the pole masses to
+$\overline{\mathrm{MS}}$ at $M_Z$ with the published one-pass QED formula
+($\alpha(M_Z)=1/128.89$) gives $Q=0.6679160$, in agreement with the value
+$0.66792$ of Xing and Zhang (2006). The full-SM matching of Huang and Zhou
+instead gives $Q(M_Z)=0.6678240$. Both differ from the pole-mass $Q$ by about
+$0.18\%$, an order of magnitude larger than the entire subsequent RG drift.
+The scheme/matching conversion and the running must not be conflated.
+
+\paragraph{Truncation.} The absolute high-scale masses are sensitive to a
+near-cancellation between the top-Yukawa and gauge terms; at $10^8$ GeV the
+one-loop masses differ from the three-loop literature values by up to a few
+percent. No claim here uses absolute high-scale masses. A genuine two-loop run
+is future work. An earlier estimate of a two-loop drift
+$\sim4\times10^{-9}$ per decade had no supporting calculation and is retracted.
+
+\section{What does not survive}
+\label{sec:negative}
+
+\begin{itemize}
+\item The $Z_3$ multiplet does not force $Q=2/3$; Koide is the extra condition
+$c/a=1/\sqrt2$. The value of $c/a$ is not derived.
+\item $Q=2/3$ holds for pole masses, not for $\overline{\mathrm{MS}}$ masses at
+$M_Z$, where the full-SM matching gives $Q=0.6678240$.
+\item $c/a$ is not one-loop RG-invariant.
+\item The rotor-to-circulant map cannot give three masses: $E_1=E_2$ exactly.
+\item The bound $c/a\le1/2$ is false.
+\item No new falsifiable prediction beyond Koide has been found.
+\end{itemize}
+
+\section{Status and outlook}
+\label{sec:outlook}
+
+The algebra in Sec.~\ref{sec:algebra} is likely known; the circulant
+eigenvalue problem and the identification $\lambda_k=\sqrt{m_k}$ appear in
+Brannen's unpublished note, and the running-mass behaviour is discussed by
+Xing and Zhang and by Sumino. This note contributes a clean separation of three
+effects that are often conflated---the exact algebra, the scheme conversion,
+and the RG drift---and an explicit statement of what the $Z_3$ hypothesis does
+not do.
+
+Any future claim of a dynamical origin must supply a mechanism that fixes
+$c/a=1/\sqrt2$ and yields at least one prediction beyond the three charged
+lepton masses. Absent that, the construction is a reparametrisation, not a
+theory.
+
+\begin{thebibliography}{9}
+\bibitem{koide} Y.~Koide, Lett.\ Nuovo Cim.\ \textbf{34} (1982) 201;
+Phys.\ Rev.\ D \textbf{28} (1983) 252.
+\bibitem{brannen} C.~A.~Brannen, \emph{The Lepton Masses}, unpublished (2006),
+\texttt{https://brannenworks.com/MASSES2.pdf}.
+\bibitem{xingzhang} Z.-z.~Xing and H.~Zhang,
+\emph{On the Koide-like relations for the running masses of charged leptons,
+neutrinos and quarks}, arXiv:hep-ph/0602134.
+\bibitem{sumino} Y.~Sumino, JHEP \textbf{05} (2009) 075, arXiv:0812.2090.
+\bibitem{huangzhou} G.-y.~Huang and S.~Zhou, Phys.\ Rev.\ D \textbf{103} (2021)
+016010, arXiv:2009.04851.
+\bibitem{xingzhangzhou} Z.-z.~Xing, H.~Zhang, and S.~Zhou,
+Phys.\ Rev.\ D \textbf{77} (2008) 113016, arXiv:0712.1419.
+\bibitem{arason} H.~Arason \emph{et al.}, Phys.\ Rev.\ D \textbf{46} (1992) 3945.
+\bibitem{pdg} S.~Navas \emph{et al.} (Particle Data Group),
+Phys.\ Rev.\ D \textbf{110} (2024) 030001.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1043 @@
+{
+  "meta": {
+    "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
+    "scope": "claims.md claims, not the pytest suite",
+    "current_fingerprints": {
+      "source_sha256": "d4cc8037573cc0f2d6526cb3523c7c5c8b71f330871e30770fc2fa3fe93dd47a",
+      "results_sha256": "9a9193615176a5d3de07a24c9ee2c1e0a92016264f7cf33c8b1a8e823d2b7a4f"
+    },
+    "runs": [
+      {
+        "tag": "run1",
+        "generated_utc": "2026-10-25T21:41:42+00:00",
+        "git_commit": "dea2f9e20f6af587d427c2cb8a958c87cfe9378d",
+        "passed": 66,
+        "total": 66,
+        "failed": 0,
+        "checks_sha256": "4d7b19014d23ba19e81437b7c92954feeab4d9d52a9a618cbaa9bb6f28a18b20",
+        "fingerprints": {
+          "source_sha256": "d4cc8037573cc0f2d6526cb3523c7c5c8b71f330871e30770fc2fa3fe93dd47a",
+          "results_sha256": "9a9193615176a5d3de07a24c9ee2c1e0a92016264f7cf33c8b1a8e823d2b7a4f"
+        }
+      },
+      {
+        "tag": "run2",
+        "generated_utc": "2026-10-25T21:41:53+00:00",
+        "git_commit": "dea2f9e20f6af587d427c2cb8a958c87cfe9378d",
+        "passed": 66,
+        "total": 66,
+        "failed": 0,
+        "checks_sha256": "4d7b19014d23ba19e81437b7c92954feeab4d9d52a9a618cbaa9bb6f28a18b20",
+        "fingerprints": {
+          "source_sha256": "d4cc8037573cc0f2d6526cb3523c7c5c8b71f330871e30770fc2fa3fe93dd47a",
+          "results_sha256": "9a9193615176a5d3de07a24c9ee2c1e0a92016264f7cf33c8b1a8e823d2b7a4f"
+        }
+      }
+    ],
+    "claims_agree": true,
+    "details_match": true,
+    "checks_match": true,
+    "totals_match": true,
+    "fingerprints_match": true,
+    "all_passed": true,
+    "accepted": true
+  },
+  "claims": [
+    {
+      "claim": "1a/F2: Q identity",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "symbolic difference simplifies to zero"
+    },
+    {
+      "claim": "1b: 3 parameters fit 3 masses exactly",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max residual 8.527e-14 over 1000 random positive-root triples"
+    },
+    {
+      "claim": "1b: Q is not fixed by the Z3/circulant structure",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "random triples span Q in [0.3334, 0.9431]"
+    },
+    {
+      "claim": "1c/F3: Q=2/3 iff c^2/a^2=1/2",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "sympy solves c^2 = [a**2/2]"
+    },
+    {
+      "claim": "1d: signed vs physical Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "roots [-0.8, 1.8999999999999988, 1.9000000000000008], signed Q=0.8733333333, physical Q=0.3714555766"
+    },
+    {
+      "claim": "2a: M != M^T for generic delta",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "M - M^T has off-diagonal 2 i c sin(delta)"
+    },
+    {
+      "claim": "2a: M = M^dagger",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "symbolic difference is the zero matrix"
+    },
+    {
+      "claim": "2b/F1: eigenpair k=0",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero"
+    },
+    {
+      "claim": "2b/F1: eigenpair k=1",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero"
+    },
+    {
+      "claim": "2b/F1: eigenpair k=2",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero"
+    },
+    {
+      "claim": "3a: (Q-2/3)/sigma",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "(Q-2/3)/sigma = -0.435"
+    },
+    {
+      "claim": "3a: Monte Carlo mean/std reproduce",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06"
+    },
+    {
+      "claim": "3a: Q from PDG pole masses",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Q=0.666664463415; Q-2/3=-2.203e-06"
+    },
+    {
+      "claim": "3a: exact fit residual",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "stored max residual 9.992e-15"
+    },
+    {
+      "claim": "3a: independent (a,c,delta) fit",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "a=17.715838478, c=12.526948122, delta=2.316619864297 (stored 17.715838478, 12.526948122, 2.316619864297)"
+    },
+    {
+      "claim": "3a: quoted uncertainties",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "sigma_Q=5.063e-06, sigma_r=5.370e-06"
+    },
+    {
+      "claim": "3a: tau prediction",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "independent m_tau=1776.969027 MeV, stored 1776.969027"
+    },
+    {
+      "claim": "3b: MSbar Q(M_Z) != 2/3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "independent Q(M_Z)=0.667823994186, Q-2/3=+1.157e-03"
+    },
+    {
+      "claim": "4a: exact one-loop invariance would require a generation-blind RHS",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it"
+    },
+    {
+      "claim": "4b: independent RGE reproduces Q(mu) and r(mu)",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table"
+    },
+    {
+      "claim": "4b: one-loop drift is nonzero but small",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328"
+    },
+    {
+      "claim": "5a: independent rotor spectrum",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042"
+    },
+    {
+      "claim": "5a: truncation convergence",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)]"
+    },
+    {
+      "claim": "5b: free-rotor limit",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1"
+    },
+    {
+      "claim": "5c: k=1 and k=2 exactly degenerate",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "|E1-E2|=0.000e+00"
+    },
+    {
+      "claim": "5c: naive map gives two distinct roots",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "mapped roots [1.4589839654780183, 1.0331356111713113, 1.033135611171311] -> 2 distinct (3 needed)"
+    },
+    {
+      "claim": "5d: c/a=1/2 bound is false",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "(10,1,1): a=4.000, c/a=0.750000, Q=0.7083333333"
+    },
+    {
+      "claim": "6a: 1-cos(3phi) = 2 sin^2(3phi/2)",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "symbolic identity used to remove the absolute value on 0 <= phi <= 2pi/3"
+    },
+    {
+      "claim": "6a: domain-wall tension symbolic",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "sympy integral = 8*sqrt(mu)/3 (sin(3phi/2) >= 0 on the interval)"
+    },
+    {
+      "claim": "6a: tension quadrature mu=0.5",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "1.885618083164 vs 1.885618083164"
+    },
+    {
+      "claim": "6a: tension quadrature mu=1.0",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "2.666666666667 vs 2.666666666667"
+    },
+    {
+      "claim": "6a: tension quadrature mu=7.3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "7.204936579257 vs 7.204936579257"
+    },
+    {
+      "claim": "F1 numeric: eigenvalues vs numpy",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max |eigvalsh - formula| = 1.243e-14 over 100000 draws"
+    },
+    {
+      "claim": "F10: Q from literature masses vs one-loop Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max relative Q difference 3.937e-05; the shape is stable at this level"
+    },
+    {
+      "claim": "F10: RK45 and DOP853 independent integrators agree",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max |Delta Q|=2.220e-16, max |Delta r|=1.110e-16"
+    },
+    {
+      "claim": "F10: one-loop absolute running vs three-loop literature",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max relative mass difference 5.024%; loop truncation, not a precision check"
+    },
+    {
+      "claim": "F2 numeric: Q identity",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max relative |Q - (1/3+2c^2/3a^2)| = 2.963e-14"
+    },
+    {
+      "claim": "F8: 1/3 <= Q <= 1 for positive masses",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Q range [0.333340, 0.970424]"
+    },
+    {
+      "claim": "F8: c/a <= 1 for positive roots",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max c/a = 0.977566 over 20000 random positive-root triples"
+    },
+    {
+      "claim": "F9/3b: pole-to-MSbar conversion reproduces Xing-Zhang",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "independent Q=0.667915958, stored 0.667915958, literature 0.66792"
+    },
+    {
+      "claim": "F9: conversion reproduced to 2e-4",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max relative difference 1.891e-04"
+    },
+    {
+      "claim": "F9: converted e vs Xing-Zhang",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "relative difference +1.891e-04"
+    },
+    {
+      "claim": "F9: converted mu vs Xing-Zhang",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "relative difference +1.067e-04"
+    },
+    {
+      "claim": "F9: converted tau vs Xing-Zhang",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "relative difference +3.404e-05"
+    },
+    {
+      "claim": "docs: F10 not overstated as an exact verification",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "F10 is cross-checked only at the few-percent level against three-loop literature"
+    },
+    {
+      "claim": "docs: abstract distinguishes scheme conversion from full-SM matching",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them"
+    },
+    {
+      "claim": "docs: claims Delta Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '2.89\\times10^{-6}'"
+    },
+    {
+      "claim": "docs: claims Delta r",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '3.06\\times10^{-6}'"
+    },
+    {
+      "claim": "docs: claims E0",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.8911861597'"
+    },
+    {
+      "claim": "docs: claims E1",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '1.3170345140'"
+    },
+    {
+      "claim": "docs: claims MSbar Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.667823994'"
+    },
+    {
+      "claim": "docs: claims Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.666664463'"
+    },
+    {
+      "claim": "docs: claims r",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.707104444'"
+    },
+    {
+      "claim": "docs: fit numbers match JSON",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "stored fit and RG values match the regenerated outputs"
+    },
+    {
+      "claim": "docs: paper E0",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.8911861597'"
+    },
+    {
+      "claim": "docs: paper E1",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '1.3170345140'"
+    },
+    {
+      "claim": "docs: paper MSbar Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.667823994'"
+    },
+    {
+      "claim": "docs: paper Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.66666446'"
+    },
+    {
+      "claim": "docs: paper r",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.70710444'"
+    },
+    {
+      "claim": "docs: registry F10 downgraded to partial",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for 'CITED + partial cross-check'"
+    },
+    {
+      "claim": "docs: registry F9 downgraded to reproduced",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for 'REPRODUCED at one loop'"
+    },
+    {
+      "claim": "docs: scorecard Delta Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '2.89\\times10^{-6}'"
+    },
+    {
+      "claim": "docs: scorecard MSbar Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.6678240'"
+    },
+    {
+      "claim": "docs: scorecard Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.666664463'"
+    },
+    {
+      "claim": "docs: shape-only diagnostic labelled",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for 'NOT a cross-check'"
+    },
+    {
+      "claim": "docs: summary lists the rotor result",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "summary.md must describe the rotor output it now includes"
+    }
+  ],
+  "checks": [
+    {
+      "claim": "2a: M = M^dagger",
+      "passed": true,
+      "detail": "symbolic difference is the zero matrix",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "2a: M != M^T for generic delta",
+      "passed": true,
+      "detail": "M - M^T has off-diagonal 2 i c sin(delta)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "2b/F1: eigenpair k=0",
+      "passed": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "2b/F1: eigenpair k=1",
+      "passed": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "2b/F1: eigenpair k=2",
+      "passed": true,
+      "detail": "M v_k - lambda_k v_k simplifies to zero",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "1a/F2: Q identity",
+      "passed": true,
+      "detail": "symbolic difference simplifies to zero",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "1c/F3: Q=2/3 iff c^2/a^2=1/2",
+      "passed": true,
+      "detail": "sympy solves c^2 = [a**2/2]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F1 numeric: eigenvalues vs numpy",
+      "passed": true,
+      "detail": "max |eigvalsh - formula| = 1.243e-14 over 100000 draws",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F2 numeric: Q identity",
+      "passed": true,
+      "detail": "max relative |Q - (1/3+2c^2/3a^2)| = 2.963e-14",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "1d: signed vs physical Q",
+      "passed": true,
+      "detail": "roots [-0.8, 1.8999999999999988, 1.9000000000000008], signed Q=0.8733333333, physical Q=0.3714555766",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F8: c/a <= 1 for positive roots",
+      "passed": true,
+      "detail": "max c/a = 0.977566 over 20000 random positive-root triples",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F8: 1/3 <= Q <= 1 for positive masses",
+      "passed": true,
+      "detail": "Q range [0.333340, 0.970424]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "1b: 3 parameters fit 3 masses exactly",
+      "passed": true,
+      "detail": "max residual 8.527e-14 over 1000 random positive-root triples",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "1b: Q is not fixed by the Z3/circulant structure",
+      "passed": true,
+      "detail": "random triples span Q in [0.3334, 0.9431]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5d: c/a=1/2 bound is false",
+      "passed": true,
+      "detail": "(10,1,1): a=4.000, c/a=0.750000, Q=0.7083333333",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: independent (a,c,delta) fit",
+      "passed": true,
+      "detail": "a=17.715838478, c=12.526948122, delta=2.316619864297 (stored 17.715838478, 12.526948122, 2.316619864297)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: Q from PDG pole masses",
+      "passed": true,
+      "detail": "Q=0.666664463415; Q-2/3=-2.203e-06",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: exact fit residual",
+      "passed": true,
+      "detail": "stored max residual 9.992e-15",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: tau prediction",
+      "passed": true,
+      "detail": "independent m_tau=1776.969027 MeV, stored 1776.969027",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: quoted uncertainties",
+      "passed": true,
+      "detail": "sigma_Q=5.063e-06, sigma_r=5.370e-06",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: (Q-2/3)/sigma",
+      "passed": true,
+      "detail": "(Q-2/3)/sigma = -0.435",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3a: Monte Carlo mean/std reproduce",
+      "passed": true,
+      "detail": "Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "4b: independent RGE reproduces Q(mu) and r(mu)",
+      "passed": true,
+      "detail": "max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F10: RK45 and DOP853 independent integrators agree",
+      "passed": true,
+      "detail": "max |Delta Q|=2.220e-16, max |Delta r|=1.110e-16",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "3b: MSbar Q(M_Z) != 2/3",
+      "passed": true,
+      "detail": "independent Q(M_Z)=0.667823994186, Q-2/3=+1.157e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "4b: one-loop drift is nonzero but small",
+      "passed": true,
+      "detail": "Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "4a: exact one-loop invariance would require a generation-blind RHS",
+      "passed": true,
+      "detail": "the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F9/3b: pole-to-MSbar conversion reproduces Xing-Zhang",
+      "passed": true,
+      "detail": "independent Q=0.667915958, stored 0.667915958, literature 0.66792",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F9: converted e vs Xing-Zhang",
+      "passed": true,
+      "detail": "relative difference +1.891e-04",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F9: converted mu vs Xing-Zhang",
+      "passed": true,
+      "detail": "relative difference +1.067e-04",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F9: converted tau vs Xing-Zhang",
+      "passed": true,
+      "detail": "relative difference +3.404e-05",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F10: one-loop absolute running vs three-loop literature",
+      "passed": true,
+      "detail": "max relative mass difference 5.024%; loop truncation, not a precision check",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F10: Q from literature masses vs one-loop Q",
+      "passed": true,
+      "detail": "max relative Q difference 3.937e-05; the shape is stable at this level",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "F9: conversion reproduced to 2e-4",
+      "passed": true,
+      "detail": "max relative difference 1.891e-04",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5a: independent rotor spectrum",
+      "passed": true,
+      "detail": "independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5c: k=1 and k=2 exactly degenerate",
+      "passed": true,
+      "detail": "|E1-E2|=0.000e+00",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5a: truncation convergence",
+      "passed": true,
+      "detail": "E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5b: free-rotor limit",
+      "passed": true,
+      "detail": "E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "5c: naive map gives two distinct roots",
+      "passed": true,
+      "detail": "mapped roots [1.4589839654780183, 1.0331356111713113, 1.033135611171311] -> 2 distinct (3 needed)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6a: 1-cos(3phi) = 2 sin^2(3phi/2)",
+      "passed": true,
+      "detail": "symbolic identity used to remove the absolute value on 0 <= phi <= 2pi/3",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6a: domain-wall tension symbolic",
+      "passed": true,
+      "detail": "sympy integral = 8*sqrt(mu)/3 (sin(3phi/2) >= 0 on the interval)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6a: tension quadrature mu=0.5",
+      "passed": true,
+      "detail": "1.885618083164 vs 1.885618083164",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6a: tension quadrature mu=1.0",
+      "passed": true,
+      "detail": "2.666666666667 vs 2.666666666667",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "6a: tension quadrature mu=7.3",
+      "passed": true,
+      "detail": "7.204936579257 vs 7.204936579257",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Q",
+      "passed": true,
+      "detail": "searched for '0.666664463'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims r",
+      "passed": true,
+      "detail": "searched for '0.707104444'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims MSbar Q",
+      "passed": true,
+      "detail": "searched for '0.667823994'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Delta Q",
+      "passed": true,
+      "detail": "searched for '2.89\\times10^{-6}'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims Delta r",
+      "passed": true,
+      "detail": "searched for '3.06\\times10^{-6}'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims E0",
+      "passed": true,
+      "detail": "searched for '0.8911861597'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims E1",
+      "passed": true,
+      "detail": "searched for '1.3170345140'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard Q",
+      "passed": true,
+      "detail": "searched for '0.666664463'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard MSbar Q",
+      "passed": true,
+      "detail": "searched for '0.6678240'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: scorecard Delta Q",
+      "passed": true,
+      "detail": "searched for '2.89\\times10^{-6}'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: registry F9 downgraded to reproduced",
+      "passed": true,
+      "detail": "searched for 'REPRODUCED at one loop'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: registry F10 downgraded to partial",
+      "passed": true,
+      "detail": "searched for 'CITED + partial cross-check'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: shape-only diagnostic labelled",
+      "passed": true,
+      "detail": "searched for 'NOT a cross-check'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper Q",
+      "passed": true,
+      "detail": "searched for '0.66666446'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper r",
+      "passed": true,
+      "detail": "searched for '0.70710444'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper MSbar Q",
+      "passed": true,
+      "detail": "searched for '0.667823994'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper E0",
+      "passed": true,
+      "detail": "searched for '0.8911861597'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper E1",
+      "passed": true,
+      "detail": "searched for '1.3170345140'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary lists the rotor result",
+      "passed": true,
+      "detail": "summary.md must describe the rotor output it now includes",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: abstract distinguishes scheme conversion from full-SM matching",
+      "passed": true,
+      "detail": "abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: F10 not overstated as an exact verification",
+      "passed": true,
+      "detail": "F10 is cross-checked only at the few-percent level against three-loop literature",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: fit numbers match JSON",
+      "passed": true,
+      "detail": "stored fit and RG values match the regenerated outputs",
+      "expected": null,
+      "observed": null
+    }
+  ],
+  "total": 66,
+  "passed": 66,
+  "failed": 0,
+  "failures": []
+}

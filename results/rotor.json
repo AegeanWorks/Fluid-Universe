@@ -1,0 +1,102 @@
+{
+  "E1_minus_E2": 0.0,
+  "convergence": [
+    {
+      "E0": 0.8911861597499572,
+      "E1": 1.3170345141864244,
+      "E1_minus_E2": 0.0,
+      "E2": 1.3170345141864244,
+      "n_cutoff": 10
+    },
+    {
+      "E0": 0.8911861597406692,
+      "E1": 1.3170345140417596,
+      "E1_minus_E2": 0.0,
+      "E2": 1.3170345140417596,
+      "n_cutoff": 20
+    },
+    {
+      "E0": 0.8911861597407595,
+      "E1": 1.3170345140414945,
+      "E1_minus_E2": 0.0,
+      "E2": 1.3170345140414945,
+      "n_cutoff": 40
+    },
+    {
+      "E0": 0.8911861597404851,
+      "E1": 1.317034514041464,
+      "E1_minus_E2": 0.0,
+      "E2": 1.317034514041464,
+      "n_cutoff": 80
+    },
+    {
+      "E0": 0.8911861597373525,
+      "E1": 1.3170345140413353,
+      "E1_minus_E2": 0.0,
+      "E2": 1.3170345140413353,
+      "n_cutoff": 160
+    }
+  ],
+  "domain_wall": {
+    "analytic": 2.6666666666666665,
+    "mu": 1.0,
+    "quadrature": 2.6666666666666665
+  },
+  "levels": {
+    "E0": 0.8911861597357422,
+    "E1": 1.3170345140424493,
+    "E2": 1.3170345140424493
+  },
+  "meta": {
+    "config": {
+      "I": 1.0,
+      "cutoffs_convergence": [
+        10,
+        20,
+        40,
+        80,
+        160
+      ],
+      "grid_cross_check": 2048,
+      "mu": 1.0,
+      "n_cutoff_spectrum": 120
+    },
+    "config_sha256": "f2888e101ebeb74e127a8b2da829432a558f9e67550cced73735333a7aaf2ecd",
+    "generated_utc": "2026-10-25T21:41:30+00:00",
+    "git": {
+      "commit": "dea2f9e20f6af587d427c2cb8a958c87cfe9378d",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "naive_map": {
+    "distinct_roots": 2,
+    "implied_roots": [
+      1.4589839654780183,
+      1.0331356111713113,
+      1.033135611171311
+    ],
+    "needed": 3
+  },
+  "parity_obstruction": {
+    "conclusion": "the naive rotor-to-circulant map cannot give three lepton masses",
+    "distinct_roots_from_naive_map": 2,
+    "exact_degeneracy": true,
+    "needed_for_three_masses": 3,
+    "reason": "H(phi) = H(-phi); complex conjugation maps n -> -n, sector 1 <-> sector 2"
+  },
+  "verdict": {
+    "5a_converges": true,
+    "5b_free_rotor": "exact by construction; tested separately",
+    "5c_map_gives_three_masses": false,
+    "5d_universal_half_bound": false
+  }
+}
