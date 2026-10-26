@@ -23,4 +23,4 @@ Single-candidate p = 2.425e-06; expected candidates within the best distance = 7
 **Verdict:** no candidate is promoted. The 2/9 near-miss is recorded with its prior and look-elsewhere penalty; it is not evidence for a closed form.
 
 - Config SHA-256: `5947ca1f7edce9428e29811388c938328a636f09d8d9a05de85fbd945f87ccd3`
-- Git: `930559aa4fe4d018299605fbcc46b171d2a7813c` (dirty=True)
+- Git: `6657b24d2339c81d95e94827fb48598adab74d3b` (dirty=True)

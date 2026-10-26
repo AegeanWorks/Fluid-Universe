@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-26T18:11:10+00:00",
-    "git_commit": "930559aa4fe4d018299605fbcc46b171d2a7813c",
+    "generated_utc": "2026-10-26T19:11:56+00:00",
+    "git_commit": "6657b24d2339c81d95e94827fb48598adab74d3b",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "15315657f3f6f101c401f67154d9920db84f679bd9ed0f99f3df1a50179f9f31",
-      "results_sha256": "e7335e49275755813d93e43abe50082fe6309efa4650ec2adf6227da33e3369d"
+      "source_sha256": "5289b4cfd28ff6bc73134268da2e43d95362d0aff37f88c344ad4981319cea7e",
+      "results_sha256": "4b8bcb6cda62457a93e0d52469d9fe97d68e8c5b038dedad5da969f4c792368d"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -553,6 +553,34 @@
       "claim": "14d: N=64 scale candidate is a saddle",
       "passed": true,
       "detail": "min=-5.799863, negative=8",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
+      "passed": true,
+      "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: production verdict follows the pre-registered rule",
+      "passed": true,
+      "detail": "status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: production dt check is recorded",
+      "passed": true,
+      "detail": "dH=1.660e-06, dZ3=4.076e-06, converged=True",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: perturbed seeds are recorded",
+      "passed": true,
+      "detail": "seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074",
       "expected": null,
       "observed": null
     },
@@ -1131,6 +1159,13 @@
       "observed": null
     },
     {
+      "claim": "docs: claims upsampled H",
+      "passed": true,
+      "detail": "searched for '0.9892'",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: summary lists the rotor result",
       "passed": true,
       "detail": "summary.md must describe the rotor output it now includes",
@@ -1159,8 +1194,8 @@
       "observed": null
     }
   ],
-  "total": 163,
-  "passed": 163,
+  "total": 168,
+  "passed": 168,
   "failed": 0,
   "failures": []
 }

@@ -48,6 +48,8 @@ Do not edit these files by hand.
 | `hopfion_scale.md` | Human-readable version of the same |
 | `hopfion_stability.json` | Dense-validated tangent Hessian of the scale candidate; not part of make results |
 | `hopfion_stability.md` | Human-readable version of the same |
+| `hopfion3d_production.json` | N=64 claim-15 production scan with 2x upsampled H, dt and seed checks (<15 min, G-003); not part of make results |
+| `hopfion3d_production.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

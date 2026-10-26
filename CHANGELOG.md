@@ -303,3 +303,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The scale-stationary candidate is a saddle; 14d FALSIFIED. This rules out that candidate, not every possible Hopfion; 14b remains UNVERIFIED.
 
 - Verification after the validated Hessian: two separate runs, 163/163 checks each.
+
+## 2026-10-26 - Claim 15 production scan and 15-minute wall-clock cap (G-003)
+
+**Added**
+
+- Project guideline `G-003`: every simulation, diagnostic, or verification run must complete within a hard 15-minute (900-second) wall-clock limit (`MAX_WALL_SECONDS = 900.0`).
+- `sims/production.py`, `phenomenology/production_report.py`, `tests/test_production.py`, `results/hopfion3d_production.{json,md}`, and `make production`.
+
+**Results**
+
+- N=64, 3600 steps, fixed vacuum faces, \(\mu=20\), \(dt=5\times10^{-4}\) (completed in ~185 s): native \(H=0.787999784\), 2x spectrally upsampled (\(N=128\)) \(H=0.989238052\), \(Z_3=0.607430\), force RMS \(3.716\times10^{-2}\), max bond difference \(1.480\), minimum pre-normalization norm \(1.000000\).
+- `dt` check at N=48 (\(5\times10^{-4}\) vs \(2.5\times10^{-4}\) at physical time 0.15): \(\Delta H = 1.660\times10^{-6}\), \(\Delta Z_3 = 4.076\times10^{-6}\).
+- The smooth topology is preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
+
+- Verification after the production scan: two separate runs, 168/168 checks each.

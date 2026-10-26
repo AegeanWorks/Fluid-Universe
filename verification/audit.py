@@ -1127,6 +1127,85 @@ def audit_stability(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Production claim-15 scan
+# ---------------------------------------------------------------------------
+
+
+def audit_production(audit: Audit) -> None:
+    payload = load_results("hopfion3d_production.json")
+    main = payload["main"]
+    final = main["final"]
+    verdict = main["verdict"]
+    dt = payload["dt_check"]
+    last = main["rows"][-1]
+    dt_converged = bool(
+        dt["H_difference"] <= 5e-3 and dt["Z3_difference"] <= 0.02
+    )
+    expected_ready = bool(
+        verdict["coexistence_H_and_Z3"]
+        and verdict["converged"]
+        and verdict["resolved"]
+        and verdict["topology_preserved"]
+        and dt_converged
+    )
+    audit.record(
+        "15: production scan is the pre-registered N=64 run within G-003 limit",
+        main["n"] == 64
+        and main["mu"] == 20.0
+        and main["steps"] == 3600
+        and main["max_wall_seconds"] == 900.0
+        and main["dt"] == 5e-4
+        and main["min_pre_norm"] > 0.1
+        and all(row["monotone"] for row in main["rows"])
+        and abs(last["H"] - final["H"]) < 1e-9
+        and abs(last["Z3"] - final["Z3"]) < 1e-9
+        and abs(last["force_rms"] - final["force_rms"]) < 1e-9,
+        f"H={final['H']:.6f}, Hup={final['H_upsampled']:.6f}, "
+        f"Z3={final['Z3']:.6f}, rms={final['force_rms']:.3e}",
+    )
+    audit.record(
+        "15: production verdict follows the pre-registered rule",
+        verdict["coexistence_H_and_Z3"]
+        == (verdict["H_ok"] and verdict["Z3_ok"])
+        and verdict["production_ready"] == expected_ready
+        and verdict["claim_15_status"].startswith(
+            "VERIFIED" if expected_ready else "UNVERIFIED"
+        )
+        and (
+            not verdict["H_ok"]
+            or (
+                final["H"] >= 1.0 - main["criteria"]["H_TOL"]
+                and abs(final["H"] - final["H_upsampled"])
+                <= main["criteria"]["H_TOL"]
+            )
+        ),
+        f"status={verdict['claim_15_status']}, ready={verdict['production_ready']}",
+    )
+    audit.record(
+        "15: production dt check is recorded",
+        dt["n"] == 48
+        and dt["H_difference"] >= 0.0
+        and dt["Z3_difference"] >= 0.0
+        and dt["force_difference"] >= 0.0
+        and dt_converged is True,
+        f"dH={dt['H_difference']:.3e}, dZ3={dt['Z3_difference']:.3e}, "
+        f"converged={dt_converged}",
+    )
+    audit.record(
+        "15: perturbed seeds are recorded",
+        len(payload["seed_check"]) == 2
+        and all(
+            abs(row["H"]) >= 0.0 and abs(row["Z3"]) >= 0.0
+            for row in payload["seed_check"]
+        ),
+        ", ".join(
+            f"seed {row['seed']}: H={row['H']:.6f}, Z3={row['Z3']:.6f}"
+            for row in payload["seed_check"]
+        ),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
 
@@ -1228,6 +1307,7 @@ def audit_docs(audit: Audit) -> None:
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
         (formulas, "F16a", "registry preimage rows"),
         (formulas, "F16b", "registry grid rows"),
+        (claims, "0.9892", "claims upsampled H"),
     ]
     for text, needle, label in required:
         audit.record(f"docs: {label}", needle in text, f"searched for '{needle}'")
@@ -1278,6 +1358,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_n64(audit)
     audit_scale(audit)
     audit_stability(audit)
+    audit_production(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

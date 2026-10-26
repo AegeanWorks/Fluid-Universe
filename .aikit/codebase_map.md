@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `63`
+- **Total Python Modules**: `66`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `352`
+- **Total Top-Level Functions**: `363`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `8405`
+- **Total Source Lines**: `9038`
 
 ---
 
@@ -175,6 +175,17 @@
 
 **Functions:**
 - `def run_prediction_audit(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/production_report.py`](phenomenology/production_report.py)
+> *Production claim-15 report: resolved Hopf charge and Z3 order.*
+
+**Size**: `218` lines (`7903` bytes)
+
+**Functions:**
+- `def run_production_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -349,6 +360,19 @@
 - `def gradient_check(n, length, mu, eps)`
 - `def convergence_scan(n, length, mu, steps_values, dt)` - *Show that the N=32 pilot is not converged in step count.*
 - `def pilot_scan(n, length, mu_values, steps, dt)`
+
+---
+
+### [`sims/production.py`](sims/production.py)
+> *Production scan for claim 15: E2 + Skyrme E4 + Z3 potential.*
+
+**Size**: `277` lines (`10522` bytes)
+
+**Functions:**
+- `def spectral_upsample(field, factor)` - *Band-limited upsampling of a periodic real field by an integer factor.*
+- `def field_metrics(field, dx, mu, upsample_factor)` - *Energy, topology and smoothness of one field.*
+- `def run_stage(field, dx, mu, steps, dt, deadline)` - *Relax for ``steps`` steps and record the smallest pre-normalization norm.*
+- `def run_production(n, length, mu, steps, dt, seed, perturbation, upsample_factor, chunk, max_wall_seconds)` - *Run one deterministic production scan and apply the acceptance criteria.*
 
 ---
 
@@ -563,6 +587,19 @@
 **Functions:**
 - `def test_candidate_table_is_complete()`
 - `def test_no_new_prediction_is_found()`
+
+---
+
+### [`tests/test_production.py`](tests/test_production.py)
+> *Production-scan smoke tests (claim 15).*
+
+**Size**: `55` lines (`1843` bytes)
+
+**Functions:**
+- `def test_spectral_upsample_preserves_analytic_charge()`
+- `def test_run_stage_matches_relax()`
+- `def test_production_verdict_shape()`
+- `def test_production_enforces_wall_clock_limit()`
 
 ---
 
@@ -862,7 +899,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1337` lines (`53832` bytes)
+**Size**: `1418` lines (`56733` bytes)
 
 **Classes:**
 - `class Audit`
@@ -898,6 +935,7 @@
 - `def audit_n64(audit)`
 - `def audit_scale(audit)`
 - `def audit_stability(audit)`
+- `def audit_production(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -923,7 +961,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `113` lines (`2865` bytes)
+**Size**: `115` lines (`2929` bytes)
 
 **Functions:**
 - `def _source_files()`

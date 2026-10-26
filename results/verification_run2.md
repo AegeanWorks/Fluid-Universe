@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**163/163 checks passed.**
+**168/168 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -83,6 +83,10 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 14c: scale-stationary H=1 candidate | PASS | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
 | 14d: tangent Hessian operator passes dense validation | PASS | N=8, max error=1.332e-15 |
 | 14d: N=64 scale candidate is a saddle | PASS | min=-5.799863, negative=8 |
+| 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
+| 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
+| 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |
+| 15: perturbed seeds are recorded | PASS | seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074 |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -165,6 +169,7 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |
 | docs: registry preimage rows | PASS | searched for 'F16a' |
 | docs: registry grid rows | PASS | searched for 'F16b' |
+| docs: claims upsampled H | PASS | searched for '0.9892' |
 | docs: summary lists the rotor result | PASS | summary.md must describe the rotor output it now includes |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
 | docs: F10 not overstated as an exact verification | PASS | F10 is cross-checked only at the few-percent level against three-loop literature |
