@@ -90,7 +90,10 @@ fluid-universe/
 ├── .aikit/                   <- project memory: ledger and decisions
 ├── .gitignore                <- transient AIKit state excluded
 ├── COMMERCIAL.md             <- commercial licensing terms
-├── LICENSE                   <- GNU AGPL-3.0
+├── LICENSE                   <- Aegean Science License 1.1 (ASL-1.1): free non-commercial research
+├── LICENSES/                 <- REUSE license texts
+├── REUSE.toml                <- Machine-readable SPDX metadata
+├── ASSETS.md                 <- Asset/data manifest: what the license covers
 ├── README.md
 ├── Makefile                  <- test, results, and two-run verification targets
 ├── pyproject.toml            <- dependencies and pytest configuration
@@ -114,6 +117,6 @@ fluid-universe/
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
 - The Z3/Koide/RG paper must stand without any fluid-universe material.
 
-## License
+## 📜 License
 
-GNU Affero General Public License v3.0; see [LICENSE](LICENSE). For commercial licensing and proprietary rights, see [COMMERCIAL.md](COMMERCIAL.md).
+Free for non-commercial research and teaching under the Aegean Science License 1.1 (ASL-1.1); see [LICENSE](LICENSE). It allows publication, reproducibility sharing, text/data mining and non-commercial ML training. Commercial or industry-sponsored use needs the Aegean Commercial License 1.0 (ACL-1.0); see [COMMERCIAL.md](COMMERCIAL.md).
