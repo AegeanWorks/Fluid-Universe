@@ -274,3 +274,5 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - Force RMS at 3600 is 0.037, so the run is not converged. No coexistence; supplementary diagnostic, not part of make results.
 
 - Verification after the N=64 diagnostic: two separate runs, 153/153 checks each.
+
+- 2026-10-26: N=64 pure-FN mu=0 reaches a near-stationary H=1 candidate (H=0.99999993, force RMS 0.00315 at 1200 steps). Recorded as a candidate for 14b, not a stability proof; Z3 still destroys H.

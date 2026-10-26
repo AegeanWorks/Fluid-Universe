@@ -60,6 +60,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Derrick scaling | PROVEN: \(d=3\) exponents \((1,-1,3)\), virial \(E_2-E_4+3V=0\) | `results/derrick.json` |
 | Stable Hopfion existence | UNVERIFIED; \(\kappa>0\) is necessary, not sufficient | `results/derrick.json` |
 | Finite-energy H=1 configuration | NUMERIC: \(E_2=233.6\), \(E_4=159.3\), \(H=1.000000\), \(\lambda^*=0.82563\); no stability proof | `results/hopfion.json` |
+| Pure-FN H=1 candidate | N=64, force RMS 0.00315, \(H=0.99999993\); near-stationary, not a stability proof | `results/hopfion3d_n64.json` |
 | 2D reduction lower bound | PROVEN (trivial): \(E_{2D}\ge T L_y\); equality only for \(y\)-independent walls | `results/reduction.json` |
 | Exact reduction / finite \(I_{\rm eff}\) | FALSIFIED: \(1/r^4\) tail gives log-divergent \(I_{\rm eff}\) | `results/reduction.json` |
 | Z3 from nematic topology | FALSIFIED: \(RP^2\) has no Z3 factor; \(\cos3\phi\) inserted by hand | `results/topology.json` |

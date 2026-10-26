@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T09:03:45+00:00 | `ac88b6e3637b79e2757b4d2472785205061f3491` | 153/153 | `b042a49f8f945b00...` | `cc45295460aba718...` |
-| run2 | 2026-10-26T09:03:55+00:00 | `ac88b6e3637b79e2757b4d2472785205061f3491` | 153/153 | `b042a49f8f945b00...` | `cc45295460aba718...` |
+| run1 | 2026-10-26T10:57:40+00:00 | `cba3210a7ffb3a1ec4b15c18dcd43d55d590929b` | 153/153 | `c00df643d46f5b73...` | `8dc4f431c3784333...` |
+| run2 | 2026-10-26T10:57:47+00:00 | `cba3210a7ffb3a1ec4b15c18dcd43d55d590929b` | 153/153 | `c00df643d46f5b73...` | `8dc4f431c3784333...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
