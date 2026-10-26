@@ -266,3 +266,11 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - N>=32 is within 1e-3 of the preimage value; N=16/24 are under-resolved. This substantiates the 3D pilot's resolution caveat.
 
 - Verification after the Hopf resolution study: two separate runs, 150/150 checks each.
+
+## 2026-10-26 — Targeted N=64 3D diagnostic
+
+- Fixed the fixed-boundary flow to constrain the gradient at the boundary instead of resetting nodes after each step; monotone energy now holds.
+- N=64, dt=5e-4, fixed vacuum boundaries: H=1.00000,0.99891,0.98274,0.78800 and Z3=0,0.23083,0.43840,0.60743 at steps 1200 (mu=0,20), 2400, 3600.
+- Force RMS at 3600 is 0.037, so the run is not converged. No coexistence; supplementary diagnostic, not part of make results.
+
+- Verification after the N=64 diagnostic: two separate runs, 153/153 checks each.

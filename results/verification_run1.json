@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-26T07:34:18+00:00",
-    "git_commit": "f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49",
+    "generated_utc": "2026-10-26T09:03:45+00:00",
+    "git_commit": "ac88b6e3637b79e2757b4d2472785205061f3491",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "79e8a0bc5ea8a932c81ead038fe64977e6502d99eb90adc0e8c21b9898761ad1",
-      "results_sha256": "24ef91f820f85a21befac1ea3c6238c8355ea62d5f3003fc934027a489ef39a2"
+      "source_sha256": "b042a49f8f945b002951406bbf161b6e57cb03fe69bfa855b10712ce216f6300",
+      "results_sha256": "cc45295460aba718669008703b6948a7949f614ddec4fa501d6b16771974b4a7"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -522,6 +522,20 @@
       "observed": null
     },
     {
+      "claim": "15: N=64 diagnostic values",
+      "passed": true,
+      "detail": "H(20,3600)=0.788000, Z3=0.607430",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: N=64 diagnostic not converged and no coexistence",
+      "passed": true,
+      "detail": "force_rms(3600)=3.716e-02",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -963,13 +977,6 @@
       "observed": null
     },
     {
-      "claim": "docs: claims 3D pilot Z3",
-      "passed": true,
-      "detail": "searched for '0.9602'",
-      "expected": null,
-      "observed": null
-    },
-    {
       "claim": "docs: README 3D pilot status",
       "passed": true,
       "detail": "searched for 'resolution-limited'",
@@ -1001,6 +1008,20 @@
       "claim": "docs: README Hopf resolution",
       "passed": true,
       "detail": "searched for 'N>=32'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: claims N=64 diagnostic",
+      "passed": true,
+      "detail": "searched for '0.60743'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README N=64 diagnostic",
+      "passed": true,
+      "detail": "searched for '0.8'",
       "expected": null,
       "observed": null
     },
@@ -1068,8 +1089,8 @@
       "observed": null
     }
   ],
-  "total": 150,
-  "passed": 150,
+  "total": 153,
+  "passed": 153,
   "failed": 0,
   "failures": []
 }

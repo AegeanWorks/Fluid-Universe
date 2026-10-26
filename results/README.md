@@ -42,6 +42,8 @@ Do not edit these files by hand.
 | `hopfion3d.md` | Human-readable version of the same |
 | `hopf_resolution.json` | Grid Hopf charge vs N |
 | `hopf_resolution.md` | Human-readable version of the same |
+| `hopfion3d_n64.json` | Targeted N=64 diagnostic; not part of make results |
+| `hopfion3d_n64.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

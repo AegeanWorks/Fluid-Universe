@@ -1041,6 +1041,34 @@ def audit_hopf_resolution(audit: Audit) -> None:
     )
 
 
+
+# ---------------------------------------------------------------------------
+# N=64 3D diagnostic
+# ---------------------------------------------------------------------------
+
+
+def audit_n64(audit: Audit) -> None:
+    payload = load_results("hopfion3d_n64.json")
+    rows = {(row["mu"], row["steps"]): row for row in payload["rows"]}
+    audit.record(
+        "15: N=64 diagnostic values",
+        abs(rows[(0.0, 1200)]["H"] - 0.9999999315531043) < 1e-9
+        and abs(rows[(20.0, 1200)]["H"] - 0.9989096223178509) < 1e-9
+        and abs(rows[(20.0, 3600)]["H"] - 0.7879997839463242) < 1e-9
+        and abs(rows[(20.0, 3600)]["Z3"] - 0.6074303431126289) < 1e-9
+        and all(row["monotone"] for row in payload["rows"]),
+        f"H(20,3600)={rows[(20.0,3600)]['H']:.6f}, Z3={rows[(20.0,3600)]['Z3']:.6f}",
+    )
+    audit.record(
+        "15: N=64 diagnostic not converged and no coexistence",
+        payload["verdict"]["converged"] is False
+        and payload["verdict"]["coexistence_H_and_Z3"] is False
+        and payload["verdict"]["production_ready"] is False
+        and rows[(20.0, 3600)]["force_rms"] > 1e-2,
+        f"force_rms(3600)={rows[(20.0,3600)]['force_rms']:.3e}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
@@ -1124,12 +1152,13 @@ def audit_docs(audit: Audit) -> None:
         (readme, "1.000000", "README grid Hopf"),
         (summary, "1.000000", "summary grid Hopf"),
         (paper_b, "1.00000004", "paper B grid Hopf"),
-        (claims, "0.9602", "claims 3D pilot Z3"),
         (readme, "resolution-limited", "README 3D pilot status"),
         (summary, "resolution-limited", "summary 3D pilot status"),
         (paper_b, "not converged", "paper B 3D pilot status"),
         (summary, "N=16", "summary Hopf resolution"),
         (readme, "N>=32", "README Hopf resolution"),
+        (claims, "0.60743", "claims N=64 diagnostic"),
+        (readme, "0.8", "README N=64 diagnostic"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1182,6 +1211,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hopf(audit)
     audit_hopfion3d(audit)
     audit_hopf_resolution(audit)
+    audit_n64(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

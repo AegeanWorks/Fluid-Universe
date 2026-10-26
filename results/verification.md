@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T07:34:18+00:00 | `f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49` | 150/150 | `79e8a0bc5ea8a932...` | `24ef91f820f85a21...` |
-| run2 | 2026-10-26T07:34:25+00:00 | `f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49` | 150/150 | `79e8a0bc5ea8a932...` | `24ef91f820f85a21...` |
+| run1 | 2026-10-26T09:03:45+00:00 | `ac88b6e3637b79e2757b4d2472785205061f3491` | 153/153 | `b042a49f8f945b00...` | `cc45295460aba718...` |
+| run2 | 2026-10-26T09:03:55+00:00 | `ac88b6e3637b79e2757b4d2472785205061f3491` | 153/153 | `b042a49f8f945b00...` | `cc45295460aba718...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -31,6 +31,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 15/4: preimage linking converges to 1 | PASS | PASS | YES | YES | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
 | 15/4: reflection, rotation, shear | PASS | PASS | YES | YES | reflection=-0.999832946, rotation=0.999832946, shear=0.999834138 |
 | 15: 3D pilot values at 1200 steps | PASS | PASS | YES | YES | H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273 |
+| 15: N=64 diagnostic not converged and no coexistence | PASS | PASS | YES | YES | force_rms(3600)=3.716e-02 |
+| 15: N=64 diagnostic values | PASS | PASS | YES | YES | H(20,3600)=0.788000, Z3=0.607430 |
 | 15: pilot is not converged or resolved | PASS | PASS | YES | YES | force_rms(1200)=1.012e-01; no conclusion |
 | 16: no new prediction found | PASS | PASS | YES | YES | 7 candidate classes, none new |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
@@ -92,6 +94,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: README Hopf preimage | PASS | PASS | YES | YES | searched for '0.999958' |
 | docs: README Hopf resolution | PASS | PASS | YES | YES | searched for 'N>=32' |
 | docs: README I_eff | PASS | PASS | YES | YES | searched for 'log-divergent' |
+| docs: README N=64 diagnostic | PASS | PASS | YES | YES | searched for '0.8' |
 | docs: README Q_down | PASS | PASS | YES | YES | searched for '0.748' |
 | docs: README Q_nu | PASS | PASS | YES | YES | searched for '0.585612' |
 | docs: README Q_up | PASS | PASS | YES | YES | searched for '0.888' |
@@ -99,13 +102,13 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: README grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
 | docs: README xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | PASS | YES | YES | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
-| docs: claims 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.9602' |
 | docs: claims Delta Q | PASS | PASS | YES | YES | searched for '2.89\times10^{-6}' |
 | docs: claims Delta r | PASS | PASS | YES | YES | searched for '3.06\times10^{-6}' |
 | docs: claims E0 | PASS | PASS | YES | YES | searched for '0.8911861597' |
 | docs: claims E1 | PASS | PASS | YES | YES | searched for '1.3170345140' |
 | docs: claims Hopf preimage | PASS | PASS | YES | YES | searched for '0.999958' |
 | docs: claims MSbar Q | PASS | PASS | YES | YES | searched for '0.667823994' |
+| docs: claims N=64 diagnostic | PASS | PASS | YES | YES | searched for '0.60743' |
 | docs: claims Q | PASS | PASS | YES | YES | searched for '0.666664463' |
 | docs: claims Q_down | PASS | PASS | YES | YES | searched for '0.748065' |
 | docs: claims Q_nu | PASS | PASS | YES | YES | searched for '0.585612' |

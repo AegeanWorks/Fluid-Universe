@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `56`
+- **Total Python Modules**: `57`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `329`
+- **Total Top-Level Functions**: `332`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `7586`
+- **Total Source Lines**: `7734`
 
 ---
 
@@ -76,6 +76,17 @@
 
 **Functions:**
 - `def run_hopf_resolution_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hopfion3d_n64_report.py`](phenomenology/hopfion3d_n64_report.py)
+> *Targeted N=64 diagnostic for the 3D E2+E4+Z3 pilot.*
+
+**Size**: `104` lines (`3726` bytes)
+
+**Functions:**
+- `def run_n64_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -305,14 +316,14 @@
 ### [`sims/core3d.py`](sims/core3d.py)
 > *3D JAX pilot: E2 + Skyrme E4 + a Z3 azimuthal potential.*
 
-**Size**: `209` lines (`7298` bytes)
+**Size**: `221` lines (`7762` bytes)
 
 **Functions:**
 - `def normalize(field)`
 - `def energy_terms(field, dx, mu, K, kappa)`
 - `def energy(field, dx, K, kappa, mu)`
 - `def z3_order(field)`
-- `def relax(field, dx, mu, steps, dt, K, kappa)`
+- `def relax(field, dx, mu, steps, dt, K, kappa, fix_boundary)`
 - `def gradient_check(n, length, mu, eps)`
 - `def convergence_scan(n, length, mu, steps_values, dt)` - *Show that the N=32 pilot is not converged in step count.*
 - `def pilot_scan(n, length, mu_values, steps, dt)`
@@ -779,7 +790,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1241` lines (`49711` bytes)
+**Size**: `1271` lines (`50986` bytes)
 
 **Classes:**
 - `class Audit`
@@ -812,6 +823,7 @@
 - `def audit_hopf(audit)`
 - `def audit_hopfion3d(audit)`
 - `def audit_hopf_resolution(audit)`
+- `def audit_n64(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -837,7 +849,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `107` lines (`2707` bytes)
+**Size**: `109` lines (`2757` bytes)
 
 **Functions:**
 - `def _source_files()`

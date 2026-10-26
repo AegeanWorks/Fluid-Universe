@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**150/150 checks passed.**
+**153/153 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -78,6 +78,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15: 3D pilot values at 1200 steps | PASS | H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273 |
 | 15: pilot is not converged or resolved | PASS | force_rms(1200)=1.012e-01; no conclusion |
 | 15/4: grid Hopf resolution | PASS | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
+| 15: N=64 diagnostic values | PASS | H(20,3600)=0.788000, Z3=0.607430 |
+| 15: N=64 diagnostic not converged and no coexistence | PASS | force_rms(3600)=3.716e-02 |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -141,12 +143,13 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: README grid Hopf | PASS | searched for '1.000000' |
 | docs: summary grid Hopf | PASS | searched for '1.000000' |
 | docs: paper B grid Hopf | PASS | searched for '1.00000004' |
-| docs: claims 3D pilot Z3 | PASS | searched for '0.9602' |
 | docs: README 3D pilot status | PASS | searched for 'resolution-limited' |
 | docs: summary 3D pilot status | PASS | searched for 'resolution-limited' |
 | docs: paper B 3D pilot status | PASS | searched for 'not converged' |
 | docs: summary Hopf resolution | PASS | searched for 'N=16' |
 | docs: README Hopf resolution | PASS | searched for 'N>=32' |
+| docs: claims N=64 diagnostic | PASS | searched for '0.60743' |
+| docs: README N=64 diagnostic | PASS | searched for '0.8' |
 | docs: claims baseline 4 | PASS | searched for 'baseline 4 passes' |
 | docs: summary 6b row | PASS | searched for '| 6b | 2D reduction lower bound' |
 | docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |

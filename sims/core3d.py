@@ -80,15 +80,27 @@ def relax(
     dt: float,
     K: float = 1.0,
     kappa: float = 1.0,
+    fix_boundary: bool = False,
 ) -> tuple[jnp.ndarray, np.ndarray, dict[str, float]]:
     if K <= 0.0 or kappa < 0.0 or mu < 0.0:
         raise ValueError("K>0, kappa>=0, mu>=0 required")
     gradient = jax.jit(jax.grad(energy, argnums=0))
     current = normalize(field)
+    if fix_boundary:
+        n = current.shape[0]
+        mask = np.zeros((n, n, n), dtype=bool)
+        mask[0, :, :] = mask[-1, :, :] = True
+        mask[:, 0, :] = mask[:, -1, :] = True
+        mask[:, :, 0] = mask[:, :, -1] = True
+        boundary = jnp.asarray(mask)[..., None]
+        vacuum = jnp.asarray([0.0, 0.0, 1.0])
     history = np.empty(steps + 1)
     history[0] = float(energy(current, dx, K, kappa, mu))
     for step in range(steps):
-        current = normalize(current - dt * gradient(current, dx, K, kappa, mu))
+        update = gradient(current, dx, K, kappa, mu)
+        if fix_boundary:
+            update = jnp.where(boundary, 0.0, update)
+        current = normalize(current - dt * update)
         history[step + 1] = float(energy(current, dx, K, kappa, mu))
     terms = energy_terms(current, dx, mu, K, kappa)
     final_gradient = gradient(current, dx, K, kappa, mu)

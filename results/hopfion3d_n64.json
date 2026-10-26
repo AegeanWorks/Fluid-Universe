@@ -1,0 +1,101 @@
+{
+  "meta": {
+    "config": {
+      "boundary": "fixed vacuum faces",
+      "dt": 0.0005,
+      "length": 10.0,
+      "mu_steps": [
+        [
+          0.0,
+          1200
+        ],
+        [
+          20.0,
+          1200
+        ],
+        [
+          20.0,
+          2400
+        ],
+        [
+          20.0,
+          3600
+        ]
+      ],
+      "n": 64,
+      "scope": "targeted diagnostic; not part of make results; not production"
+    },
+    "config_sha256": "e95515bc14d0b28eaeca66a63caa5722e62310c553f22fffb76b7fda0caa2378",
+    "generated_utc": "2026-10-26T08:52:01+00:00",
+    "git": {
+      "commit": "ac88b6e3637b79e2757b4d2472785205061f3491",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "rows": [
+    {
+      "E": 356.7327000549187,
+      "E2": 217.45643237694617,
+      "E4": 139.27626767797258,
+      "H": 0.9999999315531043,
+      "V": 0.0,
+      "Z3": 2.539475113564288e-06,
+      "force_rms": 0.0031540378436494512,
+      "monotone": true,
+      "mu": 0.0,
+      "steps": 1200
+    },
+    {
+      "E": 3691.5725750321826,
+      "E2": 210.32193104092048,
+      "E4": 143.98003909715675,
+      "H": 0.9989096223178509,
+      "V": 3337.2706048941054,
+      "Z3": 0.2308293556389031,
+      "force_rms": 0.04906933852566319,
+      "monotone": true,
+      "mu": 20.0,
+      "steps": 1200
+    },
+    {
+      "E": 2687.6533284654424,
+      "E2": 207.3812121180843,
+      "E4": 152.8159799726201,
+      "H": 0.982743187614594,
+      "V": 2327.456136374738,
+      "Z3": 0.43840161679407547,
+      "force_rms": 0.04298510483125919,
+      "monotone": true,
+      "mu": 20.0,
+      "steps": 2400
+    },
+    {
+      "E": 1932.842060511498,
+      "E2": 211.13323725344878,
+      "E4": 150.88803879680592,
+      "H": 0.7879997839463242,
+      "V": 1570.8207844612432,
+      "Z3": 0.6074303431126289,
+      "force_rms": 0.037164006890551465,
+      "monotone": true,
+      "mu": 20.0,
+      "steps": 3600
+    }
+  ],
+  "verdict": {
+    "claim_15_status": "UNVERIFIED (N=64 diagnostic; not converged)",
+    "coexistence_H_and_Z3": false,
+    "converged": false,
+    "note": "At N=64 the H/Z3 trend is resolved better than N=32, but the force RMS is still above 1e-2 at 3600 steps. No coexistence is seen; no production or spontaneous-order claim.",
+    "production_ready": false
+  }
+}

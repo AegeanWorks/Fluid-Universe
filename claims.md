@@ -39,7 +39,7 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 | 13b | A standard extension (rank-3 order parameter, three coupled nematics, or a 3-fold lattice) yields Z3 without inserting it. | speculation | **UNVERIFIED (null)** | `results/topology.json` | All three standard extensions require an explicit three-fold structure; none derives Z3 from \(RP^2\). |
 | 14a | Derrick scaling exponents and virial relation for the exact FN+Skyrme+Z3 energy. | derived | **PROVEN** | `theory/derrick.py`; `results/derrick.json`; `tests/test_derrick.py` | \(d=3\): \((E_\nabla,E_{\rm Skyrme},E_V)\) scale as \((1,-1,3)\); virial \(E_2-E_4+3V=0\); second derivative \(2(E_4+3V)>0\). |
 | 14b | Stable Hopfion solutions exist in that Lagrangian. | derived (claimed) | **UNVERIFIED** | `results/derrick.json`; `results/hopfion.json` | A static analytic H=1 configuration has finite \(E_2,E_4\) and \(H=1.000000\); \lambda^*=0.82563 satisfies the scaling virial. This is not a stability proof and no Z3 order is measured. |
-| 15 | 3D simulation achieves \(\lvert H\rvert\ge1\) **and** Z3 order. | numeric | **UNVERIFIED (resolution-limited pilot; no conclusion)** | `sims/core.py`; `sims/core3d.py`; `theory/hopf.py`; `results/sim_core.json`; `results/hopf.json`; `results/hopfion3d.json` | 1D baselines 1,2,3,6 pass; Hessian partial; Hopf preimage 0.999958 and grid 1.000000 agree. N=32 pilot at 1200 steps: \(H=0.74976,0.69989,0.38079,0.05237\) and \(Z_3=0,0.0930,0.4356,0.9602\) for \(\mu=0,1,5,20\), but the force RMS is 0.10 and the values change with step count and resolution (N=64 differs). No coexistence conclusion. |
+| 15 | 3D simulation achieves \(\lvert H\rvert\ge1\) **and** Z3 order. | numeric | **UNVERIFIED (diagnostics only; no coexistence)** | `sims/core.py`; `sims/core3d.py`; `theory/hopf.py`; `results/sim_core.json`; `results/hopf.json`; `results/hopfion3d.json`; `results/hopfion3d_n64.json` | 1D baselines 1,2,3,6 pass; Hessian partial; Hopf preimage 0.999958 and grid 1.000000 agree. N=32 pilot is not converged/resolution-limited. N=64 targeted diagnostic (`make n64`): H=1.00000,0.99891,0.98274,0.78800 and Z3=0,0.23083,0.43840,0.60743 at steps 1200 (mu=0,20), 2400, 3600; force RMS 0.037 at 3600; no coexistence, not converged. |
 | 16 | The framework has at least one genuinely new falsifiable prediction beyond \(Q=2/3\). | speculation | **UNVERIFIED (none found)** | `phenomenology/predictions.py`; `results/predictions.json`; `tests/test_predictions.py` | Seven candidate classes audited: no extra mass relation, no viable minimal mixing branch, no calibrated dispersion, no validated defect count, no testable RG signature. State this in the abstract. |
 
 ## Status history
@@ -48,7 +48,7 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 - 2026-10-25 (second pass): 5a and 5b proven; 5c and 5d falsified; 6a proven; 6b remains unverified. Rotor route to three masses is closed.
 
-- 2026-10-25 (verification pass): an independent audit re-derived every PROVEN/VERIFIED/NUMERIC claim. A gauge-coupling RHS bug was found and fixed (the state is logarithmic). Final state: two separate runs agree, 150/150 checks each. Project guideline G-001 requires two separate runs for every claim verification; this does not apply to the pytest suite.
+- 2026-10-25 (verification pass): an independent audit re-derived every PROVEN/VERIFIED/NUMERIC claim. A gauge-coupling RHS bug was found and fixed (the state is logarithmic). Final state: two separate runs agree, 153/153 checks each. Project guideline G-001 requires two separate runs for every claim verification; this does not apply to the pytest suite.
 
 - 2026-10-25 (claim 7-8 pass): 7a is a negative numerical result; 7b is falsified as ill-posed with two explicit minimal branches; 8 is falsified with full-SM MS-bar masses at six scales.
 
@@ -69,3 +69,5 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 - 2026-10-25 (3D pilot): N=32 single-seed E2+E4+Z3 relaxation shows a trade-off: Z3 rises to 0.443 at mu=20 while H falls to 0.853; no coexistence. Claim 15 remains UNVERIFIED; no production run.
 
 - 2026-10-25 (3D pilot correction): the 300-step values were transient and under-resolved. At 1200 steps N=32 gives H/Z3 values that still change with step count; an N=64 spot check differs. The pilot is now marked resolution-limited; no coexistence conclusion. Claim 15 remains UNVERIFIED.
+
+- 2026-10-26 (N=64 diagnostic): with constrained boundaries and monotone energy, N=64 gives H=1.00000,0.99891,0.98274,0.78800 and Z3=0,0.23083,0.43840,0.60743 at the tested steps. No coexistence; force RMS 0.037 at 3600; not production.

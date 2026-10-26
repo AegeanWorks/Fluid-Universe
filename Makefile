@@ -17,7 +17,10 @@ results:
 verify:
 	$(PYTHON) -m verification.verify
 
+n64:
+	$(PYTHON) -m phenomenology.hopfion3d_n64_report
+
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name != 'README.md']"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name != 'hopfion3d_n64.json']"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md'}]"
