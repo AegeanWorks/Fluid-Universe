@@ -46,6 +46,8 @@ Do not edit these files by hand.
 | `hopfion3d_n64.md` | Human-readable version of the same |
 | `hopfion_scale.json` | Damped scale-iteration candidate; not part of make results |
 | `hopfion_scale.md` | Human-readable version of the same |
+| `hopfion_stability.json` | Dense-validated tangent Hessian of the scale candidate; not part of make results |
+| `hopfion_stability.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

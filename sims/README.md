@@ -9,12 +9,12 @@ Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(
 `sims/core.py` now implements the 1D baselines. It must still pass all of the following, each as an automated test in `tests/`:
 
 1. **1D sine-Gordon kink.** PASS: profile and tension convergence at order ~2 (`tests/test_sim_core.py`).
-2. **Gradient check.** PASS for the 1D sine-Gordon energy (relative error < 1e-6). The full 3D Skyrme+Z3 gradient check is not implemented.
+2. **Gradient check.** PASS for the 1D sine-Gordon energy and for the full 3D \(E_2+E_4+Z_3\) energy (relative error < 1e-6; `tests/test_hopfion3d.py`).
 3. **Monotone energy.** PASS for the 1D flow.
 4. **Hopf-charge estimator.** PASS: preimage linking gives H=0.999958 at 400 samples (reflection flips sign; rotation/shear invariant), and the normalized grid Chern-Simons estimator gives 1.000000 at N=64. The two methods agree; baseline 4 passes.
 5. **Derrick virial.** Scaling identity derived (`theory/derrick.py`); not yet checked on a relaxed 3D soliton.
 6. **Rotor cross-check.** PASS: Fourier vs finite-difference spectra agree below 1e-3.
-7. **Hessian.** PARTIAL: symmetric and stable in 1D; the translation mode is lifted by Dirichlet boundaries, so zero-mode counting is not exact.
+7. **Hessian.** PASS for the tangent-space operator: the matrix-free 3D Hessian agrees with the dense tangent Hessian at N=8 to \(1.3\times10^{-15}\). In 1D it is symmetric and stable; the translation mode is lifted by Dirichlet boundaries, so zero-mode counting is not exact.
 
 ## Production rules
 
@@ -26,8 +26,9 @@ Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(
 
 ## Status
 
-- 1D baselines 1, 2, 3, 6 pass; 5 and 7 are partial; 4 passes (preimage and normalized grid agree).
+- 1D baselines 1, 2, 3, 6 pass; 5 is partial and 7 now passes for the 3D tangent-space operator; 4 passes (preimage and normalized grid agree).
 - A single-seed N=32 3D pilot is not converged (force RMS 0.10 at 1200 steps) and is resolution-limited. A targeted N=64 diagnostic (`make n64`) is monotone but still not converged (force RMS 0.037 at 3600 steps); H falls below 0.8 as Z3 exceeds 0.6. No coexistence conclusion; claim 15 remains UNVERIFIED.
+- The scale-stationary N=64 candidate has a dense-validated tangent Hessian with minimum eigenvalue \(-5.799863\) and eight negative modes (`make stability`). It is a saddle; 14d is FALSIFIED and no stable Hopfion is demonstrated.
 
 ## Known analytic obstacles (to be tested, not assumed away)
 

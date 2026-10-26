@@ -1090,6 +1090,41 @@ def audit_scale(audit: Audit) -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# Tangent-space Hessian of the scale candidate
+# ---------------------------------------------------------------------------
+
+
+def audit_stability(audit: Audit) -> None:
+    payload = load_results("hopfion_stability.json")
+    validation = payload["dense_validation"]
+    spectrum = payload["spectrum"]
+    verdict = payload["verdict"]
+    audit.record(
+        "14d: tangent Hessian operator passes dense validation",
+        validation["passed"] is True
+        and validation["max_abs_error"] < 1e-8
+        and validation["symmetry_error"] < 1e-8
+        and len(validation["dense_smallest"]) == len(validation["operator_smallest"])
+        and all(
+            abs(dense - matrix_free) < 1e-8
+            for dense, matrix_free in zip(
+                validation["dense_smallest"], validation["operator_smallest"]
+            )
+        ),
+        f"N={validation['n']}, max error={validation['max_abs_error']:.3e}",
+    )
+    audit.record(
+        "14d: N=64 scale candidate is a saddle",
+        abs(spectrum["min_eigenvalue"] + 5.799862658102943) < 1e-6
+        and spectrum["dimension"] == 476656
+        and spectrum["negative_count"] >= 8
+        and verdict["local_minimum_at_N64"] is False
+        and verdict["claim_14d_status"].startswith("FALSIFIED")
+        and verdict["claim_14b_status"] == "UNVERIFIED",
+        f"min={spectrum['min_eigenvalue']:+.6f}, negative={spectrum['negative_count']}",
+    )
+
 
 # ---------------------------------------------------------------------------
 # Documentation consistency
@@ -1183,6 +1218,11 @@ def audit_docs(audit: Audit) -> None:
         (readme, "0.8", "README N=64 diagnostic"),
         (claims, "14c", "claims scale candidate"),
         (readme, "Scale-stationary", "README scale candidate"),
+        (claims, "-5.799863", "claims validated Hessian"),
+        (readme, "FALSIFIED: validated tangent Hessian", "README validated Hessian"),
+        (score, "min -5.799863", "scorecard validated Hessian"),
+        (paper_b, "1.3\\times10^{-15}", "paper B dense validation"),
+        (paper_b, "$-5.799863$", "paper B Hessian minimum"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1237,6 +1277,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hopf_resolution(audit)
     audit_n64(audit)
     audit_scale(audit)
+    audit_stability(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

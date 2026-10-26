@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T15:34:01+00:00 | `991c124c02aee764b5baeadfc58719f60af14e98` | 156/156 | `1fcace5994342986...` | `562c75e4d3e48deb...` |
-| run2 | 2026-10-26T15:34:07+00:00 | `991c124c02aee764b5baeadfc58719f60af14e98` | 156/156 | `1fcace5994342986...` | `562c75e4d3e48deb...` |
+| run1 | 2026-10-26T18:11:02+00:00 | `930559aa4fe4d018299605fbcc46b171d2a7813c` | 163/163 | `15315657f3f6f101...` | `e7335e4927575581...` |
+| run2 | 2026-10-26T18:11:10+00:00 | `930559aa4fe4d018299605fbcc46b171d2a7813c` | 163/163 | `15315657f3f6f101...` | `e7335e4927575581...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -27,6 +27,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
 | 14c: scale-stationary H=1 candidate | PASS | PASS | YES | YES | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
+| 14d: N=64 scale candidate is a saddle | PASS | PASS | YES | YES | min=-5.799863, negative=8 |
+| 14d: tangent Hessian operator passes dense validation | PASS | PASS | YES | YES | N=8, max error=1.332e-15 |
 | 15/4: grid Hopf resolution | PASS | PASS | YES | YES | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
 | 15/4: grid estimator matches known answer | PASS | PASS | YES | YES | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
 | 15/4: preimage linking converges to 1 | PASS | PASS | YES | YES | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
@@ -102,6 +104,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: README delta sigma | PASS | PASS | YES | YES | searched for '0.407' |
 | docs: README grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
 | docs: README scale candidate | PASS | PASS | YES | YES | searched for 'Scale-stationary' |
+| docs: README validated Hessian | PASS | PASS | YES | YES | searched for 'FALSIFIED: validated tangent Hessian' |
 | docs: README xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | PASS | YES | YES | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
 | docs: claims Delta Q | PASS | PASS | YES | YES | searched for '2.89\times10^{-6}' |
@@ -126,6 +129,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: claims r | PASS | PASS | YES | YES | searched for '0.707104444' |
 | docs: claims scale candidate | PASS | PASS | YES | YES | searched for '14c' |
 | docs: claims trimaximal theta13 | PASS | PASS | YES | YES | searched for '35.26' |
+| docs: claims validated Hessian | PASS | PASS | YES | YES | searched for '-5.799863' |
 | docs: claims xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: fit numbers match JSON | PASS | PASS | YES | YES | stored fit and RG values match the regenerated outputs |
 | docs: paper A no prediction | PASS | PASS | YES | YES | searched for 'No genuinely new prediction' |
@@ -133,8 +137,10 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: paper B Derrick virial | PASS | PASS | YES | YES | searched for 'E_2-E_4+3V=0' |
 | docs: paper B Frank-Oseen dispersion | PASS | PASS | YES | YES | searched for '\omega^2=(K/\rho)k^2' |
 | docs: paper B GRB order | PASS | PASS | YES | YES | searched for '10^{-18}' |
+| docs: paper B Hessian minimum | PASS | PASS | YES | YES | searched for '$-5.799863$' |
 | docs: paper B Hopf preimage | PASS | PASS | YES | YES | searched for '0.999958' |
 | docs: paper B I_eff | PASS | PASS | YES | YES | searched for 'logarithmically divergent' |
+| docs: paper B dense validation | PASS | PASS | YES | YES | searched for '1.3\times10^{-15}' |
 | docs: paper B grid Hopf | PASS | PASS | YES | YES | searched for '1.00000004' |
 | docs: paper B xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: paper E0 | PASS | PASS | YES | YES | searched for '0.8911861597' |
@@ -158,6 +164,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: scorecard Q_nu | PASS | PASS | YES | YES | searched for '0.585612' |
 | docs: scorecard Q_up range | PASS | PASS | YES | YES | searched for '0.8876' |
 | docs: scorecard delta sigma | PASS | PASS | YES | YES | searched for '0.407' |
+| docs: scorecard validated Hessian | PASS | PASS | YES | YES | searched for 'min -5.799863' |
 | docs: scorecard xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: shape-only diagnostic labelled | PASS | PASS | YES | YES | searched for 'NOT a cross-check' |
 | docs: summary 3D pilot status | PASS | PASS | YES | YES | searched for 'resolution-limited' |

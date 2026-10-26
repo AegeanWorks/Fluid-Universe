@@ -288,3 +288,18 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 ## 2026-10-26 — Retraction: 14d Hessian stability
 
 The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. The matrix-free Hessian operator failed a dense validation at N=8: the dense constrained Hessian has the expected null modes (minimum ~0), while the HVP operator returned 0.2197. The N=64 negative spectrum is therefore not trusted. Stability of the scale-stationary candidate is open (14d UNVERIFIED).
+
+## 2026-10-26 - Validated tangent Hessian (14d)
+
+**Added**
+
+- `sims/stability.py`: matrix-free Hessian on the per-site two-dimensional tangent space, so radial normalization modes are removed.
+- `phenomenology/stability_report.py`, `tests/test_stability.py`, `results/hopfion_stability.{json,md}`, and `make stability`.
+
+**Results**
+
+- Dense validation at N=8: maximum |dense - matrix-free| = 1.332e-15, symmetry error 6.661e-16.
+- N=64 tangent dimension 476656: minimum eigenvalue -5.799863, 8 negative modes in the requested set.
+- The scale-stationary candidate is a saddle; 14d FALSIFIED. This rules out that candidate, not every possible Hopfion; 14b remains UNVERIFIED.
+
+- Verification after the validated Hessian: two separate runs, 163/163 checks each.

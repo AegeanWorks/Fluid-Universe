@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**156/156 checks passed.**
+**163/163 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -81,6 +81,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15: N=64 diagnostic values | PASS | H(20,3600)=0.788000, Z3=0.607430 |
 | 15: N=64 diagnostic not converged and no coexistence | PASS | force_rms(3600)=3.716e-02 |
 | 14c: scale-stationary H=1 candidate | PASS | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
+| 14d: tangent Hessian operator passes dense validation | PASS | N=8, max error=1.332e-15 |
+| 14d: N=64 scale candidate is a saddle | PASS | min=-5.799863, negative=8 |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -153,6 +155,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: README N=64 diagnostic | PASS | searched for '0.8' |
 | docs: claims scale candidate | PASS | searched for '14c' |
 | docs: README scale candidate | PASS | searched for 'Scale-stationary' |
+| docs: claims validated Hessian | PASS | searched for '-5.799863' |
+| docs: README validated Hessian | PASS | searched for 'FALSIFIED: validated tangent Hessian' |
+| docs: scorecard validated Hessian | PASS | searched for 'min -5.799863' |
+| docs: paper B dense validation | PASS | searched for '1.3\times10^{-15}' |
+| docs: paper B Hessian minimum | PASS | searched for '$-5.799863$' |
 | docs: claims baseline 4 | PASS | searched for 'baseline 4 passes' |
 | docs: summary 6b row | PASS | searched for '| 6b | 2D reduction lower bound' |
 | docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |

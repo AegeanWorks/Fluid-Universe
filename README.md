@@ -30,7 +30,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 156/156 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 163/163 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -62,7 +62,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Finite-energy H=1 configuration | NUMERIC: \(E_2=233.6\), \(E_4=159.3\), \(H=1.000000\), \(\lambda^*=0.82563\); no stability proof | `results/hopfion.json` |
 | Pure-FN H=1 candidate | N=64, force RMS 0.00315, \(H=0.99999993\); near-stationary, not a stability proof | `results/hopfion3d_n64.json` |
 | Scale-stationary H=1 candidate | NUMERIC candidate: virial 0.00961, \(H=0.99730\), RMS 0.0030 | `results/hopfion_scale.json` |
-| Stability of that candidate | UNVERIFIED: Hessian operator failed dense validation; the N=64 negative spectrum is not used | — |
+| Stability of that candidate | FALSIFIED: validated tangent Hessian, min \(-5.799863\) with 8 negative modes at N=64; the candidate is a saddle | `results/hopfion_stability.json` |
 | 2D reduction lower bound | PROVEN (trivial): \(E_{2D}\ge T L_y\); equality only for \(y\)-independent walls | `results/reduction.json` |
 | Exact reduction / finite \(I_{\rm eff}\) | FALSIFIED: \(1/r^4\) tail gives log-divergent \(I_{\rm eff}\) | `results/reduction.json` |
 | Z3 from nematic topology | FALSIFIED: \(RP^2\) has no Z3 factor; \(\cos3\phi\) inserted by hand | `results/topology.json` |
@@ -76,6 +76,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Hopf grid resolution | N>=32 within 1e-3; N=16/24 under-resolved | `results/hopf_resolution.json` |
 | 3D E2+E4+Z3 pilot | UNVERIFIED: N=32 not converged/resolution-limited; H/Z3 vary with steps; no conclusion | `results/hopfion3d.json` |
 | N=64 3D diagnostic | Targeted, not part of `make results`: `make n64`; H falls below 0.8 as Z3 exceeds 0.6; no coexistence; not converged | `results/hopfion3d_n64.json` |
+| N=64 candidate Hessian | Targeted, not part of `make results`: `make stability`; dense-validated tangent operator; min \(-5.799863\), 8 negative modes; saddle | `results/hopfion_stability.json` |
 | 3D Hopfion + Z3 order | UNVERIFIED: no production run or spontaneous-order test | `sims/README.md` |
 | Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
 | Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |

@@ -66,6 +66,8 @@ RESULT_FILES = (
     "hopfion3d_n64.md",
     "hopfion_scale.json",
     "hopfion_scale.md",
+    "hopfion_stability.json",
+    "hopfion_stability.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

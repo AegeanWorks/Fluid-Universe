@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `60`
+- **Total Python Modules**: `63`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `339`
+- **Total Top-Level Functions**: `352`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `7958`
+- **Total Source Lines**: `8405`
 
 ---
 
@@ -270,6 +270,17 @@
 
 ---
 
+### [`phenomenology/stability_report.py`](phenomenology/stability_report.py)
+> *Report for the validated tangent-space Hessian of the scale candidate.*
+
+**Size**: `87` lines (`3358` bytes)
+
+**Functions:**
+- `def run_stability_report(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
 > *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
 
@@ -349,6 +360,22 @@
 **Functions:**
 - `def rescale_field(field, dx, length, scale)`
 - `def run_scale_iteration(n, length, iterations, steps, dt)`
+
+---
+
+### [`sims/stability.py`](sims/stability.py)
+> *Tangent-space Hessian of the 3D Faddeev-Niemi + Z3 energy.*
+
+**Size**: `271` lines (`9663` bytes)
+
+**Functions:**
+- `def tangent_basis(field)` - *Return two orthonormal tangent vectors at every interior site.*
+- `def build_candidate(n, length, iterations, steps, dt)` - *Damped scale iteration, returning the snapshot with the smallest |virial|.*
+- `def _dense_tangent_hessian(field, dx, e1, e2)` - *Dense Hessian of the energy restricted to the tangent basis (N<=8 only).*
+- `def tangent_operator(field, dx, e1, e2)` - *Matrix-free Hessian on the two-dimensional tangent space of each site.*
+- `def validate_operator(n, length, steps, dt, k)` - *Compare the matrix-free operator with the dense tangent Hessian.*
+- `def hessian_spectrum(field, dx, k, e1, e2)` - *Low-lying eigenvalues of the tangent-space Hessian.*
+- `def run_stability_check(n, length, iterations, steps, dt, k, validate_n)` - *Build the scale-stationary candidate and compute its tangent Hessian.*
 
 ---
 
@@ -630,6 +657,18 @@
 
 ---
 
+### [`tests/test_stability.py`](tests/test_stability.py)
+> *Tangent-space Hessian tests (claim 14d).*
+
+**Size**: `46` lines (`1579` bytes)
+
+**Functions:**
+- `def test_tangent_basis_is_orthonormal()`
+- `def test_dense_validation_passes()`
+- `def test_spectrum_uses_tangent_dimension()`
+
+---
+
 ### [`tests/test_topology.py`](tests/test_topology.py)
 > *Nematic topology tests (claim 13).*
 
@@ -823,7 +862,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1296` lines (`51968` bytes)
+**Size**: `1337` lines (`53832` bytes)
 
 **Classes:**
 - `class Audit`
@@ -858,6 +897,7 @@
 - `def audit_hopf_resolution(audit)`
 - `def audit_n64(audit)`
 - `def audit_scale(audit)`
+- `def audit_stability(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -883,7 +923,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `111` lines (`2807` bytes)
+**Size**: `113` lines (`2865` bytes)
 
 **Functions:**
 - `def _source_files()`

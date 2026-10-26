@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: help test results verify n64 scale clean
+.PHONY: help test results verify n64 scale stability clean
 
 help:
 	@echo "make test     - run the regression suite"
@@ -8,6 +8,7 @@ help:
 	@echo "make verify   - re-derive every verified claim independently"
 	@echo "make n64      - N=64 diagnostic (slow)"
 	@echo "make scale    - scale-iteration candidate (slow)"
+	@echo "make stability- validated N=64 tangent Hessian (slow)"
 	@echo "make clean    - remove caches and generated results"
 
 test:
@@ -24,6 +25,9 @@ n64:
 
 scale:
 	$(PYTHON) -m phenomenology.hopfion_scale_report
+
+stability:
+	$(PYTHON) -m phenomenology.stability_report
 
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
