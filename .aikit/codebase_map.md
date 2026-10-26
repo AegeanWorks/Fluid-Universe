@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `63`
+- **Total Python Modules**: `60`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `346`
+- **Total Top-Level Functions**: `339`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `8199`
+- **Total Source Lines**: `7958`
 
 ---
 
@@ -270,17 +270,6 @@
 
 ---
 
-### [`phenomenology/stability_report.py`](phenomenology/stability_report.py)
-> *Report for the coarse N=64 Hessian stability check.*
-
-**Size**: `89` lines (`3368` bytes)
-
-**Functions:**
-- `def run_stability_check(write)`
-- `def render_markdown(payload)`
-
----
-
 ### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
 > *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
 
@@ -360,18 +349,6 @@
 **Functions:**
 - `def rescale_field(field, dx, length, scale)`
 - `def run_scale_iteration(n, length, iterations, steps, dt)`
-
----
-
-### [`sims/stability.py`](sims/stability.py)
-> *Coarse linear stability check for the scale-stationary H=1 candidate.*
-
-**Size**: `111` lines (`4063` bytes)
-
-**Functions:**
-- `def build_candidate(n, length, iterations, steps, dt)`
-- `def hessian_spectrum(candidate, dx, k)`
-- `def run_stability_check(n, length, k)`
 
 ---
 
@@ -653,16 +630,6 @@
 
 ---
 
-### [`tests/test_stability.py`](tests/test_stability.py)
-> *Coarse stability-check smoke tests.*
-
-**Size**: `17` lines (`644` bytes)
-
-**Functions:**
-- `def test_candidate_and_spectrum_shapes()`
-
----
-
 ### [`tests/test_topology.py`](tests/test_topology.py)
 > *Nematic topology tests (claim 13).*
 
@@ -856,7 +823,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1318` lines (`52924` bytes)
+**Size**: `1296` lines (`51968` bytes)
 
 **Classes:**
 - `class Audit`
@@ -891,7 +858,6 @@
 - `def audit_hopf_resolution(audit)`
 - `def audit_n64(audit)`
 - `def audit_scale(audit)`
-- `def audit_stability(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -917,7 +883,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `113` lines (`2865` bytes)
+**Size**: `111` lines (`2807` bytes)
 
 **Functions:**
 - `def _source_files()`

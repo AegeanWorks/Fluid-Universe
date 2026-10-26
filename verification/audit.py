@@ -1092,24 +1092,6 @@ def audit_scale(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Hessian stability of the scale candidate
-# ---------------------------------------------------------------------------
-
-
-def audit_stability(audit: Audit) -> None:
-    payload = load_results("hopfion_stability.json")
-    spectrum = payload["spectrum"]
-    audit.record(
-        "14d: scale candidate has negative Hessian modes",
-        abs(spectrum["min_eigenvalue"] + 5.799862658102972) < 1e-6
-        and spectrum["negative_count"] >= 8
-        and payload["verdict"]["local_minimum_at_N64"] is False
-        and payload["verdict"]["claim_14d_status"].startswith("FALSIFIED"),
-        f"min eigenvalue={spectrum['min_eigenvalue']:+.6f}, negative={spectrum['negative_count']}",
-    )
-
-
-# ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
 
@@ -1201,9 +1183,6 @@ def audit_docs(audit: Audit) -> None:
         (readme, "0.8", "README N=64 diagnostic"),
         (claims, "14c", "claims scale candidate"),
         (readme, "Scale-stationary", "README scale candidate"),
-        (claims, "14d", "claims stability row"),
-        (readme, "saddle", "README stability status"),
-        (paper_b, "saddle", "paper B stability status"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1258,7 +1237,6 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hopf_resolution(audit)
     audit_n64(audit)
     audit_scale(audit)
-    audit_stability(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

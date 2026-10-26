@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "6eb76686807d630562c4d520bdb3546692190dedd4db9c2593d80915774dab04",
-      "results_sha256": "6fc83a417c7d7c7185977d097458f10429e2927f482be6654fb2993bf7fbde14"
+      "source_sha256": "1fcace5994342986c4313745bd0eb3ec4fc5a4c051507e9f36b3ab120de28dc3",
+      "results_sha256": "562c75e4d3e48debf9a502a443525857f02c558d741ea7801c5bfb8099b2f316"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-26T15:08:35+00:00",
-        "git_commit": "fa15995bef8f2074bc7247c9f0fd76333671598a",
-        "passed": 160,
-        "total": 160,
+        "generated_utc": "2026-10-26T15:34:01+00:00",
+        "git_commit": "991c124c02aee764b5baeadfc58719f60af14e98",
+        "passed": 156,
+        "total": 156,
         "failed": 0,
-        "checks_sha256": "d8b286e62d2ff551b6cb04d85aaa857b4f77dea262a1f89eaf28249a3836732c",
+        "checks_sha256": "38582423d8ad299ad1a05b00812985f2468cd2a8824bf2b440564cf1001e97c8",
         "fingerprints": {
-          "source_sha256": "6eb76686807d630562c4d520bdb3546692190dedd4db9c2593d80915774dab04",
-          "results_sha256": "6fc83a417c7d7c7185977d097458f10429e2927f482be6654fb2993bf7fbde14"
+          "source_sha256": "1fcace5994342986c4313745bd0eb3ec4fc5a4c051507e9f36b3ab120de28dc3",
+          "results_sha256": "562c75e4d3e48debf9a502a443525857f02c558d741ea7801c5bfb8099b2f316"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-26T15:08:42+00:00",
-        "git_commit": "fa15995bef8f2074bc7247c9f0fd76333671598a",
-        "passed": 160,
-        "total": 160,
+        "generated_utc": "2026-10-26T15:34:07+00:00",
+        "git_commit": "991c124c02aee764b5baeadfc58719f60af14e98",
+        "passed": 156,
+        "total": 156,
         "failed": 0,
-        "checks_sha256": "d8b286e62d2ff551b6cb04d85aaa857b4f77dea262a1f89eaf28249a3836732c",
+        "checks_sha256": "38582423d8ad299ad1a05b00812985f2468cd2a8824bf2b440564cf1001e97c8",
         "fingerprints": {
-          "source_sha256": "6eb76686807d630562c4d520bdb3546692190dedd4db9c2593d80915774dab04",
-          "results_sha256": "6fc83a417c7d7c7185977d097458f10429e2927f482be6654fb2993bf7fbde14"
+          "source_sha256": "1fcace5994342986c4313745bd0eb3ec4fc5a4c051507e9f36b3ab120de28dc3",
+          "results_sha256": "562c75e4d3e48debf9a502a443525857f02c558d741ea7801c5bfb8099b2f316"
         }
       }
     ],
@@ -138,14 +138,6 @@
       "agree": true,
       "detail_match": true,
       "detail": "best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03"
-    },
-    {
-      "claim": "14d: scale candidate has negative Hessian modes",
-      "run1": "PASS",
-      "run2": "PASS",
-      "agree": true,
-      "detail_match": true,
-      "detail": "min eigenvalue=-5.799863, negative=8"
     },
     {
       "claim": "15/4: grid Hopf resolution",
@@ -748,14 +740,6 @@
       "detail": "searched for 'Scale-stationary'"
     },
     {
-      "claim": "docs: README stability status",
-      "run1": "PASS",
-      "run2": "PASS",
-      "agree": true,
-      "detail_match": true,
-      "detail": "searched for 'saddle'"
-    },
-    {
       "claim": "docs: README xi",
       "run1": "PASS",
       "run2": "PASS",
@@ -940,14 +924,6 @@
       "detail": "searched for '14c'"
     },
     {
-      "claim": "docs: claims stability row",
-      "run1": "PASS",
-      "run2": "PASS",
-      "agree": true,
-      "detail_match": true,
-      "detail": "searched for '14d'"
-    },
-    {
       "claim": "docs: claims trimaximal theta13",
       "run1": "PASS",
       "run2": "PASS",
@@ -1034,14 +1010,6 @@
       "agree": true,
       "detail_match": true,
       "detail": "searched for '1.00000004'"
-    },
-    {
-      "claim": "docs: paper B stability status",
-      "run1": "PASS",
-      "run2": "PASS",
-      "agree": true,
-      "detail_match": true,
-      "detail": "searched for 'saddle'"
     },
     {
       "claim": "docs: paper B xi",
@@ -1851,13 +1819,6 @@
       "observed": null
     },
     {
-      "claim": "14d: scale candidate has negative Hessian modes",
-      "passed": true,
-      "detail": "min eigenvalue=-5.799863, negative=8",
-      "expected": null,
-      "observed": null
-    },
-    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -2362,27 +2323,6 @@
       "observed": null
     },
     {
-      "claim": "docs: claims stability row",
-      "passed": true,
-      "detail": "searched for '14d'",
-      "expected": null,
-      "observed": null
-    },
-    {
-      "claim": "docs: README stability status",
-      "passed": true,
-      "detail": "searched for 'saddle'",
-      "expected": null,
-      "observed": null
-    },
-    {
-      "claim": "docs: paper B stability status",
-      "passed": true,
-      "detail": "searched for 'saddle'",
-      "expected": null,
-      "observed": null
-    },
-    {
       "claim": "docs: claims baseline 4",
       "passed": true,
       "detail": "searched for 'baseline 4 passes'",
@@ -2446,8 +2386,8 @@
       "observed": null
     }
   ],
-  "total": 160,
-  "passed": 160,
+  "total": 156,
+  "passed": 156,
   "failed": 0,
   "failures": []
 }

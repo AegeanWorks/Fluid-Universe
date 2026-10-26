@@ -284,3 +284,7 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - 2026-10-26: coarse N=64 Hessian of the scale-stationary candidate has minimum eigenvalue -5.80 and 8 negative modes. The candidate is a saddle; 14d FALSIFIED, 14b remains UNVERIFIED.
 
 - Verification after the Hessian stability check: two separate runs, 160/160 checks each.
+
+## 2026-10-26 — Retraction: 14d Hessian stability
+
+The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. The matrix-free Hessian operator failed a dense validation at N=8: the dense constrained Hessian has the expected null modes (minimum ~0), while the HVP operator returned 0.2197. The N=64 negative spectrum is therefore not trusted. Stability of the scale-stationary candidate is open (14d UNVERIFIED).
