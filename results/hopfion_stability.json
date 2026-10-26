@@ -1,0 +1,65 @@
+{
+  "candidate": {
+    "E2": 157.93765770522006,
+    "E4": 157.92804769564322,
+    "H": 0.9972974138250582,
+    "Z3": 2.584319130272183e-05,
+    "dx": 0.15625,
+    "force_rms": 0.003002063883660039,
+    "length": 10.0,
+    "n": 64,
+    "virial": 0.009610009576846323
+  },
+  "meta": {
+    "config": {
+      "boundary": "fixed vacuum faces",
+      "dt": 0.0005,
+      "iterations": 5,
+      "k_eigenvalues": 8,
+      "length": 10.0,
+      "n": 64,
+      "scope": "coarse Hessian at N=64; not part of make results",
+      "steps": 600
+    },
+    "config_sha256": "428a7dc874dff56ad4dfaa77934ae61860436e80ce5a257295c18bc9f94ca711",
+    "generated_utc": "2026-10-26T13:39:27+00:00",
+    "git": {
+      "commit": "fa15995bef8f2074bc7247c9f0fd76333671598a",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "spectrum": {
+    "interior_dimension": 714984,
+    "min_eigenvalue": -5.799862658102972,
+    "n": 64,
+    "near_zero_count": 0,
+    "negative_count": 8,
+    "smallest_eigenvalues": [
+      -5.799862658102972,
+      -5.799862658102924,
+      -5.0152900920658094,
+      -5.015290092065773,
+      -4.857860604956566,
+      -4.078257555960162,
+      -4.038450429937324,
+      -4.038450429937299
+    ]
+  },
+  "verdict": {
+    "claim_14b_status": "UNVERIFIED",
+    "claim_14c_status": "NUMERIC (scale-stationary H=1 candidate exists)",
+    "claim_14d_status": "FALSIFIED (negative Hessian modes; not a local minimum)",
+    "local_minimum_at_N64": false,
+    "note": "The scale-stationary H=1 candidate has negative Hessian eigenvalues at N=64, so it is a saddle, not a stable Hopfion. No stable Hopfion is demonstrated.",
+    "stable_at_N64": false
+  }
+}

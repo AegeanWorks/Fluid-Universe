@@ -280,3 +280,7 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - 2026-10-26: damped scale iteration reaches a near-virial-free H=1 candidate (virial 0.00961, H=0.99730, RMS 0.0030) at N=64. Iteration 5 drifts; no Hessian stability. Added as 14c NUMERIC candidate; 14b remains UNVERIFIED.
 
 - Verification after the scale-iteration candidate: two separate runs, 156/156 checks each.
+
+- 2026-10-26: coarse N=64 Hessian of the scale-stationary candidate has minimum eigenvalue -5.80 and 8 negative modes. The candidate is a saddle; 14d FALSIFIED, 14b remains UNVERIFIED.
+
+- Verification after the Hessian stability check: two separate runs, 160/160 checks each.

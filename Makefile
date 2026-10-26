@@ -23,7 +23,10 @@ n64:
 scale:
 	$(PYTHON) -m phenomenology.hopfion_scale_report
 
+stability:
+	$(PYTHON) -m phenomenology.stability_report
+
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json'}]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md'}]"
