@@ -1069,6 +1069,27 @@ def audit_n64(audit: Audit) -> None:
     )
 
 
+
+# ---------------------------------------------------------------------------
+# Scale-iteration candidate
+# ---------------------------------------------------------------------------
+
+
+def audit_scale(audit: Audit) -> None:
+    payload = load_results("hopfion_scale.json")
+    best = payload["best"]
+    audit.record(
+        "14c: scale-stationary H=1 candidate",
+        best["iteration"] == 4
+        and abs(best["virial"] - 0.009610009576846323) < 1e-9
+        and abs(best["H"] - 0.9972974138250582) < 1e-9
+        and abs(best["force_rms"] - 0.003002063883660039) < 1e-9
+        and payload["verdict"]["scale_stationary_candidate"] is True
+        and payload["verdict"]["full_stability_proved"] is False,
+        f"best iter={best['iteration']}, virial={best['virial']:+.6f}, H={best['H']:.6f}, rms={best['force_rms']:.3e}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
@@ -1159,6 +1180,8 @@ def audit_docs(audit: Audit) -> None:
         (readme, "N>=32", "README Hopf resolution"),
         (claims, "0.60743", "claims N=64 diagnostic"),
         (readme, "0.8", "README N=64 diagnostic"),
+        (claims, "14c", "claims scale candidate"),
+        (readme, "Scale-stationary", "README scale candidate"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1212,6 +1235,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hopfion3d(audit)
     audit_hopf_resolution(audit)
     audit_n64(audit)
+    audit_scale(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

@@ -16,4 +16,4 @@ I_eff = 2*pi int rho(r) r^3 dr; a tail steeper than r^-4 is required for converg
 E_2D >= T L_y is a trivial positive-gradient bound, not an exact reduction. The stated 1/r^4 profile makes I_eff logarithmically divergent; a finite I_eff requires a tail steeper than r^-4.
 
 - Config SHA-256: `a812ba2cc84d36853e2798d2ed3276bfc5a3a12a134e263720c7c31588c4c0ec`
-- Git: `cba3210a7ffb3a1ec4b15c18dcd43d55d590929b` (dirty=True)
+- Git: `fdbf1d8738304cc3ef583d768a54f822c2d6b166` (dirty=True)

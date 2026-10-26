@@ -1,0 +1,127 @@
+{
+  "best": {
+    "E": 315.86570540086325,
+    "E2": 157.93765770522006,
+    "E4": 157.92804769564322,
+    "H": 0.9972974138250582,
+    "Z3": 2.584319130272183e-05,
+    "force_rms": 0.003002063883660039,
+    "iteration": 4,
+    "lambda": 0.9999695761102652,
+    "lambda_eff": 0.9999847879394291,
+    "virial": 0.009610009576846323
+  },
+  "dt": 0.0005,
+  "iterations": 6,
+  "length": 10.0,
+  "meta": {
+    "config": {
+      "damping": "sqrt(lambda*)",
+      "dt": 0.0005,
+      "iterations": 6,
+      "length": 10.0,
+      "n": 64,
+      "scope": "candidate search; not part of make results; not stability proof",
+      "steps_per_iteration": 600
+    },
+    "config_sha256": "34196c8644e556d5f15c35f68cb95c29a2f4126d709c51f137b03caa2975c9d9",
+    "generated_utc": "2026-10-26T12:23:44+00:00",
+    "git": {
+      "commit": "fdbf1d8738304cc3ef583d768a54f822c2d6b166",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "n": 64,
+  "rows": [
+    {
+      "E": 359.12180257032804,
+      "E2": 219.6657241727566,
+      "E4": 139.45607839757145,
+      "H": 1.0000000548371517,
+      "Z3": 1.1223302070243562e-06,
+      "force_rms": 0.0032484989180288156,
+      "iteration": 0,
+      "lambda": 0.7967784435255381,
+      "lambda_eff": 0.8926244694862101,
+      "virial": 80.20964577518515
+    },
+    {
+      "E": 338.9492788666746,
+      "E2": 187.95300002593737,
+      "E4": 150.99627884073723,
+      "H": 0.9999904909325565,
+      "Z3": 6.711121629321083e-06,
+      "force_rms": 0.003077907006757552,
+      "iteration": 1,
+      "lambda": 0.8963105148246769,
+      "lambda_eff": 0.9467367716660618,
+      "virial": 36.95672118520014
+    },
+    {
+      "E": 327.84995309847693,
+      "E2": 171.6542808657992,
+      "E4": 156.1956722326777,
+      "H": 0.9999271406386075,
+      "Z3": 1.6378195537466174e-05,
+      "force_rms": 0.0028926773496081885,
+      "iteration": 2,
+      "lambda": 0.953909510912315,
+      "lambda_eff": 0.9766829121635716,
+      "virial": 15.458608633121486
+    },
+    {
+      "E": 319.42595213250354,
+      "E2": 161.33716499681614,
+      "E4": 158.08878713568743,
+      "H": 0.9995257546572606,
+      "Z3": 2.313633365342375e-05,
+      "force_rms": 0.0027192822246297605,
+      "iteration": 3,
+      "lambda": 0.9898817629722118,
+      "lambda_eff": 0.9949280189904252,
+      "virial": 3.2483778611287164
+    },
+    {
+      "E": 315.86570540086325,
+      "E2": 157.93765770522006,
+      "E4": 157.92804769564322,
+      "H": 0.9972974138250582,
+      "Z3": 2.584319130272183e-05,
+      "force_rms": 0.003002063883660039,
+      "iteration": 4,
+      "lambda": 0.9999695761102652,
+      "lambda_eff": 0.9999847879394291,
+      "virial": 0.009610009576846323
+    },
+    {
+      "E": 312.9966575544926,
+      "E2": 156.7859667573211,
+      "E4": 156.21069079717145,
+      "H": 0.9862382774405033,
+      "Z3": 2.6780572963957523e-05,
+      "force_rms": 0.004094209202832055,
+      "iteration": 5,
+      "lambda": 0.9981637239601866,
+      "lambda_eff": 0.999081440103952,
+      "virial": 0.5752759601496393
+    }
+  ],
+  "steps_per_iteration": 600,
+  "verdict": {
+    "H_within_0_01_of_one": true,
+    "claim_14b_status": "UNVERIFIED",
+    "claim_14c_status": "NUMERIC (scale-stationary H=1 candidate; no stability proof)",
+    "full_stability_proved": false,
+    "note": "The damped scale iteration reaches a near-virial-free H=1 candidate, but the sequence is not monotone and the Hessian is not computed. This is a candidate, not a stable Hopfion proof.",
+    "scale_stationary_candidate": true
+  }
+}

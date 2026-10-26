@@ -276,3 +276,7 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - Verification after the N=64 diagnostic: two separate runs, 153/153 checks each.
 
 - 2026-10-26: N=64 pure-FN mu=0 reaches a near-stationary H=1 candidate (H=0.99999993, force RMS 0.00315 at 1200 steps). Recorded as a candidate for 14b, not a stability proof; Z3 still destroys H.
+
+- 2026-10-26: damped scale iteration reaches a near-virial-free H=1 candidate (virial 0.00961, H=0.99730, RMS 0.0030) at N=64. Iteration 5 drifts; no Hessian stability. Added as 14c NUMERIC candidate; 14b remains UNVERIFIED.
+
+- Verification after the scale-iteration candidate: two separate runs, 156/156 checks each.

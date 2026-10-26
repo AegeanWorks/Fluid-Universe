@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `57`
+- **Total Python Modules**: `60`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `332`
+- **Total Top-Level Functions**: `339`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `7734`
+- **Total Source Lines**: `7957`
 
 ---
 
@@ -109,6 +109,17 @@
 
 **Functions:**
 - `def run_hopfion_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hopfion_scale_report.py`](phenomenology/hopfion_scale_report.py)
+> *Report for the damped scale-iteration candidate.*
+
+**Size**: `71` lines (`2442` bytes)
+
+**Functions:**
+- `def run_scale_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -327,6 +338,17 @@
 - `def gradient_check(n, length, mu, eps)`
 - `def convergence_scan(n, length, mu, steps_values, dt)` - *Show that the N=32 pilot is not converged in step count.*
 - `def pilot_scan(n, length, mu_values, steps, dt)`
+
+---
+
+### [`sims/scale_iteration.py`](sims/scale_iteration.py)
+> *Damped scale iteration toward a stationary Faddeev-Niemi Hopfion.*
+
+**Size**: `95` lines (`3482` bytes)
+
+**Functions:**
+- `def rescale_field(field, dx, length, scale)`
+- `def run_scale_iteration(n, length, iterations, steps, dt)`
 
 ---
 
@@ -581,6 +603,17 @@
 
 ---
 
+### [`tests/test_scale_iteration.py`](tests/test_scale_iteration.py)
+> *Scale-iteration candidate tests.*
+
+**Size**: `31` lines (`1143` bytes)
+
+**Functions:**
+- `def test_rescale_preserves_unit_norm_and_boundary()`
+- `def test_smoke_scale_iteration()`
+
+---
+
 ### [`tests/test_sim_core.py`](tests/test_sim_core.py)
 > *1D simulation-core baselines (claim 15, validation only).*
 
@@ -790,7 +823,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1271` lines (`50986` bytes)
+**Size**: `1295` lines (`51967` bytes)
 
 **Classes:**
 - `class Audit`
@@ -824,6 +857,7 @@
 - `def audit_hopfion3d(audit)`
 - `def audit_hopf_resolution(audit)`
 - `def audit_n64(audit)`
+- `def audit_scale(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -849,7 +883,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `109` lines (`2757` bytes)
+**Size**: `111` lines (`2807` bytes)
 
 **Functions:**
 - `def _source_files()`

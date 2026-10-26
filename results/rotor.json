@@ -62,9 +62,9 @@
       "n_cutoff_spectrum": 120
     },
     "config_sha256": "f2888e101ebeb74e127a8b2da829432a558f9e67550cced73735333a7aaf2ecd",
-    "generated_utc": "2026-10-26T10:56:29+00:00",
+    "generated_utc": "2026-10-26T12:33:41+00:00",
     "git": {
-      "commit": "cba3210a7ffb3a1ec4b15c18dcd43d55d590929b",
+      "commit": "fdbf1d8738304cc3ef583d768a54f822c2d6b166",
       "dirty": true
     },
     "packages": {

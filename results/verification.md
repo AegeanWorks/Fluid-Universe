@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T10:57:40+00:00 | `cba3210a7ffb3a1ec4b15c18dcd43d55d590929b` | 153/153 | `c00df643d46f5b73...` | `8dc4f431c3784333...` |
-| run2 | 2026-10-26T10:57:47+00:00 | `cba3210a7ffb3a1ec4b15c18dcd43d55d590929b` | 153/153 | `c00df643d46f5b73...` | `8dc4f431c3784333...` |
+| run1 | 2026-10-26T12:34:56+00:00 | `fdbf1d8738304cc3ef583d768a54f822c2d6b166` | 156/156 | `902f8d7a48179af3...` | `017d4fcc995f89b9...` |
+| run2 | 2026-10-26T12:35:04+00:00 | `fdbf1d8738304cc3ef583d768a54f822c2d6b166` | 156/156 | `902f8d7a48179af3...` | `017d4fcc995f89b9...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -26,6 +26,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 14a: Derrick derivative equals virial | PASS | PASS | YES | YES | numeric dE/dlambda=2.499999998, virial=2.500000000 |
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
+| 14c: scale-stationary H=1 candidate | PASS | PASS | YES | YES | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
 | 15/4: grid Hopf resolution | PASS | PASS | YES | YES | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
 | 15/4: grid estimator matches known answer | PASS | PASS | YES | YES | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
 | 15/4: preimage linking converges to 1 | PASS | PASS | YES | YES | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
@@ -100,6 +101,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: README Q_up | PASS | PASS | YES | YES | searched for '0.888' |
 | docs: README delta sigma | PASS | PASS | YES | YES | searched for '0.407' |
 | docs: README grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
+| docs: README scale candidate | PASS | PASS | YES | YES | searched for 'Scale-stationary' |
 | docs: README xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | PASS | YES | YES | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
 | docs: claims Delta Q | PASS | PASS | YES | YES | searched for '2.89\times10^{-6}' |
@@ -122,6 +124,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: claims grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
 | docs: claims no new prediction | PASS | PASS | YES | YES | searched for 'none found' |
 | docs: claims r | PASS | PASS | YES | YES | searched for '0.707104444' |
+| docs: claims scale candidate | PASS | PASS | YES | YES | searched for '14c' |
 | docs: claims trimaximal theta13 | PASS | PASS | YES | YES | searched for '35.26' |
 | docs: claims xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: fit numbers match JSON | PASS | PASS | YES | YES | stored fit and RG values match the regenerated outputs |

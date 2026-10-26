@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**153/153 checks passed.**
+**156/156 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -80,6 +80,7 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15/4: grid Hopf resolution | PASS | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
 | 15: N=64 diagnostic values | PASS | H(20,3600)=0.788000, Z3=0.607430 |
 | 15: N=64 diagnostic not converged and no coexistence | PASS | force_rms(3600)=3.716e-02 |
+| 14c: scale-stationary H=1 candidate | PASS | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -150,6 +151,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: README Hopf resolution | PASS | searched for 'N>=32' |
 | docs: claims N=64 diagnostic | PASS | searched for '0.60743' |
 | docs: README N=64 diagnostic | PASS | searched for '0.8' |
+| docs: claims scale candidate | PASS | searched for '14c' |
+| docs: README scale candidate | PASS | searched for 'Scale-stationary' |
 | docs: claims baseline 4 | PASS | searched for 'baseline 4 passes' |
 | docs: summary 6b row | PASS | searched for '| 6b | 2D reduction lower bound' |
 | docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |
