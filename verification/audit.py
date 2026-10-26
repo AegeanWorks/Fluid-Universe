@@ -992,6 +992,33 @@ def audit_hopf(audit: Audit) -> None:
     )
 
 
+
+# ---------------------------------------------------------------------------
+# Claim 15: 3D pilot
+# ---------------------------------------------------------------------------
+
+
+def audit_hopfion3d(audit: Audit) -> None:
+    payload = load_results("hopfion3d.json")
+    rows = {row["mu"]: row for row in payload["rows"]}
+    audit.record(
+        "15: single-seed 3D pilot values",
+        abs(rows[0.0]["H"] - 0.9971434045684339) < 1e-9
+        and abs(rows[20.0]["H"] - 0.852975980052028) < 1e-9
+        and abs(rows[20.0]["Z3"] - 0.44323371856388893) < 1e-9
+        and all(row["monotone"] for row in payload["rows"]),
+        f"H(mu=0)={rows[0.0]['H']:.9f}, H(mu=20)={rows[20.0]['H']:.9f}, Z3(mu=20)={rows[20.0]['Z3']:.9f}",
+    )
+    audit.record(
+        "15: no H/Z3 coexistence, pilot only",
+        payload["verdict"]["coexistence_H_and_Z3"] is False
+        and payload["verdict"]["single_seed_pilot"] is True
+        and payload["verdict"]["production_ready"] is False
+        and all(not (row["H"] >= 1.0 and row["Z3"] >= 0.5) for row in payload["rows"]),
+        "no row satisfies |H|>=1 and Z3>=0.5; single seed",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
@@ -1075,6 +1102,10 @@ def audit_docs(audit: Audit) -> None:
         (readme, "1.000000", "README grid Hopf"),
         (summary, "1.000000", "summary grid Hopf"),
         (paper_b, "1.00000004", "paper B grid Hopf"),
+        (claims, "0.4432", "claims 3D pilot Z3"),
+        (readme, "0.443", "README 3D pilot Z3"),
+        (summary, "0.443234", "summary 3D pilot Z3"),
+        (paper_b, "0.4432", "paper B 3D pilot Z3"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1125,6 +1156,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_negatives(audit)
     audit_lorentz(audit)
     audit_hopf(audit)
+    audit_hopfion3d(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

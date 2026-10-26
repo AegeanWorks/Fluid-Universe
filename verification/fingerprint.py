@@ -58,6 +58,10 @@ RESULT_FILES = (
     "sim_core.md",
     "hopf.json",
     "hopf.md",
+    "hopfion.json",
+    "hopfion.md",
+    "hopfion3d.json",
+    "hopfion3d.md",
     "summary.md",
 )
 

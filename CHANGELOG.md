@@ -221,3 +221,38 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - Verification after the Hopf normalization correction: two separate runs, 137/137 checks each, per-claim agreement.
 
 - Verification after the change audit: two separate runs, 141/141 checks each, per-claim agreement.
+
+## 2026-10-25 — Eleventh pass: static finite-energy H=1 configuration
+
+**Added**
+
+- `theory/hopfion.py`: Faddeev-Niemi E2 and Skyrme E4 on the analytic H=1 map, with vacuum compactification.
+- `phenomenology/hopfion_report.py` and `tests/test_hopfion.py`.
+- `results/hopfion.{json,md}`.
+
+**Results**
+
+- At N=64: E2=233.635, E4=159.262, H=1.000000.
+- Scaling virial can be satisfied at lambda*=0.82563; E_min=385.79.
+- This is a static finite-energy configuration, not a stationary solution under non-scale deformations. No full stability proof; no Z3 order measured.
+- Claim 14b remains UNVERIFIED; claim 15 remains NOT ACHIEVED.
+
+## 2026-10-25 — Twelfth pass: 3D E2+E4+Z3 pilot
+
+**Added**
+
+- `sims/core3d.py`: JAX gradient flow for E2 + Skyrme E4 + a Z3 azimuthal potential.
+- `phenomenology/hopfion3d_report.py` and `tests/test_hopfion3d.py`.
+- `results/hopfion3d.{json,md}`.
+
+**Results**
+
+- Single-seed N=32 pilot, 300 steps: for mu=0,1,5,20, H=0.99714,0.99727,0.98949,0.85298 and Z3=0,0.0234,0.1170,0.4432.
+- No tested mu reaches both |H|>=1 and Z3>=0.5. The potential raises Z3 while lowering H.
+- Single seed only; no spontaneous-order or production claim. Claim 15 remains UNVERIFIED.
+
+**Note**
+
+- JAX is now a declared dependency for the 3D core.
+
+- Verification after the 3D pilot: two separate runs, 147/147 checks each, per-claim agreement.

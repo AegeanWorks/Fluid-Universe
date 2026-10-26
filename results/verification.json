@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "64c79258eac8033639740e8e8098988d5f1f5e3869de3f54451451f9eae9ad68",
-      "results_sha256": "5f7abf9e157b803f93f77e15ed01533e7395a2b2dd45371af6777d68e63185a7"
+      "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
+      "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-25T23:48:16+00:00",
-        "git_commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
-        "passed": 141,
-        "total": 141,
+        "generated_utc": "2026-10-26T06:17:06+00:00",
+        "git_commit": "8c073c28a57bd0bac3b358948691482087fe7190",
+        "passed": 147,
+        "total": 147,
         "failed": 0,
-        "checks_sha256": "6b4a49ad973f749d2075bb41db0fb13f591a4128432f4a11f8685e3970b6b3e6",
+        "checks_sha256": "bf6be7ed1c4b69e24a06ded5ad84e1bfb82374ca37d2704df34e63cbf9a18e02",
         "fingerprints": {
-          "source_sha256": "64c79258eac8033639740e8e8098988d5f1f5e3869de3f54451451f9eae9ad68",
-          "results_sha256": "5f7abf9e157b803f93f77e15ed01533e7395a2b2dd45371af6777d68e63185a7"
+          "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
+          "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-25T23:48:24+00:00",
-        "git_commit": "2ce94b5304275f669bd35515a8276db94dd6ad2f",
-        "passed": 141,
-        "total": 141,
+        "generated_utc": "2026-10-26T06:17:14+00:00",
+        "git_commit": "8c073c28a57bd0bac3b358948691482087fe7190",
+        "passed": 147,
+        "total": 147,
         "failed": 0,
-        "checks_sha256": "6b4a49ad973f749d2075bb41db0fb13f591a4128432f4a11f8685e3970b6b3e6",
+        "checks_sha256": "bf6be7ed1c4b69e24a06ded5ad84e1bfb82374ca37d2704df34e63cbf9a18e02",
         "fingerprints": {
-          "source_sha256": "64c79258eac8033639740e8e8098988d5f1f5e3869de3f54451451f9eae9ad68",
-          "results_sha256": "5f7abf9e157b803f93f77e15ed01533e7395a2b2dd45371af6777d68e63185a7"
+          "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
+          "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
         }
       }
     ],
@@ -154,6 +154,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "reflection=-0.999832946, rotation=0.999832946, shear=0.999834138"
+    },
+    {
+      "claim": "15: no H/Z3 coexistence, pilot only",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "no row satisfies |H|>=1 and Z3>=0.5; single seed"
+    },
+    {
+      "claim": "15: single-seed 3D pilot values",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719"
     },
     {
       "claim": "16: no new prediction found",
@@ -604,6 +620,14 @@
       "detail": "F10 is cross-checked only at the few-percent level against three-loop literature"
     },
     {
+      "claim": "docs: README 3D pilot Z3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.443'"
+    },
+    {
       "claim": "docs: README Hopf preimage",
       "run1": "PASS",
       "run2": "PASS",
@@ -674,6 +698,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them"
+    },
+    {
+      "claim": "docs: claims 3D pilot Z3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.4432'"
     },
     {
       "claim": "docs: claims Delta Q",
@@ -858,6 +890,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "searched for 'No genuinely new prediction'"
+    },
+    {
+      "claim": "docs: paper B 3D pilot Z3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.4432'"
     },
     {
       "claim": "docs: paper B Derrick virial",
@@ -1098,6 +1138,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "searched for 'NOT a cross-check'"
+    },
+    {
+      "claim": "docs: summary 3D pilot Z3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for '0.443234'"
     },
     {
       "claim": "docs: summary 6b row",
@@ -1657,6 +1705,20 @@
       "observed": null
     },
     {
+      "claim": "15: single-seed 3D pilot values",
+      "passed": true,
+      "detail": "H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: no H/Z3 coexistence, pilot only",
+      "passed": true,
+      "detail": "no row satisfies |H|>=1 and Z3>=0.5; single seed",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -2098,6 +2160,34 @@
       "observed": null
     },
     {
+      "claim": "docs: claims 3D pilot Z3",
+      "passed": true,
+      "detail": "searched for '0.4432'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README 3D pilot Z3",
+      "passed": true,
+      "detail": "searched for '0.443'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary 3D pilot Z3",
+      "passed": true,
+      "detail": "searched for '0.443234'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: paper B 3D pilot Z3",
+      "passed": true,
+      "detail": "searched for '0.4432'",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims baseline 4",
       "passed": true,
       "detail": "searched for 'baseline 4 passes'",
@@ -2161,8 +2251,8 @@
       "observed": null
     }
   ],
-  "total": 141,
-  "passed": 141,
+  "total": 147,
+  "passed": 147,
   "failed": 0,
   "failures": []
 }

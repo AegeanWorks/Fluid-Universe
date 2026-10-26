@@ -143,13 +143,8 @@ def shear_charge(samples: int = 200) -> float:
     return linking_number(curve_a @ shear.T, curve_b @ shear.T)
 
 
-def grid_charge(n: int = 32, length: float = 10.0, reflect: bool = False) -> float:
-    """Normalized grid Chern-Simons integral on a periodic box.
-
-    The analytic map is compactified to the vacuum at the box boundary with a
-    smooth radial window, then differentiated spectrally.  The normalization
-    -1/(16*pi^2) is the documented convention fixed by the analytic H=1 map.
-    """
+def compactified_field(n: int, length: float, reflect: bool = False) -> tuple[np.ndarray, float]:
+    """Analytic map with a smooth vacuum window at the box boundary."""
     if n < 8:
         raise ValueError("n too small")
     axis = np.linspace(-0.5 * length, 0.5 * length, n, endpoint=False)
@@ -164,25 +159,40 @@ def grid_charge(n: int = 32, length: float = 10.0, reflect: bool = False) -> flo
     vacuum = np.array([0.0, 0.0, 1.0])
     nfield = vacuum + window[..., None] * (nfield - vacuum)
     nfield = nfield / np.linalg.norm(nfield, axis=-1, keepdims=True)
+    return nfield, dx
 
+
+def spectral_derivatives(field: np.ndarray, dx: float) -> list[np.ndarray]:
+    """Return [d_x field, d_y field, d_z field] with spectral derivatives."""
+    n = field.shape[0]
     k = 2.0 * math.pi * fftfreq(n, d=dx)
     kx, ky, kz = np.meshgrid(k, k, k, indexing="ij")
-    k_squared = kx * kx + ky * ky + kz * kz
-    k_squared[0, 0, 0] = 1.0
-    n_hat = [fftn(nfield[..., component]) for component in range(3)]
+    field_hat = [fftn(field[..., component]) for component in range(3)]
     derivatives = []
     for k_component in (kx, ky, kz):
         derivatives.append(
             np.stack(
-                [ifftn(1j * k_component * n_hat[component]).real for component in range(3)],
+                [ifftn(1j * k_component * field_hat[component]).real for component in range(3)],
                 axis=-1,
             )
         )
-    f_tensor = np.empty(nfield.shape[:3] + (3, 3))
+    return derivatives
+
+
+def chern_simons_charge(field: np.ndarray, dx: float) -> float:
+    """Normalized Chern-Simons charge for a compactified unit-vector field."""
+    field = np.asarray(field, dtype=float)
+    n = field.shape[0]
+    k = 2.0 * math.pi * fftfreq(n, d=dx)
+    kx, ky, kz = np.meshgrid(k, k, k, indexing="ij")
+    k_squared = kx * kx + ky * ky + kz * kz
+    k_squared[0, 0, 0] = 1.0
+    derivatives = spectral_derivatives(field, dx)
+    f_tensor = np.empty(field.shape[:3] + (3, 3))
     for i in range(3):
         for j in range(3):
             f_tensor[..., i, j] = np.sum(
-                nfield * np.cross(derivatives[i], derivatives[j]), axis=-1
+                field * np.cross(derivatives[i], derivatives[j]), axis=-1
             )
     b_field = np.stack(
         [f_tensor[..., 1, 2], f_tensor[..., 2, 0], f_tensor[..., 0, 1]], axis=-1
@@ -196,6 +206,16 @@ def grid_charge(n: int = 32, length: float = 10.0, reflect: bool = False) -> flo
     a_field = np.stack([ifftn(a_hat[component]).real for component in range(3)], axis=-1)
     raw = float(np.sum(a_field * b_field) * dx**3)
     return -raw / (16.0 * math.pi**2)
+
+
+def grid_charge(n: int = 32, length: float = 10.0, reflect: bool = False) -> float:
+    """Normalized grid Chern-Simons integral for the analytic H=1 map.
+
+    The map is compactified to the vacuum at the boundary, differentiated
+    spectrally, and evaluated with the documented -1/(16*pi^2) convention.
+    """
+    nfield, dx = compactified_field(n, length, reflect)
+    return chern_simons_charge(nfield, dx)
 
 
 def validate() -> dict:

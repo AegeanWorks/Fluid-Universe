@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "config": {
+      "K": 1.0,
+      "kappa": 1.0,
+      "length": 10.0,
+      "model": "Faddeev-Niemi E2 + Skyrme E4, V=0",
+      "sizes": [
+        32,
+        48,
+        64
+      ]
+    },
+    "config_sha256": "9c068d8ddd4c04e734baf6b2bf132c40dd5e352130fd5a7a9f075a54b5bb09c6",
+    "generated_utc": "2026-10-26T06:16:44+00:00",
+    "git": {
+      "commit": "8c073c28a57bd0bac3b358948691482087fe7190",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "rows": [
+    {
+      "E2": 232.9718919517838,
+      "E4": 159.33746672918204,
+      "E_min": 385.3370009884955,
+      "H": 1.000141490106325,
+      "dx": 0.3125,
+      "lambda_star": 0.8270032014596967,
+      "n": 32,
+      "virial_at_one": 73.63442522260175,
+      "virial_ratio": 0.1876947964488474
+    },
+    {
+      "E2": 233.5459960026427,
+      "E4": 159.25762358015248,
+      "E_min": 385.71481859031894,
+      "H": 0.9999997875102209,
+      "dx": 0.20833333333333304,
+      "lambda_star": 0.8257791295765875,
+      "n": 48,
+      "virial_at_one": 74.28837242249023,
+      "virial_ratio": 0.18912344163578085
+    },
+    {
+      "E2": 233.63501149296746,
+      "E4": 159.2616972407171,
+      "E_min": 385.79325274154,
+      "H": 1.0000000385194467,
+      "dx": 0.15625,
+      "lambda_star": 0.8256323619397955,
+      "n": 64,
+      "virial_at_one": 74.37331425225037,
+      "virial_ratio": 0.1892948263475083
+    }
+  ],
+  "verdict": {
+    "claim_14b_status": "UNVERIFIED",
+    "claim_15_status": "NOT ACHIEVED",
+    "finite_energy_H1_configuration": true,
+    "full_stability_proved": false,
+    "note": "The analytic H=1 map has finite E2 and E4, and a scale transformation can satisfy the Derrick virial. This is not a stationary solution under non-scale deformations, not a stability proof, and not a Z3-order measurement.",
+    "scaling_virial_can_be_satisfied": true,
+    "z3_order_measured": false
+  }
+}

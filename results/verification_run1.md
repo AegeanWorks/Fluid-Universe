@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**141/141 checks passed.**
+**147/147 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -75,6 +75,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15/4: preimage linking converges to 1 | PASS | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
 | 15/4: reflection, rotation, shear | PASS | reflection=-0.999832946, rotation=0.999832946, shear=0.999834138 |
 | 15/4: grid estimator matches known answer | PASS | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
+| 15: single-seed 3D pilot values | PASS | H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719 |
+| 15: no H/Z3 coexistence, pilot only | PASS | no row satisfies |H|>=1 and Z3>=0.5; single seed |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |
@@ -138,6 +140,10 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | docs: README grid Hopf | PASS | searched for '1.000000' |
 | docs: summary grid Hopf | PASS | searched for '1.000000' |
 | docs: paper B grid Hopf | PASS | searched for '1.00000004' |
+| docs: claims 3D pilot Z3 | PASS | searched for '0.4432' |
+| docs: README 3D pilot Z3 | PASS | searched for '0.443' |
+| docs: summary 3D pilot Z3 | PASS | searched for '0.443234' |
+| docs: paper B 3D pilot Z3 | PASS | searched for '0.4432' |
 | docs: claims baseline 4 | PASS | searched for 'baseline 4 passes' |
 | docs: summary 6b row | PASS | searched for '| 6b | 2D reduction lower bound' |
 | docs: summary 6c row | PASS | searched for '| 6c | Exact dimensional reduction' |

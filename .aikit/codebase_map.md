@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `48`
+- **Total Python Modules**: `54`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `296`
+- **Total Top-Level Functions**: `322`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `6792`
+- **Total Source Lines**: `7366`
 
 ---
 
@@ -65,6 +65,28 @@
 
 **Functions:**
 - `def run_hopf_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hopfion3d_report.py`](phenomenology/hopfion3d_report.py)
+> *3D pilot report for the E2+E4+Z3 model.*
+
+**Size**: `69` lines (`2456` bytes)
+
+**Functions:**
+- `def run_hopfion3d_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hopfion_report.py`](phenomenology/hopfion_report.py)
+> *Static finite-energy H=1 configuration report.*
+
+**Size**: `61` lines (`2215` bytes)
+
+**Functions:**
+- `def run_hopfion_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -186,7 +208,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `435` lines (`20968` bytes)
+**Size**: `488` lines (`23281` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -196,6 +218,8 @@
 - `def lorentz_summary(lorentz)`
 - `def sim_summary(sim)`
 - `def hopf_summary(hopf)`
+- `def hopfion_summary(payload)`
+- `def hopfion3d_summary(payload)`
 - `def build_summary(fit, rg, rotor, neutrino, quarks, pmns)`
 - `def main()`
 
@@ -263,6 +287,22 @@
 - `def hessian(phi, dx, mu)` - *Hessian of E/dx on interior nodes (Dirichlet boundaries).*
 - `def kink_convergence(mu, length, sizes)`
 - `def rotor_crosscheck()`
+
+---
+
+### [`sims/core3d.py`](sims/core3d.py)
+> *3D JAX pilot: E2 + Skyrme E4 + a Z3 azimuthal potential.*
+
+**Size**: `167` lines (`5897` bytes)
+
+**Functions:**
+- `def normalize(field)`
+- `def energy_terms(field, dx, mu, K, kappa)`
+- `def energy(field, dx, K, kappa, mu)`
+- `def z3_order(field)`
+- `def relax(field, dx, mu, steps, dt, K, kappa)`
+- `def gradient_check(n, length, mu, eps)`
+- `def pilot_scan(n, length, mu_values, steps, dt)`
 
 ---
 
@@ -363,6 +403,31 @@
 - `def test_preimage_linking_converges_to_one()`
 - `def test_reflection_flips_sign_and_rotation_shear_preserve()`
 - `def test_grid_integral_matches_known_answer()`
+
+---
+
+### [`tests/test_hopfion.py`](tests/test_hopfion.py)
+> *Static finite-energy H=1 configuration tests (claim 14b).*
+
+**Size**: `41` lines (`1453` bytes)
+
+**Functions:**
+- `def test_energy_is_positive_and_h1()`
+- `def test_scaling_virial_and_minimum()`
+- `def test_convergence_and_no_stability_claim()`
+
+---
+
+### [`tests/test_hopfion3d.py`](tests/test_hopfion3d.py)
+> *3D E2+E4+Z3 pilot tests (claim 15).*
+
+**Size**: `48` lines (`1428` bytes)
+
+**Functions:**
+- `def test_gradient_matches_finite_difference()`
+- `def test_z3_order_limits()`
+- `def test_energy_terms_are_positive()`
+- `def test_small_pilot_no_coexistence()`
 
 ---
 
@@ -577,7 +642,7 @@
 ### [`theory/hopf.py`](theory/hopf.py)
 > *Hopf-charge estimators for the analytic H=1 map.*
 
-**Size**: `236` lines (`9068` bytes)
+**Size**: `256` lines (`9846` bytes)
 
 **Functions:**
 - `def hopf_map(x, y, z)`
@@ -591,8 +656,22 @@
 - `def reflection_charge(samples)`
 - `def rotation_charge(samples)`
 - `def shear_charge(samples)`
-- `def grid_charge(n, length, reflect)` - *Normalized grid Chern-Simons integral on a periodic box.*
+- `def compactified_field(n, length, reflect)` - *Analytic map with a smooth vacuum window at the box boundary.*
+- `def spectral_derivatives(field, dx)` - *Return [d_x field, d_y field, d_z field] with spectral derivatives.*
+- `def chern_simons_charge(field, dx)` - *Normalized Chern-Simons charge for a compactified unit-vector field.*
+- `def grid_charge(n, length, reflect)` - *Normalized grid Chern-Simons integral for the analytic H=1 map.*
 - `def validate()`
+
+---
+
+### [`theory/hopfion.py`](theory/hopfion.py)
+> *Finite-energy H=1 configuration for the Faddeev-Niemi energy.*
+
+**Size**: `79` lines (`2916` bytes)
+
+**Functions:**
+- `def energies(n, length, K, kappa)`
+- `def scaling_study(sizes, length)`
 
 ---
 
@@ -676,7 +755,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1184` lines (`47193` bytes)
+**Size**: `1216` lines (`48563` bytes)
 
 **Classes:**
 - `class Audit`
@@ -707,6 +786,7 @@
 - `def audit_negatives(audit)`
 - `def audit_lorentz(audit)`
 - `def audit_hopf(audit)`
+- `def audit_hopfion3d(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -732,7 +812,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `101` lines (`2573` bytes)
+**Size**: `105` lines (`2653` bytes)
 
 **Functions:**
 - `def _source_files()`

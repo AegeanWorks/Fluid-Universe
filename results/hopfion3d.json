@@ -1,0 +1,105 @@
+{
+  "dt": 0.0005,
+  "dx": 0.3125,
+  "initial": {
+    "H": 1.000141490106325,
+    "Z3": 2.3188406757662857e-18
+  },
+  "length": 10.0,
+  "meta": {
+    "config": {
+      "K": 1.0,
+      "dt": 0.0005,
+      "kappa": 1.0,
+      "length": 10.0,
+      "model": "E2 + Skyrme E4 + mu rho^2 (1-cos3phi)",
+      "n": 32,
+      "scope": "single-seed pilot; not production",
+      "seed": "deterministic analytic H=1 initial condition",
+      "steps": 300
+    },
+    "config_sha256": "2a34d2aa623aa666298c6513b2ddbed970bd72a39caff1a0c28a6763d9093f99",
+    "generated_utc": "2026-10-26T06:16:45+00:00",
+    "git": {
+      "commit": "8c073c28a57bd0bac3b358948691482087fe7190",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "mu_values": [
+    0.0,
+    1.0,
+    5.0,
+    20.0
+  ],
+  "n": 32,
+  "rows": [
+    {
+      "E2": 192.4910893894645,
+      "E4": 95.18228703610872,
+      "E_final": 287.6733764255732,
+      "E_initial": 294.0392245619465,
+      "H": 0.9971434045684339,
+      "V": 0.0,
+      "Z3": 2.4091012762316946e-18,
+      "max_energy_increase": -0.020594969731803303,
+      "monotone": true,
+      "mu": 0.0
+    },
+    {
+      "E2": 191.55805666876032,
+      "E4": 95.20902765424594,
+      "E_final": 508.63650232841314,
+      "E_initial": 523.540253932413,
+      "H": 0.9972683912882411,
+      "V": 221.86941800540686,
+      "Z3": 0.023426057155409265,
+      "max_energy_increase": -0.04952990574224714,
+      "monotone": true,
+      "mu": 1.0
+    },
+    {
+      "E2": 188.5731206318354,
+      "E4": 95.15430667683486,
+      "E_final": 1264.6961491468599,
+      "E_initial": 1441.5443714142784,
+      "H": 0.9894937269742886,
+      "V": 980.9687218381896,
+      "Z3": 0.11697961082420542,
+      "max_energy_increase": -0.5646345632046632,
+      "monotone": true,
+      "mu": 5.0
+    },
+    {
+      "E2": 186.75408740708005,
+      "E4": 93.18979460428774,
+      "E_final": 2588.354809765776,
+      "E_initial": 4884.059811971275,
+      "H": 0.852975980052028,
+      "V": 2308.410927754408,
+      "Z3": 0.44323371856388893,
+      "max_energy_increase": -6.018890920234298,
+      "monotone": true,
+      "mu": 20.0
+    }
+  ],
+  "steps": 300,
+  "verdict": {
+    "H_at_max_Z3": 0.852975980052028,
+    "claim_15_status": "UNVERIFIED (single-seed pilot; no coexistence)",
+    "coexistence_H_and_Z3": false,
+    "max_Z3": 0.44323371856388893,
+    "mu_at_max_Z3": 20.0,
+    "note": "The Z3 potential increases the azimuthal order parameter but lowers the Hopf charge. No tested mu reaches both |H|>=1 and Z3>=0.5. This is a single-seed pilot; it is not a production or spontaneous-order claim.",
+    "production_ready": false,
+    "single_seed_pilot": true
+  }
+}

@@ -26,8 +26,8 @@ Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(
 
 ## Status
 
-- 1D baselines 1, 2, 3, 6 pass; 5 and 7 are partial; 4 is not implemented.
-- No 3D run, Hopf charge, or Z3 order. Claim 15 remains UNVERIFIED / NOT ACHIEVED.
+- 1D baselines 1, 2, 3, 6 pass; 5 and 7 are partial; 4 passes (preimage and normalized grid agree).
+- A single-seed N=32 3D pilot shows H falling as Z3 rises; no coexistence. No production or spontaneous-order run. Claim 15 remains UNVERIFIED.
 
 ## Known analytic obstacles (to be tested, not assumed away)
 
