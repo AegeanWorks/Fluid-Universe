@@ -88,19 +88,22 @@ and 400 samples; reflection flips the sign, and rotation and shear leave it
 unchanged. The normalized grid Chern-Simons estimator (spectral derivatives,
 smooth compactification, convention $-1/(16\pi^2)$) gives $1.000141$,
 $0.9999998$, and $1.00000004$ at $N=32,48,64$. The two methods agree, so
-baseline 4 passes.
+baseline 4 passes. The grid estimator needs $N\ge32$ for $10^{-3}$ accuracy on
+the analytic map; $N=16$ and $24$ are under-resolved. This is why the $N=32$
+3D pilot's $H$ values are only indicative.
 
 \emph{Numeric (static, not a simulation).} The analytic $H=1$ map has finite
 Faddeev-Niemi energies: $E_2=233.635$ and $E_4=159.262$ at $N=64$, with
 $H=1.000000$. The Derrick scaling minimum is at $\lambda^*=0.82563$, where the
 virial is satisfied by construction. This is a finite-energy $H=1$
 configuration, not a stationary solution under non-scale deformations, not a
-stability proof, and not a Z3-order measurement. A single-seed $N=32$ pilot with the full $E_2+E_4+Z_3$ energy shows the same
-trade-off. For $\mu=0,1,5,20$ the Hopf charge falls as
-$H=0.99714,0.99727,0.98949,0.85298$, while the azimuthal order parameter rises
-as $Z_3=0,0.0234,0.1170,0.4432$. No tested $\mu$ reaches both $\lvert H\rvert\ge1$
-and $Z_3\ge0.5$. This is a single-seed pilot, not a spontaneous-order or
-production result, and no coexistence is claimed.
+stability proof, and not a Z3-order measurement. A single-seed $N=32$ pilot
+with the full $E_2+E_4+Z_3$ energy is not converged: at 1200 steps the force
+RMS is still $0.10$, and the Hopf charge and azimuthal order parameter change
+with step count and resolution. Diagnostic values at $\mu=0,1,5,20$ are
+$H=0.74976,0.69989,0.38079,0.05237$ and
+$Z_3=0,0.0930,0.4356,0.9602$, but an $N=64$ spot check differs. No coexistence
+conclusion is drawn. This is not a production or spontaneous-order result.
 
 \paragraph{Residual anisotropy and Lorentz bounds.} The two transverse
 director speeds are equal only when $K_1=K_2=K_3$. Define

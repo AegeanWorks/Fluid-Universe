@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `54`
+- **Total Python Modules**: `56`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `322`
+- **Total Top-Level Functions**: `329`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `7366`
+- **Total Source Lines**: `7586`
 
 ---
 
@@ -69,10 +69,21 @@
 
 ---
 
+### [`phenomenology/hopf_resolution_report.py`](phenomenology/hopf_resolution_report.py)
+> *Hopf estimator resolution report.*
+
+**Size**: `47` lines (`1509` bytes)
+
+**Functions:**
+- `def run_hopf_resolution_check(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/hopfion3d_report.py`](phenomenology/hopfion3d_report.py)
 > *3D pilot report for the E2+E4+Z3 model.*
 
-**Size**: `69` lines (`2456` bytes)
+**Size**: `83` lines (`3099` bytes)
 
 **Functions:**
 - `def run_hopfion3d_check(write)`
@@ -208,7 +219,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `488` lines (`23281` bytes)
+**Size**: `526` lines (`24665` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -220,6 +231,7 @@
 - `def hopf_summary(hopf)`
 - `def hopfion_summary(payload)`
 - `def hopfion3d_summary(payload)`
+- `def hopf_resolution_summary(payload)`
 - `def build_summary(fit, rg, rotor, neutrino, quarks, pmns)`
 - `def main()`
 
@@ -293,7 +305,7 @@
 ### [`sims/core3d.py`](sims/core3d.py)
 > *3D JAX pilot: E2 + Skyrme E4 + a Z3 azimuthal potential.*
 
-**Size**: `167` lines (`5897` bytes)
+**Size**: `209` lines (`7298` bytes)
 
 **Functions:**
 - `def normalize(field)`
@@ -302,6 +314,7 @@
 - `def z3_order(field)`
 - `def relax(field, dx, mu, steps, dt, K, kappa)`
 - `def gradient_check(n, length, mu, eps)`
+- `def convergence_scan(n, length, mu, steps_values, dt)` - *Show that the N=32 pilot is not converged in step count.*
 - `def pilot_scan(n, length, mu_values, steps, dt)`
 
 ---
@@ -403,6 +416,16 @@
 - `def test_preimage_linking_converges_to_one()`
 - `def test_reflection_flips_sign_and_rotation_shear_preserve()`
 - `def test_grid_integral_matches_known_answer()`
+
+---
+
+### [`tests/test_hopf_resolution.py`](tests/test_hopf_resolution.py)
+> *Hopf grid-resolution tests.*
+
+**Size**: `21` lines (`861` bytes)
+
+**Functions:**
+- `def test_resolution_converges_and_flags_coarse_grids()`
 
 ---
 
@@ -642,7 +665,7 @@
 ### [`theory/hopf.py`](theory/hopf.py)
 > *Hopf-charge estimators for the analytic H=1 map.*
 
-**Size**: `256` lines (`9846` bytes)
+**Size**: `287` lines (`10923` bytes)
 
 **Functions:**
 - `def hopf_map(x, y, z)`
@@ -660,6 +683,7 @@
 - `def spectral_derivatives(field, dx)` - *Return [d_x field, d_y field, d_z field] with spectral derivatives.*
 - `def chern_simons_charge(field, dx)` - *Normalized Chern-Simons charge for a compactified unit-vector field.*
 - `def grid_charge(n, length, reflect)` - *Normalized grid Chern-Simons integral for the analytic H=1 map.*
+- `def resolution_study(sizes, length)` - *Grid Chern-Simons charge vs resolution for the analytic H=1 map.*
 - `def validate()`
 
 ---
@@ -755,7 +779,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1216` lines (`48563` bytes)
+**Size**: `1241` lines (`49711` bytes)
 
 **Classes:**
 - `class Audit`
@@ -787,6 +811,7 @@
 - `def audit_lorentz(audit)`
 - `def audit_hopf(audit)`
 - `def audit_hopfion3d(audit)`
+- `def audit_hopf_resolution(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -812,7 +837,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `105` lines (`2653` bytes)
+**Size**: `107` lines (`2707` bytes)
 
 **Functions:**
 - `def _source_files()`

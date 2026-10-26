@@ -35,7 +35,7 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 13b | UNVERIFIED (null) | Rank-3, three-nematic, and 3-fold-lattice extensions all require an inserted Z3. |
 | 14a | PROVEN | \(d=3\) exponents \((1,-1,3)\); virial \(E_2-E_4+3V=0\). |
 | 14b | UNVERIFIED | Finite-energy H=1 config, \(\lambda^*=0.82563\); no full stability or Z3 order. |
-| 15 | UNVERIFIED (pilot) | 1D/Hopf baselines pass; N=32 single-seed pilot: max Z3=0.443 at H=0.853; no coexistence. |
+| 15 | UNVERIFIED (pilot) | N=32 pilot not converged/resolution-limited; H/Z3 vary with steps; no conclusion. |
 | 16 | UNVERIFIED (none found) | Seven candidate classes audited; no new falsifiable prediction. |
 
-Claim audit: two separate runs agree per claim, 147/147 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 150/150 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

@@ -256,3 +256,13 @@ Append-only. Corrections and retractions are recorded with the reason and the ev
 - JAX is now a declared dependency for the 3D core.
 
 - Verification after the 3D pilot: two separate runs, 147/147 checks each, per-claim agreement.
+
+**Correction (3D pilot).** The 300-step N=32 values were transient and under-resolved. At 1200 steps the force RMS is still 0.10, H/Z3 continue to change with step count, and an N=64 spot check differs materially. The pilot is now recorded as resolution-limited with no coexistence conclusion. The earlier "max Z3=0.443 at H=0.853" statement is superseded; claim 15 remains UNVERIFIED.
+
+## 2026-10-26 — Hopf grid resolution
+
+- Added a resolution study of the grid Chern-Simons estimator on the analytic H=1 map.
+- N=16: H=0.801800; N=24: 0.994054; N=32: 1.000141; N=48: 0.9999998; N=64: 1.00000004.
+- N>=32 is within 1e-3 of the preimage value; N=16/24 are under-resolved. This substantiates the 3D pilot's resolution caveat.
+
+- Verification after the Hopf resolution study: two separate runs, 150/150 checks each.

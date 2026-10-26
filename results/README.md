@@ -40,6 +40,8 @@ Do not edit these files by hand.
 | `hopfion.md` | Human-readable version of the same |
 | `hopfion3d.json` | Single-seed 3D E2+E4+Z3 pilot |
 | `hopfion3d.md` | Human-readable version of the same |
+| `hopf_resolution.json` | Grid Hopf charge vs N |
+| `hopf_resolution.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

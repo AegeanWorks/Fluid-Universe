@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
-      "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
+      "source_sha256": "79e8a0bc5ea8a932c81ead038fe64977e6502d99eb90adc0e8c21b9898761ad1",
+      "results_sha256": "24ef91f820f85a21befac1ea3c6238c8355ea62d5f3003fc934027a489ef39a2"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-26T06:17:06+00:00",
-        "git_commit": "8c073c28a57bd0bac3b358948691482087fe7190",
-        "passed": 147,
-        "total": 147,
+        "generated_utc": "2026-10-26T07:34:18+00:00",
+        "git_commit": "f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49",
+        "passed": 150,
+        "total": 150,
         "failed": 0,
-        "checks_sha256": "bf6be7ed1c4b69e24a06ded5ad84e1bfb82374ca37d2704df34e63cbf9a18e02",
+        "checks_sha256": "e048b129b531226f38574272a8ac0ff340c9f84dd11ad00eb2f42a0c4bcfaceb",
         "fingerprints": {
-          "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
-          "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
+          "source_sha256": "79e8a0bc5ea8a932c81ead038fe64977e6502d99eb90adc0e8c21b9898761ad1",
+          "results_sha256": "24ef91f820f85a21befac1ea3c6238c8355ea62d5f3003fc934027a489ef39a2"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-26T06:17:14+00:00",
-        "git_commit": "8c073c28a57bd0bac3b358948691482087fe7190",
-        "passed": 147,
-        "total": 147,
+        "generated_utc": "2026-10-26T07:34:25+00:00",
+        "git_commit": "f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49",
+        "passed": 150,
+        "total": 150,
         "failed": 0,
-        "checks_sha256": "bf6be7ed1c4b69e24a06ded5ad84e1bfb82374ca37d2704df34e63cbf9a18e02",
+        "checks_sha256": "e048b129b531226f38574272a8ac0ff340c9f84dd11ad00eb2f42a0c4bcfaceb",
         "fingerprints": {
-          "source_sha256": "dff195075c347d9ebeba1a2acbd68f8a7534777de7013ea40d59de0c2569a371",
-          "results_sha256": "1fb320a039333f60b0f4bef1ece8657c2e53f80ae31b675a3939c06ae29f88d2"
+          "source_sha256": "79e8a0bc5ea8a932c81ead038fe64977e6502d99eb90adc0e8c21b9898761ad1",
+          "results_sha256": "24ef91f820f85a21befac1ea3c6238c8355ea62d5f3003fc934027a489ef39a2"
         }
       }
     ],
@@ -132,6 +132,14 @@
       "detail": "kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof"
     },
     {
+      "claim": "15/4: grid Hopf resolution",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039"
+    },
+    {
       "claim": "15/4: grid estimator matches known answer",
       "run1": "PASS",
       "run2": "PASS",
@@ -156,20 +164,20 @@
       "detail": "reflection=-0.999832946, rotation=0.999832946, shear=0.999834138"
     },
     {
-      "claim": "15: no H/Z3 coexistence, pilot only",
+      "claim": "15: 3D pilot values at 1200 steps",
       "run1": "PASS",
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "no row satisfies |H|>=1 and Z3>=0.5; single seed"
+      "detail": "H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273"
     },
     {
-      "claim": "15: single-seed 3D pilot values",
+      "claim": "15: pilot is not converged or resolved",
       "run1": "PASS",
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719"
+      "detail": "force_rms(1200)=1.012e-01; no conclusion"
     },
     {
       "claim": "16: no new prediction found",
@@ -620,12 +628,12 @@
       "detail": "F10 is cross-checked only at the few-percent level against three-loop literature"
     },
     {
-      "claim": "docs: README 3D pilot Z3",
+      "claim": "docs: README 3D pilot status",
       "run1": "PASS",
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "searched for '0.443'"
+      "detail": "searched for 'resolution-limited'"
     },
     {
       "claim": "docs: README Hopf preimage",
@@ -634,6 +642,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "searched for '0.999958'"
+    },
+    {
+      "claim": "docs: README Hopf resolution",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for 'N>=32'"
     },
     {
       "claim": "docs: README I_eff",
@@ -705,7 +721,7 @@
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "searched for '0.4432'"
+      "detail": "searched for '0.9602'"
     },
     {
       "claim": "docs: claims Delta Q",
@@ -892,12 +908,12 @@
       "detail": "searched for 'No genuinely new prediction'"
     },
     {
-      "claim": "docs: paper B 3D pilot Z3",
+      "claim": "docs: paper B 3D pilot status",
       "run1": "PASS",
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "searched for '0.4432'"
+      "detail": "searched for 'not converged'"
     },
     {
       "claim": "docs: paper B Derrick virial",
@@ -1140,12 +1156,12 @@
       "detail": "searched for 'NOT a cross-check'"
     },
     {
-      "claim": "docs: summary 3D pilot Z3",
+      "claim": "docs: summary 3D pilot status",
       "run1": "PASS",
       "run2": "PASS",
       "agree": true,
       "detail_match": true,
-      "detail": "searched for '0.443234'"
+      "detail": "searched for 'resolution-limited'"
     },
     {
       "claim": "docs: summary 6b row",
@@ -1178,6 +1194,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "searched for '0.999958'"
+    },
+    {
+      "claim": "docs: summary Hopf resolution",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "searched for 'N=16'"
     },
     {
       "claim": "docs: summary I_eff",
@@ -1705,16 +1729,23 @@
       "observed": null
     },
     {
-      "claim": "15: single-seed 3D pilot values",
+      "claim": "15: 3D pilot values at 1200 steps",
       "passed": true,
-      "detail": "H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719",
+      "detail": "H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273",
       "expected": null,
       "observed": null
     },
     {
-      "claim": "15: no H/Z3 coexistence, pilot only",
+      "claim": "15: pilot is not converged or resolved",
       "passed": true,
-      "detail": "no row satisfies |H|>=1 and Z3>=0.5; single seed",
+      "detail": "force_rms(1200)=1.012e-01; no conclusion",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15/4: grid Hopf resolution",
+      "passed": true,
+      "detail": "N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039",
       "expected": null,
       "observed": null
     },
@@ -2162,28 +2193,42 @@
     {
       "claim": "docs: claims 3D pilot Z3",
       "passed": true,
-      "detail": "searched for '0.4432'",
+      "detail": "searched for '0.9602'",
       "expected": null,
       "observed": null
     },
     {
-      "claim": "docs: README 3D pilot Z3",
+      "claim": "docs: README 3D pilot status",
       "passed": true,
-      "detail": "searched for '0.443'",
+      "detail": "searched for 'resolution-limited'",
       "expected": null,
       "observed": null
     },
     {
-      "claim": "docs: summary 3D pilot Z3",
+      "claim": "docs: summary 3D pilot status",
       "passed": true,
-      "detail": "searched for '0.443234'",
+      "detail": "searched for 'resolution-limited'",
       "expected": null,
       "observed": null
     },
     {
-      "claim": "docs: paper B 3D pilot Z3",
+      "claim": "docs: paper B 3D pilot status",
       "passed": true,
-      "detail": "searched for '0.4432'",
+      "detail": "searched for 'not converged'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: summary Hopf resolution",
+      "passed": true,
+      "detail": "searched for 'N=16'",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "docs: README Hopf resolution",
+      "passed": true,
+      "detail": "searched for 'N>=32'",
       "expected": null,
       "observed": null
     },
@@ -2251,8 +2296,8 @@
       "observed": null
     }
   ],
-  "total": 147,
-  "passed": 147,
+  "total": 150,
+  "passed": 150,
   "failed": 0,
   "failures": []
 }

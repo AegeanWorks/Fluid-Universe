@@ -1002,20 +1002,42 @@ def audit_hopfion3d(audit: Audit) -> None:
     payload = load_results("hopfion3d.json")
     rows = {row["mu"]: row for row in payload["rows"]}
     audit.record(
-        "15: single-seed 3D pilot values",
-        abs(rows[0.0]["H"] - 0.9971434045684339) < 1e-9
-        and abs(rows[20.0]["H"] - 0.852975980052028) < 1e-9
-        and abs(rows[20.0]["Z3"] - 0.44323371856388893) < 1e-9
+        "15: 3D pilot values at 1200 steps",
+        abs(rows[0.0]["H"] - 0.7497584225892562) < 1e-9
+        and abs(rows[20.0]["H"] - 0.052372282005896706) < 1e-9
+        and abs(rows[20.0]["Z3"] - 0.9601692730852452) < 1e-9
         and all(row["monotone"] for row in payload["rows"]),
         f"H(mu=0)={rows[0.0]['H']:.9f}, H(mu=20)={rows[20.0]['H']:.9f}, Z3(mu=20)={rows[20.0]['Z3']:.9f}",
     )
     audit.record(
-        "15: no H/Z3 coexistence, pilot only",
-        payload["verdict"]["coexistence_H_and_Z3"] is False
-        and payload["verdict"]["single_seed_pilot"] is True
+        "15: pilot is not converged or resolved",
+        payload["verdict"]["resolved"] is False
+        and payload["convergence"]["converged"] is False
         and payload["verdict"]["production_ready"] is False
+        and payload["verdict"]["claim_15_status"].startswith("UNVERIFIED")
         and all(not (row["H"] >= 1.0 and row["Z3"] >= 0.5) for row in payload["rows"]),
-        "no row satisfies |H|>=1 and Z3>=0.5; single seed",
+        f"force_rms(1200)={payload['convergence']['rows'][-1]['force_rms']:.3e}; no conclusion",
+    )
+
+
+
+# ---------------------------------------------------------------------------
+# Hopf grid resolution
+# ---------------------------------------------------------------------------
+
+
+def audit_hopf_resolution(audit: Audit) -> None:
+    payload = load_results("hopf_resolution.json")
+    rows = {row["n"]: row for row in payload["rows"]}
+    audit.record(
+        "15/4: grid Hopf resolution",
+        abs(rows[16]["H_grid"] - 0.801799780520344) < 1e-9
+        and abs(rows[32]["H_grid"] - 1.000141490106325) < 1e-9
+        and abs(rows[64]["H_grid"] - 1.0000000385194467) < 1e-9
+        and rows[16]["abs_error_vs_preimage"] > 1e-3
+        and rows[32]["abs_error_vs_preimage"] < 1e-3
+        and payload["verdict"]["fine_within_1e_3"] is True,
+        f"N=16 H={rows[16]['H_grid']:.9f}, N=32 H={rows[32]['H_grid']:.9f}, N=64 H={rows[64]['H_grid']:.9f}",
     )
 
 
@@ -1102,10 +1124,12 @@ def audit_docs(audit: Audit) -> None:
         (readme, "1.000000", "README grid Hopf"),
         (summary, "1.000000", "summary grid Hopf"),
         (paper_b, "1.00000004", "paper B grid Hopf"),
-        (claims, "0.4432", "claims 3D pilot Z3"),
-        (readme, "0.443", "README 3D pilot Z3"),
-        (summary, "0.443234", "summary 3D pilot Z3"),
-        (paper_b, "0.4432", "paper B 3D pilot Z3"),
+        (claims, "0.9602", "claims 3D pilot Z3"),
+        (readme, "resolution-limited", "README 3D pilot status"),
+        (summary, "resolution-limited", "summary 3D pilot status"),
+        (paper_b, "not converged", "paper B 3D pilot status"),
+        (summary, "N=16", "summary Hopf resolution"),
+        (readme, "N>=32", "README Hopf resolution"),
         (claims, "baseline 4 passes", "claims baseline 4"),
         (summary, "| 6b | 2D reduction lower bound", "summary 6b row"),
         (summary, "| 6c | Exact dimensional reduction", "summary 6c row"),
@@ -1157,6 +1181,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_lorentz(audit)
     audit_hopf(audit)
     audit_hopfion3d(audit)
+    audit_hopf_resolution(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

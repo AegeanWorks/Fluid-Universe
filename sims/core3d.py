@@ -91,7 +91,10 @@ def relax(
         current = normalize(current - dt * gradient(current, dx, K, kappa, mu))
         history[step + 1] = float(energy(current, dx, K, kappa, mu))
     terms = energy_terms(current, dx, mu, K, kappa)
-    return current, history, {key: float(value) for key, value in terms.items()}
+    final_gradient = gradient(current, dx, K, kappa, mu)
+    result = {key: float(value) for key, value in terms.items()}
+    result["force_rms"] = float(jnp.sqrt(jnp.mean(final_gradient * final_gradient)))
+    return current, history, result
 
 
 def gradient_check(n: int = 8, length: float = 6.0, mu: float = 1.0, eps: float = 1e-6) -> float:
@@ -108,6 +111,42 @@ def gradient_check(n: int = 8, length: float = 6.0, mu: float = 1.0, eps: float 
     ) / (2.0 * eps)
     denominator = max(1.0, abs(float(analytic[index])))
     return float(abs(float(numeric) - float(analytic[index])) / denominator)
+
+
+def convergence_scan(
+    n: int = 32,
+    length: float = 10.0,
+    mu: float = 20.0,
+    steps_values: tuple[int, ...] = (300, 600, 1200),
+    dt: float = 5.0e-4,
+) -> dict:
+    """Show that the N=32 pilot is not converged in step count."""
+    initial, dx = compactified_field(n, length)
+    rows = []
+    for steps in steps_values:
+        relaxed, history, terms = relax(jnp.asarray(initial), dx, mu, steps, dt)
+        field = np.asarray(relaxed)
+        rows.append(
+            {
+                "steps": steps,
+                "E": float(history[-1]),
+                "H": chern_simons_charge(field, dx),
+                "Z3": z3_order(field),
+                "force_rms": terms["force_rms"],
+            }
+        )
+    return {
+        "n": n,
+        "length": length,
+        "mu": mu,
+        "dt": dt,
+        "rows": rows,
+        "converged": bool(rows[-1]["force_rms"] < 1e-2),
+        "resolution_note": (
+            "N=32 is resolution-limited for H: a manual N=64 check gives different "
+            "values. No H or Z3 claim is drawn from this scan."
+        ),
+    }
 
 
 def pilot_scan(
@@ -137,6 +176,7 @@ def pilot_scan(
                 "monotone": bool(np.all(np.diff(history) <= 1e-8)),
                 "H": chern_simons_charge(field_np, dx),
                 "Z3": z3_order(field_np),
+                "force_rms": terms["force_rms"],
             }
         )
     coexistence = any(row["H"] >= 1.0 and row["Z3"] >= 0.5 for row in rows)
@@ -157,11 +197,13 @@ def pilot_scan(
             "H_at_max_Z3": max_z3_row["H"],
             "mu_at_max_Z3": max_z3_row["mu"],
             "production_ready": False,
-            "claim_15_status": "UNVERIFIED (single-seed pilot; no coexistence)",
+            "resolved": False,
+            "claim_15_status": "UNVERIFIED (resolution-limited pilot; no conclusion)",
             "note": (
-                "The Z3 potential increases the azimuthal order parameter but lowers "
-                "the Hopf charge. No tested mu reaches both |H|>=1 and Z3>=0.5. This "
-                "is a single-seed pilot; it is not a production or spontaneous-order claim."
+                "The N=32 pilot is not converged: H and Z3 change with step count and "
+                "resolution (a manual N=64 check gives different values). The 300-step "
+                "trade-off is transient. No coexistence conclusion is drawn; this is not "
+                "a production or spontaneous-order claim."
             ),
         },
     }

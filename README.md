@@ -18,7 +18,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```bash
   python -m phenomenology.run_all
   ```
-  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, `results/neutrinos.json`, `results/neutrinos.md`, `results/quarks.json`, `results/quarks.md`, `results/pmns.json`, `results/pmns.md`, `results/delta_search.json`, `results/delta_search.md`, `results/frank_oseen.json`, `results/frank_oseen.md`, `results/derrick.json`, `results/derrick.md`, `results/topology.json`, `results/topology.md`, `results/reduction.json`, `results/reduction.md`, `results/predictions.json`, `results/predictions.md`, `results/lorentz.json`, `results/lorentz.md`, `results/sim_core.json`, `results/sim_core.md`, `results/hopf.json`, `results/hopf.md`, `results/hopfion.json`, `results/hopfion.md`, `results/hopfion3d.json`, `results/hopfion3d.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
+  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, `results/neutrinos.json`, `results/neutrinos.md`, `results/quarks.json`, `results/quarks.md`, `results/pmns.json`, `results/pmns.md`, `results/delta_search.json`, `results/delta_search.md`, `results/frank_oseen.json`, `results/frank_oseen.md`, `results/derrick.json`, `results/derrick.md`, `results/topology.json`, `results/topology.md`, `results/reduction.json`, `results/reduction.md`, `results/predictions.json`, `results/predictions.md`, `results/lorentz.json`, `results/lorentz.md`, `results/sim_core.json`, `results/sim_core.md`, `results/hopf.json`, `results/hopf.md`, `results/hopfion.json`, `results/hopfion.md`, `results/hopfion3d.json`, `results/hopfion3d.md`, `results/hopf_resolution.json`, `results/hopf_resolution.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
 - **Verify every claim independently (two runs)**:
   ```bash
   python -m verification.verify
@@ -30,7 +30,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 147/147 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 150/150 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -70,7 +70,8 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | 1D simulation baseline | PASS: kink, gradient, monotone flow, rotor; Hessian partial | `results/sim_core.json` |
 | Hopf preimage linking | PASS: H=0.999958 at 400 samples; reflection flips sign; rotation/shear invariant | `results/hopf.json` |
 | Hopf grid Chern-Simons estimator | PASS (normalized): 1.000000 at N=64; agrees with preimage | `results/hopf.json` |
-| 3D E2+E4+Z3 pilot | NEGATIVE: max Z3=0.443 at H=0.853; no coexistence; single seed | `results/hopfion3d.json` |
+| Hopf grid resolution | N>=32 within 1e-3; N=16/24 under-resolved | `results/hopf_resolution.json` |
+| 3D E2+E4+Z3 pilot | UNVERIFIED: N=32 not converged/resolution-limited; H/Z3 vary with steps; no conclusion | `results/hopfion3d.json` |
 | 3D Hopfion + Z3 order | UNVERIFIED: no production run or spontaneous-order test | `sims/README.md` |
 | Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
 | Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |

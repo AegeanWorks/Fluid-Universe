@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T06:17:06+00:00 | `8c073c28a57bd0bac3b358948691482087fe7190` | 147/147 | `dff195075c347d9e...` | `1fb320a039333f60...` |
-| run2 | 2026-10-26T06:17:14+00:00 | `8c073c28a57bd0bac3b358948691482087fe7190` | 147/147 | `dff195075c347d9e...` | `1fb320a039333f60...` |
+| run1 | 2026-10-26T07:34:18+00:00 | `f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49` | 150/150 | `79e8a0bc5ea8a932...` | `24ef91f820f85a21...` |
+| run2 | 2026-10-26T07:34:25+00:00 | `f3fe7a4bfb6607e99b7b4839bb75f00bb1e5fd49` | 150/150 | `79e8a0bc5ea8a932...` | `24ef91f820f85a21...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -26,11 +26,12 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 14a: Derrick derivative equals virial | PASS | PASS | YES | YES | numeric dE/dlambda=2.499999998, virial=2.500000000 |
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
+| 15/4: grid Hopf resolution | PASS | PASS | YES | YES | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
 | 15/4: grid estimator matches known answer | PASS | PASS | YES | YES | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
 | 15/4: preimage linking converges to 1 | PASS | PASS | YES | YES | H(100/200/400)=0.999331467/0.999832946/0.999958242 |
 | 15/4: reflection, rotation, shear | PASS | PASS | YES | YES | reflection=-0.999832946, rotation=0.999832946, shear=0.999834138 |
-| 15: no H/Z3 coexistence, pilot only | PASS | PASS | YES | YES | no row satisfies |H|>=1 and Z3>=0.5; single seed |
-| 15: single-seed 3D pilot values | PASS | PASS | YES | YES | H(mu=0)=0.997143405, H(mu=20)=0.852975980, Z3(mu=20)=0.443233719 |
+| 15: 3D pilot values at 1200 steps | PASS | PASS | YES | YES | H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273 |
+| 15: pilot is not converged or resolved | PASS | PASS | YES | YES | force_rms(1200)=1.012e-01; no conclusion |
 | 16: no new prediction found | PASS | PASS | YES | YES | 7 candidate classes, none new |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
 | 1b: 3 parameters fit 3 masses exactly | PASS | PASS | YES | YES | max residual 8.527e-14 over 1000 random positive-root triples |
@@ -87,8 +88,9 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | F9: converted mu vs Xing-Zhang | PASS | PASS | YES | YES | relative difference +1.067e-04 |
 | F9: converted tau vs Xing-Zhang | PASS | PASS | YES | YES | relative difference +3.404e-05 |
 | docs: F10 not overstated as an exact verification | PASS | PASS | YES | YES | F10 is cross-checked only at the few-percent level against three-loop literature |
-| docs: README 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.443' |
+| docs: README 3D pilot status | PASS | PASS | YES | YES | searched for 'resolution-limited' |
 | docs: README Hopf preimage | PASS | PASS | YES | YES | searched for '0.999958' |
+| docs: README Hopf resolution | PASS | PASS | YES | YES | searched for 'N>=32' |
 | docs: README I_eff | PASS | PASS | YES | YES | searched for 'log-divergent' |
 | docs: README Q_down | PASS | PASS | YES | YES | searched for '0.748' |
 | docs: README Q_nu | PASS | PASS | YES | YES | searched for '0.585612' |
@@ -97,7 +99,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: README grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
 | docs: README xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: abstract distinguishes scheme conversion from full-SM matching | PASS | PASS | YES | YES | abstract must quote both the one-pass QED conversion (0.6679160) and the full-SM matching value (0.6678240), without conflating them |
-| docs: claims 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.4432' |
+| docs: claims 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.9602' |
 | docs: claims Delta Q | PASS | PASS | YES | YES | searched for '2.89\times10^{-6}' |
 | docs: claims Delta r | PASS | PASS | YES | YES | searched for '3.06\times10^{-6}' |
 | docs: claims E0 | PASS | PASS | YES | YES | searched for '0.8911861597' |
@@ -121,7 +123,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: claims xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: fit numbers match JSON | PASS | PASS | YES | YES | stored fit and RG values match the regenerated outputs |
 | docs: paper A no prediction | PASS | PASS | YES | YES | searched for 'No genuinely new prediction' |
-| docs: paper B 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.4432' |
+| docs: paper B 3D pilot status | PASS | PASS | YES | YES | searched for 'not converged' |
 | docs: paper B Derrick virial | PASS | PASS | YES | YES | searched for 'E_2-E_4+3V=0' |
 | docs: paper B Frank-Oseen dispersion | PASS | PASS | YES | YES | searched for '\omega^2=(K/\rho)k^2' |
 | docs: paper B GRB order | PASS | PASS | YES | YES | searched for '10^{-18}' |
@@ -152,11 +154,12 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | docs: scorecard delta sigma | PASS | PASS | YES | YES | searched for '0.407' |
 | docs: scorecard xi | PASS | PASS | YES | YES | searched for '1.00348' |
 | docs: shape-only diagnostic labelled | PASS | PASS | YES | YES | searched for 'NOT a cross-check' |
-| docs: summary 3D pilot Z3 | PASS | PASS | YES | YES | searched for '0.443234' |
+| docs: summary 3D pilot status | PASS | PASS | YES | YES | searched for 'resolution-limited' |
 | docs: summary 6b row | PASS | PASS | YES | YES | searched for '| 6b | 2D reduction lower bound' |
 | docs: summary 6c row | PASS | PASS | YES | YES | searched for '| 6c | Exact dimensional reduction' |
 | docs: summary Derrick virial | PASS | PASS | YES | YES | searched for 'E2-E4+3V' |
 | docs: summary Hopf preimage | PASS | PASS | YES | YES | searched for '0.999958' |
+| docs: summary Hopf resolution | PASS | PASS | YES | YES | searched for 'N=16' |
 | docs: summary I_eff | PASS | PASS | YES | YES | searched for 'log-divergent' |
 | docs: summary Q_nu | PASS | PASS | YES | YES | searched for '0.585612' |
 | docs: summary grid Hopf | PASS | PASS | YES | YES | searched for '1.000000' |
