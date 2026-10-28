@@ -1,5 +1,10 @@
 # fluid-universe
 
+<!-- aegean:media:start -->
+<p align="center"><img src="assets/logo.svg" alt="Fluid-Universe logo" width="96" height="96"></p>
+<p align="center"><img src="assets/social-preview.svg" alt="Fluid-Universe social preview" width="100%"></p>
+<!-- aegean:media:end -->
+
 [![Built with AIKit](https://img.shields.io/badge/built%20with-AIKit-6f42c1)](https://github.com/AegeanWorks/AIKit)
 
 Falsification-first research codebase testing a Z3 circulant origin of the Koide lepton relation, with a separately labelled nematic-fluid UV speculation.
