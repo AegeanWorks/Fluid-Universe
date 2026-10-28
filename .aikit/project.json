@@ -4,6 +4,7 @@
   "test_command": "python -m pytest -q",
   "topics": [
     "aikit",
+    "aikit-integrated",
     "source-available",
     "aegean-science-license",
     "research",
@@ -21,8 +22,7 @@
     "mathematical-physics",
     "neutrino-physics",
     "open-science",
-    "standard-model",
-    "symmetry"
+    "standard-model"
   ],
   "gates": {},
   "ui_required": false,
