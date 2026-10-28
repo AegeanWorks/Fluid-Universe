@@ -4,6 +4,10 @@
   "test_command": "python -m pytest -q",
   "topics": [
     "aikit",
+    "source-available",
+    "aegean-science-license",
+    "research",
+    "commercial-license",
     "koide",
     "physics",
     "python",
@@ -11,18 +15,14 @@
     "falsification",
     "particle-physics",
     "science",
-    "source-available",
     "aegeanworks",
     "cli",
     "computational-physics",
-    "research",
-    "software",
-    "theoretical-physics",
-    "standard-model",
-    "neutrino-physics",
-    "symmetry",
     "mathematical-physics",
-    "open-science"
+    "neutrino-physics",
+    "open-science",
+    "standard-model",
+    "symmetry"
   ],
   "gates": {},
   "ui_required": false,
@@ -58,5 +58,11 @@
     "symmetry",
     "mathematical-physics",
     "open-science"
+  ],
+  "license_topics": [
+    "source-available",
+    "aegean-science-license",
+    "research",
+    "commercial-license"
   ]
 }
