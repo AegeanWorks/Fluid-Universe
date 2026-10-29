@@ -10,7 +10,7 @@
 - **Total Classes**: `6`
 - **Total Top-Level Functions**: `363`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `9038`
+- **Total Source Lines**: `9045`
 
 ---
 
@@ -252,7 +252,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `526` lines (`24665` bytes)
+**Size**: `526` lines (`24710` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -317,9 +317,9 @@
 ---
 
 ### [`sims/__init__.py`](sims/__init__.py)
-> *Simulation package: validated 1D core, no 3D production run.*
+> *Simulation package: validated 1D core and bounded 3D diagnostics.*
 
-**Size**: `1` lines (`67` bytes)
+**Size**: `1` lines (`72` bytes)
 
 ---
 
@@ -366,7 +366,7 @@
 ### [`sims/production.py`](sims/production.py)
 > *Production scan for claim 15: E2 + Skyrme E4 + Z3 potential.*
 
-**Size**: `277` lines (`10522` bytes)
+**Size**: `277` lines (`10527` bytes)
 
 **Functions:**
 - `def spectral_upsample(field, factor)` - *Band-limited upsampling of a periodic real field by an integer factor.*
@@ -899,7 +899,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1418` lines (`56733` bytes)
+**Size**: `1418` lines (`56738` bytes)
 
 **Classes:**
 - `class Audit`
@@ -946,7 +946,7 @@
 ### [`verification/compare.py`](verification/compare.py)
 > *Compare two independent verification runs.*
 
-**Size**: `215` lines (`8113` bytes)
+**Size**: `222` lines (`8203` bytes)
 
 **Functions:**
 - `def _load(tag)`

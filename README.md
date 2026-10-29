@@ -98,6 +98,7 @@ fluid-universe/
 ├── LICENSES/                 <- REUSE license texts
 ├── REUSE.toml                <- Machine-readable SPDX metadata
 ├── ASSETS.md                 <- Asset/data manifest: what the license covers
+├── assets/                   <- brand artwork and social preview
 ├── README.md
 ├── Makefile                  <- test, results, and two-run verification targets
 ├── pyproject.toml            <- dependencies and pytest configuration
@@ -108,7 +109,7 @@ fluid-universe/
 ├── phenomenology/            <- PDG data, circulant fit, one-loop SM RGE
 ├── tests/                    <- pytest identities, limits, regression numbers
 ├── verification/             <- independent re-derivation of verified claims
-├── sims/                     <- validated 1D core; no 3D production run
+├── sims/                     <- validated 1D core and bounded 3D diagnostics
 ├── paper/                    <- two LaTeX documents, separate scopes
 └── results/                  <- machine-generated outputs only
 ```

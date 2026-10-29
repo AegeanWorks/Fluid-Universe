@@ -1,81 +1,16 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "z3-koide-core",
-    "last_phase": "in_progress",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1793042013.5643134,
-    "owner": "antigravity:1",
-    "started_by": "kilo:1",
-    "continuations": [
-      {
-        "agent": "opencode:deepseek-v4.1-flash-free",
-        "from": "kilo:1",
-        "at": 1793036996.719043
-      },
-      {
-        "agent": "antigravity:1",
-        "from": "opencode:deepseek-v4.1-flash-free",
-        "at": 1793041194.9353647
-      }
-    ],
-    "completed_at": 1793042013.6775298
+    "task_id": "reforge:run-1",
+    "last_phase": "phase 3",
+    "active_phase": 3,
+    "status": "in_progress",
+    "updated_at": 1793293127.6142771,
+    "owner": "opencode",
+    "started_by": "opencode",
+    "continuations": []
   },
   "checkpoints": [
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 2",
-      "phase_num": 2,
-      "description": "[1/6] Scaffold falsification-first repo, claim ledger, formula registry, and symbolic core for claims 1-2",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792952158.8210313,
-      "timestamp_str": "2026-10-25 21:15:58",
-      "agent": "kilo:1",
-      "impact_assessment": {
-        "why": "The user wants a reproducible, falsification-first research codebase for a Z3 circulant/Koide hypothesis with a separable nematic-fluid UV track; without a ledger and formula registry, claims cannot be audited.",
-        "benefits": "Auditable claim statuses, machine-checked algebra, and a reproducible base for PDG and RG work.",
-        "risks": "contract: new project only, no AIKit core edits; dependency: sympy/numpy/scipy/hypothesis added to project pyproject; concurrency: single agent, no shared files; state: new repo, ledger checkpointed before writes",
-        "mitigation": "Declare deps in pyproject, keep all claims in claims.md, regenerate every number from scripts, run pytest before any commit."
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[2/6] Complete: rotor exact diagonalisation, degeneracy falsification, domain-wall tension; 36 tests; 4/4 gates; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792955977.034098,
-      "timestamp_str": "2026-10-25 22:19:37",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "results regenerate via python -m phenomenology.run_all",
-        "next": "neutrino and quark checks with explicit mass definitions (claims 7-8)",
-        "failed": "rotor map closed",
-        "open": "claims 6b, 7-16",
-        "evidence": "results/rotor.json, results/summary.md"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[3/6] Verification pass complete: two separate per-claim audit runs agree 65/65; gauge-coupling RHS bug fixed; F9/F10 downgraded; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792961062.6997557,
-      "timestamp_str": "2026-10-25 23:44:22",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "make results then make verify",
-        "next": "verify claims 6b and 7-16",
-        "failed": "none",
-        "open": "claims 6b,7-16",
-        "evidence": "results/verification.md, results/summary.md, 37 tests passed, 4/4 gates"
-      }
-    },
     {
       "task_id": "z3-koide-core",
       "phase": "phase 4",
@@ -308,6 +243,85 @@
       "timestamp": 1793042013.6775312,
       "timestamp_str": "2026-10-26 22:13:33",
       "agent": "antigravity:1"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: window 15, 3 commit(s), 70 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, 1 binary not analysed",
+      "files_affected": [
+        "assets/social-preview.png"
+      ],
+      "status": "in_progress",
+      "timestamp": 1793291412.703102,
+      "timestamp_str": "2026-10-29 19:30:12",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 6",
+      "phase_num": 3,
+      "description": "Reforge stage 6: window 18, 3 commit(s), 59 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793291915.7990813,
+      "timestamp_str": "2026-10-29 19:38:35",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 7",
+      "phase_num": 3,
+      "description": "Reforge stage 7: window 21, 3 commit(s), 63 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793292077.5231578,
+      "timestamp_str": "2026-10-29 19:41:17",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 8",
+      "phase_num": 3,
+      "description": "Reforge stage 8: window 24, 3 commit(s), 98 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793292254.1427035,
+      "timestamp_str": "2026-10-29 19:44:14",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 9",
+      "phase_num": 3,
+      "description": "Reforge stage 9: window 26, 2 commit(s), 53 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793292681.1445875,
+      "timestamp_str": "2026-10-29 19:51:21",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "reforge stage 9",
+      "phase_num": 3,
+      "description": "Reforge stage 9: run stopped at stage 9; resume it with `reforge resume`",
+      "files_affected": [],
+      "status": "suspended",
+      "timestamp": 1793292867.3357632,
+      "timestamp_str": "2026-10-29 19:54:27",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "phase 3",
+      "phase_num": 3,
+      "description": "checklists: passed (test, hygiene, guidelines, secrets); reforge run-1 complete",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793293127.6142771,
+      "timestamp_str": "2026-10-29 19:58:47",
+      "agent": "opencode"
     }
   ]
 }

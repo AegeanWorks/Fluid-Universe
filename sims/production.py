@@ -211,7 +211,7 @@ def run_production(
     )
     topology_preserved = min_pre_norm > PRE_NORM_TOL
     h_ok = (
-        final["H"] >= 1.0 - H_TOL
+        abs(final["H"] - 1.0) <= H_TOL
         and abs(final["H"] - final["H_upsampled"]) <= H_TOL
     )
     z3_ok = final["Z3"] >= Z3_MIN

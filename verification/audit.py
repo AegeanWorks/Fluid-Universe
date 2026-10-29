@@ -1174,7 +1174,7 @@ def audit_production(audit: Audit) -> None:
         and (
             not verdict["H_ok"]
             or (
-                final["H"] >= 1.0 - main["criteria"]["H_TOL"]
+                abs(final["H"] - 1.0) <= main["criteria"]["H_TOL"]
                 and abs(final["H"] - final["H_upsampled"])
                 <= main["criteria"]["H_TOL"]
             )

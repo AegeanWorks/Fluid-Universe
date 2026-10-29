@@ -89,7 +89,14 @@ def compare(tags: tuple[str, str] = ("run1", "run2")) -> dict:
         for run in runs
     )
     all_passed = all(run["failed"] == 0 for run in runs)
-    accepted = claims_agree and details_match and fingerprints_match and all_passed
+    accepted = (
+        claims_agree
+        and details_match
+        and checks_match
+        and totals_match
+        and fingerprints_match
+        and all_passed
+    )
 
     combined = {
         "meta": {

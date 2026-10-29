@@ -189,7 +189,7 @@ Single-seed pilot, N=32, 1200 steps; not converged and resolution-limited.
 - The grid estimator needs N>=32 for 1e-3 accuracy on the analytic map. This explains why the N=32 3D pilot H values are resolution-limited.
 ## Not done / not claimed
 
-- No fully stable Hopfion proof, Lorentz-violation bound, or production 3D run.
+- No fully stable Hopfion proof or Lorentz-violation bound; the separate 3D production scan is UNVERIFIED and not converged.
 - No new prediction beyond the built-in Q=2/3 (claim 16 remains UNVERIFIED).
 - The nematic-fluid UV picture has no validated dynamical model; the F-O and Derrick checks are structural only.
 
