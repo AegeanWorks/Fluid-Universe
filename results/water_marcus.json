@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "config": {
+      "center_ev": 1.7,
+      "lambda_ev": 1.6171325440878093,
+      "reference_classical_ev": 0.706,
+      "reference_quantized_ev": 0.773,
+      "scope": "classical Marcus Gaussian width from water reorganization"
+    },
+    "config_sha256": "fa7c645e050fd6841bf9d7bc89476024d5e666f9cf11008f7dd4ef8bcb1db530",
+    "generated_utc": "2026-10-30T20:56:58+00:00",
+    "git": {
+      "commit": "baaed62863c2c781a7349c262dece024c69eeba2",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_center_ev": 1.7,
+    "scales": {
+      "center_ev": 1.7,
+      "lambda_ev": 1.6171325440878093,
+      "ratio_classical": 0.9644681741555609,
+      "ratio_quantized": 0.8808726144292702,
+      "reference_classical_ev": 0.706,
+      "reference_quantized_ev": 0.773,
+      "sqrt_ratio_350_300": 1.0801234497346435,
+      "widths_ev": {
+        "200": 0.5559643864278052,
+        "250": 0.621587080560767,
+        "298": 0.6786410203298269,
+        "300": 0.6809145309538259,
+        "350": 0.7354717521482932
+      }
+    },
+    "verdict": {
+      "claim_40_status": "NUMERIC (Marcus FWHM 0.681 eV; reference 0.706-0.773 eV)",
+      "classical_width_within_5_percent": true,
+      "note": "The same water reorganization energy that predicts the VDE also predicts the band width: FWHM=0.680915 eV at 300 K, 3.6% below the classical reference 0.706 eV and 11.9% below the quantized 0.773 eV. The width scales as sqrt(T): 0.555964 eV at 200 K and 0.735472 eV at 350 K. The classical Gaussian model is approximate; the experimental band is asymmetric with a blue tail. The next test is the asymmetric line shape and its temperature dependence.",
+      "quantized_width_within_15_percent": true,
+      "sqrt_temperature_scaling": true
+    }
+  }
+}

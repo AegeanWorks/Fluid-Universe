@@ -1989,6 +1989,41 @@ def audit_water_born_cavity(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Marcus band width from the water reorganization energy (claim 40/ADR-031)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_marcus(audit: Audit) -> None:
+    payload = load_results("water_marcus.json")
+    result = payload["result"]
+    scales = result["scales"]
+    widths = scales["widths_ev"]
+    verdict = result["verdict"]
+    audit.record(
+        "40: the Marcus width matches the reference hydrated-electron band",
+        abs(widths["300"] - 0.680915) < 0.001
+        and abs(scales["ratio_classical"] - 1.0) < 0.05
+        and abs(scales["ratio_quantized"] - 1.0) < 0.15
+        and verdict["classical_width_within_5_percent"] is True
+        and verdict["quantized_width_within_15_percent"] is True,
+        f"FWHM300={widths['300']:.6f}, "
+        f"ratio_classical={scales['ratio_classical']:.6f}, "
+        f"ratio_quantized={scales['ratio_quantized']:.6f}",
+    )
+    audit.record(
+        "40: the width follows sqrt(T)",
+        abs(widths["350"] / widths["300"] - scales["sqrt_ratio_350_300"])
+        < 1.0e-6
+        and abs(widths["200"] - 0.555964) < 0.001
+        and verdict["sqrt_temperature_scaling"] is True
+        and verdict["claim_40_status"].startswith("NUMERIC"),
+        f"FWHM200={widths['200']:.6f}, "
+        f"FWHM350={widths['350']:.6f}, "
+        f"ratio={widths['350'] / widths['300']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2409,6 +2444,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_pressure(audit)
     audit_water_reorganization(audit)
     audit_water_born_cavity(audit)
+    audit_water_marcus(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

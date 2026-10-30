@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `143`
+- **Total Python Modules**: `146`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `772`
+- **Total Top-Level Functions**: `783`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `19591`
+- **Total Source Lines**: `19873`
 
 ---
 
@@ -558,6 +558,17 @@
 
 **Functions:**
 - `def run_water_electron_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_marcus_report.py`](phenomenology/water_marcus_report.py)
+> *Marcus band width from the water reorganization energy (claim 40, ADR-031).*
+
+**Size**: `123` lines (`4785` bytes)
+
+**Functions:**
+- `def run_water_marcus_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1358,6 +1369,20 @@
 
 ---
 
+### [`tests/test_water_marcus.py`](tests/test_water_marcus.py)
+> *Marcus band width from the water reorganization energy (claim 40).*
+
+**Size**: `58` lines (`1947` bytes)
+
+**Functions:**
+- `def test_width_at_300_k()`
+- `def test_width_scaling()`
+- `def test_gaussian_line_shape()`
+- `def test_marcus_scales()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_pressure.py`](tests/test_water_pressure.py)
 > *Self-consistent finite-well pressure balance (claim 37).*
 
@@ -1868,6 +1893,18 @@
 
 ---
 
+### [`theory/water_marcus.py`](theory/water_marcus.py)
+> *Marcus band width from the water reorganization energy (claim 40, ADR-031).*
+
+**Size**: `63` lines (`2212` bytes)
+
+**Functions:**
+- `def marcus_width_ev(lambda_ev, temperature_k)` - *Classical Marcus Gaussian FWHM in eV.*
+- `def gaussian_line_shape(energy_ev, center_ev, fwhm_ev)` - *Normalized Gaussian value at energy_ev.*
+- `def marcus_scales()` - *Collect the Marcus widths and the reference comparison.*
+
+---
+
 ### [`theory/water_pressure.py`](theory/water_pressure.py)
 > *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
 
@@ -1972,7 +2009,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2472` lines (`98717` bytes)
+**Size**: `2508` lines (`100214` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2034,6 +2071,7 @@
 - `def audit_water_pressure(audit)`
 - `def audit_water_reorganization(audit)`
 - `def audit_water_born_cavity(audit)`
+- `def audit_water_marcus(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2063,7 +2101,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `173` lines (`4503` bytes)
+**Size**: `175` lines (`4551` bytes)
 
 **Functions:**
 - `def _source_files()`

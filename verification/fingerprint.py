@@ -128,6 +128,8 @@ RESULT_FILES = (
     "water_reorganization.md",
     "water_born_cavity.json",
     "water_born_cavity.md",
+    "water_marcus.json",
+    "water_marcus.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

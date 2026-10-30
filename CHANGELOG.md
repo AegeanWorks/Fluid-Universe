@@ -783,3 +783,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 39 is **NUMERIC (Born cavity R=2.444 Angstrom; lambda=1.617 eV; VDE 3.317 eV, 0.47 sigma)**. The 1.7 eV feature is a solvent reorganization transition, not a static 1s->1p gap; the next test is the Marcus band shape and width.
 
 - Verification after the self-consistent Born cavity synthesis: two separate runs, 228/228 checks each.
+
+## 2026-10-30 - Marcus band width from the water reorganization energy (claim 40, ADR-031)
+
+**Added**
+
+- `theory/water_marcus.py`, `phenomenology/water_marcus_report.py`, `make watermarcus`, `tests/test_water_marcus.py`, and `results/water_marcus.{json,md}`.
+
+**Results**
+
+- With \(\lambda=1.617132544\) eV, the classical Marcus FWHM is \(0.680915\) eV at 300 K, \(0.555964\) eV at 200 K, \(0.621587\) eV at 250 K, \(0.678641\) eV at 298 K and \(0.735472\) eV at 350 K.
+- The 300 K value is \(0.964468\times\) the classical reference \(0.706\) eV and \(0.880873\times\) the quantized reference \(0.773\) eV (Turi et al., JCTC 20, 4265, 2024).
+- The \(350/300\) ratio is \(1.080123=\sqrt{350/300}\).
+- Claim 40 is **NUMERIC (Marcus FWHM 0.681 eV; reference 0.706-0.773 eV)**. The same water reorganization energy now accounts for the peak position, the VDE and the band width; the next test is the asymmetric line shape and its temperature dependence.
+
+- Verification after the Marcus band-width test: two separate runs, 230/230 checks each.

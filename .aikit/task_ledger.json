@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-born-cavity-v1",
+    "task_id": "water-marcus-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793393272.3890867,
+    "updated_at": 1793394219.5928273,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793393272.5401359
+    "completed_at": 1793394219.7311552
   },
   "checkpoints": [
-    {
-      "task_id": "water-vde-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-026 and add failing tests for the VDE+absorption finite-well inversion; predict R=3.732 A, V0=4.998 eV, E1s=-3.27 eV, E1p=-1.57 eV, gap=1.7 eV",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793388626.4291964,
-      "timestamp_str": "2026-10-30 22:30:26",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 34's bound-free interpretation requires a 1s binding of 1.375 eV, but the measured VDE is 3.27 +/- 0.10 eV. A 1.7 eV photon is below threshold, so the absorption must be bound-bound. The finite well must satisfy both observables.",
-        "benefits": "An independent experimental constraint, a two-observable inversion, and a decisive test of the minimal capillary/Born cavity.",
-        "risks": "contract: new claim 35; dependency: math only; concurrency: none; state: one result file; data: VDE 3.27 +/- 0.10 eV from Tang et al. 2010; model: finite square well, no soft wall",
-        "mitigation": "Use the measured VDE central value and its +/-1 sigma band, solve the depth for the binding at each radius, invert for the 1.7 eV gap, and compare the result with the capillary radius and Born depth"
-      }
-    },
-    {
-      "task_id": "water-vde-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] VDE+absorption: 3.27 eV makes 1.7 eV bound-bound; finite well needs R=3.732122844 A, V0=4.997522901 eV, E1s=-3.27, E1p=-1.57, gap=1.7; capillary R=2.858/Born 2.487 outside the VDE band; claim 35 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793389130.0043917,
-      "timestamp_str": "2026-10-30 22:38:50",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-vde-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 220/220 accepted (2 new claim-35 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793389134.3571715,
-      "timestamp_str": "2026-10-30 22:38:54",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-vde-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-vde-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793389134.6242626,
-      "timestamp_str": "2026-10-30 22:38:54",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-softwall-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793393272.5401375,
       "timestamp_str": "2026-10-30 23:47:52",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-marcus-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-031 and add failing tests for the Marcus band width; predict FWHM=0.680915 eV at 300 K, 0.555964 at 200 K, 0.735472 at 350 K, reference 0.706-0.773 eV",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793393747.8158255,
+      "timestamp_str": "2026-10-30 23:55:47",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 39 used the water reorganization energy to predict the VDE. The same lambda should predict the absorption width; the reference bulk spectrum has FWHM around 0.7 eV.",
+        "benefits": "A no-parameter band-width test of the solvent-reorganization interpretation, plus a temperature-scaling prediction.",
+        "risks": "contract: new claim 40; dependency: math only; concurrency: none; state: one result file; data: reference FWHM 0.706-0.773 eV from Turi et al. 2024; model: classical Gaussian Marcus line shape",
+        "mitigation": "Use the same lambda=1.617132544 eV, compute the classical Gaussian FWHM, compare with the reference range, and report the sqrt(T) prediction; state that the experimental band is asymmetric and the classical model is approximate"
+      }
+    },
+    {
+      "task_id": "water-marcus-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Marcus width: lambda=1.617132544 eV gives FWHM 0.680915 eV at 300 K (0.964468x classical 0.706, 0.880873x quantized 0.773); 200 K 0.555964, 350 K 0.735472; claim 40 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793394216.4033206,
+      "timestamp_str": "2026-10-31 00:03:36",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-marcus-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 230/230 accepted (2 new claim-40 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793394219.5928273,
+      "timestamp_str": "2026-10-31 00:03:39",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-marcus-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-marcus-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793394219.7311573,
+      "timestamp_str": "2026-10-31 00:03:39",
       "agent": "opencode"
     }
   ]

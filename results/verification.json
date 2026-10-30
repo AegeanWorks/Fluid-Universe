@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "eeb35c57bc3844116bb80b3271fed0bc8eb495ba1355e7147f5ff4e1f379d70c",
-      "results_sha256": "2fbc0fe3c760011d9cfe311c7f85cb28e8b86fbbe704783d56ab7aa284a803fa"
+      "source_sha256": "00b558c6f5ed764a0ec381cb70aabcca73a95288353705946d7f29261a2e391e",
+      "results_sha256": "f34dc54cf35f7effc7a3f649b5b9233c12433aa9a201ee274a9cafb851c3cd56"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T20:46:08+00:00",
-        "git_commit": "48ef324c0e8336963af447d28cd88a0d759d516c",
-        "passed": 228,
-        "total": 228,
+        "generated_utc": "2026-10-30T21:02:10+00:00",
+        "git_commit": "baaed62863c2c781a7349c262dece024c69eeba2",
+        "passed": 230,
+        "total": 230,
         "failed": 0,
-        "checks_sha256": "d8b44d8b946d1c0dab17186c3697130d355356ff19e9ff76c777dcbbdd79cfea",
+        "checks_sha256": "f59317e66c555442e4bdfccc9eaf46b1198dfae3a35896f086ccda8180d1b435",
         "fingerprints": {
-          "source_sha256": "eeb35c57bc3844116bb80b3271fed0bc8eb495ba1355e7147f5ff4e1f379d70c",
-          "results_sha256": "2fbc0fe3c760011d9cfe311c7f85cb28e8b86fbbe704783d56ab7aa284a803fa"
+          "source_sha256": "00b558c6f5ed764a0ec381cb70aabcca73a95288353705946d7f29261a2e391e",
+          "results_sha256": "f34dc54cf35f7effc7a3f649b5b9233c12433aa9a201ee274a9cafb851c3cd56"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T20:46:15+00:00",
-        "git_commit": "48ef324c0e8336963af447d28cd88a0d759d516c",
-        "passed": 228,
-        "total": 228,
+        "generated_utc": "2026-10-30T21:02:19+00:00",
+        "git_commit": "baaed62863c2c781a7349c262dece024c69eeba2",
+        "passed": 230,
+        "total": 230,
         "failed": 0,
-        "checks_sha256": "d8b44d8b946d1c0dab17186c3697130d355356ff19e9ff76c777dcbbdd79cfea",
+        "checks_sha256": "f59317e66c555442e4bdfccc9eaf46b1198dfae3a35896f086ccda8180d1b435",
         "fingerprints": {
-          "source_sha256": "eeb35c57bc3844116bb80b3271fed0bc8eb495ba1355e7147f5ff4e1f379d70c",
-          "results_sha256": "2fbc0fe3c760011d9cfe311c7f85cb28e8b86fbbe704783d56ab7aa284a803fa"
+          "source_sha256": "00b558c6f5ed764a0ec381cb70aabcca73a95288353705946d7f29261a2e391e",
+          "results_sha256": "f34dc54cf35f7effc7a3f649b5b9233c12433aa9a201ee274a9cafb851c3cd56"
         }
       }
     ],
@@ -882,6 +882,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "independent Q(M_Z)=0.667823994186, Q-2/3=+1.157e-03"
+    },
+    {
+      "claim": "40: the Marcus width matches the reference hydrated-electron band",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "FWHM300=0.680915, ratio_classical=0.964468, ratio_quantized=0.880873"
+    },
+    {
+      "claim": "40: the width follows sqrt(T)",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "FWHM200=0.555964, FWHM350=0.735472, ratio=1.080123"
     },
     {
       "claim": "4a: exact one-loop invariance would require a generation-blind RHS",
@@ -2773,6 +2789,20 @@
       "observed": null
     },
     {
+      "claim": "40: the Marcus width matches the reference hydrated-electron band",
+      "passed": true,
+      "detail": "FWHM300=0.680915, ratio_classical=0.964468, ratio_quantized=0.880873",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "40: the width follows sqrt(T)",
+      "passed": true,
+      "detail": "FWHM200=0.555964, FWHM350=0.735472, ratio=1.080123",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3466,8 +3496,8 @@
       "observed": null
     }
   ],
-  "total": 228,
-  "passed": 228,
+  "total": 230,
+  "passed": 230,
   "failed": 0,
   "failures": []
 }

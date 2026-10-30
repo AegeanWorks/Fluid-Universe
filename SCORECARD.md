@@ -63,5 +63,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 37 | NUMERIC (pressure-balance radius 3.973 Å; VDE-matched gap 1.344 eV) | Fixed-V0 pressure balance: Born depth R=3.973 Å (not 2.858), binding 1.177 eV, gap 1.133 eV; VDE-matched V0=4.611 eV gives R=4.336 Å, gap 1.344 eV, not 1.7 eV. |
 | 38 | NUMERIC (reorganization relation; 11.9% residual, 1.87σ) | VDE-optical difference 1.57 eV vs water λ=1.383 eV at R=2.858 Å (residual 0.187 eV); required R=2.518 Å (0.881x capillary); pressure radius 3.973 Å gives λ=0.995 eV (0.634x), inconsistent. |
 | 39 | NUMERIC (Born cavity R=2.444 Å; λ=1.617 eV; VDE 3.317 eV, 0.47σ) | Self-consistent Born cavity R=2.444456 Å, V0=2.907799 eV, E1s=-0.436572 eV, no 1p; λ=1.617133 eV predicts VDE 3.317133 eV (0.47σ); required R=2.518 Å (1.030x equilibrium). The 1.7 eV feature is water reorganization, not 1s→1p. |
+| 40 | NUMERIC (Marcus FWHM 0.681 eV; reference 0.706-0.773 eV) | λ=1.617 eV predicts FWHM 0.680915 eV at 300 K (0.964x classical 0.706, 0.881x quantized 0.773); width scales as sqrt(T): 0.556 eV at 200 K, 0.735 eV at 350 K. |
 
-Claim audit: two separate runs agree per claim, 228/228 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 230/230 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
