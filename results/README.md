@@ -100,6 +100,8 @@ Do not edit these files by hand.
 | `water_absorption.md` | Human-readable version of the same |
 | `water_vde.json` | VDE and 1.7 eV absorption finite-well inversion |
 | `water_vde.md` | Human-readable version of the same |
+| `water_softwall.json` | Woods-Saxon cavity and the hard VDE depth bound |
+| `water_softwall.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

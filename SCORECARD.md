@@ -59,5 +59,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 33 | NUMERIC (negative; required depth 3.715 eV) | Finite well: at R=2.858 Å/Born (2.487 eV) only 1s (E=-0.528 eV), no 1p; max Born-depth s->p gap 0.615 eV; a 1.7 eV gap needs V0=3.715 eV at R=3.181 Å (1.481 eV above Born). |
 | 34 | NUMERIC (bound-free peak 1.023 eV; extra depth 1.202 eV) | Born-depth bound-free peak 1.023 eV (sum rule 0.986), below 1.7 eV; a 1.7 eV peak needs V0=3.689 eV (extra 1.202 eV, 0.869 of the optical reorganization energy 1.383 eV). |
 | 35 | NUMERIC (two-observable inversion; R=3.732 Å, V0=4.998 eV) | VDE 3.27 eV + 1.7 eV absorption force bound-bound; finite well needs R=3.732 Å, V0=4.998 eV (E1s=-3.27, E1p=-1.57), vs capillary R=2.858 Å/Born 2.487 eV; 30.6% larger, 2.01x deeper. |
+| 36 | NUMERIC (hard depth bound; Woods-Saxon scan) | VDE 3.27 eV > Born 2.487 eV, so the depth is 0.783 eV too small independent of shape; soft-wall scan: a=1.0 Å R=3.687 Å/V0=5.920 eV, a=1.5 Å R=3.078 Å/V0=6.643 eV (2.67x Born); softness trades radius for depth. |
 
-Claim audit: two separate runs agree per claim, 220/220 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 222/222 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

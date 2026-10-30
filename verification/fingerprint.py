@@ -120,6 +120,8 @@ RESULT_FILES = (
     "water_absorption.md",
     "water_vde.json",
     "water_vde.md",
+    "water_softwall.json",
+    "water_softwall.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

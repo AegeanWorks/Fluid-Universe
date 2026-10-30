@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-vde-v1",
+    "task_id": "water-softwall-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793389134.3571715,
+    "updated_at": 1793390748.3092031,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793389134.6242602
+    "completed_at": 1793390748.80451
   },
   "checkpoints": [
-    {
-      "task_id": "water-scattering-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-022 and add failing tests for the 1D shallow-water scattering solver",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793382244.285372,
-      "timestamp_str": "2026-10-30 20:44:04",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The horizon is established analytically and by rays. A numerical wave-scattering test checks that a right-moving packet is blocked at the horizon in the valid long-wavelength regime.",
-        "benefits": "A direct numerical demonstration of horizon blocking, with a uniform-flow control that transmits; it complements the metric and ray results.",
-        "risks": "contract: new claim 31, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the prescribed 1D flow is kinematic and not a consistent shallow-water equilibrium",
-        "mitigation": "Use Riemann invariants with upwind advection and a sponge; test a uniform-flow control; pre-register transmitted fraction <1e-3 at the horizon and >0.2 in the control; state the kinematic limitation"
-      }
-    },
-    {
-      "task_id": "water-scattering-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] 1D scattering: horizon transmitted fraction 7.503e-6 (center -1.433 m); uniform control 1.000000 (center 4.433 m); claim 31 NUMERIC (horizon blocking)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793382879.571604,
-      "timestamp_str": "2026-10-30 20:54:39",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-scattering-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 212/212 accepted (2 new claim-31 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793382886.6677558,
-      "timestamp_str": "2026-10-30 20:54:46",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-scattering-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-scattering-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793382886.846301,
-      "timestamp_str": "2026-10-30 20:54:46",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-electron-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793389134.6242626,
       "timestamp_str": "2026-10-30 22:38:54",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-softwall-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-027 and add failing tests for the Woods-Saxon cavity; predict the hard depth bound V0>=3.27 eV (Born 2.487 is 0.783 too shallow) and a soft-wall scan where a=1.0 A gives R=3.687 A/V0=5.920 eV and a=1.5 A gives R=3.078 A/V0=6.643 eV",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793390018.487375,
+      "timestamp_str": "2026-10-30 22:53:38",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 35 shows the square well needs R=3.732 A and V0=4.998 eV. A diffuse water interface could change the level spacing. The VDE is a hard lower bound on the depth, so the Born depth 2.487 eV is already 0.783 eV too shallow independent of shape.",
+        "benefits": "A shape-independent bound, a numerical soft-wall solver validated against the square well, and a test of whether a physical interface width can rescue the capillary cavity.",
+        "risks": "contract: new claim 36; dependency: numpy and scipy (declared); concurrency: none; state: one result file; numerical: finite-difference eigenvalues need grid validation; model: Woods-Saxon central-depth potential, no polaron self-energy",
+        "mitigation": "Validate the solver against the square-well limit, check grid and box convergence, pre-register the hard bound and the a=1.0/1.5 A scan points, and state that softness trades radius for depth"
+      }
+    },
+    {
+      "task_id": "water-softwall-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Soft wall: VDE 3.27 > Born 2.487 (0.783012 eV too shallow); Woods-Saxon a=1.0 gives R=3.686558 A, V0=5.919724 eV; a=1.5 gives R=3.078071 A, V0=6.643300 eV; softness trades radius for depth; claim 36 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793390744.052857,
+      "timestamp_str": "2026-10-30 23:05:44",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-softwall-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 222/222 accepted (2 new claim-36 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793390748.3092031,
+      "timestamp_str": "2026-10-30 23:05:48",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-softwall-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-softwall-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793390748.804512,
+      "timestamp_str": "2026-10-30 23:05:48",
       "agent": "opencode"
     }
   ]

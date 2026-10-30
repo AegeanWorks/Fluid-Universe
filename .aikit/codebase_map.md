@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `131`
+- **Total Python Modules**: `134`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `723`
+- **Total Top-Level Functions**: `735`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `18036`
+- **Total Source Lines**: `18508`
 
 ---
 
@@ -569,6 +569,17 @@
 
 **Functions:**
 - `def run_water_scattering_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_softwall_report.py`](phenomenology/water_softwall_report.py)
+> *Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027).*
+
+**Size**: `155` lines (`6513` bytes)
+
+**Functions:**
+- `def run_water_softwall_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1327,6 +1338,20 @@
 
 ---
 
+### [`tests/test_water_softwall.py`](tests/test_water_softwall.py)
+> *Soft-wall cavity and the hard VDE depth bound (claim 36).*
+
+**Size**: `67` lines (`2314` bytes)
+
+**Functions:**
+- `def test_square_limit_matches_claim_35()`
+- `def test_born_depth_cannot_bind_the_vde()`
+- `def test_soft_wall_solution_at_one_angstrom()`
+- `def test_softness_trades_radius_for_depth()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_validity.py`](tests/test_water_validity.py)
 > *Capillary validity tests for the shallow-water horizon (claim 28).*
 
@@ -1769,6 +1794,19 @@
 
 ---
 
+### [`theory/water_softwall.py`](theory/water_softwall.py)
+> *Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027).*
+
+**Size**: `212` lines (`6819` bytes)
+
+**Functions:**
+- `def woods_saxon_level(radius_m, depth_ev, diffuseness_m, angular_momentum, grid, r_max_m)` - *Lowest bound radial eigenvalue of the Woods-Saxon well, in eV.*
+- `def depth_for_binding(radius_m, diffuseness_m, binding_ev, grid)` - *Well depth giving a 1s binding of binding_ev for a soft wall.*
+- `def cavity_for_observables(diffuseness_m, binding_ev, gap_ev, grid)` - *Woods-Saxon cavity satisfying the VDE and the 1.7 eV gap.*
+- `def softwall_scales()` - *Collect the hard depth bound and the Woods-Saxon scan.*
+
+---
+
 ### [`theory/water_vde.py`](theory/water_vde.py)
 > *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
 
@@ -1819,7 +1857,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2319` lines (`92123` bytes)
+**Size**: `2355` lines (`93673` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1877,6 +1915,7 @@
 - `def audit_water_well(audit)`
 - `def audit_water_absorption(audit)`
 - `def audit_water_vde(audit)`
+- `def audit_water_softwall(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1906,7 +1945,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `165` lines (`4277` bytes)
+**Size**: `167` lines (`4329` bytes)
 
 **Functions:**
 - `def _source_files()`

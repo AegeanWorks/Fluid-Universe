@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "config": {
+      "observed_absorption_ev": 1.7,
+      "scope": "Woods-Saxon cavity with the VDE and 1.7 eV absorption",
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "config_sha256": "c5ce0d7cbfcb5b5958273af00aa161580ff4a473d512e2e1b8231fcdd72b8d6d",
+    "generated_utc": "2026-10-30T19:56:31+00:00",
+    "git": {
+      "commit": "0bb0d2162efd17c16425d86dc9518099a6240752",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "scales": {
+      "capillary": {
+        "born_depth_ev": 2.4869878638766574,
+        "maximum_binding_ev": 2.4869878638766574,
+        "radius_m": 2.8580710555848763e-10
+      },
+      "closest": {
+        "born_depth_ev": 2.309234591623542,
+        "depth_ev": 6.643299894336504,
+        "diffuseness_angstrom": 1.5,
+        "diffuseness_m": 1.5e-10,
+        "energy_1p_ev": -1.5700000007802266,
+        "energy_1s_ev": -3.270000000039042,
+        "excess_ev": 4.334065302712962,
+        "gap_ev": 1.6999999992588155,
+        "radius_m": 3.07807100028731e-10
+      },
+      "hard_bound": {
+        "born_depth_ev": 2.4869878638766574,
+        "difference_ev": 0.7830121361233426,
+        "ratio": 1.3148435694023861,
+        "vde_ev": 3.27
+      },
+      "observed_absorption_ev": 1.7,
+      "scans": [
+        {
+          "born_depth_ev": 1.9058161828891222,
+          "depth_ev": 4.997536301860162,
+          "diffuseness_angstrom": 0.001,
+          "diffuseness_m": 1e-13,
+          "energy_1p_ev": -1.5699999990487161,
+          "energy_1s_ev": -3.269999999954557,
+          "excess_ev": 3.0917201189710397,
+          "gap_ev": 1.7000000009058407,
+          "radius_m": 3.7296293803956364e-10
+        },
+        {
+          "born_depth_ev": 1.8815247678109277,
+          "depth_ev": 5.039125536730204,
+          "diffuseness_angstrom": 0.2,
+          "diffuseness_m": 2.0000000000000002e-11,
+          "energy_1p_ev": -1.5700000009115516,
+          "energy_1s_ev": -3.2699999999661213,
+          "excess_ev": 3.157600768919276,
+          "gap_ev": 1.6999999990545698,
+          "radius_m": 3.7777807398233564e-10
+        },
+        {
+          "born_depth_ev": 1.8452342924538012,
+          "depth_ev": 5.265075036615604,
+          "diffuseness_angstrom": 0.5,
+          "diffuseness_m": 5e-11,
+          "energy_1p_ev": -1.5700000005156791,
+          "energy_1s_ev": -3.2700000000730722,
+          "excess_ev": 3.419840744161803,
+          "gap_ev": 1.6999999995573931,
+          "radius_m": 3.852078870637343e-10
+        },
+        {
+          "born_depth_ev": 1.8690046853471307,
+          "depth_ev": 5.63633327507385,
+          "diffuseness_angstrom": 0.8,
+          "diffuseness_m": 8.000000000000001e-11,
+          "energy_1p_ev": -1.5700000006439363,
+          "energy_1s_ev": -3.2699999999444627,
+          "excess_ev": 3.76732858972672,
+          "gap_ev": 1.6999999993005264,
+          "radius_m": 3.8030873250681906e-10
+        },
+        {
+          "born_depth_ev": 1.9280822680312908,
+          "depth_ev": 5.919724236971533,
+          "diffuseness_angstrom": 1.0,
+          "diffuseness_m": 1e-10,
+          "energy_1p_ev": -1.5699999993023177,
+          "energy_1s_ev": -3.270000000043926,
+          "excess_ev": 3.991641968940242,
+          "gap_ev": 1.7000000007416085,
+          "radius_m": 3.686558476882056e-10
+        },
+        {
+          "born_depth_ev": 2.031146073595286,
+          "depth_ev": 6.211047557656519,
+          "diffuseness_angstrom": 1.2,
+          "diffuseness_m": 1.2e-10,
+          "energy_1p_ev": -1.5699999991328353,
+          "energy_1s_ev": -3.2700000000430296,
+          "excess_ev": 4.179901484061233,
+          "gap_ev": 1.7000000009101943,
+          "radius_m": 3.4994962310884147e-10
+        },
+        {
+          "born_depth_ev": 2.309234591623542,
+          "depth_ev": 6.643299894336504,
+          "diffuseness_angstrom": 1.5,
+          "diffuseness_m": 1.5e-10,
+          "energy_1p_ev": -1.5700000007802266,
+          "energy_1s_ev": -3.270000000039042,
+          "excess_ev": 4.334065302712962,
+          "gap_ev": 1.6999999992588155,
+          "radius_m": 3.07807100028731e-10
+        }
+      ],
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "verdict": {
+      "born_depth_below_vde": true,
+      "claim_36_status": "NUMERIC (hard depth bound 3.27 eV; Woods-Saxon scan)",
+      "no_scan_point_at_capillary": true,
+      "note": "The VDE 3.27 eV is a hard lower bound on the well depth: a bound state cannot be deeper than its well. The Born depth 2.486988 eV is 0.783012 eV too shallow, independent of the cavity shape. A Woods-Saxon scan trades radius for depth: at a=1.5 Angstrom the two-observable solution is R=3.078 Angstrom but V0=6.643 eV (2.67x the Born depth). Softness does not rescue the minimal cavity. Either the VDE-to-1s-binding identification, the cavity model, or the 1.7 eV assignment must change.",
+      "softness_trades_radius_for_depth": true
+    }
+  }
+}

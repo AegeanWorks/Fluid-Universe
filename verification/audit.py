@@ -1840,6 +1840,41 @@ def audit_water_vde(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Soft-wall cavity and the hard VDE depth bound (claim 36/ADR-027)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_softwall(audit: Audit) -> None:
+    payload = load_results("water_softwall.json")
+    result = payload["result"]
+    scales = result["scales"]
+    hard = scales["hard_bound"]
+    closest = scales["closest"]
+    capillary = scales["capillary"]
+    verdict = result["verdict"]
+    audit.record(
+        "36: the Born depth is below the VDE, so the cavity depth is too small",
+        hard["difference_ev"] > 0.7
+        and hard["ratio"] > 1.3
+        and capillary["maximum_binding_ev"] == hard["born_depth_ev"]
+        and verdict["born_depth_below_vde"] is True,
+        f"Born={hard['born_depth_ev']:.6f}, VDE={hard['vde_ev']:.2f}, "
+        f"difference={hard['difference_ev']:.6f}, ratio={hard['ratio']:.6f}",
+    )
+    audit.record(
+        "36: the soft-wall scan trades radius for depth",
+        verdict["softness_trades_radius_for_depth"] is True
+        and verdict["no_scan_point_at_capillary"] is True
+        and closest["depth_ev"] > 2.5 * hard["born_depth_ev"]
+        and closest["radius_m"] < 1.1 * capillary["radius_m"]
+        and verdict["claim_36_status"].startswith("NUMERIC"),
+        f"a={closest['diffuseness_angstrom']:.1f}, "
+        f"R={closest['radius_m']:.3e}, V0={closest['depth_ev']:.6f}, "
+        f"Born={hard['born_depth_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2256,6 +2291,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_well(audit)
     audit_water_absorption(audit)
     audit_water_vde(audit)
+    audit_water_softwall(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

@@ -720,3 +720,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 35 is **NUMERIC (two-observable inversion; R=3.732 Angstrom, V0=4.998 eV)**. The minimal cavity cannot satisfy both; the required excess is \(2.92\times\) the optical reorganization energy, so a soft-wall/polaron potential is the next test.
 
 - Verification after the VDE/absorption finite-well inversion: two separate runs, 220/220 checks each.
+
+## 2026-10-30 - Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027)
+
+**Added**
+
+- `theory/water_softwall.py`, `phenomenology/water_softwall_report.py`, `make watersoftwall`, `tests/test_water_softwall.py`, and `results/water_softwall.{json,md}`.
+
+**Results**
+
+- A bound state has \(E_b\le V_0\). VDE \(3.27\) eV minus Born depth \(2.486988\) eV is \(0.783012\) eV (ratio \(1.314844\)), independent of shape.
+- Woods-Saxon scan: \(a=0.001\) Angstrom, \(R=3.729629\) Angstrom, \(V_0=4.997536\) eV; \(a=1.0\) Angstrom, \(R=3.686558\) Angstrom, \(V_0=5.919724\) eV; \(a=1.5\) Angstrom, \(R=3.078071\) Angstrom, \(V_0=6.643300\) eV.
+- In every scan case \(E_{1s}=-3.27\) eV, \(E_{1p}=-1.57\) eV, gap \(1.7\) eV.
+- The closest scan is \(R=3.078071\) Angstrom (\(1.076975\times\) capillary) but \(V_0=6.643300\) eV (\(2.671223\times\) Born). Softness does not lower the required depth.
+- Claim 36 is **NUMERIC (hard depth bound; Woods-Saxon scan)**. Either the VDE-to-1s identification, the cavity model, or the 1.7 eV assignment must change.
+
+- Verification after the soft-wall cavity: two separate runs, 222/222 checks each.
