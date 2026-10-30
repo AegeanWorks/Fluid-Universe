@@ -96,6 +96,8 @@ RESULT_FILES = (
     "gaussian_fluid.md",
     "coherent_fluid.json",
     "coherent_fluid.md",
+    "excited_fluid.json",
+    "excited_fluid.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

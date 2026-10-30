@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**196/196 checks passed.**
+**198/198 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -103,6 +103,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 22: small oscillations have the Ermakov 2 omega frequency | PASS | period=3.141600, error=2.338e-06 |
 | 23: moving-center Gaussian reproduces the coherent-state trajectory | PASS | x(pi)=-0.999999917, period=6.284000 |
 | 23: displaced width oscillates with conserved energy | PASS | energy drift=2.678e-12 |
+| 24: first excited state has a node and a pi phase slip | PASS | slip=3.141592654, Q error=4.793e-13 |
+| 24: phase gradient diverges as dx^-1 and the claim is falsified | PASS | slope=-1.000000000 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

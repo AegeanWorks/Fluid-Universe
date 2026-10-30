@@ -76,6 +76,8 @@ Do not edit these files by hand.
 | `gaussian_fluid.md` | Human-readable version of the same |
 | `coherent_fluid.json` | Moving-center Gaussian reduction: coherent-state trajectory and width |
 | `coherent_fluid.md` | Human-readable version of the same |
+| `excited_fluid.json` | First-excited-state node singularity and regular quantum pressure |
+| `excited_fluid.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

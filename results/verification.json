@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "16a4498f063a19f677b6a2fd3e2cfb5ed1232d3b8643463d3395472834519e6b",
-      "results_sha256": "f6947b98ce95740979996cd48e8a389012b2c1a510d563e5227d820524c8abc8"
+      "source_sha256": "72c213e2b49cf9b86a335b4f2f7876770709dbae75dcce3b6c858089a4f2e392",
+      "results_sha256": "a2ba7e6f188872e6f94710b46d918f36c99a10b7cda95e4911e8406a6d02d26a"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T16:16:05+00:00",
-        "git_commit": "4e390abf8d5e278fb31cc8284ec35d9470782e56",
-        "passed": 196,
-        "total": 196,
+        "generated_utc": "2026-10-30T16:28:50+00:00",
+        "git_commit": "81f091f859e308f1d68823c76750d158fe9bd5de",
+        "passed": 198,
+        "total": 198,
         "failed": 0,
-        "checks_sha256": "191db5db5df5ffc491d6a0f3693f4cb50700396c3548d448f198631a8314ee4e",
+        "checks_sha256": "250d6a49a5caa1f17496574636806284ea9802de48e834771380536101b9febb",
         "fingerprints": {
-          "source_sha256": "16a4498f063a19f677b6a2fd3e2cfb5ed1232d3b8643463d3395472834519e6b",
-          "results_sha256": "f6947b98ce95740979996cd48e8a389012b2c1a510d563e5227d820524c8abc8"
+          "source_sha256": "72c213e2b49cf9b86a335b4f2f7876770709dbae75dcce3b6c858089a4f2e392",
+          "results_sha256": "a2ba7e6f188872e6f94710b46d918f36c99a10b7cda95e4911e8406a6d02d26a"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T16:16:27+00:00",
-        "git_commit": "4e390abf8d5e278fb31cc8284ec35d9470782e56",
-        "passed": 196,
-        "total": 196,
+        "generated_utc": "2026-10-30T16:28:57+00:00",
+        "git_commit": "81f091f859e308f1d68823c76750d158fe9bd5de",
+        "passed": 198,
+        "total": 198,
         "failed": 0,
-        "checks_sha256": "191db5db5df5ffc491d6a0f3693f4cb50700396c3548d448f198631a8314ee4e",
+        "checks_sha256": "250d6a49a5caa1f17496574636806284ea9802de48e834771380536101b9febb",
         "fingerprints": {
-          "source_sha256": "16a4498f063a19f677b6a2fd3e2cfb5ed1232d3b8643463d3395472834519e6b",
-          "results_sha256": "f6947b98ce95740979996cd48e8a389012b2c1a510d563e5227d820524c8abc8"
+          "source_sha256": "72c213e2b49cf9b86a335b4f2f7876770709dbae75dcce3b6c858089a4f2e392",
+          "results_sha256": "a2ba7e6f188872e6f94710b46d918f36c99a10b7cda95e4911e8406a6d02d26a"
         }
       }
     ],
@@ -522,6 +522,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "x(pi)=-0.999999917, period=6.284000"
+    },
+    {
+      "claim": "24: first excited state has a node and a pi phase slip",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "slip=3.141592654, Q error=4.793e-13"
+    },
+    {
+      "claim": "24: phase gradient diverges as dx^-1 and the claim is falsified",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "slope=-1.000000000"
     },
     {
       "claim": "2a: M != M^T for generic delta",
@@ -2293,6 +2309,20 @@
       "observed": null
     },
     {
+      "claim": "24: first excited state has a node and a pi phase slip",
+      "passed": true,
+      "detail": "slip=3.141592654, Q error=4.793e-13",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "24: phase gradient diverges as dx^-1 and the claim is falsified",
+      "passed": true,
+      "detail": "slope=-1.000000000",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2986,8 +3016,8 @@
       "observed": null
     }
   ],
-  "total": 196,
-  "passed": 196,
+  "total": 198,
+  "passed": 198,
   "failed": 0,
   "failures": []
 }

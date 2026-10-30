@@ -1454,6 +1454,32 @@ def audit_coherent_fluid(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# First-excited-state node (claim 24/ADR-015)
+# ---------------------------------------------------------------------------
+
+
+def audit_excited_fluid(audit: Audit) -> None:
+    payload = load_results("excited_fluid.json")
+    result = payload["result"]
+    regular = result["regular_quantum_pressure"]
+    audit.record(
+        "24: first excited state has a node and a pi phase slip",
+        abs(result["phase_slip"] - 3.141592653589793) < 1e-9
+        and result["node_density"] == 0.0
+        and regular["relative_error"] < 1e-10,
+        f"slip={result['phase_slip']:.9f}, "
+        f"Q error={regular['relative_error']:.3e}",
+    )
+    audit.record(
+        "24: phase gradient diverges as dx^-1 and the claim is falsified",
+        abs(result["gradient_scaling_slope"] + 1.0) < 1e-6
+        and result["verdict"]["regular_representation"] is False
+        and result["verdict"]["claim_24_status"].startswith("FALSIFIED"),
+        f"slope={result['gradient_scaling_slope']:.9f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1858,6 +1884,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_nelson(audit)
     audit_gaussian_fluid(audit)
     audit_coherent_fluid(audit)
+    audit_excited_fluid(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

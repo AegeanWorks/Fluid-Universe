@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T16:16:05+00:00",
-    "git_commit": "4e390abf8d5e278fb31cc8284ec35d9470782e56",
+    "generated_utc": "2026-10-30T16:28:50+00:00",
+    "git_commit": "81f091f859e308f1d68823c76750d158fe9bd5de",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "16a4498f063a19f677b6a2fd3e2cfb5ed1232d3b8643463d3395472834519e6b",
-      "results_sha256": "f6947b98ce95740979996cd48e8a389012b2c1a510d563e5227d820524c8abc8"
+      "source_sha256": "72c213e2b49cf9b86a335b4f2f7876770709dbae75dcce3b6c858089a4f2e392",
+      "results_sha256": "a2ba7e6f188872e6f94710b46d918f36c99a10b7cda95e4911e8406a6d02d26a"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -693,6 +693,20 @@
       "claim": "23: displaced width oscillates with conserved energy",
       "passed": true,
       "detail": "energy drift=2.678e-12",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "24: first excited state has a node and a pi phase slip",
+      "passed": true,
+      "detail": "slip=3.141592654, Q error=4.793e-13",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "24: phase gradient diverges as dx^-1 and the claim is falsified",
+      "passed": true,
+      "detail": "slope=-1.000000000",
       "expected": null,
       "observed": null
     },
@@ -1390,8 +1404,8 @@
       "observed": null
     }
   ],
-  "total": 196,
-  "passed": 196,
+  "total": 198,
+  "passed": 198,
   "failed": 0,
   "failures": []
 }

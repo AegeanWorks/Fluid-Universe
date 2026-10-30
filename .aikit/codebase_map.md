@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `96`
+- **Total Python Modules**: `99`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `527`
+- **Total Top-Level Functions**: `543`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `13625`
+- **Total Source Lines**: `13948`
 
 ---
 
@@ -60,6 +60,17 @@
 - `def all_candidates()`
 - `def search(delta, sigma)`
 - `def run_delta_search(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/excited_fluid_report.py`](phenomenology/excited_fluid_report.py)
+> *First-excited-state node report (claim 24, ADR-015).*
+
+**Size**: `146` lines (`4771` bytes)
+
+**Functions:**
+- `def run_excited_fluid_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -674,6 +685,21 @@
 
 ---
 
+### [`tests/test_excited_fluid.py`](tests/test_excited_fluid.py)
+> *First-excited-state node tests (claim 24).*
+
+**Size**: `69` lines (`1834` bytes)
+
+**Functions:**
+- `def _grid(n, length)`
+- `def test_density_is_normalized()`
+- `def test_regular_quantum_pressure()`
+- `def test_phase_slip_and_gradient()`
+- `def test_phase_gradient_scales_as_inverse_dx()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_fit.py`](tests/test_fit.py)
 > *Regression tests for the PDG pole-mass fit.*
 
@@ -1095,6 +1121,22 @@
 
 ---
 
+### [`theory/excited_fluid.py`](theory/excited_fluid.py)
+> *First excited state in the Madelung fluid (claim 24, ADR-015).*
+
+**Size**: `79` lines (`2609` bytes)
+
+**Functions:**
+- `def _sigma(omega, hbar, mass)`
+- `def excited_density(x, omega, hbar, mass)`
+- `def excited_wavefunction(x, omega, hbar, mass)`
+- `def excited_quantum_pressure_regular(x, omega, hbar, mass)` - *Regular part of Q away from the node; at x=0 the limit is returned.*
+- `def phase_slip(psi)`
+- `def phase_gradient_max(psi, dx)`
+- `def scaling_slope(dx_values, maxima)`
+
+---
+
 ### [`theory/frank_oseen.py`](theory/frank_oseen.py)
 > *Linearised Frank-Oseen director modes.*
 
@@ -1320,7 +1362,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1921` lines (`76072` bytes)
+**Size**: `1948` lines (`77176` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1366,6 +1408,7 @@
 - `def audit_nelson(audit)`
 - `def audit_gaussian_fluid(audit)`
 - `def audit_coherent_fluid(audit)`
+- `def audit_excited_fluid(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1395,7 +1438,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `141` lines (`3667` bytes)
+**Size**: `143` lines (`3717` bytes)
 
 **Functions:**
 - `def _source_files()`

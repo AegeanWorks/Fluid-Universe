@@ -537,3 +537,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 23 is **PROVEN (moving-center reduction; numerics confirm)**. The first excited state still has a node singularity.
 
 - Verification after the moving-center Gaussian reduction: two separate runs, 196/196 checks each.
+
+## 2026-10-30 - First excited state and the node singularity (claim 24, ADR-015)
+
+**Added**
+
+- `theory/excited_fluid.py`, `phenomenology/excited_fluid_report.py`, `make excitednode`, `tests/test_excited_fluid.py`, and `results/excited_fluid.{json,md}`.
+
+**Results**
+
+- The first excited state has density \(\rho_1\propto x^2e^{-x^2/\sigma^2}\), with a node at \(x=0\): density 0, phase slip \(\pi\).
+- The discrete phase-gradient maximum scales as \(dx^{-1}\): values 20.106, 40.212, 80.425 and 160.850 for \(N=256,512,1024,2048\); fitted slope \(-1.000000000\).
+- The regular quantum pressure matches the analytic expression away from the node (relative error \(4.8\times10^{-13}\) at \(x=0.996\)).
+- Claim 24 is **FALSIFIED**: the node is a phase slip, not a regular single-valued fluid point. A two-component or defect model is required.
+
+- Verification after the first-excited-state node analysis: two separate runs, 198/198 checks each.

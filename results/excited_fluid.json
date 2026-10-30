@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "config": {
+      "comparison_n": 1024,
+      "comparison_x": 1.0,
+      "grids": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "length": 20.0,
+      "scope": "first-excited-state node singularity; regular pressure away from node"
+    },
+    "config_sha256": "d43b5e160eec3b25a77e41e3951e5ae8f556c4fb11e11be8dba448543e06263b",
+    "generated_utc": "2026-10-30T16:25:18+00:00",
+    "git": {
+      "commit": "81f091f859e308f1d68823c76750d158fe9bd5de",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "dx_values": [
+      0.078125,
+      0.0390625,
+      0.01953125,
+      0.009765625
+    ],
+    "gradient_scaling_slope": -1.0000000000000002,
+    "grids": [
+      256,
+      512,
+      1024,
+      2048
+    ],
+    "node_density": 0.0,
+    "phase_gradient_max": [
+      20.106192982974676,
+      40.21238596594935,
+      80.4247719318987,
+      160.8495438637974
+    ],
+    "phase_slip": 3.141592653589793,
+    "regular_quantum_pressure": {
+      "analytic": 1.0038986206054688,
+      "numerical": 1.0038986206049876,
+      "relative_error": 4.793020420551434e-13,
+      "x": 0.99609375
+    },
+    "verdict": {
+      "claim_24_status": "FALSIFIED (node phase slip)",
+      "note": "The density vanishes at x=0, the phase jumps by pi, and the discrete phase gradient diverges as 1/dx. The regular quantum pressure matches away from the node, but the node is a phase slip, not a regular single-valued fluid point. A two-component or defect model is required.",
+      "regular_representation": false
+    }
+  }
+}

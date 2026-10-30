@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T16:16:05+00:00 | `4e390abf8d5e278fb31cc8284ec35d9470782e56` | 196/196 | `16a4498f063a19f6...` | `f6947b98ce957409...` |
-| run2 | 2026-10-30T16:16:27+00:00 | `4e390abf8d5e278fb31cc8284ec35d9470782e56` | 196/196 | `16a4498f063a19f6...` | `f6947b98ce957409...` |
+| run1 | 2026-10-30T16:28:50+00:00 | `81f091f859e308f1d68823c76750d158fe9bd5de` | 198/198 | `72c213e2b49cf9b8...` | `a2ba7e6f188872e6...` |
+| run2 | 2026-10-30T16:28:57+00:00 | `81f091f859e308f1d68823c76750d158fe9bd5de` | 198/198 | `72c213e2b49cf9b8...` | `a2ba7e6f188872e6...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -75,6 +75,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 22: small oscillations have the Ermakov 2 omega frequency | PASS | PASS | YES | YES | period=3.141600, error=2.338e-06 |
 | 23: displaced width oscillates with conserved energy | PASS | PASS | YES | YES | energy drift=2.678e-12 |
 | 23: moving-center Gaussian reproduces the coherent-state trajectory | PASS | PASS | YES | YES | x(pi)=-0.999999917, period=6.284000 |
+| 24: first excited state has a node and a pi phase slip | PASS | PASS | YES | YES | slip=3.141592654, Q error=4.793e-13 |
+| 24: phase gradient diverges as dx^-1 and the claim is falsified | PASS | PASS | YES | YES | slope=-1.000000000 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
