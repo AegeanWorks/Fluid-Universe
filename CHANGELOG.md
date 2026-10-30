@@ -582,3 +582,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 26 is **NUMERIC (2p vortex identification)**. The \(m=0\) state has no vortex; this identifies the defect, not the 2p energy, and radial nodes still require a separate model.
 
 - Verification after the hydrogen 2p vortex identification: two separate runs, 202/202 checks each.
+
+## 2026-10-30 - Shallow-water acoustic horizon (claim 27, ADR-018)
+
+**Added**
+
+- `theory/water_analogue.py`, `phenomenology/water_analogue_report.py`, `make wateranalogue`, `tests/test_water_analogue.py`, and `results/water_analogue.{json,md}`.
+
+**Results**
+
+- Lab scales: \(h=0.1\) m, \(Q=10^{-3}\) m³/s. Sound speed \(c=\sqrt{gh}=0.990454441\) m/s; horizon \(r_H=Q/(2\pi hc)=1.606888076\times10^{-3}\) m.
+- Surface gravity \(\kappa=c^2/r_H=610.496783\) m/s²; analogue temperature \(T_H=\hbar\kappa/(2\pi k_B)=7.421580\times10^{-10}\) K.
+- At the horizon \(v/c=1\) and \(g_{tt}=0\); the metric sign changes across it.
+- Claim 27 is **PROVEN (acoustic horizon; analogue)**. This is a long-wavelength acoustic analogy; capillary dispersion breaks the metric at short scales.
+
+- Verification after the shallow-water acoustic horizon: two separate runs, 204/204 checks each.

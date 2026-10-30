@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "hydrogen-vortex-v1",
+    "task_id": "water-analogue-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793379126.3946514,
+    "updated_at": 1793380003.1469088,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793379126.5450509
+    "completed_at": 1793380003.4148974
   },
   "checkpoints": [
-    {
-      "task_id": "gaussian-fluid-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-013 and add failing tests for the Gaussian Madelung reduction",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793375849.0901132,
-      "timestamp_str": "2026-10-30 18:57:29",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The Madelung dictionary and Nelson kinematics are exact, but the quantum ground-state width was still inserted. A Gaussian ansatz reduces the fluid equations to the Ermakov equation; its fixed point should be the quantum width hbar/(2m omega).",
-        "benefits": "A self-consistent fluid derivation of the ground-state width without using the Schrodinger solution, plus a numerical test of the fixed point and its oscillation frequency.",
-        "risks": "contract: new claim 22, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: RK4 step and energy conservation",
-        "mitigation": "Derive the effective potential analytically; pre-register the fixed-point identity, the 2 omega oscillation frequency, and an energy-drift tolerance; integrate with RK4 at dt=1e-3"
-      }
-    },
-    {
-      "task_id": "gaussian-fluid-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Gaussian Madelung reduction: Ermakov fixed point sigma^2=0.5 exact; large-amplitude energy drift 2.8e-12; small-oscillation period 3.141600 vs pi (2.3e-6); claim 22 PROVEN",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793376278.1172674,
-      "timestamp_str": "2026-10-30 19:04:38",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "gaussian-fluid-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 194/194 accepted (2 new claim-22 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793376283.816408,
-      "timestamp_str": "2026-10-30 19:04:43",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "gaussian-fluid-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'gaussian-fluid-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793376284.036964,
-      "timestamp_str": "2026-10-30 19:04:44",
-      "agent": "opencode"
-    },
     {
       "task_id": "coherent-fluid-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793379126.5450525,
       "timestamp_str": "2026-10-30 19:52:06",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-analogue-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-018 and add failing tests for the shallow-water acoustic horizon",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793379426.7783809,
+      "timestamp_str": "2026-10-30 19:57:06",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The user asks which water properties can link to the quantum-fluid program. Shallow-water waves have an acoustic metric set by depth, gravity and flow; a draining vortex has a horizon where the inward flow equals the wave speed, giving an analogue surface gravity and Hawking temperature.",
+        "benefits": "A positive water-mechanics link: water properties (h, g, Q) predict a horizon, surface gravity and analogue temperature, contrasting with the nematic director where no emergent metric was found.",
+        "risks": "contract: new claim 27, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; physics: the acoustic metric is long-wavelength only and breaks under capillary dispersion",
+        "mitigation": "Derive r_H, kappa and T_H analytically; test the horizon condition and metric signature; report lab-scale numbers and state the short-wavelength limitation"
+      }
+    },
+    {
+      "task_id": "water-analogue-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Shallow-water horizon: c=0.990454441 m/s, rH=1.606888076e-3 m, kappa=610.496783 m/s^2, TH=7.421580e-10 K; v/c=1 and g_tt=0 at the horizon; claim 27 PROVEN (analogue)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793379996.0242405,
+      "timestamp_str": "2026-10-30 20:06:36",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-analogue-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 204/204 accepted (2 new claim-27 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793380003.1469088,
+      "timestamp_str": "2026-10-30 20:06:43",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-analogue-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-analogue-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793380003.414899,
+      "timestamp_str": "2026-10-30 20:06:43",
       "agent": "opencode"
     }
   ]

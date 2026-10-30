@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 202/202 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 204/204 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -82,6 +82,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | First excited state node | FALSIFIED: density vanishes at \(x=0\), phase jumps by \(\pi\), and the phase-gradient maximum scales as \(dx^{-1}\); the regular \(Q\) matches away from the node, but the node is a phase slip | `results/excited_fluid.json` |
 | Hydrogen 1s reduction | PROVEN: the Coulomb potential and quantum pressure balance at \(a_0=\hbar^2/(me^2)=1\), with \(E=-0.5\); SI \(a_0=5.291773369\times10^{-11}\) m, \(E=-13.605687\) eV | `results/hydrogen_fluid.json` |
 | Hydrogen 2p vortex | NUMERIC: \(2p_{m=\pm1}\) has circulation \(2\pi\), axial angular momentum 1, most-probable radius \(4a_0\) and normalized radial density; \(m=0\) has no vortex | `results/hydrogen_vortex.json` |
+| Shallow-water acoustic horizon | PROVEN: \(h=0.1\) m, \(Q=10^{-3}\) m³/s gives \(c=0.990454\) m/s, \(r_H=1.606888\times10^{-3}\) m, \(\kappa=610.497\) m/s², \(T_H=7.422\times10^{-10}\) K; \(g_{tt}=0\) at the horizon | `results/water_analogue.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

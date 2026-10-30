@@ -1540,6 +1540,36 @@ def audit_hydrogen_vortex(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Shallow-water acoustic horizon (claim 27/ADR-018)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_analogue(audit: Audit) -> None:
+    payload = load_results("water_analogue.json")
+    result = payload["result"]
+    scales = result["scales"]
+    rows = result["rows"]
+    verdict = result["verdict"]
+    audit.record(
+        "27: shallow-water horizon has v/c=1 and g_tt=0",
+        abs(rows[2]["v_over_c"] - 1.0) < 1e-12
+        and abs(rows[2]["g_tt"]) < 1e-15
+        and rows[1]["g_tt"] > 0.0
+        and rows[3]["g_tt"] < 0.0,
+        f"v/c={rows[2]['v_over_c']:.9f}, g_tt={rows[2]['g_tt']:.3e}",
+    )
+    audit.record(
+        "27: surface gravity and analogue temperature are positive",
+        scales["surface_gravity_m_s2"] > 0.0
+        and scales["hawking_temperature_k"] > 0.0
+        and verdict["horizon_exists"] is True
+        and verdict["claim_27_status"].startswith("PROVEN"),
+        f"kappa={scales['surface_gravity_m_s2']:.6f}, "
+        f"T={scales['hawking_temperature_k']:.3e}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1947,6 +1977,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_excited_fluid(audit)
     audit_hydrogen_fluid(audit)
     audit_hydrogen_vortex(audit)
+    audit_water_analogue(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

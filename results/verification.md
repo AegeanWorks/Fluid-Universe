@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T16:50:16+00:00 | `5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2` | 202/202 | `754e5088d27ecb70...` | `2ec8f50bc0621d08...` |
-| run2 | 2026-10-30T16:50:31+00:00 | `5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2` | 202/202 | `754e5088d27ecb70...` | `2ec8f50bc0621d08...` |
+| run1 | 2026-10-30T17:04:49+00:00 | `2e4f283a9477348337a8101234773b90f41fd012` | 204/204 | `68f625c84ff7adfc...` | `21c5996010c56258...` |
+| run2 | 2026-10-30T17:05:04+00:00 | `2e4f283a9477348337a8101234773b90f41fd012` | 204/204 | `68f625c84ff7adfc...` | `21c5996010c56258...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -81,6 +81,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 25: hydrogen 1s force balance gives the Bohr radius | PASS | PASS | YES | YES | a0=1.000000000000, residual=0.000e+00 |
 | 26: angular momentum is hbar m and the vortex claim is recorded | PASS | PASS | YES | YES | Lz=1.000000000 |
 | 26: hydrogen 2p has a quantized vortex with the 4a0 peak | PASS | PASS | YES | YES | a0 peak=4.000000, circulation=6.283185307 |
+| 27: shallow-water horizon has v/c=1 and g_tt=0 | PASS | PASS | YES | YES | v/c=1.000000000, g_tt=-2.220e-16 |
+| 27: surface gravity and analogue temperature are positive | PASS | PASS | YES | YES | kappa=610.496783, T=7.422e-10 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

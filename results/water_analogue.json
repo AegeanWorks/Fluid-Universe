@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "config": {
+      "depth_m": 0.1,
+      "flow_rate_m3_s": 0.001,
+      "gravity_m_s2": 9.81,
+      "scope": "shallow-water acoustic horizon; long-wavelength analogue"
+    },
+    "config_sha256": "b5a7ff9f16e6374b5477ae87d5ec627377272e677015c8c84a6558072add9840",
+    "generated_utc": "2026-10-30T16:58:06+00:00",
+    "git": {
+      "commit": "2e4f283a9477348337a8101234773b90f41fd012",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "rows": [
+      {
+        "g_tt": 2.9429999999999996,
+        "r_m": 0.0008034440378024704,
+        "r_over_r_h": 0.5,
+        "v_over_c": 1.9999999999999998
+      },
+      {
+        "g_tt": 0.23011111111111093,
+        "r_m": 0.0014461992680444467,
+        "r_over_r_h": 0.9,
+        "v_over_c": 1.111111111111111
+      },
+      {
+        "g_tt": -2.220446049250313e-16,
+        "r_m": 0.0016068880756049408,
+        "r_over_r_h": 1.0,
+        "v_over_c": 0.9999999999999999
+      },
+      {
+        "g_tt": -0.1702561983471078,
+        "r_m": 0.001767576883165435,
+        "r_over_r_h": 1.1,
+        "v_over_c": 0.9090909090909088
+      },
+      {
+        "g_tt": -0.7357500000000001,
+        "r_m": 0.0032137761512098816,
+        "r_over_r_h": 2.0,
+        "v_over_c": 0.49999999999999994
+      }
+    ],
+    "scales": {
+      "depth_m": 0.1,
+      "flow_rate_m3_s": 0.001,
+      "gravity_m_s2": 9.81,
+      "hawking_temperature_k": 7.421580272821032e-10,
+      "horizon_radius_m": 0.0016068880756049408,
+      "sound_speed_m_s": 0.9904544411531507,
+      "surface_gravity_m_s2": 610.4967825034645
+    },
+    "verdict": {
+      "claim_27_status": "PROVEN (acoustic horizon; analogue)",
+      "horizon_exists": true,
+      "note": "The long-wavelength shallow-water metric has a horizon at r_H=Q/(2 pi h c), surface gravity c^2/r_H and analogue temperature hbar kappa/(2 pi k_B). This is an acoustic analogue, not a fundamental metric; capillary dispersion breaks it at short wavelengths."
+    }
+  }
+}
