@@ -1,113 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "fluid-universe-consistency-v1",
+    "task_id": "claim15-convergence-n96-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793344159.0250306,
+    "updated_at": 1793348241.6338494,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793344164.1867561
+    "completed_at": 1793348241.7621312
   },
   "checkpoints": [
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[done] Claims 11/12: tree-level metric falsified, RG downgraded, LV bounds not directly applicable; 125/125 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792968979.6826465,
-      "timestamp_str": "2026-10-26 01:56:19",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "simulation core",
-        "failed": "none",
-        "open": "14b,15",
-        "evidence": "results/lorentz.json, 84 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 2",
-      "phase_num": 2,
-      "description": "[1/4] Build validated 1D simulation core: sine-Gordon kink, gradient check, monotone flow, Hessian; rotor cross-check",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792968994.595906,
-      "timestamp_str": "2026-10-26 01:56:34",
-      "agent": "kilo:1",
-      "impact_assessment": {
-        "why": "Claim 15 requires a validated simulation core before any 3D or production run; the repository currently has no core and earlier lost-run numbers are inadmissible.",
-        "benefits": "Reusable tested core, quantitative baselines, and a defensible base for the Hopf estimator and 3D runs.",
-        "risks": "contract: sims only, no claim changes beyond validation; dependency: numpy/scipy already declared; concurrency: none; state: new results/sim_core.json/md and tests; numerical: discretization and boundary conditions",
-        "mitigation": "Fix Dirichlet boundary values from the analytic profile; verify energy convergence in N; finite-difference gradient check <1e-6; small explicit time step; test Hessian symmetry and eps/N stability."
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[1/4] 1D simulation core validated: kink, gradient, monotone flow, rotor pass; Hessian partial; 125/125 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792969571.9961681,
-      "timestamp_str": "2026-10-26 02:06:11",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "Hopf estimator baseline",
-        "failed": "none",
-        "open": "Hopf estimator, 3D core, production, claim 15",
-        "evidence": "results/sim_core.json, 91 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[2/4] Hopf estimator validated both ways: preimage 0.999958, normalized grid 1.000000 at N=64; baseline 4 passes; 137/137 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792971415.7011232,
-      "timestamp_str": "2026-10-26 02:36:55",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "verification accepted",
-        "next": "3D Skyrme+Z3 core",
-        "failed": "none",
-        "open": "3D core, Z3 order, production, claim 15",
-        "evidence": "results/hopf.json, 95 tests, direct gates 4/4"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[3/4] Validate the 3D Hessian in the tangent space: dense-vs-matrix-free agreement at N=8, trusted low spectrum at N=64, settle 14d",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793036996.719043,
-      "timestamp_str": "2026-10-26 20:49:56",
-      "agent": "opencode:deepseek-v4.1-flash-free",
-      "impact_assessment": {
-        "why": "The 14d Hessian result was retracted because the matrix-free operator failed a dense check; the ambient operator carries radial null directions, so ARPACK on it is unreliable.",
-        "benefits": "A validated tangent-space Hessian operator, a trustworthy 14d verdict, and a reusable stability baseline for the 3D core.",
-        "risks": "contract: new sims/stability.py and one results file, no existing API change; dependency: numpy/scipy/jax already declared; concurrency: none; state: new results/hopfion_stability.{json,md}; numerical: N=64 cost and near-zero modes",
-        "mitigation": "Dense tangent-basis agreement at N=8, explicit null-mode accounting, spectrum at N=16 and N=64, two-run verification, focused tests"
-      },
-      "handoff": {
-        "state": "3D core and scale candidate committed, Hessian retracted",
-        "next": "implement tangent-space Hessian and dense validation",
-        "failed": "prior ambient Hessian validation",
-        "open": "14d, claim 15 production",
-        "evidence": "105 tests, results/hopfion_scale.json"
-      },
-      "continued_from": "kilo:1"
-    },
     {
       "task_id": "z3-koide-core",
       "phase": "phase 4",
@@ -298,6 +202,66 @@
       "status": "completed",
       "timestamp": 1793344164.1867573,
       "timestamp_str": "2026-10-30 10:09:24",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-convergence-n96-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-002 and add failing comparison tests for the N=96 claim-15 resolution check",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793345153.1978073,
+      "timestamp_str": "2026-10-30 10:25:53",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The N=64 production scan cannot separate a grid-scale Hopf-estimator artifact from a real loss of topology: native H=0.788, upsampled H=0.989, max bond 1.480, force RMS 0.037. Claim 15 stays UNVERIFIED and needs a second resolution at the same physical time.",
+        "benefits": "A same-seed N=96 scan and a fresh N=64 rerun give a two-resolution trend for H, Z3, force and smoothness; the N=64 rerun also tests reproducibility against the committed production result.",
+        "risks": "contract: claim-15 acceptance rule is unchanged and the diagnostic cannot promote it; dependency: none, existing JAX/numpy; concurrency: single writer, one bounded process; state: two result files and ledger; numerical: explicit Euler at N=96 and a 192^3 upsampling allocation; cost: two 3600-step runs under the 900 s G-003 cap",
+        "mitigation": "A 100-step N=96 probe at dt=5e-4 was monotone, kept min pre-norm 1.0 and took 24 s; run N=64 first, pass the remaining budget to N=96, keep the pre-registered 1e-2/2e-2 resolution tolerances, and abort with the existing TimeoutError if the cap is hit"
+      }
+    },
+    {
+      "task_id": "claim15-convergence-n96-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] N=64/N=96 scans (3000 steps, 768.9 s) and results: native H 0.93697 -> 0.99994, upsampled H 0.99952 -> 1.00000, Z3 0.52823 -> 0.17207, force 3.99e-2 -> 1.50e-2; resolution not converged (|dH|=0.063, |dZ3|=0.356); claim 15 UNVERIFIED; docs, ADR-002 and results updated",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793347967.2385974,
+      "timestamp_str": "2026-10-30 11:12:47",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-convergence-n96-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 170/170 accepted; project gates 4/4 (test, hygiene, guidelines, secrets); checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793347971.569526,
+      "timestamp_str": "2026-10-30 11:12:51",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-convergence-n96-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 171/171 accepted (3 new check-15 records); project gates 4/4 after map refresh; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793348241.6338494,
+      "timestamp_str": "2026-10-30 11:17:21",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-convergence-n96-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'claim15-convergence-n96-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793348241.7621326,
+      "timestamp_str": "2026-10-30 11:17:21",
       "agent": "opencode"
     }
   ]

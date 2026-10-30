@@ -37,7 +37,7 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 14b | UNVERIFIED | Pure-FN N=64: near-stationary H=1 candidate (RMS 0.00315); not a stability proof; the scale candidate is a saddle (14d). |
 | 14c | NUMERIC (candidate) | Scale iteration: virial 0.00961, H=0.99730, RMS 0.0030. |
 | 14d | FALSIFIED | Validated tangent Hessian: min -5.799863, 8 negative modes at N=64; the candidate is a saddle. |
-| 15 | UNVERIFIED (production scan) | N=64 production scan (`make production`, <15 min): native H=0.78800, 2x upsampled H=0.98924, Z3=0.60743, max bond 1.480, min pre-norm 1.000000; native H drop is a grid-scale estimator artifact; not converged/under-resolved. |
+| 15 | UNVERIFIED (N=96 resolution check) | N=64 production scan (`make production`, <15 min): native H=0.78800, 2x upsampled H=0.98924, Z3=0.60743, max bond 1.480; at N=96 (3000 steps, same physical time) native H=0.99994, upsampled H=1.00000, but Z3=0.17207 and force RMS 0.01495; the N=64 Z3 order is resolution-dependent and no coexistence is demonstrated. |
 | 16 | UNVERIFIED (none found) | Seven candidate classes audited; no new falsifiable prediction. |
 
-Claim audit: two separate runs agree per claim, 168/168 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 171/171 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

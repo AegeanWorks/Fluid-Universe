@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**168/168 checks passed.**
+**171/171 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -87,6 +87,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |
 | 15: perturbed seeds are recorded | PASS | seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074 |
+| 15: resolution check compares N=64 and N=96 at one physical time | PASS | N=64/96, steps=3000, H=0.999942, Z3=0.172071 |
+| 15: resolution arithmetic and verdict follow the pre-registered rule | PASS | converged=False, dH=+0.062978, dZ3=-0.356154 |
+| 15: N=96 verdict follows the unchanged production rule | PASS | status=UNVERIFIED (Z3 below threshold; not converged), ready=False |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |

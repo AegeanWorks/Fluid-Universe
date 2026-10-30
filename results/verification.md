@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-26T19:11:49+00:00 | `6657b24d2339c81d95e94827fb48598adab74d3b` | 168/168 | `5289b4cfd28ff6bc...` | `4b8bcb6cda62457a...` |
-| run2 | 2026-10-26T19:11:56+00:00 | `6657b24d2339c81d95e94827fb48598adab74d3b` | 168/168 | `5289b4cfd28ff6bc...` | `4b8bcb6cda62457a...` |
+| run1 | 2026-10-30T08:15:12+00:00 | `03eb177ea09dcfe3e8f631e05eba157b4e04fb4d` | 171/171 | `41cafd4cee82a399...` | `91ea049b864285af...` |
+| run2 | 2026-10-30T08:15:23+00:00 | `03eb177ea09dcfe3e8f631e05eba157b4e04fb4d` | 171/171 | `41cafd4cee82a399...` | `91ea049b864285af...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -36,11 +36,14 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 15: 3D pilot values at 1200 steps | PASS | PASS | YES | YES | H(mu=0)=0.749758423, H(mu=20)=0.052372282, Z3(mu=20)=0.960169273 |
 | 15: N=64 diagnostic not converged and no coexistence | PASS | PASS | YES | YES | force_rms(3600)=3.716e-02 |
 | 15: N=64 diagnostic values | PASS | PASS | YES | YES | H(20,3600)=0.788000, Z3=0.607430 |
+| 15: N=96 verdict follows the unchanged production rule | PASS | PASS | YES | YES | status=UNVERIFIED (Z3 below threshold; not converged), ready=False |
 | 15: perturbed seeds are recorded | PASS | PASS | YES | YES | seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074 |
 | 15: pilot is not converged or resolved | PASS | PASS | YES | YES | force_rms(1200)=1.012e-01; no conclusion |
 | 15: production dt check is recorded | PASS | PASS | YES | YES | dH=1.660e-06, dZ3=4.076e-06, converged=True |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | PASS | YES | YES | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | PASS | YES | YES | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
+| 15: resolution arithmetic and verdict follow the pre-registered rule | PASS | PASS | YES | YES | converged=False, dH=+0.062978, dZ3=-0.356154 |
+| 15: resolution check compares N=64 and N=96 at one physical time | PASS | PASS | YES | YES | N=64/96, steps=3000, H=0.999942, Z3=0.172071 |
 | 16: no new prediction found | PASS | PASS | YES | YES | 7 candidate classes, none new |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
 | 1b: 3 parameters fit 3 masses exactly | PASS | PASS | YES | YES | max residual 8.527e-14 over 1000 random positive-root triples |

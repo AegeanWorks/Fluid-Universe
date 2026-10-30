@@ -70,6 +70,8 @@ RESULT_FILES = (
     "hopfion_stability.md",
     "hopfion3d_production.json",
     "hopfion3d_production.md",
+    "hopfion3d_convergence.json",
+    "hopfion3d_convergence.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-26T19:11:56+00:00",
-    "git_commit": "6657b24d2339c81d95e94827fb48598adab74d3b",
+    "generated_utc": "2026-10-30T08:15:23+00:00",
+    "git_commit": "03eb177ea09dcfe3e8f631e05eba157b4e04fb4d",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "5289b4cfd28ff6bc73134268da2e43d95362d0aff37f88c344ad4981319cea7e",
-      "results_sha256": "4b8bcb6cda62457a93e0d52469d9fe97d68e8c5b038dedad5da969f4c792368d"
+      "source_sha256": "41cafd4cee82a399f35a9c1b6c21c0ba9b93a61a5dc060fe1b6be049eef64730",
+      "results_sha256": "91ea049b864285af9f208ba8ae1571cbaed7b39aa47202774cd1f9c6a5d34d45"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -581,6 +581,27 @@
       "claim": "15: perturbed seeds are recorded",
       "passed": true,
       "detail": "seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: resolution check compares N=64 and N=96 at one physical time",
+      "passed": true,
+      "detail": "N=64/96, steps=3000, H=0.999942, Z3=0.172071",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: resolution arithmetic and verdict follow the pre-registered rule",
+      "passed": true,
+      "detail": "converged=False, dH=+0.062978, dZ3=-0.356154",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: N=96 verdict follows the unchanged production rule",
+      "passed": true,
+      "detail": "status=UNVERIFIED (Z3 below threshold; not converged), ready=False",
       "expected": null,
       "observed": null
     },
@@ -1194,8 +1215,8 @@
       "observed": null
     }
   ],
-  "total": 168,
-  "passed": 168,
+  "total": 171,
+  "passed": 171,
   "failed": 0,
   "failures": []
 }

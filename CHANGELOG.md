@@ -318,3 +318,20 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The smooth topology is preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
 
 - Verification after the production scan: two separate runs, 168/168 checks each.
+
+## 2026-10-30 - N=96 resolution check for claim 15 (ADR-002)
+
+**Added**
+
+- `sims/convergence.py`, `phenomenology/convergence_report.py`, `tests/test_convergence.py`, `results/hopfion3d_convergence.{json,md}`, and `make convergence`.
+- ADR-002 pre-registers the five resolution criteria before the run.
+
+**Results**
+
+- N=64 (3000 steps): H=0.936964507, upsampled H=0.999520564, Z3=0.528226, force RMS \(3.988\times10^{-2}\), max bond 1.176.
+- N=96 (3000 steps): H=0.999942144, upsampled H=1.000000000, Z3=0.172071, force RMS \(1.495\times10^{-2}\), max bond 0.418.
+- Deltas: H +0.062978, upsampled H +0.000479, Z3 -0.356154, force \(-2.494\times10^{-2}\), max bond -0.758. The native H deficit and the smoothness improve with resolution, but Z3 does not agree (\(|dZ_3|=0.356>0.02\)), so `resolution_converged` is False.
+- Claim 15 remains UNVERIFIED: at N=96 Z3 is below 0.5 and the force RMS is above \(10^{-2}\). The N=64 Z3 order at 3600 steps is resolution-dependent; the N=64 Z3-order reading does not survive the finer grid.
+- The 3000-step check completed in 768.9 s, inside the 900 s G-003 cap. A separate 3600-step N=64 run reproduced the committed production values to the reported precision.
+
+- Verification after the N=96 resolution check: two separate runs, 171/171 checks each.

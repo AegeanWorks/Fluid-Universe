@@ -1206,6 +1206,81 @@ def audit_production(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Claim-15 resolution check (ADR-002)
+# ---------------------------------------------------------------------------
+
+
+def audit_convergence(audit: Audit) -> None:
+    payload = load_results("hopfion3d_convergence.json")
+    low = payload["low"]
+    high = payload["high"]
+    comparison = payload["comparison"]
+    criteria = comparison["criteria"]
+    expected = all(
+        criteria[key]
+        for key in (
+            "H_agrees",
+            "H_upsampled_agrees",
+            "Z3_agrees",
+            "force_not_worse",
+            "max_bond_not_worse",
+        )
+    )
+    audit.record(
+        "15: resolution check compares N=64 and N=96 at one physical time",
+        low["n"] == 64
+        and high["n"] == 96
+        and low["steps"] == high["steps"] == comparison["steps"] == 3000
+        and low["dt"] == high["dt"] == 5e-4
+        and low["mu"] == high["mu"] == 20.0
+        and low["min_pre_norm"] > 0.1
+        and high["min_pre_norm"] > 0.1,
+        f"N={low['n']}/{high['n']}, steps={high['steps']}, "
+        f"H={high['final']['H']:.6f}, Z3={high['final']['Z3']:.6f}",
+    )
+    audit.record(
+        "15: resolution arithmetic and verdict follow the pre-registered rule",
+        abs(
+            comparison["deltas"]["H"] - (high["final"]["H"] - low["final"]["H"])
+        )
+        < 1e-12
+        and abs(
+            comparison["deltas"]["Z3"] - (high["final"]["Z3"] - low["final"]["Z3"])
+        )
+        < 1e-12
+        and comparison["resolution_converged"] == expected
+        and comparison["claim_15_status"] == high["verdict"]["claim_15_status"]
+        and not comparison["claim_15_status"].startswith("VERIFIED"),
+        f"converged={comparison['resolution_converged']}, "
+        f"dH={comparison['deltas']['H']:+.6f}, "
+        f"dZ3={comparison['deltas']['Z3']:+.6f}",
+    )
+    verdict = high["verdict"]
+    expected_ready = bool(
+        verdict["coexistence_H_and_Z3"]
+        and verdict["converged"]
+        and verdict["resolved"]
+        and verdict["topology_preserved"]
+    )
+    audit.record(
+        "15: N=96 verdict follows the unchanged production rule",
+        verdict["production_ready"] == expected_ready
+        and verdict["claim_15_status"].startswith(
+            "VERIFIED" if expected_ready else "UNVERIFIED"
+        )
+        and (
+            not verdict["H_ok"]
+            or (
+                abs(high["final"]["H"] - 1.0) <= high["criteria"]["H_TOL"]
+                and abs(high["final"]["H"] - high["final"]["H_upsampled"])
+                <= high["criteria"]["H_TOL"]
+            )
+        ),
+        f"status={verdict['claim_15_status']}, ready={verdict['production_ready']}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
 
@@ -1359,6 +1434,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_scale(audit)
     audit_stability(audit)
     audit_production(audit)
+    audit_convergence(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

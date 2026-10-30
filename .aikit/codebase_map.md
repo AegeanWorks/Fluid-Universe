@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `66`
+- **Total Python Modules**: `69`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `363`
+- **Total Top-Level Functions**: `375`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `9045`
+- **Total Source Lines**: `9462`
 
 ---
 
@@ -20,6 +20,18 @@
 > *Phenomenology: PDG input, circulant fit, and one-loop SM running.*
 
 **Size**: `1` lines (`72` bytes)
+
+---
+
+### [`phenomenology/convergence_report.py`](phenomenology/convergence_report.py)
+> *Resolution report for claim 15: N=64 versus N=96 at the same physical time.*
+
+**Size**: `166` lines (`5655` bytes)
+
+**Functions:**
+- `def _run(n, deadline)`
+- `def run_convergence_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -323,6 +335,17 @@
 
 ---
 
+### [`sims/convergence.py`](sims/convergence.py)
+> *Resolution comparison for the claim-15 production scan (ADR-002).*
+
+**Size**: `87` lines (`3172` bytes)
+
+**Functions:**
+- `def _require_same_problem(low, high)`
+- `def compare_scans(low, high)` - *Compare a coarse and a fine production payload at the same physical time.*
+
+---
+
 ### [`sims/core.py`](sims/core.py)
 > *Validated 1D core for the Z3 sine-Gordon sector.*
 
@@ -427,6 +450,21 @@
 - `def test_koide_tau_prediction()`
 - `def test_property_q_identity(a, c, delta)`
 - `def test_property_fit(m1, m2, m3)`
+
+---
+
+### [`tests/test_convergence.py`](tests/test_convergence.py)
+> *Resolution-comparison tests for claim 15 (ADR-002).*
+
+**Size**: `86` lines (`3080` bytes)
+
+**Functions:**
+- `def _scan(n, *, h, h_up, z3, force, bond)`
+- `def test_compare_scans_accepts_a_converging_pair()`
+- `def test_compare_scans_flags_a_native_H_regression()`
+- `def test_compare_scans_flags_force_or_bond_regression()`
+- `def test_compare_scans_requires_the_same_physical_problem()`
+- `def test_compare_scans_never_promotes_the_claim()`
 
 ---
 
@@ -899,7 +937,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1418` lines (`56738` bytes)
+**Size**: `1494` lines (`59504` bytes)
 
 **Classes:**
 - `class Audit`
@@ -936,6 +974,7 @@
 - `def audit_scale(audit)`
 - `def audit_stability(audit)`
 - `def audit_production(audit)`
+- `def audit_convergence(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -961,7 +1000,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `115` lines (`2929` bytes)
+**Size**: `117` lines (`2995` bytes)
 
 **Functions:**
 - `def _source_files()`
