@@ -1,88 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "reforge:run-1",
-    "last_phase": "phase 3",
-    "active_phase": 3,
-    "status": "in_progress",
-    "updated_at": 1793293127.6142771,
+    "task_id": "fluid-universe-consistency-v1",
+    "last_phase": "verification",
+    "active_phase": 5,
+    "status": "completed",
+    "updated_at": 1793344159.0250306,
     "owner": "opencode",
     "started_by": "opencode",
-    "continuations": []
+    "continuations": [],
+    "completed_at": 1793344164.1867561
   },
   "checkpoints": [
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[3/6] Verification hardened: G-001 scoped, stale-run fingerprints, single-run guard, cross-platform verifier, 66/66 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792963987.351241,
-      "timestamp_str": "2026-10-26 00:33:07",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "claims 6b and 7-16",
-        "failed": "none",
-        "open": "claims 6b,7-16, no two-loop run, no simulation",
-        "evidence": "results/verification.md, 38 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[4/6] Claims 7-8 complete: neutrino Q_nu negative, quark extension falsified, PMNS branches excluded; 87/87 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792966541.9480863,
-      "timestamp_str": "2026-10-26 01:15:41",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "claim 6b or 9-16",
-        "failed": "none",
-        "open": "6b,9-16, no simulation",
-        "evidence": "results/neutrinos.json, results/quarks.json, results/pmns.json, 51 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[5/6] Claims 9/10/14: delta null, Frank-Oseen equal-K proven, Derrick scaling proven; 101/101 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792967668.3203776,
-      "timestamp_str": "2026-10-26 01:34:28",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "claim 13/16 or simulation core",
-        "failed": "none",
-        "open": "6b,11,12,13,14b,15,16",
-        "evidence": "results/delta_search.json, results/frank_oseen.json, results/derrick.json, 69 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[6/6] Claims 6b/13/16: exact reduction falsified, direct Z3 topology falsified, no new prediction; 115/115 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1792968329.678818,
-      "timestamp_str": "2026-10-26 01:45:29",
-      "agent": "kilo:1",
-      "handoff": {
-        "state": "python -m verification.verify accepted",
-        "next": "simulation core baselines or claim 11/12",
-        "failed": "none",
-        "open": "11,12,14b,15",
-        "evidence": "results/topology.json, results/reduction.json, results/predictions.json, 79 tests, 4/4 gates"
-      }
-    },
     {
       "task_id": "z3-koide-core",
       "phase": "phase 4",
@@ -321,6 +250,54 @@
       "status": "in_progress",
       "timestamp": 1793293127.6142771,
       "timestamp_str": "2026-10-29 19:58:47",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "reforge:run-1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'reforge:run-1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793344051.3409455,
+      "timestamp_str": "2026-10-30 10:07:31",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "fluid-universe-consistency-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/1] Align sims/README with the committed 3D diagnostics and ignore transient reforge review packets",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793344060.4955826,
+      "timestamp_str": "2026-10-30 10:07:40",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Reforge run-1 found stale 'no production 3D run' statements; three were repaired in 0b09894, but sims/README.md still says there is no 3D or Hopfion result and titles itself '1D Baseline Only', and the nine review packets sit untracked",
+        "benefits": "The simulation docs match claims.md, README.md and the committed results; the project tree is clean after the gate",
+        "risks": "contract: none, documentation and ignore rules only; dependency: none; concurrency: none; state: .gitignore hides .aikit/reforge.reviews/ but no tracked file is removed",
+        "mitigation": "Change only the stale header and intro; the Status section already describes the production scan; verify with python aikit.py check fluid-universe and git status"
+      }
+    },
+    {
+      "task_id": "fluid-universe-consistency-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[1/1] sims/README now states the 3D diagnostics exist but are not converged or stable; review packets ignored; project gates 4/4; checklists: passed",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793344159.0250306,
+      "timestamp_str": "2026-10-30 10:09:19",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "fluid-universe-consistency-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'fluid-universe-consistency-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793344164.1867573,
+      "timestamp_str": "2026-10-30 10:09:24",
       "agent": "opencode"
     }
   ]

@@ -1,12 +1,12 @@
-# Simulations — 1D Baseline Only
+# Simulations — 1D Baseline and Bounded 3D Diagnostics
 
-There is **no 3D or Hopfion result** in this repository. The 1D validation core exists; no production run has been done. Earlier lost-run values are not cited.
+The 1D validation core is the baseline for every 3D run. The repository contains a bounded N=64 3D diagnostic (`make n64`) and a pre-registered production scan (`make production`); neither is a converged or stable-Hopfion result. Earlier lost-run values are not cited.
 
 Earlier numbers from a lost script (\(|H|\approx0.16\), \(Z_3\approx0.72\) at \(N=36\)) are not reproduced and are explicitly excluded from the ledger and the paper.
 
-## Required baselines before any production run
+## Required baselines for a production claim
 
-`sims/core.py` now implements the 1D baselines. It must still pass all of the following, each as an automated test in `tests/`:
+`sims/core.py` implements the 1D baselines and `sims/core3d.py` the 3D energy. They must pass all of the following, each as an automated test in `tests/`:
 
 1. **1D sine-Gordon kink.** PASS: profile and tension convergence at order ~2 (`tests/test_sim_core.py`).
 2. **Gradient check.** PASS for the 1D sine-Gordon energy and for the full 3D \(E_2+E_4+Z_3\) energy (relative error < 1e-6; `tests/test_hopfion3d.py`).
