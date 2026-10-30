@@ -53,5 +53,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 27 | PROVEN (acoustic horizon) | Shallow water h=0.1 m, Q=1e-3 m³/s: c=0.990454 m/s, rH=1.606888e-3 m, κ=610.497 m/s², TH=7.422e-10 K; g_tt=0 at the horizon; long-wavelength only. |
 | 28 | PROVEN (capillary validity) | Water ell_c=2.726879e-3 m; lab r_H 1.607 mm is capillary-dominated (ratio 2.8798); r_H>=10 ell_c requires Q>=1.697e-2 m³/s; Q=0.05 gives ratio 1.152e-3. |
 | 29 | PROVEN (dispersive horizon) | ω_c=84.824 rad/s (13.5 Hz); horizon ratios 1.000013 at 0.1 rad/s, 1.151520 at 10, 5.192407 at 100; long-wavelength metric valid below ~1 rad/s. |
+| 30 | PROVEN (radial separatrix) | Outgoing speed changes sign at r_H (-0.110 at 0.9r_H, +0.090 at 1.1r_H); ray times match analytic to 2e-6; peeling rate 12.209936 = surface gravity. |
 
-Claim audit: two separate runs agree per claim, 208/208 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 210/210 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

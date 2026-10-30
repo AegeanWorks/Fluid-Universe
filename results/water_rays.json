@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "config": {
+      "depth_m": 0.1,
+      "dt_s": 1e-06,
+      "flow_rate_m3_s": 0.05,
+      "gravity_m_s2": 9.81,
+      "scope": "radial ray separatrix at the shallow-water acoustic horizon"
+    },
+    "config_sha256": "70ee05c0318d8aca2ab3f3f49bb8762de08a2c0202fa18900eb8babe8d122387",
+    "generated_utc": "2026-10-30T17:32:33+00:00",
+    "git": {
+      "commit": "8f6aa4109092e00442a0fe6fe3ca6db3110c98de",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "depth_m": 0.1,
+    "flow_rate_m3_s": 0.05,
+    "hawking_temperature_k": 1.484316054564206e-11,
+    "horizon_radius_m": 0.08034440378024704,
+    "peeling_rate_1_s": 12.209935650069289,
+    "rows": [
+      {
+        "analytic_time_s": 0.4538730848829787,
+        "numeric_time_s": 0.45387399999477457,
+        "r0_over_r_h": 1.01,
+        "r_end_over_r_h": 2.0,
+        "relative_error": 2.0162283827251776e-06
+      },
+      {
+        "analytic_time_s": 0.2597896270246786,
+        "numeric_time_s": 0.2597899999999674,
+        "r0_over_r_h": 1.1,
+        "r_end_over_r_h": 2.0,
+        "relative_error": 1.4356819902184464e-06
+      }
+    ],
+    "signs": [
+      {
+        "ingoing_speed_m_s": -2.0909593757677625,
+        "outgoing_speed_m_s": -0.1100504934614609,
+        "r_over_r_h": 0.9
+      },
+      {
+        "ingoing_speed_m_s": -1.9809088823063015,
+        "outgoing_speed_m_s": 0.0,
+        "r_over_r_h": 1.0
+      },
+      {
+        "ingoing_speed_m_s": -1.8908675694741968,
+        "outgoing_speed_m_s": 0.09004131283210481,
+        "r_over_r_h": 1.1
+      }
+    ],
+    "sound_speed_m_s": 0.9904544411531507,
+    "surface_gravity_m_s2": 12.209935650069289,
+    "verdict": {
+      "claim_30_status": "PROVEN (radial separatrix; peeling rate)",
+      "note": "The outgoing radial speed changes sign at r_H and the peeling rate equals the surface gravity c^2/r_H. The numeric ray times match the analytic solution. This is geometric optics; a wave-scattering test remains the next step.",
+      "separatrix_verified": true
+    }
+  }
+}

@@ -158,3 +158,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 27 uses the long-wavelength sound speed. The full shallow-water dispersion includes capillary and finite-depth terms, so the horizon depends on the wave frequency. The acoustic metric is valid only below the capillary frequency.
 - **Decision**: Use \(\omega_f^2=(gk+\gamma k^3/\rho)\tanh(kh)\) and the outgoing-mode horizon condition \(k c_g(k)+\omega_f(k)=\omega\), with \(V=c_g(k)\) and \(r=Q/(2\pi h V)\). Pre-register the low-frequency limit \(r\to r_H\), the capillary frequency \(\omega_c=\sqrt{2g/\ell_c}\), and the horizon ratios at \(\omega=0.1,1,10,100\) rad/s. A shift above 10% at low frequency would falsify the long-wavelength metric.
 - **Consequences**: New `theory/water_dispersive.py`, `phenomenology/water_dispersive_report.py`, `tests/test_water_dispersive.py`, `results/water_dispersive.{json,md}`, and claim 29. The long-wavelength acoustic metric is valid for \(\omega\ll\omega_c\); high-frequency waves see a shifted horizon.
+
+### ADR-021: Radial rays at the acoustic horizon (claim 30)
+- **Date**: 2026-10-30
+- **Status**: Accepted
+- **Context**: The horizon metric is established, but its causal structure has not been checked. Radial rays should change direction at \(r_H\) and peel away with the surface-gravity rate.
+- **Decision**: Use the outgoing radial speed \(dr/dt=c-Q/(2\pi r h)=c(1-r_H/r)\) and the ingoing speed \(dr/dt=-c-Q/(2\pi r h)\). Pre-register: zero speed at \(r_H\), positive outside and negative inside, peeling rate \(\kappa=c/r_H\), and the analytic ray time \(t=(r-r_0)/c+(r_H/c)\ln|(r-r_H)/(r_0-r_H)|\) from RK4. Use the valid \(Q=0.05\) m³/s, \(h=0.1\) m regime.
+- **Consequences**: New `theory/water_rays.py`, `phenomenology/water_rays_report.py`, `tests/test_water_rays.py`, `results/water_rays.{json,md}`, and claim 30. The geometric-optics rays are a check; a numerical wave-scattering test remains the next step.

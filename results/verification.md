@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T17:26:16+00:00 | `9731a4fac4ecaa08b2153c191a3fd234320ad9ea` | 208/208 | `feebb316eea958f1...` | `ad9349b86118adb7...` |
-| run2 | 2026-10-30T17:26:29+00:00 | `9731a4fac4ecaa08b2153c191a3fd234320ad9ea` | 208/208 | `feebb316eea958f1...` | `ad9349b86118adb7...` |
+| run1 | 2026-10-30T17:37:09+00:00 | `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` | 210/210 | `e535a8225bcd88fa...` | `5df13c024cda8f37...` |
+| run2 | 2026-10-30T17:37:26+00:00 | `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` | 210/210 | `e535a8225bcd88fa...` | `5df13c024cda8f37...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -92,6 +92,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
 | 2b/F1: eigenpair k=1 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
 | 2b/F1: eigenpair k=2 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
+| 30: outgoing speed changes sign at the horizon | PASS | PASS | YES | YES | v(0.9)=-0.110050, v(1.1)=+0.090041 |
+| 30: ray times match and the peeling rate equals the surface gravity | PASS | PASS | YES | YES | max error=2.016e-06, kappa=12.209936 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

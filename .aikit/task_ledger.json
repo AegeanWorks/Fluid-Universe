@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-dispersive-v1",
+    "task_id": "water-rays-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793381275.7023761,
+    "updated_at": 1793381943.9448688,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793381275.9352624
+    "completed_at": 1793381944.224936
   },
   "checkpoints": [
-    {
-      "task_id": "hydrogen-fluid-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-016 and add failing tests for the hydrogen 1s Madelung reduction",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793378097.8749223,
-      "timestamp_str": "2026-10-30 19:34:57",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The first excited state exposes the node singularity. The hydrogen 1s state is nodeless and realistic; its Coulomb attraction and quantum pressure should balance at the Bohr radius, testing the fluid program on a real quantum scale.",
-        "benefits": "A positive derivation of the Bohr radius and ground-state energy from the Madelung force balance, not from the Schrodinger wavefunction, extending the fluid program beyond Gaussian models.",
-        "risks": "contract: new claim 25, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the 1/r quantum pressure and the SI/atomic-unit conversion",
-        "mitigation": "Derive the 1/r coefficient and constant analytically; test the density normalization and the force-balance residual at several radii; report both atomic units and SI values"
-      }
-    },
-    {
-      "task_id": "hydrogen-fluid-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Hydrogen 1s: a0=1, E=-0.5, normalization 1.000000000000, force residual 0, wrong radius -0.5; SI a0=5.291773369e-11 m, E=-13.605687 eV; claim 25 PROVEN",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793378418.8294516,
-      "timestamp_str": "2026-10-30 19:40:18",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "hydrogen-fluid-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 200/200 accepted (2 new claim-25 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793378424.90006,
-      "timestamp_str": "2026-10-30 19:40:24",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "hydrogen-fluid-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'hydrogen-fluid-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793378425.0594933,
-      "timestamp_str": "2026-10-30 19:40:25",
-      "agent": "opencode"
-    },
     {
       "task_id": "hydrogen-vortex-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793381275.9352658,
       "timestamp_str": "2026-10-30 20:27:55",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-rays-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-021 and add failing tests for radial rays at the acoustic horizon",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793381478.9921622,
+      "timestamp_str": "2026-10-30 20:31:18",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The horizon metric is established, but its causal structure has not been checked: radial rays should change direction at r_H and peel away with the surface gravity rate. This tests the analogue horizon beyond the metric components.",
+        "benefits": "A positive causal-structure result: the horizon is a separatrix, the peeling rate equals c^2/r_H, and the ray times match the analytic solution.",
+        "risks": "contract: new claim 30, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the ray speed vanishes at r_H, so the integration must stop before r_H",
+        "mitigation": "Use the valid Q=0.05, h=0.1 regime; derive the analytic ray time; compare RK4 to it; test the sign of the speed on both sides and the peeling rate"
+      }
+    },
+    {
+      "task_id": "water-rays-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Radial rays: outgoing speed signs -0.110/+0.090 across r_H; ray times match analytic to 2e-6; peeling rate 12.209936 equals surface gravity; claim 30 PROVEN",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793381938.641375,
+      "timestamp_str": "2026-10-30 20:38:58",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-rays-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 210/210 accepted (2 new claim-30 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793381943.9448688,
+      "timestamp_str": "2026-10-30 20:39:03",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-rays-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-rays-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793381944.224939,
+      "timestamp_str": "2026-10-30 20:39:04",
       "agent": "opencode"
     }
   ]

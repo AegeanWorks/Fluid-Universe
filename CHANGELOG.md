@@ -626,3 +626,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 29 is **PROVEN (dispersive horizon correction)**. The acoustic metric is accurate below about 1 rad/s and fails above the capillary frequency.
 
 - Verification after the dispersive water horizon: two separate runs, 208/208 checks each.
+
+## 2026-10-30 - Radial rays at the water horizon (claim 30, ADR-021)
+
+**Added**
+
+- `theory/water_rays.py`, `phenomenology/water_rays_report.py`, `make waterrays`, `tests/test_water_rays.py`, and `results/water_rays.{json,md}`.
+
+**Results**
+
+- Outgoing speed changes sign at \(r_H\): \(-0.110050493\) m/s at 0.9\(r_H\), 0 at \(r_H\), \(+0.090041313\) m/s at 1.1\(r_H\); the ingoing speed is always negative.
+- Ray times to \(2r_H\): 0.453873085 s (analytic) vs 0.453874000 s (numeric) from 1.01\(r_H\); 0.259789627 vs 0.259790000 from 1.1\(r_H\).
+- Peeling rate 12.209936 1/s equals the surface gravity; \(T_H=1.484316\times10^{-11}\) K.
+- Claim 30 is **PROVEN (radial ray separatrix)**. This is geometric optics; a wave-scattering test remains the next step.
+
+- Verification after the radial ray analysis: two separate runs, 210/210 checks each.

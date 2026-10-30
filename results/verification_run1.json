@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T17:26:16+00:00",
-    "git_commit": "9731a4fac4ecaa08b2153c191a3fd234320ad9ea",
+    "generated_utc": "2026-10-30T17:37:09+00:00",
+    "git_commit": "8f6aa4109092e00442a0fe6fe3ca6db3110c98de",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "feebb316eea958f136d6b2d7392fac3ad545110299adfe7c5be2b8234845aee3",
-      "results_sha256": "ad9349b86118adb78c6abf69f8d98c25c7d1bc80eb26afb21b9b06fbfac0c607"
+      "source_sha256": "e535a8225bcd88fa002a0902603f2f669e28d0e33c3d77106f7c831d7e1d20c5",
+      "results_sha256": "5df13c024cda8f379712903b19fe2eba9755100dafa287e5539a60d3c4c1a4b4"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -781,6 +781,20 @@
       "observed": null
     },
     {
+      "claim": "30: outgoing speed changes sign at the horizon",
+      "passed": true,
+      "detail": "v(0.9)=-0.110050, v(1.1)=+0.090041",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "30: ray times match and the peeling rate equals the surface gravity",
+      "passed": true,
+      "detail": "max error=2.016e-06, kappa=12.209936",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1474,8 +1488,8 @@
       "observed": null
     }
   ],
-  "total": 208,
-  "passed": 208,
+  "total": 210,
+  "passed": 210,
   "failed": 0,
   "failures": []
 }

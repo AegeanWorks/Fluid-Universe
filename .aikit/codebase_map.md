@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `113`
+- **Total Python Modules**: `116`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `617`
+- **Total Top-Level Functions**: `630`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `15406`
+- **Total Source Lines**: `15753`
 
 ---
 
@@ -525,6 +525,17 @@
 
 **Functions:**
 - `def run_water_dispersive_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_rays_report.py`](phenomenology/water_rays_report.py)
+> *Radial ray report at the shallow-water horizon (claim 30, ADR-021).*
+
+**Size**: `159` lines (`5144` bytes)
+
+**Functions:**
+- `def run_water_rays_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1189,6 +1200,20 @@
 
 ---
 
+### [`tests/test_water_rays.py`](tests/test_water_rays.py)
+> *Radial ray tests at the water horizon (claim 30).*
+
+**Size**: `69` lines (`2022` bytes)
+
+**Functions:**
+- `def test_outgoing_speed_changes_sign_at_the_horizon()`
+- `def test_analytic_ray_time()`
+- `def test_numerical_ray_time_matches_analytic()`
+- `def test_peeling_rate_is_the_surface_gravity()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_validity.py`](tests/test_water_validity.py)
 > *Capillary validity tests for the shallow-water horizon (claim 28).*
 
@@ -1547,6 +1572,20 @@
 
 ---
 
+### [`theory/water_rays.py`](theory/water_rays.py)
+> *Radial rays at the shallow-water acoustic horizon (claim 30, ADR-021).*
+
+**Size**: `82` lines (`2545` bytes)
+
+**Functions:**
+- `def outgoing_speed(r, flow_rate, depth, gravity)`
+- `def ingoing_speed(r, flow_rate, depth, gravity)`
+- `def peeling_rate(flow_rate, depth, gravity)`
+- `def analytic_outgoing_time(r, r0, horizon, speed)`
+- `def integrate_outgoing(r0, r_end, flow_rate, depth, gravity, dt)`
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -1557,7 +1596,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2102` lines (`83343` bytes)
+**Size**: `2137` lines (`84716` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1609,6 +1648,7 @@
 - `def audit_water_analogue(audit)`
 - `def audit_water_validity(audit)`
 - `def audit_water_dispersive(audit)`
+- `def audit_water_rays(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1638,7 +1678,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `153` lines (`3983` bytes)
+**Size**: `155` lines (`4027` bytes)
 
 **Functions:**
 - `def _source_files()`

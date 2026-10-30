@@ -1629,6 +1629,40 @@ def audit_water_dispersive(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Radial rays at the water horizon (claim 30/ADR-021)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_rays(audit: Audit) -> None:
+    payload = load_results("water_rays.json")
+    result = payload["result"]
+    signs = result["signs"]
+    rows = result["rows"]
+    verdict = result["verdict"]
+    audit.record(
+        "30: outgoing speed changes sign at the horizon",
+        signs[0]["outgoing_speed_m_s"] < 0.0
+        and abs(signs[1]["outgoing_speed_m_s"]) < 1e-12
+        and signs[2]["outgoing_speed_m_s"] > 0.0
+        and all(row["ingoing_speed_m_s"] < 0.0 for row in signs),
+        f"v(0.9)={signs[0]['outgoing_speed_m_s']:+.6f}, "
+        f"v(1.1)={signs[2]['outgoing_speed_m_s']:+.6f}",
+    )
+    audit.record(
+        "30: ray times match and the peeling rate equals the surface gravity",
+        all(row["relative_error"] < 1e-3 for row in rows)
+        and abs(
+            result["peeling_rate_1_s"] - result["surface_gravity_m_s2"]
+        )
+        < 1e-12
+        and verdict["separatrix_verified"] is True
+        and verdict["claim_30_status"].startswith("PROVEN"),
+        f"max error={max(row['relative_error'] for row in rows):.3e}, "
+        f"kappa={result['peeling_rate_1_s']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2039,6 +2073,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_analogue(audit)
     audit_water_validity(audit)
     audit_water_dispersive(audit)
+    audit_water_rays(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
