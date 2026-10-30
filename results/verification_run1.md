@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**210/210 checks passed.**
+**212/212 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -117,6 +117,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 29: high-frequency horizon is shifted by capillary dispersion | PASS | ratio(10)=1.151520, ratio(100)=5.192407 |
 | 30: outgoing speed changes sign at the horizon | PASS | v(0.9)=-0.110050, v(1.1)=+0.090041 |
 | 30: ray times match and the peeling rate equals the surface gravity | PASS | max error=2.016e-06, kappa=12.209936 |
+| 31: the horizon blocks the right-moving packet | PASS | fraction=7.503e-06, center=-1.433333 |
+| 31: the uniform-flow control transmits | PASS | fraction=1.000000, center=4.433333 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

@@ -110,6 +110,8 @@ RESULT_FILES = (
     "water_dispersive.md",
     "water_rays.json",
     "water_rays.md",
+    "water_scattering.json",
+    "water_scattering.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

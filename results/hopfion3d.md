@@ -26,4 +26,4 @@ Converged (force RMS < 1e-2): **False**.
 The N=32 pilot is not converged: H and Z3 change with step count and resolution (a manual N=64 check gives different values). The 300-step trade-off is transient. No coexistence conclusion is drawn; this is not a production or spontaneous-order claim.
 
 - Config SHA-256: `bbebe2555ce49d9eae94b9aae4a4b19e12fcde1b391073fd59beff6247b8def0`
-- Git: `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` (dirty=True)
+- Git: `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` (dirty=True)

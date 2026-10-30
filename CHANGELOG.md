@@ -641,3 +641,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 30 is **PROVEN (radial ray separatrix)**. This is geometric optics; a wave-scattering test remains the next step.
 
 - Verification after the radial ray analysis: two separate runs, 210/210 checks each.
+
+## 2026-10-30 - 1D water-wave scattering (claim 31, ADR-022)
+
+**Added**
+
+- `sims/water_scattering.py`, `phenomenology/water_scattering_report.py`, `make waterscattering`, `tests/test_water_scattering.py`, and `results/water_scattering.{json,md}`.
+
+**Results**
+
+- 1D linearized shallow water with Riemann invariants, N=1200, t=15 s, dt=\(2\times10^{-4}\) s.
+- Horizon case: transmitted energy fraction \(7.503\times10^{-6}\); final center -1.433333 m.
+- Uniform-flow control: transmitted fraction 1.000000; final center 4.433333 m.
+- Claim 31 is **NUMERIC (horizon blocking)**. The 1D flow is prescribed (kinematic analogue), not a consistent shallow-water equilibrium; a full radial simulation remains future work.
+
+- Verification after the 1D water-wave scattering: two separate runs, 212/212 checks each.

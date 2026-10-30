@@ -30,4 +30,4 @@ If a model identified the director modes with photons with O(1) coupling:
 The linearised model has a preferred frame and no metric. The two transverse modes have equal speed only for K1=K2=K3. The director modes are neutral, so photon-birefringence and GRB bounds do not directly apply. If a coupling to photons were added, equal K would pass all bounds exactly, while an O(1) anisotropy would be excluded by the GRB/clock/birefringence limits.
 
 - Config SHA-256: `b3c75e3d54892bab8af69f107828f2dfb371a883f2703defb09b30ebb7408f3d`
-- Git: `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` (dirty=True)
+- Git: `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` (dirty=True)

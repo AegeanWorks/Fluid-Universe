@@ -165,3 +165,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The horizon metric is established, but its causal structure has not been checked. Radial rays should change direction at \(r_H\) and peel away with the surface-gravity rate.
 - **Decision**: Use the outgoing radial speed \(dr/dt=c-Q/(2\pi r h)=c(1-r_H/r)\) and the ingoing speed \(dr/dt=-c-Q/(2\pi r h)\). Pre-register: zero speed at \(r_H\), positive outside and negative inside, peeling rate \(\kappa=c/r_H\), and the analytic ray time \(t=(r-r_0)/c+(r_H/c)\ln|(r-r_H)/(r_0-r_H)|\) from RK4. Use the valid \(Q=0.05\) m³/s, \(h=0.1\) m regime.
 - **Consequences**: New `theory/water_rays.py`, `phenomenology/water_rays_report.py`, `tests/test_water_rays.py`, `results/water_rays.{json,md}`, and claim 30. The geometric-optics rays are a check; a numerical wave-scattering test remains the next step.
+
+### ADR-022: 1D shallow-water wave scattering at the horizon (claim 31)
+- **Date**: 2026-10-30
+- **Status**: Accepted
+- **Context**: The horizon is established analytically and by radial rays. A numerical wave-scattering test checks whether a right-moving packet is blocked at the horizon in the long-wavelength regime.
+- **Decision**: Use the 1D linearized shallow-water equations in Riemann invariants \(R_\pm=u\pm(c/h)\eta\), with upwind advection at speeds \(v\pm c\), a sponge at the boundaries, and a Gaussian packet \(u=(c/h)\eta\). The horizon flow is \(v=-c(1+x/(2L))\); a uniform \(v=-0.5c\) is the transmitting control. Pre-register: transmitted energy fraction \(<10^{-3}\) at the horizon and \(>0.2\) in the control, with finite energy and a stable solution.
+- **Consequences**: New `sims/water_scattering.py`, `phenomenology/water_scattering_report.py`, `tests/test_water_scattering.py`, `results/water_scattering.{json,md}`, and claim 31. The 1D flow is a kinematic analogue, not a consistent shallow-water equilibrium; a full radial simulation remains future work.

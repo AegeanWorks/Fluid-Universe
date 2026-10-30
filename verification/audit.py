@@ -1663,6 +1663,37 @@ def audit_water_rays(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# 1D water-wave scattering (claim 31/ADR-022)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_scattering(audit: Audit) -> None:
+    payload = load_results("water_scattering.json")
+    result = payload["result"]
+    horizon = result["horizon"]
+    uniform = result["uniform_control"]
+    verdict = result["verdict"]
+    audit.record(
+        "31: the horizon blocks the right-moving packet",
+        horizon["transmitted_fraction"] < 1e-3
+        and horizon["final_center"] < 0.0
+        and horizon["energy_total"] > 0.0,
+        f"fraction={horizon['transmitted_fraction']:.3e}, "
+        f"center={horizon['final_center']:.6f}",
+    )
+    audit.record(
+        "31: the uniform-flow control transmits",
+        uniform["transmitted_fraction"] > 0.9
+        and uniform["final_center"] > 0.0
+        and verdict["horizon_blocks"] is True
+        and verdict["uniform_transmits"] is True
+        and verdict["claim_31_status"].startswith("NUMERIC"),
+        f"fraction={uniform['transmitted_fraction']:.6f}, "
+        f"center={uniform['final_center']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2074,6 +2105,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_validity(audit)
     audit_water_dispersive(audit)
     audit_water_rays(audit)
+    audit_water_scattering(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

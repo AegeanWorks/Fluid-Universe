@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T17:37:09+00:00 | `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` | 210/210 | `e535a8225bcd88fa...` | `5df13c024cda8f37...` |
-| run2 | 2026-10-30T17:37:26+00:00 | `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` | 210/210 | `e535a8225bcd88fa...` | `5df13c024cda8f37...` |
+| run1 | 2026-10-30T17:53:14+00:00 | `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` | 212/212 | `0ff58509e61c6456...` | `456cc74764cbfaaf...` |
+| run2 | 2026-10-30T17:53:23+00:00 | `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` | 212/212 | `0ff58509e61c6456...` | `456cc74764cbfaaf...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -94,6 +94,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 2b/F1: eigenpair k=2 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
 | 30: outgoing speed changes sign at the horizon | PASS | PASS | YES | YES | v(0.9)=-0.110050, v(1.1)=+0.090041 |
 | 30: ray times match and the peeling rate equals the surface gravity | PASS | PASS | YES | YES | max error=2.016e-06, kappa=12.209936 |
+| 31: the horizon blocks the right-moving packet | PASS | PASS | YES | YES | fraction=7.503e-06, center=-1.433333 |
+| 31: the uniform-flow control transmits | PASS | PASS | YES | YES | fraction=1.000000, center=4.433333 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

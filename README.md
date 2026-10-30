@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 210/210 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 212/212 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -86,6 +86,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Capillary validity | PROVEN: \(\ell_c=2.726879\times10^{-3}\) m; the lab \(r_H\) is capillary-dominated (ratio 2.8798); \(r_H\ge10\ell_c\) requires \(Q\ge1.697\times10^{-2}\) m³/s; \(Q=0.05\) gives ratio \(1.152\times10^{-3}\) | `results/water_validity.json` |
 | Dispersive water horizon | PROVEN: \(\omega_c=84.824\) rad/s; horizon ratios 1.000013 at 0.1 rad/s, 1.151520 at 10, 5.192407 at 100; long-wavelength metric valid below about 1 rad/s | `results/water_dispersive.json` |
 | Radial ray separatrix | PROVEN: outgoing speed changes sign at \(r_H\) (\(-0.110\) at 0.9\(r_H\), \(+0.090\) at 1.1\(r_H\)); ray times match analytic to \(2\times10^{-6}\); peeling rate 12.209936 equals the surface gravity | `results/water_rays.json` |
+| 1D horizon scattering | NUMERIC: the horizon transmits \(7.503\times10^{-6}\) of the packet energy (center \(-1.433\) m); the uniform control transmits 1.000000 (center 4.433 m) | `results/water_scattering.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

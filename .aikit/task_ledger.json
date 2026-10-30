@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-rays-v1",
+    "task_id": "water-scattering-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793381943.9448688,
+    "updated_at": 1793382886.6677558,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793381944.224936
+    "completed_at": 1793382886.8463
   },
   "checkpoints": [
-    {
-      "task_id": "hydrogen-vortex-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-017 and add failing tests for the hydrogen 2p vortex identification",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793378600.8369935,
-      "timestamp_str": "2026-10-30 19:43:20",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The first excited state node is singular in 1D. The hydrogen 2p_(m=+-1) state has an angular node at the origin, which is a quantized vortex with circulation h/m_e, not a radial node. Identifying it connects the node problem to the earlier vortex work.",
-        "benefits": "A positive fluid-mechanics identification of a real quantum state: circulation, angular momentum and most-probable radius from the exact 2p density.",
-        "risks": "contract: new claim 26, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the azimuthal velocity diverges at theta=0, so the loop is evaluated away from the poles",
-        "mitigation": "Use the exact 2p radial function; test normalization, the 4a0 peak, the loop circulation away from the poles, and the angular momentum; state that m=0 has no vortex"
-      }
-    },
-    {
-      "task_id": "hydrogen-vortex-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Hydrogen 2p: radial normalization 1, peak 4a0, circulation 6.283185307180, loop circulation matches, azimuthal velocity 0.5, Lz=1; claim 26 NUMERIC (vortex identification)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793379119.1893246,
-      "timestamp_str": "2026-10-30 19:51:59",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "hydrogen-vortex-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 202/202 accepted (2 new claim-26 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793379126.3946514,
-      "timestamp_str": "2026-10-30 19:52:06",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "hydrogen-vortex-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'hydrogen-vortex-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793379126.5450525,
-      "timestamp_str": "2026-10-30 19:52:06",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-analogue-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793381944.224939,
       "timestamp_str": "2026-10-30 20:39:04",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-scattering-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-022 and add failing tests for the 1D shallow-water scattering solver",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793382244.285372,
+      "timestamp_str": "2026-10-30 20:44:04",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The horizon is established analytically and by rays. A numerical wave-scattering test checks that a right-moving packet is blocked at the horizon in the valid long-wavelength regime.",
+        "benefits": "A direct numerical demonstration of horizon blocking, with a uniform-flow control that transmits; it complements the metric and ray results.",
+        "risks": "contract: new claim 31, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the prescribed 1D flow is kinematic and not a consistent shallow-water equilibrium",
+        "mitigation": "Use Riemann invariants with upwind advection and a sponge; test a uniform-flow control; pre-register transmitted fraction <1e-3 at the horizon and >0.2 in the control; state the kinematic limitation"
+      }
+    },
+    {
+      "task_id": "water-scattering-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] 1D scattering: horizon transmitted fraction 7.503e-6 (center -1.433 m); uniform control 1.000000 (center 4.433 m); claim 31 NUMERIC (horizon blocking)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793382879.571604,
+      "timestamp_str": "2026-10-30 20:54:39",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-scattering-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 212/212 accepted (2 new claim-31 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793382886.6677558,
+      "timestamp_str": "2026-10-30 20:54:46",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-scattering-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-scattering-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793382886.846301,
+      "timestamp_str": "2026-10-30 20:54:46",
       "agent": "opencode"
     }
   ]

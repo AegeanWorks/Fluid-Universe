@@ -19,4 +19,4 @@ Background n0 = z, plane wave, kinetic term (rho/2)(dt n)^2. The elastic matrix 
 K1=K2=K3 gives omega^2=(K/rho)k^2 for the two transverse modes. The background n0 selects a preferred frame, and no gauge field is present.
 
 - Config SHA-256: `6b4200a1c07612333ee6dd6a4d24df1b98eb0708c678a629b869bb85484c1bb5`
-- Git: `8f6aa4109092e00442a0fe6fe3ca6db3110c98de` (dirty=True)
+- Git: `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` (dirty=True)

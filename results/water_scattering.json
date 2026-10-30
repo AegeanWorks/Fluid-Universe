@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "config": {
+      "case": "1D linearized shallow water with prescribed flow",
+      "center_m": -3.0,
+      "depth_m": 0.1,
+      "dt_s": 0.0002,
+      "length_m": 20.0,
+      "n": 1200,
+      "t_max_s": 15.0,
+      "width_m": 0.5
+    },
+    "config_sha256": "ca99e1212471d053643b25caeb0d862f955cdf3e19c3322de6abe81e0a47db33",
+    "generated_utc": "2026-10-30T17:49:04+00:00",
+    "git": {
+      "commit": "fe1c68f588c4d5de605e4ec0503b6cfa574e3a35",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "horizon": {
+      "center": -3.0,
+      "depth": 0.1,
+      "dt": 0.0002,
+      "energy_left": 7.940463482613711,
+      "energy_right": 5.957711418374681e-05,
+      "energy_total": 7.940523059727894,
+      "final_center": -1.4333333333333333,
+      "length": 20.0,
+      "max_eta": 1.3215732597803884,
+      "n": 1200,
+      "t_max": 15.0,
+      "transmitted_fraction": 7.502920618152376e-06,
+      "width": 0.5
+    },
+    "sound_speed_m_s": 0.9904544411531507,
+    "uniform_control": {
+      "center": -3.0,
+      "depth": 0.1,
+      "dt": 0.0002,
+      "energy_left": 1.2010267242370438e-24,
+      "energy_right": 7.109957936005961,
+      "energy_total": 7.109957936005961,
+      "final_center": 4.433333333333334,
+      "length": 20.0,
+      "max_eta": 0.8177536755370777,
+      "n": 1200,
+      "t_max": 15.0,
+      "transmitted_fraction": 1.0,
+      "width": 0.5
+    },
+    "verdict": {
+      "claim_31_status": "NUMERIC (horizon blocking)",
+      "horizon_blocks": true,
+      "note": "A right-moving shallow-water packet leaves essentially no energy in the supersonic region at the horizon, while the uniform-flow control transmits. The 1D background flow is prescribed (kinematic analogue), not a consistent shallow-water equilibrium; a full radial simulation remains future work.",
+      "uniform_transmits": true
+    }
+  }
+}

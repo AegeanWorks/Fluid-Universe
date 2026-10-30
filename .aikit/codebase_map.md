@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `116`
+- **Total Python Modules**: `119`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `630`
+- **Total Top-Level Functions**: `643`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `15753`
+- **Total Source Lines**: `16113`
 
 ---
 
@@ -540,6 +540,17 @@
 
 ---
 
+### [`phenomenology/water_scattering_report.py`](phenomenology/water_scattering_report.py)
+> *1D water-wave scattering report (claim 31, ADR-022).*
+
+**Size**: `116` lines (`3701` bytes)
+
+**Functions:**
+- `def run_water_scattering_check(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/water_validity_report.py`](phenomenology/water_validity_report.py)
 > *Capillary validity report for the shallow-water horizon (claim 28, ADR-019).*
 
@@ -654,6 +665,21 @@
 - `def perturb_along_mode(field, mode, amplitude)` - *Add a normalized tangent mode and renormalize every site.*
 - `def classify_candidate(validation, spectrum)` - *Classify one candidate's Hessian without overstating the result.*
 - `def run_stability_check(n, length, iterations, steps, dt, k, validate_n)` - *Build the scale-stationary candidate and compute its tangent Hessian.*
+
+---
+
+### [`sims/water_scattering.py`](sims/water_scattering.py)
+> *1D shallow-water wave scattering at an acoustic horizon (claim 31, ADR-022).*
+
+**Size**: `146` lines (`4959` bytes)
+
+**Functions:**
+- `def horizon_flow(x, c, length)`
+- `def uniform_flow(x, c, fraction)`
+- `def initial_packet(x, center, width, c, depth)`
+- `def sponge_profile(x, length, fraction)`
+- `def energy_density(eta, u, depth, gravity)`
+- `def simulate(flow, n, length, depth, center, width, t_max, dt, sponge_fraction, sponge_strength, gravity)`
 
 ---
 
@@ -1214,6 +1240,19 @@
 
 ---
 
+### [`tests/test_water_scattering.py`](tests/test_water_scattering.py)
+> *1D water-wave scattering tests (claim 31).*
+
+**Size**: `64` lines (`1551` bytes)
+
+**Functions:**
+- `def test_uniform_flow_transmits_the_packet()`
+- `def test_horizon_blocks_the_packet()`
+- `def test_initial_packet_and_sponge_shapes()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_validity.py`](tests/test_water_validity.py)
 > *Capillary validity tests for the shallow-water horizon (claim 28).*
 
@@ -1596,7 +1635,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2137` lines (`84716` bytes)
+**Size**: `2169` lines (`85944` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1649,6 +1688,7 @@
 - `def audit_water_validity(audit)`
 - `def audit_water_dispersive(audit)`
 - `def audit_water_rays(audit)`
+- `def audit_water_scattering(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1678,7 +1718,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `155` lines (`4027` bytes)
+**Size**: `157` lines (`4083` bytes)
 
 **Functions:**
 - `def _source_files()`

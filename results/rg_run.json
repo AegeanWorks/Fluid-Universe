@@ -83,9 +83,9 @@
       "v_GeV": 246.0
     },
     "config_sha256": "009ae1e18929e2c16885342d57f9d5874dd7d9d398589daa4be0a6efed6cde05",
-    "generated_utc": "2026-10-30T17:34:59+00:00",
+    "generated_utc": "2026-10-30T17:51:25+00:00",
     "git": {
-      "commit": "8f6aa4109092e00442a0fe6fe3ca6db3110c98de",
+      "commit": "fe1c68f588c4d5de605e4ec0503b6cfa574e3a35",
       "dirty": true
     },
     "packages": {
