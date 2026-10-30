@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `75`
+- **Total Python Modules**: `76`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `422`
+- **Total Top-Level Functions**: `425`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `10926`
+- **Total Source Lines**: `11149`
 
 ---
 
@@ -150,6 +150,17 @@
 **Functions:**
 - `def run_scale_check(write)`
 - `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/length_scan_report.py`](phenomenology/length_scan_report.py)
+> *Box-length scan of the pure-FN N=64 candidate (ADR-007, claim 14b).*
+
+**Size**: `183` lines (`6446` bytes)
+
+**Functions:**
+- `def run_length_scan(write)`
+- `def render_markdown(result)`
 
 ---
 
@@ -467,7 +478,7 @@
 ### [`sims/stability.py`](sims/stability.py)
 > *Tangent-space Hessian of the 3D Faddeev-Niemi + Z3 energy.*
 
-**Size**: `380` lines (`13646` bytes)
+**Size**: `381` lines (`13687` bytes)
 
 **Functions:**
 - `def tangent_basis(field)` - *Return two orthonormal tangent vectors at every interior site.*
@@ -476,7 +487,7 @@
 - `def tangent_operator(field, dx, e1, e2)` - *Matrix-free Hessian on the two-dimensional tangent space of each site.*
 - `def validate_operator(n, length, steps, dt, k)` - *Compare the matrix-free operator with the dense tangent Hessian.*
 - `def hessian_spectrum(field, dx, k, e1, e2)` - *Low-lying eigenvalues of the tangent-space Hessian.*
-- `def classify_escape(attempts)` - *Summarise a saddle-escape search without promoting beyond one grid.*
+- `def classify_escape(attempts, note)` - *Summarise a saddle-escape search without promoting beyond one grid.*
 - `def hessian_modes(field, dx, k, e1, e2)` - *Lowest tangent eigenpairs, with each eigenvector mapped back to a field.*
 - `def normalize_mode(mode)` - *Scale a tangent mode to unit RMS over the interior.*
 - `def perturb_along_mode(field, mode, amplitude)` - *Add a normalized tangent mode and renormalize every site.*
@@ -1034,7 +1045,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1658` lines (`66021` bytes)
+**Size**: `1695` lines (`67472` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1072,6 +1083,7 @@
 - `def audit_stability(audit)`
 - `def audit_purefn(audit)`
 - `def audit_escape(audit)`
+- `def audit_lengthscan(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1101,7 +1113,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `125` lines (`3255` bytes)
+**Size**: `127` lines (`3317` bytes)
 
 **Functions:**
 - `def _source_files()`

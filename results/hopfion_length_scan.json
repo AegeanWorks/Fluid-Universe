@@ -1,0 +1,106 @@
+{
+  "attempts": [
+    {
+      "E": 381.58907537189543,
+      "H": 1.000000047463441,
+      "H_upsampled": 1.000000000000006,
+      "Z3": 2.3425876135710735e-06,
+      "accepted": true,
+      "force_rms": 0.0032084061432315677,
+      "length": 8.0,
+      "local_minimum": false,
+      "max_bond": 0.4752232609185116,
+      "min_eigenvalue": -1.469961506316183,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": 8,
+      "tested": true
+    },
+    {
+      "E": 356.7327000549187,
+      "H": 0.9999999315531043,
+      "H_upsampled": 0.9999999999999574,
+      "Z3": 2.539475113562571e-06,
+      "accepted": true,
+      "force_rms": 0.0031540378436494517,
+      "length": 10.0,
+      "local_minimum": false,
+      "max_bond": 0.5856948219114572,
+      "min_eigenvalue": -2.600798623450318,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": 8,
+      "tested": true
+    },
+    {
+      "E": 336.6173839047305,
+      "H": 0.9999664314941363,
+      "H_upsampled": 0.9999999992501978,
+      "Z3": 2.794862736505133e-06,
+      "accepted": true,
+      "force_rms": 0.00314857880394815,
+      "length": 12.0,
+      "local_minimum": false,
+      "max_bond": 0.7033315499878179,
+      "min_eigenvalue": -4.223930336749384,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": 8,
+      "tested": true
+    },
+    {
+      "E": 318.0980035897092,
+      "H": 0.9984687152685244,
+      "H_upsampled": 0.999998859885996,
+      "Z3": 3.0935524926799938e-06,
+      "accepted": true,
+      "force_rms": 0.003642956614747553,
+      "length": 14.0,
+      "local_minimum": false,
+      "max_bond": 0.8436100938562786,
+      "min_eigenvalue": -6.669666670689577,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": 8,
+      "tested": true
+    }
+  ],
+  "elapsed_seconds": 383.4963265999977,
+  "meta": {
+    "config": {
+      "boundary": "fixed vacuum faces",
+      "dt": 0.0005,
+      "force_max": 0.05,
+      "h_min": 0.9,
+      "k_eigenvalues": 8,
+      "lengths": [
+        8.0,
+        10.0,
+        12.0,
+        14.0
+      ],
+      "max_wall_seconds": 900.0,
+      "n": 64,
+      "scope": "box-length scan; evidence at one grid, not a proof",
+      "seed": 20261026,
+      "steps": 1200
+    },
+    "config_sha256": "38bf81e7789b33794bc75f88950ebc5c9eddf59e6303fa2ed6d2fb10bef89532",
+    "generated_utc": "2026-10-30T14:23:11+00:00",
+    "git": {
+      "commit": "aaaa67ae66644bc61b17d37fd178f3b8d739917a",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "verdict": {
+    "attempts": 4,
+    "claim_14b_status": "UNVERIFIED",
+    "local_minimum_found": false,
+    "note": "A positive spectrum at one grid and one box length is numerical evidence, not a stability proof; a saddle at every length does not rule out a different ansatz."
+  }
+}

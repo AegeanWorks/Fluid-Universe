@@ -80,6 +80,8 @@ RESULT_FILES = (
     "hopfion_purefn_stability.md",
     "hopfion_saddle_escape.json",
     "hopfion_saddle_escape.md",
+    "hopfion_length_scan.json",
+    "hopfion_length_scan.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

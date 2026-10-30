@@ -1,60 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "claim14b-saddle-escape-v1",
+    "task_id": "claim14b-length-scan-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793363888.2769413,
+    "updated_at": 1793370458.3166811,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793363888.4569457
+    "completed_at": 1793370458.4444883
   },
   "checkpoints": [
-    {
-      "task_id": "claim15-convergence-n96-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] N=64/N=96 scans (3000 steps, 768.9 s) and results: native H 0.93697 -> 0.99994, upsampled H 0.99952 -> 1.00000, Z3 0.52823 -> 0.17207, force 3.99e-2 -> 1.50e-2; resolution not converged (|dH|=0.063, |dZ3|=0.356); claim 15 UNVERIFIED; docs, ADR-002 and results updated",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793347967.2385974,
-      "timestamp_str": "2026-10-30 11:12:47",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-convergence-n96-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 170/170 accepted; project gates 4/4 (test, hygiene, guidelines, secrets); checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793347971.569526,
-      "timestamp_str": "2026-10-30 11:12:51",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-convergence-n96-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 171/171 accepted (3 new check-15 records); project gates 4/4 after map refresh; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793348241.6338494,
-      "timestamp_str": "2026-10-30 11:17:21",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-convergence-n96-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'claim15-convergence-n96-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793348241.7621326,
-      "timestamp_str": "2026-10-30 11:17:21",
-      "agent": "opencode"
-    },
     {
       "task_id": "claim15-temporal-n64-v1",
       "phase": "planning",
@@ -249,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793363888.4569478,
       "timestamp_str": "2026-10-30 15:38:08",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-length-scan-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-007 for a box-length scan of the pure-FN candidate Hessian",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793369735.4980752,
+      "timestamp_str": "2026-10-30 17:15:35",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The pure-FN candidate at length 10 is a saddle (min -2.600799) and its escape collapses. The box length sets the soliton-to-boundary ratio and the virial balance, so a different length may admit a local minimum; this has never been scanned.",
+        "benefits": "A four-point length scan either finds a numerical local minimum for claim 14b or shows the saddle is not a length-10 artifact, both inside one G-003 process.",
+        "risks": "contract: claim 14b can rise only to NUMERIC at N=64, never a proof; dependency: none beyond JAX/scipy; concurrency: single writer; state: one result file; cost: four 1200-step N=64 relaxations plus up to four 8-mode Hessians, about 8 minutes under the 900 s cap",
+        "mitigation": "Pre-register lengths 8, 10, 12, 14; accept a field for a Hessian only if H>0.9 and force RMS<0.05; stop at the first local minimum; reuse the validated tangent operator and the -1e-6 tolerance; time-check against G-003"
+      }
+    },
+    {
+      "task_id": "claim14b-length-scan-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Length scan L=8,10,12,14: all keep H>0.9 but every Hessian has 8 negative modes (min -1.469962, -2.600799, -4.223930, -6.669667); no local minimum; 14b UNVERIFIED; 383.5 s",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793370454.5858488,
+      "timestamp_str": "2026-10-30 17:27:34",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-length-scan-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 182/182 accepted (2 new 14b length-scan checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793370458.3166811,
+      "timestamp_str": "2026-10-30 17:27:38",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-length-scan-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'claim14b-length-scan-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793370458.44449,
+      "timestamp_str": "2026-10-30 17:27:38",
       "agent": "opencode"
     }
   ]

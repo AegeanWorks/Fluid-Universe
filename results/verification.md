@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T12:37:00+00:00 | `c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b` | 180/180 | `945355a8d3d9c6b3...` | `63a7f1a049ae923c...` |
-| run2 | 2026-10-30T12:37:07+00:00 | `c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b` | 180/180 | `945355a8d3d9c6b3...` | `63a7f1a049ae923c...` |
+| run1 | 2026-10-30T14:26:37+00:00 | `aaaa67ae66644bc61b17d37fd178f3b8d739917a` | 182/182 | `27fc6eae81e7c267...` | `06931eec0af871f5...` |
+| run2 | 2026-10-30T14:26:44+00:00 | `aaaa67ae66644bc61b17d37fd178f3b8d739917a` | 182/182 | `27fc6eae81e7c267...` | `06931eec0af871f5...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -25,6 +25,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 13b: standard extensions do not derive Z3 | PASS | PASS | YES | YES | extensions=['rank_three_order_parameter', 'three_coupled_nematics', 'three_fold_lattice'] |
 | 14a: Derrick derivative equals virial | PASS | PASS | YES | YES | numeric dE/dlambda=2.499999998, virial=2.500000000 |
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
+| 14b: box-length scan covers 8, 10, 12 and 14 at N=64 | PASS | PASS | YES | YES | L=8: min=-1.469962, L=10: min=-2.600799, L=12: min=-4.223930, L=14: min=-6.669667 |
+| 14b: every box length is a saddle and the claim is not promoted | PASS | PASS | YES | YES | attempts=4, negative=[8, 8, 8, 8] |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
 | 14b: pure-FN candidate is the N=64 mu=0 relax | PASS | PASS | YES | YES | H=0.999999932, rms=3.154e-03 |
 | 14b: saddle-escape finds no local minimum and does not promote | PASS | PASS | YES | YES | eps=0.05: H=0.320365, eps=0.15: H=0.237385 |

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T12:37:00+00:00",
-    "git_commit": "c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b",
+    "generated_utc": "2026-10-30T14:26:37+00:00",
+    "git_commit": "aaaa67ae66644bc61b17d37fd178f3b8d739917a",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "945355a8d3d9c6b37b48d1285eabe040628e312ee3e1cccdeb5ad9b6eaf8daea",
-      "results_sha256": "63a7f1a049ae923c7cac96d4f868819dc9fb9312c3856f09f73f4f4f24763e64"
+      "source_sha256": "27fc6eae81e7c267f0c59d621a1cdc2be3b22a44bad20b7e887347eaf17e2702",
+      "results_sha256": "06931eec0af871f5a8d090921f1c6296e85418689e233940c9222caf978b4814"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -581,6 +581,20 @@
       "claim": "14b: saddle-escape finds no local minimum and does not promote",
       "passed": true,
       "detail": "eps=0.05: H=0.320365, eps=0.15: H=0.237385",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: box-length scan covers 8, 10, 12 and 14 at N=64",
+      "passed": true,
+      "detail": "L=8: min=-1.469962, L=10: min=-2.600799, L=12: min=-4.223930, L=14: min=-6.669667",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: every box length is a saddle and the claim is not promoted",
+      "passed": true,
+      "detail": "attempts=4, negative=[8, 8, 8, 8]",
       "expected": null,
       "observed": null
     },
@@ -1278,8 +1292,8 @@
       "observed": null
     }
   ],
-  "total": 180,
-  "passed": 180,
+  "total": 182,
+  "passed": 182,
   "failed": 0,
   "failures": []
 }

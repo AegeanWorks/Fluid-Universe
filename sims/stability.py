@@ -224,7 +224,7 @@ def hessian_spectrum(
     }
 
 
-def classify_escape(attempts: list[dict]) -> dict:
+def classify_escape(attempts: list[dict], note: str | None = None) -> dict:
     """Summarise a saddle-escape search without promoting beyond one grid."""
     found = any(attempt.get("local_minimum") is True for attempt in attempts)
     if found:
@@ -235,7 +235,8 @@ def classify_escape(attempts: list[dict]) -> dict:
         "attempts": len(attempts),
         "local_minimum_found": bool(found),
         "claim_14b_status": status,
-        "note": (
+        "note": note
+        or (
             "A positive spectrum at one grid and one perturbed candidate is "
             "numerical evidence, not a stability proof; a negative search does "
             "not rule out a different ansatz."

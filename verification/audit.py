@@ -1199,6 +1199,42 @@ def audit_escape(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Box-length scan (claim 14b/ADR-007)
+# ---------------------------------------------------------------------------
+
+
+def audit_lengthscan(audit: Audit) -> None:
+    payload = load_results("hopfion_length_scan.json")
+    attempts = payload["attempts"]
+    verdict = payload["verdict"]
+    audit.record(
+        "14b: box-length scan covers 8, 10, 12 and 14 at N=64",
+        len(attempts) == 4
+        and [attempt["length"] for attempt in attempts] == [8.0, 10.0, 12.0, 14.0]
+        and all(attempt["accepted"] for attempt in attempts)
+        and all(attempt["tested"] for attempt in attempts)
+        and all(attempt["min_pre_norm"] > 0.1 for attempt in attempts),
+        ", ".join(
+            f"L={attempt['length']:.3g}: min={attempt['min_eigenvalue']:+.6f}"
+            for attempt in attempts
+        ),
+    )
+    audit.record(
+        "14b: every box length is a saddle and the claim is not promoted",
+        verdict["local_minimum_found"] is False
+        and verdict["claim_14b_status"] == "UNVERIFIED"
+        and all(
+            attempt["local_minimum"] is False
+            and attempt["negative_count"] >= 8
+            and attempt["min_eigenvalue"] < -1e-6
+            for attempt in attempts
+        ),
+        f"attempts={len(attempts)}, "
+        f"negative={[attempt['negative_count'] for attempt in attempts]}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1595,6 +1631,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_stability(audit)
     audit_purefn(audit)
     audit_escape(audit)
+    audit_lengthscan(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

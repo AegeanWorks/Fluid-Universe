@@ -401,3 +401,24 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The search completed in 167.9 s, inside the 900 s G-003 cap.
 
 - Verification after the saddle-escape search: two separate runs, 180/180 checks each.
+
+## 2026-10-30 - Box-length scan (claim 14b, ADR-007)
+
+**Added**
+
+- `phenomenology/length_scan_report.py`, `make lengthscan`, `results/hopfion_length_scan.{json,md}`, and two audit checks.
+
+**Results**
+
+| length | H | force RMS | max bond | min eigenvalue | negative |
+|---:|---:|---:|---:|---:|---:|
+| 8 | 1.000000047 | 3.208e-3 | 0.475 | -1.469962 | 8 |
+| 10 | 0.999999932 | 3.154e-3 | 0.586 | -2.600799 | 8 |
+| 12 | 0.999966431 | 3.149e-3 | 0.703 | -4.223930 | 8 |
+| 14 | 0.998468715 | 3.643e-3 | 0.844 | -6.669667 | 8 |
+
+- Every length keeps H>0.9 and passes the acceptance gate, but every Hessian has 8 negative modes. The saddle is not a length-10 artifact; the larger boxes are more unstable.
+- Claim 14b remains **UNVERIFIED**.
+- The scan completed in 383.5 s, inside the 900 s G-003 cap.
+
+- Verification after the box-length scan: two separate runs, 182/182 checks each.

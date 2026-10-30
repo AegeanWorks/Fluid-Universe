@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "945355a8d3d9c6b37b48d1285eabe040628e312ee3e1cccdeb5ad9b6eaf8daea",
-      "results_sha256": "63a7f1a049ae923c7cac96d4f868819dc9fb9312c3856f09f73f4f4f24763e64"
+      "source_sha256": "27fc6eae81e7c267f0c59d621a1cdc2be3b22a44bad20b7e887347eaf17e2702",
+      "results_sha256": "06931eec0af871f5a8d090921f1c6296e85418689e233940c9222caf978b4814"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T12:37:00+00:00",
-        "git_commit": "c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b",
-        "passed": 180,
-        "total": 180,
+        "generated_utc": "2026-10-30T14:26:37+00:00",
+        "git_commit": "aaaa67ae66644bc61b17d37fd178f3b8d739917a",
+        "passed": 182,
+        "total": 182,
         "failed": 0,
-        "checks_sha256": "c008caa6ac326463f0a7ccf9952897261667da11806ad1660d02ff5c28bc4cf0",
+        "checks_sha256": "269ef78d7ca05d16f117126319bd0e786c2b54bf217578f71bf904beabbad409",
         "fingerprints": {
-          "source_sha256": "945355a8d3d9c6b37b48d1285eabe040628e312ee3e1cccdeb5ad9b6eaf8daea",
-          "results_sha256": "63a7f1a049ae923c7cac96d4f868819dc9fb9312c3856f09f73f4f4f24763e64"
+          "source_sha256": "27fc6eae81e7c267f0c59d621a1cdc2be3b22a44bad20b7e887347eaf17e2702",
+          "results_sha256": "06931eec0af871f5a8d090921f1c6296e85418689e233940c9222caf978b4814"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T12:37:07+00:00",
-        "git_commit": "c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b",
-        "passed": 180,
-        "total": 180,
+        "generated_utc": "2026-10-30T14:26:44+00:00",
+        "git_commit": "aaaa67ae66644bc61b17d37fd178f3b8d739917a",
+        "passed": 182,
+        "total": 182,
         "failed": 0,
-        "checks_sha256": "c008caa6ac326463f0a7ccf9952897261667da11806ad1660d02ff5c28bc4cf0",
+        "checks_sha256": "269ef78d7ca05d16f117126319bd0e786c2b54bf217578f71bf904beabbad409",
         "fingerprints": {
-          "source_sha256": "945355a8d3d9c6b37b48d1285eabe040628e312ee3e1cccdeb5ad9b6eaf8daea",
-          "results_sha256": "63a7f1a049ae923c7cac96d4f868819dc9fb9312c3856f09f73f4f4f24763e64"
+          "source_sha256": "27fc6eae81e7c267f0c59d621a1cdc2be3b22a44bad20b7e887347eaf17e2702",
+          "results_sha256": "06931eec0af871f5a8d090921f1c6296e85418689e233940c9222caf978b4814"
         }
       }
     ],
@@ -122,6 +122,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "lambda^2=0.387425887, second derivative=5.000000"
+    },
+    {
+      "claim": "14b: box-length scan covers 8, 10, 12 and 14 at N=64",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "L=8: min=-1.469962, L=10: min=-2.600799, L=12: min=-4.223930, L=14: min=-6.669667"
+    },
+    {
+      "claim": "14b: every box length is a saddle and the claim is not promoted",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "attempts=4, negative=[8, 8, 8, 8]"
     },
     {
       "claim": "14b: kappa>0 necessary, existence unproved",
@@ -2053,6 +2069,20 @@
       "observed": null
     },
     {
+      "claim": "14b: box-length scan covers 8, 10, 12 and 14 at N=64",
+      "passed": true,
+      "detail": "L=8: min=-1.469962, L=10: min=-2.600799, L=12: min=-4.223930, L=14: min=-6.669667",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: every box length is a saddle and the claim is not promoted",
+      "passed": true,
+      "detail": "attempts=4, negative=[8, 8, 8, 8]",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2746,8 +2776,8 @@
       "observed": null
     }
   ],
-  "total": 180,
-  "passed": 180,
+  "total": 182,
+  "passed": 182,
   "failed": 0,
   "failures": []
 }
