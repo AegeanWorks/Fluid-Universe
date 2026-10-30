@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
-      "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
+      "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
+      "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T14:58:30+00:00",
-        "git_commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
-        "passed": 186,
-        "total": 186,
+        "generated_utc": "2026-10-30T15:10:00+00:00",
+        "git_commit": "8f242fccea9e0f803dce6ac7889ad27c300c3f18",
+        "passed": 188,
+        "total": 188,
         "failed": 0,
-        "checks_sha256": "b4da374be125c991aa44815e208dfc443ed61cb92555d4e9996fca9e683f9de0",
+        "checks_sha256": "f4cf79a96c4c1ea467a564ebe6fba571fc102ebdc102842e3925132ac69d21ca",
         "fingerprints": {
-          "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
-          "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
+          "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
+          "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T14:58:37+00:00",
-        "git_commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
-        "passed": 186,
-        "total": 186,
+        "generated_utc": "2026-10-30T15:10:07+00:00",
+        "git_commit": "8f242fccea9e0f803dce6ac7889ad27c300c3f18",
+        "passed": 188,
+        "total": 188,
         "failed": 0,
-        "checks_sha256": "b4da374be125c991aa44815e208dfc443ed61cb92555d4e9996fca9e683f9de0",
+        "checks_sha256": "f4cf79a96c4c1ea467a564ebe6fba571fc102ebdc102842e3925132ac69d21ca",
         "fingerprints": {
-          "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
-          "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
+          "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
+          "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
         }
       }
     ],
@@ -402,6 +402,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122"
+    },
+    {
+      "claim": "19: real Z3 rotor never reaches Q=2/3",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "best Q=0.337639, max by nu=0.337639"
+    },
+    {
+      "claim": "19: real Z3 rotor scan preserves zero-flux degeneracy and converges",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "rows=44, delta=9.437e-15"
     },
     {
       "claim": "1a/F2: Q identity",
@@ -2143,6 +2159,20 @@
       "observed": null
     },
     {
+      "claim": "19: real Z3 rotor scan preserves zero-flux degeneracy and converges",
+      "passed": true,
+      "detail": "rows=44, delta=9.437e-15",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "19: real Z3 rotor never reaches Q=2/3",
+      "passed": true,
+      "detail": "best Q=0.337639, max by nu=0.337639",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2836,8 +2866,8 @@
       "observed": null
     }
   ],
-  "total": 186,
-  "passed": 186,
+  "total": 188,
+  "passed": 188,
   "failed": 0,
   "failures": []
 }

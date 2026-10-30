@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T14:58:30+00:00 | `d181dc54f1ad61bbd055f9763999de91a71ad048` | 186/186 | `e2797474aac7f3ae...` | `82ea3ad44a3472aa...` |
-| run2 | 2026-10-30T14:58:37+00:00 | `d181dc54f1ad61bbd055f9763999de91a71ad048` | 186/186 | `e2797474aac7f3ae...` | `82ea3ad44a3472aa...` |
+| run1 | 2026-10-30T15:10:00+00:00 | `8f242fccea9e0f803dce6ac7889ad27c300c3f18` | 188/188 | `7743d1ea29ee18e4...` | `6cdbc436baedc210...` |
+| run2 | 2026-10-30T15:10:07+00:00 | `8f242fccea9e0f803dce6ac7889ad27c300c3f18` | 188/188 | `7743d1ea29ee18e4...` | `6cdbc436baedc210...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -60,6 +60,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 17: vortex-knot spectrum uses T(2,3), T(2,5), T(2,7) | PASS | PASS | YES | YES | energies=[392.166, 563.899, 761.854] |
 | 18: no one-parameter hierarchy matches both ratios and Q | PASS | PASS | YES | YES | min |tau error|=0.325040 |
 | 18: one-parameter hierarchy test covers geometric and power-law spectra | PASS | PASS | YES | YES | geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122 |
+| 19: real Z3 rotor never reaches Q=2/3 | PASS | PASS | YES | YES | best Q=0.337639, max by nu=0.337639 |
+| 19: real Z3 rotor scan preserves zero-flux degeneracy and converges | PASS | PASS | YES | YES | rows=44, delta=9.437e-15 |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
 | 1b: 3 parameters fit 3 masses exactly | PASS | PASS | YES | YES | max residual 8.527e-14 over 1000 random positive-root triples |
 | 1b: Q is not fixed by the Z3/circulant structure | PASS | PASS | YES | YES | random triples span Q in [0.3334, 0.9431] |

@@ -42,5 +42,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 16 | UNVERIFIED (none found) | Seven candidate classes audited; no new falsifiable prediction. |
 | 17 | FALSIFIED | Vortex knots T(2,3),T(2,5),T(2,7): energy ratios 1:1.44:1.94, Q=0.339, not 2/3; needs m∝E^12.3 or an exponentially small core. |
 | 18 | FALSIFIED | One-parameter hierarchies fail: geometric tau 11.3x high; power law fitted to muon gives +34.5% tau and Q=0.696; fitted to Q gives -32.5% tau. |
+| 19 | FALSIFIED | Real Z3 rotor with second harmonic and flux: max Q=0.3376, zero-flux degeneracy exact, deep wells Q→1/3; no 2/3. |
 
-Claim audit: two separate runs agree per claim, 186/186 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 188/188 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

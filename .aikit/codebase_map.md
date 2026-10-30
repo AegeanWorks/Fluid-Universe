@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `82`
+- **Total Python Modules**: `85`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `452`
+- **Total Top-Level Functions**: `463`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `11798`
+- **Total Source Lines**: `12072`
 
 ---
 
@@ -297,6 +297,17 @@
 - `def run_rg(write)`
 - `def render_markdown(payload)`
 - `def main()`
+
+---
+
+### [`phenomenology/rotor_potential_report.py`](phenomenology/rotor_potential_report.py)
+> *Real Z3 rotor potential scan report (claim 19, ADR-010).*
+
+**Size**: `77` lines (`2516` bytes)
+
+**Functions:**
+- `def run_rotor_potential_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -823,6 +834,20 @@
 
 ---
 
+### [`tests/test_rotor_potential.py`](tests/test_rotor_potential.py)
+> *Real Z3 rotor potential tests (claim 19).*
+
+**Size**: `46` lines (`1389` bytes)
+
+**Functions:**
+- `def test_zero_flux_real_potential_is_degenerate()`
+- `def test_fractional_flux_splits_the_sectors()`
+- `def test_scan_is_falsified()`
+- `def test_invalid_inputs_are_rejected()`
+- `def test_second_harmonic_does_not_force_a_large_spread()`
+
+---
+
 ### [`tests/test_saddle_escape.py`](tests/test_saddle_escape.py)
 > *Saddle-escape mode tests (claim 14b/ADR-006).*
 
@@ -1072,6 +1097,18 @@
 
 ---
 
+### [`theory/rotor_potential.py`](theory/rotor_potential.py)
+> *Real Z3 rotor potential scan (claim 19, ADR-010).*
+
+**Size**: `120` lines (`4022` bytes)
+
+**Functions:**
+- `def sector_matrix(mu, nu, flux, sector, n_cutoff, inertia)`
+- `def sector_energies(mu, nu, flux, n_cutoff, inertia)`
+- `def scan(mu, nus, fluxes, n_cutoff)`
+
+---
+
 ### [`theory/topology.py`](theory/topology.py)
 > *Topology of a nematic director and the Z3 question.*
 
@@ -1124,7 +1161,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1768` lines (`70136` bytes)
+**Size**: `1797` lines (`71244` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1165,6 +1202,7 @@
 - `def audit_lengthscan(audit)`
 - `def audit_vortex(audit)`
 - `def audit_cascade(audit)`
+- `def audit_rotor_potential(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1194,7 +1232,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `131` lines (`3433` bytes)
+**Size**: `133` lines (`3487` bytes)
 
 **Functions:**
 - `def _source_files()`

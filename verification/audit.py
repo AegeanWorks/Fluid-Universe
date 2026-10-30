@@ -1306,6 +1306,34 @@ def audit_cascade(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Real Z3 rotor potential scan (claim 19/ADR-010)
+# ---------------------------------------------------------------------------
+
+
+def audit_rotor_potential(audit: Audit) -> None:
+    payload = load_results("rotor_potential.json")
+    result = payload["result"]
+    best = result["best"]
+    audit.record(
+        "19: real Z3 rotor scan preserves zero-flux degeneracy and converges",
+        result["zero_flux_degenerate"] is True
+        and result["best_convergence_delta"] < 1e-9
+        and len(result["rows"]) == 44,
+        f"rows={len(result['rows'])}, "
+        f"delta={result['best_convergence_delta']:.3e}",
+    )
+    audit.record(
+        "19: real Z3 rotor never reaches Q=2/3",
+        result["falsified"] is True
+        and result["status"].startswith("FALSIFIED")
+        and best["koide_q"] < 0.5
+        and max(result["max_q_by_nu"].values()) < 2.0 / 3.0 - 0.01,
+        f"best Q={best['koide_q']:.6f}, "
+        f"max by nu={max(result['max_q_by_nu'].values()):.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1705,6 +1733,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_lengthscan(audit)
     audit_vortex(audit)
     audit_cascade(audit)
+    audit_rotor_potential(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

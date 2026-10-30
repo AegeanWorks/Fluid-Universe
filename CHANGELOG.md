@@ -462,3 +462,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 18 is **FALSIFIED**.
 
 - Verification after the one-parameter hierarchy test: two separate runs, 186/186 checks each.
+
+## 2026-10-30 - Real Z3 rotor potential scan (claim 19, ADR-010)
+
+**Added**
+
+- `theory/rotor_potential.py`, `phenomenology/rotor_potential_report.py`, `make rotorpotential`, `tests/test_rotor_potential.py`, and `results/rotor_potential.{json,md}`.
+
+**Results**
+
+- A real potential \(V=\mu(1-\cos3\phi)+\nu(1-\cos6\phi)\) keeps \(E_1=E_2\) at zero flux, as the antiunitary symmetry requires.
+- Over \(\mu=1\), \(\nu=0,1,3,10\) and flux \(A=0\ldots1\), the maximum Koide \(Q\) of the three lowest sector energies is 0.337639, against \(2/3\); deep wells drive \(Q\to1/3\).
+- The best point is converged in the Fourier cutoff (\(n_{\rm cut}\) 120 vs 240, delta \(9.4\times10^{-15}\)).
+- Claim 19 is **FALSIFIED**. A real potential plus a fractional flux is not enough; a complex phase or a different mass mapping is required.
+
+- Verification after the real Z3 rotor potential scan: two separate runs, 188/188 checks each.

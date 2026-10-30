@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**186/186 checks passed.**
+**188/188 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -93,6 +93,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 17: simple vortex-knot assignment is falsified | PASS | Q=0.339340, p=12.279 |
 | 18: one-parameter hierarchy test covers geometric and power-law spectra | PASS | geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122 |
 | 18: no one-parameter hierarchy matches both ratios and Q | PASS | min |tau error|=0.325040 |
+| 19: real Z3 rotor scan preserves zero-flux degeneracy and converges | PASS | rows=44, delta=9.437e-15 |
+| 19: real Z3 rotor never reaches Q=2/3 | PASS | best Q=0.337639, max by nu=0.337639 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

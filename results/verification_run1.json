@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T14:58:30+00:00",
-    "git_commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
+    "generated_utc": "2026-10-30T15:10:00+00:00",
+    "git_commit": "8f242fccea9e0f803dce6ac7889ad27c300c3f18",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
-      "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
+      "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
+      "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -623,6 +623,20 @@
       "claim": "18: no one-parameter hierarchy matches both ratios and Q",
       "passed": true,
       "detail": "min |tau error|=0.325040",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "19: real Z3 rotor scan preserves zero-flux degeneracy and converges",
+      "passed": true,
+      "detail": "rows=44, delta=9.437e-15",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "19: real Z3 rotor never reaches Q=2/3",
+      "passed": true,
+      "detail": "best Q=0.337639, max by nu=0.337639",
       "expected": null,
       "observed": null
     },
@@ -1320,8 +1334,8 @@
       "observed": null
     }
   ],
-  "total": 186,
-  "passed": 186,
+  "total": 188,
+  "passed": 188,
   "failed": 0,
   "failures": []
 }

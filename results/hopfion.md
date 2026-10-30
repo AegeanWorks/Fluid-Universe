@@ -15,4 +15,4 @@ Claim 14b: **UNVERIFIED**; claim 15: **NOT ACHIEVED**.
 The analytic H=1 map has finite E2 and E4, and a scale transformation can satisfy the Derrick virial. This is not a stationary solution under non-scale deformations, not a stability proof, and not a Z3-order measurement.
 
 - Config SHA-256: `9c068d8ddd4c04e734baf6b2bf132c40dd5e352130fd5a7a9f075a54b5bb09c6`
-- Git: `d181dc54f1ad61bbd055f9763999de91a71ad048` (dirty=True)
+- Git: `8f242fccea9e0f803dce6ac7889ad27c300c3f18` (dirty=True)

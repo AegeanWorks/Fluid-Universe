@@ -30,4 +30,4 @@ Fourier-basis exact diagonalisation of H = L^2/(2I) + mu(1-cos 3phi), I = 1, mu 
 The tension identity is verified. The full dimensional-reduction/BPS claim (claim 6) and the finiteness of the effective moment of inertia remain unverified.
 
 - Config SHA-256: `f2888e101ebeb74e127a8b2da829432a558f9e67550cced73735333a7aaf2ecd`
-- Git: `d181dc54f1ad61bbd055f9763999de91a71ad048` (dirty=True)
+- Git: `8f242fccea9e0f803dce6ac7889ad27c300c3f18` (dirty=True)

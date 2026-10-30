@@ -86,6 +86,8 @@ RESULT_FILES = (
     "vortex_knot_spectrum.md",
     "vortex_cascade.json",
     "vortex_cascade.md",
+    "rotor_potential.json",
+    "rotor_potential.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
