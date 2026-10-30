@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T21:02:10+00:00 | `baaed62863c2c781a7349c262dece024c69eeba2` | 230/230 | `00b558c6f5ed764a...` | `f34dc54cf35f7eff...` |
-| run2 | 2026-10-30T21:02:19+00:00 | `baaed62863c2c781a7349c262dece024c69eeba2` | 230/230 | `00b558c6f5ed764a...` | `f34dc54cf35f7eff...` |
+| run1 | 2026-10-30T21:14:25+00:00 | `28b84b563cd38e8bdafda102ab6aae9c22457ad0` | 232/232 | `fe54531e4d789a83...` | `38a112d497c8aca0...` |
+| run2 | 2026-10-30T21:14:39+00:00 | `28b84b563cd38e8bdafda102ab6aae9c22457ad0` | 232/232 | `fe54531e4d789a83...` | `38a112d497c8aca0...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -122,6 +122,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 3b: MSbar Q(M_Z) != 2/3 | PASS | PASS | YES | YES | independent Q(M_Z)=0.667823994186, Q-2/3=+1.157e-03 |
 | 40: the Marcus width matches the reference hydrated-electron band | PASS | PASS | YES | YES | FWHM300=0.680915, ratio_classical=0.964468, ratio_quantized=0.880873 |
 | 40: the width follows sqrt(T) | PASS | PASS | YES | YES | FWHM200=0.555964, FWHM350=0.735472, ratio=1.080123 |
+| 41: the Marcus width broadens over 0-45 C | PASS | PASS | YES | YES | width0=0.653822, width45=0.695194, change=0.041373 |
+| 41: the water-property cavity has a nonzero but insufficient temperature slope | PASS | PASS | YES | YES | slope=-1.068036, fraction_lower=0.445015, fraction_upper=0.381441 |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

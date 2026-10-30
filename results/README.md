@@ -110,6 +110,8 @@ Do not edit these files by hand.
 | `water_born_cavity.md` | Human-readable version of the same |
 | `water_marcus.json` | Marcus band width from the water reorganization energy |
 | `water_marcus.md` | Human-readable version of the same |
+| `water_temperature.json` | Temperature-dependent Born cavity and shift comparison |
+| `water_temperature.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

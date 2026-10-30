@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**230/230 checks passed.**
+**232/232 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -137,6 +137,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 39: water reorganization predicts the VDE within 0.5 sigma | PASS | lambda=1.617133, VDE=3.317133, sigma=0.471325, Rreq/Req=1.030021 |
 | 40: the Marcus width matches the reference hydrated-electron band | PASS | FWHM300=0.680915, ratio_classical=0.964468, ratio_quantized=0.880873 |
 | 40: the width follows sqrt(T) | PASS | FWHM200=0.555964, FWHM350=0.735472, ratio=1.080123 |
+| 41: the water-property cavity has a nonzero but insufficient temperature slope | PASS | slope=-1.068036, fraction_lower=0.445015, fraction_upper=0.381441 |
+| 41: the Marcus width broadens over 0-45 C | PASS | width0=0.653822, width45=0.695194, change=0.041373 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

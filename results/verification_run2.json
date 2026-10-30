@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T21:02:19+00:00",
-    "git_commit": "baaed62863c2c781a7349c262dece024c69eeba2",
+    "generated_utc": "2026-10-30T21:14:39+00:00",
+    "git_commit": "28b84b563cd38e8bdafda102ab6aae9c22457ad0",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "00b558c6f5ed764a0ec381cb70aabcca73a95288353705946d7f29261a2e391e",
-      "results_sha256": "f34dc54cf35f7effc7a3f649b5b9233c12433aa9a201ee274a9cafb851c3cd56"
+      "source_sha256": "fe54531e4d789a83ecb308d41ae380b0a4b3f05075f259dba7bf3cd4a992857c",
+      "results_sha256": "38a112d497c8aca02f9efbe5332fddb9afc7335572cc3685a88e19d0d80d8120"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -935,6 +935,20 @@
       "observed": null
     },
     {
+      "claim": "41: the water-property cavity has a nonzero but insufficient temperature slope",
+      "passed": true,
+      "detail": "slope=-1.068036, fraction_lower=0.445015, fraction_upper=0.381441",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "41: the Marcus width broadens over 0-45 C",
+      "passed": true,
+      "detail": "width0=0.653822, width45=0.695194, change=0.041373",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1628,8 +1642,8 @@
       "observed": null
     }
   ],
-  "total": 230,
-  "passed": 230,
+  "total": 232,
+  "passed": 232,
   "failed": 0,
   "failures": []
 }

@@ -798,3 +798,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 40 is **NUMERIC (Marcus FWHM 0.681 eV; reference 0.706-0.773 eV)**. The same water reorganization energy now accounts for the peak position, the VDE and the band width; the next test is the asymmetric line shape and its temperature dependence.
 
 - Verification after the Marcus band-width test: two separate runs, 230/230 checks each.
+
+## 2026-10-31 - Temperature-dependent Born cavity (claim 41, ADR-032)
+
+**Added**
+
+- `theory/water_temperature.py`, `phenomenology/water_temperature_report.py`, `make watertemperature`, `tests/test_water_temperature.py`, and `results/water_temperature.{json,md}`.
+
+**Results**
+
+- Using \(\epsilon_s(T)=87.740-0.40008T+9.398\times10^{-4}T^2-1.410\times10^{-6}T^3\) and \(\gamma(T)=0.07564-1.4\times10^{-4}T-3.0\times10^{-7}T^2\), the Born cavity moves from \(R=2.419922472\times10^{-10}\) m at 0 C to \(2.481377230\times10^{-10}\) m at 45 C.
+- The reorganization energy falls from \(1.637567127\) to \(1.589505512\) eV, a slope of \(-1.068036\) meV/K.
+- That is \(0.445015\times\) the lower observed shift 2.4 meV/K and \(0.381441\times\) the upper 2.8 meV/K.
+- The Marcus FWHM broadens from \(0.653821691\) to \(0.695194215\) eV.
+- Claim 41 is **NUMERIC (temperature slope -1.068 meV/K vs observed 2.4-2.8)**. The cavity is not temperature-independent, but it covers less than half of the observed shift; the residual points to a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.
+
+- Verification after the temperature-dependent Born cavity: two separate runs, 232/232 checks each.

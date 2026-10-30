@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "config": {
+      "observed_shift_mev_per_k": 2.4,
+      "observed_shift_upper_mev_per_k": 2.8,
+      "scope": "temperature-dependent Born cavity with water properties"
+    },
+    "config_sha256": "387f20e1cbf60c52e079f2d93afac1b9d1e3c749b9848400cbcefa391d45487f",
+    "generated_utc": "2026-10-30T21:09:53+00:00",
+    "git": {
+      "commit": "28b84b563cd38e8bdafda102ab6aae9c22457ad0",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_shift_mev_per_k": 2.4,
+    "observed_shift_upper_mev_per_k": 2.8,
+    "scales": {
+      "fraction_of_lower": 0.4450149528538502,
+      "fraction_of_upper": 0.381441388160443,
+      "lambda_slope_mev_per_k": -1.0680358868492403,
+      "observed_shift_mev_per_k": 2.4,
+      "observed_shift_upper_mev_per_k": 2.8,
+      "scan": [
+        {
+          "binding_ev": 0.4317654334711203,
+          "depth_ev": 2.941318976455999,
+          "energy_1s_ev": -0.4317654334711203,
+          "epsilon_s": 87.74,
+          "fwhm_ev": 0.6538216910328017,
+          "gamma_n_m": 0.07564,
+          "gap_ev": null,
+          "lambda_ev": 1.6375671269696452,
+          "predicted_vde_ev": 3.3375671269696454,
+          "radius_m": 2.419922472301296e-10,
+          "temperature_c": 0.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.4344265173306052,
+          "depth_ev": 2.924907043871985,
+          "energy_1s_ev": -0.4344265173306052,
+          "epsilon_s": 83.83176999999999,
+          "fwhm_ev": 0.6636803944022023,
+          "gamma_n_m": 0.07421,
+          "gap_ev": null,
+          "lambda_ev": 1.6277326628157887,
+          "predicted_vde_ev": 3.3277326628157886,
+          "radius_m": 2.4321929610632085e-10,
+          "temperature_c": 10.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.4372082638270385,
+          "depth_ev": 2.9077063298624415,
+          "energy_1s_ev": -0.4372082638270385,
+          "epsilon_s": 80.10304,
+          "fwhm_ev": 0.6731588597696986,
+          "gamma_n_m": 0.07272,
+          "gap_ev": null,
+          "lambda_ev": 1.6174352399643368,
+          "predicted_vde_ev": 3.317435239964337,
+          "radius_m": 2.445205835872491e-10,
+          "temperature_c": 20.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.4386518720717105,
+          "depth_ev": 2.8987724070603753,
+          "energy_1s_ev": -0.4386518720717105,
+          "epsilon_s": 78.30334375,
+          "fwhm_ev": 0.677753019034062,
+          "gamma_n_m": 0.0719525,
+          "gap_ev": null,
+          "lambda_ev": 1.612091823694877,
+          "predicted_vde_ev": 3.312091823694877,
+          "radius_m": 2.452029229060179e-10,
+          "temperature_c": 25.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.4401184871973114,
+          "depth_ev": 2.889664578950823,
+          "energy_1s_ev": -0.4401184871973114,
+          "epsilon_s": 76.54535,
+          "fwhm_ev": 0.6822569764048304,
+          "gamma_n_m": 0.07117,
+          "gap_ev": null,
+          "lambda_ev": 1.6066455121823129,
+          "predicted_vde_ev": 3.306645512182313,
+          "radius_m": 2.4590269003739165e-10,
+          "temperature_c": 30.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.4422343495424137,
+          "depth_ev": 2.8765138001565878,
+          "energy_1s_ev": -0.4422343495424137,
+          "epsilon_s": 74.15220547,
+          "fwhm_ev": 0.6883993958483956,
+          "gamma_n_m": 0.0700493,
+          "gap_ev": null,
+          "lambda_ev": 1.5987878636493518,
+          "predicted_vde_ev": 3.298787863649352,
+          "radius_m": 2.469213709084426e-10,
+          "temperature_c": 37.0,
+          "u_1p": null
+        },
+        {
+          "binding_ev": 0.44472680467129644,
+          "depth_ev": 2.860968133966128,
+          "energy_1s_ev": -0.44472680467129644,
+          "epsilon_s": 71.51100875,
+          "fwhm_ev": 0.6951942145841887,
+          "gamma_n_m": 0.0687325,
+          "gap_ev": null,
+          "lambda_ev": 1.5895055120614294,
+          "predicted_vde_ev": 3.2895055120614294,
+          "radius_m": 2.481377230067627e-10,
+          "temperature_c": 45.0,
+          "u_1p": null
+        }
+      ],
+      "width_0c_ev": 0.6538216910328017,
+      "width_45c_ev": 0.6951942145841887,
+      "width_change_ev": 0.041372523551386986
+    },
+    "verdict": {
+      "claim_41_status": "NUMERIC (temperature slope -1.068 meV/K vs observed 2.4-2.8 meV/K)",
+      "covers_less_than_half": true,
+      "nonzero_temperature_slope": true,
+      "note": "The water-property Born cavity predicts a lambda/VDE red shift of 1.068036 meV/K from 0 to 45 C, 38.1%-44.5% of the observed 2.4-2.8 meV/K peak shift. The model is not temperature-independent, but it is insufficient. The Marcus width broadens from 0.653822 eV at 0 C to 0.695194 eV at 45 C. The residual shift points toward a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.",
+      "width_broadens_with_temperature": true
+    }
+  }
+}

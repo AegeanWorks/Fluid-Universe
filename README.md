@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 230/230 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 232/232 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -96,6 +96,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Water reorganization | NUMERIC: VDE-optical difference 1.57 eV vs water \(\lambda=1.383\) eV at \(R=2.858\) Å (11.9% residual, 1.87σ); required \(R=2.518\) Å (0.881× capillary); the pressure-balanced radius 3.973 Å gives only 0.995 eV | `results/water_reorganization.json` |
 | Born cavity synthesis | NUMERIC: self-consistent Born cavity \(R=2.444\) Å, no bound 1p; water \(\lambda=1.617\) eV predicts VDE \(3.317\) eV (0.47σ); required reorganization radius 2.518 Å (1.030× equilibrium). The 1.7 eV feature is a solvent reorganization transition | `results/water_born_cavity.json` |
 | Marcus band width | NUMERIC: \(\lambda=1.617\) eV predicts FWHM 0.681 eV at 300 K (3.6% below the 0.706 eV classical reference, 11.9% below the 0.773 eV quantized); width scales as \(\sqrt{T}\): 0.556 eV at 200 K, 0.735 eV at 350 K | `results/water_marcus.json` |
+| Temperature dependence | NUMERIC: water \(\epsilon_s(T)/\gamma(T)\) Born cavity gives \(\lambda\) 1.6376→1.5895 eV over 0-45°C, slope \(-1.068\) meV/K (38-45% of the observed 2.4-2.8); FWHM 0.654→0.695 eV. The cavity is not temperature-independent but covers less than half the shift | `results/water_temperature.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

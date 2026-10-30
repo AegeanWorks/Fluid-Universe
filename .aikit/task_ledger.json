@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-marcus-v1",
+    "task_id": "water-temperature-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793394219.5928273,
+    "updated_at": 1793395078.5462196,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793394219.7311552
+    "completed_at": 1793395078.7310963
   },
   "checkpoints": [
-    {
-      "task_id": "water-softwall-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-027 and add failing tests for the Woods-Saxon cavity; predict the hard depth bound V0>=3.27 eV (Born 2.487 is 0.783 too shallow) and a soft-wall scan where a=1.0 A gives R=3.687 A/V0=5.920 eV and a=1.5 A gives R=3.078 A/V0=6.643 eV",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793390018.487375,
-      "timestamp_str": "2026-10-30 22:53:38",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 35 shows the square well needs R=3.732 A and V0=4.998 eV. A diffuse water interface could change the level spacing. The VDE is a hard lower bound on the depth, so the Born depth 2.487 eV is already 0.783 eV too shallow independent of shape.",
-        "benefits": "A shape-independent bound, a numerical soft-wall solver validated against the square well, and a test of whether a physical interface width can rescue the capillary cavity.",
-        "risks": "contract: new claim 36; dependency: numpy and scipy (declared); concurrency: none; state: one result file; numerical: finite-difference eigenvalues need grid validation; model: Woods-Saxon central-depth potential, no polaron self-energy",
-        "mitigation": "Validate the solver against the square-well limit, check grid and box convergence, pre-register the hard bound and the a=1.0/1.5 A scan points, and state that softness trades radius for depth"
-      }
-    },
-    {
-      "task_id": "water-softwall-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Soft wall: VDE 3.27 > Born 2.487 (0.783012 eV too shallow); Woods-Saxon a=1.0 gives R=3.686558 A, V0=5.919724 eV; a=1.5 gives R=3.078071 A, V0=6.643300 eV; softness trades radius for depth; claim 36 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793390744.052857,
-      "timestamp_str": "2026-10-30 23:05:44",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-softwall-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 222/222 accepted (2 new claim-36 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793390748.3092031,
-      "timestamp_str": "2026-10-30 23:05:48",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-softwall-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-softwall-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793390748.804512,
-      "timestamp_str": "2026-10-30 23:05:48",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-pressure-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793394219.7311573,
       "timestamp_str": "2026-10-31 00:03:39",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-temperature-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-032 and add failing tests for the temperature-dependent Born cavity; predict lambda(0)=1.637567 eV, lambda(25)=1.612092, lambda(45)=1.589506, slope -1.068 meV/K, FWHM 0.653822 to 0.695194 eV, 38-45% of the observed 2.4-2.8 meV/K shift",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793394493.4971182,
+      "timestamp_str": "2026-10-31 00:08:13",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The hydrated-electron peak red-shifts by 2.4-2.8 meV/K. A cavity model with water's epsilon_s(T) and gamma(T) must predict how much of that shift follows from the dielectric and surface-tension changes.",
+        "benefits": "A water-property temperature test that confronts the 'traditional cavity models have almost no temperature dependence' critique, plus a width prediction.",
+        "risks": "contract: new claim 41; dependency: scipy/math; concurrency: none; state: one result file; data: observed 2.4-2.8 meV/K peak shift; model: Born cavity with temperature-dependent water properties, no non-cavity structure",
+        "mitigation": "Use standard water epsilon_s(T) and gamma(T), compute the self-consistent Born cavity at 0-45 C, compare the lambda/VDE slope and Marcus width with the observed peak shift, and report the residual fraction"
+      }
+    },
+    {
+      "task_id": "water-temperature-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Temperature: Born cavity R 2.419922 to 2.481377 A, lambda 1.637567 to 1.589506 eV over 0-45 C, slope -1.068036 meV/K (38-45% of observed 2.4-2.8); FWHM 0.653822 to 0.695194 eV; claim 41 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793395075.3367307,
+      "timestamp_str": "2026-10-31 00:17:55",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-temperature-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 232/232 accepted (2 new claim-41 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793395078.5462196,
+      "timestamp_str": "2026-10-31 00:17:58",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-temperature-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-temperature-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793395078.7310984,
+      "timestamp_str": "2026-10-31 00:17:58",
       "agent": "opencode"
     }
   ]

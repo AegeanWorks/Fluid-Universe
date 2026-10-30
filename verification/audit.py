@@ -2024,6 +2024,40 @@ def audit_water_marcus(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Temperature-dependent Born cavity (claim 41/ADR-032)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_temperature(audit: Audit) -> None:
+    payload = load_results("water_temperature.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    audit.record(
+        "41: the water-property cavity has a nonzero but insufficient temperature slope",
+        abs(scales["lambda_slope_mev_per_k"] + 1.068036) < 0.001
+        and 0.38 < scales["fraction_of_upper"] < 0.45
+        and 0.44 < scales["fraction_of_lower"] < 0.45
+        and verdict["nonzero_temperature_slope"] is True
+        and verdict["covers_less_than_half"] is True,
+        f"slope={scales['lambda_slope_mev_per_k']:.6f}, "
+        f"fraction_lower={scales['fraction_of_lower']:.6f}, "
+        f"fraction_upper={scales['fraction_of_upper']:.6f}",
+    )
+    audit.record(
+        "41: the Marcus width broadens over 0-45 C",
+        abs(scales["width_0c_ev"] - 0.653822) < 0.001
+        and abs(scales["width_45c_ev"] - 0.695194) < 0.001
+        and scales["width_change_ev"] > 0.0
+        and verdict["width_broadens_with_temperature"] is True
+        and verdict["claim_41_status"].startswith("NUMERIC"),
+        f"width0={scales['width_0c_ev']:.6f}, "
+        f"width45={scales['width_45c_ev']:.6f}, "
+        f"change={scales['width_change_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2445,6 +2479,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_reorganization(audit)
     audit_water_born_cavity(audit)
     audit_water_marcus(audit)
+    audit_water_temperature(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

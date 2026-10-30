@@ -130,6 +130,8 @@ RESULT_FILES = (
     "water_born_cavity.md",
     "water_marcus.json",
     "water_marcus.md",
+    "water_temperature.json",
+    "water_temperature.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

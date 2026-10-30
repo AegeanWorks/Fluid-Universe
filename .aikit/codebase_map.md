@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `146`
+- **Total Python Modules**: `149`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `783`
+- **Total Top-Level Functions**: `798`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `19873`
+- **Total Source Lines**: `20245`
 
 ---
 
@@ -624,6 +624,17 @@
 
 **Functions:**
 - `def run_water_softwall_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_temperature_report.py`](phenomenology/water_temperature_report.py)
+> *Temperature-dependent Born cavity (claim 41, ADR-032).*
+
+**Size**: `128` lines (`5143` bytes)
+
+**Functions:**
+- `def run_water_temperature_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1453,6 +1464,20 @@
 
 ---
 
+### [`tests/test_water_temperature.py`](tests/test_water_temperature.py)
+> *Temperature-dependent Born cavity (claim 41).*
+
+**Size**: `70` lines (`2601` bytes)
+
+**Functions:**
+- `def test_water_properties()`
+- `def test_born_cavity_at_temperature()`
+- `def test_temperature_scales()`
+- `def test_no_bound_1p_at_any_temperature()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_validity.py`](tests/test_water_validity.py)
 > *Capillary validity tests for the shallow-water horizon (claim 28).*
 
@@ -1959,6 +1984,22 @@
 
 ---
 
+### [`theory/water_temperature.py`](theory/water_temperature.py)
+> *Temperature-dependent Born cavity (claim 41, ADR-032).*
+
+**Size**: `137` lines (`4566` bytes)
+
+**Functions:**
+- `def water_dielectric_constant(temperature_c)` - *Static dielectric constant of water, 0-100 C.*
+- `def water_surface_tension(temperature_c)` - *Surface tension of water in N/m, 0-100 C.*
+- `def _born_depth_ev(radius_m, epsilon_s)`
+- `def _surface_energy_ev(radius_m, gamma)`
+- `def _reorganization_ev(radius_m, epsilon_s)`
+- `def born_cavity_at_temperature(temperature_c)` - *Self-consistent Born cavity at a water temperature.*
+- `def temperature_scales()` - *Collect the 0-45 C scan and the observed-shift comparison.*
+
+---
+
 ### [`theory/water_vde.py`](theory/water_vde.py)
 > *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
 
@@ -2009,7 +2050,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2508` lines (`100214` bytes)
+**Size**: `2543` lines (`101748` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2072,6 +2113,7 @@
 - `def audit_water_reorganization(audit)`
 - `def audit_water_born_cavity(audit)`
 - `def audit_water_marcus(audit)`
+- `def audit_water_temperature(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2101,7 +2143,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `175` lines (`4551` bytes)
+**Size**: `177` lines (`4609` bytes)
 
 **Functions:**
 - `def _source_files()`
