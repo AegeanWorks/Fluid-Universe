@@ -88,6 +88,8 @@ RESULT_FILES = (
     "vortex_cascade.md",
     "rotor_potential.json",
     "rotor_potential.md",
+    "madelung.json",
+    "madelung.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

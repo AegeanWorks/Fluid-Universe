@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
-      "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
+      "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
+      "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T15:10:00+00:00",
-        "git_commit": "8f242fccea9e0f803dce6ac7889ad27c300c3f18",
-        "passed": 188,
-        "total": 188,
+        "generated_utc": "2026-10-30T15:25:55+00:00",
+        "git_commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
+        "passed": 190,
+        "total": 190,
         "failed": 0,
-        "checks_sha256": "f4cf79a96c4c1ea467a564ebe6fba571fc102ebdc102842e3925132ac69d21ca",
+        "checks_sha256": "96d3b61cdc76fc656643f1f251b4325a2a02b5eaa78d4ab41d3d9a56cf9d887e",
         "fingerprints": {
-          "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
-          "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
+          "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
+          "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T15:10:07+00:00",
-        "git_commit": "8f242fccea9e0f803dce6ac7889ad27c300c3f18",
-        "passed": 188,
-        "total": 188,
+        "generated_utc": "2026-10-30T15:26:06+00:00",
+        "git_commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
+        "passed": 190,
+        "total": 190,
         "failed": 0,
-        "checks_sha256": "f4cf79a96c4c1ea467a564ebe6fba571fc102ebdc102842e3925132ac69d21ca",
+        "checks_sha256": "96d3b61cdc76fc656643f1f251b4325a2a02b5eaa78d4ab41d3d9a56cf9d887e",
         "fingerprints": {
-          "source_sha256": "7743d1ea29ee18e45b3c7aa67ad672f56e22cf01cca76c45ec9c6dd1856778e4",
-          "results_sha256": "6cdbc436baedc210a1401dd521b3b2c6a67af43d498c6248af354832454baaad"
+          "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
+          "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
         }
       }
     ],
@@ -458,6 +458,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "roots [-0.8, 1.8999999999999988, 1.9000000000000008], signed Q=0.8733333333, physical Q=0.3714555766"
+    },
+    {
+      "claim": "20: Madelung dictionary reproduces the free Gaussian and coherent state",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "free L2=8.781e-13, coherent L2=1.217e-04, Euler=6.105e-03"
+    },
+    {
+      "claim": "20: dictionary verdict is recorded and not overclaimed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "NUMERIC (exact representation verified)"
     },
     {
       "claim": "2a: M != M^T for generic delta",
@@ -2173,6 +2189,20 @@
       "observed": null
     },
     {
+      "claim": "20: Madelung dictionary reproduces the free Gaussian and coherent state",
+      "passed": true,
+      "detail": "free L2=8.781e-13, coherent L2=1.217e-04, Euler=6.105e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "20: dictionary verdict is recorded and not overclaimed",
+      "passed": true,
+      "detail": "NUMERIC (exact representation verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2866,8 +2896,8 @@
       "observed": null
     }
   ],
-  "total": 188,
-  "passed": 188,
+  "total": 190,
+  "passed": 190,
   "failed": 0,
   "failures": []
 }

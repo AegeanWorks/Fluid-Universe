@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**188/188 checks passed.**
+**190/190 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -95,6 +95,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 18: no one-parameter hierarchy matches both ratios and Q | PASS | min |tau error|=0.325040 |
 | 19: real Z3 rotor scan preserves zero-flux degeneracy and converges | PASS | rows=44, delta=9.437e-15 |
 | 19: real Z3 rotor never reaches Q=2/3 | PASS | best Q=0.337639, max by nu=0.337639 |
+| 20: Madelung dictionary reproduces the free Gaussian and coherent state | PASS | free L2=8.781e-13, coherent L2=1.217e-04, Euler=6.105e-03 |
+| 20: dictionary verdict is recorded and not overclaimed | PASS | NUMERIC (exact representation verified) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

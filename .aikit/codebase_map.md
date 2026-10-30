@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `85`
+- **Total Python Modules**: `88`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `463`
+- **Total Top-Level Functions**: `483`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `12072`
+- **Total Source Lines**: `12554`
 
 ---
 
@@ -171,6 +171,18 @@
 
 **Functions:**
 - `def run_lorentz_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/madelung_report.py`](phenomenology/madelung_report.py)
+> *Madelung fluid dictionary report (claim 20, ADR-011).*
+
+**Size**: `160` lines (`5069` bytes)
+
+**Functions:**
+- `def _grid()`
+- `def run_madelung_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -705,6 +717,22 @@
 
 ---
 
+### [`tests/test_madelung.py`](tests/test_madelung.py)
+> *Madelung fluid dictionary tests (claim 20).*
+
+**Size**: `95` lines (`2779` bytes)
+
+**Functions:**
+- `def _grid(n, length)`
+- `def test_free_gaussian_density_matches_exact()`
+- `def test_coherent_state_density_matches_exact()`
+- `def test_quantum_potential_of_a_gaussian()`
+- `def test_exact_gaussian_satisfies_the_euler_equation()`
+- `def test_fluid_residuals_are_small()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_neutrinos.py`](tests/test_neutrinos.py)
 > *Neutrino Q_nu scan tests (claim 7a).*
 
@@ -1056,6 +1084,24 @@
 
 ---
 
+### [`theory/madelung.py`](theory/madelung.py)
+> *Madelung fluid dictionary for the Schrodinger equation (claim 20, ADR-011).*
+
+**Size**: `194` lines (`6131` bytes)
+
+**Functions:**
+- `def _wave_numbers(n, dx)`
+- `def _derivative(values, k)`
+- `def split_step(psi, potential, dt, steps, dx, hbar, mass)` - *Strang split-step integration of the equivalent Schrodinger equation.*
+- `def fluid_fields(psi, dx, hbar, mass)` - *Return density, velocity and quantum pressure of a wavefunction.*
+- `def free_gaussian_density(x, t, sigma, hbar, mass)`
+- `def coherent_state_density(x, t, x0, omega, hbar, mass)`
+- `def continuity_residual(psi0, psi1, dt, dx, hbar, mass)`
+- `def free_gaussian_fields(x, t, sigma, hbar, mass)` - *Exact density, velocity and quantum pressure of a free Gaussian.*
+- `def euler_residual_fields(rho0, v0, q0, rho1, v1, q1, dt, dx, potential, mass, density_floor)` - *Relative Euler residual on the core where the density is resolved.*
+
+---
+
 ### [`theory/reduction.py`](theory/reduction.py)
 > *Dimensional reduction and the effective moment of inertia (claim 6b).*
 
@@ -1161,7 +1207,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1797` lines (`71244` bytes)
+**Size**: `1828` lines (`72416` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1203,6 +1249,7 @@
 - `def audit_vortex(audit)`
 - `def audit_cascade(audit)`
 - `def audit_rotor_potential(audit)`
+- `def audit_madelung(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1232,7 +1279,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `133` lines (`3487` bytes)
+**Size**: `135` lines (`3527` bytes)
 
 **Functions:**
 - `def _source_files()`

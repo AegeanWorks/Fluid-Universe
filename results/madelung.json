@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "config": {
+      "coherent_t": 1.5707963267948966,
+      "dt": 0.0001,
+      "euler_dt": 1e-05,
+      "euler_t": 0.1,
+      "free_t": 1.0,
+      "length": 40.0,
+      "n": 512,
+      "scope": "Madelung dictionary validation against exact Gaussian solutions"
+    },
+    "config_sha256": "29bc81edb53495b802ff56f635c9fce8fac1ed95c52bc6f8b11cf8ee100b904d",
+    "generated_utc": "2026-10-30T15:21:43+00:00",
+    "git": {
+      "commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "coherent_state": {
+      "l2_error": 0.0001216827969320665,
+      "linf_error": 9.322960642665912e-05,
+      "t": 1.5707963267948966,
+      "x0": 2.0
+    },
+    "euler_residual_core": 0.006105058803060723,
+    "free_gaussian": {
+      "continuity_residual": 3.2782010631520896e-07,
+      "l2_error": 8.781221314861626e-13,
+      "linf_error": 6.479816683224726e-13,
+      "sigma0": 1.0,
+      "t": 1.0
+    },
+    "verdict": {
+      "claim_20_status": "NUMERIC (exact representation verified)",
+      "dictionary_verified": true,
+      "note": "The Madelung dictionary is exact: QM is a fluid with a nonlocal quantum pressure. This is not a microphysical derivation; the quantum pressure is singular at nodes and has no independent fluid origin yet."
+    }
+  }
+}

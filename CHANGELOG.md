@@ -477,3 +477,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 19 is **FALSIFIED**. A real potential plus a fractional flux is not enough; a complex phase or a different mass mapping is required.
 
 - Verification after the real Z3 rotor potential scan: two separate runs, 188/188 checks each.
+
+## 2026-10-30 - Madelung fluid dictionary (claim 20, ADR-011)
+
+**Added**
+
+- `theory/madelung.py`, `theory/madelung.md`, `phenomenology/madelung_report.py`, `make madelung`, `tests/test_madelung.py`, and `results/madelung.{json,md}`.
+
+**Results**
+
+- The Madelung dictionary maps the Schrodinger equation exactly to continuity plus Euler with the quantum pressure \(Q=-\hbar^2\partial_x^2\sqrt{\rho}/(2m\sqrt{\rho})\).
+- Free Gaussian density \(L^2\) error: \(8.8\times10^{-13}\); coherent state: \(1.2\times10^{-4}\); continuity residual: \(3.3\times10^{-7}\); exact-Gaussian Euler core residual: \(6.1\times10^{-3}\).
+- Claim 20 is **NUMERIC (verified)**. This is an exact representation, not a microphysical derivation: \(Q\) is nonlocal and singular at nodes, and the Born rule and measurement are not explained.
+- The next step is a microphysical model of \(Q\) (stochastic mechanics, pilot wave, walking droplets, or a superfluid vacuum) with a falsifiable correction.
+
+- Verification after the Madelung dictionary: two separate runs, 190/190 checks each.

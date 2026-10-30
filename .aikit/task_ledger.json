@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "rotor-potential-nogo-v1",
+    "task_id": "madelung-fluid-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793373069.2998142,
+    "updated_at": 1793374039.6890743,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793373069.4300501
+    "completed_at": 1793374039.8335228
   },
   "checkpoints": [
-    {
-      "task_id": "claim14b-saddle-escape-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-006 and add failing tests for eigenvector extraction and mode perturbation",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793363300.9655113,
-      "timestamp_str": "2026-10-30 15:28:20",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Both known Hopfion candidates are saddles (14d min -5.799863, 14e min -2.600799). A negative Hessian mode gives a principled descent direction; perturbing along it and relaxing may reach a nearby local minimum, which is the natural next test for claim 14b.",
-        "benefits": "A bounded, pre-registered search that either finds numerical local-minimum evidence for 14b or shows that the saddles do not lead to a stable nearby candidate.",
-        "risks": "contract: claim 14b can rise only to NUMERIC at N=64, never a proof; dependency: scipy eigsh and JAX already declared; concurrency: single writer; state: one result file; cost: candidate build + 1 eigenvector + 2 perturb-relax-Hessian attempts, about 7 minutes under the 900 s cap",
-        "mitigation": "Reuse the validated tangent operator; normalize each mode to unit interior RMS and use pre-registered eps=0.05 and 0.15; accept a relaxed candidate only if H>0.9 and force RMS<0.05; compute the Hessian only for accepted candidates; abort/time-check against G-003"
-      }
-    },
-    {
-      "task_id": "claim14b-saddle-escape-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Saddle-escape from the pure-FN candidate: eps 0.05/0.15 collapse to H=0.320365/0.237385, max bond 1.967/1.994, force 6.8e-3/7.6e-3; neither passes H>0.9; no local minimum; 14b UNVERIFIED; 167.9 s",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793363883.4420192,
-      "timestamp_str": "2026-10-30 15:38:03",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim14b-saddle-escape-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 180/180 accepted (2 new 14b escape checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793363888.2769413,
-      "timestamp_str": "2026-10-30 15:38:08",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim14b-saddle-escape-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'claim14b-saddle-escape-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793363888.4569478,
-      "timestamp_str": "2026-10-30 15:38:08",
-      "agent": "opencode"
-    },
     {
       "task_id": "claim14b-length-scan-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793373069.4300516,
       "timestamp_str": "2026-10-30 18:11:09",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "madelung-fluid-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-011 and add failing tests for the Madelung fluid dictionary",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793373471.9508767,
+      "timestamp_str": "2026-10-30 18:17:51",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The user goal is to explain quantum mechanics with fluid mechanics. The exact bridge is the Madelung representation: psi = sqrt(rho) exp(iS/hbar) maps the Schrodinger equation to continuity plus Euler with a quantum pressure Q.",
+        "benefits": "A verified fluid dictionary and numerical solver are the foundation for any microphysical fluid model of QM; the tests separate the exact equivalence from a genuine explanation.",
+        "risks": "contract: new claim 20, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the quantum pressure is stiff, so the equivalent Schrodinger form is integrated with split-step and the fluid residuals are checked",
+        "mitigation": "Use exact free-Gaussian and coherent-state solutions; pre-register density and residual tolerances; record that the quantum pressure is nonlocal and not derived from a microphysical fluid"
+      }
+    },
+    {
+      "task_id": "madelung-fluid-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Madelung dictionary validated: free Gaussian L2 8.8e-13, coherent state 1.2e-4, continuity 3.3e-7, exact-Gaussian Euler core 6.1e-3; claim 20 NUMERIC (verified); note and result added",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793374033.9602084,
+      "timestamp_str": "2026-10-30 18:27:13",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "madelung-fluid-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 190/190 accepted (2 new claim-20 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793374039.6890743,
+      "timestamp_str": "2026-10-30 18:27:19",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "madelung-fluid-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'madelung-fluid-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793374039.8335242,
+      "timestamp_str": "2026-10-30 18:27:19",
       "agent": "opencode"
     }
   ]

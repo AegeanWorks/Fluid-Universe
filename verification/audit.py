@@ -1334,6 +1334,36 @@ def audit_rotor_potential(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Madelung fluid dictionary (claim 20/ADR-011)
+# ---------------------------------------------------------------------------
+
+
+def audit_madelung(audit: Audit) -> None:
+    payload = load_results("madelung.json")
+    result = payload["result"]
+    free = result["free_gaussian"]
+    coherent = result["coherent_state"]
+    verdict = result["verdict"]
+    audit.record(
+        "20: Madelung dictionary reproduces the free Gaussian and coherent state",
+        free["l2_error"] < 1e-10
+        and coherent["l2_error"] < 1e-3
+        and free["continuity_residual"] < 1e-2
+        and result["euler_residual_core"] < 1e-2,
+        f"free L2={free['l2_error']:.3e}, "
+        f"coherent L2={coherent['l2_error']:.3e}, "
+        f"Euler={result['euler_residual_core']:.3e}",
+    )
+    audit.record(
+        "20: dictionary verdict is recorded and not overclaimed",
+        verdict["dictionary_verified"] is True
+        and verdict["claim_20_status"].startswith("NUMERIC")
+        and "not a microphysical" in verdict["note"],
+        verdict["claim_20_status"],
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1734,6 +1764,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_vortex(audit)
     audit_cascade(audit)
     audit_rotor_potential(audit)
+    audit_madelung(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
