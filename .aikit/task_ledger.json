@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "madelung-fluid-v1",
+    "task_id": "nelson-stochastic-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793374039.6890743,
+    "updated_at": 1793374708.0281796,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793374039.8335228
+    "completed_at": 1793374708.20642
   },
   "checkpoints": [
-    {
-      "task_id": "claim14b-length-scan-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-007 for a box-length scan of the pure-FN candidate Hessian",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793369735.4980752,
-      "timestamp_str": "2026-10-30 17:15:35",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The pure-FN candidate at length 10 is a saddle (min -2.600799) and its escape collapses. The box length sets the soliton-to-boundary ratio and the virial balance, so a different length may admit a local minimum; this has never been scanned.",
-        "benefits": "A four-point length scan either finds a numerical local minimum for claim 14b or shows the saddle is not a length-10 artifact, both inside one G-003 process.",
-        "risks": "contract: claim 14b can rise only to NUMERIC at N=64, never a proof; dependency: none beyond JAX/scipy; concurrency: single writer; state: one result file; cost: four 1200-step N=64 relaxations plus up to four 8-mode Hessians, about 8 minutes under the 900 s cap",
-        "mitigation": "Pre-register lengths 8, 10, 12, 14; accept a field for a Hessian only if H>0.9 and force RMS<0.05; stop at the first local minimum; reuse the validated tangent operator and the -1e-6 tolerance; time-check against G-003"
-      }
-    },
-    {
-      "task_id": "claim14b-length-scan-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Length scan L=8,10,12,14: all keep H>0.9 but every Hessian has 8 negative modes (min -1.469962, -2.600799, -4.223930, -6.669667); no local minimum; 14b UNVERIFIED; 383.5 s",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793370454.5858488,
-      "timestamp_str": "2026-10-30 17:27:34",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim14b-length-scan-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 182/182 accepted (2 new 14b length-scan checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793370458.3166811,
-      "timestamp_str": "2026-10-30 17:27:38",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim14b-length-scan-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'claim14b-length-scan-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793370458.44449,
-      "timestamp_str": "2026-10-30 17:27:38",
-      "agent": "opencode"
-    },
     {
       "task_id": "vortex-knot-spectrum-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793374039.8335242,
       "timestamp_str": "2026-10-30 18:27:19",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "nelson-stochastic-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-012 and add failing tests for Nelson stochastic kinematics",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793374223.9094436,
+      "timestamp_str": "2026-10-30 18:30:23",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The Madelung dictionary is exact but does not derive the quantum pressure. Nelson stochastic mechanics with D=hbar/(2m) gives Q a physical origin through the osmotic velocity u=D d_x ln(rho) and a stochastic Newton equation.",
+        "benefits": "A numerical stochastic model that reproduces the exact quantum ground-state and free-packet densities gives the fluid program a microphysical foundation rather than a change of variables.",
+        "risks": "contract: new claim 21, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: histogram noise and finite-time relaxation",
+        "mitigation": "Use 20k-50k particles, 80 bins, exact drift fields, and pre-register L1 tolerances; state clearly that the drift uses the exact quantum density, so this is a consistency check, not a self-consistent derivation"
+      }
+    },
+    {
+      "task_id": "nelson-stochastic-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Nelson kinematics: OU variance 0.500625 vs 0.5; ground-state L1 0.0177; free-packet L1 0.0195; claim 21 NUMERIC (verified); exact-density drift, so a consistency check",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793374704.109657,
+      "timestamp_str": "2026-10-30 18:38:24",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "nelson-stochastic-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 192/192 accepted (2 new claim-21 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793374708.0281796,
+      "timestamp_str": "2026-10-30 18:38:28",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "nelson-stochastic-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'nelson-stochastic-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793374708.206422,
+      "timestamp_str": "2026-10-30 18:38:28",
       "agent": "opencode"
     }
   ]

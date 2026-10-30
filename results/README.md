@@ -70,6 +70,8 @@ Do not edit these files by hand.
 | `rotor_potential.md` | Human-readable version of the same |
 | `madelung.json` | Madelung fluid dictionary validation against exact Gaussian solutions |
 | `madelung.md` | Human-readable version of the same |
+| `nelson.json` | Nelson stochastic kinematics: ground state and free Gaussian packet |
+| `nelson.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

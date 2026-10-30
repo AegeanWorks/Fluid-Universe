@@ -1364,6 +1364,35 @@ def audit_madelung(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Nelson stochastic kinematics (claim 21/ADR-012)
+# ---------------------------------------------------------------------------
+
+
+def audit_nelson(audit: Audit) -> None:
+    payload = load_results("nelson.json")
+    result = payload["result"]
+    ground = result["ground_state"]
+    free = result["free_packet"]
+    verdict = result["verdict"]
+    audit.record(
+        "21: Nelson osmotic process reproduces the ground-state density",
+        abs(ground["variance"] - 0.5) < 0.01
+        and ground["l1_error"] < 0.05
+        and free["l1_error"] < 0.10,
+        f"variance={ground['variance']:.6f}, "
+        f"ground L1={ground['l1_error']:.4f}, "
+        f"free L1={free['l1_error']:.4f}",
+    )
+    audit.record(
+        "21: stochastic kinematics verdict is recorded and not overclaimed",
+        verdict["kinematics_verified"] is True
+        and verdict["claim_21_status"].startswith("NUMERIC")
+        and "not a self-consistent" in verdict["note"],
+        verdict["claim_21_status"],
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1765,6 +1794,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_cascade(audit)
     audit_rotor_potential(audit)
     audit_madelung(audit)
+    audit_nelson(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

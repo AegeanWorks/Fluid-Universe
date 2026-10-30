@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
-      "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
+      "source_sha256": "90b97ede0c640f5bff458f32eddc3e13ceac7e325e1af9cb49267b4b29a1fa37",
+      "results_sha256": "d2f2d42ceb908a912c0b6fb556b2362f17a067a521a2d0a19f38c481efd62b42"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T15:25:55+00:00",
-        "git_commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
-        "passed": 190,
-        "total": 190,
+        "generated_utc": "2026-10-30T15:36:49+00:00",
+        "git_commit": "5afa804e3d8ca053f2ef45e1fc1f30627425e4cc",
+        "passed": 192,
+        "total": 192,
         "failed": 0,
-        "checks_sha256": "96d3b61cdc76fc656643f1f251b4325a2a02b5eaa78d4ab41d3d9a56cf9d887e",
+        "checks_sha256": "9e3e6d3a7963fdb074297103ae7deff7a53f6dd293e1385eab05596d0d9a5bfa",
         "fingerprints": {
-          "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
-          "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
+          "source_sha256": "90b97ede0c640f5bff458f32eddc3e13ceac7e325e1af9cb49267b4b29a1fa37",
+          "results_sha256": "d2f2d42ceb908a912c0b6fb556b2362f17a067a521a2d0a19f38c481efd62b42"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T15:26:06+00:00",
-        "git_commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
-        "passed": 190,
-        "total": 190,
+        "generated_utc": "2026-10-30T15:37:00+00:00",
+        "git_commit": "5afa804e3d8ca053f2ef45e1fc1f30627425e4cc",
+        "passed": 192,
+        "total": 192,
         "failed": 0,
-        "checks_sha256": "96d3b61cdc76fc656643f1f251b4325a2a02b5eaa78d4ab41d3d9a56cf9d887e",
+        "checks_sha256": "9e3e6d3a7963fdb074297103ae7deff7a53f6dd293e1385eab05596d0d9a5bfa",
         "fingerprints": {
-          "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
-          "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
+          "source_sha256": "90b97ede0c640f5bff458f32eddc3e13ceac7e325e1af9cb49267b4b29a1fa37",
+          "results_sha256": "d2f2d42ceb908a912c0b6fb556b2362f17a067a521a2d0a19f38c481efd62b42"
         }
       }
     ],
@@ -474,6 +474,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "NUMERIC (exact representation verified)"
+    },
+    {
+      "claim": "21: Nelson osmotic process reproduces the ground-state density",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "variance=0.500625, ground L1=0.0177, free L1=0.0195"
+    },
+    {
+      "claim": "21: stochastic kinematics verdict is recorded and not overclaimed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "NUMERIC (stochastic kinematics verified)"
     },
     {
       "claim": "2a: M != M^T for generic delta",
@@ -2203,6 +2219,20 @@
       "observed": null
     },
     {
+      "claim": "21: Nelson osmotic process reproduces the ground-state density",
+      "passed": true,
+      "detail": "variance=0.500625, ground L1=0.0177, free L1=0.0195",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "21: stochastic kinematics verdict is recorded and not overclaimed",
+      "passed": true,
+      "detail": "NUMERIC (stochastic kinematics verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2896,8 +2926,8 @@
       "observed": null
     }
   ],
-  "total": 190,
-  "passed": 190,
+  "total": 192,
+  "passed": 192,
   "failed": 0,
   "failures": []
 }

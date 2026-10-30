@@ -13,4 +13,4 @@ Order-parameter space: RP^2. Homotopy: {'pi1': 'Z2', 'pi2': 'Z', 'pi3': 'Z'}.
 The strong claim is false: RP^2 has no Z3 factor and the cos(3 phi) term is inserted. None of the three standard extensions produces Z3 without an explicit three-fold structure. A different, specified extension is not excluded, but it would have to be constructed and tested explicitly.
 
 - Config SHA-256: `a9fc09d913c1a4e299368f503f7e7cc9c2eeb49dc478bcfa3593cc10353b854b`
-- Git: `57a59effaa2ccb976393a2537a90bd1b44337666` (dirty=True)
+- Git: `5afa804e3d8ca053f2ef45e1fc1f30627425e4cc` (dirty=True)

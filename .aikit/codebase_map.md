@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `88`
+- **Total Python Modules**: `91`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `483`
+- **Total Top-Level Functions**: `500`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `12554`
+- **Total Source Lines**: `12905`
 
 ---
 
@@ -183,6 +183,17 @@
 **Functions:**
 - `def _grid()`
 - `def run_madelung_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/nelson_report.py`](phenomenology/nelson_report.py)
+> *Nelson stochastic kinematics report (claim 21, ADR-012).*
+
+**Size**: `136` lines (`4391` bytes)
+
+**Functions:**
+- `def run_nelson_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -733,6 +744,21 @@
 
 ---
 
+### [`tests/test_nelson.py`](tests/test_nelson.py)
+> *Nelson stochastic kinematics tests (claim 21).*
+
+**Size**: `61` lines (`1770` bytes)
+
+**Functions:**
+- `def test_ground_state_width()`
+- `def test_ou_stationary_variance()`
+- `def test_ou_histogram_matches_ground_state()`
+- `def test_free_packet_drift_at_zero()`
+- `def test_free_packet_histogram_matches_exact()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_neutrinos.py`](tests/test_neutrinos.py)
 > *Neutrino Q_nu scan tests (claim 7a).*
 
@@ -1102,6 +1128,23 @@
 
 ---
 
+### [`theory/nelson.py`](theory/nelson.py)
+> *Nelson stochastic kinematics for the quantum fluid (claim 21, ADR-012).*
+
+**Size**: `122` lines (`4032` bytes)
+
+**Functions:**
+- `def ground_state_width(omega, hbar, mass)`
+- `def ground_state_density(x, omega, hbar, mass)`
+- `def osmotic_velocity(rho, dx, hbar, mass)`
+- `def simulate_ou(particles, omega, hbar, mass, dt, steps, seed)` - *Euler-Maruyama for dX = -omega X dt + sqrt(hbar/m) dW.*
+- `def free_packet_drift(x, t, sigma, hbar, mass)` - *Forward drift b_+ = v + D d_x ln(rho) for the free Gaussian.*
+- `def simulate_free_packet(particles, t, sigma, hbar, mass, steps, seed)`
+- `def histogram_density(samples, bins, span)`
+- `def l1_error(density, exact, width)`
+
+---
+
 ### [`theory/reduction.py`](theory/reduction.py)
 > *Dimensional reduction and the effective moment of inertia (claim 6b).*
 
@@ -1207,7 +1250,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1828` lines (`72416` bytes)
+**Size**: `1858` lines (`73521` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1250,6 +1293,7 @@
 - `def audit_cascade(audit)`
 - `def audit_rotor_potential(audit)`
 - `def audit_madelung(audit)`
+- `def audit_nelson(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1279,7 +1323,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `135` lines (`3527` bytes)
+**Size**: `137` lines (`3563` bytes)
 
 **Functions:**
 - `def _source_files()`

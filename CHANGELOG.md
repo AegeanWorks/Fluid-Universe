@@ -492,3 +492,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The next step is a microphysical model of \(Q\) (stochastic mechanics, pilot wave, walking droplets, or a superfluid vacuum) with a falsifiable correction.
 
 - Verification after the Madelung dictionary: two separate runs, 190/190 checks each.
+
+## 2026-10-30 - Nelson stochastic kinematics (claim 21, ADR-012)
+
+**Added**
+
+- `theory/nelson.py`, `phenomenology/nelson_report.py`, `make nelson`, `tests/test_nelson.py`, and `results/nelson.{json,md}`.
+
+**Results**
+
+- Harmonic-oscillator ground state: variance 0.500625 against 0.5; histogram \(L^1=0.0177\) with 50k particles and 80 bins.
+- Free Gaussian packet at \(t=1\): histogram \(L^1=0.0195\).
+- Claim 21 is **NUMERIC (verified)**. The drift uses the exact quantum density, so this validates the Nelson stochastic kinematics, not a self-consistent derivation of the density.
+- A modified diffusion law or a mean-field closure is the next falsifiable step.
+
+- Verification after the Nelson stochastic kinematics: two separate runs, 192/192 checks each.

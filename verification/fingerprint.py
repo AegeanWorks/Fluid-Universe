@@ -90,6 +90,8 @@ RESULT_FILES = (
     "rotor_potential.md",
     "madelung.json",
     "madelung.md",
+    "nelson.json",
+    "nelson.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

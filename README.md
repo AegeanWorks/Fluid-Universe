@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 190/190 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 192/192 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -76,6 +76,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | One-parameter vortex hierarchy | FALSIFIED: geometric cascade predicts tau 11.3\(\times\) high; power law fits either the muon ratio (+34.5% tau) or \(Q\) (-32.5% tau), not both | `results/vortex_cascade.json` |
 | Real Z3 rotor potential | FALSIFIED: real potential keeps \(E_1=E_2\) at zero flux; second harmonic plus flux gives max \(Q=0.3376\), not \(2/3\) | `results/rotor_potential.json` |
 | Madelung fluid dictionary | NUMERIC: QM is exactly continuity plus Euler with a quantum pressure; free Gaussian \(L^2=8.8\times10^{-13}\), coherent state \(1.2\times10^{-4}\), continuity \(3.3\times10^{-7}\), Euler \(6.1\times10^{-3}\); not a microphysical derivation | `results/madelung.json` |
+| Nelson stochastic kinematics | NUMERIC: \(D=\hbar/(2m)\) osmotic drift reproduces the ground state (variance 0.500625, \(L^1=0.0177\)) and free packet (\(L^1=0.0195\)); exact-density drift, so a consistency check | `results/nelson.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

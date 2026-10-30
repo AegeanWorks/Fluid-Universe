@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "config": {
+      "bins": 80,
+      "dt": 0.001,
+      "free_steps": 1000,
+      "free_t": 1.0,
+      "ground_steps": 5000,
+      "omega": 1.0,
+      "particles": 50000,
+      "scope": "Nelson stochastic kinematics with exact quantum drifts",
+      "span": 6.0
+    },
+    "config_sha256": "f978c2a31cd0d1617c2d8ceb76a1c5d086692c3e8b55c0be2ea8356e403e9f32",
+    "generated_utc": "2026-10-30T15:31:37+00:00",
+    "git": {
+      "commit": "5afa804e3d8ca053f2ef45e1fc1f30627425e4cc",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "free_packet": {
+      "l1_error": 0.019516647494703557,
+      "particles": 50000,
+      "sigma0": 1.0,
+      "steps": 1000,
+      "t": 1.0
+    },
+    "ground_state": {
+      "dt": 0.001,
+      "expected_variance": 0.5,
+      "l1_error": 0.017658025681313184,
+      "omega": 1.0,
+      "particles": 50000,
+      "steps": 5000,
+      "variance": 0.5006253673874198
+    },
+    "verdict": {
+      "claim_21_status": "NUMERIC (stochastic kinematics verified)",
+      "kinematics_verified": true,
+      "note": "The drift uses the exact quantum density, so this validates the Nelson kinematics, not a self-consistent derivation of the density. A modified diffusion law or a mean-field closure is the next falsifiable step."
+    }
+  }
+}

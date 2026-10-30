@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T15:26:06+00:00",
-    "git_commit": "57a59effaa2ccb976393a2537a90bd1b44337666",
+    "generated_utc": "2026-10-30T15:37:00+00:00",
+    "git_commit": "5afa804e3d8ca053f2ef45e1fc1f30627425e4cc",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "5eb245835199397f0b3d49a352e2da472db4eaaefe710cc63090effd83633a38",
-      "results_sha256": "609b57cd5f63fa6724deba09b038f49a001d24144a21f88b9c394f78eeba5891"
+      "source_sha256": "90b97ede0c640f5bff458f32eddc3e13ceac7e325e1af9cb49267b4b29a1fa37",
+      "results_sha256": "d2f2d42ceb908a912c0b6fb556b2362f17a067a521a2d0a19f38c481efd62b42"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -651,6 +651,20 @@
       "claim": "20: dictionary verdict is recorded and not overclaimed",
       "passed": true,
       "detail": "NUMERIC (exact representation verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "21: Nelson osmotic process reproduces the ground-state density",
+      "passed": true,
+      "detail": "variance=0.500625, ground L1=0.0177, free L1=0.0195",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "21: stochastic kinematics verdict is recorded and not overclaimed",
+      "passed": true,
+      "detail": "NUMERIC (stochastic kinematics verified)",
       "expected": null,
       "observed": null
     },
@@ -1348,8 +1362,8 @@
       "observed": null
     }
   ],
-  "total": 190,
-  "passed": 190,
+  "total": 192,
+  "passed": 192,
   "failed": 0,
   "failures": []
 }

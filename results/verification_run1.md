@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**190/190 checks passed.**
+**192/192 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -97,6 +97,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 19: real Z3 rotor never reaches Q=2/3 | PASS | best Q=0.337639, max by nu=0.337639 |
 | 20: Madelung dictionary reproduces the free Gaussian and coherent state | PASS | free L2=8.781e-13, coherent L2=1.217e-04, Euler=6.105e-03 |
 | 20: dictionary verdict is recorded and not overclaimed | PASS | NUMERIC (exact representation verified) |
+| 21: Nelson osmotic process reproduces the ground-state density | PASS | variance=0.500625, ground L1=0.0177, free L1=0.0195 |
+| 21: stochastic kinematics verdict is recorded and not overclaimed | PASS | NUMERIC (stochastic kinematics verified) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

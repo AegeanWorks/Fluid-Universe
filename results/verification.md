@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T15:25:55+00:00 | `57a59effaa2ccb976393a2537a90bd1b44337666` | 190/190 | `5eb245835199397f...` | `609b57cd5f63fa67...` |
-| run2 | 2026-10-30T15:26:06+00:00 | `57a59effaa2ccb976393a2537a90bd1b44337666` | 190/190 | `5eb245835199397f...` | `609b57cd5f63fa67...` |
+| run1 | 2026-10-30T15:36:49+00:00 | `5afa804e3d8ca053f2ef45e1fc1f30627425e4cc` | 192/192 | `90b97ede0c640f5b...` | `d2f2d42ceb908a91...` |
+| run2 | 2026-10-30T15:37:00+00:00 | `5afa804e3d8ca053f2ef45e1fc1f30627425e4cc` | 192/192 | `90b97ede0c640f5b...` | `d2f2d42ceb908a91...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -69,6 +69,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 1d: signed vs physical Q | PASS | PASS | YES | YES | roots [-0.8, 1.8999999999999988, 1.9000000000000008], signed Q=0.8733333333, physical Q=0.3714555766 |
 | 20: Madelung dictionary reproduces the free Gaussian and coherent state | PASS | PASS | YES | YES | free L2=8.781e-13, coherent L2=1.217e-04, Euler=6.105e-03 |
 | 20: dictionary verdict is recorded and not overclaimed | PASS | PASS | YES | YES | NUMERIC (exact representation verified) |
+| 21: Nelson osmotic process reproduces the ground-state density | PASS | PASS | YES | YES | variance=0.500625, ground L1=0.0177, free L1=0.0195 |
+| 21: stochastic kinematics verdict is recorded and not overclaimed | PASS | PASS | YES | YES | NUMERIC (stochastic kinematics verified) |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |
