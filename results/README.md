@@ -58,6 +58,8 @@ Do not edit these files by hand.
 | `hopfion3d_extension.md` | Human-readable version of the same |
 | `hopfion_purefn_stability.json` | Pure-FN N=64 candidate Hessian, eight lowest tangent modes (<15 min, G-003); not part of make results |
 | `hopfion_purefn_stability.md` | Human-readable version of the same |
+| `hopfion_saddle_escape.json` | Saddle-escape search from the pure-FN candidate, two amplitudes (<15 min, G-003); not part of make results |
+| `hopfion_saddle_escape.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

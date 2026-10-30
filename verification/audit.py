@@ -1167,6 +1167,38 @@ def audit_purefn(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Saddle-escape search (claim 14b/ADR-006)
+# ---------------------------------------------------------------------------
+
+
+def audit_escape(audit: Audit) -> None:
+    payload = load_results("hopfion_saddle_escape.json")
+    base = payload["base"]
+    attempts = payload["attempts"]
+    verdict = payload["verdict"]
+    purefn = load_results("hopfion_purefn_stability.json")
+    audit.record(
+        "14b: saddle-escape starts from the pure-FN candidate",
+        abs(base["min_eigenvalue"] - purefn["spectrum"]["min_eigenvalue"]) < 1e-6
+        and len(attempts) == 2
+        and [attempt["amplitude"] for attempt in attempts] == [0.05, 0.15]
+        and all(attempt["min_pre_norm"] > 0.1 for attempt in attempts),
+        f"base min={base['min_eigenvalue']:+.6f}, attempts={len(attempts)}",
+    )
+    audit.record(
+        "14b: saddle-escape finds no local minimum and does not promote",
+        verdict["local_minimum_found"] is False
+        and verdict["claim_14b_status"] == "UNVERIFIED"
+        and all(attempt["local_minimum"] is False for attempt in attempts)
+        and all(attempt["H"] < 0.9 for attempt in attempts),
+        ", ".join(
+            f"eps={attempt['amplitude']:.3g}: H={attempt['H']:.6f}"
+            for attempt in attempts
+        ),
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1562,6 +1594,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_scale(audit)
     audit_stability(audit)
     audit_purefn(audit)
+    audit_escape(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

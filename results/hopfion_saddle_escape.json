@@ -1,0 +1,81 @@
+{
+  "attempts": [
+    {
+      "E": 314.1672991408535,
+      "H": 0.32036461889635276,
+      "H_upsampled": 0.6217745737113998,
+      "Z3": 4.568439019288449e-05,
+      "accepted": false,
+      "amplitude": 0.05,
+      "force_rms": 0.006775424997334762,
+      "local_minimum": false,
+      "max_bond": 1.9667340852869832,
+      "min_eigenvalue": null,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": null,
+      "tested": false
+    },
+    {
+      "E": 309.3660171473815,
+      "H": 0.2373848518807252,
+      "H_upsampled": 0.6444389715236566,
+      "Z3": 5.206001689302697e-05,
+      "accepted": false,
+      "amplitude": 0.15,
+      "force_rms": 0.007639687102609092,
+      "local_minimum": false,
+      "max_bond": 1.9935281578399482,
+      "min_eigenvalue": null,
+      "min_pre_norm": 0.9999999999999998,
+      "negative_count": null,
+      "tested": false
+    }
+  ],
+  "base": {
+    "H": 0.9999999315531043,
+    "Z3": 2.539475113562571e-06,
+    "force_rms": 0.0031540378436494517,
+    "min_eigenvalue": -2.6007986234503115
+  },
+  "elapsed_seconds": 167.93255860000136,
+  "meta": {
+    "config": {
+      "amplitudes": [
+        0.05,
+        0.15
+      ],
+      "boundary": "fixed vacuum faces",
+      "build_steps": 1200,
+      "dt": 0.0005,
+      "force_max": 0.05,
+      "h_min": 0.9,
+      "length": 10.0,
+      "max_wall_seconds": 900.0,
+      "n": 64,
+      "relax_steps": 600,
+      "scope": "saddle-escape search; evidence at one grid, not a proof",
+      "seed": 20261026
+    },
+    "config_sha256": "f81939dff10f8cabff3888e5219c9dcb4195f1c4cf07882abf9c54eec76186e7",
+    "generated_utc": "2026-10-30T12:33:29+00:00",
+    "git": {
+      "commit": "c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "verdict": {
+    "attempts": 2,
+    "claim_14b_status": "UNVERIFIED",
+    "local_minimum_found": false,
+    "note": "A positive spectrum at one grid and one perturbed candidate is numerical evidence, not a stability proof; a negative search does not rule out a different ansatz."
+  }
+}

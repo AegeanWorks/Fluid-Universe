@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 178/178 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 180/180 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -62,7 +62,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Closed form for \(\delta\) | UNVERIFIED (null): 2/9 at 0.407\(\sigma\), look-elsewhere \(p=7.9\times10^{-4}\), not promoted | `results/delta_search.json` |
 | Frank-Oseen equal-\(K\) dispersion | PROVEN for that statement only: 2 transverse modes, no photon | `results/frank_oseen.json` |
 | Derrick scaling | PROVEN: \(d=3\) exponents \((1,-1,3)\), virial \(E_2-E_4+3V=0\) | `results/derrick.json` |
-| Stable Hopfion existence | UNVERIFIED; \(\kappa>0\) is necessary, not sufficient; both tested candidates are saddles (14d, 14e) | `results/derrick.json` |
+| Stable Hopfion existence | UNVERIFIED; \(\kappa>0\) is necessary, not sufficient; both tested candidates are saddles (14d, 14e), and a saddle-escape search collapses to H=0.24-0.32 | `results/derrick.json` |
 | Finite-energy H=1 configuration | NUMERIC: \(E_2=233.6\), \(E_4=159.3\), \(H=1.000000\), \(\lambda^*=0.82563\); no stability proof | `results/hopfion.json` |
 | Pure-FN H=1 candidate | N=64, force RMS 0.00315, \(H=0.99999993\); near-stationary, not a stability proof | `results/hopfion3d_n64.json` |
 | Scale-stationary H=1 candidate | NUMERIC candidate: virial 0.00961, \(H=0.99730\), RMS 0.0030 | `results/hopfion_scale.json` |

@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `73`
+- **Total Python Modules**: `75`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `409`
+- **Total Top-Level Functions**: `422`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `10540`
+- **Total Source Lines**: `10926`
 
 ---
 
@@ -310,6 +310,18 @@
 
 ---
 
+### [`phenomenology/saddle_escape_report.py`](phenomenology/saddle_escape_report.py)
+> *Saddle-escape search from the pure-FN N=64 candidate (ADR-006, claim 14b).*
+
+**Size**: `205` lines (`7056` bytes)
+
+**Functions:**
+- `def _relax(field, steps, deadline)`
+- `def run_escape_check(write)`
+- `def render_markdown(result)`
+
+---
+
 ### [`phenomenology/sim_report.py`](phenomenology/sim_report.py)
 > *Result payload for the 1D simulation baseline.*
 
@@ -455,7 +467,7 @@
 ### [`sims/stability.py`](sims/stability.py)
 > *Tangent-space Hessian of the 3D Faddeev-Niemi + Z3 energy.*
 
-**Size**: `303` lines (`11030` bytes)
+**Size**: `380` lines (`13646` bytes)
 
 **Functions:**
 - `def tangent_basis(field)` - *Return two orthonormal tangent vectors at every interior site.*
@@ -464,6 +476,10 @@
 - `def tangent_operator(field, dx, e1, e2)` - *Matrix-free Hessian on the two-dimensional tangent space of each site.*
 - `def validate_operator(n, length, steps, dt, k)` - *Compare the matrix-free operator with the dense tangent Hessian.*
 - `def hessian_spectrum(field, dx, k, e1, e2)` - *Low-lying eigenvalues of the tangent-space Hessian.*
+- `def classify_escape(attempts)` - *Summarise a saddle-escape search without promoting beyond one grid.*
+- `def hessian_modes(field, dx, k, e1, e2)` - *Lowest tangent eigenpairs, with each eigenvector mapped back to a field.*
+- `def normalize_mode(mode)` - *Scale a tangent mode to unit RMS over the interior.*
+- `def perturb_along_mode(field, mode, amplitude)` - *Add a normalized tangent mode and renormalize every site.*
 - `def classify_candidate(validation, spectrum)` - *Classify one candidate's Hessian without overstating the result.*
 - `def run_stability_check(n, length, iterations, steps, dt, k, validate_n)` - *Build the scale-stationary candidate and compute its tangent Hessian.*
 
@@ -772,6 +788,20 @@
 
 ---
 
+### [`tests/test_saddle_escape.py`](tests/test_saddle_escape.py)
+> *Saddle-escape mode tests (claim 14b/ADR-006).*
+
+**Size**: `69` lines (`2263` bytes)
+
+**Functions:**
+- `def test_hessian_modes_returns_a_tangent_field()`
+- `def test_perturb_along_mode_preserves_norm_and_boundary()`
+- `def test_perturb_along_mode_rejects_invalid_inputs()`
+- `def test_classify_escape_finds_a_local_minimum()`
+- `def test_classify_escape_keeps_the_claim_unverified()`
+
+---
+
 ### [`tests/test_scale_iteration.py`](tests/test_scale_iteration.py)
 > *Scale-iteration candidate tests.*
 
@@ -1004,7 +1034,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1625` lines (`64646` bytes)
+**Size**: `1658` lines (`66021` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1041,6 +1071,7 @@
 - `def audit_scale(audit)`
 - `def audit_stability(audit)`
 - `def audit_purefn(audit)`
+- `def audit_escape(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1070,7 +1101,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `123` lines (`3189` bytes)
+**Size**: `125` lines (`3255` bytes)
 
 **Functions:**
 - `def _source_files()`

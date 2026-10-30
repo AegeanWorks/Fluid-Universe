@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T12:22:39+00:00",
-    "git_commit": "7a4ddef40000b7f00d662be627a7f6670aad74a8",
+    "generated_utc": "2026-10-30T12:37:00+00:00",
+    "git_commit": "c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "8e219eb8fdc2fb69fd415f1cdf11a8f5c1d9fb1e2e285eb0a59cc30670249771",
-      "results_sha256": "b078b7706020937694df428610a7995451caba5af8da050f9eb6ec51e763bc74"
+      "source_sha256": "945355a8d3d9c6b37b48d1285eabe040628e312ee3e1cccdeb5ad9b6eaf8daea",
+      "results_sha256": "63a7f1a049ae923c7cac96d4f868819dc9fb9312c3856f09f73f4f4f24763e64"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -567,6 +567,20 @@
       "claim": "14e: pure-FN Hessian verdict follows the negative tolerance",
       "passed": true,
       "detail": "min=-2.600799, negative=8",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: saddle-escape starts from the pure-FN candidate",
+      "passed": true,
+      "detail": "base min=-2.600799, attempts=2",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: saddle-escape finds no local minimum and does not promote",
+      "passed": true,
+      "detail": "eps=0.05: H=0.320365, eps=0.15: H=0.237385",
       "expected": null,
       "observed": null
     },
@@ -1264,8 +1278,8 @@
       "observed": null
     }
   ],
-  "total": 178,
-  "passed": 178,
+  "total": 180,
+  "passed": 180,
   "failed": 0,
   "failures": []
 }

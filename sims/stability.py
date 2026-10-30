@@ -224,6 +224,83 @@ def hessian_spectrum(
     }
 
 
+def classify_escape(attempts: list[dict]) -> dict:
+    """Summarise a saddle-escape search without promoting beyond one grid."""
+    found = any(attempt.get("local_minimum") is True for attempt in attempts)
+    if found:
+        status = "NUMERIC (local minimum at N=64; not a proof)"
+    else:
+        status = "UNVERIFIED"
+    return {
+        "attempts": len(attempts),
+        "local_minimum_found": bool(found),
+        "claim_14b_status": status,
+        "note": (
+            "A positive spectrum at one grid and one perturbed candidate is "
+            "numerical evidence, not a stability proof; a negative search does "
+            "not rule out a different ansatz."
+        ),
+    }
+
+
+def hessian_modes(
+    field: np.ndarray,
+    dx: float,
+    k: int = 1,
+    e1: np.ndarray | None = None,
+    e2: np.ndarray | None = None,
+) -> dict:
+    """Lowest tangent eigenpairs, with each eigenvector mapped back to a field."""
+    n = field.shape[0]
+    if e1 is None or e2 is None:
+        e1, e2 = tangent_basis(field)
+    operator, dimension = tangent_operator(field, dx, e1, e2)
+    requested = min(k, dimension - 1)
+    values, vectors = eigsh(
+        operator,
+        k=requested,
+        which="SA",
+        return_eigenvectors=True,
+        tol=1e-8,
+        maxiter=50_000,
+    )
+    order = np.argsort(values)
+    values = values[order]
+    vectors = vectors[:, order]
+    modes = []
+    for column in range(values.size):
+        coefficients = vectors[:, column].reshape(n - 2, n - 2, n - 2, 2)
+        mode = np.zeros_like(field)
+        mode[1:-1, 1:-1, 1:-1] = (
+            coefficients[..., 0:1] * e1 + coefficients[..., 1:2] * e2
+        )
+        modes.append(mode)
+    return {
+        "n": n,
+        "dimension": dimension,
+        "requested_k": requested,
+        "eigenvalues": [float(value) for value in values],
+        "modes": modes,
+    }
+
+
+def normalize_mode(mode: np.ndarray) -> np.ndarray:
+    """Scale a tangent mode to unit RMS over the interior."""
+    interior = np.asarray(mode)[1:-1, 1:-1, 1:-1]
+    rms = float(np.sqrt(np.mean(interior * interior)))
+    if rms <= 0.0:
+        raise ValueError("mode has zero interior norm")
+    return np.asarray(mode, dtype=float) / rms
+
+
+def perturb_along_mode(field: np.ndarray, mode: np.ndarray, amplitude: float) -> np.ndarray:
+    """Add a normalized tangent mode and renormalize every site."""
+    if amplitude == 0.0:
+        raise ValueError("amplitude must be nonzero")
+    perturbed = np.asarray(field, dtype=float) + amplitude * normalize_mode(mode)
+    return perturbed / np.linalg.norm(perturbed, axis=-1, keepdims=True)
+
+
 def classify_candidate(validation: dict, spectrum: dict) -> dict:
     """Classify one candidate's Hessian without overstating the result."""
     n = spectrum["n"]

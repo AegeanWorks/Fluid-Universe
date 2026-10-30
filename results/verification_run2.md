@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**178/178 checks passed.**
+**180/180 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -85,6 +85,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 14d: N=64 scale candidate is a saddle | PASS | min=-5.799863, negative=8 |
 | 14b: pure-FN candidate is the N=64 mu=0 relax | PASS | H=0.999999932, rms=3.154e-03 |
 | 14e: pure-FN Hessian verdict follows the negative tolerance | PASS | min=-2.600799, negative=8 |
+| 14b: saddle-escape starts from the pure-FN candidate | PASS | base min=-2.600799, attempts=2 |
+| 14b: saddle-escape finds no local minimum and does not promote | PASS | eps=0.05: H=0.320365, eps=0.15: H=0.237385 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

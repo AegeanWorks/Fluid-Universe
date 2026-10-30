@@ -386,3 +386,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The diagnostic completed in 111.7 s, inside the 900 s G-003 cap.
 
 - Verification after the pure-FN Hessian: two separate runs, 178/178 checks each.
+
+## 2026-10-30 - Saddle-escape search (claim 14b, ADR-006)
+
+**Added**
+
+- `sims.stability.hessian_modes`, `normalize_mode`, `perturb_along_mode` and `classify_escape`; `phenomenology/saddle_escape_report.py`; `make escape`; `tests/test_saddle_escape.py`; `results/hopfion_saddle_escape.{json,md}`.
+
+**Results**
+
+- Base pure-FN candidate: H=0.999999932, Z3=\(3.0\times10^{-6}\), force RMS \(3.154\times10^{-3}\); lowest tangent eigenvalue \(-2.600799\).
+- Perturbing along that mode by 0.05 and 0.15 (unit interior RMS) and relaxing for 600 steps gives H=0.320365 and 0.237385, max bond 1.967 and 1.994, force RMS \(6.775\times10^{-3}\) and \(7.640\times10^{-3}\).
+- Neither perturbed field passes the pre-registered H>0.9 acceptance test, so no Hessian was computed and no local minimum was found. Claim 14b remains **UNVERIFIED**.
+- The search completed in 167.9 s, inside the 900 s G-003 cap.
+
+- Verification after the saddle-escape search: two separate runs, 180/180 checks each.

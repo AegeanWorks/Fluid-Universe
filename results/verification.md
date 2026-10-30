@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T12:22:39+00:00 | `7a4ddef40000b7f00d662be627a7f6670aad74a8` | 178/178 | `8e219eb8fdc2fb69...` | `b078b77060209376...` |
-| run2 | 2026-10-30T12:22:45+00:00 | `7a4ddef40000b7f00d662be627a7f6670aad74a8` | 178/178 | `8e219eb8fdc2fb69...` | `b078b77060209376...` |
+| run1 | 2026-10-30T12:37:00+00:00 | `c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b` | 180/180 | `945355a8d3d9c6b3...` | `63a7f1a049ae923c...` |
+| run2 | 2026-10-30T12:37:07+00:00 | `c29368aef33e5b08f33cf76abd6ea1ae36e2ed8b` | 180/180 | `945355a8d3d9c6b3...` | `63a7f1a049ae923c...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -27,6 +27,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
 | 14b: pure-FN candidate is the N=64 mu=0 relax | PASS | PASS | YES | YES | H=0.999999932, rms=3.154e-03 |
+| 14b: saddle-escape finds no local minimum and does not promote | PASS | PASS | YES | YES | eps=0.05: H=0.320365, eps=0.15: H=0.237385 |
+| 14b: saddle-escape starts from the pure-FN candidate | PASS | PASS | YES | YES | base min=-2.600799, attempts=2 |
 | 14c: scale-stationary H=1 candidate | PASS | PASS | YES | YES | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
 | 14d: N=64 scale candidate is a saddle | PASS | PASS | YES | YES | min=-5.799863, negative=8 |
 | 14d: tangent Hessian operator passes dense validation | PASS | PASS | YES | YES | N=8, max error=1.332e-15 |
