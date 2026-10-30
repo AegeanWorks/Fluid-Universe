@@ -689,3 +689,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 33 is **NUMERIC (negative: Born well cannot give 1.7 eV; required depth 3.715 eV)**. The missing depth is comparable to the optical-polarization reorganization energy (\(1.242517\) eV at the minimum); a polaron/band-offset correction is the next test.
 
 - Verification after the finite spherical well: two separate runs, 216/216 checks each.
+
+## 2026-10-30 - Bound-free absorption in the finite well (claim 34, ADR-025)
+
+**Added**
+
+- `theory/water_absorption.py`, `phenomenology/water_absorption_report.py`, `make waterabsorption`, `tests/test_water_absorption.py`, and `results/water_absorption.{json,md}`.
+
+**Results**
+
+- Born depth: 1s binding \(0.527753\) eV; bound-free continuum peak \(1.022658\) eV; TRK sum rule (to 5 Hartree) \(0.986301\).
+- A 1.7 eV peak requires \(V_0=3.689281\) eV, an extra \(1.202293\) eV; the inverted peak is \(1.700070\) eV.
+- Optical reorganization energy \(1.383104\) eV; extra/reorganization \(0.869272\).
+- Claim 34 is **NUMERIC (bound-free peak 1.023 eV; extra depth 1.202 eV)**. The continuum is broad and qualitatively matches the observed band, but the Born depth is still too shallow; the extra depth is a target for a band-offset/polaron correction.
+
+- Verification after the bound-free finite-well absorption: two separate runs, 218/218 checks each.

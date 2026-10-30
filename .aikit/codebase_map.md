@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `125`
+- **Total Python Modules**: `128`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `688`
+- **Total Top-Level Functions**: `711`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `17038`
+- **Total Source Lines**: `17633`
 
 ---
 
@@ -503,6 +503,17 @@
 **Functions:**
 - `def load_lepton_masses()`
 - `def run_vortex_spectrum(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_absorption_report.py`](phenomenology/water_absorption_report.py)
+> *Bound-free absorption in the finite spherical well (claim 34, ADR-025).*
+
+**Size**: `138` lines (`5758` bytes)
+
+**Functions:**
+- `def run_water_absorption_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1218,6 +1229,22 @@
 
 ---
 
+### [`tests/test_water_absorption.py`](tests/test_water_absorption.py)
+> *Bound-free absorption in the finite spherical well (claim 34).*
+
+**Size**: `73` lines (`2402` bytes)
+
+**Functions:**
+- `def test_bound_state_normalization()`
+- `def test_oscillator_strength_sum_rule()`
+- `def test_born_depth_continuum_peak()`
+- `def test_peak_moves_up_with_depth()`
+- `def test_required_extra_depth_for_1p7()`
+- `def test_oscillator_strength_below_threshold_is_zero()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_analogue.py`](tests/test_water_analogue.py)
 > *Shallow-water acoustic horizon tests (claim 27).*
 
@@ -1631,6 +1658,28 @@
 
 ---
 
+### [`theory/water_absorption.py`](theory/water_absorption.py)
+> *Bound-free absorption in the finite spherical well (claim 34, ADR-025).*
+
+**Size**: `346` lines (`11746` bytes)
+
+**Functions:**
+- `def _j1(x)`
+- `def _y1(x)`
+- `def _j1_prime(x)`
+- `def _y1_prime(x)`
+- `def bound_state(radius_m, depth_ev, grid)` - *Return the normalized 1s state of the finite well.*
+- `def _dipole_from_state(state, photon_ev, grid)`
+- `def dipole_integral(radius_m, depth_ev, photon_ev, points)` - *Radial dipole integral for the 1s -> p continuum, in atomic units.*
+- `def _oscillator_from_state(state, photon_ev, grid)`
+- `def oscillator_strength(radius_m, depth_ev, photon_ev, points)` - *Oscillator strength at a photon energy, in atomic units.*
+- `def oscillator_sum_rule(radius_m, depth_ev, grid, points, max_ev)` - *Integrate the continuum oscillator strength from threshold to max_ev.*
+- `def peak_absorption(radius_m, depth_ev, grid, points)` - *Locate the continuum absorption peak for one well.*
+- `def required_extra_depth(radius_m, target_ev, grid, points)` - *Depth beyond Born needed to put the continuum peak at target_ev.*
+- `def absorption_scales()` - *Collect the bound-free scales used by the report and the tests.*
+
+---
+
 ### [`theory/water_analogue.py`](theory/water_analogue.py)
 > *Shallow-water acoustic horizon (claim 27, ADR-018).*
 
@@ -1732,7 +1781,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2240` lines (`88863` bytes)
+**Size**: `2276` lines (`90285` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1788,6 +1837,7 @@
 - `def audit_water_scattering(audit)`
 - `def audit_water_electron(audit)`
 - `def audit_water_well(audit)`
+- `def audit_water_absorption(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1817,7 +1867,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `161` lines (`4179` bytes)
+**Size**: `163` lines (`4235` bytes)
 
 **Functions:**
 - `def _source_files()`

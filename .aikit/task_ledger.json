@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-well-v1",
+    "task_id": "water-absorption-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793385660.0345097,
+    "updated_at": 1793387055.422402,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793385660.2146459
+    "completed_at": 1793387055.7126055
   },
   "checkpoints": [
-    {
-      "task_id": "water-dispersive-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-020 and add failing tests for the dispersive shallow-water horizon",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793380829.5644023,
-      "timestamp_str": "2026-10-30 20:20:29",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 27 uses the long-wavelength sound speed. The full shallow-water dispersion includes capillary and finite-depth terms, so the horizon depends on wave frequency; the metric is valid only below the capillary frequency.",
-        "benefits": "A quantitative frequency-validity condition for the water horizon, complementing the spatial capillary condition of claim 28.",
-        "risks": "contract: new claim 29, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the root equation k c_g + omega_f = omega and the tanh(kh) dispersion",
-        "mitigation": "Use the exact dispersion (gk+gamma k^3/rho)tanh(kh); test the k->0 limit, the omega_c frequency, and the horizon ratio at low and high frequency"
-      }
-    },
-    {
-      "task_id": "water-dispersive-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Dispersive horizon: omega_c=84.824 rad/s; ratios 1.000013 at 0.1, 1.151520 at 10, 5.192407 at 100 rad/s; long-wavelength metric valid below ~1 rad/s; claim 29 PROVEN",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793381271.2620316,
-      "timestamp_str": "2026-10-30 20:27:51",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-dispersive-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 208/208 accepted (2 new claim-29 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793381275.7023761,
-      "timestamp_str": "2026-10-30 20:27:55",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-dispersive-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-dispersive-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793381275.9352658,
-      "timestamp_str": "2026-10-30 20:27:55",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-rays-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793385660.2146473,
       "timestamp_str": "2026-10-30 21:41:00",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-absorption-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-025 and add failing tests for the finite-well bound-free absorption; predict a Born-depth continuum peak at 1.025 eV (sum rule 0.992) and an extra depth of 1.198 eV for a 1.7 eV peak",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793386305.9288898,
+      "timestamp_str": "2026-10-30 21:51:45",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 33 rules out the bound-bound 1s->1p interpretation. The observed hydrated-electron band is broad, so the remaining natural channel is bound-free 1s->p absorption. The same finite well makes a parameter-free prediction for the continuum peak, which can be tested against the 1.7 eV anchor.",
+        "benefits": "A validated continuum calculation (TRK sum rule) and a quantitative extra-depth target; it tests whether the 1.7 eV feature can be a bound-free transition without inventing a bound 1p state.",
+        "risks": "contract: new claim 34, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; model: same finite well, no new potential; numerical: the dipole integral needs a converged grid and sum-rule check; data: the 1.7 eV absorption is a literature anchor",
+        "mitigation": "Work in atomic units, validate the continuum normalization with the TRK sum rule (~1), converge the peak against grid size and tail, pre-register the Born-depth peak and the extra-depth inversion, and state that the extra depth is a target rather than a derived correction"
+      }
+    },
+    {
+      "task_id": "water-absorption-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Bound-free: Born-depth continuum peak 1.022658 eV (sum rule 0.986301), below 1.7 eV; 1.7 eV peak needs V0=3.689281 eV (extra 1.202293 eV; 0.869 of optical reorganization 1.383104); claim 34 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793387051.1973703,
+      "timestamp_str": "2026-10-30 22:04:11",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-absorption-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 218/218 accepted (2 new claim-34 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793387055.422402,
+      "timestamp_str": "2026-10-30 22:04:15",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-absorption-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-absorption-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793387055.7126079,
+      "timestamp_str": "2026-10-30 22:04:15",
       "agent": "opencode"
     }
   ]

@@ -1763,6 +1763,41 @@ def audit_water_well(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Bound-free absorption in the finite well (claim 34/ADR-025)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_absorption(audit: Audit) -> None:
+    payload = load_results("water_absorption.json")
+    result = payload["result"]
+    scales = result["scales"]
+    capillary = scales["capillary"]
+    required = scales["required"]
+    verdict = result["verdict"]
+    audit.record(
+        "34: the Born-depth bound-free peak is below 1.7 eV",
+        capillary["peak_ev"] < 1.2
+        and 0.98 < capillary["sum_rule"] < 1.02
+        and capillary["binding_ev"] > 0.0
+        and capillary["peak_strength"] > 0.0,
+        f"peak={capillary['peak_ev']:.6f}, "
+        f"sum={capillary['sum_rule']:.6f}, "
+        f"binding={capillary['binding_ev']:.6f}",
+    )
+    audit.record(
+        "34: a 1.7 eV peak requires an extra depth of about 1.202 eV",
+        1.0 < required["extra_ev"] < 1.5
+        and abs(required["peak_ev"] - 1.7) < 0.01
+        and required["depth_ev"] > capillary["born_depth_ev"] + 1.0
+        and verdict["required_peak_matches"] is True
+        and verdict["claim_34_status"].startswith("NUMERIC"),
+        f"depth={required['depth_ev']:.6f}, "
+        f"extra={required['extra_ev']:.6f}, "
+        f"peak={required['peak_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2177,6 +2212,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_scattering(audit)
     audit_water_electron(audit)
     audit_water_well(audit)
+    audit_water_absorption(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

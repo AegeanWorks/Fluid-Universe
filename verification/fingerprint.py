@@ -116,6 +116,8 @@ RESULT_FILES = (
     "water_electron.md",
     "water_well.json",
     "water_well.md",
+    "water_absorption.json",
+    "water_absorption.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

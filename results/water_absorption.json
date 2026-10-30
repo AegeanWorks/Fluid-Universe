@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "config": {
+      "epsilon_optical": 1.78,
+      "epsilon_water": 78.4,
+      "observed_absorption_ev": 1.7,
+      "scope": "bound-free 1s->p absorption in the finite spherical well"
+    },
+    "config_sha256": "d4e4a04a2c228edced0c5dadade8954f1a1e700593ceb8f683fe25d62f7d1695",
+    "generated_utc": "2026-10-30T18:55:46+00:00",
+    "git": {
+      "commit": "c9881180dc5981415cbd46d88be2c98ac6f83834",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_absorption_ev": 1.7,
+    "scales": {
+      "capillary": {
+        "binding_ev": 0.5277528621120307,
+        "born_depth_ev": 2.4869878638766574,
+        "peak_ev": 1.0226581233065488,
+        "peak_strength": 27.39110071414725,
+        "radius_m": 2.8580710555848763e-10,
+        "sum_rule": 0.9863005807937486
+      },
+      "extra_to_reorganization": 0.8692715464720615,
+      "model": {
+        "bohr_m": 5.29177210903e-11,
+        "epsilon_optical": 1.78,
+        "epsilon_water": 78.4,
+        "hartree_ev": 27.211386245988
+      },
+      "reorganization_ev": 1.3831040424050571,
+      "required": {
+        "depth_ev": 3.689280853749861,
+        "extra_ev": 1.2022929898732038,
+        "peak_ev": 1.7000702321527987,
+        "peak_strength": 59.89235725440449,
+        "threshold_ev": 1.3750403486993634
+      },
+      "scan": [
+        {
+          "binding_ev": 0.5277528621120307,
+          "depth_ev": 2.4869878638766574,
+          "peak_ev": 1.0226581233065488,
+          "peak_strength": 27.39110071414725
+        },
+        {
+          "binding_ev": 0.8671374489400612,
+          "depth_ev": 3.0,
+          "peak_ev": 1.3695008254458256,
+          "peak_strength": 33.82174046030139
+        },
+        {
+          "binding_ev": 1.0822496767472742,
+          "depth_ev": 3.3,
+          "peak_ev": 1.5241509140456668,
+          "peak_strength": 41.24893354632464
+        },
+        {
+          "binding_ev": 1.306698423336576,
+          "depth_ev": 3.6,
+          "peak_ev": 1.6608845460486554,
+          "peak_strength": 54.12440765045076
+        },
+        {
+          "binding_ev": 1.3750403486993634,
+          "depth_ev": 3.689280853749861,
+          "peak_ev": 1.7000702321527987,
+          "peak_strength": 59.89235725440449
+        },
+        {
+          "binding_ev": 1.5153736065601726,
+          "depth_ev": 3.8700919062817145,
+          "peak_ev": 1.7781308400187987,
+          "peak_strength": 76.79344317222336
+        }
+      ]
+    },
+    "verdict": {
+      "born_peak_below_observed": true,
+      "claim_34_status": "NUMERIC (bound-free peak 1.023 eV; extra depth 1.202 eV)",
+      "note": "The Born-depth finite well's bound-free 1s->p absorption peaks at 1.023 eV, not 1.7 eV. The continuum oscillator-strength sum rule is 0.986, validating the normalization. A 1.7 eV peak requires an extra 1.202 eV of well depth (V0=3.689 eV), about 0.869 of the optical reorganization energy 1.383 eV. The bound-free channel is broad and qualitatively matches the observed band; the extra depth is a target for a band-offset or polaron correction, not a fitted parameter.",
+      "required_extra_positive": true,
+      "required_peak_matches": true,
+      "sum_rule_ok": true
+    }
+  }
+}

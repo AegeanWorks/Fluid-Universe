@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**216/216 checks passed.**
+**218/218 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -123,6 +123,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 32: the capillary cavity lands near the hydrated-electron scale | PASS | R=2.858e-10, E=0.932839, ratio=0.548729 |
 | 33: the Born-depth well at the capillary radius has no 1p | PASS | kappa=2.309130, u1s=2.049533, Born=2.486988, threshold=4.603378 |
 | 33: no Born radius reaches 1.7 eV; the required depth exceeds Born | PASS | maxgap=0.614820, Rmin=3.181e-10, Vreq=3.715111, Born=2.234196, excess=1.480915 |
+| 34: the Born-depth bound-free peak is below 1.7 eV | PASS | peak=1.022658, sum=0.986301, binding=0.527753 |
+| 34: a 1.7 eV peak requires an extra depth of about 1.202 eV | PASS | depth=3.689281, extra=1.202293, peak=1.700070 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

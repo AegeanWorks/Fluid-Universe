@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "af3bf4fafac89926ccc5dcdc4c4c73a6e7dd259754093585f71d0c4f9eb39583",
-      "results_sha256": "11e6e0359a83e1e83d7d94cbb1381d568e4b66b981bd5c7039755fb0c60630ae"
+      "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
+      "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T18:38:56+00:00",
-        "git_commit": "21b77fe5ff59be1785193139084ab924f920f9de",
-        "passed": 216,
-        "total": 216,
+        "generated_utc": "2026-10-30T19:01:49+00:00",
+        "git_commit": "c9881180dc5981415cbd46d88be2c98ac6f83834",
+        "passed": 218,
+        "total": 218,
         "failed": 0,
-        "checks_sha256": "d5b5c8a89d93fadf148a8beb25805b27557d3cf86a7c91cb338532afbd63cb26",
+        "checks_sha256": "0184b9c7ac0c7d9f5f2ed4b2969174ed601b3bebbb7c90974afa38ce51311dd5",
         "fingerprints": {
-          "source_sha256": "af3bf4fafac89926ccc5dcdc4c4c73a6e7dd259754093585f71d0c4f9eb39583",
-          "results_sha256": "11e6e0359a83e1e83d7d94cbb1381d568e4b66b981bd5c7039755fb0c60630ae"
+          "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
+          "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T18:39:05+00:00",
-        "git_commit": "21b77fe5ff59be1785193139084ab924f920f9de",
-        "passed": 216,
-        "total": 216,
+        "generated_utc": "2026-10-30T19:02:04+00:00",
+        "git_commit": "c9881180dc5981415cbd46d88be2c98ac6f83834",
+        "passed": 218,
+        "total": 218,
         "failed": 0,
-        "checks_sha256": "d5b5c8a89d93fadf148a8beb25805b27557d3cf86a7c91cb338532afbd63cb26",
+        "checks_sha256": "0184b9c7ac0c7d9f5f2ed4b2969174ed601b3bebbb7c90974afa38ce51311dd5",
         "fingerprints": {
-          "source_sha256": "af3bf4fafac89926ccc5dcdc4c4c73a6e7dd259754093585f71d0c4f9eb39583",
-          "results_sha256": "11e6e0359a83e1e83d7d94cbb1381d568e4b66b981bd5c7039755fb0c60630ae"
+          "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
+          "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
         }
       }
     ],
@@ -722,6 +722,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "kappa=2.309130, u1s=2.049533, Born=2.486988, threshold=4.603378"
+    },
+    {
+      "claim": "34: a 1.7 eV peak requires an extra depth of about 1.202 eV",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "depth=3.689281, extra=1.202293, peak=1.700070"
+    },
+    {
+      "claim": "34: the Born-depth bound-free peak is below 1.7 eV",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "peak=1.022658, sum=0.986301, binding=0.527753"
     },
     {
       "claim": "3a: (Q-2/3)/sigma",
@@ -2593,6 +2609,20 @@
       "observed": null
     },
     {
+      "claim": "34: the Born-depth bound-free peak is below 1.7 eV",
+      "passed": true,
+      "detail": "peak=1.022658, sum=0.986301, binding=0.527753",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "34: a 1.7 eV peak requires an extra depth of about 1.202 eV",
+      "passed": true,
+      "detail": "depth=3.689281, extra=1.202293, peak=1.700070",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3286,8 +3316,8 @@
       "observed": null
     }
   ],
-  "total": 216,
-  "passed": 216,
+  "total": 218,
+  "passed": 218,
   "failed": 0,
   "failures": []
 }
