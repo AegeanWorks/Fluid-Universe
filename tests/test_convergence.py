@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from sims.convergence import compare_scans, compare_temporal
+from sims.convergence import compare_scans, compare_temporal, summarize_trend
 
 
 def _scan(n: int, *, h: float, h_up: float, z3: float, force: float, bond: float) -> dict:
@@ -161,3 +161,56 @@ def test_compare_temporal_never_promotes_the_claim():
 
     assert result["temporal_converged"] is True
     assert result["claim_15_status"] == "UNVERIFIED (not converged)"
+
+
+def _trend_row(steps: int, t: float, z3: float, force: float) -> dict:
+    return {
+        "chunk": steps // 3000,
+        "steps": steps,
+        "t": t,
+        "H": 0.9999,
+        "Z3": z3,
+        "force_rms": force,
+        "claim_15_status": "UNVERIFIED (not converged)",
+    }
+
+
+def test_summarize_trend_projects_the_thresholds():
+    rows = [
+        _trend_row(3000, 1.5, 0.172071, 0.01495),
+        _trend_row(6000, 3.0, 0.322071, 0.01395),
+        _trend_row(9000, 4.5, 0.472000, 0.01295),
+    ]
+
+    summary = summarize_trend(rows)
+
+    assert summary["z3_monotone"] is True
+    assert summary["force_monotone"] is True
+    assert summary["z3_slope_per_step"] == pytest.approx((0.472 - 0.172071) / 6000)
+    assert summary["projected_steps_to_z3_target"] == pytest.approx(
+        (0.5 - 0.472) / ((0.472 - 0.172071) / 6000)
+    )
+    assert summary["projected_steps_to_force_tol"] == pytest.approx(
+        (0.01295 - 0.01) / ((0.01495 - 0.01295) / 6000)
+    )
+    assert summary["claim_15_status"].startswith("UNVERIFIED")
+
+
+def test_summarize_trend_handles_saturation_and_no_projection():
+    rows = [
+        _trend_row(3000, 1.5, 0.500000, 0.0120),
+        _trend_row(6000, 3.0, 0.490000, 0.0121),
+        _trend_row(9000, 4.5, 0.480000, 0.0122),
+    ]
+
+    summary = summarize_trend(rows)
+
+    assert summary["z3_monotone"] is False
+    assert summary["force_monotone"] is False
+    assert summary["projected_steps_to_z3_target"] is None
+    assert summary["projected_steps_to_force_tol"] is None
+
+
+def test_summarize_trend_requires_two_rows():
+    with pytest.raises(ValueError, match="at least two"):
+        summarize_trend([_trend_row(3000, 1.5, 0.17, 0.015)])

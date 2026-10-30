@@ -1328,6 +1328,47 @@ def audit_temporal(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Claim-15 checkpointed extension (ADR-004)
+# ---------------------------------------------------------------------------
+
+
+def audit_extension(audit: Audit) -> None:
+    payload = load_results("hopfion3d_extension.json")
+    rows = payload["rows"]
+    trend = payload["trend"]
+    convergence = load_results("hopfion3d_convergence.json")["high"]["final"]
+    audit.record(
+        "15: checkpointed extension has four contiguous N=96 chunks",
+        len(rows) == 4
+        and [row["chunk"] for row in rows] == [1, 2, 3, 4]
+        and [row["steps"] for row in rows] == [3000, 6000, 9000, 12000]
+        and all(abs(row["t"] - 1.5 * row["chunk"]) < 1e-12 for row in rows)
+        and all(row["min_pre_norm"] > 0.1 for row in rows),
+        f"chunks={len(rows)}, final t={rows[-1]['t']:.3g}",
+    )
+    audit.record(
+        "15: extension first chunk reproduces the resolution check",
+        abs(rows[0]["H"] - convergence["H"]) < 1e-9
+        and abs(rows[0]["Z3"] - convergence["Z3"]) < 1e-9,
+        f"H={rows[0]['H']:.9f}, Z3={rows[0]['Z3']:.6f}",
+    )
+    slope = (rows[-1]["Z3"] - rows[0]["Z3"]) / (
+        rows[-1]["steps"] - rows[0]["steps"]
+    )
+    audit.record(
+        "15: extension trend is monotone and the claim is not promoted",
+        trend["z3_monotone"] is True
+        and trend["force_monotone"] is True
+        and abs(trend["z3_slope_per_step"] - slope) < 1e-12
+        and trend["claim_15_status"] == rows[-1]["claim_15_status"]
+        and not rows[-1]["claim_15_status"].startswith("VERIFIED")
+        and rows[-1]["Z3"] >= 0.5,
+        f"Z3={rows[-1]['Z3']:.6f}, "
+        f"status={rows[-1]['claim_15_status']}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
 
@@ -1483,6 +1524,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
+    audit_extension(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

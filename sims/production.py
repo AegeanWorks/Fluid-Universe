@@ -160,20 +160,39 @@ def run_production(
     upsample_factor: int = 2,
     chunk: int = 600,
     max_wall_seconds: float = MAX_WALL_SECONDS,
+    initial_field: np.ndarray | None = None,
+    return_field: bool = False,
 ) -> dict:
-    """Run one deterministic production scan and apply the acceptance criteria."""
+    """Run one deterministic production scan and apply the acceptance criteria.
+
+    ``initial_field`` resumes from a saved field (used by the checkpointed
+    N=96 extension); it cannot be combined with a perturbation.  ``return_field``
+    adds the final field to the payload for the caller to save; it is omitted by
+    default so the payload stays JSON-serializable.
+    """
     if steps < 1 or chunk < 1:
         raise ValueError("steps and chunk must be positive")
     if max_wall_seconds <= 0.0:
         raise ValueError("max_wall_seconds must be positive")
     t0 = time.perf_counter()
     deadline = t0 + max_wall_seconds
-    initial, dx = compactified_field(n, length)
-    field = initial
-    if perturbation > 0.0:
-        rng = np.random.default_rng(seed)
-        field = field + perturbation * rng.normal(size=field.shape)
+    if initial_field is not None:
+        if perturbation > 0.0:
+            raise ValueError("initial_field cannot be combined with perturbation")
+        field = np.asarray(initial_field, dtype=float)
+        expected = (n, n, n, 3)
+        if field.shape != expected:
+            raise ValueError(
+                f"initial_field shape must be {expected}, got {field.shape}"
+            )
         field = field / np.linalg.norm(field, axis=-1, keepdims=True)
+        _, dx = compactified_field(n, length)
+    else:
+        field, dx = compactified_field(n, length)
+        if perturbation > 0.0:
+            rng = np.random.default_rng(seed)
+            field = field + perturbation * rng.normal(size=field.shape)
+            field = field / np.linalg.norm(field, axis=-1, keepdims=True)
     rows = []
     min_pre_norm = math.inf
     history_parts = [
@@ -234,7 +253,7 @@ def run_production(
         if not topology_preserved:
             reasons.append("pre-normalization norm too small")
         status = "UNVERIFIED (" + "; ".join(reasons) + ")"
-    return {
+    payload = {
         "n": n,
         "length": length,
         "mu": mu,
@@ -275,3 +294,6 @@ def run_production(
             ),
         },
     }
+    if return_field:
+        payload["field"] = np.asarray(field, dtype=float)
+    return payload

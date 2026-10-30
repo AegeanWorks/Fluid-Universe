@@ -350,3 +350,24 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The check completed in 535.7 s, inside the 900 s G-003 cap.
 
 - Verification after the N=64 dt check: two separate runs, 173/173 checks each.
+
+## 2026-10-30 - Checkpointed N=96 extension for claim 15 (ADR-004)
+
+**Added**
+
+- `run_production(initial_field=..., return_field=...)` with a chunking-exactness test; `phenomenology/extension_report.py`; `make extend`; `tests/test_convergence.py::summarize_trend`; `results/hopfion3d_extension.{json,md}`; and a git-ignored 21 MB `.npy` checkpoint.
+
+**Results**
+
+| chunk | t | H | H upsampled | Z3 | force RMS | max bond | seconds |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 1.5 | 0.999942144 | 1.000000000 | 0.172071 | 1.495e-2 | 0.418 | 577.3 |
+| 2 | 3.0 | 0.999484353 | 0.999999976 | 0.333942 | 1.368e-2 | 0.463 | 533.9 |
+| 3 | 4.5 | 0.996350415 | 0.999998598 | 0.477792 | 1.224e-2 | 0.564 | 577.5 |
+| 4 | 6.0 | 0.972623788 | 0.999903154 | 0.598690 | 1.075e-2 | 0.857 | 566.3 |
+
+- Z3 rises monotonically and crosses 0.5, but the native H falls to 0.972624, the max bond rises to 0.857 and the force RMS is still \(1.075\times10^{-2}\). The final state fails the H, force and resolution criteria, so claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
+- Linear projections from the four rows put Z3=0.5 at t=6.0 (reached) and the force RMS at \(10^{-2}\) around t=6.8, but the H and resolution criteria are already failing, so the projection cannot promote the claim.
+- Every chunk completed between 533.9 and 577.5 s, inside the 900 s G-003 cap. The first chunk reproduces the N=96 \(t=1.5\) row of the resolution check.
+
+- Verification after the N=96 extension: two separate runs, 176/176 checks each.

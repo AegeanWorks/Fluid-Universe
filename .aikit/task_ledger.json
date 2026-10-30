@@ -1,63 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "claim15-temporal-n64-v1",
+    "task_id": "claim15-n96-extension-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793357645.1490822,
+    "updated_at": 1793360700.438465,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793357645.2866602
+    "completed_at": 1793360700.5660355
   },
   "checkpoints": [
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 5",
-      "phase_num": 3,
-      "description": "Reforge stage 5: window 15, 3 commit(s), 70 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, 1 binary not analysed",
-      "files_affected": [
-        "assets/social-preview.png"
-      ],
-      "status": "in_progress",
-      "timestamp": 1793291412.703102,
-      "timestamp_str": "2026-10-29 19:30:12",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 6",
-      "phase_num": 3,
-      "description": "Reforge stage 6: window 18, 3 commit(s), 59 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793291915.7990813,
-      "timestamp_str": "2026-10-29 19:38:35",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 7",
-      "phase_num": 3,
-      "description": "Reforge stage 7: window 21, 3 commit(s), 63 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793292077.5231578,
-      "timestamp_str": "2026-10-29 19:41:17",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 8",
-      "phase_num": 3,
-      "description": "Reforge stage 8: window 24, 3 commit(s), 98 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793292254.1427035,
-      "timestamp_str": "2026-10-29 19:44:14",
-      "agent": "opencode"
-    },
     {
       "task_id": "reforge:run-1",
       "phase": "reforge stage 9",
@@ -246,6 +200,55 @@
       "status": "completed",
       "timestamp": 1793357645.2866616,
       "timestamp_str": "2026-10-30 13:54:05",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-n96-extension-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-004 and add failing tests for resumable N=96 chunks and the Z3/force trend summary",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793357914.807724,
+      "timestamp_str": "2026-10-30 13:58:34",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The N=96 run at t=1.5 has Z3=0.172071 and is still rising by about 0.034 per 600 steps; one grid point cannot tell whether it reaches the 0.5 threshold, saturates, or is a transient. The force RMS also decays slowly and may never meet 1e-2.",
+        "benefits": "A resumable, checkpointed N=96 extension gives the Z3 and force trends at t=3.0 and t=4.5 inside the 900 s cap, and quantifies the remaining steps to each threshold.",
+        "risks": "contract: claim-15 acceptance rule unchanged, the extension cannot promote it; dependency: numpy only; concurrency: one writer, checkpoint + accumulator; state: a 21 MB transient .npy checkpoint not committed; cost: each 3000-step chunk is about 600 s",
+        "mitigation": "Add an initial_field/return_field path to run_production with a chunking-exactness test; write the checkpoint atomically; each invocation runs exactly one 3000-step chunk; stop before the cap and resume from the saved field; report linear projections as diagnostics only"
+      }
+    },
+    {
+      "task_id": "claim15-n96-extension-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] N=96 extension: four 3000-step chunks to t=6.0; Z3 0.172->0.599 (crosses 0.5), native H 0.99994->0.97262, bond 0.418->0.857, force 0.01495->0.01075; final fails H/force/resolution; claim 15 UNVERIFIED; docs/results updated; each chunk 534-577 s",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793360695.886655,
+      "timestamp_str": "2026-10-30 14:44:55",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-n96-extension-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 176/176 accepted (3 new extension checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793360700.438465,
+      "timestamp_str": "2026-10-30 14:45:00",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-n96-extension-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'claim15-n96-extension-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793360700.5660367,
+      "timestamp_str": "2026-10-30 14:45:00",
       "agent": "opencode"
     }
   ]

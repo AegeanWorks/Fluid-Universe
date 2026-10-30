@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "config": {
+      "boundary": "fixed vacuum faces",
+      "chunk": 600,
+      "dt": 0.0005,
+      "length": 10.0,
+      "max_chunks": 4,
+      "max_wall_seconds": 900.0,
+      "mu": 20.0,
+      "n": 96,
+      "scope": "checkpointed extension; not part of make results",
+      "seed": 20261026,
+      "steps_per_chunk": 3000,
+      "upsample_factor": 2
+    },
+    "config_sha256": "60e7405d980fbc5387238d50bea18efe0a506b0c52e73d26451957e709377ea1",
+    "generated_utc": "2026-10-30T11:39:25+00:00",
+    "git": {
+      "commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "rows": [
+    {
+      "E": 4011.5163939489894,
+      "H": 0.9999421437257694,
+      "H_upsampled": 0.9999999997222166,
+      "Z3": 0.1720714887132303,
+      "chunk": 1,
+      "claim_15_status": "UNVERIFIED (Z3 below threshold; not converged)",
+      "force_rms": 0.014947251412163626,
+      "max_bond": 0.4181775058380991,
+      "min_pre_norm": 0.9999999999999998,
+      "production_ready": false,
+      "seconds": 577.329004700001,
+      "steps": 3000,
+      "t": 1.5
+    },
+    {
+      "E": 3193.7143736651356,
+      "H": 0.9994843527777258,
+      "H_upsampled": 0.9999999759156154,
+      "Z3": 0.3339424744123914,
+      "chunk": 2,
+      "claim_15_status": "UNVERIFIED (Z3 below threshold; not converged)",
+      "force_rms": 0.013675670877559056,
+      "max_bond": 0.4627969921559893,
+      "min_pre_norm": 0.9999999999999998,
+      "production_ready": false,
+      "seconds": 533.9427896000016,
+      "steps": 6000,
+      "t": 3.0
+    },
+    {
+      "E": 2523.3324477416295,
+      "H": 0.9963504148222463,
+      "H_upsampled": 0.9999985977948813,
+      "Z3": 0.4777920101542584,
+      "chunk": 3,
+      "claim_15_status": "UNVERIFIED (Z3 below threshold; not converged; field under-resolved)",
+      "force_rms": 0.01224331498569083,
+      "max_bond": 0.5638345369097537,
+      "min_pre_norm": 0.9999999999999998,
+      "production_ready": false,
+      "seconds": 577.4842658000016,
+      "steps": 9000,
+      "t": 4.5
+    },
+    {
+      "E": 1996.602426063896,
+      "H": 0.9726237881979717,
+      "H_upsampled": 0.9999031535422694,
+      "Z3": 0.5986895803815288,
+      "chunk": 4,
+      "claim_15_status": "UNVERIFIED (H estimator not converged; not converged; field under-resolved)",
+      "force_rms": 0.010746472504773537,
+      "max_bond": 0.8572680838993436,
+      "min_pre_norm": 0.9999999999999998,
+      "production_ready": false,
+      "seconds": 566.3428894999997,
+      "steps": 12000,
+      "t": 6.0
+    }
+  ],
+  "trend": {
+    "claim_15_status": "UNVERIFIED (H estimator not converged; not converged; field under-resolved)",
+    "dt_effective": 0.0005,
+    "force_monotone": true,
+    "force_slope_per_step": -4.667532119322321e-07,
+    "note": "Linear projections are diagnostics, not claims; claim 15 is verified only when the final state satisfies the production rule.",
+    "physical_time": 6.0,
+    "projected_steps_to_force_tol": 1599.2873443405833,
+    "projected_steps_to_z3_target": 0.0,
+    "projected_time_to_force_tol": 6.7996436721702915,
+    "projected_time_to_z3_target": 6.0,
+    "rows": 4,
+    "steps_total": 12000,
+    "z3_monotone": true,
+    "z3_slope_per_step": 4.740201018536649e-05
+  }
+}

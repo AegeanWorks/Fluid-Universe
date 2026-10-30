@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**173/173 checks passed.**
+**176/176 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -92,6 +92,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15: N=96 verdict follows the unchanged production rule | PASS | status=UNVERIFIED (Z3 below threshold; not converged), ready=False |
 | 15: dt check holds N=64 fixed and reaches one physical time | PASS | dt=5.0e-04/2.5e-04, steps=3000/6000 |
 | 15: dt arithmetic and verdict follow the pre-registered rule | PASS | converged=True, dH=-0.000107, dZ3=-0.000005 |
+| 15: checkpointed extension has four contiguous N=96 chunks | PASS | chunks=4, final t=6 |
+| 15: extension first chunk reproduces the resolution check | PASS | H=0.999942144, Z3=0.172071 |
+| 15: extension trend is monotone and the claim is not promoted | PASS | Z3=0.598690, status=UNVERIFIED (H estimator not converged; not converged; field under-resolved) |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |

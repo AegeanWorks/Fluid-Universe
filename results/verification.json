@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
-      "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
+      "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
+      "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T10:52:39+00:00",
-        "git_commit": "377fcd7076c00f31b35f08fe2b698974b903a362",
-        "passed": 173,
-        "total": 173,
+        "generated_utc": "2026-10-30T11:43:45+00:00",
+        "git_commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
+        "passed": 176,
+        "total": 176,
         "failed": 0,
-        "checks_sha256": "ad9bca9db74fb63bd12763152ebea32a7a9a4410bcc4a15605d87dafd2db6627",
+        "checks_sha256": "c41a5f881f878acb1beb3b9ce9c2ab1b71cd05023d7432ca586f91f29063d2cd",
         "fingerprints": {
-          "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
-          "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
+          "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
+          "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T10:52:50+00:00",
-        "git_commit": "377fcd7076c00f31b35f08fe2b698974b903a362",
-        "passed": 173,
-        "total": 173,
+        "generated_utc": "2026-10-30T11:43:59+00:00",
+        "git_commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
+        "passed": 176,
+        "total": 176,
         "failed": 0,
-        "checks_sha256": "ad9bca9db74fb63bd12763152ebea32a7a9a4410bcc4a15605d87dafd2db6627",
+        "checks_sha256": "c41a5f881f878acb1beb3b9ce9c2ab1b71cd05023d7432ca586f91f29063d2cd",
         "fingerprints": {
-          "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
-          "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
+          "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
+          "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
         }
       }
     ],
@@ -220,6 +220,14 @@
       "detail": "status=UNVERIFIED (Z3 below threshold; not converged), ready=False"
     },
     {
+      "claim": "15: checkpointed extension has four contiguous N=96 chunks",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "chunks=4, final t=6"
+    },
+    {
       "claim": "15: dt arithmetic and verdict follow the pre-registered rule",
       "run1": "PASS",
       "run2": "PASS",
@@ -234,6 +242,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "dt=5.0e-04/2.5e-04, steps=3000/6000"
+    },
+    {
+      "claim": "15: extension first chunk reproduces the resolution check",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "H=0.999942144, Z3=0.172071"
+    },
+    {
+      "claim": "15: extension trend is monotone and the claim is not promoted",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Z3=0.598690, status=UNVERIFIED (H estimator not converged; not converged; field under-resolved)"
     },
     {
       "claim": "15: perturbed seeds are recorded",
@@ -2032,6 +2056,27 @@
       "observed": null
     },
     {
+      "claim": "15: checkpointed extension has four contiguous N=96 chunks",
+      "passed": true,
+      "detail": "chunks=4, final t=6",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: extension first chunk reproduces the resolution check",
+      "passed": true,
+      "detail": "H=0.999942144, Z3=0.172071",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: extension trend is monotone and the claim is not promoted",
+      "passed": true,
+      "detail": "Z3=0.598690, status=UNVERIFIED (H estimator not converged; not converged; field under-resolved)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -2641,8 +2686,8 @@
       "observed": null
     }
   ],
-  "total": 173,
-  "passed": 173,
+  "total": 176,
+  "passed": 176,
   "failed": 0,
   "failures": []
 }

@@ -150,3 +150,69 @@ def compare_temporal(coarse: dict, fine: dict) -> dict:
             "if it fails, the spatial resolution comparison is confounded."
         ),
     }
+
+
+def summarize_trend(
+    rows: list[dict],
+    z3_target: float = 0.5,
+    force_tol: float = 1.0e-2,
+) -> dict:
+    """Summarise a multi-chunk trend and project the two claim-15 thresholds.
+
+    The projections are linear diagnostics, not claims.  A target that is
+    already met projects to zero steps; a trend moving away from the target
+    projects to None.
+    """
+    if len(rows) < 2:
+        raise ValueError("at least two rows are required for a trend")
+    steps = [int(row["steps"]) for row in rows]
+    times = [float(row["t"]) for row in rows]
+    z3_values = [float(row["Z3"]) for row in rows]
+    force_values = [float(row["force_rms"]) for row in rows]
+    delta_steps = steps[-1] - steps[0]
+    if delta_steps <= 0:
+        raise ValueError("steps must increase between rows")
+
+    z3_slope = (z3_values[-1] - z3_values[0]) / delta_steps
+    force_slope = (force_values[-1] - force_values[0]) / delta_steps
+    dt_effective = (times[-1] - times[0]) / delta_steps
+
+    def projection(current: float, target: float, slope: float, rising: bool):
+        if rising and current >= target:
+            return 0.0
+        if not rising and current <= target:
+            return 0.0
+        if (rising and slope <= 0.0) or (not rising and slope >= 0.0):
+            return None
+        return (target - current) / slope
+
+    z3_steps = projection(z3_values[-1], z3_target, z3_slope, rising=True)
+    force_steps = projection(force_values[-1], force_tol, force_slope, rising=False)
+    return {
+        "rows": len(rows),
+        "steps_total": steps[-1],
+        "physical_time": times[-1],
+        "dt_effective": dt_effective,
+        "z3_slope_per_step": z3_slope,
+        "force_slope_per_step": force_slope,
+        "z3_monotone": all(
+            later >= earlier for earlier, later in zip(z3_values, z3_values[1:])
+        ),
+        "force_monotone": all(
+            later <= earlier
+            for earlier, later in zip(force_values, force_values[1:])
+        ),
+        "projected_steps_to_z3_target": z3_steps,
+        "projected_time_to_z3_target": (
+            None if z3_steps is None else times[-1] + z3_steps * dt_effective
+        ),
+        "projected_steps_to_force_tol": force_steps,
+        "projected_time_to_force_tol": (
+            None if force_steps is None else times[-1] + force_steps * dt_effective
+        ),
+        "claim_15_status": rows[-1].get("claim_15_status", ""),
+        "note": (
+            "Linear projections are diagnostics, not claims; claim 15 is "
+            "verified only when the final state satisfies the production rule."
+        ),
+    }

@@ -53,3 +53,55 @@ def test_production_enforces_wall_clock_limit():
             upsample_factor=1,
             max_wall_seconds=1e-9,
         )
+
+
+def test_run_production_resumes_from_a_field_exactly():
+    first = run_production(
+        n=8,
+        length=6.0,
+        mu=2.0,
+        steps=3,
+        dt=5e-4,
+        upsample_factor=1,
+        return_field=True,
+    )
+    direct = run_production(
+        n=8,
+        length=6.0,
+        mu=2.0,
+        steps=6,
+        dt=5e-4,
+        upsample_factor=1,
+        return_field=True,
+    )
+    second = run_production(
+        n=8,
+        length=6.0,
+        mu=2.0,
+        steps=3,
+        dt=5e-4,
+        upsample_factor=1,
+        initial_field=first["field"],
+        return_field=True,
+    )
+    assert np.allclose(second["field"], direct["field"], atol=1e-12)
+    assert second["final"]["H"] == pytest.approx(direct["final"]["H"], abs=1e-12)
+    assert second["rows"][-1]["step"] == 3
+
+
+def test_run_production_validates_initial_field_and_hides_it_by_default():
+    field, _dx = compactified_field(8, 6.0)
+    with pytest.raises(ValueError, match="initial_field"):
+        run_production(
+            n=8,
+            length=6.0,
+            mu=2.0,
+            steps=1,
+            dt=5e-4,
+            upsample_factor=1,
+            initial_field=field[:-1],
+        )
+    payload = run_production(
+        n=8, length=6.0, mu=2.0, steps=1, dt=5e-4, upsample_factor=1
+    )
+    assert "field" not in payload

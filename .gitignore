@@ -5,6 +5,9 @@
 .aikit/*.corrupt_*
 # Reforge review packets are regenerable tool output, not project memory
 .aikit/reforge.reviews/
+# Checkpointed extension state: a transient 21 MB field, not a committed result
+results/*.npy
+results/*.npy.tmp
 __pycache__/
 *.py[cod]
 node_modules/

@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `70`
+- **Total Python Modules**: `71`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `386`
+- **Total Top-Level Functions**: `402`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `9813`
+- **Total Source Lines**: `10273`
 
 ---
 
@@ -48,6 +48,23 @@
 - `def search(delta, sigma)`
 - `def run_delta_search(write)`
 - `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/extension_report.py`](phenomenology/extension_report.py)
+> *Checkpointed N=96 extension for claim 15 (ADR-004).*
+
+**Size**: `223` lines (`7402` bytes)
+
+**Functions:**
+- `def _checkpoint(chunk)`
+- `def _write_npy_atomic(path, array)`
+- `def _load_state()`
+- `def _save_state(state)`
+- `def run_next_chunk(write)`
+- `def render_markdown(state)`
+- `def _format_projection(steps, time_value)`
+- `def main(argv)`
 
 ---
 
@@ -350,12 +367,13 @@
 ### [`sims/convergence.py`](sims/convergence.py)
 > *Resolution comparison for the claim-15 production scan (ADR-002).*
 
-**Size**: `152` lines (`5819` bytes)
+**Size**: `218` lines (`8429` bytes)
 
 **Functions:**
 - `def _require_same_problem(low, high)`
 - `def compare_scans(low, high)` - *Compare a coarse and a fine production payload at the same physical time.*
 - `def compare_temporal(coarse, fine)` - *Compare two N=64 payloads at the same physical time but different dt.*
+- `def summarize_trend(rows, z3_target, force_tol)` - *Summarise a multi-chunk trend and project the two claim-15 thresholds.*
 
 ---
 
@@ -402,13 +420,13 @@
 ### [`sims/production.py`](sims/production.py)
 > *Production scan for claim 15: E2 + Skyrme E4 + Z3 potential.*
 
-**Size**: `277` lines (`10527` bytes)
+**Size**: `299` lines (`11517` bytes)
 
 **Functions:**
 - `def spectral_upsample(field, factor)` - *Band-limited upsampling of a periodic real field by an integer factor.*
 - `def field_metrics(field, dx, mu, upsample_factor)` - *Energy, topology and smoothness of one field.*
 - `def run_stage(field, dx, mu, steps, dt, deadline)` - *Relax for ``steps`` steps and record the smallest pre-normalization norm.*
-- `def run_production(n, length, mu, steps, dt, seed, perturbation, upsample_factor, chunk, max_wall_seconds)` - *Run one deterministic production scan and apply the acceptance criteria.*
+- `def run_production(n, length, mu, steps, dt, seed, perturbation, upsample_factor, chunk, max_wall_seconds, initial_field, return_field)` - *Run one deterministic production scan and apply the acceptance criteria.*
 
 ---
 
@@ -469,7 +487,7 @@
 ### [`tests/test_convergence.py`](tests/test_convergence.py)
 > *Resolution-comparison tests for claim 15 (ADR-002).*
 
-**Size**: `163` lines (`5207` bytes)
+**Size**: `216` lines (`6911` bytes)
 
 **Functions:**
 - `def _scan(n, *, h, h_up, z3, force, bond)`
@@ -484,6 +502,10 @@
 - `def test_compare_temporal_requires_the_same_physical_time()`
 - `def test_compare_temporal_requires_the_same_resolution()`
 - `def test_compare_temporal_never_promotes_the_claim()`
+- `def _trend_row(steps, t, z3, force)`
+- `def test_summarize_trend_projects_the_thresholds()`
+- `def test_summarize_trend_handles_saturation_and_no_projection()`
+- `def test_summarize_trend_requires_two_rows()`
 
 ---
 
@@ -650,13 +672,15 @@
 ### [`tests/test_production.py`](tests/test_production.py)
 > *Production-scan smoke tests (claim 15).*
 
-**Size**: `55` lines (`1843` bytes)
+**Size**: `107` lines (`3173` bytes)
 
 **Functions:**
 - `def test_spectral_upsample_preserves_analytic_charge()`
 - `def test_run_stage_matches_relax()`
 - `def test_production_verdict_shape()`
 - `def test_production_enforces_wall_clock_limit()`
+- `def test_run_production_resumes_from_a_field_exactly()`
+- `def test_run_production_validates_initial_field_and_hides_it_by_default()`
 
 ---
 
@@ -956,7 +980,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1542` lines (`61376` bytes)
+**Size**: `1584` lines (`63138` bytes)
 
 **Classes:**
 - `class Audit`
@@ -995,6 +1019,7 @@
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
+- `def audit_extension(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -1020,7 +1045,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `119` lines (`3055` bytes)
+**Size**: `121` lines (`3117` bytes)
 
 **Functions:**
 - `def _source_files()`
