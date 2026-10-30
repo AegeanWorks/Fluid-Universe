@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-reorganization-v1",
+    "task_id": "water-born-cavity-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793392537.1025605,
+    "updated_at": 1793393272.3890867,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793392537.237503
+    "completed_at": 1793393272.5401359
   },
   "checkpoints": [
-    {
-      "task_id": "water-absorption-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-025 and add failing tests for the finite-well bound-free absorption; predict a Born-depth continuum peak at 1.025 eV (sum rule 0.992) and an extra depth of 1.198 eV for a 1.7 eV peak",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793386305.9288898,
-      "timestamp_str": "2026-10-30 21:51:45",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 33 rules out the bound-bound 1s->1p interpretation. The observed hydrated-electron band is broad, so the remaining natural channel is bound-free 1s->p absorption. The same finite well makes a parameter-free prediction for the continuum peak, which can be tested against the 1.7 eV anchor.",
-        "benefits": "A validated continuum calculation (TRK sum rule) and a quantitative extra-depth target; it tests whether the 1.7 eV feature can be a bound-free transition without inventing a bound 1p state.",
-        "risks": "contract: new claim 34, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; model: same finite well, no new potential; numerical: the dipole integral needs a converged grid and sum-rule check; data: the 1.7 eV absorption is a literature anchor",
-        "mitigation": "Work in atomic units, validate the continuum normalization with the TRK sum rule (~1), converge the peak against grid size and tail, pre-register the Born-depth peak and the extra-depth inversion, and state that the extra depth is a target rather than a derived correction"
-      }
-    },
-    {
-      "task_id": "water-absorption-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Bound-free: Born-depth continuum peak 1.022658 eV (sum rule 0.986301), below 1.7 eV; 1.7 eV peak needs V0=3.689281 eV (extra 1.202293 eV; 0.869 of optical reorganization 1.383104); claim 34 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793387051.1973703,
-      "timestamp_str": "2026-10-30 22:04:11",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-absorption-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 218/218 accepted (2 new claim-34 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793387055.422402,
-      "timestamp_str": "2026-10-30 22:04:15",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-absorption-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-absorption-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793387055.7126079,
-      "timestamp_str": "2026-10-30 22:04:15",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-vde-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793392537.2375045,
       "timestamp_str": "2026-10-30 23:35:37",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-born-cavity-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-030 and add failing tests for the self-consistent Born cavity; predict R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p, lambda=1.617133, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x equilibrium)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793392920.7853246,
+      "timestamp_str": "2026-10-30 23:42:00",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The reorganization relation points to R=2.518 A, close to the finite-well Born equilibrium R=2.444 A. The cavity radius should be set by the R-dependent Born solvation, not a fixed well depth.",
+        "benefits": "A positive synthesis: the fluid/Born cavity radius and water's dielectric reorganization jointly explain the 1.7 eV optical feature and the 3.27 eV VDE without a deeper well or a bound 1p.",
+        "risks": "contract: new claim 39; dependency: scipy/math; concurrency: none; state: one result file; model: Born depth V0=Born(R), no separate image term; data: VDE 3.27 +/- 0.10, optical 1.7",
+        "mitigation": "Minimize the finite-well energy at V0=Born(R) plus surface energy, check the minimum, verify no bound 1p, compute lambda at R_eq, compare the predicted VDE and required radius, and state that the Marcus relation is phenomenological"
+      }
+    },
+    {
+      "task_id": "water-born-cavity-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Born cavity: R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p; lambda=1.617133 eV, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x); claim 39 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793393269.1727834,
+      "timestamp_str": "2026-10-30 23:47:49",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-born-cavity-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 228/228 accepted (2 new claim-39 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793393272.3890867,
+      "timestamp_str": "2026-10-30 23:47:52",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-born-cavity-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-born-cavity-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793393272.5401375,
+      "timestamp_str": "2026-10-30 23:47:52",
       "agent": "opencode"
     }
   ]

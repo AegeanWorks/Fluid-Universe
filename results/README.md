@@ -106,6 +106,8 @@ Do not edit these files by hand.
 | `water_pressure.md` | Human-readable version of the same |
 | `water_reorganization.json` | Water dielectric reorganization and the VDE-optical difference |
 | `water_reorganization.md` | Human-readable version of the same |
+| `water_born_cavity.json` | Self-consistent Born cavity plus water reorganization synthesis |
+| `water_born_cavity.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

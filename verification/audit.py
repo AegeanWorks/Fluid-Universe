@@ -1948,6 +1948,47 @@ def audit_water_reorganization(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Self-consistent Born cavity synthesis (claim 39/ADR-030)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_born_cavity(audit: Audit) -> None:
+    payload = load_results("water_born_cavity.json")
+    result = payload["result"]
+    scales = result["scales"]
+    equilibrium = scales["equilibrium"]
+    synthesis = scales["synthesis"]
+    verdict = result["verdict"]
+    audit.record(
+        "39: the self-consistent Born cavity has no bound 1p",
+        2.0e-10 < equilibrium["radius_m"] < 3.0e-10
+        and equilibrium["energy_1s_ev"] == equilibrium["energy_1s_ev"]
+        and abs(equilibrium["energy_1s_ev"] + 0.436571724) < 0.01
+        and equilibrium["u_1p"] is None
+        and equilibrium["gap_ev"] is None
+        and verdict["no_bound_1p"] is True,
+        f"R={equilibrium['radius_m']:.3e}, "
+        f"V0={equilibrium['depth_ev']:.6f}, "
+        f"E1s={equilibrium['energy_1s_ev']:.6f}, "
+        f"gap={equilibrium['gap_ev']}",
+    )
+    audit.record(
+        "39: water reorganization predicts the VDE within 0.5 sigma",
+        abs(synthesis["lambda_ev"] - 1.617132544) < 0.01
+        and abs(synthesis["predicted_vde_ev"] - 3.317132544) < 0.01
+        and abs(synthesis["sigma"]) < 0.5
+        and 1.0 < synthesis["required_ratio"] < 1.05
+        and verdict["predicted_vde_within_1sigma"] is True
+        and verdict["required_radius_within_5_percent"] is True
+        and verdict["claim_39_status"].startswith("NUMERIC"),
+        f"lambda={synthesis['lambda_ev']:.6f}, "
+        f"VDE={synthesis['predicted_vde_ev']:.6f}, "
+        f"sigma={synthesis['sigma']:.6f}, "
+        f"Rreq/Req={synthesis['required_ratio']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2367,6 +2408,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_softwall(audit)
     audit_water_pressure(audit)
     audit_water_reorganization(audit)
+    audit_water_born_cavity(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

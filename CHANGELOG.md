@@ -768,3 +768,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 38 is **NUMERIC (reorganization relation; 11.9% residual, 1.87 sigma)**. The relation is approximate; a two-state Marcus model with the solvent coordinate is the next test.
 
 - Verification after the water reorganization relation: two separate runs, 226/226 checks each.
+
+## 2026-10-30 - Self-consistent Born cavity synthesis (claim 39, ADR-030)
+
+**Added**
+
+- `theory/water_born_cavity.py`, `phenomenology/water_born_cavity_report.py`, `make waterborncavity`, `tests/test_water_born_cavity.py`, and `results/water_born_cavity.{json,md}`.
+
+**Results**
+
+- Minimizing \(E_{1s}(R,\text{Born}(R))+4\pi\gamma R^2\) gives \(R=2.444456173\times10^{-10}\) m, \(V_0=2.907799333\) eV, \(E_{1s}=-0.436571724\) eV, no bound 1p, surface \(0.341189266\) eV, total \(-0.095382458\) eV.
+- Water reorganization energy there is \(\lambda=1.617132544\) eV; predicted VDE \(3.317132544\) eV, residual \(0.047132544\) eV (\(0.47\sigma\)).
+- Radius required by the observed VDE-optical difference is \(2.517840529\times10^{-10}\) m, \(1.030021\times\) the equilibrium; the crude capillary is \(1.169205\times\), the fixed-depth pressure radius \(1.625484\times\).
+- Claim 39 is **NUMERIC (Born cavity R=2.444 Angstrom; lambda=1.617 eV; VDE 3.317 eV, 0.47 sigma)**. The 1.7 eV feature is a solvent reorganization transition, not a static 1s->1p gap; the next test is the Marcus band shape and width.
+
+- Verification after the self-consistent Born cavity synthesis: two separate runs, 228/228 checks each.

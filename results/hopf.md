@@ -32,4 +32,4 @@ Grid integral matches 1: **True**; two-method agreement: **True**; baseline 4 pa
 Preimage linking and the normalized grid Chern-Simons integral both pass the analytic H=1 test and agree. The grid normalization is a documented convention fixed by that map. Baseline 4 passes; no 3D run or Hopfion claim.
 
 - Config SHA-256: `ea007c16579c8a2c6ddd2e87066169562ff7a91c6b755c8a756b4dd8d6850d36`
-- Git: `014c06f6d05c76821da0176dd6cdb4afd3222ed0` (dirty=True)
+- Git: `48ef324c0e8336963af447d28cd88a0d759d516c` (dirty=True)

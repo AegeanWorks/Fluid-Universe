@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `140`
+- **Total Python Modules**: `143`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `761`
+- **Total Top-Level Functions**: `772`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `19228`
+- **Total Source Lines**: `19591`
 
 ---
 
@@ -525,6 +525,17 @@
 
 **Functions:**
 - `def run_water_analogue_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_born_cavity_report.py`](phenomenology/water_born_cavity_report.py)
+> *Self-consistent Born cavity synthesis (claim 39, ADR-030).*
+
+**Size**: `141` lines (`5992` bytes)
+
+**Functions:**
+- `def run_water_born_cavity_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1304,6 +1315,20 @@
 
 ---
 
+### [`tests/test_water_born_cavity.py`](tests/test_water_born_cavity.py)
+> *Self-consistent Born cavity synthesis (claim 39).*
+
+**Size**: `66` lines (`2302` bytes)
+
+**Functions:**
+- `def test_equilibrium_values()`
+- `def test_equilibrium_is_a_minimum()`
+- `def test_reorganization_synthesis()`
+- `def test_no_bound_1p()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_dispersive.py`](tests/test_water_dispersive.py)
 > *Dispersive shallow-water horizon tests (claim 29).*
 
@@ -1801,6 +1826,18 @@
 
 ---
 
+### [`theory/water_born_cavity.py`](theory/water_born_cavity.py)
+> *Self-consistent Born cavity synthesis (claim 39, ADR-030).*
+
+**Size**: `112` lines (`3867` bytes)
+
+**Functions:**
+- `def born_cavity_energy(radius_m)` - *E_1s(R, Born(R)) plus the surface energy, or None if unbound.*
+- `def born_cavity_equilibrium(lower_m, upper_m)` - *Minimize the Born cavity energy over the radius.*
+- `def born_cavity_scales()` - *Collect the Born cavity and the water reorganization synthesis.*
+
+---
+
 ### [`theory/water_dispersive.py`](theory/water_dispersive.py)
 > *Dispersive shallow-water horizon (claim 29, ADR-020).*
 
@@ -1935,7 +1972,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2430` lines (`96906` bytes)
+**Size**: `2472` lines (`98717` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1996,6 +2033,7 @@
 - `def audit_water_softwall(audit)`
 - `def audit_water_pressure(audit)`
 - `def audit_water_reorganization(audit)`
+- `def audit_water_born_cavity(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2025,7 +2063,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `171` lines (`4445` bytes)
+**Size**: `173` lines (`4503` bytes)
 
 **Functions:**
 - `def _source_files()`

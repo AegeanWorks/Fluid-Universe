@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "config": {
+      "optical_ev": 1.7,
+      "scope": "self-consistent Born cavity plus water reorganization",
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "config_sha256": "1ea395c1643dfb39df54157b733a2e7468269c6d44e01e44339ac1b7e21cd25a",
+    "generated_utc": "2026-10-30T20:43:06+00:00",
+    "git": {
+      "commit": "48ef324c0e8336963af447d28cd88a0d759d516c",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_optical_ev": 1.7,
+    "scales": {
+      "equilibrium": {
+        "binding_ev": 0.4365717241850544,
+        "depth_ev": 2.9077993326033105,
+        "energy_1p_ev": null,
+        "energy_1s_ev": -0.4365717241850544,
+        "gap_ev": null,
+        "radius_m": 2.444456173312708e-10,
+        "surface_energy_ev": 0.341189266335235,
+        "total_energy_ev": -0.09538245784981941,
+        "u_1p": null,
+        "u_1s": 1.968689207744096
+      },
+      "observed_difference_ev": 1.57,
+      "optical_ev": 1.7,
+      "synthesis": {
+        "capillary_ratio": 1.169205276325998,
+        "lambda_ev": 1.6171325440878093,
+        "predicted_vde_ev": 3.3171325440878094,
+        "pressure_ratio": 1.6254835099322986,
+        "required_radius_m": 2.517840528955624e-10,
+        "required_ratio": 1.0300207287183498,
+        "residual_ev": 0.047132544087809425,
+        "sigma": 0.47132544087809425
+      },
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "verdict": {
+      "claim_39_status": "NUMERIC (Born cavity R=2.444 Angstrom; lambda=1.617 eV; VDE 3.317 eV, 0.47 sigma)",
+      "equilibrium_found": true,
+      "no_bound_1p": true,
+      "note": "The R-dependent Born cavity radius 2.444456 Angstrom is within 3.0% of the radius required by the VDE-optical difference (2.517841 Angstrom). The water reorganization energy there is 1.617133 eV; the Marcus relation predicts VDE=3.317133 eV, within 0.47 sigma of the measured 3.27+/-0.10 eV. The well has no bound 1p, so the 1.7 eV feature is a water reorganization transition, not a static 1s->1p gap. This is a positive synthesis of the fluid mechanics and water's dielectric contrast; the next test is the Marcus band shape and width.",
+      "predicted_vde_within_1sigma": true,
+      "required_radius_within_5_percent": true
+    }
+  }
+}

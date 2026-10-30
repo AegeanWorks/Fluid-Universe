@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T20:34:14+00:00 | `014c06f6d05c76821da0176dd6cdb4afd3222ed0` | 226/226 | `9ab3e8423d55d7a3...` | `d1c63e4efccccf60...` |
-| run2 | 2026-10-30T20:34:24+00:00 | `014c06f6d05c76821da0176dd6cdb4afd3222ed0` | 226/226 | `9ab3e8423d55d7a3...` | `d1c63e4efccccf60...` |
+| run1 | 2026-10-30T20:46:08+00:00 | `48ef324c0e8336963af447d28cd88a0d759d516c` | 228/228 | `eeb35c57bc384411...` | `2fbc0fe3c760011d...` |
+| run2 | 2026-10-30T20:46:15+00:00 | `48ef324c0e8336963af447d28cd88a0d759d516c` | 228/228 | `eeb35c57bc384411...` | `2fbc0fe3c760011d...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -110,6 +110,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 37: the pressure-balanced radius is larger than the crude capillary radius | PASS | PASS | YES | YES | R=3.973e-10, Rcrude=2.858e-10, E1s=-1.177351, gap=1.132993 |
 | 38: the capillary reorganization energy matches the VDE-optical difference | PASS | PASS | YES | YES | lambda=1.383104, difference=1.57, residual=-0.186896, sigma=1.868960 |
 | 38: the required radius is near the capillary radius, not the pressure radius | PASS | PASS | YES | YES | Rreq/Rcap=0.880958, lambda_press/diff=0.633670, Rpress=3.973e-10 |
+| 39: the self-consistent Born cavity has no bound 1p | PASS | PASS | YES | YES | R=2.444e-10, V0=2.907799, E1s=-0.436572, gap=None |
+| 39: water reorganization predicts the VDE within 0.5 sigma | PASS | PASS | YES | YES | lambda=1.617133, VDE=3.317133, sigma=0.471325, Rreq/Req=1.030021 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

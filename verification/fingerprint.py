@@ -126,6 +126,8 @@ RESULT_FILES = (
     "water_pressure.md",
     "water_reorganization.json",
     "water_reorganization.md",
+    "water_born_cavity.json",
+    "water_born_cavity.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

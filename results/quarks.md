@@ -16,4 +16,4 @@ Q_up range: [0.887569231319, 0.892553733690]. Q_down range: [0.738535231051, 0.7
 **Verdict:** direct quark extension falsified: **True**. Closest approach to 2/3 is 0.071869 at 1e12 (Q_up=0.892553734, Q_down=0.738535231).
 
 - Config SHA-256: `e1a32d5cfb6e7f5bc307e762afe8b3536e809b0bcfb77068e1392dcdc3b7c5aa`
-- Git: `014c06f6d05c76821da0176dd6cdb4afd3222ed0` (dirty=True)
+- Git: `48ef324c0e8336963af447d28cd88a0d759d516c` (dirty=True)
