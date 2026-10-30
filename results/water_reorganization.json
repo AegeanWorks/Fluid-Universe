@@ -1,0 +1,63 @@
+{
+  "meta": {
+    "config": {
+      "epsilon_opt": 1.78,
+      "epsilon_s": 78.4,
+      "optical_ev": 1.7,
+      "scope": "water dielectric reorganization and the VDE-optical difference",
+      "vde_ev": 3.27
+    },
+    "config_sha256": "51e17c0c4c4f68002b967b0716573b6cec8dfebf8141a5ee5f209452f52c3f28",
+    "generated_utc": "2026-10-30T20:31:01+00:00",
+    "git": {
+      "commit": "014c06f6d05c76821da0176dd6cdb4afd3222ed0",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_optical_ev": 1.7,
+    "scales": {
+      "capillary": {
+        "lambda_ev": 1.383104042405057,
+        "predicted_vde_ev": 3.083104042405057,
+        "radius_m": 2.8580710555848763e-10,
+        "relative_residual": 0.11904201120697015,
+        "residual_ev": -0.18689595759494315,
+        "sigma": 1.8689595759494315
+      },
+      "epsilon_opt": 1.78,
+      "epsilon_s": 78.4,
+      "observed_difference_ev": 1.57,
+      "optical_ev": 1.7,
+      "pressure": {
+        "lambda_ev": 0.9948624727390577,
+        "lambda_ratio": 0.6336703648019476,
+        "radius_m": 3.973423200472016e-10,
+        "residual_ev": 0.5751375272609424
+      },
+      "required": {
+        "radius_m": 2.517840528955624e-10,
+        "radius_ratio": 0.8809579887930298
+      },
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "verdict": {
+      "claim_38_status": "NUMERIC (reorganization relation; 11.9% residual, 1.87 sigma)",
+      "lambda_within_15_percent": true,
+      "note": "The VDE-optical difference 1.57 eV is close to water's dielectric reorganization energy at the capillary radius, lambda=1.383 eV (residual 0.187 eV, 11.9%, 1.87 sigma). The required radius is 2.518 Angstrom (0.881x capillary). The pressure-balanced radius 3.973 Angstrom gives only 0.995 eV (0.634x) and is inconsistent. The relation is approximate; a two-state Marcus model with the solvent coordinate is the next test.",
+      "predicted_vde_within_2sigma": true,
+      "pressure_radius_inconsistent": true,
+      "required_radius_within_15_percent": true
+    }
+  }
+}

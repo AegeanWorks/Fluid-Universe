@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `137`
+- **Total Python Modules**: `140`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `749`
+- **Total Top-Level Functions**: `761`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `18875`
+- **Total Source Lines**: `19228`
 
 ---
 
@@ -569,6 +569,17 @@
 
 **Functions:**
 - `def run_water_rays_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_reorganization_report.py`](phenomenology/water_reorganization_report.py)
+> *Water reorganization and the VDE-optical difference (claim 38, ADR-029).*
+
+**Size**: `140` lines (`5810` bytes)
+
+**Functions:**
+- `def run_water_reorganization_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1351,6 +1362,20 @@
 
 ---
 
+### [`tests/test_water_reorganization.py`](tests/test_water_reorganization.py)
+> *Water reorganization and the VDE-optical difference (claim 38).*
+
+**Size**: `60` lines (`2172` bytes)
+
+**Functions:**
+- `def test_reorganization_at_capillary_radius()`
+- `def test_required_radius_for_the_observed_difference()`
+- `def test_reorganization_scales()`
+- `def test_pressure_balanced_radius_is_inconsistent()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_scattering.py`](tests/test_water_scattering.py)
 > *1D water-wave scattering tests (claim 31).*
 
@@ -1834,6 +1859,19 @@
 
 ---
 
+### [`theory/water_reorganization.py`](theory/water_reorganization.py)
+> *Water reorganization and the VDE-optical difference (claim 38, ADR-029).*
+
+**Size**: `112` lines (`4033` bytes)
+
+**Functions:**
+- `def _dielectric_contrast(epsilon_s, epsilon_opt)`
+- `def reorganization_energy_ev(radius_m, epsilon_s, epsilon_opt)` - *Solvent reorganization energy for a cavity of radius R, in eV.*
+- `def radius_for_difference(difference_ev, epsilon_s, epsilon_opt)` - *Radius whose reorganization energy equals difference_ev.*
+- `def reorganization_scales()` - *Collect the capillary, required and pressure-balanced comparisons.*
+
+---
+
 ### [`theory/water_softwall.py`](theory/water_softwall.py)
 > *Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027).*
 
@@ -1897,7 +1935,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2391` lines (`95179` bytes)
+**Size**: `2430` lines (`96906` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1957,6 +1995,7 @@
 - `def audit_water_vde(audit)`
 - `def audit_water_softwall(audit)`
 - `def audit_water_pressure(audit)`
+- `def audit_water_reorganization(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1986,7 +2025,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `169` lines (`4381` bytes)
+**Size**: `171` lines (`4445` bytes)
 
 **Functions:**
 - `def _source_files()`

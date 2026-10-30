@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "6ee7592d23a7614748a130e7fbc2bf2932340857dccbe2ee622f939e251703f7",
-      "results_sha256": "683ce53eb7d308a569660d481c87231a2dcafd786477f3c06ab8002894632c52"
+      "source_sha256": "9ab3e8423d55d7a3604c59c70e3bb0c18322791facd2dab30c2b59b204c66c4b",
+      "results_sha256": "d1c63e4efccccf605c21b6642cf0e05a16bf62322256b1a445d685934bd2f4bf"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T20:21:31+00:00",
-        "git_commit": "5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9",
-        "passed": 224,
-        "total": 224,
+        "generated_utc": "2026-10-30T20:34:14+00:00",
+        "git_commit": "014c06f6d05c76821da0176dd6cdb4afd3222ed0",
+        "passed": 226,
+        "total": 226,
         "failed": 0,
-        "checks_sha256": "b7927c629018092a9bc7a0a6bae41a81bc8176cb93867e94fce75c58a5f790d8",
+        "checks_sha256": "97b875f2eeb7044dc06e3dbaa8d8ed5bf417bb528737e4ffd42cfab63051a83f",
         "fingerprints": {
-          "source_sha256": "6ee7592d23a7614748a130e7fbc2bf2932340857dccbe2ee622f939e251703f7",
-          "results_sha256": "683ce53eb7d308a569660d481c87231a2dcafd786477f3c06ab8002894632c52"
+          "source_sha256": "9ab3e8423d55d7a3604c59c70e3bb0c18322791facd2dab30c2b59b204c66c4b",
+          "results_sha256": "d1c63e4efccccf605c21b6642cf0e05a16bf62322256b1a445d685934bd2f4bf"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T20:21:38+00:00",
-        "git_commit": "5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9",
-        "passed": 224,
-        "total": 224,
+        "generated_utc": "2026-10-30T20:34:24+00:00",
+        "git_commit": "014c06f6d05c76821da0176dd6cdb4afd3222ed0",
+        "passed": 226,
+        "total": 226,
         "failed": 0,
-        "checks_sha256": "b7927c629018092a9bc7a0a6bae41a81bc8176cb93867e94fce75c58a5f790d8",
+        "checks_sha256": "97b875f2eeb7044dc06e3dbaa8d8ed5bf417bb528737e4ffd42cfab63051a83f",
         "fingerprints": {
-          "source_sha256": "6ee7592d23a7614748a130e7fbc2bf2932340857dccbe2ee622f939e251703f7",
-          "results_sha256": "683ce53eb7d308a569660d481c87231a2dcafd786477f3c06ab8002894632c52"
+          "source_sha256": "9ab3e8423d55d7a3604c59c70e3bb0c18322791facd2dab30c2b59b204c66c4b",
+          "results_sha256": "d1c63e4efccccf605c21b6642cf0e05a16bf62322256b1a445d685934bd2f4bf"
         }
       }
     ],
@@ -786,6 +786,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "R=3.973e-10, Rcrude=2.858e-10, E1s=-1.177351, gap=1.132993"
+    },
+    {
+      "claim": "38: the capillary reorganization energy matches the VDE-optical difference",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "lambda=1.383104, difference=1.57, residual=-0.186896, sigma=1.868960"
+    },
+    {
+      "claim": "38: the required radius is near the capillary radius, not the pressure radius",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Rreq/Rcap=0.880958, lambda_press/diff=0.633670, Rpress=3.973e-10"
     },
     {
       "claim": "3a: (Q-2/3)/sigma",
@@ -2713,6 +2729,20 @@
       "observed": null
     },
     {
+      "claim": "38: the capillary reorganization energy matches the VDE-optical difference",
+      "passed": true,
+      "detail": "lambda=1.383104, difference=1.57, residual=-0.186896, sigma=1.868960",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "38: the required radius is near the capillary radius, not the pressure radius",
+      "passed": true,
+      "detail": "Rreq/Rcap=0.880958, lambda_press/diff=0.633670, Rpress=3.973e-10",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3406,8 +3436,8 @@
       "observed": null
     }
   ],
-  "total": 224,
-  "passed": 224,
+  "total": 226,
+  "passed": 226,
   "failed": 0,
   "failures": []
 }

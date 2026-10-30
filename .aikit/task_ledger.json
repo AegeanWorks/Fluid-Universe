@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-pressure-v1",
+    "task_id": "water-reorganization-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793391770.4304368,
+    "updated_at": 1793392537.1025605,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793391770.5618498
+    "completed_at": 1793392537.237503
   },
   "checkpoints": [
-    {
-      "task_id": "water-well-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-024 and add failing tests for the finite spherical well; predict no 1p at R=2.858 A/Born, maximum Born-depth s->p gap 0.615 eV, and required depth 3.715 eV at R=3.181 A",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793384796.1630335,
-      "timestamp_str": "2026-10-30 21:26:36",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 32 gives the hydrated-electron cavity scale but not the 1.7 eV absorption. The minimal closure is a finite spherical well with the Born solvation depth; it either supports a 1p state near 1.7 eV or falsifies the bound-bound interpretation.",
-        "benefits": "A decisive test of the simplest cavity model, a quantitative required-depth target for the next polaron/band-offset model, and a clean negative result rather than a tuned fit.",
-        "risks": "contract: new claim 33, no existing claim changes; dependency: math and numpy only; concurrency: none; state: one result file; model: minimal finite well with no polaron correction; data: the 1.7 eV absorption is a literature anchor",
-        "mitigation": "Pre-register the exact predictions, use an analytic threshold check (kappa=pi for 1p), scan the depth and radius, report the maximum Born-depth gap and the minimum required depth, and state the model limits explicitly"
-      }
-    },
-    {
-      "task_id": "water-well-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Finite well: R=2.858071 A/Born (2.486988 eV) has only 1s (E=-0.527753 eV), no 1p; 1p threshold R=5.290248 A; max Born-depth s->p gap 0.614820 eV; required depth 3.715111 eV at R=3.181453 A (Born 2.234196; excess 1.480915); claim 33 NUMERIC (negative)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793385655.4810715,
-      "timestamp_str": "2026-10-30 21:40:55",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-well-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 216/216 accepted (2 new claim-33 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793385660.0345097,
-      "timestamp_str": "2026-10-30 21:41:00",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-well-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-well-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793385660.2146473,
-      "timestamp_str": "2026-10-30 21:41:00",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-absorption-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793391770.5618515,
       "timestamp_str": "2026-10-30 23:22:50",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-reorganization-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-029 and add failing tests for the water reorganization relation; predict lambda(Rcap)=1.383104 eV, VDE-optical difference 1.57 eV (12% residual), required R=2.517841 A, pressure-balanced lambda=0.994862 eV",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793392198.3013866,
+      "timestamp_str": "2026-10-30 23:29:58",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The static well models conflate the VDE and the optical gap. Water's static and optical dielectric constants differ strongly; the reorganization energy is the natural link between the 3.27 eV VDE and the 1.7 eV absorption.",
+        "benefits": "A water-property relation that avoids fitting a deeper well; it explains the VDE-optical difference as solvent reorganization and identifies the capillary radius as the relevant scale.",
+        "risks": "contract: new claim 38; dependency: math only; concurrency: none; state: one result file; data: VDE 3.27 +/- 0.10, optical 1.7; model: phenomenological reorganization relation, not a full two-state calculation",
+        "mitigation": "Use the standard reorganization formula with water's epsilon_s and epsilon_infinity, pre-register the capillary and pressure-balanced values, report the 12% residual and the 1.9-sigma VDE tension, and state that a two-state Marcus calculation is the next test"
+      }
+    },
+    {
+      "task_id": "water-reorganization-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Water reorganization: lambda(Rcap)=1.383104 eV vs observed difference 1.57 eV (11.9% residual, 1.87 sigma); required R=2.517841 A (0.881x cap); pressure R=3.973423 A gives lambda=0.994862 eV (0.634x), inconsistent; claim 38 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793392534.2281487,
+      "timestamp_str": "2026-10-30 23:35:34",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-reorganization-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 226/226 accepted (2 new claim-38 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793392537.1025605,
+      "timestamp_str": "2026-10-30 23:35:37",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-reorganization-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-reorganization-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793392537.2375045,
+      "timestamp_str": "2026-10-30 23:35:37",
       "agent": "opencode"
     }
   ]

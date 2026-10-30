@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 224/224 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 226/226 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -93,6 +93,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | VDE + absorption | NUMERIC: VDE \(3.27\pm0.10\) eV makes 1.7 eV bound-bound; the finite well needs \(R=3.732\) Å, \(V_0=4.998\) eV (\(E_{1s}=-3.27\), \(E_{1p}=-1.57\)), 30.6% larger and 2.01× deeper than the capillary/Born cavity | `results/water_vde.json` |
 | Soft-wall cavity | NUMERIC: VDE 3.27 eV > Born 2.487 eV, so the depth is 0.783 eV too small independent of shape; Woods-Saxon scan trades radius for depth (\(a=1.5\) Å: \(R=3.078\) Å, \(V_0=6.643\) eV, 2.67× Born) | `results/water_softwall.json` |
 | Cavity pressure balance | NUMERIC: fixed-depth pressure balance moves \(R\) to 3.973 Å at the Born depth (binding 1.177 eV, gap 1.133 eV); VDE-matched \(V_0=4.611\) eV gives \(R=4.336\) Å, gap 1.344 eV, not 1.7 eV | `results/water_pressure.json` |
+| Water reorganization | NUMERIC: VDE-optical difference 1.57 eV vs water \(\lambda=1.383\) eV at \(R=2.858\) Å (11.9% residual, 1.87σ); required \(R=2.518\) Å (0.881× capillary); the pressure-balanced radius 3.973 Å gives only 0.995 eV | `results/water_reorganization.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

@@ -39,4 +39,4 @@ Initial conditions: full-SM MS-bar masses at M_Z from Huang & Zhou (2021), Table
 The absolute mass scale at high energies is sensitive to the near-cancellation between the top-Yukawa term and the gauge terms, so the one-loop truncation differs from the three-loop literature by up to a few percent at 1e8 GeV. Only the dimensionless ratios Q and r are used for any claim; they are stable at the 10^-6 level.
 
 - Config SHA-256: `009ae1e18929e2c16885342d57f9d5874dd7d9d398589daa4be0a6efed6cde05`
-- Git: `5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9` (dirty=True)
+- Git: `014c06f6d05c76821da0176dd6cdb4afd3222ed0` (dirty=True)

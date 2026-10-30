@@ -1910,6 +1910,44 @@ def audit_water_pressure(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Water reorganization and the VDE-optical difference (claim 38/ADR-029)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_reorganization(audit: Audit) -> None:
+    payload = load_results("water_reorganization.json")
+    result = payload["result"]
+    scales = result["scales"]
+    capillary = scales["capillary"]
+    required = scales["required"]
+    pressure = scales["pressure"]
+    verdict = result["verdict"]
+    audit.record(
+        "38: the capillary reorganization energy matches the VDE-optical difference",
+        0.8 < capillary["lambda_ev"] / scales["observed_difference_ev"] < 1.0
+        and capillary["relative_residual"] < 0.15
+        and capillary["sigma"] < 2.0
+        and verdict["lambda_within_15_percent"] is True
+        and verdict["predicted_vde_within_2sigma"] is True,
+        f"lambda={capillary['lambda_ev']:.6f}, "
+        f"difference={scales['observed_difference_ev']:.2f}, "
+        f"residual={capillary['residual_ev']:.6f}, "
+        f"sigma={capillary['sigma']:.6f}",
+    )
+    audit.record(
+        "38: the required radius is near the capillary radius, not the pressure radius",
+        0.8 < required["radius_ratio"] < 1.0
+        and pressure["lambda_ratio"] < 0.7
+        and verdict["required_radius_within_15_percent"] is True
+        and verdict["pressure_radius_inconsistent"] is True
+        and verdict["claim_38_status"].startswith("NUMERIC"),
+        f"Rreq/Rcap={required['radius_ratio']:.6f}, "
+        f"lambda_press/diff={pressure['lambda_ratio']:.6f}, "
+        f"Rpress={pressure['radius_m']:.3e}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2328,6 +2366,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_vde(audit)
     audit_water_softwall(audit)
     audit_water_pressure(audit)
+    audit_water_reorganization(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

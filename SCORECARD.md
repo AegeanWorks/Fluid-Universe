@@ -61,5 +61,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 35 | NUMERIC (two-observable inversion; R=3.732 Å, V0=4.998 eV) | VDE 3.27 eV + 1.7 eV absorption force bound-bound; finite well needs R=3.732 Å, V0=4.998 eV (E1s=-3.27, E1p=-1.57), vs capillary R=2.858 Å/Born 2.487 eV; 30.6% larger, 2.01x deeper. |
 | 36 | NUMERIC (hard depth bound; Woods-Saxon scan) | VDE 3.27 eV > Born 2.487 eV, so the depth is 0.783 eV too small independent of shape; soft-wall scan: a=1.0 Å R=3.687 Å/V0=5.920 eV, a=1.5 Å R=3.078 Å/V0=6.643 eV (2.67x Born); softness trades radius for depth. |
 | 37 | NUMERIC (pressure-balance radius 3.973 Å; VDE-matched gap 1.344 eV) | Fixed-V0 pressure balance: Born depth R=3.973 Å (not 2.858), binding 1.177 eV, gap 1.133 eV; VDE-matched V0=4.611 eV gives R=4.336 Å, gap 1.344 eV, not 1.7 eV. |
+| 38 | NUMERIC (reorganization relation; 11.9% residual, 1.87σ) | VDE-optical difference 1.57 eV vs water λ=1.383 eV at R=2.858 Å (residual 0.187 eV); required R=2.518 Å (0.881x capillary); pressure radius 3.973 Å gives λ=0.995 eV (0.634x), inconsistent. |
 
-Claim audit: two separate runs agree per claim, 224/224 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 226/226 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

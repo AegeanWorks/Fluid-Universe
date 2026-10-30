@@ -752,3 +752,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Adding the \(R\)-dependent Born energy separately double-counts the solvation and collapses the cavity; a self-consistent dielectric interface is the next test.
 
 - Verification after the self-consistent pressure balance: two separate runs, 224/224 checks each.
+
+## 2026-10-30 - Water reorganization and the VDE-optical difference (claim 38, ADR-029)
+
+**Added**
+
+- `theory/water_reorganization.py`, `phenomenology/water_reorganization_report.py`, `make waterreorganization`, `tests/test_water_reorganization.py`, and `results/water_reorganization.{json,md}`.
+
+**Results**
+
+- \(\epsilon_s=78.4\), \(\epsilon_\infty=1.78\); VDE \(3.27\pm0.10\) eV, optical \(1.70\) eV, difference \(1.57\) eV.
+- At the capillary radius \(R=2.858071056\times10^{-10}\) m, \(\lambda=1.383104042\) eV; predicted VDE \(3.083104042\) eV; residual \(-0.186895958\) eV (\(11.9\%\), \(1.87\sigma\)).
+- Required radius \(2.517840529\times10^{-10}\) m (\(0.880957989\times\) capillary).
+- Pressure-balanced radius \(3.973423200\times10^{-10}\) m gives \(\lambda=0.994862473\) eV (\(0.633670365\times\) the difference), inconsistent.
+- Claim 38 is **NUMERIC (reorganization relation; 11.9% residual, 1.87 sigma)**. The relation is approximate; a two-state Marcus model with the solvent coordinate is the next test.
+
+- Verification after the water reorganization relation: two separate runs, 226/226 checks each.
