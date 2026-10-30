@@ -114,6 +114,8 @@ RESULT_FILES = (
     "water_scattering.md",
     "water_electron.json",
     "water_electron.md",
+    "water_well.json",
+    "water_well.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

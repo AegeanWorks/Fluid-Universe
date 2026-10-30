@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T18:06:52+00:00 | `5c3922003c47f450b712fd80a95ce96349bddc19` | 214/214 | `91e193e53e97938d...` | `8a844c5739acfbd1...` |
-| run2 | 2026-10-30T18:07:09+00:00 | `5c3922003c47f450b712fd80a95ce96349bddc19` | 214/214 | `91e193e53e97938d...` | `8a844c5739acfbd1...` |
+| run1 | 2026-10-30T18:38:56+00:00 | `21b77fe5ff59be1785193139084ab924f920f9de` | 216/216 | `af3bf4fafac89926...` | `11e6e0359a83e1e8...` |
+| run2 | 2026-10-30T18:39:05+00:00 | `21b77fe5ff59be1785193139084ab924f920f9de` | 216/216 | `af3bf4fafac89926...` | `11e6e0359a83e1e8...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -98,6 +98,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 31: the uniform-flow control transmits | PASS | PASS | YES | YES | fraction=1.000000, center=4.433333 |
 | 32: screened hydrogen is far too large and weakly bound | PASS | PASS | YES | YES | a*=4.149e-09, E*=-2.214e-03 |
 | 32: the capillary cavity lands near the hydrated-electron scale | PASS | PASS | YES | YES | R=2.858e-10, E=0.932839, ratio=0.548729 |
+| 33: no Born radius reaches 1.7 eV; the required depth exceeds Born | PASS | PASS | YES | YES | maxgap=0.614820, Rmin=3.181e-10, Vreq=3.715111, Born=2.234196, excess=1.480915 |
+| 33: the Born-depth well at the capillary radius has no 1p | PASS | PASS | YES | YES | kappa=2.309130, u1s=2.049533, Born=2.486988, threshold=4.603378 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

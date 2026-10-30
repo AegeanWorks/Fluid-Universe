@@ -63,6 +63,7 @@ def capillary_cavity_energy_ev(
 def infinite_well_gap_ev(
     radius: float, mass: float = MASS, hbar: float = HBAR
 ) -> float:
+    """Ground-state energy of an infinite spherical well, not the s->p gap."""
     if radius <= 0.0 or mass <= 0.0 or hbar <= 0.0:
         raise ValueError("radius, mass and hbar must be positive")
     return math.pi**2 * hbar * hbar / (2.0 * mass * radius * radius) / EV_JOULE
@@ -71,6 +72,7 @@ def infinite_well_gap_ev(
 def well_radius_for_gap(
     energy_ev: float, mass: float = MASS, hbar: float = HBAR
 ) -> float:
+    """Radius where the infinite-well ground-state energy equals energy_ev."""
     if energy_ev <= 0.0 or mass <= 0.0 or hbar <= 0.0:
         raise ValueError("energy, mass and hbar must be positive")
     return math.sqrt(

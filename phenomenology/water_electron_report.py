@@ -70,11 +70,11 @@ def render_markdown(payload: dict) -> str:
         f"| screened ground energy | {scales['screened_energy_ev']:.6e} eV |",
         f"| capillary cavity radius | {scales['cavity_radius_m']:.6e} m |",
         f"| capillary cavity energy | {scales['cavity_energy_ev']:.6f} eV |",
-        f"| infinite-well gap at cavity radius | "
+        f"| infinite-well ground-state energy at cavity radius | "
         f"{scales['well_gap_at_cavity_ev']:.6f} eV |",
-        f"| infinite-well gap at 2.5 Angstrom | "
+        f"| infinite-well ground-state energy at 2.5 Angstrom | "
         f"{scales['well_gap_at_2p5_angstrom_ev']:.6f} eV |",
-        f"| infinite-well radius for 1.7 eV | "
+        f"| infinite-well ground-state radius for 1.7 eV | "
         f"{scales['well_radius_for_1p7_ev_m']:.6e} m |",
         "",
         f"- Observed hydrated-electron absorption: "

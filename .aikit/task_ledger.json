@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-electron-v1",
+    "task_id": "water-well-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793383761.1339808,
+    "updated_at": 1793385660.0345097,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793383761.37206
+    "completed_at": 1793385660.2146459
   },
   "checkpoints": [
-    {
-      "task_id": "water-validity-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-019 and add failing tests for the capillary validity of the acoustic horizon",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793380187.5354774,
-      "timestamp_str": "2026-10-30 20:09:47",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 27's lab example uses r_H=1.6 mm. Water's capillary length is about 2.7 mm, so the horizon may be in the capillary-dispersion regime, where the long-wavelength acoustic metric does not apply.",
-        "benefits": "A design criterion for a valid analogue horizon: the flow rate must make r_H much larger than the capillary length. It prevents overclaiming the lab temperature and uses water's surface tension and density.",
-        "risks": "contract: new claim 28 and a caveat on claim 27's example; dependency: numpy only; concurrency: none; state: one result file; physics: the capillary length depends on temperature through gamma and rho",
-        "mitigation": "Use water at 20 C (rho=998 kg/m3, gamma=0.0728 N/m); compute ell_c, the capillary/gravity ratio at r_H, the minimum Q for r_H=10 ell_c, and a valid Q example"
-      }
-    },
-    {
-      "task_id": "water-validity-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Capillary validity: ell_c=2.726879e-3 m; lab r_H=1.607 mm is capillary-dominated (ratio 2.8798); r_H>=10 ell_c needs Q>=1.697e-2 m3/s; Q=0.05 gives ratio 1.152e-3; claim 28 PROVEN",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793380596.6534412,
-      "timestamp_str": "2026-10-30 20:16:36",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-validity-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 206/206 accepted (2 new claim-28 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793380603.9254901,
-      "timestamp_str": "2026-10-30 20:16:43",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-validity-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-validity-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793380604.1706278,
-      "timestamp_str": "2026-10-30 20:16:44",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-dispersive-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793383761.372063,
       "timestamp_str": "2026-10-30 21:09:21",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-well-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-024 and add failing tests for the finite spherical well; predict no 1p at R=2.858 A/Born, maximum Born-depth s->p gap 0.615 eV, and required depth 3.715 eV at R=3.181 A",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793384796.1630335,
+      "timestamp_str": "2026-10-30 21:26:36",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 32 gives the hydrated-electron cavity scale but not the 1.7 eV absorption. The minimal closure is a finite spherical well with the Born solvation depth; it either supports a 1p state near 1.7 eV or falsifies the bound-bound interpretation.",
+        "benefits": "A decisive test of the simplest cavity model, a quantitative required-depth target for the next polaron/band-offset model, and a clean negative result rather than a tuned fit.",
+        "risks": "contract: new claim 33, no existing claim changes; dependency: math and numpy only; concurrency: none; state: one result file; model: minimal finite well with no polaron correction; data: the 1.7 eV absorption is a literature anchor",
+        "mitigation": "Pre-register the exact predictions, use an analytic threshold check (kappa=pi for 1p), scan the depth and radius, report the maximum Born-depth gap and the minimum required depth, and state the model limits explicitly"
+      }
+    },
+    {
+      "task_id": "water-well-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Finite well: R=2.858071 A/Born (2.486988 eV) has only 1s (E=-0.527753 eV), no 1p; 1p threshold R=5.290248 A; max Born-depth s->p gap 0.614820 eV; required depth 3.715111 eV at R=3.181453 A (Born 2.234196; excess 1.480915); claim 33 NUMERIC (negative)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793385655.4810715,
+      "timestamp_str": "2026-10-30 21:40:55",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-well-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 216/216 accepted (2 new claim-33 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793385660.0345097,
+      "timestamp_str": "2026-10-30 21:41:00",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-well-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-well-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793385660.2146473,
+      "timestamp_str": "2026-10-30 21:41:00",
       "agent": "opencode"
     }
   ]

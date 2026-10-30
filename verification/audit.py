@@ -1722,6 +1722,47 @@ def audit_water_electron(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Finite spherical well for the hydrated electron (claim 33/ADR-024)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_well(audit: Audit) -> None:
+    payload = load_results("water_well.json")
+    result = payload["result"]
+    scales = result["scales"]
+    capillary = scales["capillary"]
+    threshold = scales["threshold"]
+    minimum = scales["inverse"]["minimum"]
+    verdict = result["verdict"]
+    audit.record(
+        "33: the Born-depth well at the capillary radius has no 1p",
+        capillary["u_1s"] is not None
+        and capillary["u_1p"] is None
+        and capillary["transition_ev"] is None
+        and capillary["binding_ev"] > 0.0
+        and capillary["born_depth_ev"] < threshold["depth_at_capillary_ev"],
+        f"kappa={capillary['kappa']:.6f}, "
+        f"u1s={capillary['u_1s']:.6f}, "
+        f"Born={capillary['born_depth_ev']:.6f}, "
+        f"threshold={threshold['depth_at_capillary_ev']:.6f}",
+    )
+    audit.record(
+        "33: no Born radius reaches 1.7 eV; the required depth exceeds Born",
+        threshold["max_born_gap_ev"] < 1.7
+        and minimum["excess_ev"] > 1.0
+        and minimum["required_depth_ev"] > minimum["born_depth_ev"]
+        and verdict["born_well_never_reaches_1p7"] is True
+        and verdict["required_depth_above_born"] is True
+        and verdict["claim_33_status"].startswith("NUMERIC"),
+        f"maxgap={threshold['max_born_gap_ev']:.6f}, "
+        f"Rmin={minimum['radius_m']:.3e}, "
+        f"Vreq={minimum['required_depth_ev']:.6f}, "
+        f"Born={minimum['born_depth_ev']:.6f}, "
+        f"excess={minimum['excess_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2135,6 +2176,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_rays(audit)
     audit_water_scattering(audit)
     audit_water_electron(audit)
+    audit_water_well(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

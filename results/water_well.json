@@ -1,0 +1,109 @@
+{
+  "meta": {
+    "config": {
+      "epsilon_optical": 1.78,
+      "epsilon_water": 78.4,
+      "observed_absorption_ev": 1.7,
+      "scope": "finite spherical well with the Born solvation depth"
+    },
+    "config_sha256": "fcc3b5b3a21b6a2f4766bae8f6ef96ec5a7f3d2491c6c88f5385b904807f3167",
+    "generated_utc": "2026-10-30T18:29:54+00:00",
+    "git": {
+      "commit": "21b77fe5ff59be1785193139084ab924f920f9de",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "observed_absorption_ev": 1.7,
+    "scales": {
+      "capillary": {
+        "binding_ev": 0.5277528621120307,
+        "born_depth_ev": 2.4869878638766574,
+        "energy_1p_ev": null,
+        "energy_1s_ev": -0.5277528621120307,
+        "kappa": 2.309130014964877,
+        "radius_m": 2.8580710555848763e-10,
+        "transition_ev": null,
+        "u_1p": null,
+        "u_1s": 2.0495325445935206
+      },
+      "depth_scan": [
+        {
+          "depth_ev": 2.4869878638766574,
+          "kappa": 2.309130014964877,
+          "transition_ev": null,
+          "u_1p": null,
+          "u_1s": 2.0495325445935206
+        },
+        {
+          "depth_ev": 5.0,
+          "kappa": 3.2741347981777102,
+          "transition_ev": 2.2566136543745583,
+          "u_1p": 3.214247618071452,
+          "u_1s": 2.3437633680624517
+        },
+        {
+          "depth_ev": 10.0,
+          "kappa": 4.630325836620614,
+          "transition_ev": 3.0434056283644493,
+          "u_1p": 3.6140679281882573,
+          "u_1s": 2.5566482892834443
+        },
+        {
+          "depth_ev": 30.0,
+          "kappa": 8.019959604625774,
+          "transition_ev": 3.7553652408623535,
+          "u_1p": 3.977093071629282,
+          "u_1s": 2.7867180088512846
+        }
+      ],
+      "infinite_well": {
+        "radius_for_1p7_m": 4.809506419720198e-10,
+        "transition_at_4p703_ev": 1.777772477398526
+      },
+      "inverse": {
+        "born_depth_3p2_ev": 2.2212462591677298,
+        "excess_3p2_ev": 1.4946539420243594,
+        "minimum": {
+          "born_depth_ev": 2.2341958096108736,
+          "excess_ev": 1.4809150042631725,
+          "radius_m": 3.181452582965287e-10,
+          "required_depth_ev": 3.715110813874046,
+          "threshold_gap_ev": 1.6999999999999997
+        },
+        "optical_polarization_ev": 1.2425172236186246,
+        "optical_polarization_ratio": 1.1918667814923756,
+        "radius_3p2_m": 3.2e-10,
+        "required_depth_3p2_ev": 3.715900201192089
+      },
+      "model": {
+        "born_coefficient_ev_angstrom": 14.399645,
+        "epsilon_optical": 1.78,
+        "epsilon_water": 78.4,
+        "j1_first_zero": 4.493409457909064
+      },
+      "threshold": {
+        "depth_at_capillary_ev": 4.603378006763217,
+        "gap_at_capillary_ev": 2.1064627688284037,
+        "max_born_gap_ev": 0.6148197959981526,
+        "radius_m": 5.290247544086312e-10
+      }
+    },
+    "verdict": {
+      "born_well_has_no_1p_at_capillary": true,
+      "born_well_never_reaches_1p7": true,
+      "claim_33_status": "NUMERIC (negative: Born well cannot give 1.7 eV; required depth 3.715 eV)",
+      "note": "The minimal Born-depth finite well does not explain the 1.7 eV hydrated-electron absorption: at the capillary radius it binds only 1s, and the maximum Born-depth s->p gap at any radius is 0.615 eV. A 1.7 eV gap requires at least 3.715 eV at R=3.181 Angstrom, 1.481 eV above Born. The missing depth is comparable to the optical-polarization reorganization energy (1.243 eV), so a polaron or band-offset correction is the next test, not a fitted parameter.",
+      "required_depth_above_born": true
+    }
+  }
+}

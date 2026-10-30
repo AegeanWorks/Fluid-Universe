@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 214/214 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 216/216 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -88,6 +88,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Radial ray separatrix | PROVEN: outgoing speed changes sign at \(r_H\) (\(-0.110\) at 0.9\(r_H\), \(+0.090\) at 1.1\(r_H\)); ray times match analytic to \(2\times10^{-6}\); peeling rate 12.209936 equals the surface gravity | `results/water_rays.json` |
 | 1D horizon scattering | NUMERIC: the horizon transmits \(7.503\times10^{-6}\) of the packet energy (center \(-1.433\) m); the uniform control transmits 1.000000 (center 4.433 m) | `results/water_scattering.json` |
 | Hydrated-electron cavity | NUMERIC: surface tension plus quantum pressure gives \(R=2.858\) Å and \(E=0.933\) eV vs observed 1.7 eV (factor 1.8); screened hydrogen is \(41.5\) Å and \(-2.2\) meV, ruled out | `results/water_electron.json` |
+| Finite-well test | NUMERIC (negative): the Born-depth well at \(R=2.858\) Å binds only 1s; the maximum Born-depth s->p gap is 0.615 eV; a 1.7 eV gap needs 3.715 eV at \(R=3.181\) Å (1.481 eV above Born) | `results/water_well.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

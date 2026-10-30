@@ -672,3 +672,20 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 32 is **NUMERIC (cavity scale match; factor 1.8 in energy)**. A finite-well/polaron model is needed for the exact value.
 
 - Verification after the hydrated-electron cavity scale: two separate runs, 214/214 checks each.
+
+## 2026-10-30 - Finite spherical well for the hydrated electron (claim 33, ADR-024)
+
+**Added**
+
+- `theory/water_well.py`, `phenomenology/water_well_report.py`, `make waterwell`, `tests/test_water_well.py`, and `results/water_well.{json,md}`.
+
+**Results**
+
+- At \(R=2.858071\times10^{-10}\) m, \(V_0=2.486988\) eV, \(\kappa=2.309130\), \(u_{1s}=2.049533\), \(E_{1s}=-0.527753\) eV; no 1p.
+- The 1p threshold is \(\kappa=\pi\) at \(R=5.290248\times10^{-10}\) m; the maximum Born-depth s->p gap is \(0.614820\) eV.
+- A 1.7 eV gap requires \(V_0=3.715111\) eV at \(R=3.181453\times10^{-10}\) m (Born \(2.234196\) eV; excess \(1.480915\) eV).
+- At \(R=3.2\times10^{-10}\) m, the required depth is \(3.715900\) eV (Born \(2.221246\) eV; excess \(1.494654\) eV).
+- The infinite-well s->p spacing reaches 1.7 eV at \(R=4.809506\times10^{-10}\) m; the earlier \(4.703129\times10^{-10}\) m estimate is the ground-state energy scale.
+- Claim 33 is **NUMERIC (negative: Born well cannot give 1.7 eV; required depth 3.715 eV)**. The missing depth is comparable to the optical-polarization reorganization energy (\(1.242517\) eV at the minimum); a polaron/band-offset correction is the next test.
+
+- Verification after the finite spherical well: two separate runs, 216/216 checks each.

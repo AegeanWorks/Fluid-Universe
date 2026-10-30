@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `122`
+- **Total Python Modules**: `125`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `658`
+- **Total Top-Level Functions**: `688`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `16388`
+- **Total Source Lines**: `17038`
 
 ---
 
@@ -532,7 +532,7 @@
 ### [`phenomenology/water_electron_report.py`](phenomenology/water_electron_report.py)
 > *Hydrated-electron cavity scale report (claim 32, ADR-023).*
 
-**Size**: `103` lines (`3991` bytes)
+**Size**: `103` lines (`4036` bytes)
 
 **Functions:**
 - `def run_water_electron_check(write)`
@@ -570,6 +570,17 @@
 **Functions:**
 - `def _row(flow_rate)`
 - `def run_water_validity_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_well_report.py`](phenomenology/water_well_report.py)
+> *Finite spherical well for the hydrated electron (claim 33, ADR-024).*
+
+**Size**: `169` lines (`7064` bytes)
+
+**Functions:**
+- `def run_water_well_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1292,6 +1303,24 @@
 
 ---
 
+### [`tests/test_water_well.py`](tests/test_water_well.py)
+> *Finite spherical well for the hydrated electron (claim 33).*
+
+**Size**: `110` lines (`3628` bytes)
+
+**Functions:**
+- `def test_born_depth_at_the_capillary_radius()`
+- `def test_born_well_has_only_a_1s_state()`
+- `def test_deeper_well_binds_the_1p_state()`
+- `def test_threshold_depth_and_born_maximum_gap()`
+- `def test_infinite_well_transition_scale()`
+- `def test_born_depth_cannot_reach_1p7_ev()`
+- `def test_required_depth_at_three_point_two_angstrom()`
+- `def test_minimum_required_depth()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`theory/__init__.py`](theory/__init__.py)
 > *Exact theory utilities for the Z3/Koide core.*
 
@@ -1639,15 +1668,15 @@
 ### [`theory/water_electron.py`](theory/water_electron.py)
 > *Hydrated-electron cavity scale from water properties (claim 32, ADR-023).*
 
-**Size**: `93` lines (`2919` bytes)
+**Size**: `95` lines (`3077` bytes)
 
 **Functions:**
 - `def screened_bohr_radius(epsilon_r)`
 - `def screened_energy_ev(epsilon_r)`
 - `def capillary_cavity_radius(gamma, mass, hbar)`
 - `def capillary_cavity_energy_ev(gamma, mass, hbar)`
-- `def infinite_well_gap_ev(radius, mass, hbar)`
-- `def well_radius_for_gap(energy_ev, mass, hbar)`
+- `def infinite_well_gap_ev(radius, mass, hbar)` - *Ground-state energy of an infinite spherical well, not the s->p gap.*
+- `def well_radius_for_gap(energy_ev, mass, hbar)` - *Radius where the infinite-well ground-state energy equals energy_ev.*
 - `def hydrated_scales()`
 
 ---
@@ -1666,6 +1695,33 @@
 
 ---
 
+### [`theory/water_well.py`](theory/water_well.py)
+> *Finite spherical well for the hydrated electron (claim 33, ADR-024).*
+
+**Size**: `325` lines (`10935` bytes)
+
+**Functions:**
+- `def born_depth_ev(radius_m, epsilon_r)` - *Born solvation depth of a spherical cavity, in eV.*
+- `def threshold_depth_ev(radius_m)` - *Well depth at which the 1p state reaches the continuum (kappa = pi).*
+- `def infinite_well_transition_ev(radius_m)` - *Infinite-well 1s -> 1p level spacing, in eV.*
+- `def _dimensionless_depth(radius_m, depth_ev)`
+- `def _state_energy_ev(u, radius_m, depth_ev)`
+- `def _f0(u, kappa)`
+- `def _f1(u, kappa)`
+- `def _bisect(function, lower, upper, kappa)`
+- `def _well_1s_root(kappa)`
+- `def _well_1p_root(kappa)`
+- `def well_roots(radius_m, depth_ev)` - *Return the 1s/1p roots and energies for a finite spherical well.*
+- `def _threshold_radius_m()` - *Radius where the Born depth equals the 1p threshold depth.*
+- `def _threshold_gap_ev(radius_m)`
+- `def _max_born_gap_ev()`
+- `def _infinite_radius_for_transition(energy_ev)`
+- `def required_depth_ev(radius_m, target_ev)` - *Depth needed for an s->p gap of target_ev, or None if unreachable.*
+- `def minimum_required_depth(target_ev)` - *Minimum depth over radii that yields an s->p gap of target_ev.*
+- `def well_scales()` - *Collect the finite-well scales used by the report and the tests.*
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -1676,7 +1732,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2198` lines (`87097` bytes)
+**Size**: `2240` lines (`88863` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1731,6 +1787,7 @@
 - `def audit_water_rays(audit)`
 - `def audit_water_scattering(audit)`
 - `def audit_water_electron(audit)`
+- `def audit_water_well(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1760,7 +1817,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `159` lines (`4135` bytes)
+**Size**: `161` lines (`4179` bytes)
 
 **Functions:**
 - `def _source_files()`

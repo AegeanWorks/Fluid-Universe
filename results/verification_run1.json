@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T18:06:52+00:00",
-    "git_commit": "5c3922003c47f450b712fd80a95ce96349bddc19",
+    "generated_utc": "2026-10-30T18:38:56+00:00",
+    "git_commit": "21b77fe5ff59be1785193139084ab924f920f9de",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "91e193e53e97938dd0229920b4060c8cf129a541c622b689a59836eaeee86df3",
-      "results_sha256": "8a844c5739acfbd1520691a968f428d309a4cf762bb584fe50c522b763cb4b5d"
+      "source_sha256": "af3bf4fafac89926ccc5dcdc4c4c73a6e7dd259754093585f71d0c4f9eb39583",
+      "results_sha256": "11e6e0359a83e1e83d7d94cbb1381d568e4b66b981bd5c7039755fb0c60630ae"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -823,6 +823,20 @@
       "observed": null
     },
     {
+      "claim": "33: the Born-depth well at the capillary radius has no 1p",
+      "passed": true,
+      "detail": "kappa=2.309130, u1s=2.049533, Born=2.486988, threshold=4.603378",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "33: no Born radius reaches 1.7 eV; the required depth exceeds Born",
+      "passed": true,
+      "detail": "maxgap=0.614820, Rmin=3.181e-10, Vreq=3.715111, Born=2.234196, excess=1.480915",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1516,8 +1530,8 @@
       "observed": null
     }
   ],
-  "total": 214,
-  "passed": 214,
+  "total": 216,
+  "passed": 216,
   "failed": 0,
   "failures": []
 }
