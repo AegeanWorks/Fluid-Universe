@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "claim14b-length-scan-v1",
+    "task_id": "vortex-knot-spectrum-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793370458.3166811,
+    "updated_at": 1793371668.7213728,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793370458.4444883
+    "completed_at": 1793371668.8504417
   },
   "checkpoints": [
-    {
-      "task_id": "claim15-temporal-n64-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-003 and add failing tests for a same-time dt check at N=64",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793356713.7642763,
-      "timestamp_str": "2026-10-30 13:38:33",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The N=96 resolution check at t=1.5 gives Z3=0.172 versus 0.528 at N=64, but both used dt=5e-4; before attributing the gap to spatial resolution, the temporal discretization at N=64 must be shown converged at the same t.",
-        "benefits": "Separates spatial from temporal error in the claim-15 Z3 comparison; either supports the N=96 conclusion or identifies a confound before it is published.",
-        "risks": "contract: claim-15 acceptance rule unchanged, the dt check cannot promote it; dependency: none; concurrency: single writer; state: one new result file; cost: 3000 steps at dt=5e-4 plus 6000 steps at dt=2.5e-4, about 8-9 minutes under one 900 s G-003 process",
-        "mitigation": "Same N, seed, length, mu, chunk and upsampling; equal t=steps*dt; pre-register H 5e-3 and Z3 2e-2 tolerances; run the coarse-dt scan first and pass the remaining budget to the fine-dt scan"
-      }
-    },
-    {
-      "task_id": "claim15-temporal-n64-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] N=64 dt check (3000x5e-4 vs 6000x2.5e-4, t=1.5) gives dH=-1.07e-4, dHup=-1.9e-6, dZ3=-4.6e-6; temporal criteria pass, so the N=96 Z3 gap is spatial (or longer-time), not a timestep artifact; docs/results updated; 535.7 s",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793357641.6425056,
-      "timestamp_str": "2026-10-30 13:54:01",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-temporal-n64-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 173/173 accepted (2 new check-15 records); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793357645.1490822,
-      "timestamp_str": "2026-10-30 13:54:05",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-temporal-n64-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'claim15-temporal-n64-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793357645.2866616,
-      "timestamp_str": "2026-10-30 13:54:05",
-      "agent": "opencode"
-    },
     {
       "task_id": "claim15-n96-extension-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793370458.44449,
       "timestamp_str": "2026-10-30 17:27:38",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-knot-spectrum-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-008 and add failing tests for the vortex-knot mass hypothesis",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793371287.28916,
+      "timestamp_str": "2026-10-30 17:41:27",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The user direction is that particles are vortices in a fluid. The simplest falsifiable realization assigns the three charged leptons to the lowest torus knots T(2,3), T(2,5), T(2,7) with mass proportional to the thin-filament Biot-Savart energy at fixed core radius.",
+        "benefits": "A parameter-free test of the vortex-particle idea against the observed charged-lepton hierarchy and the Koide Q=2/3 relation; a negative result identifies the hierarchy mechanism a viable model must add.",
+        "risks": "contract: new claim 17, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the thin-filament energy is a regularized proxy, so the scaling argument is reported alongside the numbers",
+        "mitigation": "Use a fixed core radius, fixed torus geometry and closed curves; report both length and energy ratios and the power p required to match the data; falsify only the simplest assignment, not the general fluid-vortex idea"
+      }
+    },
+    {
+      "task_id": "vortex-knot-spectrum-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Vortex knots T(2,3),T(2,5),T(2,7): energy ratios 1:1.4379:1.9427 vs observed 1:206.77:3477.37; Koide Q 0.3393 vs 2/3; required power p=12.28; claim 17 FALSIFIED; result/docs updated",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793371662.1158988,
+      "timestamp_str": "2026-10-30 17:47:42",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-knot-spectrum-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 184/184 accepted (2 new claim-17 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793371668.7213728,
+      "timestamp_str": "2026-10-30 17:47:48",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-knot-spectrum-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'vortex-knot-spectrum-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793371668.8504426,
+      "timestamp_str": "2026-10-30 17:47:48",
       "agent": "opencode"
     }
   ]

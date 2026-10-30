@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `76`
+- **Total Python Modules**: `79`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `425`
+- **Total Top-Level Functions**: `438`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `11149`
+- **Total Source Lines**: `11479`
 
 ---
 
@@ -388,6 +388,18 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/vortex_spectrum_report.py`](phenomenology/vortex_spectrum_report.py)
+> *Vortex-knot mass spectrum report (claim 17, ADR-008).*
+
+**Size**: `110` lines (`3790` bytes)
+
+**Functions:**
+- `def load_lepton_masses()`
+- `def run_vortex_spectrum(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -865,6 +877,19 @@
 
 ---
 
+### [`tests/test_vortex_particles.py`](tests/test_vortex_particles.py)
+> *Vortex-knot mass hypothesis tests (claim 17).*
+
+**Size**: `50` lines (`1417` bytes)
+
+**Functions:**
+- `def test_torus_knot_shapes_and_closure()`
+- `def test_koide_q_known_values()`
+- `def test_simple_vortex_spectrum_is_falsified()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`theory/__init__.py`](theory/__init__.py)
 > *Exact theory utilities for the Z3/Koide core.*
 
@@ -1035,6 +1060,20 @@
 
 ---
 
+### [`theory/vortex_particles.py`](theory/vortex_particles.py)
+> *Thin-filament vortex-knot mass hypothesis (claim 17, ADR-008).*
+
+**Size**: `136` lines (`5174` bytes)
+
+**Functions:**
+- `def torus_knot(n, radius, tube, samples)` - *Closed T(2,n) curve and its chord vectors.*
+- `def knot_length(points)`
+- `def biot_savart_energy(points, core)` - *Regularized thin-filament energy proxy at a fixed core radius.*
+- `def koide_q(values)`
+- `def mass_hypothesis(observed, knots, core, relative_tolerance, koide_tolerance)` - *Test m proportional to the knot energy against the observed masses.*
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -1045,7 +1084,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1695` lines (`67472` bytes)
+**Size**: `1727` lines (`68646` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1084,6 +1123,7 @@
 - `def audit_purefn(audit)`
 - `def audit_escape(audit)`
 - `def audit_lengthscan(audit)`
+- `def audit_vortex(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1113,7 +1153,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `127` lines (`3317` bytes)
+**Size**: `129` lines (`3381` bytes)
 
 **Functions:**
 - `def _source_files()`

@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T14:26:37+00:00 | `aaaa67ae66644bc61b17d37fd178f3b8d739917a` | 182/182 | `27fc6eae81e7c267...` | `06931eec0af871f5...` |
-| run2 | 2026-10-30T14:26:44+00:00 | `aaaa67ae66644bc61b17d37fd178f3b8d739917a` | 182/182 | `27fc6eae81e7c267...` | `06931eec0af871f5...` |
+| run1 | 2026-10-30T14:46:31+00:00 | `e642476ad5a86f8326ffaf9e5b5b631faf454787` | 184/184 | `3af3a40fa5ad14c3...` | `bed781cb11168566...` |
+| run2 | 2026-10-30T14:46:39+00:00 | `e642476ad5a86f8326ffaf9e5b5b631faf454787` | 184/184 | `3af3a40fa5ad14c3...` | `bed781cb11168566...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -56,6 +56,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 15: resolution arithmetic and verdict follow the pre-registered rule | PASS | PASS | YES | YES | converged=False, dH=+0.062978, dZ3=-0.356154 |
 | 15: resolution check compares N=64 and N=96 at one physical time | PASS | PASS | YES | YES | N=64/96, steps=3000, H=0.999942, Z3=0.172071 |
 | 16: no new prediction found | PASS | PASS | YES | YES | 7 candidate classes, none new |
+| 17: simple vortex-knot assignment is falsified | PASS | PASS | YES | YES | Q=0.339340, p=12.279 |
+| 17: vortex-knot spectrum uses T(2,3), T(2,5), T(2,7) | PASS | PASS | YES | YES | energies=[392.166, 563.899, 761.854] |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
 | 1b: 3 parameters fit 3 masses exactly | PASS | PASS | YES | YES | max residual 8.527e-14 over 1000 random positive-root triples |
 | 1b: Q is not fixed by the Z3/circulant structure | PASS | PASS | YES | YES | random triples span Q in [0.3334, 0.9431] |

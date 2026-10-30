@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T14:26:44+00:00",
-    "git_commit": "aaaa67ae66644bc61b17d37fd178f3b8d739917a",
+    "generated_utc": "2026-10-30T14:46:39+00:00",
+    "git_commit": "e642476ad5a86f8326ffaf9e5b5b631faf454787",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "27fc6eae81e7c267f0c59d621a1cdc2be3b22a44bad20b7e887347eaf17e2702",
-      "results_sha256": "06931eec0af871f5a8d090921f1c6296e85418689e233940c9222caf978b4814"
+      "source_sha256": "3af3a40fa5ad14c36ae32e6fc9d968bdbf6a4a3e13c925008a396e039ced0d51",
+      "results_sha256": "bed781cb111685669a9ce5676799ef96468134ba1bc9cd0c14415b91ab1c698e"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -595,6 +595,20 @@
       "claim": "14b: every box length is a saddle and the claim is not promoted",
       "passed": true,
       "detail": "attempts=4, negative=[8, 8, 8, 8]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "17: vortex-knot spectrum uses T(2,3), T(2,5), T(2,7)",
+      "passed": true,
+      "detail": "energies=[392.166, 563.899, 761.854]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "17: simple vortex-knot assignment is falsified",
+      "passed": true,
+      "detail": "Q=0.339340, p=12.279",
       "expected": null,
       "observed": null
     },
@@ -1292,8 +1306,8 @@
       "observed": null
     }
   ],
-  "total": 182,
-  "passed": 182,
+  "total": 184,
+  "passed": 184,
   "failed": 0,
   "failures": []
 }

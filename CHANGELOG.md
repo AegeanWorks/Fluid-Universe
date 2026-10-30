@@ -422,3 +422,23 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The scan completed in 383.5 s, inside the 900 s G-003 cap.
 
 - Verification after the box-length scan: two separate runs, 182/182 checks each.
+
+## 2026-10-30 - Vortex-knot mass spectrum (claim 17, ADR-008)
+
+**Added**
+
+- `theory/vortex_particles.py`, `phenomenology/vortex_spectrum_report.py`, `make vortex`, `tests/test_vortex_particles.py`, and `results/vortex_knot_spectrum.{json,md}`.
+
+**Results**
+
+| knot | length | energy | energy ratio | observed ratio |
+|---:|---:|---:|---:|---:|
+| T(2,3) | 22.956185 | 392.166309 | 1.000000 | 1.000000 |
+| T(2,5) | 34.078583 | 563.899493 | 1.437909 | 206.768283 |
+| T(2,7) | 45.918809 | 761.854481 | 1.942682 | 3477.365267 |
+
+- The Koide \(Q\) of the knot energies is 0.339340, against the observed 0.666664 and the target \(2/3\).
+- Matching the charged-lepton hierarchy would need \(m\propto E^p\) with \(p=12.279\), or an exponentially small core.
+- Claim 17 is **FALSIFIED**. This falsifies the simplest vortex assignment, not the general fluid-vortex idea; a viable model needs a hierarchy mechanism.
+
+- Verification after the vortex-knot spectrum: two separate runs, 184/184 checks each.

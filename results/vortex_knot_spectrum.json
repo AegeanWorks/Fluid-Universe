@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "config": {
+      "core": 0.1,
+      "data": "phenomenology/data/pdg2024_leptons.csv",
+      "knots": [
+        3,
+        5,
+        7
+      ],
+      "radius": 2.0,
+      "samples": 400,
+      "scope": "thin-filament vortex-knot mass hypothesis; scaling proxy",
+      "tube": 1.0
+    },
+    "config_sha256": "7aba1eddc5e636581fa58ec4ce4f5c03ac1d5bbe7f27e79ce20b31f6c5e0a2af",
+    "generated_utc": "2026-10-30T14:43:00+00:00",
+    "git": {
+      "commit": "e642476ad5a86f8326ffaf9e5b5b631faf454787",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "observed": {
+    "m_e": 0.51099895,
+    "m_mu": 105.6583755,
+    "m_tau": 1776.93
+  },
+  "result": {
+    "core": 0.1,
+    "energies": [
+      392.1663093255272,
+      563.8994927865672,
+      761.854481107033
+    ],
+    "energy_ratios": [
+      1.0,
+      1.4379090691303844,
+      1.9426821299803119
+    ],
+    "falsified": true,
+    "knots": [
+      3,
+      5,
+      7
+    ],
+    "koide_q_energy": 0.33934016440761233,
+    "koide_q_length": 0.3398434719842296,
+    "koide_q_observed": 0.6666644634145,
+    "length_ratios": [
+      1.0,
+      1.4845055356058647,
+      2.0002805069416887
+    ],
+    "lengths": [
+      22.956184836538462,
+      34.07858346623276,
+      45.91880904227826
+    ],
+    "note": "A thin filament has E ~ L log(L/a); its ratios are O(1). Matching the charged-lepton hierarchy would need m ~ E^p with p about 12.3, or an exponentially small core. This test falsifies only the simple assignment, not the general vortex idea.",
+    "observed_ratios": [
+      1.0,
+      206.76828298766566,
+      3477.36526660182
+    ],
+    "relative_error": 0.9994413350393073,
+    "required_power": 12.278879617976287,
+    "status": "FALSIFIED (thin-filament spectrum too compressed)"
+  }
+}

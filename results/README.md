@@ -62,6 +62,8 @@ Do not edit these files by hand.
 | `hopfion_saddle_escape.md` | Human-readable version of the same |
 | `hopfion_length_scan.json` | Pure-FN Hessian at box lengths 8, 10, 12 and 14 (<15 min, G-003); not part of make results |
 | `hopfion_length_scan.md` | Human-readable version of the same |
+| `vortex_knot_spectrum.json` | Vortex-knot mass hypothesis test, T(2,3), T(2,5), T(2,7) |
+| `vortex_knot_spectrum.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

@@ -82,6 +82,8 @@ RESULT_FILES = (
     "hopfion_saddle_escape.md",
     "hopfion_length_scan.json",
     "hopfion_length_scan.md",
+    "vortex_knot_spectrum.json",
+    "vortex_knot_spectrum.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

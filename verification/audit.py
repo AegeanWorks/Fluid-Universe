@@ -1235,6 +1235,37 @@ def audit_lengthscan(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Vortex-knot mass spectrum (claim 17/ADR-008)
+# ---------------------------------------------------------------------------
+
+
+def audit_vortex(audit: Audit) -> None:
+    payload = load_results("vortex_knot_spectrum.json")
+    result = payload["result"]
+    energies = result["energies"]
+    expected_q = float(
+        sum(energies) / (sum(value**0.5 for value in energies) ** 2)
+    )
+    audit.record(
+        "17: vortex-knot spectrum uses T(2,3), T(2,5), T(2,7)",
+        result["knots"] == [3, 5, 7]
+        and len(energies) == 3
+        and all(value > 0.0 for value in energies)
+        and abs(result["koide_q_energy"] - expected_q) < 1e-12,
+        f"energies={[round(value, 3) for value in energies]}",
+    )
+    audit.record(
+        "17: simple vortex-knot assignment is falsified",
+        result["falsified"] is True
+        and result["status"].startswith("FALSIFIED")
+        and result["koide_q_energy"] < 0.5
+        and result["required_power"] > 2.0,
+        f"Q={result['koide_q_energy']:.6f}, "
+        f"p={result['required_power']:.3f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1632,6 +1663,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_purefn(audit)
     audit_escape(audit)
     audit_lengthscan(audit)
+    audit_vortex(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

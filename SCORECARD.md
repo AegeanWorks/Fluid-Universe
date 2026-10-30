@@ -40,5 +40,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 14e | FALSIFIED | Pure-FN N=64 candidate: min -2.600799, 8 negative modes; a saddle. |
 | 15 | UNVERIFIED (N=96 extension) | N=64 production scan (`make production`, <15 min): native H=0.78800, 2x upsampled H=0.98924, Z3=0.60743, max bond 1.480; at N=96 (3000 steps, same t) native H=0.99994, upsampled H=1.00000, but Z3=0.17207 and force RMS 0.01495; a same-N dt check gives \|dZ3\|=4.6e-6; a checkpointed extension to t=6.0 raises Z3 through 0.172→0.599 but native H falls to 0.97262, max bond rises to 0.857 and force RMS is 0.01075; the final state fails H, force and resolution, so no verified coexistence. |
 | 16 | UNVERIFIED (none found) | Seven candidate classes audited; no new falsifiable prediction. |
+| 17 | FALSIFIED | Vortex knots T(2,3),T(2,5),T(2,7): energy ratios 1:1.44:1.94, Q=0.339, not 2/3; needs m∝E^12.3 or an exponentially small core. |
 
-Claim audit: two separate runs agree per claim, 182/182 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 184/184 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
