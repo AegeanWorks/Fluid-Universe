@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "config": {
+      "depth_m": 0.1,
+      "flow_rate_m3_s": 0.05,
+      "gamma_n_m": 0.0728,
+      "gravity_m_s2": 9.81,
+      "omegas_rad_s": [
+        0.1,
+        1.0,
+        10.0,
+        100.0,
+        1000.0
+      ],
+      "rho_kg_m3": 998.0,
+      "scope": "dispersive shallow-water horizon; capillary-gravity dispersion"
+    },
+    "config_sha256": "75d6e072d8709111b73531c78efea0ef7ac0058c0056e55ed01a371d715522ac",
+    "generated_utc": "2026-10-30T17:21:27+00:00",
+    "git": {
+      "commit": "9731a4fac4ecaa08b2153c191a3fd234320ad9ea",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "capillary_frequency_hz": 13.50009036433359,
+    "capillary_frequency_rad_s": 84.82356942277751,
+    "depth_m": 0.1,
+    "flow_rate_m3_s": 0.05,
+    "rows": [
+      {
+        "group_velocity_m_s": 0.990441848793057,
+        "group_velocity_over_c": 0.9999872862803472,
+        "horizon_radius_m": 0.08034542526945931,
+        "k_per_m": 0.05048230561377867,
+        "long_wavelength_radius_m": 0.08034440378024704,
+        "omega_rad_s": 0.1,
+        "ratio": 1.0000127138812938
+      },
+      {
+        "group_velocity_m_s": 0.9891947703156835,
+        "group_velocity_over_c": 0.9987281890159424,
+        "horizon_radius_m": 0.0804467167983025,
+        "k_per_m": 0.5052472210761576,
+        "long_wavelength_radius_m": 0.08034440378024704,
+        "omega_rad_s": 1.0,
+        "ratio": 1.0012734305470148
+      },
+      {
+        "group_velocity_m_s": 0.8601277229797182,
+        "group_velocity_over_c": 0.8684172509523025,
+        "horizon_radius_m": 0.0925182033085383,
+        "k_per_m": 5.541848240034055,
+        "long_wavelength_radius_m": 0.08034440378024704,
+        "omega_rad_s": 10.0,
+        "ratio": 1.1515201925150664
+      },
+      {
+        "group_velocity_m_s": 0.1907505276735406,
+        "group_velocity_over_c": 0.19258889631658024,
+        "horizon_radius_m": 0.4171808724017807,
+        "k_per_m": 230.15069569254905,
+        "long_wavelength_radius_m": 0.08034440378024704,
+        "omega_rad_s": 100.0,
+        "ratio": 5.192407346040274
+      },
+      {
+        "group_velocity_m_s": 0.4548864062677654,
+        "group_velocity_over_c": 0.45927039888695675,
+        "horizon_radius_m": 0.17493921658126008,
+        "k_per_m": 1291.9790003594399,
+        "long_wavelength_radius_m": 0.08034440378024704,
+        "omega_rad_s": 1000.0,
+        "ratio": 2.1773665414176553
+      }
+    ],
+    "verdict": {
+      "claim_29_status": "PROVEN (dispersive horizon correction)",
+      "high_frequency_ratio": 5.192407346040274,
+      "low_frequency_ratio": 1.0000127138812938,
+      "note": "The long-wavelength acoustic horizon is accurate for omega << omega_c: at 0.1 and 1 rad/s the shift is below 0.2%. At 10 rad/s it is about 15%; at 100 rad/s the horizon moves outward by a factor 5.2. The high-frequency horizon is not the acoustic metric horizon."
+    }
+  }
+}

@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T17:15:11+00:00",
-    "git_commit": "fe63e51888c958533cc7791577aaceb86d7cf3c5",
+    "generated_utc": "2026-10-30T17:26:29+00:00",
+    "git_commit": "9731a4fac4ecaa08b2153c191a3fd234320ad9ea",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "9572e556ca803df5529be5ac5e19a1c762c4dea2d65227514a8838c259bde00c",
-      "results_sha256": "03580cf93faae88ec8e8d7a752da857a650a00da6560b1e9ed4fd42c2caa1cbd"
+      "source_sha256": "feebb316eea958f136d6b2d7392fac3ad545110299adfe7c5be2b8234845aee3",
+      "results_sha256": "ad9349b86118adb78c6abf69f8d98c25c7d1bc80eb26afb21b9b06fbfac0c607"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -767,6 +767,20 @@
       "observed": null
     },
     {
+      "claim": "29: low-frequency horizon approaches the long-wavelength value",
+      "passed": true,
+      "detail": "ratio(0.1)=1.000013, ratio(1)=1.001273",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "29: high-frequency horizon is shifted by capillary dispersion",
+      "passed": true,
+      "detail": "ratio(10)=1.151520, ratio(100)=5.192407",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1460,8 +1474,8 @@
       "observed": null
     }
   ],
-  "total": 206,
-  "passed": 206,
+  "total": 208,
+  "passed": 208,
   "failed": 0,
   "failures": []
 }

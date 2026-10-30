@@ -1601,6 +1601,34 @@ def audit_water_validity(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Dispersive shallow-water horizon (claim 29/ADR-020)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_dispersive(audit: Audit) -> None:
+    payload = load_results("water_dispersive.json")
+    result = payload["result"]
+    rows = {row["omega_rad_s"]: row for row in result["rows"]}
+    verdict = result["verdict"]
+    audit.record(
+        "29: low-frequency horizon approaches the long-wavelength value",
+        abs(rows[0.1]["ratio"] - 1.0) < 1e-4
+        and abs(rows[1.0]["ratio"] - 1.0) < 0.01
+        and abs(result["capillary_frequency_rad_s"] - 84.824) < 0.1,
+        f"ratio(0.1)={rows[0.1]['ratio']:.6f}, "
+        f"ratio(1)={rows[1.0]['ratio']:.6f}",
+    )
+    audit.record(
+        "29: high-frequency horizon is shifted by capillary dispersion",
+        rows[100.0]["ratio"] > 2.0
+        and rows[10.0]["ratio"] > 1.1
+        and verdict["claim_29_status"].startswith("PROVEN"),
+        f"ratio(10)={rows[10.0]['ratio']:.6f}, "
+        f"ratio(100)={rows[100.0]['ratio']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2010,6 +2038,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hydrogen_vortex(audit)
     audit_water_analogue(audit)
     audit_water_validity(audit)
+    audit_water_dispersive(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

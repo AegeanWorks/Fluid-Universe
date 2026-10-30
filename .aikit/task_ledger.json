@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-validity-v1",
+    "task_id": "water-dispersive-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793380603.9254901,
+    "updated_at": 1793381275.7023761,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793380604.1706245
+    "completed_at": 1793381275.9352624
   },
   "checkpoints": [
-    {
-      "task_id": "excited-node-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] First excited state: node density 0, phase slip pi, phase-gradient max ~ dx^-1 (slope -1.000000000); regular Q error 4.8e-13 away from node; claim 24 FALSIFIED (phase slip)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793377795.775163,
-      "timestamp_str": "2026-10-30 19:29:55",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "excited-node-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-015 and add failing tests for the first-excited-state node",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793377817.1047695,
-      "timestamp_str": "2026-10-30 19:30:17",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The Gaussian reductions cover node-free states. The first excited state has a density node at x=0, where the Madelung phase and quantum pressure may be singular; this must be tested before the fluid program can claim excited states.",
-        "benefits": "Identifies the exact limit of the single-valued fluid representation and motivates a two-component or defect model; also verifies the regular quantum pressure away from the node.",
-        "risks": "contract: new claim 24, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the phase gradient is a central difference, so the discrete maximum is pi/(2dx) not pi/dx",
-        "mitigation": "Use the exact first-excited density and wavefunction; scan N=256,512,1024,2048; fit the log-log slope of the phase-gradient maximum; compare the regular Q at x=1 to the analytic expression"
-      }
-    },
-    {
-      "task_id": "excited-node-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 198/198 accepted (2 new claim-24 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793377823.7680914,
-      "timestamp_str": "2026-10-30 19:30:23",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "excited-node-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'excited-node-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793377823.930549,
-      "timestamp_str": "2026-10-30 19:30:23",
-      "agent": "opencode"
-    },
     {
       "task_id": "hydrogen-fluid-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793380604.1706278,
       "timestamp_str": "2026-10-30 20:16:44",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-dispersive-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-020 and add failing tests for the dispersive shallow-water horizon",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793380829.5644023,
+      "timestamp_str": "2026-10-30 20:20:29",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 27 uses the long-wavelength sound speed. The full shallow-water dispersion includes capillary and finite-depth terms, so the horizon depends on wave frequency; the metric is valid only below the capillary frequency.",
+        "benefits": "A quantitative frequency-validity condition for the water horizon, complementing the spatial capillary condition of claim 28.",
+        "risks": "contract: new claim 29, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the root equation k c_g + omega_f = omega and the tanh(kh) dispersion",
+        "mitigation": "Use the exact dispersion (gk+gamma k^3/rho)tanh(kh); test the k->0 limit, the omega_c frequency, and the horizon ratio at low and high frequency"
+      }
+    },
+    {
+      "task_id": "water-dispersive-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Dispersive horizon: omega_c=84.824 rad/s; ratios 1.000013 at 0.1, 1.151520 at 10, 5.192407 at 100 rad/s; long-wavelength metric valid below ~1 rad/s; claim 29 PROVEN",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793381271.2620316,
+      "timestamp_str": "2026-10-30 20:27:51",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-dispersive-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 208/208 accepted (2 new claim-29 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793381275.7023761,
+      "timestamp_str": "2026-10-30 20:27:55",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-dispersive-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-dispersive-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793381275.9352658,
+      "timestamp_str": "2026-10-30 20:27:55",
       "agent": "opencode"
     }
   ]

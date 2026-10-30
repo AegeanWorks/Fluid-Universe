@@ -106,6 +106,8 @@ RESULT_FILES = (
     "water_analogue.md",
     "water_validity.json",
     "water_validity.md",
+    "water_dispersive.json",
+    "water_dispersive.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

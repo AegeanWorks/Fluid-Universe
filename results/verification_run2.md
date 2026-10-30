@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**206/206 checks passed.**
+**208/208 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -113,6 +113,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 27: surface gravity and analogue temperature are positive | PASS | kappa=610.496783, T=7.422e-10 |
 | 28: lab horizon is capillary-dominated | PASS | r_H=1.607e-03, ell_c=2.727e-03, ratio=2.879788 |
 | 28: a larger flow reaches the long-wavelength regime | PASS | Q_min=1.696994e-02, ratio=1.152e-03 |
+| 29: low-frequency horizon approaches the long-wavelength value | PASS | ratio(0.1)=1.000013, ratio(1)=1.001273 |
+| 29: high-frequency horizon is shifted by capillary dispersion | PASS | ratio(10)=1.151520, ratio(100)=5.192407 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

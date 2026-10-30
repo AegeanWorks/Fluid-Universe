@@ -42,9 +42,9 @@
       "source": "NuFit 5.2 (2022) with SK-atm; DFT basis for a Hermitian circulant"
     },
     "config_sha256": "5da0c58e80e9eb663df6af3af1d878d9c1816d635124861a5fbcc519bd929c1a",
-    "generated_utc": "2026-10-30T17:13:07+00:00",
+    "generated_utc": "2026-10-30T17:24:13+00:00",
     "git": {
-      "commit": "fe63e51888c958533cc7791577aaceb86d7cf3c5",
+      "commit": "9731a4fac4ecaa08b2153c191a3fd234320ad9ea",
       "dirty": true
     },
     "packages": {

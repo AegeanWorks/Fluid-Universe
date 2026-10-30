@@ -612,3 +612,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 28 is **PROVEN (capillary validity condition)**. Claim 27's formula remains exact in the long-wavelength limit; its lab example is flagged as capillary-dominated.
 
 - Verification after the capillary validity check: two separate runs, 206/206 checks each.
+
+## 2026-10-30 - Dispersive water horizon (claim 29, ADR-020)
+
+**Added**
+
+- `theory/water_dispersive.py`, `phenomenology/water_dispersive_report.py`, `make waterdispersive`, `tests/test_water_dispersive.py`, and `results/water_dispersive.{json,md}`.
+
+**Results**
+
+- Capillary frequency \(\omega_c=\sqrt{2g/\ell_c}=84.824\) rad/s (13.500 Hz).
+- With \(\omega_f^2=(gk+\gamma k^3/\rho)\tanh(kh)\) and \(k c_g+\omega_f=\omega\), the horizon ratios to the long-wavelength value are 1.000013 at 0.1 rad/s, 1.001273 at 1, 1.151520 at 10, 5.192407 at 100 and 2.177367 at 1000.
+- Claim 29 is **PROVEN (dispersive horizon correction)**. The acoustic metric is accurate below about 1 rad/s and fails above the capillary frequency.
+
+- Verification after the dispersive water horizon: two separate runs, 208/208 checks each.

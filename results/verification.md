@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T17:14:57+00:00 | `fe63e51888c958533cc7791577aaceb86d7cf3c5` | 206/206 | `9572e556ca803df5...` | `03580cf93faae88e...` |
-| run2 | 2026-10-30T17:15:11+00:00 | `fe63e51888c958533cc7791577aaceb86d7cf3c5` | 206/206 | `9572e556ca803df5...` | `03580cf93faae88e...` |
+| run1 | 2026-10-30T17:26:16+00:00 | `9731a4fac4ecaa08b2153c191a3fd234320ad9ea` | 208/208 | `feebb316eea958f1...` | `ad9349b86118adb7...` |
+| run2 | 2026-10-30T17:26:29+00:00 | `9731a4fac4ecaa08b2153c191a3fd234320ad9ea` | 208/208 | `feebb316eea958f1...` | `ad9349b86118adb7...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -85,6 +85,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 27: surface gravity and analogue temperature are positive | PASS | PASS | YES | YES | kappa=610.496783, T=7.422e-10 |
 | 28: a larger flow reaches the long-wavelength regime | PASS | PASS | YES | YES | Q_min=1.696994e-02, ratio=1.152e-03 |
 | 28: lab horizon is capillary-dominated | PASS | PASS | YES | YES | r_H=1.607e-03, ell_c=2.727e-03, ratio=2.879788 |
+| 29: high-frequency horizon is shifted by capillary dispersion | PASS | PASS | YES | YES | ratio(10)=1.151520, ratio(100)=5.192407 |
+| 29: low-frequency horizon approaches the long-wavelength value | PASS | PASS | YES | YES | ratio(0.1)=1.000013, ratio(1)=1.001273 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

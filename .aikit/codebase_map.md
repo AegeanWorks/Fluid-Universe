@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `110`
+- **Total Python Modules**: `113`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `603`
+- **Total Top-Level Functions**: `617`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `15092`
+- **Total Source Lines**: `15406`
 
 ---
 
@@ -514,6 +514,17 @@
 
 **Functions:**
 - `def run_water_analogue_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_dispersive_report.py`](phenomenology/water_dispersive_report.py)
+> *Dispersive shallow-water horizon report (claim 29, ADR-020).*
+
+**Size**: `108` lines (`3597` bytes)
+
+**Functions:**
+- `def run_water_dispersive_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1163,6 +1174,21 @@
 
 ---
 
+### [`tests/test_water_dispersive.py`](tests/test_water_dispersive.py)
+> *Dispersive shallow-water horizon tests (claim 29).*
+
+**Size**: `57` lines (`1517` bytes)
+
+**Functions:**
+- `def test_low_k_dispersion_and_group_velocity()`
+- `def test_low_frequency_horizon_approaches_the_long_wavelength_value()`
+- `def test_high_frequency_horizon_is_shifted_outward()`
+- `def test_capillary_frequency()`
+- `def test_horizon_wavenumber_solves_the_dispersion_condition()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_validity.py`](tests/test_water_validity.py)
 > *Capillary validity tests for the shallow-water horizon (claim 28).*
 
@@ -1507,6 +1533,20 @@
 
 ---
 
+### [`theory/water_dispersive.py`](theory/water_dispersive.py)
+> *Dispersive shallow-water horizon (claim 29, ADR-020).*
+
+**Size**: `118` lines (`3466` bytes)
+
+**Functions:**
+- `def dispersion(k, depth, gamma, density, gravity)`
+- `def group_velocity(k, depth, gamma, density, gravity)`
+- `def horizon_wavenumber(omega, depth, gamma, density, gravity, maximum)`
+- `def dispersive_horizon(omega, flow_rate, depth, gamma, density, gravity)`
+- `def capillary_frequency(depth, gamma, density, gravity)`
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -1517,7 +1557,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2073` lines (`82181` bytes)
+**Size**: `2102` lines (`83343` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1568,6 +1608,7 @@
 - `def audit_hydrogen_vortex(audit)`
 - `def audit_water_analogue(audit)`
 - `def audit_water_validity(audit)`
+- `def audit_water_dispersive(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1597,7 +1638,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `151` lines (`3927` bytes)
+**Size**: `153` lines (`3983` bytes)
 
 **Functions:**
 - `def _source_files()`
