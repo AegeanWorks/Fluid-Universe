@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `71`
+- **Total Python Modules**: `73`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `402`
+- **Total Top-Level Functions**: `409`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `10273`
+- **Total Source Lines**: `10540`
 
 ---
 
@@ -234,6 +234,17 @@
 
 ---
 
+### [`phenomenology/purefn_stability_report.py`](phenomenology/purefn_stability_report.py)
+> *Pure-Faddeev-Niemi N=64 candidate Hessian (ADR-005, claims 14b/14d).*
+
+**Size**: `156` lines (`5252` bytes)
+
+**Functions:**
+- `def run_purefn_check(write)`
+- `def render_markdown(result)`
+
+---
+
 ### [`phenomenology/quarks.py`](phenomenology/quarks.py)
 > *Quark Koide ratios from the full-SM MS-bar masses of Huang & Zhou (2021).*
 
@@ -444,7 +455,7 @@
 ### [`sims/stability.py`](sims/stability.py)
 > *Tangent-space Hessian of the 3D Faddeev-Niemi + Z3 energy.*
 
-**Size**: `271` lines (`9663` bytes)
+**Size**: `303` lines (`11030` bytes)
 
 **Functions:**
 - `def tangent_basis(field)` - *Return two orthonormal tangent vectors at every interior site.*
@@ -453,6 +464,7 @@
 - `def tangent_operator(field, dx, e1, e2)` - *Matrix-free Hessian on the two-dimensional tangent space of each site.*
 - `def validate_operator(n, length, steps, dt, k)` - *Compare the matrix-free operator with the dense tangent Hessian.*
 - `def hessian_spectrum(field, dx, k, e1, e2)` - *Low-lying eigenvalues of the tangent-space Hessian.*
+- `def classify_candidate(validation, spectrum)` - *Classify one candidate's Hessian without overstating the result.*
 - `def run_stability_check(n, length, iterations, steps, dt, k, validate_n)` - *Build the scale-stationary candidate and compute its tangent Hessian.*
 
 ---
@@ -681,6 +693,18 @@
 - `def test_production_enforces_wall_clock_limit()`
 - `def test_run_production_resumes_from_a_field_exactly()`
 - `def test_run_production_validates_initial_field_and_hides_it_by_default()`
+
+---
+
+### [`tests/test_purefn_stability.py`](tests/test_purefn_stability.py)
+> *Pure-FN candidate Hessian classification tests (claims 14b/14d).*
+
+**Size**: `36` lines (`1199` bytes)
+
+**Functions:**
+- `def test_classify_candidate_accepts_a_local_minimum()`
+- `def test_classify_candidate_rejects_a_saddle()`
+- `def test_classify_candidate_requires_a_validated_operator()`
 
 ---
 
@@ -980,7 +1004,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1584` lines (`63138` bytes)
+**Size**: `1625` lines (`64646` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1016,6 +1040,7 @@
 - `def audit_n64(audit)`
 - `def audit_scale(audit)`
 - `def audit_stability(audit)`
+- `def audit_purefn(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1045,7 +1070,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `121` lines (`3117` bytes)
+**Size**: `123` lines (`3189` bytes)
 
 **Functions:**
 - `def _source_files()`

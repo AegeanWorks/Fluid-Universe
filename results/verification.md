@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T11:43:45+00:00 | `023a0e59c95c8bbf1a43a370feefdf6a5187c2be` | 176/176 | `a6501d5f763ecdda...` | `6c2464f61f76642b...` |
-| run2 | 2026-10-30T11:43:59+00:00 | `023a0e59c95c8bbf1a43a370feefdf6a5187c2be` | 176/176 | `a6501d5f763ecdda...` | `6c2464f61f76642b...` |
+| run1 | 2026-10-30T12:22:39+00:00 | `7a4ddef40000b7f00d662be627a7f6670aad74a8` | 178/178 | `8e219eb8fdc2fb69...` | `b078b77060209376...` |
+| run2 | 2026-10-30T12:22:45+00:00 | `7a4ddef40000b7f00d662be627a7f6670aad74a8` | 178/178 | `8e219eb8fdc2fb69...` | `b078b77060209376...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -26,9 +26,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 14a: Derrick derivative equals virial | PASS | PASS | YES | YES | numeric dE/dlambda=2.499999998, virial=2.500000000 |
 | 14a: stationary scale and curvature | PASS | PASS | YES | YES | lambda^2=0.387425887, second derivative=5.000000 |
 | 14b: kappa>0 necessary, existence unproved | PASS | PASS | YES | YES | kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof |
+| 14b: pure-FN candidate is the N=64 mu=0 relax | PASS | PASS | YES | YES | H=0.999999932, rms=3.154e-03 |
 | 14c: scale-stationary H=1 candidate | PASS | PASS | YES | YES | best iter=4, virial=+0.009610, H=0.997297, rms=3.002e-03 |
 | 14d: N=64 scale candidate is a saddle | PASS | PASS | YES | YES | min=-5.799863, negative=8 |
 | 14d: tangent Hessian operator passes dense validation | PASS | PASS | YES | YES | N=8, max error=1.332e-15 |
+| 14e: pure-FN Hessian verdict follows the negative tolerance | PASS | PASS | YES | YES | min=-2.600799, negative=8 |
 | 15/4: grid Hopf resolution | PASS | PASS | YES | YES | N=16 H=0.801799781, N=32 H=1.000141490, N=64 H=1.000000039 |
 | 15/4: grid estimator matches known answer | PASS | PASS | YES | YES | grid(32/48/64)=1.000141490/0.999999788/1.000000039; baseline_4=True |
 | 15/4: preimage linking converges to 1 | PASS | PASS | YES | YES | H(100/200/400)=0.999331467/0.999832946/0.999958242 |

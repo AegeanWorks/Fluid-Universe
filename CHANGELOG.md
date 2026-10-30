@@ -371,3 +371,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Every chunk completed between 533.9 and 577.5 s, inside the 900 s G-003 cap. The first chunk reproduces the N=96 \(t=1.5\) row of the resolution check.
 
 - Verification after the N=96 extension: two separate runs, 176/176 checks each.
+
+## 2026-10-30 - Pure-FN candidate Hessian (claims 14b/14e)
+
+**Added**
+
+- `sims.stability.classify_candidate`, `phenomenology/purefn_stability_report.py`, `make purefn`, `tests/test_purefn_stability.py`, and `results/hopfion_purefn_stability.{json,md}`.
+
+**Results**
+
+- Candidate: N=64, \(\mu=0\), 1200 steps; H=0.999999932, Z3=\(3.0\times10^{-6}\), force RMS \(3.154\times10^{-3}\), virial \(+78.18\).
+- The tangent operator passes the N=8 dense check (maximum error \(1.3\times10^{-15}\)). At N=64 the spectrum has 8 negative modes; the minimum eigenvalue is \(-2.600799\).
+- The pure-FN candidate is a saddle (14e **FALSIFIED**), so 14b remains **UNVERIFIED**; no stable Hopfion is demonstrated. A different candidate is not ruled out.
+- The diagnostic completed in 111.7 s, inside the 900 s G-003 cap.
+
+- Verification after the pure-FN Hessian: two separate runs, 178/178 checks each.

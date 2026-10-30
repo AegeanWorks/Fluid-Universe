@@ -224,6 +224,38 @@ def hessian_spectrum(
     }
 
 
+def classify_candidate(validation: dict, spectrum: dict) -> dict:
+    """Classify one candidate's Hessian without overstating the result."""
+    n = spectrum["n"]
+    if not validation["passed"]:
+        status = "UNVERIFIED (operator validation failed)"
+        claim_14b = "UNVERIFIED"
+    elif spectrum["min_eigenvalue"] < -NEGATIVE_TOLERANCE:
+        status = f"FALSIFIED (negative Hessian modes at N={n})"
+        claim_14b = "UNVERIFIED"
+    else:
+        status = f"NUMERIC (local minimum at N={n}; evidence, not proof)"
+        claim_14b = f"NUMERIC (local minimum at N={n}; not a proof)"
+    local_minimum = bool(
+        validation["passed"]
+        and spectrum["min_eigenvalue"] >= -NEGATIVE_TOLERANCE
+    )
+    return {
+        "operator_validated": validation["passed"],
+        "local_minimum_at_N64": local_minimum,
+        "stable_at_N64_proved": False,
+        "claim_14b_status": claim_14b,
+        "candidate_status": status,
+        "note": (
+            "The Hessian acts on the two-dimensional tangent space at every "
+            "site, so the radial normalization modes are removed. A negative "
+            "eigenvalue falsifies this candidate as a local minimum; a "
+            "positive spectrum is evidence at one grid, not a stability proof. "
+            "Fixed vacuum boundaries lift exact translation zero modes."
+        ),
+    }
+
+
 def run_stability_check(
     n: int = 64,
     length: float = 10.0,

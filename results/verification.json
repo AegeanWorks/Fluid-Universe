@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
-      "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
+      "source_sha256": "8e219eb8fdc2fb69fd415f1cdf11a8f5c1d9fb1e2e285eb0a59cc30670249771",
+      "results_sha256": "b078b7706020937694df428610a7995451caba5af8da050f9eb6ec51e763bc74"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T11:43:45+00:00",
-        "git_commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
-        "passed": 176,
-        "total": 176,
+        "generated_utc": "2026-10-30T12:22:39+00:00",
+        "git_commit": "7a4ddef40000b7f00d662be627a7f6670aad74a8",
+        "passed": 178,
+        "total": 178,
         "failed": 0,
-        "checks_sha256": "c41a5f881f878acb1beb3b9ce9c2ab1b71cd05023d7432ca586f91f29063d2cd",
+        "checks_sha256": "f2545b6ff32bc764a3f852b70dec7fa9946560a8ecfc51e7da20d29fc0a3a10e",
         "fingerprints": {
-          "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
-          "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
+          "source_sha256": "8e219eb8fdc2fb69fd415f1cdf11a8f5c1d9fb1e2e285eb0a59cc30670249771",
+          "results_sha256": "b078b7706020937694df428610a7995451caba5af8da050f9eb6ec51e763bc74"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T11:43:59+00:00",
-        "git_commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
-        "passed": 176,
-        "total": 176,
+        "generated_utc": "2026-10-30T12:22:45+00:00",
+        "git_commit": "7a4ddef40000b7f00d662be627a7f6670aad74a8",
+        "passed": 178,
+        "total": 178,
         "failed": 0,
-        "checks_sha256": "c41a5f881f878acb1beb3b9ce9c2ab1b71cd05023d7432ca586f91f29063d2cd",
+        "checks_sha256": "f2545b6ff32bc764a3f852b70dec7fa9946560a8ecfc51e7da20d29fc0a3a10e",
         "fingerprints": {
-          "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
-          "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
+          "source_sha256": "8e219eb8fdc2fb69fd415f1cdf11a8f5c1d9fb1e2e285eb0a59cc30670249771",
+          "results_sha256": "b078b7706020937694df428610a7995451caba5af8da050f9eb6ec51e763bc74"
         }
       }
     ],
@@ -132,6 +132,14 @@
       "detail": "kappa=0 has no stationary point; kappa<0 is unbounded; Derrick scaling is not an existence proof"
     },
     {
+      "claim": "14b: pure-FN candidate is the N=64 mu=0 relax",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "H=0.999999932, rms=3.154e-03"
+    },
+    {
       "claim": "14c: scale-stationary H=1 candidate",
       "run1": "PASS",
       "run2": "PASS",
@@ -154,6 +162,14 @@
       "agree": true,
       "detail_match": true,
       "detail": "N=8, max error=1.332e-15"
+    },
+    {
+      "claim": "14e: pure-FN Hessian verdict follows the negative tolerance",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "min=-2.600799, negative=8"
     },
     {
       "claim": "15/4: grid Hopf resolution",
@@ -1993,6 +2009,20 @@
       "observed": null
     },
     {
+      "claim": "14b: pure-FN candidate is the N=64 mu=0 relax",
+      "passed": true,
+      "detail": "H=0.999999932, rms=3.154e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14e: pure-FN Hessian verdict follows the negative tolerance",
+      "passed": true,
+      "detail": "min=-2.600799, negative=8",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2686,8 +2716,8 @@
       "observed": null
     }
   ],
-  "total": 176,
-  "passed": 176,
+  "total": 178,
+  "passed": 178,
   "failed": 0,
   "failures": []
 }

@@ -1127,6 +1127,46 @@ def audit_stability(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Pure-FN candidate Hessian (claims 14b/14e)
+# ---------------------------------------------------------------------------
+
+
+def audit_purefn(audit: Audit) -> None:
+    payload = load_results("hopfion_purefn_stability.json")
+    candidate = payload["candidate"]
+    validation = payload["validation"]
+    spectrum = payload["spectrum"]
+    verdict = payload["verdict"]
+    negative = spectrum["min_eigenvalue"] < -1e-6
+    audit.record(
+        "14b: pure-FN candidate is the N=64 mu=0 relax",
+        spectrum["n"] == 64
+        and spectrum["dimension"] == 2 * 62**3
+        and candidate["H"] > 0.9999
+        and candidate["force_rms"] < 1e-2
+        and candidate["Z3"] < 1e-2
+        and validation["passed"] is True,
+        f"H={candidate['H']:.9f}, rms={candidate['force_rms']:.3e}",
+    )
+    audit.record(
+        "14e: pure-FN Hessian verdict follows the negative tolerance",
+        verdict["local_minimum_at_N64"] == (not negative)
+        and (
+            verdict["candidate_status"].startswith("FALSIFIED")
+            if negative
+            else verdict["candidate_status"].startswith("NUMERIC")
+        )
+        and (
+            verdict["claim_14b_status"] == "UNVERIFIED"
+            if negative
+            else verdict["claim_14b_status"].startswith("NUMERIC")
+        ),
+        f"min={spectrum['min_eigenvalue']:+.6f}, "
+        f"negative={spectrum['negative_count']}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1521,6 +1561,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_n64(audit)
     audit_scale(audit)
     audit_stability(audit)
+    audit_purefn(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

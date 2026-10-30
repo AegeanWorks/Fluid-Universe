@@ -76,6 +76,8 @@ RESULT_FILES = (
     "hopfion3d_temporal.md",
     "hopfion3d_extension.json",
     "hopfion3d_extension.md",
+    "hopfion_purefn_stability.json",
+    "hopfion_purefn_stability.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

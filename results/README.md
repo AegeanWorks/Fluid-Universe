@@ -56,6 +56,8 @@ Do not edit these files by hand.
 | `hopfion3d_temporal.md` | Human-readable version of the same |
 | `hopfion3d_extension.json` | Checkpointed N=96 claim-15 extension, four 3000-step chunks to t=6.0 (<15 min each, G-003); not part of make results |
 | `hopfion3d_extension.md` | Human-readable version of the same |
+| `hopfion_purefn_stability.json` | Pure-FN N=64 candidate Hessian, eight lowest tangent modes (<15 min, G-003); not part of make results |
+| `hopfion_purefn_stability.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

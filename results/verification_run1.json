@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T11:43:45+00:00",
-    "git_commit": "023a0e59c95c8bbf1a43a370feefdf6a5187c2be",
+    "generated_utc": "2026-10-30T12:22:39+00:00",
+    "git_commit": "7a4ddef40000b7f00d662be627a7f6670aad74a8",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "a6501d5f763ecddaf8a85d9a9803bbd9d49060062ba11fada4dc8cd499ce9b8f",
-      "results_sha256": "6c2464f61f76642b29bc2ce448239f2f4f7b1d7371a2de23dd7a08b34458c585"
+      "source_sha256": "8e219eb8fdc2fb69fd415f1cdf11a8f5c1d9fb1e2e285eb0a59cc30670249771",
+      "results_sha256": "b078b7706020937694df428610a7995451caba5af8da050f9eb6ec51e763bc74"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -553,6 +553,20 @@
       "claim": "14d: N=64 scale candidate is a saddle",
       "passed": true,
       "detail": "min=-5.799863, negative=8",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14b: pure-FN candidate is the N=64 mu=0 relax",
+      "passed": true,
+      "detail": "H=0.999999932, rms=3.154e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "14e: pure-FN Hessian verdict follows the negative tolerance",
+      "passed": true,
+      "detail": "min=-2.600799, negative=8",
       "expected": null,
       "observed": null
     },
@@ -1250,8 +1264,8 @@
       "observed": null
     }
   ],
-  "total": 176,
-  "passed": 176,
+  "total": 178,
+  "passed": 178,
   "failed": 0,
   "failures": []
 }

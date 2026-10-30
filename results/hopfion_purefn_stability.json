@@ -1,0 +1,91 @@
+{
+  "candidate": {
+    "E": 356.7327000549187,
+    "E2": 217.45643237694617,
+    "E4": 139.27626767797258,
+    "H": 0.9999999315531043,
+    "H_upsampled": 0.9999999999999574,
+    "V": 0.0,
+    "Z3": 2.539475113562571e-06,
+    "force_rms": 0.0031540378436494517,
+    "max_bond": 0.5856948219114572,
+    "min_pre_norm": 0.9999999999999998,
+    "virial": 78.18016469897358
+  },
+  "elapsed_seconds": 100.41872420000072,
+  "meta": {
+    "config": {
+      "boundary": "fixed vacuum faces",
+      "dt": 0.0005,
+      "k_eigenvalues": 8,
+      "length": 10.0,
+      "max_wall_seconds": 900.0,
+      "mu": 0.0,
+      "n": 64,
+      "scope": "pure-FN candidate Hessian; evidence at one grid, not a proof",
+      "seed": 20261026,
+      "steps": 1200,
+      "upsample_factor": 2
+    },
+    "config_sha256": "65d81240159f72d1b29f22e43bab2b50e33b694e7303aedebf3bccfe06908536",
+    "generated_utc": "2026-10-30T12:20:10+00:00",
+    "git": {
+      "commit": "7a4ddef40000b7f00d662be627a7f6670aad74a8",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "spectrum": {
+    "dimension": 476656,
+    "min_eigenvalue": -2.6007986234503186,
+    "n": 64,
+    "near_zero_count": 0,
+    "negative_count": 8,
+    "requested_k": 8,
+    "smallest_eigenvalues": [
+      -2.6007986234503186,
+      -2.6007986234503107,
+      -2.4560512193496784,
+      -2.4560512193496775,
+      -2.167257738815663,
+      -2.1592558502604953,
+      -1.9516524687101289,
+      -1.9066865307697332
+    ]
+  },
+  "validation": {
+    "dense_smallest": [
+      -7.491827879910922,
+      -7.474881172256541,
+      -7.474876747147412,
+      -6.729622318220894
+    ],
+    "dimension": 432,
+    "max_abs_error": 1.3322676295501878e-15,
+    "n": 8,
+    "operator_smallest": [
+      -7.491827879910888,
+      -7.474881172256523,
+      -7.474876747147424,
+      -6.729622318220878
+    ],
+    "passed": true,
+    "symmetry_error": 6.661338147750939e-16
+  },
+  "verdict": {
+    "candidate_status": "FALSIFIED (negative Hessian modes at N=64)",
+    "claim_14b_status": "UNVERIFIED",
+    "local_minimum_at_N64": false,
+    "note": "The Hessian acts on the two-dimensional tangent space at every site, so the radial normalization modes are removed. A negative eigenvalue falsifies this candidate as a local minimum; a positive spectrum is evidence at one grid, not a stability proof. Fixed vacuum boundaries lift exact translation zero modes.",
+    "operator_validated": true,
+    "stable_at_N64_proved": false
+  }
+}

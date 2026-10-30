@@ -1,60 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "claim15-n96-extension-v1",
+    "task_id": "claim14b-purefn-hessian-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793360700.438465,
+    "updated_at": 1793363014.7207754,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793360700.5660355
+    "completed_at": 1793363014.8478262
   },
   "checkpoints": [
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 9",
-      "phase_num": 3,
-      "description": "Reforge stage 9: window 26, 2 commit(s), 53 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793292681.1445875,
-      "timestamp_str": "2026-10-29 19:51:21",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 9",
-      "phase_num": 3,
-      "description": "Reforge stage 9: run stopped at stage 9; resume it with `reforge resume`",
-      "files_affected": [],
-      "status": "suspended",
-      "timestamp": 1793292867.3357632,
-      "timestamp_str": "2026-10-29 19:54:27",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "phase 3",
-      "phase_num": 3,
-      "description": "checklists: passed (test, hygiene, guidelines, secrets); reforge run-1 complete",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793293127.6142771,
-      "timestamp_str": "2026-10-29 19:58:47",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'reforge:run-1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793344051.3409455,
-      "timestamp_str": "2026-10-30 10:07:31",
-      "agent": "opencode"
-    },
     {
       "task_id": "fluid-universe-consistency-v1",
       "phase": "planning",
@@ -249,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793360700.5660367,
       "timestamp_str": "2026-10-30 14:45:00",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-purefn-hessian-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-005 and add failing tests for classifying the pure-FN candidate Hessian",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793362120.8495622,
+      "timestamp_str": "2026-10-30 15:08:40",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The only stability test so far used the scale-iteration candidate, which is a saddle (14d). The pure-FN N=64 field at 1200 steps is near-stationary with H=0.99999993 and force RMS 0.00315, but its tangent Hessian has never been computed; it is a different candidate and may be a local minimum.",
+        "benefits": "A positive spectrum would give the first numerical local-minimum evidence for claim 14b; a negative spectrum would falsify this candidate too and strengthen the negative result.",
+        "risks": "contract: claim status can rise only to NUMERIC at one grid, never a proof; dependency: scipy eigsh and JAX already declared; concurrency: single writer; state: one new result file; cost: 1200-step N=64 relax plus an 8-mode N=64 matrix-free spectrum, under the 900 s cap",
+        "mitigation": "Reuse the validated tangent operator and the operator-validation N=8 check; pre-register the -1e-6 negative tolerance; time the whole diagnostic and abort before writing if it exceeds 900 s"
+      }
+    },
+    {
+      "task_id": "claim14b-purefn-hessian-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Pure-FN N=64 candidate (H=0.999999932, rms=3.154e-3) has 8 negative tangent modes, min -2.600799; 14e FALSIFIED, 14b UNVERIFIED; result and docs updated; 111.7 s",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793363010.3150778,
+      "timestamp_str": "2026-10-30 15:23:30",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-purefn-hessian-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 178/178 accepted (2 new 14b/14e checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793363014.7207754,
+      "timestamp_str": "2026-10-30 15:23:34",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim14b-purefn-hessian-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'claim14b-purefn-hessian-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793363014.8478277,
+      "timestamp_str": "2026-10-30 15:23:34",
       "agent": "opencode"
     }
   ]
