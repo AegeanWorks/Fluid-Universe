@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `134`
+- **Total Python Modules**: `137`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `735`
+- **Total Top-Level Functions**: `749`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `18508`
+- **Total Source Lines**: `18875`
 
 ---
 
@@ -547,6 +547,17 @@
 
 **Functions:**
 - `def run_water_electron_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_pressure_report.py`](phenomenology/water_pressure_report.py)
+> *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
+
+**Size**: `139` lines (`5682` bytes)
+
+**Functions:**
+- `def run_water_pressure_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1311,6 +1322,21 @@
 
 ---
 
+### [`tests/test_water_pressure.py`](tests/test_water_pressure.py)
+> *Self-consistent finite-well pressure balance (claim 37).*
+
+**Size**: `67` lines (`2161` bytes)
+
+**Functions:**
+- `def test_surface_energy_scale()`
+- `def test_equilibrium_at_born_depth()`
+- `def test_pressure_minimum_is_a_minimum()`
+- `def test_vde_matched_depth()`
+- `def test_capillary_radius_is_not_the_pressure_minimum()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_rays.py`](tests/test_water_rays.py)
 > *Radial ray tests at the water horizon (claim 30).*
 
@@ -1780,6 +1806,20 @@
 
 ---
 
+### [`theory/water_pressure.py`](theory/water_pressure.py)
+> *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
+
+**Size**: `123` lines (`4111` bytes)
+
+**Functions:**
+- `def surface_energy_ev(radius_m)` - *Surface energy 4 pi gamma R^2, in eV.*
+- `def total_energy_ev(radius_m, depth_ev)` - *Finite-well 1s plus surface energy, or None if the well is unbound.*
+- `def equilibrium_radius(depth_ev, lower_m, upper_m)` - *Radius minimizing the finite-well plus surface energy.*
+- `def vde_matched_depth(binding_ev)` - *Depth whose pressure-balanced cavity has the requested 1s binding.*
+- `def pressure_scales()` - *Collect the pressure-balanced scan and the VDE-matched point.*
+
+---
+
 ### [`theory/water_rays.py`](theory/water_rays.py)
 > *Radial rays at the shallow-water acoustic horizon (claim 30, ADR-021).*
 
@@ -1857,7 +1897,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2355` lines (`93673` bytes)
+**Size**: `2391` lines (`95179` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1916,6 +1956,7 @@
 - `def audit_water_absorption(audit)`
 - `def audit_water_vde(audit)`
 - `def audit_water_softwall(audit)`
+- `def audit_water_pressure(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1945,7 +1986,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `167` lines (`4329` bytes)
+**Size**: `169` lines (`4381` bytes)
 
 **Functions:**
 - `def _source_files()`

@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T20:03:30+00:00 | `0bb0d2162efd17c16425d86dc9518099a6240752` | 222/222 | `02610c39c1fc0e2e...` | `2addd9c8df182c10...` |
-| run2 | 2026-10-30T20:03:47+00:00 | `0bb0d2162efd17c16425d86dc9518099a6240752` | 222/222 | `02610c39c1fc0e2e...` | `2addd9c8df182c10...` |
+| run1 | 2026-10-30T20:21:31+00:00 | `5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9` | 224/224 | `6ee7592d23a76147...` | `683ce53eb7d308a5...` |
+| run2 | 2026-10-30T20:21:38+00:00 | `5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9` | 224/224 | `6ee7592d23a76147...` | `683ce53eb7d308a5...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -106,6 +106,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 35: the capillary/Born cavity is outside the VDE band | PASS | PASS | YES | YES | Rcap=2.858e-10, Born=2.486988, Rreq=3.732e-10, Vreq=4.997523 |
 | 36: the Born depth is below the VDE, so the cavity depth is too small | PASS | PASS | YES | YES | Born=2.486988, VDE=3.27, difference=0.783012, ratio=1.314844 |
 | 36: the soft-wall scan trades radius for depth | PASS | PASS | YES | YES | a=1.5, R=3.078e-10, V0=6.643300, Born=2.486988 |
+| 37: the VDE-matched pressure cavity has a gap of 1.344 eV, not 1.7 eV | PASS | PASS | YES | YES | V0=4.610697, R=4.336e-10, binding=3.270000, gap=1.344125 |
+| 37: the pressure-balanced radius is larger than the crude capillary radius | PASS | PASS | YES | YES | R=3.973e-10, Rcrude=2.858e-10, E1s=-1.177351, gap=1.132993 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

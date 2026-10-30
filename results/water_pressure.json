@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "config": {
+      "gamma_water_n_m": 0.0728,
+      "observed_absorption_ev": 1.7,
+      "scope": "finite-well pressure balance with surface tension"
+    },
+    "config_sha256": "4c1f7dc55448723bf3527381775c9ff6c341570c75b0ae55e5e46c96a57421b2",
+    "generated_utc": "2026-10-30T20:18:21+00:00",
+    "git": {
+      "commit": "5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "scales": {
+      "born_depth_ev": 2.4869878638766574,
+      "crude_capillary": {
+        "radius_m": 2.8580710555848763e-10,
+        "total_energy_ev": -0.06133315371367615
+      },
+      "gamma_water_n_m": 0.0728,
+      "scans": [
+        {
+          "binding_ev": 1.1773509609430732,
+          "depth_ev": 2.4869878638766574,
+          "energy_1p_ev": -0.0443576599272375,
+          "energy_1s_ev": -1.1773509609430732,
+          "gap_ev": 1.1329933010158357,
+          "radius_m": 3.973423200472016e-10,
+          "surface_energy_ev": 0.9014891334773064,
+          "total_energy_ev": -0.2758618274657668,
+          "u_1p": 3.181502116290675,
+          "u_1s": 2.329586318303858
+        },
+        {
+          "binding_ev": 1.947874520422414,
+          "depth_ev": 3.27,
+          "energy_1p_ev": -0.681130064516204,
+          "energy_1s_ev": -1.947874520422414,
+          "gap_ev": 1.26674445590621,
+          "radius_m": 4.16321250519302e-10,
+          "surface_energy_ev": 0.9896645371448729,
+          "total_energy_ev": -0.958209983277541,
+          "u_1p": 3.4318020326326124,
+          "u_1s": 2.452468559958488
+        },
+        {
+          "binding_ev": 2.667017029646207,
+          "depth_ev": 4.0,
+          "energy_1p_ev": -1.3491211976727877,
+          "energy_1s_ev": -2.667017029646207,
+          "gap_ev": 1.317895831973419,
+          "radius_m": 4.2708852660790207e-10,
+          "surface_energy_ev": 1.0415177093163501,
+          "total_energy_ev": -1.6254993203298567,
+          "u_1p": 3.562471285318007,
+          "u_1s": 2.526205851986232
+        },
+        {
+          "binding_ev": 3.1606145442666564,
+          "depth_ev": 4.5,
+          "energy_1p_ev": -1.8205630482749053,
+          "energy_1s_ev": -3.1606145442666564,
+          "gap_ev": 1.340051495991751,
+          "radius_m": 4.3253013729620813e-10,
+          "surface_energy_ev": 1.068227110628653,
+          "total_energy_ev": -2.0923874336380033,
+          "u_1p": 3.62724320641251,
+          "u_1s": 2.564529470249682
+        },
+        {
+          "binding_ev": 3.6549709473654266,
+          "depth_ev": 5.0,
+          "energy_1p_ev": -2.2982739322104475,
+          "energy_1s_ev": -3.6549709473654266,
+          "gap_ev": 1.356697015154979,
+          "radius_m": 4.3697097179222227e-10,
+          "surface_energy_ev": 1.0902749267282157,
+          "total_energy_ev": -2.5646960206372107,
+          "u_1p": 3.6796946027996364,
+          "u_1s": 2.5963124256206154
+        },
+        {
+          "binding_ev": 4.149994133623672,
+          "depth_ev": 5.5,
+          "energy_1p_ev": -2.7802417397984223,
+          "energy_1s_ev": -4.149994133623672,
+          "gap_ev": 1.3697523938252494,
+          "radius_m": 4.406913674524823e-10,
+          "surface_energy_ev": 1.1089192850847727,
+          "total_energy_ev": -3.0410748485388988,
+          "u_1p": 3.723387421541025,
+          "u_1s": 2.6232573774071257
+        },
+        {
+          "binding_ev": 4.645548170257687,
+          "depth_ev": 6.0,
+          "energy_1p_ev": -3.2651936211736365,
+          "energy_1s_ev": -4.645548170257687,
+          "gap_ev": 1.3803545490840503,
+          "radius_m": 4.4386380571351684e-10,
+          "surface_energy_ev": 1.1249424740833838,
+          "total_energy_ev": -3.520605696174303,
+          "u_1p": 3.760551635727821,
+          "u_1s": 2.6464887142509994
+        }
+      ],
+      "vde_matched": {
+        "binding_ev": 3.270000000000042,
+        "depth_ev": 4.610696624847465,
+        "energy_1p_ev": -1.9258749256657448,
+        "energy_1s_ev": -3.270000000000042,
+        "gap_ev": 1.3441250743342974,
+        "radius_m": 4.335877860432495e-10,
+        "surface_energy_ev": 1.0734576844368768,
+        "total_energy_ev": -2.1965423155631654,
+        "u_1p": 3.639764594721038,
+        "u_1s": 2.5720584255452463
+      }
+    },
+    "verdict": {
+      "claim_37_status": "NUMERIC (pressure-balance radius 3.973 Angstrom; VDE-matched gap 1.344 eV)",
+      "crude_not_minimum": true,
+      "gap_below_observed": true,
+      "note": "The fluid pressure balance makes the cavity larger and the 1s->1p gap smaller. At the Born depth the minimum is R=3.973 Angstrom, binding 1.177 eV, gap 1.133 eV. At the VDE-matched depth V0=4.611 eV the minimum is R=4.336 Angstrom, binding 3.27 eV, gap 1.344 eV, not 1.7 eV. The crude fixed-radius cavity is not the pressure minimum. Adding the R-dependent Born energy separately double-counts the solvation and collapses the cavity; a self-consistent dielectric interface is the next test.",
+      "pressure_radius_larger": true,
+      "vde_matched": true
+    }
+  }
+}

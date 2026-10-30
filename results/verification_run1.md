@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**222/222 checks passed.**
+**224/224 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -129,6 +129,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 35: the capillary/Born cavity is outside the VDE band | PASS | Rcap=2.858e-10, Born=2.486988, Rreq=3.732e-10, Vreq=4.997523 |
 | 36: the Born depth is below the VDE, so the cavity depth is too small | PASS | Born=2.486988, VDE=3.27, difference=0.783012, ratio=1.314844 |
 | 36: the soft-wall scan trades radius for depth | PASS | a=1.5, R=3.078e-10, V0=6.643300, Born=2.486988 |
+| 37: the pressure-balanced radius is larger than the crude capillary radius | PASS | R=3.973e-10, Rcrude=2.858e-10, E1s=-1.177351, gap=1.132993 |
+| 37: the VDE-matched pressure cavity has a gap of 1.344 eV, not 1.7 eV | PASS | V0=4.610697, R=4.336e-10, binding=3.270000, gap=1.344125 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

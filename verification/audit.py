@@ -1875,6 +1875,41 @@ def audit_water_softwall(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Self-consistent finite-well pressure balance (claim 37/ADR-028)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_pressure(audit: Audit) -> None:
+    payload = load_results("water_pressure.json")
+    result = payload["result"]
+    scales = result["scales"]
+    born = scales["scans"][0]
+    vde = scales["vde_matched"]
+    crude = scales["crude_capillary"]
+    verdict = result["verdict"]
+    audit.record(
+        "37: the pressure-balanced radius is larger than the crude capillary radius",
+        born["radius_m"] > 1.2 * crude["radius_m"]
+        and born["total_energy_ev"] < crude["total_energy_ev"]
+        and born["binding_ev"] > 1.0
+        and 1.0 < born["gap_ev"] < 1.2
+        and verdict["pressure_radius_larger"] is True,
+        f"R={born['radius_m']:.3e}, Rcrude={crude['radius_m']:.3e}, "
+        f"E1s={born['energy_1s_ev']:.6f}, gap={born['gap_ev']:.6f}",
+    )
+    audit.record(
+        "37: the VDE-matched pressure cavity has a gap of 1.344 eV, not 1.7 eV",
+        abs(vde["binding_ev"] - 3.27) < 0.01
+        and 1.3 < vde["gap_ev"] < 1.4
+        and vde["radius_m"] > 4.0e-10
+        and verdict["vde_matched"] is True
+        and verdict["claim_37_status"].startswith("NUMERIC"),
+        f"V0={vde['depth_ev']:.6f}, R={vde['radius_m']:.3e}, "
+        f"binding={vde['binding_ev']:.6f}, gap={vde['gap_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2292,6 +2327,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_absorption(audit)
     audit_water_vde(audit)
     audit_water_softwall(audit)
+    audit_water_pressure(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

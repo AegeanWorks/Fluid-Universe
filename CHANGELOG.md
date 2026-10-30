@@ -736,3 +736,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 36 is **NUMERIC (hard depth bound; Woods-Saxon scan)**. Either the VDE-to-1s identification, the cavity model, or the 1.7 eV assignment must change.
 
 - Verification after the soft-wall cavity: two separate runs, 222/222 checks each.
+
+## 2026-10-30 - Self-consistent finite-well pressure balance (claim 37, ADR-028)
+
+**Added**
+
+- `theory/water_pressure.py`, `phenomenology/water_pressure_report.py`, `make waterpressure`, `tests/test_water_pressure.py`, and `results/water_pressure.{json,md}`.
+
+**Results**
+
+- At fixed \(V_0\), minimizing \(E_{1s}(R,V_0)+4\pi\gamma R^2\) at the Born depth gives \(R=3.973423200\times10^{-10}\) m, \(E_{1s}=-1.177350961\) eV, gap \(1.132993301\) eV, surface \(0.901489133\) eV, total \(-0.275861827\) eV.
+- The crude fixed-radius total is \(-0.061333154\) eV; the pressure radius is \(1.390246\times\) the crude radius.
+- VDE-matched depth \(V_0=4.610696625\) eV gives \(R=4.335877860\times10^{-10}\) m, \(E_{1s}=-3.27\) eV, \(E_{1p}=-1.925874926\) eV, gap \(1.344125074\) eV.
+- Claim 37 is **NUMERIC (pressure-balance radius 3.973 Angstrom; VDE-matched gap 1.344 eV)**. The pressure balance makes the cavity larger and the gap smaller; the 1.7 eV gap is not matched.
+- Adding the \(R\)-dependent Born energy separately double-counts the solvation and collapses the cavity; a self-consistent dielectric interface is the next test.
+
+- Verification after the self-consistent pressure balance: two separate runs, 224/224 checks each.

@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-softwall-v1",
+    "task_id": "water-pressure-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793390748.3092031,
+    "updated_at": 1793391770.4304368,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793390748.80451
+    "completed_at": 1793391770.5618498
   },
   "checkpoints": [
-    {
-      "task_id": "water-electron-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-023 and add failing tests for the hydrated-electron cavity scale",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793383169.8773265,
-      "timestamp_str": "2026-10-30 20:59:29",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Water's dielectric constant and surface tension are two of its distinctive properties. A screened hydrogen state gives a 41.5 \u00c5, 2.2 meV atom; the balance of electron quantum pressure and surface tension gives a 2.86 \u00c5 cavity and 0.93 eV, close to the hydrated electron scale. This is a scale test, not a derivation of the 1.7 eV absorption.",
-        "benefits": "A positive water-property link to a real quantum particle, with explicit model limits.",
-        "risks": "contract: new claim 32, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; data: the 1.7 eV hydrated-electron absorption is a literature value, so the comparison is a scale test",
-        "mitigation": "Use water at 20 C; derive the cavity minimum analytically; compare the screened hydrogen, capillary cavity and infinite-well scales; state that the 0.93 eV result is a factor 1.8 below the observed 1.7 eV"
-      }
-    },
-    {
-      "task_id": "water-electron-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Hydrated electron: screened hydrogen a*=41.5 A, E=-2.2 meV; capillary cavity R=2.858 A, E=0.933 eV vs observed 1.7 eV (factor 1.8); claim 32 NUMERIC (cavity scale match)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793383755.7807102,
-      "timestamp_str": "2026-10-30 21:09:15",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-electron-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 214/214 accepted (2 new claim-32 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793383761.1339808,
-      "timestamp_str": "2026-10-30 21:09:21",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-electron-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-electron-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793383761.372063,
-      "timestamp_str": "2026-10-30 21:09:21",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-well-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793390748.804512,
       "timestamp_str": "2026-10-30 23:05:48",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-pressure-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-028 and add failing tests for the self-consistent finite-well pressure balance; predict R=3.973423 A at Born depth with E1s=-1.177351, gap=1.132993; VDE-matched V0=4.610697 eV gives R=4.335878 A, gap=1.344125",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793391410.8808134,
+      "timestamp_str": "2026-10-30 23:16:50",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The fixed-radius models ignored the fluid pressure balance. The cavity radius is where the electron pressure balances surface tension; the finite-well 1s energy makes the equilibrium radius larger than the crude 2.858 A.",
+        "benefits": "A fluid-mechanical radius, a self-consistent VDE matching, and a test of whether the 1.7 eV gap can survive the pressure balance.",
+        "risks": "contract: new claim 37; dependency: scipy (declared); concurrency: none; state: one result file; model: fixed well depth, no separate Born term; numerical: minimization and root solving",
+        "mitigation": "Minimize the finite-well energy plus surface energy, check the pressure balance, pre-register the Born-depth and VDE-matched points, and state that adding the Born term separately double-counts and collapses the cavity"
+      }
+    },
+    {
+      "task_id": "water-pressure-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Pressure balance: Born depth minimum R=3.973423 A, E1s=-1.177351 eV, gap=1.132993 eV; VDE-matched V0=4.610697 eV, R=4.335878 A, gap=1.344125 eV; claim 37 NUMERIC",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793391767.636922,
+      "timestamp_str": "2026-10-30 23:22:47",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-pressure-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 224/224 accepted (2 new claim-37 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793391770.4304368,
+      "timestamp_str": "2026-10-30 23:22:50",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-pressure-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-pressure-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793391770.5618515,
+      "timestamp_str": "2026-10-30 23:22:50",
       "agent": "opencode"
     }
   ]

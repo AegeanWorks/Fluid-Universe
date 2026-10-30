@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T20:03:47+00:00",
-    "git_commit": "0bb0d2162efd17c16425d86dc9518099a6240752",
+    "generated_utc": "2026-10-30T20:21:38+00:00",
+    "git_commit": "5ed248e6c0f4b1329b217ae0d2b7da8facf7bbb9",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "02610c39c1fc0e2e1efd2a2cdc467d864ded195964dcfa2b22c360948707646d",
-      "results_sha256": "2addd9c8df182c1009a20c95938b2002437a4ed8d8b0ff10f299d3e666fa9d22"
+      "source_sha256": "6ee7592d23a7614748a130e7fbc2bf2932340857dccbe2ee622f939e251703f7",
+      "results_sha256": "683ce53eb7d308a569660d481c87231a2dcafd786477f3c06ab8002894632c52"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -879,6 +879,20 @@
       "observed": null
     },
     {
+      "claim": "37: the pressure-balanced radius is larger than the crude capillary radius",
+      "passed": true,
+      "detail": "R=3.973e-10, Rcrude=2.858e-10, E1s=-1.177351, gap=1.132993",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "37: the VDE-matched pressure cavity has a gap of 1.344 eV, not 1.7 eV",
+      "passed": true,
+      "detail": "V0=4.610697, R=4.336e-10, binding=3.270000, gap=1.344125",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1572,8 +1586,8 @@
       "observed": null
     }
   ],
-  "total": 222,
-  "passed": 222,
+  "total": 224,
+  "passed": 224,
   "failed": 0,
   "failures": []
 }

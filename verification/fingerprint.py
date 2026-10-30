@@ -122,6 +122,8 @@ RESULT_FILES = (
     "water_vde.md",
     "water_softwall.json",
     "water_softwall.md",
+    "water_pressure.json",
+    "water_pressure.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
