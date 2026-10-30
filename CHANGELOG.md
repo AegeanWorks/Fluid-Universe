@@ -597,3 +597,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 27 is **PROVEN (acoustic horizon; analogue)**. This is a long-wavelength acoustic analogy; capillary dispersion breaks the metric at short scales.
 
 - Verification after the shallow-water acoustic horizon: two separate runs, 204/204 checks each.
+
+## 2026-10-30 - Capillary validity of the shallow-water horizon (claim 28, ADR-019)
+
+**Added**
+
+- Validity functions in `theory/water_analogue.py`, `phenomenology/water_validity_report.py`, `make watervalidity`, `tests/test_water_validity.py`, and `results/water_validity.{json,md}`.
+
+**Results**
+
+- Water at 20 C: \(\ell_c=\sqrt{\gamma/(\rho g)}=2.726879\times10^{-3}\) m.
+- Claim-27 lab example: \(r_H=1.606888\times10^{-3}\) m, \(r_H/\ell_c=0.589\), capillary ratio 2.8798 -> **not** long-wavelength.
+- \(r_H\ge10\ell_c\) requires \(Q\ge1.696994\times10^{-2}\) m³/s. At \(Q=0.05\), \(r_H=8.03444\times10^{-2}\) m, capillary ratio \(1.152\times10^{-3}\), \(\kappa=12.209936\) m/s², \(T_H=1.484316\times10^{-11}\) K.
+- Claim 28 is **PROVEN (capillary validity condition)**. Claim 27's formula remains exact in the long-wavelength limit; its lab example is flagged as capillary-dominated.
+
+- Verification after the capillary validity check: two separate runs, 206/206 checks each.

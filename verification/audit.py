@@ -1570,6 +1570,37 @@ def audit_water_analogue(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Capillary validity of the shallow-water horizon (claim 28/ADR-019)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_validity(audit: Audit) -> None:
+    payload = load_results("water_validity.json")
+    result = payload["result"]
+    lab = result["lab"]
+    valid = result["valid_example"]
+    verdict = result["verdict"]
+    audit.record(
+        "28: lab horizon is capillary-dominated",
+        lab["long_wavelength"] is False
+        and lab["capillary_ratio"] > 1.0
+        and lab["horizon_radius_m"] < lab["capillary_length_m"],
+        f"r_H={lab['horizon_radius_m']:.3e}, "
+        f"ell_c={lab['capillary_length_m']:.3e}, "
+        f"ratio={lab['capillary_ratio']:.6f}",
+    )
+    audit.record(
+        "28: a larger flow reaches the long-wavelength regime",
+        valid["long_wavelength"] is True
+        and valid["capillary_ratio"] < 1e-2
+        and abs(result["minimum_flow_m3_s"] - 0.01696993924076904) < 1e-12
+        and verdict["claim_28_status"].startswith("PROVEN"),
+        f"Q_min={result['minimum_flow_m3_s']:.6e}, "
+        f"ratio={valid['capillary_ratio']:.3e}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1978,6 +2009,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_hydrogen_fluid(audit)
     audit_hydrogen_vortex(audit)
     audit_water_analogue(audit)
+    audit_water_validity(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

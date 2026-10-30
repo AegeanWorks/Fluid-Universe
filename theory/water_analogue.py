@@ -89,3 +89,57 @@ def lab_scales(
         "surface_gravity_m_s2": kappa,
         "hawking_temperature_k": hawking_temperature(kappa),
     }
+
+
+def capillary_length(
+    gamma: float = 0.0728,
+    density: float = 998.0,
+    gravity: float = GRAVITY,
+) -> float:
+    if gamma <= 0.0 or density <= 0.0 or gravity <= 0.0:
+        raise ValueError("gamma, density and gravity must be positive")
+    return math.sqrt(gamma / (density * gravity))
+
+
+def capillary_ratio(horizon_radius_value: float, length: float) -> float:
+    if horizon_radius_value <= 0.0 or length <= 0.0:
+        raise ValueError("radii must be positive")
+    return (length / horizon_radius_value) ** 2
+
+
+def long_wavelength_min_flow(
+    depth: float,
+    gravity: float = GRAVITY,
+    gamma: float = 0.0728,
+    density: float = 998.0,
+    ratio: float = 10.0,
+) -> float:
+    if ratio <= 0.0:
+        raise ValueError("ratio must be positive")
+    speed = sound_speed(depth, gravity)
+    length = capillary_length(gamma, density, gravity)
+    return 2.0 * math.pi * depth * speed * ratio * length
+
+
+def validity(
+    depth: float = 0.1,
+    flow_rate: float = 1e-3,
+    gamma: float = 0.0728,
+    density: float = 998.0,
+    gravity: float = GRAVITY,
+    ratio: float = 10.0,
+) -> dict:
+    radius = horizon_radius(flow_rate, depth, gravity)
+    length = capillary_length(gamma, density, gravity)
+    return {
+        "depth_m": depth,
+        "flow_rate_m3_s": flow_rate,
+        "horizon_radius_m": radius,
+        "capillary_length_m": length,
+        "capillary_ratio": capillary_ratio(radius, length),
+        "long_wavelength": bool(radius >= ratio * length),
+        "required_ratio": ratio,
+        "minimum_flow_m3_s": long_wavelength_min_flow(
+            depth, gravity, gamma, density, ratio
+        ),
+    }

@@ -104,6 +104,8 @@ RESULT_FILES = (
     "hydrogen_vortex.md",
     "water_analogue.json",
     "water_analogue.md",
+    "water_validity.json",
+    "water_validity.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

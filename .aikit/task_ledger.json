@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-analogue-v1",
+    "task_id": "water-validity-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793380003.1469088,
+    "updated_at": 1793380603.9254901,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793380003.4148974
+    "completed_at": 1793380604.1706245
   },
   "checkpoints": [
-    {
-      "task_id": "coherent-fluid-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-014 and add failing tests for the moving-center Gaussian reduction",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793376445.7360334,
-      "timestamp_str": "2026-10-30 19:07:25",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The ground-state Gaussian reduction derived the width but held the center fixed. A displaced Gaussian tests whether the fluid equations separate into classical center motion and the quantum width, and covers the coherent state without the node singularity of the first excited state.",
-        "benefits": "A second self-consistent derivation: the center follows x0''=-omega^2 x0 and the width keeps the Ermakov fixed point, with a numerical check of the trajectory and energy.",
-        "risks": "contract: new claim 23, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: coupled RK4 and energy conservation",
-        "mitigation": "Derive the center and width equations analytically; pre-register the 2 pi period, the fixed-point width, and an energy-drift tolerance; integrate with RK4 at dt=1e-3"
-      }
-    },
-    {
-      "task_id": "coherent-fluid-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Moving-center Gaussian: x0(pi)=-0.999999917, x0(2pi)=0.999999983, period 6.284000 vs 2pi; width error 0; energy drift 7.1e-15; claim 23 PROVEN",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793377100.897148,
-      "timestamp_str": "2026-10-30 19:18:20",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "coherent-fluid-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 196/196 accepted (2 new claim-23 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793377105.7583337,
-      "timestamp_str": "2026-10-30 19:18:25",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "coherent-fluid-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'coherent-fluid-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793377106.0186296,
-      "timestamp_str": "2026-10-30 19:18:26",
-      "agent": "opencode"
-    },
     {
       "task_id": "excited-node-v1",
       "phase": "implementation",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793380003.414899,
       "timestamp_str": "2026-10-30 20:06:43",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-validity-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-019 and add failing tests for the capillary validity of the acoustic horizon",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793380187.5354774,
+      "timestamp_str": "2026-10-30 20:09:47",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 27's lab example uses r_H=1.6 mm. Water's capillary length is about 2.7 mm, so the horizon may be in the capillary-dispersion regime, where the long-wavelength acoustic metric does not apply.",
+        "benefits": "A design criterion for a valid analogue horizon: the flow rate must make r_H much larger than the capillary length. It prevents overclaiming the lab temperature and uses water's surface tension and density.",
+        "risks": "contract: new claim 28 and a caveat on claim 27's example; dependency: numpy only; concurrency: none; state: one result file; physics: the capillary length depends on temperature through gamma and rho",
+        "mitigation": "Use water at 20 C (rho=998 kg/m3, gamma=0.0728 N/m); compute ell_c, the capillary/gravity ratio at r_H, the minimum Q for r_H=10 ell_c, and a valid Q example"
+      }
+    },
+    {
+      "task_id": "water-validity-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Capillary validity: ell_c=2.726879e-3 m; lab r_H=1.607 mm is capillary-dominated (ratio 2.8798); r_H>=10 ell_c needs Q>=1.697e-2 m3/s; Q=0.05 gives ratio 1.152e-3; claim 28 PROVEN",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793380596.6534412,
+      "timestamp_str": "2026-10-30 20:16:36",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-validity-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 206/206 accepted (2 new claim-28 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793380603.9254901,
+      "timestamp_str": "2026-10-30 20:16:43",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-validity-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-validity-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793380604.1706278,
+      "timestamp_str": "2026-10-30 20:16:44",
       "agent": "opencode"
     }
   ]

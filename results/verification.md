@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T17:04:49+00:00 | `2e4f283a9477348337a8101234773b90f41fd012` | 204/204 | `68f625c84ff7adfc...` | `21c5996010c56258...` |
-| run2 | 2026-10-30T17:05:04+00:00 | `2e4f283a9477348337a8101234773b90f41fd012` | 204/204 | `68f625c84ff7adfc...` | `21c5996010c56258...` |
+| run1 | 2026-10-30T17:14:57+00:00 | `fe63e51888c958533cc7791577aaceb86d7cf3c5` | 206/206 | `9572e556ca803df5...` | `03580cf93faae88e...` |
+| run2 | 2026-10-30T17:15:11+00:00 | `fe63e51888c958533cc7791577aaceb86d7cf3c5` | 206/206 | `9572e556ca803df5...` | `03580cf93faae88e...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -83,6 +83,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 26: hydrogen 2p has a quantized vortex with the 4a0 peak | PASS | PASS | YES | YES | a0 peak=4.000000, circulation=6.283185307 |
 | 27: shallow-water horizon has v/c=1 and g_tt=0 | PASS | PASS | YES | YES | v/c=1.000000000, g_tt=-2.220e-16 |
 | 27: surface gravity and analogue temperature are positive | PASS | PASS | YES | YES | kappa=610.496783, T=7.422e-10 |
+| 28: a larger flow reaches the long-wavelength regime | PASS | PASS | YES | YES | Q_min=1.696994e-02, ratio=1.152e-03 |
+| 28: lab horizon is capillary-dominated | PASS | PASS | YES | YES | r_H=1.607e-03, ell_c=2.727e-03, ratio=2.879788 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

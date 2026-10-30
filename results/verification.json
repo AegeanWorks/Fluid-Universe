@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "68f625c84ff7adfce54c3c103a977b01cc8a5f468f53346897736cf24496296f",
-      "results_sha256": "21c5996010c5625812919e44d857ef294a78def555b9b3dc76dd733d6b5194f3"
+      "source_sha256": "9572e556ca803df5529be5ac5e19a1c762c4dea2d65227514a8838c259bde00c",
+      "results_sha256": "03580cf93faae88ec8e8d7a752da857a650a00da6560b1e9ed4fd42c2caa1cbd"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T17:04:49+00:00",
-        "git_commit": "2e4f283a9477348337a8101234773b90f41fd012",
-        "passed": 204,
-        "total": 204,
+        "generated_utc": "2026-10-30T17:14:57+00:00",
+        "git_commit": "fe63e51888c958533cc7791577aaceb86d7cf3c5",
+        "passed": 206,
+        "total": 206,
         "failed": 0,
-        "checks_sha256": "8c0a3feddff3a50e8502eba6fcdc269c5e6b49699954d49836148d454f99c323",
+        "checks_sha256": "5ff1a6df68301ea9f90a8002920c4d96471346edace4240894bb3b3509a04e2d",
         "fingerprints": {
-          "source_sha256": "68f625c84ff7adfce54c3c103a977b01cc8a5f468f53346897736cf24496296f",
-          "results_sha256": "21c5996010c5625812919e44d857ef294a78def555b9b3dc76dd733d6b5194f3"
+          "source_sha256": "9572e556ca803df5529be5ac5e19a1c762c4dea2d65227514a8838c259bde00c",
+          "results_sha256": "03580cf93faae88ec8e8d7a752da857a650a00da6560b1e9ed4fd42c2caa1cbd"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T17:05:04+00:00",
-        "git_commit": "2e4f283a9477348337a8101234773b90f41fd012",
-        "passed": 204,
-        "total": 204,
+        "generated_utc": "2026-10-30T17:15:11+00:00",
+        "git_commit": "fe63e51888c958533cc7791577aaceb86d7cf3c5",
+        "passed": 206,
+        "total": 206,
         "failed": 0,
-        "checks_sha256": "8c0a3feddff3a50e8502eba6fcdc269c5e6b49699954d49836148d454f99c323",
+        "checks_sha256": "5ff1a6df68301ea9f90a8002920c4d96471346edace4240894bb3b3509a04e2d",
         "fingerprints": {
-          "source_sha256": "68f625c84ff7adfce54c3c103a977b01cc8a5f468f53346897736cf24496296f",
-          "results_sha256": "21c5996010c5625812919e44d857ef294a78def555b9b3dc76dd733d6b5194f3"
+          "source_sha256": "9572e556ca803df5529be5ac5e19a1c762c4dea2d65227514a8838c259bde00c",
+          "results_sha256": "03580cf93faae88ec8e8d7a752da857a650a00da6560b1e9ed4fd42c2caa1cbd"
         }
       }
     ],
@@ -586,6 +586,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "kappa=610.496783, T=7.422e-10"
+    },
+    {
+      "claim": "28: a larger flow reaches the long-wavelength regime",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Q_min=1.696994e-02, ratio=1.152e-03"
+    },
+    {
+      "claim": "28: lab horizon is capillary-dominated",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "r_H=1.607e-03, ell_c=2.727e-03, ratio=2.879788"
     },
     {
       "claim": "2a: M != M^T for generic delta",
@@ -2413,6 +2429,20 @@
       "observed": null
     },
     {
+      "claim": "28: lab horizon is capillary-dominated",
+      "passed": true,
+      "detail": "r_H=1.607e-03, ell_c=2.727e-03, ratio=2.879788",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "28: a larger flow reaches the long-wavelength regime",
+      "passed": true,
+      "detail": "Q_min=1.696994e-02, ratio=1.152e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3106,8 +3136,8 @@
       "observed": null
     }
   ],
-  "total": 204,
-  "passed": 204,
+  "total": 206,
+  "passed": 206,
   "failed": 0,
   "failures": []
 }

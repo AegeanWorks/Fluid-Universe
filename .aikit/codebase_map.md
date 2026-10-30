@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `108`
+- **Total Python Modules**: `110`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `590`
+- **Total Top-Level Functions**: `603`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `14842`
+- **Total Source Lines**: `15092`
 
 ---
 
@@ -514,6 +514,18 @@
 
 **Functions:**
 - `def run_water_analogue_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_validity_report.py`](phenomenology/water_validity_report.py)
+> *Capillary validity report for the shallow-water horizon (claim 28, ADR-019).*
+
+**Size**: `116` lines (`4314` bytes)
+
+**Functions:**
+- `def _row(flow_rate)`
+- `def run_water_validity_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1151,6 +1163,20 @@
 
 ---
 
+### [`tests/test_water_validity.py`](tests/test_water_validity.py)
+> *Capillary validity tests for the shallow-water horizon (claim 28).*
+
+**Size**: `46` lines (`1296` bytes)
+
+**Functions:**
+- `def test_capillary_length_of_water()`
+- `def test_lab_example_is_capillary_dominated()`
+- `def test_larger_flow_reaches_the_long_wavelength_regime()`
+- `def test_minimum_flow_for_ten_capillary_lengths()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`theory/__init__.py`](theory/__init__.py)
 > *Exact theory utilities for the Z3/Koide core.*
 
@@ -1464,7 +1490,7 @@
 ### [`theory/water_analogue.py`](theory/water_analogue.py)
 > *Shallow-water acoustic horizon (claim 27, ADR-018).*
 
-**Size**: `91` lines (`2645` bytes)
+**Size**: `145` lines (`4294` bytes)
 
 **Functions:**
 - `def sound_speed(depth, gravity)`
@@ -1474,6 +1500,10 @@
 - `def hawking_temperature(kappa)`
 - `def acoustic_metric(r, flow_rate, depth, gravity)`
 - `def lab_scales(depth, flow_rate, gravity)`
+- `def capillary_length(gamma, density, gravity)`
+- `def capillary_ratio(horizon_radius_value, length)`
+- `def long_wavelength_min_flow(depth, gravity, gamma, density, ratio)`
+- `def validity(depth, flow_rate, gamma, density, gravity, ratio)`
 
 ---
 
@@ -1487,7 +1517,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2041` lines (`80923` bytes)
+**Size**: `2073` lines (`82181` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1537,6 +1567,7 @@
 - `def audit_hydrogen_fluid(audit)`
 - `def audit_hydrogen_vortex(audit)`
 - `def audit_water_analogue(audit)`
+- `def audit_water_validity(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1566,7 +1597,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `149` lines (`3875` bytes)
+**Size**: `151` lines (`3927` bytes)
 
 **Functions:**
 - `def _source_files()`

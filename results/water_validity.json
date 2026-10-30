@@ -1,0 +1,61 @@
+{
+  "meta": {
+    "config": {
+      "depth_m": 0.1,
+      "gamma_n_m": 0.0728,
+      "gravity_m_s2": 9.81,
+      "required_ratio": 10.0,
+      "rho_kg_m3": 998.0,
+      "scope": "capillary validity of the shallow-water acoustic horizon"
+    },
+    "config_sha256": "1dcd2d8cadeb893e223e17565d428eb28d7b5199fdaf2bec6fb760856120404b",
+    "generated_utc": "2026-10-30T17:10:46+00:00",
+    "git": {
+      "commit": "fe63e51888c958533cc7791577aaceb86d7cf3c5",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "lab": {
+      "capillary_length_m": 0.002726879300973213,
+      "capillary_ratio": 2.8797883783539286,
+      "depth_m": 0.1,
+      "flow_rate_m3_s": 0.001,
+      "hawking_temperature_k": 7.421580272821032e-10,
+      "horizon_radius_m": 0.0016068880756049408,
+      "long_wavelength": false,
+      "minimum_flow_m3_s": 0.01696993924076904,
+      "required_ratio": 10.0,
+      "surface_gravity_m_s2": 610.4967825034645
+    },
+    "minimum_flow_m3_s": 0.01696993924076904,
+    "required_ratio": 10.0,
+    "valid_example": {
+      "capillary_length_m": 0.002726879300973213,
+      "capillary_ratio": 0.0011519153513415716,
+      "depth_m": 0.1,
+      "flow_rate_m3_s": 0.05,
+      "hawking_temperature_k": 1.484316054564206e-11,
+      "horizon_radius_m": 0.08034440378024704,
+      "long_wavelength": true,
+      "minimum_flow_m3_s": 0.01696993924076904,
+      "required_ratio": 10.0,
+      "surface_gravity_m_s2": 12.209935650069289
+    },
+    "verdict": {
+      "claim_28_status": "PROVEN (capillary validity condition)",
+      "lab_is_long_wavelength": false,
+      "note": "The lab example Q=1e-3 m3/s has r_H=1.607 mm, below the 2.727 mm capillary length, so capillary dispersion dominates at the horizon and the long-wavelength acoustic metric does not apply. A valid analogue needs r_H >= 10 ell_c, i.e. Q >= 0.01697 m3/s for h=0.1 m. Claim 27's formula remains exact in the long-wavelength limit; its lab example is flagged as capillary-dominated.",
+      "valid_example_is_long_wavelength": true
+    }
+  }
+}
