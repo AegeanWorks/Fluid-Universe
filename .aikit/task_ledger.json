@@ -1,82 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "claim15-convergence-n96-v1",
+    "task_id": "claim15-temporal-n64-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793348241.6338494,
+    "updated_at": 1793357645.1490822,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793348241.7621312
+    "completed_at": 1793357645.2866602
   },
   "checkpoints": [
-    {
-      "task_id": "z3-koide-core",
-      "phase": "phase 4",
-      "phase_num": 4,
-      "description": "[3/4] Validated tangent-space Hessian: dense agreement 1.3e-15 at N=8; N=64 min -5.799863 with 8 negative modes; 14d FALSIFIED; 108 tests; 163/163 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793038368.5520477,
-      "timestamp_str": "2026-10-26 21:12:48",
-      "agent": "opencode:deepseek-v4.1-flash-free",
-      "handoff": {
-        "state": "14d falsified, 14b unverified",
-        "next": "claim 15 production/coexistence or a new candidate",
-        "failed": "none",
-        "open": "claim 15, Z3 coexistence",
-        "evidence": "results/hopfion_stability.json, 108 tests, 4/4 gates, 163/163 verification"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[4/4] Optimize and bound claim-15 production scan under 15-minute wall-clock limit (G-003)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793041194.9353647,
-      "timestamp_str": "2026-10-26 21:59:54",
-      "agent": "antigravity:1",
-      "handoff": {
-        "state": "took over from stopped opencode session and killed 75-min PID 26136",
-        "next": "fuse run_stage with lax.scan and configure bounded production scan within 15 min",
-        "failed": "un-fused N=96 9000-step scan exceeded 15-min limit",
-        "open": "claim 15 production scan",
-        "evidence": "results/hopfion_stability.json"
-      },
-      "continued_from": "opencode:deepseek-v4.1-flash-free"
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "in_progress",
-      "phase_num": 4,
-      "description": "[4/4] Claim-15 production scan bounded within 15-min G-003 limit (~185s): N=64 native H=0.78800, 2x upsampled H=0.98924, Z3=0.60743, min pre-norm 1.000000; 109 tests; 168/168 twice; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793042013.5643134,
-      "timestamp_str": "2026-10-26 22:13:33",
-      "agent": "antigravity:1",
-      "handoff": {
-        "state": "all 16 claims audited and verified, 4/4 simulation milestones complete",
-        "next": "none",
-        "failed": "none",
-        "open": "claim 14b/15/16 remain unverified",
-        "evidence": "results/hopfion3d_production.json, results/verification.json, 109 tests, 4/4 gates"
-      }
-    },
-    {
-      "task_id": "z3-koide-core",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'z3-koide-core' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793042013.6775312,
-      "timestamp_str": "2026-10-26 22:13:33",
-      "agent": "antigravity:1"
-    },
     {
       "task_id": "reforge:run-1",
       "phase": "reforge stage 5",
@@ -262,6 +197,55 @@
       "status": "completed",
       "timestamp": 1793348241.7621326,
       "timestamp_str": "2026-10-30 11:17:21",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-temporal-n64-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-003 and add failing tests for a same-time dt check at N=64",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793356713.7642763,
+      "timestamp_str": "2026-10-30 13:38:33",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The N=96 resolution check at t=1.5 gives Z3=0.172 versus 0.528 at N=64, but both used dt=5e-4; before attributing the gap to spatial resolution, the temporal discretization at N=64 must be shown converged at the same t.",
+        "benefits": "Separates spatial from temporal error in the claim-15 Z3 comparison; either supports the N=96 conclusion or identifies a confound before it is published.",
+        "risks": "contract: claim-15 acceptance rule unchanged, the dt check cannot promote it; dependency: none; concurrency: single writer; state: one new result file; cost: 3000 steps at dt=5e-4 plus 6000 steps at dt=2.5e-4, about 8-9 minutes under one 900 s G-003 process",
+        "mitigation": "Same N, seed, length, mu, chunk and upsampling; equal t=steps*dt; pre-register H 5e-3 and Z3 2e-2 tolerances; run the coarse-dt scan first and pass the remaining budget to the fine-dt scan"
+      }
+    },
+    {
+      "task_id": "claim15-temporal-n64-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] N=64 dt check (3000x5e-4 vs 6000x2.5e-4, t=1.5) gives dH=-1.07e-4, dHup=-1.9e-6, dZ3=-4.6e-6; temporal criteria pass, so the N=96 Z3 gap is spatial (or longer-time), not a timestep artifact; docs/results updated; 535.7 s",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793357641.6425056,
+      "timestamp_str": "2026-10-30 13:54:01",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-temporal-n64-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 173/173 accepted (2 new check-15 records); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793357645.1490822,
+      "timestamp_str": "2026-10-30 13:54:05",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "claim15-temporal-n64-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'claim15-temporal-n64-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793357645.2866616,
+      "timestamp_str": "2026-10-30 13:54:05",
       "agent": "opencode"
     }
   ]

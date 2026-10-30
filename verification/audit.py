@@ -1281,6 +1281,53 @@ def audit_convergence(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Claim-15 timestep check (ADR-003)
+# ---------------------------------------------------------------------------
+
+
+def audit_temporal(audit: Audit) -> None:
+    payload = load_results("hopfion3d_temporal.json")
+    coarse = payload["coarse"]
+    fine = payload["fine"]
+    comparison = payload["comparison"]
+    criteria = comparison["criteria"]
+    expected = all(
+        criteria[key] for key in ("H_agrees", "H_upsampled_agrees", "Z3_agrees")
+    )
+    audit.record(
+        "15: dt check holds N=64 fixed and reaches one physical time",
+        coarse["n"] == fine["n"] == 64
+        and abs(coarse["steps"] * coarse["dt"] - 1.5) < 1e-12
+        and abs(fine["steps"] * fine["dt"] - 1.5) < 1e-12
+        and coarse["dt"] == 5e-4
+        and fine["dt"] == 2.5e-4
+        and coarse["max_wall_seconds"] == 900.0
+        and fine["max_wall_seconds"] == 900.0
+        and coarse["min_pre_norm"] > 0.1
+        and fine["min_pre_norm"] > 0.1,
+        f"dt={coarse['dt']:.1e}/{fine['dt']:.1e}, "
+        f"steps={coarse['steps']}/{fine['steps']}",
+    )
+    audit.record(
+        "15: dt arithmetic and verdict follow the pre-registered rule",
+        abs(
+            comparison["deltas"]["H"] - (fine["final"]["H"] - coarse["final"]["H"])
+        )
+        < 1e-12
+        and abs(
+            comparison["deltas"]["Z3"] - (fine["final"]["Z3"] - coarse["final"]["Z3"])
+        )
+        < 1e-12
+        and comparison["temporal_converged"] == expected
+        and comparison["claim_15_status"] == fine["verdict"]["claim_15_status"]
+        and not comparison["claim_15_status"].startswith("VERIFIED"),
+        f"converged={comparison['temporal_converged']}, "
+        f"dH={comparison['deltas']['H']:+.6f}, "
+        f"dZ3={comparison['deltas']['Z3']:+.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Documentation consistency
 # ---------------------------------------------------------------------------
 
@@ -1435,6 +1482,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_stability(audit)
     audit_production(audit)
     audit_convergence(audit)
+    audit_temporal(audit)
     audit_docs(audit)
     payload = {
         "meta": {**provenance(), "run_tag": tag},

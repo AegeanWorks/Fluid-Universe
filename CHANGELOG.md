@@ -335,3 +335,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The 3000-step check completed in 768.9 s, inside the 900 s G-003 cap. A separate 3600-step N=64 run reproduced the committed production values to the reported precision.
 
 - Verification after the N=96 resolution check: two separate runs, 171/171 checks each.
+
+## 2026-10-30 - N=64 timestep check for claim 15 (ADR-003)
+
+**Added**
+
+- `sims/convergence.py::compare_temporal`, `phenomenology/temporal_report.py`, `tests/test_convergence.py` cases, `results/hopfion3d_temporal.{json,md}`, and `make temporal`.
+
+**Results**
+
+- N=64, 3000 steps at \(dt=5\times10^{-4}\) versus 6000 at \(dt=2.5\times10^{-4}\), both at \(t=1.5\). Coarse: H=0.936964507, upsampled H=0.999520564, Z3=0.528226; fine: H=0.936857582, upsampled H=0.999518680, Z3=0.528221.
+- Deltas: H \(-1.07\times10^{-4}\), upsampled H \(-1.9\times10^{-6}\), Z3 \(-4.6\times10^{-6}\), force \(+1.3\times10^{-6}\), max bond \(+3.9\times10^{-4}\). The pre-registered H (\(5\times10^{-3}\)) and Z3 (\(2\times10^{-2}\)) criteria pass, so the N=64 Z3 at \(t=1.5\) is temporally resolved.
+- The N=96 Z3 gap is therefore spatial (or a longer-time effect), not a timestep artifact. Claim 15 remains UNVERIFIED.
+- The check completed in 535.7 s, inside the 900 s G-003 cap.
+
+- Verification after the N=64 dt check: two separate runs, 173/173 checks each.

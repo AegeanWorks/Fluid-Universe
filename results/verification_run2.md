@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**171/171 checks passed.**
+**173/173 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -90,6 +90,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 15: resolution check compares N=64 and N=96 at one physical time | PASS | N=64/96, steps=3000, H=0.999942, Z3=0.172071 |
 | 15: resolution arithmetic and verdict follow the pre-registered rule | PASS | converged=False, dH=+0.062978, dZ3=-0.356154 |
 | 15: N=96 verdict follows the unchanged production rule | PASS | status=UNVERIFIED (Z3 below threshold; not converged), ready=False |
+| 15: dt check holds N=64 fixed and reaches one physical time | PASS | dt=5.0e-04/2.5e-04, steps=3000/6000 |
+| 15: dt arithmetic and verdict follow the pre-registered rule | PASS | converged=True, dH=-0.000107, dZ3=-0.000005 |
 | docs: claims Q | PASS | searched for '0.666664463' |
 | docs: claims r | PASS | searched for '0.707104444' |
 | docs: claims MSbar Q | PASS | searched for '0.667823994' |

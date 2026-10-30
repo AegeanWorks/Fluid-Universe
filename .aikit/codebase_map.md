@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `69`
+- **Total Python Modules**: `70`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `375`
+- **Total Top-Level Functions**: `386`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `9462`
+- **Total Source Lines**: `9813`
 
 ---
 
@@ -304,6 +304,18 @@
 
 ---
 
+### [`phenomenology/temporal_report.py`](phenomenology/temporal_report.py)
+> *Temporal-check report for claim 15: N=64 at two timesteps, same physical time.*
+
+**Size**: `159` lines (`5349` bytes)
+
+**Functions:**
+- `def _run(steps, dt, deadline)`
+- `def run_temporal_check(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
 > *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
 
@@ -338,11 +350,12 @@
 ### [`sims/convergence.py`](sims/convergence.py)
 > *Resolution comparison for the claim-15 production scan (ADR-002).*
 
-**Size**: `87` lines (`3172` bytes)
+**Size**: `152` lines (`5819` bytes)
 
 **Functions:**
 - `def _require_same_problem(low, high)`
 - `def compare_scans(low, high)` - *Compare a coarse and a fine production payload at the same physical time.*
+- `def compare_temporal(coarse, fine)` - *Compare two N=64 payloads at the same physical time but different dt.*
 
 ---
 
@@ -456,7 +469,7 @@
 ### [`tests/test_convergence.py`](tests/test_convergence.py)
 > *Resolution-comparison tests for claim 15 (ADR-002).*
 
-**Size**: `86` lines (`3080` bytes)
+**Size**: `163` lines (`5207` bytes)
 
 **Functions:**
 - `def _scan(n, *, h, h_up, z3, force, bond)`
@@ -465,6 +478,12 @@
 - `def test_compare_scans_flags_force_or_bond_regression()`
 - `def test_compare_scans_requires_the_same_physical_problem()`
 - `def test_compare_scans_never_promotes_the_claim()`
+- `def _temporal(n, steps, dt, *, h, h_up, z3, force, bond)`
+- `def test_compare_temporal_accepts_a_converged_pair()`
+- `def test_compare_temporal_flags_a_Z3_difference()`
+- `def test_compare_temporal_requires_the_same_physical_time()`
+- `def test_compare_temporal_requires_the_same_resolution()`
+- `def test_compare_temporal_never_promotes_the_claim()`
 
 ---
 
@@ -937,7 +956,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1494` lines (`59504` bytes)
+**Size**: `1542` lines (`61376` bytes)
 
 **Classes:**
 - `class Audit`
@@ -975,6 +994,7 @@
 - `def audit_stability(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
+- `def audit_temporal(audit)`
 - `def audit_docs(audit)`
 - `def run(write, tag)`
 - `def render(payload)`
@@ -1000,7 +1020,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `117` lines (`2995` bytes)
+**Size**: `119` lines (`3055` bytes)
 
 **Functions:**
 - `def _source_files()`

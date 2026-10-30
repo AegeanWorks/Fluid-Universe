@@ -198,4 +198,4 @@ Single-seed pilot, N=32, 1200 steps; not converged and resolution-limited.
 - Neutrino config SHA-256: `679277a40cc0befde1c51ec80c8a86a774efa3adb9e6bc3216d232df6b892675`
 - Quark config SHA-256: `e1a32d5cfb6e7f5bc307e762afe8b3536e809b0bcfb77068e1392dcdc3b7c5aa`
 - PMNS config SHA-256: `5da0c58e80e9eb663df6af3af1d878d9c1816d635124861a5fbcc519bd929c1a`
-- Git: `03eb177ea09dcfe3e8f631e05eba157b4e04fb4d` (dirty=True)
+- Git: `377fcd7076c00f31b35f08fe2b698974b903a362` (dirty=True)

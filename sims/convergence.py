@@ -9,12 +9,16 @@ field smoothness improve with resolution.
 
 The comparison is deliberately pure: it never imports JAX or runs a scan, and it
 never promotes claim 15.  The pre-registered tolerances are fixed in ADR-002.
+`compare_temporal` holds the grid fixed and compares two timesteps at one
+physical time, as pre-registered in ADR-003.
 """
 
 from __future__ import annotations
 
 H_RESOLUTION_TOL = 1.0e-2
+H_TEMPORAL_TOL = 5.0e-3
 Z3_RESOLUTION_TOL = 2.0e-2
+Z3_TEMPORAL_TOL = 2.0e-2
 _SAME_PROBLEM_KEYS = ("length", "mu", "steps", "dt")
 
 
@@ -83,5 +87,66 @@ def compare_scans(low: dict, high: dict) -> dict:
         "note": (
             "Resolution convergence is a diagnostic, not claim verification: "
             "the fine run must still satisfy the unchanged production criteria."
+        ),
+    }
+
+
+def compare_temporal(coarse: dict, fine: dict) -> dict:
+    """Compare two N=64 payloads at the same physical time but different dt."""
+    if coarse["n"] != fine["n"]:
+        raise ValueError(
+            "same n required: a dt check holds the grid fixed "
+            f"({coarse['n']} != {fine['n']})"
+        )
+    for key in ("length", "mu"):
+        if coarse[key] != fine[key]:
+            raise ValueError(
+                "scans must solve the same physical problem: "
+                f"{key} differs ({coarse[key]!r} != {fine[key]!r})"
+            )
+    coarse_time = coarse["steps"] * coarse["dt"]
+    fine_time = fine["steps"] * fine["dt"]
+    if abs(coarse_time - fine_time) > 1e-12:
+        raise ValueError(
+            "scans must reach the same physical time: "
+            f"{coarse_time!r} != {fine_time!r}"
+        )
+    if coarse["dt"] <= fine["dt"]:
+        raise ValueError("coarse dt must be larger than fine dt")
+
+    coarse_final = coarse["final"]
+    fine_final = fine["final"]
+    delta_h = fine_final["H"] - coarse_final["H"]
+    delta_h_up = fine_final["H_upsampled"] - coarse_final["H_upsampled"]
+    delta_z3 = fine_final["Z3"] - coarse_final["Z3"]
+    criteria = {
+        "H_agrees": abs(delta_h) <= H_TEMPORAL_TOL,
+        "H_upsampled_agrees": abs(delta_h_up) <= H_TEMPORAL_TOL,
+        "Z3_agrees": abs(delta_z3) <= Z3_TEMPORAL_TOL,
+        "force_not_worse": fine_final["force_rms"] <= coarse_final["force_rms"],
+        "max_bond_not_worse": fine_final["max_bond"] <= coarse_final["max_bond"],
+    }
+    temporal_converged = all(
+        criteria[key] for key in ("H_agrees", "H_upsampled_agrees", "Z3_agrees")
+    )
+    return {
+        "n": fine["n"],
+        "physical_time": fine_time,
+        "dt_coarse": coarse["dt"],
+        "dt_fine": fine["dt"],
+        "deltas": {
+            "H": delta_h,
+            "H_upsampled": delta_h_up,
+            "Z3": delta_z3,
+            "force_rms": fine_final["force_rms"] - coarse_final["force_rms"],
+            "max_bond": fine_final["max_bond"] - coarse_final["max_bond"],
+        },
+        "tolerances": {"H": H_TEMPORAL_TOL, "Z3": Z3_TEMPORAL_TOL},
+        "criteria": criteria,
+        "temporal_converged": bool(temporal_converged),
+        "claim_15_status": fine["verdict"]["claim_15_status"],
+        "note": (
+            "Temporal convergence is a diagnostic, not claim verification: "
+            "if it fails, the spatial resolution comparison is confounded."
         ),
     }

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from sims.convergence import compare_scans
+from sims.convergence import compare_scans, compare_temporal
 
 
 def _scan(n: int, *, h: float, h_up: float, z3: float, force: float, bond: float) -> dict:
@@ -84,3 +84,80 @@ def test_compare_scans_never_promotes_the_claim():
 
     assert result["resolution_converged"] is True
     assert result["claim_15_status"] == "UNVERIFIED (dt not converged)"
+
+
+def _temporal(
+    n: int,
+    steps: int,
+    dt: float,
+    *,
+    h: float = 0.936965,
+    h_up: float = 0.999521,
+    z3: float = 0.528226,
+    force: float = 0.03988,
+    bond: float = 1.176,
+) -> dict:
+    return {
+        "n": n,
+        "length": 10.0,
+        "mu": 20.0,
+        "steps": steps,
+        "dt": dt,
+        "final": {
+            "H": h,
+            "H_upsampled": h_up,
+            "Z3": z3,
+            "force_rms": force,
+            "max_bond": bond,
+        },
+        "verdict": {"claim_15_status": "UNVERIFIED (Z3 below threshold; not converged)"},
+    }
+
+
+def test_compare_temporal_accepts_a_converged_pair():
+    coarse = _temporal(64, 3000, 5e-4)
+    fine = _temporal(64, 6000, 2.5e-4, z3=0.528300)
+
+    result = compare_temporal(coarse, fine)
+
+    assert result["n"] == 64
+    assert result["physical_time"] == pytest.approx(1.5)
+    assert result["deltas"]["Z3"] == pytest.approx(0.000074)
+    assert result["temporal_converged"] is True
+
+
+def test_compare_temporal_flags_a_Z3_difference():
+    coarse = _temporal(64, 3000, 5e-4)
+    fine = _temporal(64, 6000, 2.5e-4, z3=0.400000)
+
+    result = compare_temporal(coarse, fine)
+
+    assert result["criteria"]["Z3_agrees"] is False
+    assert result["temporal_converged"] is False
+
+
+def test_compare_temporal_requires_the_same_physical_time():
+    coarse = _temporal(64, 3000, 5e-4)
+    fine = _temporal(64, 3000, 2.5e-4)
+
+    with pytest.raises(ValueError, match="same physical time"):
+        compare_temporal(coarse, fine)
+
+
+def test_compare_temporal_requires_the_same_resolution():
+    coarse = _temporal(64, 3000, 5e-4)
+    fine = _temporal(96, 6000, 2.5e-4)
+
+    with pytest.raises(ValueError, match="same n"):
+        compare_temporal(coarse, fine)
+
+
+def test_compare_temporal_never_promotes_the_claim():
+    coarse = _temporal(64, 3000, 5e-4)
+    fine = _temporal(64, 6000, 2.5e-4)
+    fine["verdict"]["claim_15_status"] = "UNVERIFIED (not converged)"
+
+    result = compare_temporal(coarse, fine)
+
+    assert result["temporal_converged"] is True
+    assert result["claim_15_status"] == "UNVERIFIED (not converged)"

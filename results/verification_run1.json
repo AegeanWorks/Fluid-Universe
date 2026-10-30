@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T08:15:12+00:00",
-    "git_commit": "03eb177ea09dcfe3e8f631e05eba157b4e04fb4d",
+    "generated_utc": "2026-10-30T10:52:39+00:00",
+    "git_commit": "377fcd7076c00f31b35f08fe2b698974b903a362",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "41cafd4cee82a399f35a9c1b6c21c0ba9b93a61a5dc060fe1b6be049eef64730",
-      "results_sha256": "91ea049b864285af9f208ba8ae1571cbaed7b39aa47202774cd1f9c6a5d34d45"
+      "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
+      "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -602,6 +602,20 @@
       "claim": "15: N=96 verdict follows the unchanged production rule",
       "passed": true,
       "detail": "status=UNVERIFIED (Z3 below threshold; not converged), ready=False",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: dt check holds N=64 fixed and reaches one physical time",
+      "passed": true,
+      "detail": "dt=5.0e-04/2.5e-04, steps=3000/6000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: dt arithmetic and verdict follow the pre-registered rule",
+      "passed": true,
+      "detail": "converged=True, dH=-0.000107, dZ3=-0.000005",
       "expected": null,
       "observed": null
     },
@@ -1215,8 +1229,8 @@
       "observed": null
     }
   ],
-  "total": 171,
-  "passed": 171,
+  "total": 173,
+  "passed": 173,
   "failed": 0,
   "failures": []
 }

@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "41cafd4cee82a399f35a9c1b6c21c0ba9b93a61a5dc060fe1b6be049eef64730",
-      "results_sha256": "91ea049b864285af9f208ba8ae1571cbaed7b39aa47202774cd1f9c6a5d34d45"
+      "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
+      "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T08:15:12+00:00",
-        "git_commit": "03eb177ea09dcfe3e8f631e05eba157b4e04fb4d",
-        "passed": 171,
-        "total": 171,
+        "generated_utc": "2026-10-30T10:52:39+00:00",
+        "git_commit": "377fcd7076c00f31b35f08fe2b698974b903a362",
+        "passed": 173,
+        "total": 173,
         "failed": 0,
-        "checks_sha256": "49b2fed773643cd36294c43e194401bcf582474f2f6d159ad1b51a2a43a7bed5",
+        "checks_sha256": "ad9bca9db74fb63bd12763152ebea32a7a9a4410bcc4a15605d87dafd2db6627",
         "fingerprints": {
-          "source_sha256": "41cafd4cee82a399f35a9c1b6c21c0ba9b93a61a5dc060fe1b6be049eef64730",
-          "results_sha256": "91ea049b864285af9f208ba8ae1571cbaed7b39aa47202774cd1f9c6a5d34d45"
+          "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
+          "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T08:15:23+00:00",
-        "git_commit": "03eb177ea09dcfe3e8f631e05eba157b4e04fb4d",
-        "passed": 171,
-        "total": 171,
+        "generated_utc": "2026-10-30T10:52:50+00:00",
+        "git_commit": "377fcd7076c00f31b35f08fe2b698974b903a362",
+        "passed": 173,
+        "total": 173,
         "failed": 0,
-        "checks_sha256": "49b2fed773643cd36294c43e194401bcf582474f2f6d159ad1b51a2a43a7bed5",
+        "checks_sha256": "ad9bca9db74fb63bd12763152ebea32a7a9a4410bcc4a15605d87dafd2db6627",
         "fingerprints": {
-          "source_sha256": "41cafd4cee82a399f35a9c1b6c21c0ba9b93a61a5dc060fe1b6be049eef64730",
-          "results_sha256": "91ea049b864285af9f208ba8ae1571cbaed7b39aa47202774cd1f9c6a5d34d45"
+          "source_sha256": "3071439b0701271dacd44d57f885e6d1f9c77a88a8ab5b2845a272f81d4d96ad",
+          "results_sha256": "ed2d2bf524457ee598f6d791606be1b205df08f4ed314736c4a73ceade10910b"
         }
       }
     ],
@@ -218,6 +218,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "status=UNVERIFIED (Z3 below threshold; not converged), ready=False"
+    },
+    {
+      "claim": "15: dt arithmetic and verdict follow the pre-registered rule",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "converged=True, dH=-0.000107, dZ3=-0.000005"
+    },
+    {
+      "claim": "15: dt check holds N=64 fixed and reaches one physical time",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "dt=5.0e-04/2.5e-04, steps=3000/6000"
     },
     {
       "claim": "15: perturbed seeds are recorded",
@@ -2002,6 +2018,20 @@
       "observed": null
     },
     {
+      "claim": "15: dt check holds N=64 fixed and reaches one physical time",
+      "passed": true,
+      "detail": "dt=5.0e-04/2.5e-04, steps=3000/6000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "15: dt arithmetic and verdict follow the pre-registered rule",
+      "passed": true,
+      "detail": "converged=True, dH=-0.000107, dZ3=-0.000005",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "docs: claims Q",
       "passed": true,
       "detail": "searched for '0.666664463'",
@@ -2611,8 +2641,8 @@
       "observed": null
     }
   ],
-  "total": 171,
-  "passed": 171,
+  "total": 173,
+  "passed": 173,
   "failed": 0,
   "failures": []
 }

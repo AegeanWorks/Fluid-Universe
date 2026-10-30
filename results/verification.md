@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T08:15:12+00:00 | `03eb177ea09dcfe3e8f631e05eba157b4e04fb4d` | 171/171 | `41cafd4cee82a399...` | `91ea049b864285af...` |
-| run2 | 2026-10-30T08:15:23+00:00 | `03eb177ea09dcfe3e8f631e05eba157b4e04fb4d` | 171/171 | `41cafd4cee82a399...` | `91ea049b864285af...` |
+| run1 | 2026-10-30T10:52:39+00:00 | `377fcd7076c00f31b35f08fe2b698974b903a362` | 173/173 | `3071439b0701271d...` | `ed2d2bf524457ee5...` |
+| run2 | 2026-10-30T10:52:50+00:00 | `377fcd7076c00f31b35f08fe2b698974b903a362` | 173/173 | `3071439b0701271d...` | `ed2d2bf524457ee5...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -37,6 +37,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 15: N=64 diagnostic not converged and no coexistence | PASS | PASS | YES | YES | force_rms(3600)=3.716e-02 |
 | 15: N=64 diagnostic values | PASS | PASS | YES | YES | H(20,3600)=0.788000, Z3=0.607430 |
 | 15: N=96 verdict follows the unchanged production rule | PASS | PASS | YES | YES | status=UNVERIFIED (Z3 below threshold; not converged), ready=False |
+| 15: dt arithmetic and verdict follow the pre-registered rule | PASS | PASS | YES | YES | converged=True, dH=-0.000107, dZ3=-0.000005 |
+| 15: dt check holds N=64 fixed and reaches one physical time | PASS | PASS | YES | YES | dt=5.0e-04/2.5e-04, steps=3000/6000 |
 | 15: perturbed seeds are recorded | PASS | PASS | YES | YES | seed 1: H=0.853402, Z3=0.443059, seed 2: H=0.852345, Z3=0.443074 |
 | 15: pilot is not converged or resolved | PASS | PASS | YES | YES | force_rms(1200)=1.012e-01; no conclusion |
 | 15: production dt check is recorded | PASS | PASS | YES | YES | dH=1.660e-06, dZ3=4.076e-06, converged=True |
