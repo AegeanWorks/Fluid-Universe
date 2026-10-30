@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "gaussian-fluid-v1",
+    "task_id": "coherent-fluid-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793376283.816408,
+    "updated_at": 1793377105.7583337,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793376284.0369596
+    "completed_at": 1793377106.018625
   },
   "checkpoints": [
-    {
-      "task_id": "vortex-cascade-nogo-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-009 and add failing tests for one-parameter vortex cascade spectra",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793372012.368581,
-      "timestamp_str": "2026-10-30 17:53:32",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 17 shows the thin-filament knot spectrum is too compressed. A viable vortex model needs a hierarchy mechanism; the simplest are a geometric cascade m_n ~ lambda^n and a power law m_n ~ (n+1)^p. Each has one shape parameter and therefore predicts the tau ratio and Koide Q from the muon ratio.",
-        "benefits": "A parameter-free test of whether a single fluid hierarchy can explain both the charged-lepton ratios and Q=2/3, or whether a Z3/circulant coupling is required.",
-        "risks": "contract: new claim 18, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the power-law root for Q=2/3 is found by bisection",
-        "mitigation": "Pre-register the 10% ratio and 0.01 Q tolerances; report both the muon-fit and Q-fit predictions; do not add a second parameter to rescue the fit"
-      }
-    },
-    {
-      "task_id": "vortex-cascade-nogo-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] One-parameter hierarchies: geometric tau ratio 42753 (11.3x high, Q=0.871); power law muon fit +34.5% tau (Q=0.696); power law Q fit -32.5% tau; no model matches both; claim 18 FALSIFIED",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793372371.4856932,
-      "timestamp_str": "2026-10-30 17:59:31",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "vortex-cascade-nogo-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 186/186 accepted (2 new claim-18 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793372377.418386,
-      "timestamp_str": "2026-10-30 17:59:37",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "vortex-cascade-nogo-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'vortex-cascade-nogo-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793372377.5627744,
-      "timestamp_str": "2026-10-30 17:59:37",
-      "agent": "opencode"
-    },
     {
       "task_id": "rotor-potential-nogo-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793376284.036964,
       "timestamp_str": "2026-10-30 19:04:44",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "coherent-fluid-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-014 and add failing tests for the moving-center Gaussian reduction",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793376445.7360334,
+      "timestamp_str": "2026-10-30 19:07:25",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The ground-state Gaussian reduction derived the width but held the center fixed. A displaced Gaussian tests whether the fluid equations separate into classical center motion and the quantum width, and covers the coherent state without the node singularity of the first excited state.",
+        "benefits": "A second self-consistent derivation: the center follows x0''=-omega^2 x0 and the width keeps the Ermakov fixed point, with a numerical check of the trajectory and energy.",
+        "risks": "contract: new claim 23, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: coupled RK4 and energy conservation",
+        "mitigation": "Derive the center and width equations analytically; pre-register the 2 pi period, the fixed-point width, and an energy-drift tolerance; integrate with RK4 at dt=1e-3"
+      }
+    },
+    {
+      "task_id": "coherent-fluid-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Moving-center Gaussian: x0(pi)=-0.999999917, x0(2pi)=0.999999983, period 6.284000 vs 2pi; width error 0; energy drift 7.1e-15; claim 23 PROVEN",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793377100.897148,
+      "timestamp_str": "2026-10-30 19:18:20",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "coherent-fluid-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 196/196 accepted (2 new claim-23 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793377105.7583337,
+      "timestamp_str": "2026-10-30 19:18:25",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "coherent-fluid-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'coherent-fluid-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793377106.0186296,
+      "timestamp_str": "2026-10-30 19:18:26",
       "agent": "opencode"
     }
   ]

@@ -522,3 +522,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 22 is **PROVEN (Ermakov reduction; numerics confirm)**. The ground-state width is derived from the fluid equations, not inserted from the wavefunction; the Born rule and measurement remain outside the reduction.
 
 - Verification after the Gaussian Madelung reduction: two separate runs, 194/194 checks each.
+
+## 2026-10-30 - Moving-center Gaussian reduction (claim 23, ADR-014)
+
+**Added**
+
+- Center functions in `theory/gaussian_fluid.py`, `phenomenology/coherent_fluid_report.py`, `make coherentfluid`, `tests/test_coherent_fluid.py`, and `results/coherent_fluid.{json,md}`.
+
+**Results**
+
+- The displaced Gaussian decouples into \(\ddot x_0=-\omega^2x_0\) and the Ermakov width.
+- \(x_0(\pi)=-0.999999917\), \(x_0(2\pi)=0.999999983\); center period 6.284000 against \(2\pi\) (0.013%).
+- Width error 0 and energy drift \(7.1\times10^{-15}\) for the fixed-width case; displaced width energy drift \(2.7\times10^{-12}\).
+- Claim 23 is **PROVEN (moving-center reduction; numerics confirm)**. The first excited state still has a node singularity.
+
+- Verification after the moving-center Gaussian reduction: two separate runs, 196/196 checks each.

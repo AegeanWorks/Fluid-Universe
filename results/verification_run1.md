@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**194/194 checks passed.**
+**196/196 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -101,6 +101,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 21: stochastic kinematics verdict is recorded and not overclaimed | PASS | NUMERIC (stochastic kinematics verified) |
 | 22: Gaussian Madelung fixed point is the quantum width | PASS | sigma^2=0.500000000000, drift=2.754e-12 |
 | 22: small oscillations have the Ermakov 2 omega frequency | PASS | period=3.141600, error=2.338e-06 |
+| 23: moving-center Gaussian reproduces the coherent-state trajectory | PASS | x(pi)=-0.999999917, period=6.284000 |
+| 23: displaced width oscillates with conserved energy | PASS | energy drift=2.678e-12 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

@@ -1422,6 +1422,38 @@ def audit_gaussian_fluid(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Moving-center Gaussian reduction (claim 23/ADR-014)
+# ---------------------------------------------------------------------------
+
+
+def audit_coherent_fluid(audit: Audit) -> None:
+    payload = load_results("coherent_fluid.json")
+    result = payload["result"]
+    fixed = result["fixed_center"]
+    displaced = result["displaced_center"]
+    verdict = result["verdict"]
+    audit.record(
+        "23: moving-center Gaussian reproduces the coherent-state trajectory",
+        abs(fixed["x_at_pi"] + 1.0) < 1e-3
+        and abs(fixed["center_period"] - 2.0 * 3.141592653589793)
+        / (2.0 * 3.141592653589793)
+        < 0.01
+        and fixed["width_error"] < 1e-8
+        and fixed["energy_drift"] < 1e-6,
+        f"x(pi)={fixed['x_at_pi']:.9f}, "
+        f"period={fixed['center_period']:.6f}",
+    )
+    audit.record(
+        "23: displaced width oscillates with conserved energy",
+        displaced["sigma_min"] < result["quantum_width"] < displaced["sigma_max"]
+        and displaced["energy_drift"] < 1e-6
+        and verdict["reduction_verified"] is True
+        and verdict["claim_23_status"].startswith("PROVEN"),
+        f"energy drift={displaced['energy_drift']:.3e}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1825,6 +1857,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_madelung(audit)
     audit_nelson(audit)
     audit_gaussian_fluid(audit)
+    audit_coherent_fluid(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

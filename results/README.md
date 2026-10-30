@@ -74,6 +74,8 @@ Do not edit these files by hand.
 | `nelson.md` | Human-readable version of the same |
 | `gaussian_fluid.json` | Gaussian Madelung reduction: Ermakov fixed point and oscillations |
 | `gaussian_fluid.md` | Human-readable version of the same |
+| `coherent_fluid.json` | Moving-center Gaussian reduction: coherent-state trajectory and width |
+| `coherent_fluid.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

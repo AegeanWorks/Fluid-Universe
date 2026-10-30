@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T16:03:12+00:00",
-    "git_commit": "b218002a5d10cba8296f66cd0255c46f693a932c",
+    "generated_utc": "2026-10-30T16:16:27+00:00",
+    "git_commit": "4e390abf8d5e278fb31cc8284ec35d9470782e56",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "5bd042f7dd1098672b92b5b93b05393b8106f0b8a36b6f14a7e3e40487850579",
-      "results_sha256": "12eeb0d246f916cdc43f368abf9a50d8665453f10da6e2e341e8b6472f15040a"
+      "source_sha256": "16a4498f063a19f677b6a2fd3e2cfb5ed1232d3b8643463d3395472834519e6b",
+      "results_sha256": "f6947b98ce95740979996cd48e8a389012b2c1a510d563e5227d820524c8abc8"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -679,6 +679,20 @@
       "claim": "22: small oscillations have the Ermakov 2 omega frequency",
       "passed": true,
       "detail": "period=3.141600, error=2.338e-06",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "23: moving-center Gaussian reproduces the coherent-state trajectory",
+      "passed": true,
+      "detail": "x(pi)=-0.999999917, period=6.284000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "23: displaced width oscillates with conserved energy",
+      "passed": true,
+      "detail": "energy drift=2.678e-12",
       "expected": null,
       "observed": null
     },
@@ -1376,8 +1390,8 @@
       "observed": null
     }
   ],
-  "total": 194,
-  "passed": 194,
+  "total": 196,
+  "passed": 196,
   "failed": 0,
   "failures": []
 }

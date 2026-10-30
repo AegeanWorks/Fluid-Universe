@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `94`
+- **Total Python Modules**: `96`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `515`
+- **Total Top-Level Functions**: `527`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `13279`
+- **Total Source Lines**: `13625`
 
 ---
 
@@ -20,6 +20,19 @@
 > *Phenomenology: PDG input, circulant fit, and one-loop SM running.*
 
 **Size**: `1` lines (`72` bytes)
+
+---
+
+### [`phenomenology/coherent_fluid_report.py`](phenomenology/coherent_fluid_report.py)
+> *Moving-center Gaussian reduction report (claim 23, ADR-014).*
+
+**Size**: `157` lines (`5262` bytes)
+
+**Functions:**
+- `def _energy_drift(result)`
+- `def _zero_crossings(times, values)`
+- `def run_coherent_fluid_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -593,6 +606,19 @@
 
 ---
 
+### [`tests/test_coherent_fluid.py`](tests/test_coherent_fluid.py)
+> *Moving-center Gaussian reduction tests (claim 23).*
+
+**Size**: `64` lines (`1887` bytes)
+
+**Functions:**
+- `def test_center_follows_the_classical_oscillator()`
+- `def test_width_stays_at_the_fixed_point()`
+- `def test_displaced_width_oscillates_with_energy_conservation()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_convergence.py`](tests/test_convergence.py)
 > *Resolution-comparison tests for claim 15 (ADR-002).*
 
@@ -1088,7 +1114,7 @@
 ### [`theory/gaussian_fluid.py`](theory/gaussian_fluid.py)
 > *Gaussian reduction of the Madelung fluid (claim 22, ADR-013).*
 
-**Size**: `114` lines (`3233` bytes)
+**Size**: `204` lines (`5881` bytes)
 
 **Functions:**
 - `def quantum_width(omega, hbar, mass)`
@@ -1096,6 +1122,9 @@
 - `def energy(sigma, sigma_dot, omega, hbar, mass)`
 - `def ermakov_rhs(sigma, sigma_dot, omega, hbar, mass)`
 - `def simulate(sigma0, sigma_dot0, omega, duration, hbar, mass, dt)`
+- `def coherent_rhs(state, omega, hbar, mass)` - *RHS for (x0, v0, sigma, sigma_dot) of the displaced Gaussian.*
+- `def coherent_energy(state, omega, hbar, mass)`
+- `def simulate_coherent(x0, v0, sigma0, sigma_dot0, omega, duration, hbar, mass, dt)`
 
 ---
 
@@ -1291,7 +1320,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1888` lines (`74769` bytes)
+**Size**: `1921` lines (`76072` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1336,6 +1365,7 @@
 - `def audit_madelung(audit)`
 - `def audit_nelson(audit)`
 - `def audit_gaussian_fluid(audit)`
+- `def audit_coherent_fluid(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1365,7 +1395,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `139` lines (`3615` bytes)
+**Size**: `141` lines (`3667` bytes)
 
 **Functions:**
 - `def _source_files()`

@@ -112,3 +112,93 @@ def simulate(
         sigmas[index + 1] = sigma
         velocities[index + 1] = sigma_dot
     return {"times": times, "sigma": sigmas, "sigma_dot": velocities}
+
+
+def coherent_rhs(
+    state: tuple[float, float, float, float],
+    omega: float,
+    hbar: float = 1.0,
+    mass: float = 1.0,
+) -> tuple[float, float, float, float]:
+    """RHS for (x0, v0, sigma, sigma_dot) of the displaced Gaussian."""
+    x0, v0, sigma, sigma_dot = state
+    if sigma <= 0.0:
+        raise ValueError("sigma must be positive")
+    _, sigma_acceleration = ermakov_rhs(sigma, sigma_dot, omega, hbar, mass)
+    return v0, -omega * omega * x0, sigma_dot, sigma_acceleration
+
+
+def coherent_energy(
+    state: tuple[float, float, float, float],
+    omega: float,
+    hbar: float = 1.0,
+    mass: float = 1.0,
+) -> float:
+    x0, v0, sigma, sigma_dot = state
+    return (
+        0.5 * v0 * v0
+        + 0.5 * omega * omega * x0 * x0
+        + energy(sigma, sigma_dot, omega, hbar, mass)
+    )
+
+
+def simulate_coherent(
+    x0: float,
+    v0: float,
+    sigma0: float,
+    sigma_dot0: float,
+    omega: float,
+    duration: float,
+    hbar: float = 1.0,
+    mass: float = 1.0,
+    dt: float = 1e-3,
+) -> dict:
+    if sigma0 <= 0.0 or duration <= 0.0 or dt <= 0.0:
+        raise ValueError("sigma0, duration and dt must be positive")
+    steps = int(round(duration / dt))
+    times = np.empty(steps + 1)
+    centers = np.empty(steps + 1)
+    center_velocities = np.empty(steps + 1)
+    sigmas = np.empty(steps + 1)
+    sigma_velocities = np.empty(steps + 1)
+    state = (x0, v0, sigma0, sigma_dot0)
+    times[0] = 0.0
+    centers[0], center_velocities[0], sigmas[0], sigma_velocities[0] = state
+    for index in range(steps):
+        k1 = coherent_rhs(state, omega, hbar, mass)
+        k2 = coherent_rhs(
+            tuple(value + 0.5 * dt * slope for value, slope in zip(state, k1)),
+            omega,
+            hbar,
+            mass,
+        )
+        k3 = coherent_rhs(
+            tuple(value + 0.5 * dt * slope for value, slope in zip(state, k2)),
+            omega,
+            hbar,
+            mass,
+        )
+        k4 = coherent_rhs(
+            tuple(value + dt * slope for value, slope in zip(state, k3)),
+            omega,
+            hbar,
+            mass,
+        )
+        state = tuple(
+            value + dt * (s1 + 2.0 * s2 + 2.0 * s3 + s4) / 6.0
+            for value, s1, s2, s3, s4 in zip(state, k1, k2, k3, k4)
+        )
+        times[index + 1] = (index + 1) * dt
+        (
+            centers[index + 1],
+            center_velocities[index + 1],
+            sigmas[index + 1],
+            sigma_velocities[index + 1],
+        ) = state
+    return {
+        "times": times,
+        "x0": centers,
+        "v0": center_velocities,
+        "sigma": sigmas,
+        "sigma_dot": sigma_velocities,
+    }
