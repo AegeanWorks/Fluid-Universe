@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `99`
+- **Total Python Modules**: `102`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `543`
+- **Total Top-Level Functions**: `559`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `13948`
+- **Total Source Lines**: `14261`
 
 ---
 
@@ -185,6 +185,17 @@
 
 **Functions:**
 - `def run_scale_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hydrogen_fluid_report.py`](phenomenology/hydrogen_fluid_report.py)
+> *Hydrogen 1s Madelung reduction report (claim 25, ADR-016).*
+
+**Size**: `128` lines (`4504` bytes)
+
+**Functions:**
+- `def run_hydrogen_fluid_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -793,6 +804,21 @@
 
 ---
 
+### [`tests/test_hydrogen_fluid.py`](tests/test_hydrogen_fluid.py)
+> *Hydrogen 1s Madelung reduction tests (claim 25).*
+
+**Size**: `56` lines (`1467` bytes)
+
+**Functions:**
+- `def test_bohr_radius_atomic_units()`
+- `def test_density_is_normalized()`
+- `def test_force_balance_vanishes_at_the_bohr_radius()`
+- `def test_force_balance_is_nonzero_at_the_wrong_radius()`
+- `def test_si_values()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_lorentz.py`](tests/test_lorentz.py)
 > *Residual anisotropy and LV-bound tests (claims 11-12).*
 
@@ -1207,6 +1233,22 @@
 
 ---
 
+### [`theory/hydrogen_fluid.py`](theory/hydrogen_fluid.py)
+> *Hydrogen 1s Madelung reduction (claim 25, ADR-016).*
+
+**Size**: `95` lines (`2630` bytes)
+
+**Functions:**
+- `def bohr_radius(hbar, mass, coupling)`
+- `def ground_energy(radius, hbar, mass)`
+- `def hydrogen_density(r, radius)`
+- `def quantum_pressure(r, radius, hbar, mass)`
+- `def coulomb_potential(r, coupling)`
+- `def force_balance(r, radius, hbar, mass, coupling)` - *V + Q - mu; zero when radius is the Bohr radius.*
+- `def si_values()`
+
+---
+
 ### [`theory/lorentz.py`](theory/lorentz.py)
 > *Linearised director dispersion and the emergent-metric question (claims 11-12).*
 
@@ -1362,7 +1404,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1948` lines (`77176` bytes)
+**Size**: `1980` lines (`78516` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1409,6 +1451,7 @@
 - `def audit_gaussian_fluid(audit)`
 - `def audit_coherent_fluid(audit)`
 - `def audit_excited_fluid(audit)`
+- `def audit_hydrogen_fluid(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1438,7 +1481,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `143` lines (`3717` bytes)
+**Size**: `145` lines (`3769` bytes)
 
 **Functions:**
 - `def _source_files()`

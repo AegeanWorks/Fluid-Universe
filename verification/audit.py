@@ -1480,6 +1480,37 @@ def audit_excited_fluid(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Hydrogen 1s Madelung reduction (claim 25/ADR-016)
+# ---------------------------------------------------------------------------
+
+
+def audit_hydrogen_fluid(audit: Audit) -> None:
+    payload = load_results("hydrogen_fluid.json")
+    result = payload["result"]
+    atomic = result["atomic_units"]
+    si = result["si"]
+    verdict = result["verdict"]
+    audit.record(
+        "25: hydrogen 1s force balance gives the Bohr radius",
+        abs(atomic["bohr_radius"] - 1.0) < 1e-12
+        and abs(atomic["ground_energy"] + 0.5) < 1e-12
+        and atomic["max_abs_residual"] < 1e-12
+        and abs(atomic["density_normalization"] - 1.0) < 1e-6,
+        f"a0={atomic['bohr_radius']:.12f}, "
+        f"residual={atomic['max_abs_residual']:.3e}",
+    )
+    audit.record(
+        "25: SI values and the wrong-radius control are recorded",
+        abs(si["bohr_radius_m"] - 5.29177e-11) / 5.29177e-11 < 1e-4
+        and abs(si["ground_energy_ev"] + 13.6057) / 13.6057 < 1e-4
+        and abs(atomic["wrong_radius_residual"] + 0.5) < 1e-12
+        and verdict["force_balance_verified"] is True
+        and verdict["claim_25_status"].startswith("PROVEN"),
+        f"a0={si['bohr_radius_m']:.9e}, E={si['ground_energy_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1885,6 +1916,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_gaussian_fluid(audit)
     audit_coherent_fluid(audit)
     audit_excited_fluid(audit)
+    audit_hydrogen_fluid(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "config": {
+      "coupling": 1.0,
+      "hbar": 1.0,
+      "mass": 1.0,
+      "radii": [
+        0.5,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "scope": "hydrogen 1s Madelung reduction; force balance and SI values",
+      "si_constants": {
+        "coulomb": "2.307077e-28",
+        "ev_joule": "1.602176634e-19",
+        "hbar": "1.054571817e-34",
+        "mass": "9.1093837015e-31"
+      }
+    },
+    "config_sha256": "96a0d8af133d9e085e7d347e408e9e2c83118df9ab7e6fb33a1692f4f1994cff",
+    "generated_utc": "2026-10-30T16:35:49+00:00",
+    "git": {
+      "commit": "cca2c560f1794d474cbd081e91664481ba4d6ad6",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "atomic_units": {
+      "bohr_radius": 1.0,
+      "density_normalization": 0.9999999999999335,
+      "force_balance_radii": [
+        0.5,
+        1.0,
+        2.0,
+        5.0
+      ],
+      "force_balance_residual": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ground_energy": -0.5,
+      "max_abs_residual": 0.0,
+      "wrong_radius": 2.0,
+      "wrong_radius_residual": -0.5
+    },
+    "si": {
+      "bohr_radius_m": 5.291773369489437e-11,
+      "ground_energy_ev": -13.60568662483086,
+      "ground_energy_joule": -2.1798713199830326e-18
+    },
+    "verdict": {
+      "claim_25_status": "PROVEN (Coulomb-quantum pressure balance)",
+      "force_balance_verified": true,
+      "note": "The stationarity condition V+Q=mu cancels the 1/r terms at a0=hbar^2/(m e^2) and leaves mu=-hbar^2/(2 m a0^2). The Bohr radius is derived from the fluid force balance, not inserted from the wavefunction. The 1s state is nodeless; excited states remain node-singular."
+    }
+  }
+}

@@ -552,3 +552,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 24 is **FALSIFIED**: the node is a phase slip, not a regular single-valued fluid point. A two-component or defect model is required.
 
 - Verification after the first-excited-state node analysis: two separate runs, 198/198 checks each.
+
+## 2026-10-30 - Hydrogen 1s Madelung reduction (claim 25, ADR-016)
+
+**Added**
+
+- `theory/hydrogen_fluid.py`, `phenomenology/hydrogen_fluid_report.py`, `make hydrogen`, `tests/test_hydrogen_fluid.py`, and `results/hydrogen_fluid.{json,md}`.
+
+**Results**
+
+- With \(\rho=(1/\pi a_0^3)e^{-2r/a_0}\), the \(1/r\) terms in \(V+Q=\mu\) cancel at \(a_0=\hbar^2/(me^2)=1\), leaving \(\mu=-0.5\).
+- Density normalization 1.000000000000; force-balance residual 0 at \(r=0.5,1,2,5\); a wrong radius \(a=2\) gives a residual of \(-0.5\).
+- SI values: \(a_0=5.291773369\times10^{-11}\) m and \(E=-13.605687\) eV.
+- Claim 25 is **PROVEN (Coulomb-quantum pressure balance)**. The Bohr radius is derived from the fluid force balance, not inserted from the wavefunction; excited states remain node-singular.
+
+- Verification after the hydrogen 1s reduction: two separate runs, 200/200 checks each.

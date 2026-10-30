@@ -98,6 +98,8 @@ RESULT_FILES = (
     "coherent_fluid.md",
     "excited_fluid.json",
     "excited_fluid.md",
+    "hydrogen_fluid.json",
+    "hydrogen_fluid.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

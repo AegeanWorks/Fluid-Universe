@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T16:28:50+00:00 | `81f091f859e308f1d68823c76750d158fe9bd5de` | 198/198 | `72c213e2b49cf9b8...` | `a2ba7e6f188872e6...` |
-| run2 | 2026-10-30T16:28:57+00:00 | `81f091f859e308f1d68823c76750d158fe9bd5de` | 198/198 | `72c213e2b49cf9b8...` | `a2ba7e6f188872e6...` |
+| run1 | 2026-10-30T16:39:13+00:00 | `cca2c560f1794d474cbd081e91664481ba4d6ad6` | 200/200 | `06e3ec482d8a9512...` | `22fdb5eb40d345e1...` |
+| run2 | 2026-10-30T16:39:20+00:00 | `cca2c560f1794d474cbd081e91664481ba4d6ad6` | 200/200 | `06e3ec482d8a9512...` | `22fdb5eb40d345e1...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -77,6 +77,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 23: moving-center Gaussian reproduces the coherent-state trajectory | PASS | PASS | YES | YES | x(pi)=-0.999999917, period=6.284000 |
 | 24: first excited state has a node and a pi phase slip | PASS | PASS | YES | YES | slip=3.141592654, Q error=4.793e-13 |
 | 24: phase gradient diverges as dx^-1 and the claim is falsified | PASS | PASS | YES | YES | slope=-1.000000000 |
+| 25: SI values and the wrong-radius control are recorded | PASS | PASS | YES | YES | a0=5.291773369e-11, E=-13.605687 |
+| 25: hydrogen 1s force balance gives the Bohr radius | PASS | PASS | YES | YES | a0=1.000000000000, residual=0.000e+00 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

@@ -34,7 +34,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   python -m verification.compare
   ```
   This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 198/198 checks each (`python -m verification.verify`).
+- **Claim audit status**: two separate runs agree per claim, 200/200 checks each (`python -m verification.verify`).
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
@@ -80,6 +80,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Gaussian Madelung reduction | PROVEN: the Gaussian ansatz gives the Ermakov equation; its fixed point is \(\sigma^2=\hbar/(2m\omega)=0.5\), with energy drift \(2.8\times10^{-12}\) and period \(3.141600\) vs \(\pi\) | `results/gaussian_fluid.json` |
 | Moving-center Gaussian | PROVEN: the displaced Gaussian decouples into \(x_0''=-\omega^2x_0\) and the Ermakov width; center period 6.284000 vs \(2\pi\), width error 0, energy drift \(7.1\times10^{-15}\) | `results/coherent_fluid.json` |
 | First excited state node | FALSIFIED: density vanishes at \(x=0\), phase jumps by \(\pi\), and the phase-gradient maximum scales as \(dx^{-1}\); the regular \(Q\) matches away from the node, but the node is a phase slip | `results/excited_fluid.json` |
+| Hydrogen 1s reduction | PROVEN: the Coulomb potential and quantum pressure balance at \(a_0=\hbar^2/(me^2)=1\), with \(E=-0.5\); SI \(a_0=5.291773369\times10^{-11}\) m, \(E=-13.605687\) eV | `results/hydrogen_fluid.json` |
 | Emergent metric at tree level | FALSIFIED: preferred frame; no metric; \(\xi=1.00348\) for \(K=(1,2,3)\) | `results/lorentz.json` |
 | One-loop RG to a Lorentz-invariant IR | UNVERIFIED: no calculation | `results/lorentz.json` |
 | Photon LV bounds on director modes | UNVERIFIED (not applicable): modes are neutral | `results/lorentz.json` |

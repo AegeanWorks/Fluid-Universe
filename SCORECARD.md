@@ -48,5 +48,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 22 | PROVEN (Ermakov) | Gaussian Madelung reduction: σ²=0.5 is the effective-potential minimum; energy drift 2.8e-12; small-oscillation period 3.141600 vs π (2.3e-6). |
 | 23 | PROVEN (moving center) | Displaced Gaussian decouples into x0''=-ω²x0 and the Ermakov width; center period 6.284000 vs 2π, width error 0, energy drift 7.1e-15. |
 | 24 | FALSIFIED (node phase slip) | First excited state: density node at x=0, phase jump π, phase-gradient max scales as dx^-1 (slope -1.000000000); regular Q matches away from the node but the node is singular. |
+| 25 | PROVEN (Coulomb balance) | Hydrogen 1s: a0=1, E=-0.5, normalization 1.000000000000, force residual 0; wrong radius gives -0.5. SI: a0=5.291773369e-11 m, E=-13.605687 eV. |
 
-Claim audit: two separate runs agree per claim, 198/198 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 200/200 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
