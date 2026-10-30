@@ -567,3 +567,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 25 is **PROVEN (Coulomb-quantum pressure balance)**. The Bohr radius is derived from the fluid force balance, not inserted from the wavefunction; excited states remain node-singular.
 
 - Verification after the hydrogen 1s reduction: two separate runs, 200/200 checks each.
+
+## 2026-10-30 - Hydrogen 2p vortex identification (claim 26, ADR-017)
+
+**Added**
+
+- `theory/hydrogen_vortex.py`, `phenomenology/hydrogen_vortex_report.py`, `make hydrogenvortex`, `tests/test_hydrogen_vortex.py`, and `results/hydrogen_vortex.{json,md}`.
+
+**Results**
+
+- The \(2p_{m=\pm1}\) angular node at the origin is a quantized vortex: radial normalization 1.000000000000, most-probable radius 4.000000000 \(a_0\).
+- Circulation \(2\pi\hbar m/m_e=6.283185307180\) (atomic units); the loop integral at \(r=2,\theta=\pi/2\) matches it.
+- Azimuthal velocity 0.5; angular momentum \(\hbar m=1.000000000000\).
+- Claim 26 is **NUMERIC (2p vortex identification)**. The \(m=0\) state has no vortex; this identifies the defect, not the 2p energy, and radial nodes still require a separate model.
+
+- Verification after the hydrogen 2p vortex identification: two separate runs, 202/202 checks each.

@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "config": {
+      "loop_r": 2.0,
+      "loop_theta": 1.5707963267948966,
+      "m": 1,
+      "radius": 1.0,
+      "scope": "hydrogen 2p vortex identification; circulation and angular momentum"
+    },
+    "config_sha256": "356a5dfe5982ef69ff0ec7b3f4c4c9f7edc1011f52a39bd859639a7e4b99be31",
+    "generated_utc": "2026-10-30T16:45:00+00:00",
+    "git": {
+      "commit": "5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "atomic_units": {
+      "angular_momentum": 1.0,
+      "azimuthal_velocity": 0.5,
+      "bohr_radius": 1.0,
+      "circulation": 6.283185307179586,
+      "expected_most_probable_radius": 4.0,
+      "loop_radius": 2.0,
+      "loop_theta": 1.5707963267948966,
+      "m": 1,
+      "measured_loop_circulation": 6.283185307179586,
+      "most_probable_radius": 4.0,
+      "radial_normalization": 1.0000000000000002
+    },
+    "verdict": {
+      "claim_26_status": "NUMERIC (2p vortex identification)",
+      "note": "The 2p_(m=+-1) angular node is a quantized vortex with circulation 2 pi hbar m / m_e and angular momentum hbar m; the radial density is nodeless and peaks at 4 a0. The m=0 state has no vortex. This identifies the defect, not the 2p energy; radial nodes still require a separate model.",
+      "vortex_identified": true
+    }
+  }
+}

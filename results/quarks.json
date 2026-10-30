@@ -6,9 +6,9 @@
       "mass_definition": "MS-bar, full SM, Huang & Zhou (2021) Table II"
     },
     "config_sha256": "e1a32d5cfb6e7f5bc307e762afe8b3536e809b0bcfb77068e1392dcdc3b7c5aa",
-    "generated_utc": "2026-10-30T16:37:56+00:00",
+    "generated_utc": "2026-10-30T16:47:55+00:00",
     "git": {
-      "commit": "cca2c560f1794d474cbd081e91664481ba4d6ad6",
+      "commit": "5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2",
       "dirty": true
     },
     "packages": {

@@ -1511,6 +1511,35 @@ def audit_hydrogen_fluid(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Hydrogen 2p vortex (claim 26/ADR-017)
+# ---------------------------------------------------------------------------
+
+
+def audit_hydrogen_vortex(audit: Audit) -> None:
+    payload = load_results("hydrogen_vortex.json")
+    result = payload["result"]
+    atomic = result["atomic_units"]
+    verdict = result["verdict"]
+    audit.record(
+        "26: hydrogen 2p has a quantized vortex with the 4a0 peak",
+        abs(atomic["radial_normalization"] - 1.0) < 1e-6
+        and abs(atomic["most_probable_radius"] - 4.0) < 1e-3
+        and abs(atomic["measured_loop_circulation"] - 2.0 * 3.141592653589793)
+        < 1e-10
+        and abs(atomic["azimuthal_velocity"] - 0.5) < 1e-12,
+        f"a0 peak={atomic['most_probable_radius']:.6f}, "
+        f"circulation={atomic['measured_loop_circulation']:.9f}",
+    )
+    audit.record(
+        "26: angular momentum is hbar m and the vortex claim is recorded",
+        abs(atomic["angular_momentum"] - 1.0) < 1e-12
+        and verdict["vortex_identified"] is True
+        and verdict["claim_26_status"].startswith("NUMERIC"),
+        f"Lz={atomic['angular_momentum']:.9f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1917,6 +1946,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_coherent_fluid(audit)
     audit_excited_fluid(audit)
     audit_hydrogen_fluid(audit)
+    audit_hydrogen_vortex(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

@@ -80,6 +80,8 @@ Do not edit these files by hand.
 | `excited_fluid.md` | Human-readable version of the same |
 | `hydrogen_fluid.json` | Hydrogen 1s Madelung reduction: force balance, Bohr radius, SI values |
 | `hydrogen_fluid.md` | Human-readable version of the same |
+| `hydrogen_vortex.json` | Hydrogen 2p vortex identification: circulation, angular momentum, radius |
+| `hydrogen_vortex.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

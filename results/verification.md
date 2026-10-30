@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T16:39:13+00:00 | `cca2c560f1794d474cbd081e91664481ba4d6ad6` | 200/200 | `06e3ec482d8a9512...` | `22fdb5eb40d345e1...` |
-| run2 | 2026-10-30T16:39:20+00:00 | `cca2c560f1794d474cbd081e91664481ba4d6ad6` | 200/200 | `06e3ec482d8a9512...` | `22fdb5eb40d345e1...` |
+| run1 | 2026-10-30T16:50:16+00:00 | `5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2` | 202/202 | `754e5088d27ecb70...` | `2ec8f50bc0621d08...` |
+| run2 | 2026-10-30T16:50:31+00:00 | `5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2` | 202/202 | `754e5088d27ecb70...` | `2ec8f50bc0621d08...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -79,6 +79,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 24: phase gradient diverges as dx^-1 and the claim is falsified | PASS | PASS | YES | YES | slope=-1.000000000 |
 | 25: SI values and the wrong-radius control are recorded | PASS | PASS | YES | YES | a0=5.291773369e-11, E=-13.605687 |
 | 25: hydrogen 1s force balance gives the Bohr radius | PASS | PASS | YES | YES | a0=1.000000000000, residual=0.000e+00 |
+| 26: angular momentum is hbar m and the vortex claim is recorded | PASS | PASS | YES | YES | Lz=1.000000000 |
+| 26: hydrogen 2p has a quantized vortex with the 4a0 peak | PASS | PASS | YES | YES | a0 peak=4.000000, circulation=6.283185307 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

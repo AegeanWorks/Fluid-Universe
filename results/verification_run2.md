@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**200/200 checks passed.**
+**202/202 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -107,6 +107,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 24: phase gradient diverges as dx^-1 and the claim is falsified | PASS | slope=-1.000000000 |
 | 25: hydrogen 1s force balance gives the Bohr radius | PASS | a0=1.000000000000, residual=0.000e+00 |
 | 25: SI values and the wrong-radius control are recorded | PASS | a0=5.291773369e-11, E=-13.605687 |
+| 26: hydrogen 2p has a quantized vortex with the 4a0 peak | PASS | a0 peak=4.000000, circulation=6.283185307 |
+| 26: angular momentum is hbar m and the vortex claim is recorded | PASS | Lz=1.000000000 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex cascade rotorpotential madelung nelson gaussianfluid coherentfluid excitednode hydrogen clean
+.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex cascade rotorpotential madelung nelson gaussianfluid coherentfluid excitednode hydrogen hydrogenvortex clean
 
 help:
 	@echo "make test     - run the regression suite"
@@ -25,6 +25,7 @@ help:
 	@echo "make coherentfluid - moving-center Gaussian reduction (claim 23)"
 	@echo "make excitednode - first-excited-state node singularity (claim 24)"
 	@echo "make hydrogen - hydrogen 1s Madelung reduction (claim 25)"
+	@echo "make hydrogenvortex - hydrogen 2p vortex identification (claim 26)"
 	@echo "make clean    - remove caches and generated results"
 
 test:
@@ -93,7 +94,10 @@ excitednode:
 hydrogen:
 	$(PYTHON) -m phenomenology.hydrogen_fluid_report
 
+hydrogenvortex:
+	$(PYTHON) -m phenomenology.hydrogen_vortex_report
+
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json', 'vortex_cascade.json', 'rotor_potential.json', 'madelung.json', 'nelson.json', 'gaussian_fluid.json', 'coherent_fluid.json', 'excited_fluid.json', 'hydrogen_fluid.json'}]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md', 'vortex_cascade.md', 'rotor_potential.md', 'madelung.md', 'nelson.md', 'gaussian_fluid.md', 'coherent_fluid.md', 'excited_fluid.md', 'hydrogen_fluid.md'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json', 'vortex_cascade.json', 'rotor_potential.json', 'madelung.json', 'nelson.json', 'gaussian_fluid.json', 'coherent_fluid.json', 'excited_fluid.json', 'hydrogen_fluid.json', 'hydrogen_vortex.json'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md', 'vortex_cascade.md', 'rotor_potential.md', 'madelung.md', 'nelson.md', 'gaussian_fluid.md', 'coherent_fluid.md', 'excited_fluid.md', 'hydrogen_fluid.md', 'hydrogen_vortex.md'}]"

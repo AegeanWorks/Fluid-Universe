@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `102`
+- **Total Python Modules**: `105`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `559`
+- **Total Top-Level Functions**: `574`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `14261`
+- **Total Source Lines**: `14543`
 
 ---
 
@@ -196,6 +196,17 @@
 
 **Functions:**
 - `def run_hydrogen_fluid_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/hydrogen_vortex_report.py`](phenomenology/hydrogen_vortex_report.py)
+> *Hydrogen 2p vortex identification report (claim 26, ADR-017).*
+
+**Size**: `123` lines (`4305` bytes)
+
+**Functions:**
+- `def run_hydrogen_vortex_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -819,6 +830,20 @@
 
 ---
 
+### [`tests/test_hydrogen_vortex.py`](tests/test_hydrogen_vortex.py)
+> *Hydrogen 2p vortex tests (claim 26).*
+
+**Size**: `48` lines (`1367` bytes)
+
+**Functions:**
+- `def test_radial_probability_is_normalized()`
+- `def test_most_probable_radius_is_four_bohr_radii()`
+- `def test_circulation_is_quantized()`
+- `def test_azimuthal_velocity_and_angular_momentum()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_lorentz.py`](tests/test_lorentz.py)
 > *Residual anisotropy and LV-bound tests (claims 11-12).*
 
@@ -1249,6 +1274,22 @@
 
 ---
 
+### [`theory/hydrogen_vortex.py`](theory/hydrogen_vortex.py)
+> *Hydrogen 2p vortex identification (claim 26, ADR-017).*
+
+**Size**: `79` lines (`2246` bytes)
+
+**Functions:**
+- `def radial_2p(r, radius)` - *Hydrogen 2p radial function R_21(r), normalized as int r^2 R^2 dr = 1.*
+- `def radial_probability(r, radius)`
+- `def most_probable_radius(radius)`
+- `def azimuthal_velocity(r, theta, m, hbar, mass)`
+- `def circulation(m, hbar, mass)`
+- `def loop_circulation(r, theta, m, hbar, mass, samples)`
+- `def angular_momentum(m, hbar)`
+
+---
+
 ### [`theory/lorentz.py`](theory/lorentz.py)
 > *Linearised director dispersion and the emergent-metric question (claims 11-12).*
 
@@ -1404,7 +1445,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1980` lines (`78516` bytes)
+**Size**: `2010` lines (`79750` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1452,6 +1493,7 @@
 - `def audit_coherent_fluid(audit)`
 - `def audit_excited_fluid(audit)`
 - `def audit_hydrogen_fluid(audit)`
+- `def audit_hydrogen_vortex(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1481,7 +1523,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `145` lines (`3769` bytes)
+**Size**: `147` lines (`3823` bytes)
 
 **Functions:**
 - `def _source_files()`

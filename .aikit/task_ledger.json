@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "hydrogen-fluid-v1",
+    "task_id": "hydrogen-vortex-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793378424.90006,
+    "updated_at": 1793379126.3946514,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793378425.0594919
+    "completed_at": 1793379126.5450509
   },
   "checkpoints": [
-    {
-      "task_id": "nelson-stochastic-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-012 and add failing tests for Nelson stochastic kinematics",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793374223.9094436,
-      "timestamp_str": "2026-10-30 18:30:23",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The Madelung dictionary is exact but does not derive the quantum pressure. Nelson stochastic mechanics with D=hbar/(2m) gives Q a physical origin through the osmotic velocity u=D d_x ln(rho) and a stochastic Newton equation.",
-        "benefits": "A numerical stochastic model that reproduces the exact quantum ground-state and free-packet densities gives the fluid program a microphysical foundation rather than a change of variables.",
-        "risks": "contract: new claim 21, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: histogram noise and finite-time relaxation",
-        "mitigation": "Use 20k-50k particles, 80 bins, exact drift fields, and pre-register L1 tolerances; state clearly that the drift uses the exact quantum density, so this is a consistency check, not a self-consistent derivation"
-      }
-    },
-    {
-      "task_id": "nelson-stochastic-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Nelson kinematics: OU variance 0.500625 vs 0.5; ground-state L1 0.0177; free-packet L1 0.0195; claim 21 NUMERIC (verified); exact-density drift, so a consistency check",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793374704.109657,
-      "timestamp_str": "2026-10-30 18:38:24",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "nelson-stochastic-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 192/192 accepted (2 new claim-21 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793374708.0281796,
-      "timestamp_str": "2026-10-30 18:38:28",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "nelson-stochastic-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'nelson-stochastic-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793374708.206422,
-      "timestamp_str": "2026-10-30 18:38:28",
-      "agent": "opencode"
-    },
     {
       "task_id": "gaussian-fluid-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793378425.0594933,
       "timestamp_str": "2026-10-30 19:40:25",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "hydrogen-vortex-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-017 and add failing tests for the hydrogen 2p vortex identification",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793378600.8369935,
+      "timestamp_str": "2026-10-30 19:43:20",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The first excited state node is singular in 1D. The hydrogen 2p_(m=+-1) state has an angular node at the origin, which is a quantized vortex with circulation h/m_e, not a radial node. Identifying it connects the node problem to the earlier vortex work.",
+        "benefits": "A positive fluid-mechanics identification of a real quantum state: circulation, angular momentum and most-probable radius from the exact 2p density.",
+        "risks": "contract: new claim 26, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the azimuthal velocity diverges at theta=0, so the loop is evaluated away from the poles",
+        "mitigation": "Use the exact 2p radial function; test normalization, the 4a0 peak, the loop circulation away from the poles, and the angular momentum; state that m=0 has no vortex"
+      }
+    },
+    {
+      "task_id": "hydrogen-vortex-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Hydrogen 2p: radial normalization 1, peak 4a0, circulation 6.283185307180, loop circulation matches, azimuthal velocity 0.5, Lz=1; claim 26 NUMERIC (vortex identification)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793379119.1893246,
+      "timestamp_str": "2026-10-30 19:51:59",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "hydrogen-vortex-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 202/202 accepted (2 new claim-26 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793379126.3946514,
+      "timestamp_str": "2026-10-30 19:52:06",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "hydrogen-vortex-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'hydrogen-vortex-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793379126.5450525,
+      "timestamp_str": "2026-10-30 19:52:06",
       "agent": "opencode"
     }
   ]

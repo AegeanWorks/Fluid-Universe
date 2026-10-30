@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "06e3ec482d8a95128594776eed48f81bb9080113a06cb9990b65daed5087caaf",
-      "results_sha256": "22fdb5eb40d345e161c5987505cca476f710fef14ac55bf5baebcadac2520022"
+      "source_sha256": "754e5088d27ecb70ff1474d4c22b39bf7812e3b247d9496b7243a37291049123",
+      "results_sha256": "2ec8f50bc0621d080cd42782e3b87a40a68f96d1834b9c6f7a98104275c06e97"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T16:39:13+00:00",
-        "git_commit": "cca2c560f1794d474cbd081e91664481ba4d6ad6",
-        "passed": 200,
-        "total": 200,
+        "generated_utc": "2026-10-30T16:50:16+00:00",
+        "git_commit": "5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2",
+        "passed": 202,
+        "total": 202,
         "failed": 0,
-        "checks_sha256": "79e6f56e56ec72a18ba76da755a906c3013e97ee5ffec90fc37ba66ccf90e090",
+        "checks_sha256": "e2ae1fd82b1687d7c8424c92f3ea493ebef7e5f2280280ada6f8ef9dfd27dda8",
         "fingerprints": {
-          "source_sha256": "06e3ec482d8a95128594776eed48f81bb9080113a06cb9990b65daed5087caaf",
-          "results_sha256": "22fdb5eb40d345e161c5987505cca476f710fef14ac55bf5baebcadac2520022"
+          "source_sha256": "754e5088d27ecb70ff1474d4c22b39bf7812e3b247d9496b7243a37291049123",
+          "results_sha256": "2ec8f50bc0621d080cd42782e3b87a40a68f96d1834b9c6f7a98104275c06e97"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T16:39:20+00:00",
-        "git_commit": "cca2c560f1794d474cbd081e91664481ba4d6ad6",
-        "passed": 200,
-        "total": 200,
+        "generated_utc": "2026-10-30T16:50:31+00:00",
+        "git_commit": "5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2",
+        "passed": 202,
+        "total": 202,
         "failed": 0,
-        "checks_sha256": "79e6f56e56ec72a18ba76da755a906c3013e97ee5ffec90fc37ba66ccf90e090",
+        "checks_sha256": "e2ae1fd82b1687d7c8424c92f3ea493ebef7e5f2280280ada6f8ef9dfd27dda8",
         "fingerprints": {
-          "source_sha256": "06e3ec482d8a95128594776eed48f81bb9080113a06cb9990b65daed5087caaf",
-          "results_sha256": "22fdb5eb40d345e161c5987505cca476f710fef14ac55bf5baebcadac2520022"
+          "source_sha256": "754e5088d27ecb70ff1474d4c22b39bf7812e3b247d9496b7243a37291049123",
+          "results_sha256": "2ec8f50bc0621d080cd42782e3b87a40a68f96d1834b9c6f7a98104275c06e97"
         }
       }
     ],
@@ -554,6 +554,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "a0=1.000000000000, residual=0.000e+00"
+    },
+    {
+      "claim": "26: angular momentum is hbar m and the vortex claim is recorded",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Lz=1.000000000"
+    },
+    {
+      "claim": "26: hydrogen 2p has a quantized vortex with the 4a0 peak",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "a0 peak=4.000000, circulation=6.283185307"
     },
     {
       "claim": "2a: M != M^T for generic delta",
@@ -2353,6 +2369,20 @@
       "observed": null
     },
     {
+      "claim": "26: hydrogen 2p has a quantized vortex with the 4a0 peak",
+      "passed": true,
+      "detail": "a0 peak=4.000000, circulation=6.283185307",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "26: angular momentum is hbar m and the vortex claim is recorded",
+      "passed": true,
+      "detail": "Lz=1.000000000",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3046,8 +3076,8 @@
       "observed": null
     }
   ],
-  "total": 200,
-  "passed": 200,
+  "total": 202,
+  "passed": 202,
   "failed": 0,
   "failures": []
 }

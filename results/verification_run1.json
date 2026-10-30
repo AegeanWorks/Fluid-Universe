@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T16:39:13+00:00",
-    "git_commit": "cca2c560f1794d474cbd081e91664481ba4d6ad6",
+    "generated_utc": "2026-10-30T16:50:16+00:00",
+    "git_commit": "5ad1f2d8e51fb3fbc851ae54bdd506b4dbe6e0c2",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "06e3ec482d8a95128594776eed48f81bb9080113a06cb9990b65daed5087caaf",
-      "results_sha256": "22fdb5eb40d345e161c5987505cca476f710fef14ac55bf5baebcadac2520022"
+      "source_sha256": "754e5088d27ecb70ff1474d4c22b39bf7812e3b247d9496b7243a37291049123",
+      "results_sha256": "2ec8f50bc0621d080cd42782e3b87a40a68f96d1834b9c6f7a98104275c06e97"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -725,6 +725,20 @@
       "observed": null
     },
     {
+      "claim": "26: hydrogen 2p has a quantized vortex with the 4a0 peak",
+      "passed": true,
+      "detail": "a0 peak=4.000000, circulation=6.283185307",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "26: angular momentum is hbar m and the vortex claim is recorded",
+      "passed": true,
+      "detail": "Lz=1.000000000",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1418,8 +1432,8 @@
       "observed": null
     }
   ],
-  "total": 200,
-  "passed": 200,
+  "total": 202,
+  "passed": 202,
   "failed": 0,
   "failures": []
 }
