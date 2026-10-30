@@ -55,5 +55,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 29 | PROVEN (dispersive horizon) | ω_c=84.824 rad/s (13.5 Hz); horizon ratios 1.000013 at 0.1 rad/s, 1.151520 at 10, 5.192407 at 100; long-wavelength metric valid below ~1 rad/s. |
 | 30 | PROVEN (radial separatrix) | Outgoing speed changes sign at r_H (-0.110 at 0.9r_H, +0.090 at 1.1r_H); ray times match analytic to 2e-6; peeling rate 12.209936 = surface gravity. |
 | 31 | NUMERIC (horizon blocking) | 1D packet: horizon transmitted fraction 7.503e-6, final center -1.433 m; uniform control transmits 1.000000, center 4.433 m. |
+| 32 | NUMERIC (cavity scale) | Hydrated electron: capillary cavity R=2.858 Å, E=0.933 eV vs observed 1.7 eV (factor 1.8); screened hydrogen a*=41.5 Å, E=-2.2 meV, ruled out. |
 
-Claim audit: two separate runs agree per claim, 212/212 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 214/214 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

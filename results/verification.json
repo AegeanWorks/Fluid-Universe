@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "0ff58509e61c6456da10eeeb31bb5d760d72a09571289e0fba295ea308c8e4f3",
-      "results_sha256": "456cc74764cbfaaf208d80ad2f994aa8c03014ba1e77434429f642f736555f49"
+      "source_sha256": "91e193e53e97938dd0229920b4060c8cf129a541c622b689a59836eaeee86df3",
+      "results_sha256": "8a844c5739acfbd1520691a968f428d309a4cf762bb584fe50c522b763cb4b5d"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T17:53:14+00:00",
-        "git_commit": "fe1c68f588c4d5de605e4ec0503b6cfa574e3a35",
-        "passed": 212,
-        "total": 212,
+        "generated_utc": "2026-10-30T18:06:52+00:00",
+        "git_commit": "5c3922003c47f450b712fd80a95ce96349bddc19",
+        "passed": 214,
+        "total": 214,
         "failed": 0,
-        "checks_sha256": "65f08935515ca6ac6a842c0da705dda64777e21635fe89904060b7fcd1db4e83",
+        "checks_sha256": "ee54803bd7dfd82e2e557bce4602c34c40218fe1f40476af0dbc732679957108",
         "fingerprints": {
-          "source_sha256": "0ff58509e61c6456da10eeeb31bb5d760d72a09571289e0fba295ea308c8e4f3",
-          "results_sha256": "456cc74764cbfaaf208d80ad2f994aa8c03014ba1e77434429f642f736555f49"
+          "source_sha256": "91e193e53e97938dd0229920b4060c8cf129a541c622b689a59836eaeee86df3",
+          "results_sha256": "8a844c5739acfbd1520691a968f428d309a4cf762bb584fe50c522b763cb4b5d"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T17:53:23+00:00",
-        "git_commit": "fe1c68f588c4d5de605e4ec0503b6cfa574e3a35",
-        "passed": 212,
-        "total": 212,
+        "generated_utc": "2026-10-30T18:07:09+00:00",
+        "git_commit": "5c3922003c47f450b712fd80a95ce96349bddc19",
+        "passed": 214,
+        "total": 214,
         "failed": 0,
-        "checks_sha256": "65f08935515ca6ac6a842c0da705dda64777e21635fe89904060b7fcd1db4e83",
+        "checks_sha256": "ee54803bd7dfd82e2e557bce4602c34c40218fe1f40476af0dbc732679957108",
         "fingerprints": {
-          "source_sha256": "0ff58509e61c6456da10eeeb31bb5d760d72a09571289e0fba295ea308c8e4f3",
-          "results_sha256": "456cc74764cbfaaf208d80ad2f994aa8c03014ba1e77434429f642f736555f49"
+          "source_sha256": "91e193e53e97938dd0229920b4060c8cf129a541c622b689a59836eaeee86df3",
+          "results_sha256": "8a844c5739acfbd1520691a968f428d309a4cf762bb584fe50c522b763cb4b5d"
         }
       }
     ],
@@ -690,6 +690,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "fraction=1.000000, center=4.433333"
+    },
+    {
+      "claim": "32: screened hydrogen is far too large and weakly bound",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "a*=4.149e-09, E*=-2.214e-03"
+    },
+    {
+      "claim": "32: the capillary cavity lands near the hydrated-electron scale",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "R=2.858e-10, E=0.932839, ratio=0.548729"
     },
     {
       "claim": "3a: (Q-2/3)/sigma",
@@ -2533,6 +2549,20 @@
       "observed": null
     },
     {
+      "claim": "32: screened hydrogen is far too large and weakly bound",
+      "passed": true,
+      "detail": "a*=4.149e-09, E*=-2.214e-03",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "32: the capillary cavity lands near the hydrated-electron scale",
+      "passed": true,
+      "detail": "R=2.858e-10, E=0.932839, ratio=0.548729",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3226,8 +3256,8 @@
       "observed": null
     }
   ],
-  "total": 212,
-  "passed": 212,
+  "total": 214,
+  "passed": 214,
   "failed": 0,
   "failures": []
 }

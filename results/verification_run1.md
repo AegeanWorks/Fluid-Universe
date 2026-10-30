@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**212/212 checks passed.**
+**214/214 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -119,6 +119,8 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 30: ray times match and the peeling rate equals the surface gravity | PASS | max error=2.016e-06, kappa=12.209936 |
 | 31: the horizon blocks the right-moving packet | PASS | fraction=7.503e-06, center=-1.433333 |
 | 31: the uniform-flow control transmits | PASS | fraction=1.000000, center=4.433333 |
+| 32: screened hydrogen is far too large and weakly bound | PASS | a*=4.149e-09, E*=-2.214e-03 |
+| 32: the capillary cavity lands near the hydrated-electron scale | PASS | R=2.858e-10, E=0.932839, ratio=0.548729 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

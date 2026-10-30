@@ -92,6 +92,8 @@ Do not edit these files by hand.
 | `water_rays.md` | Human-readable version of the same |
 | `water_scattering.json` | 1D shallow-water wave scattering at the horizon |
 | `water_scattering.md` | Human-readable version of the same |
+| `water_electron.json` | Hydrated-electron cavity scale from water properties |
+| `water_electron.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

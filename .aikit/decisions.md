@@ -172,3 +172,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The horizon is established analytically and by radial rays. A numerical wave-scattering test checks whether a right-moving packet is blocked at the horizon in the long-wavelength regime.
 - **Decision**: Use the 1D linearized shallow-water equations in Riemann invariants \(R_\pm=u\pm(c/h)\eta\), with upwind advection at speeds \(v\pm c\), a sponge at the boundaries, and a Gaussian packet \(u=(c/h)\eta\). The horizon flow is \(v=-c(1+x/(2L))\); a uniform \(v=-0.5c\) is the transmitting control. Pre-register: transmitted energy fraction \(<10^{-3}\) at the horizon and \(>0.2\) in the control, with finite energy and a stable solution.
 - **Consequences**: New `sims/water_scattering.py`, `phenomenology/water_scattering_report.py`, `tests/test_water_scattering.py`, `results/water_scattering.{json,md}`, and claim 31. The 1D flow is a kinematic analogue, not a consistent shallow-water equilibrium; a full radial simulation remains future work.
+
+### ADR-023: Hydrated-electron cavity scale from water properties (claim 32)
+- **Date**: 2026-10-30
+- **Status**: Accepted
+- **Context**: Water's dielectric constant and surface tension are distinctive. A screened hydrogen state gives \(a_0^*=\epsilon_r a_0=41.5\) Å and \(E^*=-2.2\) meV, while the hydrated electron absorbs near 1.7 eV on a few-Å scale. The balance of electron quantum pressure and surface tension may set the cavity scale.
+- **Decision**: Minimize \(E(R)=\hbar^2/(2mR^2)+4\pi\gamma R^2\) with water at 20 C (\(\gamma=0.0728\) N/m), deriving \(R^4=\hbar^2/(8\pi m\gamma)\), and compare the resulting radius and energy with the screened hydrogen and infinite-well scales. Pre-register: \(R=2.858\) Å and \(E=0.933\) eV; the observed 1.7 eV is a factor 1.8 higher. This is a scale test, not a derivation of the absorption.
+- **Consequences**: New `theory/water_electron.py`, `phenomenology/water_electron_report.py`, `tests/test_water_electron.py`, `results/water_electron.{json,md}`, and claim 32. A finite-well/polaron model is needed for the exact 1.7 eV.

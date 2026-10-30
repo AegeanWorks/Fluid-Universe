@@ -50,6 +50,8 @@ These are identified for engagement, not yet used quantitatively. No claim in th
 
 **Topology caution (claim 13).** A nematic director is headless, so the order-parameter space is \(RP^2\). Its homotopy groups are \(\pi_1(RP^2)=Z_2\), \(\pi_2(RP^2)=Z\), \(\pi_3(RP^2)=Z\). A three-fold sector is **not** automatic. The \(\cos3\phi\) term in the rotor is inserted by hand unless a natural extension (rank-3 order parameter, three coupled nematics, or a three-fold lattice) produces it. This is an open falsification target.
 
+- **Hydrated electron**: absorption maximum about 720 nm (1.7 eV); E. J. Hart and M. Anbar, *The Hydrated Electron* (Wiley, 1970).
+
 ## 5. Non-peer-reviewed material deliberately not used
 
 - A 2026 vixra preprint and a 2026 Zenodo note on Koide RG running were found in search results. They are not peer-reviewed, their provenance is unclear, and their numerical claims were not reproduced here. They are **not** cited as evidence. Any two-loop drift number must be recomputed from a validated code before use.

@@ -1,0 +1,46 @@
+{
+  "meta": {
+    "config": {
+      "epsilon_water": 78.4,
+      "gamma_water_n_m": 0.0728,
+      "observed_absorption_ev": 1.7,
+      "scope": "hydrated-electron cavity scale from water properties"
+    },
+    "config_sha256": "b24789d459e52f43c85054d2d9fe52ddf49c5b0d871811ff8804d4b41f5081a4",
+    "generated_utc": "2026-10-30T18:00:52+00:00",
+    "git": {
+      "commit": "5c3922003c47f450b712fd80a95ce96349bddc19",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "cavity_to_observed_ratio": 0.5487290687039468,
+    "observed_absorption_ev": 1.7,
+    "scales": {
+      "cavity_energy_ev": 0.9328394167967095,
+      "cavity_radius_m": 2.8580710555848763e-10,
+      "epsilon_water": 78.4,
+      "gamma_water_n_m": 0.0728,
+      "screened_bohr_radius_m": 4.14874933347952e-09,
+      "screened_energy_ev": -0.002213545950905872,
+      "well_gap_at_2p5_angstrom_ev": 6.016482594494971,
+      "well_gap_at_cavity_ev": 4.603378006763218,
+      "well_radius_for_1p7_ev_m": 4.703128884401355e-10
+    },
+    "verdict": {
+      "cavity_scale_match": true,
+      "claim_32_status": "NUMERIC (cavity scale match; factor 1.8 in energy)",
+      "note": "The screened hydrogen state is far too large and weakly bound. Balancing the electron quantum pressure against water surface tension gives a 2.858 Angstrom cavity and 0.933 eV, close to the hydrated-electron scale (absorption about 1.7 eV). The energy is a factor 1.8 low; a finite-well or polaron model is needed for the exact value.",
+      "screened_hydrogen_ruled_out": true
+    }
+  }
+}

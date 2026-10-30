@@ -656,3 +656,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 31 is **NUMERIC (horizon blocking)**. The 1D flow is prescribed (kinematic analogue), not a consistent shallow-water equilibrium; a full radial simulation remains future work.
 
 - Verification after the 1D water-wave scattering: two separate runs, 212/212 checks each.
+
+## 2026-10-30 - Hydrated-electron cavity scale (claim 32, ADR-023)
+
+**Added**
+
+- `theory/water_electron.py`, `phenomenology/water_electron_report.py`, `make waterelectron`, `tests/test_water_electron.py`, and `results/water_electron.{json,md}`.
+- The hydrated-electron absorption reference (about 1.7 eV) in `theory/literature.md`.
+
+**Results**
+
+- Screened hydrogen: \(a_0^*=\epsilon_r a_0=4.148749\times10^{-9}\) m, \(E^*=-2.214\times10^{-3}\) eV -> ruled out.
+- Capillary cavity: \(R=2.858071\times10^{-10}\) m, \(E=0.932839\) eV; the observed 1.7 eV is a factor 1.8 higher.
+- Infinite well at 2.5 Å: 6.016483 eV; radius for 1.7 eV: \(4.703129\times10^{-10}\) m.
+- Claim 32 is **NUMERIC (cavity scale match; factor 1.8 in energy)**. A finite-well/polaron model is needed for the exact value.
+
+- Verification after the hydrated-electron cavity scale: two separate runs, 214/214 checks each.

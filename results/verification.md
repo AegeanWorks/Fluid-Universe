@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T17:53:14+00:00 | `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` | 212/212 | `0ff58509e61c6456...` | `456cc74764cbfaaf...` |
-| run2 | 2026-10-30T17:53:23+00:00 | `fe1c68f588c4d5de605e4ec0503b6cfa574e3a35` | 212/212 | `0ff58509e61c6456...` | `456cc74764cbfaaf...` |
+| run1 | 2026-10-30T18:06:52+00:00 | `5c3922003c47f450b712fd80a95ce96349bddc19` | 214/214 | `91e193e53e97938d...` | `8a844c5739acfbd1...` |
+| run2 | 2026-10-30T18:07:09+00:00 | `5c3922003c47f450b712fd80a95ce96349bddc19` | 214/214 | `91e193e53e97938d...` | `8a844c5739acfbd1...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -96,6 +96,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 30: ray times match and the peeling rate equals the surface gravity | PASS | PASS | YES | YES | max error=2.016e-06, kappa=12.209936 |
 | 31: the horizon blocks the right-moving packet | PASS | PASS | YES | YES | fraction=7.503e-06, center=-1.433333 |
 | 31: the uniform-flow control transmits | PASS | PASS | YES | YES | fraction=1.000000, center=4.433333 |
+| 32: screened hydrogen is far too large and weakly bound | PASS | PASS | YES | YES | a*=4.149e-09, E*=-2.214e-03 |
+| 32: the capillary cavity lands near the hydrated-electron scale | PASS | PASS | YES | YES | R=2.858e-10, E=0.932839, ratio=0.548729 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

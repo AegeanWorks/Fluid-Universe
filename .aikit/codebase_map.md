@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `119`
+- **Total Python Modules**: `122`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `643`
+- **Total Top-Level Functions**: `658`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `16113`
+- **Total Source Lines**: `16388`
 
 ---
 
@@ -525,6 +525,17 @@
 
 **Functions:**
 - `def run_water_dispersive_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_electron_report.py`](phenomenology/water_electron_report.py)
+> *Hydrated-electron cavity scale report (claim 32, ADR-023).*
+
+**Size**: `103` lines (`3991` bytes)
+
+**Functions:**
+- `def run_water_electron_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1226,6 +1237,20 @@
 
 ---
 
+### [`tests/test_water_electron.py`](tests/test_water_electron.py)
+> *Hydrated-electron cavity scale tests (claim 32).*
+
+**Size**: `48` lines (`1426` bytes)
+
+**Functions:**
+- `def test_screened_hydrogen_scales()`
+- `def test_capillary_cavity_minimum()`
+- `def test_infinite_well_scales()`
+- `def test_hydrated_scale_summary()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_rays.py`](tests/test_water_rays.py)
 > *Radial ray tests at the water horizon (claim 30).*
 
@@ -1611,6 +1636,22 @@
 
 ---
 
+### [`theory/water_electron.py`](theory/water_electron.py)
+> *Hydrated-electron cavity scale from water properties (claim 32, ADR-023).*
+
+**Size**: `93` lines (`2919` bytes)
+
+**Functions:**
+- `def screened_bohr_radius(epsilon_r)`
+- `def screened_energy_ev(epsilon_r)`
+- `def capillary_cavity_radius(gamma, mass, hbar)`
+- `def capillary_cavity_energy_ev(gamma, mass, hbar)`
+- `def infinite_well_gap_ev(radius, mass, hbar)`
+- `def well_radius_for_gap(energy_ev, mass, hbar)`
+- `def hydrated_scales()`
+
+---
+
 ### [`theory/water_rays.py`](theory/water_rays.py)
 > *Radial rays at the shallow-water acoustic horizon (claim 30, ADR-021).*
 
@@ -1635,7 +1676,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2169` lines (`85944` bytes)
+**Size**: `2198` lines (`87097` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1689,6 +1730,7 @@
 - `def audit_water_dispersive(audit)`
 - `def audit_water_rays(audit)`
 - `def audit_water_scattering(audit)`
+- `def audit_water_electron(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1718,7 +1760,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `157` lines (`4083` bytes)
+**Size**: `159` lines (`4135` bytes)
 
 **Functions:**
 - `def _source_files()`

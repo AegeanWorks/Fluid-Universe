@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "water-scattering-v1",
+    "task_id": "water-electron-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793382886.6677558,
+    "updated_at": 1793383761.1339808,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793382886.8463
+    "completed_at": 1793383761.37206
   },
   "checkpoints": [
-    {
-      "task_id": "water-analogue-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-018 and add failing tests for the shallow-water acoustic horizon",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793379426.7783809,
-      "timestamp_str": "2026-10-30 19:57:06",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The user asks which water properties can link to the quantum-fluid program. Shallow-water waves have an acoustic metric set by depth, gravity and flow; a draining vortex has a horizon where the inward flow equals the wave speed, giving an analogue surface gravity and Hawking temperature.",
-        "benefits": "A positive water-mechanics link: water properties (h, g, Q) predict a horizon, surface gravity and analogue temperature, contrasting with the nematic director where no emergent metric was found.",
-        "risks": "contract: new claim 27, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; physics: the acoustic metric is long-wavelength only and breaks under capillary dispersion",
-        "mitigation": "Derive r_H, kappa and T_H analytically; test the horizon condition and metric signature; report lab-scale numbers and state the short-wavelength limitation"
-      }
-    },
-    {
-      "task_id": "water-analogue-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Shallow-water horizon: c=0.990454441 m/s, rH=1.606888076e-3 m, kappa=610.496783 m/s^2, TH=7.421580e-10 K; v/c=1 and g_tt=0 at the horizon; claim 27 PROVEN (analogue)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793379996.0242405,
-      "timestamp_str": "2026-10-30 20:06:36",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-analogue-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 204/204 accepted (2 new claim-27 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793380003.1469088,
-      "timestamp_str": "2026-10-30 20:06:43",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-analogue-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-analogue-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793380003.414899,
-      "timestamp_str": "2026-10-30 20:06:43",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-validity-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793382886.846301,
       "timestamp_str": "2026-10-30 20:54:46",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-electron-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-023 and add failing tests for the hydrated-electron cavity scale",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793383169.8773265,
+      "timestamp_str": "2026-10-30 20:59:29",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Water's dielectric constant and surface tension are two of its distinctive properties. A screened hydrogen state gives a 41.5 \u00c5, 2.2 meV atom; the balance of electron quantum pressure and surface tension gives a 2.86 \u00c5 cavity and 0.93 eV, close to the hydrated electron scale. This is a scale test, not a derivation of the 1.7 eV absorption.",
+        "benefits": "A positive water-property link to a real quantum particle, with explicit model limits.",
+        "risks": "contract: new claim 32, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; data: the 1.7 eV hydrated-electron absorption is a literature value, so the comparison is a scale test",
+        "mitigation": "Use water at 20 C; derive the cavity minimum analytically; compare the screened hydrogen, capillary cavity and infinite-well scales; state that the 0.93 eV result is a factor 1.8 below the observed 1.7 eV"
+      }
+    },
+    {
+      "task_id": "water-electron-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Hydrated electron: screened hydrogen a*=41.5 A, E=-2.2 meV; capillary cavity R=2.858 A, E=0.933 eV vs observed 1.7 eV (factor 1.8); claim 32 NUMERIC (cavity scale match)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793383755.7807102,
+      "timestamp_str": "2026-10-30 21:09:15",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-electron-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 214/214 accepted (2 new claim-32 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793383761.1339808,
+      "timestamp_str": "2026-10-30 21:09:21",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "water-electron-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'water-electron-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793383761.372063,
+      "timestamp_str": "2026-10-30 21:09:21",
       "agent": "opencode"
     }
   ]

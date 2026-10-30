@@ -1694,6 +1694,34 @@ def audit_water_scattering(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Hydrated-electron cavity scale (claim 32/ADR-023)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_electron(audit: Audit) -> None:
+    payload = load_results("water_electron.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    audit.record(
+        "32: screened hydrogen is far too large and weakly bound",
+        scales["screened_bohr_radius_m"] > 1e-9
+        and abs(scales["screened_energy_ev"]) < 0.01,
+        f"a*={scales['screened_bohr_radius_m']:.3e}, "
+        f"E*={scales['screened_energy_ev']:.3e}",
+    )
+    audit.record(
+        "32: the capillary cavity lands near the hydrated-electron scale",
+        2.0e-10 < scales["cavity_radius_m"] < 4.0e-10
+        and 0.5 < scales["cavity_energy_ev"] < 2.0
+        and verdict["claim_32_status"].startswith("NUMERIC"),
+        f"R={scales['cavity_radius_m']:.3e}, "
+        f"E={scales['cavity_energy_ev']:.6f}, "
+        f"ratio={result['cavity_to_observed_ratio']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2106,6 +2134,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_dispersive(audit)
     audit_water_rays(audit)
     audit_water_scattering(audit)
+    audit_water_electron(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
