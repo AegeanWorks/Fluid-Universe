@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T14:46:31+00:00 | `e642476ad5a86f8326ffaf9e5b5b631faf454787` | 184/184 | `3af3a40fa5ad14c3...` | `bed781cb11168566...` |
-| run2 | 2026-10-30T14:46:39+00:00 | `e642476ad5a86f8326ffaf9e5b5b631faf454787` | 184/184 | `3af3a40fa5ad14c3...` | `bed781cb11168566...` |
+| run1 | 2026-10-30T14:58:30+00:00 | `d181dc54f1ad61bbd055f9763999de91a71ad048` | 186/186 | `e2797474aac7f3ae...` | `82ea3ad44a3472aa...` |
+| run2 | 2026-10-30T14:58:37+00:00 | `d181dc54f1ad61bbd055f9763999de91a71ad048` | 186/186 | `e2797474aac7f3ae...` | `82ea3ad44a3472aa...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -58,6 +58,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 16: no new prediction found | PASS | PASS | YES | YES | 7 candidate classes, none new |
 | 17: simple vortex-knot assignment is falsified | PASS | PASS | YES | YES | Q=0.339340, p=12.279 |
 | 17: vortex-knot spectrum uses T(2,3), T(2,5), T(2,7) | PASS | PASS | YES | YES | energies=[392.166, 563.899, 761.854] |
+| 18: no one-parameter hierarchy matches both ratios and Q | PASS | PASS | YES | YES | min |tau error|=0.325040 |
+| 18: one-parameter hierarchy test covers geometric and power-law spectra | PASS | PASS | YES | YES | geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122 |
 | 1a/F2: Q identity | PASS | PASS | YES | YES | symbolic difference simplifies to zero |
 | 1b: 3 parameters fit 3 masses exactly | PASS | PASS | YES | YES | max residual 8.527e-14 over 1000 random positive-root triples |
 | 1b: Q is not fixed by the Z3/circulant structure | PASS | PASS | YES | YES | random triples span Q in [0.3334, 0.9431] |

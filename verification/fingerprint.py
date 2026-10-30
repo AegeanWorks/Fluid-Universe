@@ -84,6 +84,8 @@ RESULT_FILES = (
     "hopfion_length_scan.md",
     "vortex_knot_spectrum.json",
     "vortex_knot_spectrum.md",
+    "vortex_cascade.json",
+    "vortex_cascade.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

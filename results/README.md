@@ -64,6 +64,8 @@ Do not edit these files by hand.
 | `hopfion_length_scan.md` | Human-readable version of the same |
 | `vortex_knot_spectrum.json` | Vortex-knot mass hypothesis test, T(2,3), T(2,5), T(2,7) |
 | `vortex_knot_spectrum.md` | Human-readable version of the same |
+| `vortex_cascade.json` | One-parameter vortex hierarchy test (geometric and power-law spectra) |
+| `vortex_cascade.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |

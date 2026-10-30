@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "config": {
+      "data": "phenomenology/data/pdg2024_leptons.csv",
+      "koide_tolerance": 0.01,
+      "models": [
+        "geometric",
+        "power_law_muon_fit",
+        "power_law_koide_fit"
+      ],
+      "relative_tolerance": 0.1,
+      "scope": "one-parameter vortex hierarchy test; no fit parameters added"
+    },
+    "config_sha256": "57002bfa647ee96b9815062c06e74fcf38384341e52d5913b0e146c2d40f953c",
+    "generated_utc": "2026-10-30T14:55:08+00:00",
+    "git": {
+      "commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "observed": {
+    "m_e": 0.51099895,
+    "m_mu": 105.6583755,
+    "m_tau": 1776.93
+  },
+  "result": {
+    "falsified": true,
+    "koide_target": 0.6666666666666666,
+    "koide_tolerance": 0.01,
+    "models": {
+      "geometric": {
+        "falsified": true,
+        "koide_q_observed": 0.6666644634145,
+        "koide_q_predicted": 0.8705416429637862,
+        "model": "geometric",
+        "observed_tau_ratio": 3477.36526660182,
+        "parameter": 206.76828298766566,
+        "predicted_ratios": [
+          1.0,
+          206.76828298766566,
+          42753.12284966739
+        ],
+        "predicted_tau_ratio": 42753.12284966739,
+        "tau_relative_error": 11.294688527629699
+      },
+      "power_law_koide_fit": {
+        "falsified": true,
+        "koide_q_observed": 0.6666644634145,
+        "koide_q_predicted": 0.6666666666666667,
+        "model": "power_law_koide_fit",
+        "observed_tau_ratio": 3477.36526660182,
+        "parameter": 7.064300875999791,
+        "predicted_ratios": [
+          1.0,
+          133.83400117774687,
+          2347.081107551722
+        ],
+        "predicted_tau_ratio": 2347.081107551722,
+        "tau_relative_error": -0.325040389028399
+      },
+      "power_law_muon_fit": {
+        "falsified": true,
+        "koide_q_observed": 0.6666644634145,
+        "koide_q_predicted": 0.6961223714023023,
+        "model": "power_law_muon_fit",
+        "observed_tau_ratio": 3477.36526660182,
+        "parameter": 7.691871091647465,
+        "predicted_ratios": [
+          1.0,
+          206.7682829876658,
+          4676.868795195313
+        ],
+        "predicted_tau_ratio": 4676.868795195313,
+        "tau_relative_error": 0.3449460832067498
+      }
+    },
+    "note": "A one-parameter fluid hierarchy has no freedom left after the muon ratio or Q is fixed. A two-parameter offset can fit the masses, but then Q is reproduced rather than predicted.",
+    "relative_tolerance": 0.1,
+    "status": "FALSIFIED (no one-parameter hierarchy matches both ratios and Q)"
+  }
+}

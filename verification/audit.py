@@ -1266,6 +1266,46 @@ def audit_vortex(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# One-parameter vortex hierarchy (claim 18/ADR-009)
+# ---------------------------------------------------------------------------
+
+
+def audit_cascade(audit: Audit) -> None:
+    payload = load_results("vortex_cascade.json")
+    result = payload["result"]
+    models = result["models"]
+    audit.record(
+        "18: one-parameter hierarchy test covers geometric and power-law spectra",
+        set(models) == {
+            "geometric",
+            "power_law_muon_fit",
+            "power_law_koide_fit",
+        }
+        and all(model["falsified"] for model in models.values())
+        and abs(
+            models["power_law_koide_fit"]["koide_q_predicted"] - 2.0 / 3.0
+        )
+        < 1e-12
+        and models["geometric"]["predicted_tau_ratio"] > 1000.0,
+        ", ".join(
+            f"{name}: tau={model['predicted_tau_ratio']:.1f}, "
+            f"Q={model['koide_q_predicted']:.6f}"
+            for name, model in models.items()
+        ),
+    )
+    audit.record(
+        "18: no one-parameter hierarchy matches both ratios and Q",
+        result["falsified"] is True
+        and result["status"].startswith("FALSIFIED")
+        and all(
+            abs(model["tau_relative_error"]) > result["relative_tolerance"]
+            for model in models.values()
+        ),
+        f"min |tau error|={min(abs(model['tau_relative_error']) for model in models.values()):.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1664,6 +1704,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_escape(audit)
     audit_lengthscan(audit)
     audit_vortex(audit)
+    audit_cascade(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

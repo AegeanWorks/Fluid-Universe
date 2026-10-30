@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `79`
+- **Total Python Modules**: `82`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `438`
+- **Total Top-Level Functions**: `452`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `11479`
+- **Total Source Lines**: `11798`
 
 ---
 
@@ -388,6 +388,18 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/vortex_cascade_report.py`](phenomenology/vortex_cascade_report.py)
+> *One-parameter vortex hierarchy report (claim 18, ADR-009).*
+
+**Size**: `88` lines (`3170` bytes)
+
+**Functions:**
+- `def load_lepton_masses()`
+- `def run_cascade_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -877,6 +889,20 @@
 
 ---
 
+### [`tests/test_vortex_cascade.py`](tests/test_vortex_cascade.py)
+> *One-parameter vortex hierarchy tests (claim 18).*
+
+**Size**: `62` lines (`1845` bytes)
+
+**Functions:**
+- `def test_power_law_koide_root()`
+- `def test_geometric_cascade_is_falsified()`
+- `def test_power_law_muon_fit_is_falsified()`
+- `def test_all_one_parameter_hierarchies_fail()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_vortex_particles.py`](tests/test_vortex_particles.py)
 > *Vortex-knot mass hypothesis tests (claim 17).*
 
@@ -1060,6 +1086,20 @@
 
 ---
 
+### [`theory/vortex_cascade.py`](theory/vortex_cascade.py)
+> *One-parameter vortex/eddy hierarchy test (claim 18, ADR-009).*
+
+**Size**: `126` lines (`4406` bytes)
+
+**Functions:**
+- `def geometric_spectrum(ratio, generations)`
+- `def power_law_spectrum(exponent, generations)`
+- `def solve_power_for_koide(target, lower, upper)` - *Bisection for the power p with Koide Q = target.*
+- `def _summary(name, observed, predicted, parameter)`
+- `def run_hypotheses(observed)`
+
+---
+
 ### [`theory/vortex_particles.py`](theory/vortex_particles.py)
 > *Thin-filament vortex-knot mass hypothesis (claim 17, ADR-008).*
 
@@ -1084,7 +1124,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1727` lines (`68646` bytes)
+**Size**: `1768` lines (`70136` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1124,6 +1164,7 @@
 - `def audit_escape(audit)`
 - `def audit_lengthscan(audit)`
 - `def audit_vortex(audit)`
+- `def audit_cascade(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1153,7 +1194,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `129` lines (`3381` bytes)
+**Size**: `131` lines (`3433` bytes)
 
 **Functions:**
 - `def _source_files()`

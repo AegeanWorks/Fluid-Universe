@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "vortex-knot-spectrum-v1",
+    "task_id": "vortex-cascade-nogo-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793371668.7213728,
+    "updated_at": 1793372377.418386,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793371668.8504417
+    "completed_at": 1793372377.562773
   },
   "checkpoints": [
-    {
-      "task_id": "claim15-n96-extension-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-004 and add failing tests for resumable N=96 chunks and the Z3/force trend summary",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793357914.807724,
-      "timestamp_str": "2026-10-30 13:58:34",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The N=96 run at t=1.5 has Z3=0.172071 and is still rising by about 0.034 per 600 steps; one grid point cannot tell whether it reaches the 0.5 threshold, saturates, or is a transient. The force RMS also decays slowly and may never meet 1e-2.",
-        "benefits": "A resumable, checkpointed N=96 extension gives the Z3 and force trends at t=3.0 and t=4.5 inside the 900 s cap, and quantifies the remaining steps to each threshold.",
-        "risks": "contract: claim-15 acceptance rule unchanged, the extension cannot promote it; dependency: numpy only; concurrency: one writer, checkpoint + accumulator; state: a 21 MB transient .npy checkpoint not committed; cost: each 3000-step chunk is about 600 s",
-        "mitigation": "Add an initial_field/return_field path to run_production with a chunking-exactness test; write the checkpoint atomically; each invocation runs exactly one 3000-step chunk; stop before the cap and resume from the saved field; report linear projections as diagnostics only"
-      }
-    },
-    {
-      "task_id": "claim15-n96-extension-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] N=96 extension: four 3000-step chunks to t=6.0; Z3 0.172->0.599 (crosses 0.5), native H 0.99994->0.97262, bond 0.418->0.857, force 0.01495->0.01075; final fails H/force/resolution; claim 15 UNVERIFIED; docs/results updated; each chunk 534-577 s",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793360695.886655,
-      "timestamp_str": "2026-10-30 14:44:55",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-n96-extension-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 176/176 accepted (3 new extension checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793360700.438465,
-      "timestamp_str": "2026-10-30 14:45:00",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "claim15-n96-extension-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'claim15-n96-extension-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793360700.5660367,
-      "timestamp_str": "2026-10-30 14:45:00",
-      "agent": "opencode"
-    },
     {
       "task_id": "claim14b-purefn-hessian-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793371668.8504426,
       "timestamp_str": "2026-10-30 17:47:48",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-cascade-nogo-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-009 and add failing tests for one-parameter vortex cascade spectra",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793372012.368581,
+      "timestamp_str": "2026-10-30 17:53:32",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "Claim 17 shows the thin-filament knot spectrum is too compressed. A viable vortex model needs a hierarchy mechanism; the simplest are a geometric cascade m_n ~ lambda^n and a power law m_n ~ (n+1)^p. Each has one shape parameter and therefore predicts the tau ratio and Koide Q from the muon ratio.",
+        "benefits": "A parameter-free test of whether a single fluid hierarchy can explain both the charged-lepton ratios and Q=2/3, or whether a Z3/circulant coupling is required.",
+        "risks": "contract: new claim 18, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the power-law root for Q=2/3 is found by bisection",
+        "mitigation": "Pre-register the 10% ratio and 0.01 Q tolerances; report both the muon-fit and Q-fit predictions; do not add a second parameter to rescue the fit"
+      }
+    },
+    {
+      "task_id": "vortex-cascade-nogo-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] One-parameter hierarchies: geometric tau ratio 42753 (11.3x high, Q=0.871); power law muon fit +34.5% tau (Q=0.696); power law Q fit -32.5% tau; no model matches both; claim 18 FALSIFIED",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793372371.4856932,
+      "timestamp_str": "2026-10-30 17:59:31",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-cascade-nogo-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 186/186 accepted (2 new claim-18 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793372377.418386,
+      "timestamp_str": "2026-10-30 17:59:37",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "vortex-cascade-nogo-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'vortex-cascade-nogo-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793372377.5627744,
+      "timestamp_str": "2026-10-30 17:59:37",
       "agent": "opencode"
     }
   ]

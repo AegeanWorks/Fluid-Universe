@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "3af3a40fa5ad14c36ae32e6fc9d968bdbf6a4a3e13c925008a396e039ced0d51",
-      "results_sha256": "bed781cb111685669a9ce5676799ef96468134ba1bc9cd0c14415b91ab1c698e"
+      "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
+      "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T14:46:31+00:00",
-        "git_commit": "e642476ad5a86f8326ffaf9e5b5b631faf454787",
-        "passed": 184,
-        "total": 184,
+        "generated_utc": "2026-10-30T14:58:30+00:00",
+        "git_commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
+        "passed": 186,
+        "total": 186,
         "failed": 0,
-        "checks_sha256": "de53d3ddeb9b48de1731322f84b928e0e37d92af9d66ed7eca0de903297e9002",
+        "checks_sha256": "b4da374be125c991aa44815e208dfc443ed61cb92555d4e9996fca9e683f9de0",
         "fingerprints": {
-          "source_sha256": "3af3a40fa5ad14c36ae32e6fc9d968bdbf6a4a3e13c925008a396e039ced0d51",
-          "results_sha256": "bed781cb111685669a9ce5676799ef96468134ba1bc9cd0c14415b91ab1c698e"
+          "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
+          "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T14:46:39+00:00",
-        "git_commit": "e642476ad5a86f8326ffaf9e5b5b631faf454787",
-        "passed": 184,
-        "total": 184,
+        "generated_utc": "2026-10-30T14:58:37+00:00",
+        "git_commit": "d181dc54f1ad61bbd055f9763999de91a71ad048",
+        "passed": 186,
+        "total": 186,
         "failed": 0,
-        "checks_sha256": "de53d3ddeb9b48de1731322f84b928e0e37d92af9d66ed7eca0de903297e9002",
+        "checks_sha256": "b4da374be125c991aa44815e208dfc443ed61cb92555d4e9996fca9e683f9de0",
         "fingerprints": {
-          "source_sha256": "3af3a40fa5ad14c36ae32e6fc9d968bdbf6a4a3e13c925008a396e039ced0d51",
-          "results_sha256": "bed781cb111685669a9ce5676799ef96468134ba1bc9cd0c14415b91ab1c698e"
+          "source_sha256": "e2797474aac7f3ae2fa72de29dc3f79d8cc385f5ca7a688d44a910e57e4cb9ef",
+          "results_sha256": "82ea3ad44a3472aa3cb7dc9756af491a25e6bebf5886a02380168d42e8e5320f"
         }
       }
     ],
@@ -386,6 +386,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "energies=[392.166, 563.899, 761.854]"
+    },
+    {
+      "claim": "18: no one-parameter hierarchy matches both ratios and Q",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "min |tau error|=0.325040"
+    },
+    {
+      "claim": "18: one-parameter hierarchy test covers geometric and power-law spectra",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122"
     },
     {
       "claim": "1a/F2: Q identity",
@@ -2113,6 +2129,20 @@
       "observed": null
     },
     {
+      "claim": "18: one-parameter hierarchy test covers geometric and power-law spectra",
+      "passed": true,
+      "detail": "geometric: tau=42753.1, Q=0.870542, power_law_koide_fit: tau=2347.1, Q=0.666667, power_law_muon_fit: tau=4676.9, Q=0.696122",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "18: no one-parameter hierarchy matches both ratios and Q",
+      "passed": true,
+      "detail": "min |tau error|=0.325040",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2806,8 +2836,8 @@
       "observed": null
     }
   ],
-  "total": 184,
-  "passed": 184,
+  "total": 186,
+  "passed": 186,
   "failed": 0,
   "failures": []
 }

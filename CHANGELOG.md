@@ -442,3 +442,23 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 17 is **FALSIFIED**. This falsifies the simplest vortex assignment, not the general fluid-vortex idea; a viable model needs a hierarchy mechanism.
 
 - Verification after the vortex-knot spectrum: two separate runs, 184/184 checks each.
+
+## 2026-10-30 - One-parameter vortex hierarchy (claim 18, ADR-009)
+
+**Added**
+
+- `theory/vortex_cascade.py`, `phenomenology/vortex_cascade_report.py`, `make cascade`, `tests/test_vortex_cascade.py`, and `results/vortex_cascade.{json,md}`.
+
+**Results**
+
+| model | parameter | predicted tau ratio | observed | relative error | Q predicted |
+|---|---:|---:|---:|---:|---:|
+| geometric | 206.768283 | 42753.122850 | 3477.365267 | +11.294689 | 0.870542 |
+| power law, muon fit | 7.691871 | 4676.868795 | 3477.365267 | +0.344946 | 0.696122 |
+| power law, Q fit | 7.064301 | 2347.081108 | 3477.365267 | -0.325040 | 0.666667 |
+
+- No one-parameter hierarchy matches both the tau ratio and \(Q\) within the pre-registered 10% / 0.01 tolerances.
+- A two-parameter offset can fit the masses, but then \(Q\) is reproduced rather than predicted; the test therefore falsifies the one-parameter fluid hierarchy, not the general vortex idea.
+- Claim 18 is **FALSIFIED**.
+
+- Verification after the one-parameter hierarchy test: two separate runs, 186/186 checks each.

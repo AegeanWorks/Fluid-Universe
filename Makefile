@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex clean
+.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex cascade clean
 
 help:
 	@echo "make test     - run the regression suite"
@@ -17,6 +17,7 @@ help:
 	@echo "make escape   - saddle-escape search from the pure-FN candidate (<15 min)"
 	@echo "make lengthscan - pure-FN Hessian at lengths 8,10,12,14 (<15 min)"
 	@echo "make vortex   - vortex-knot mass spectrum test (claim 17)"
+	@echo "make cascade  - one-parameter vortex hierarchy test (claim 18)"
 	@echo "make clean    - remove caches and generated results"
 
 test:
@@ -61,7 +62,10 @@ lengthscan:
 vortex:
 	$(PYTHON) -m phenomenology.vortex_spectrum_report
 
+cascade:
+	$(PYTHON) -m phenomenology.vortex_cascade_report
+
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json'}]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json', 'vortex_cascade.json'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md', 'vortex_cascade.md'}]"
