@@ -15,4 +15,4 @@
 No genuinely new falsifiable prediction beyond Q=2/3 was found. The mass fit is a reparametrisation, the minimal mixing branches are excluded, the dispersion has no calibration, and the defect spectrum has no validated simulation.
 
 - Config SHA-256: `1ccc02c7ea70c950f96e89e6c1821e060d2f81c5b24814e322a8e61e0cf3c337`
-- Git: `c9881180dc5981415cbd46d88be2c98ac6f83834` (dirty=True)
+- Git: `7b7ca67c06a6a478c3b3dd7d552f20ab53288574` (dirty=True)

@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `128`
+- **Total Python Modules**: `131`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `711`
+- **Total Top-Level Functions**: `723`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `17633`
+- **Total Source Lines**: `18036`
 
 ---
 
@@ -581,6 +581,17 @@
 **Functions:**
 - `def _row(flow_rate)`
 - `def run_water_validity_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_vde_report.py`](phenomenology/water_vde_report.py)
+> *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
+
+**Size**: `150` lines (`6386` bytes)
+
+**Functions:**
+- `def run_water_vde_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1330,6 +1341,20 @@
 
 ---
 
+### [`tests/test_water_vde.py`](tests/test_water_vde.py)
+> *VDE and 1.7 eV absorption constrain the finite well (claim 35).*
+
+**Size**: `67` lines (`2457` bytes)
+
+**Functions:**
+- `def test_depth_for_binding_at_required_radius()`
+- `def test_cavity_satisfies_both_observables()`
+- `def test_vde_uncertainty_band()`
+- `def test_minimal_cavity_is_outside_the_band()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_water_well.py`](tests/test_water_well.py)
 > *Finite spherical well for the hydrated electron (claim 33).*
 
@@ -1744,6 +1769,19 @@
 
 ---
 
+### [`theory/water_vde.py`](theory/water_vde.py)
+> *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
+
+**Size**: `141` lines (`4828` bytes)
+
+**Functions:**
+- `def depth_for_binding(radius_m, binding_ev)` - *Well depth that gives a 1s binding energy of binding_ev.*
+- `def _gap_at_radius(radius_m, binding_ev)`
+- `def cavity_for_observables(binding_ev, gap_ev)` - *Finite well satisfying the VDE and the 1.7 eV 1s->1p gap.*
+- `def vde_scales()` - *Collect the two-observable inversion and the capillary comparison.*
+
+---
+
 ### [`theory/water_well.py`](theory/water_well.py)
 > *Finite spherical well for the hydrated electron (claim 33, ADR-024).*
 
@@ -1781,7 +1819,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2276` lines (`90285` bytes)
+**Size**: `2319` lines (`92123` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1838,6 +1876,7 @@
 - `def audit_water_electron(audit)`
 - `def audit_water_well(audit)`
 - `def audit_water_absorption(audit)`
+- `def audit_water_vde(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1867,7 +1906,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `163` lines (`4235` bytes)
+**Size**: `165` lines (`4277` bytes)
 
 **Functions:**
 - `def _source_files()`

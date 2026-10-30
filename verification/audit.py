@@ -1798,6 +1798,48 @@ def audit_water_absorption(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# VDE and absorption constrain the finite well (claim 35/ADR-026)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_vde(audit: Audit) -> None:
+    payload = load_results("water_vde.json")
+    result = payload["result"]
+    scales = result["scales"]
+    central = scales["central"]
+    lower = scales["lower"]
+    capillary = scales["capillary"]
+    verdict = result["verdict"]
+    audit.record(
+        "35: the 1.7 eV absorption is bound-bound and the well fits both",
+        abs(central["binding_ev"] - scales["vde_ev"]) < 0.01
+        and abs(central["gap_ev"] - scales["observed_absorption_ev"]) < 0.01
+        and central["energy_1s_ev"] < 0.0
+        and central["energy_1p_ev"] < 0.0
+        and verdict["absorption_is_bound"] is True
+        and verdict["finite_well_satisfies_both"] is True
+        and verdict["claim_35_status"].startswith("NUMERIC"),
+        f"R={central['radius_m']:.3e}, V0={central['depth_ev']:.6f}, "
+        f"E1s={central['energy_1s_ev']:.6f}, "
+        f"E1p={central['energy_1p_ev']:.6f}, "
+        f"gap={central['gap_ev']:.6f}",
+    )
+    audit.record(
+        "35: the capillary/Born cavity is outside the VDE band",
+        capillary["radius_m"] < lower["radius_m"]
+        and capillary["born_depth_ev"] < lower["depth_ev"]
+        and capillary["gap_ev"] is None
+        and central["radius_m"] > 1.25 * capillary["radius_m"]
+        and central["depth_ev"] > 1.9 * capillary["born_depth_ev"]
+        and verdict["capillary_outside_vde_band"] is True,
+        f"Rcap={capillary['radius_m']:.3e}, "
+        f"Born={capillary['born_depth_ev']:.6f}, "
+        f"Rreq={central['radius_m']:.3e}, "
+        f"Vreq={central['depth_ev']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2213,6 +2255,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_electron(audit)
     audit_water_well(audit)
     audit_water_absorption(audit)
+    audit_water_vde(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

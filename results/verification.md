@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T19:01:49+00:00 | `c9881180dc5981415cbd46d88be2c98ac6f83834` | 218/218 | `09a756b9ecd6e0c4...` | `eaf2b5cab2acd636...` |
-| run2 | 2026-10-30T19:02:04+00:00 | `c9881180dc5981415cbd46d88be2c98ac6f83834` | 218/218 | `09a756b9ecd6e0c4...` | `eaf2b5cab2acd636...` |
+| run1 | 2026-10-30T19:37:03+00:00 | `7b7ca67c06a6a478c3b3dd7d552f20ab53288574` | 220/220 | `f8aaa8acb46e2f19...` | `83a19fd7a9a13746...` |
+| run2 | 2026-10-30T19:37:11+00:00 | `7b7ca67c06a6a478c3b3dd7d552f20ab53288574` | 220/220 | `f8aaa8acb46e2f19...` | `83a19fd7a9a13746...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -102,6 +102,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 33: the Born-depth well at the capillary radius has no 1p | PASS | PASS | YES | YES | kappa=2.309130, u1s=2.049533, Born=2.486988, threshold=4.603378 |
 | 34: a 1.7 eV peak requires an extra depth of about 1.202 eV | PASS | PASS | YES | YES | depth=3.689281, extra=1.202293, peak=1.700070 |
 | 34: the Born-depth bound-free peak is below 1.7 eV | PASS | PASS | YES | YES | peak=1.022658, sum=0.986301, binding=0.527753 |
+| 35: the 1.7 eV absorption is bound-bound and the well fits both | PASS | PASS | YES | YES | R=3.732e-10, V0=4.997523, E1s=-3.270000, E1p=-1.570000, gap=1.700000 |
+| 35: the capillary/Born cavity is outside the VDE band | PASS | PASS | YES | YES | Rcap=2.858e-10, Born=2.486988, Rreq=3.732e-10, Vreq=4.997523 |
 | 3a: (Q-2/3)/sigma | PASS | PASS | YES | YES | (Q-2/3)/sigma = -0.435 |
 | 3a: Monte Carlo mean/std reproduce | PASS | PASS | YES | YES | Q mean/std 0.666664474471/5.063e-06 vs stored 0.666664474471/5.063e-06 |
 | 3a: Q from PDG pole masses | PASS | PASS | YES | YES | Q=0.666664463415; Q-2/3=-2.203e-06 |

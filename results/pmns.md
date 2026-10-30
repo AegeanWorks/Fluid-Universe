@@ -12,4 +12,4 @@ Measured angles (NuFit 5.2 with SK-atm, NO): theta12=33.41 deg, theta13=8.58 deg
 A circulant PMNS is not a single model. If both mass matrices are circulant in the same basis the prediction is no mixing; if only the neutrino matrix is circulant the prediction is trimaximal mixing. Both are excluded, but only the second is specifically a theta13 statement.
 
 - Config SHA-256: `5da0c58e80e9eb663df6af3af1d878d9c1816d635124861a5fbcc519bd929c1a`
-- Git: `c9881180dc5981415cbd46d88be2c98ac6f83834` (dirty=True)
+- Git: `7b7ca67c06a6a478c3b3dd7d552f20ab53288574` (dirty=True)

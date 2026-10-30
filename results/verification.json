@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
-      "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
+      "source_sha256": "f8aaa8acb46e2f193f260c582ffc373add4da49d55c984e0202130bfd3e29ad7",
+      "results_sha256": "83a19fd7a9a137461c88469fbc9ef75024df8484105ba22ceead084886461d3b"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-10-30T19:01:49+00:00",
-        "git_commit": "c9881180dc5981415cbd46d88be2c98ac6f83834",
-        "passed": 218,
-        "total": 218,
+        "generated_utc": "2026-10-30T19:37:03+00:00",
+        "git_commit": "7b7ca67c06a6a478c3b3dd7d552f20ab53288574",
+        "passed": 220,
+        "total": 220,
         "failed": 0,
-        "checks_sha256": "0184b9c7ac0c7d9f5f2ed4b2969174ed601b3bebbb7c90974afa38ce51311dd5",
+        "checks_sha256": "84178cc27801d4b8847b371788acf3d0c223fd0b3db4a79ea87595e30c854431",
         "fingerprints": {
-          "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
-          "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
+          "source_sha256": "f8aaa8acb46e2f193f260c582ffc373add4da49d55c984e0202130bfd3e29ad7",
+          "results_sha256": "83a19fd7a9a137461c88469fbc9ef75024df8484105ba22ceead084886461d3b"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-10-30T19:02:04+00:00",
-        "git_commit": "c9881180dc5981415cbd46d88be2c98ac6f83834",
-        "passed": 218,
-        "total": 218,
+        "generated_utc": "2026-10-30T19:37:11+00:00",
+        "git_commit": "7b7ca67c06a6a478c3b3dd7d552f20ab53288574",
+        "passed": 220,
+        "total": 220,
         "failed": 0,
-        "checks_sha256": "0184b9c7ac0c7d9f5f2ed4b2969174ed601b3bebbb7c90974afa38ce51311dd5",
+        "checks_sha256": "84178cc27801d4b8847b371788acf3d0c223fd0b3db4a79ea87595e30c854431",
         "fingerprints": {
-          "source_sha256": "09a756b9ecd6e0c4ab969759e90c80664755b9c2a9e5d89fea2660449b7f85be",
-          "results_sha256": "eaf2b5cab2acd636da0e01c5f12b155bcb858a7542169c8a6baa0985e424d6a4"
+          "source_sha256": "f8aaa8acb46e2f193f260c582ffc373add4da49d55c984e0202130bfd3e29ad7",
+          "results_sha256": "83a19fd7a9a137461c88469fbc9ef75024df8484105ba22ceead084886461d3b"
         }
       }
     ],
@@ -738,6 +738,22 @@
       "agree": true,
       "detail_match": true,
       "detail": "peak=1.022658, sum=0.986301, binding=0.527753"
+    },
+    {
+      "claim": "35: the 1.7 eV absorption is bound-bound and the well fits both",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "R=3.732e-10, V0=4.997523, E1s=-3.270000, E1p=-1.570000, gap=1.700000"
+    },
+    {
+      "claim": "35: the capillary/Born cavity is outside the VDE band",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "Rcap=2.858e-10, Born=2.486988, Rreq=3.732e-10, Vreq=4.997523"
     },
     {
       "claim": "3a: (Q-2/3)/sigma",
@@ -2623,6 +2639,20 @@
       "observed": null
     },
     {
+      "claim": "35: the 1.7 eV absorption is bound-bound and the well fits both",
+      "passed": true,
+      "detail": "R=3.732e-10, V0=4.997523, E1s=-3.270000, E1p=-1.570000, gap=1.700000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "35: the capillary/Born cavity is outside the VDE band",
+      "passed": true,
+      "detail": "Rcap=2.858e-10, Born=2.486988, Rreq=3.732e-10, Vreq=4.997523",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3316,8 +3346,8 @@
       "observed": null
     }
   ],
-  "total": 218,
-  "passed": 218,
+  "total": 220,
+  "passed": 220,
   "failed": 0,
   "failures": []
 }

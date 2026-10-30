@@ -704,3 +704,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 34 is **NUMERIC (bound-free peak 1.023 eV; extra depth 1.202 eV)**. The continuum is broad and qualitatively matches the observed band, but the Born depth is still too shallow; the extra depth is a target for a band-offset/polaron correction.
 
 - Verification after the bound-free finite-well absorption: two separate runs, 218/218 checks each.
+
+## 2026-10-30 - VDE and absorption constrain the finite well (claim 35, ADR-026)
+
+**Added**
+
+- `theory/water_vde.py`, `phenomenology/water_vde_report.py`, `make watervde`, `tests/test_water_vde.py`, `results/water_vde.{json,md}`, and the VDE reference in `theory/literature.md`.
+
+**Results**
+
+- VDE \(3.27\pm0.10\) eV (Tang et al., PCCP 12, 3653, 2010); \(1.7<3.27\), so the absorption is bound-bound.
+- Central solution: \(R=3.732122844\times10^{-10}\) m, \(V_0=4.997522901\) eV, \(E_{1s}=-3.27\) eV, \(E_{1p}=-1.57\) eV, gap \(1.7\) eV; Born depth at this radius \(1.904542890\) eV (excess \(3.092980011\) eV).
+- VDE band: \(R=3.714321\)-\(3.749021\times10^{-10}\) m, \(V_0=4.902845\)-\(5.092648\) eV.
+- Capillary cavity: \(R=2.858071\times10^{-10}\) m, Born \(2.486988\) eV, binding \(0.527753\) eV, no 1p; required/capillary radius \(1.305819\), required/Born depth \(2.009468\).
+- Claim 35 is **NUMERIC (two-observable inversion; R=3.732 Angstrom, V0=4.998 eV)**. The minimal cavity cannot satisfy both; the required excess is \(2.92\times\) the optical reorganization energy, so a soft-wall/polaron potential is the next test.
+
+- Verification after the VDE/absorption finite-well inversion: two separate runs, 220/220 checks each.

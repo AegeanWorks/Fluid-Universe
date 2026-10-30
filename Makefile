@@ -1,6 +1,6 @@
 PYTHON ?= python
 
-.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex cascade rotorpotential madelung nelson gaussianfluid coherentfluid excitednode hydrogen hydrogenvortex wateranalogue watervalidity waterdispersive waterrays waterscattering waterelectron waterwell waterabsorption clean
+.PHONY: help test results verify n64 scale stability production convergence temporal extend purefn escape lengthscan vortex cascade rotorpotential madelung nelson gaussianfluid coherentfluid excitednode hydrogen hydrogenvortex wateranalogue watervalidity waterdispersive waterrays waterscattering waterelectron waterwell waterabsorption watervde clean
 
 help:
 	@echo "make test     - run the regression suite"
@@ -34,6 +34,7 @@ help:
 	@echo "make waterelectron - hydrated-electron cavity scale (claim 32)"
 	@echo "make waterwell - finite-well test of the 1.7 eV absorption (claim 33)"
 	@echo "make waterabsorption - bound-free finite-well absorption (claim 34)"
+	@echo "make watervde - VDE and absorption finite-well inversion (claim 35)"
 	@echo "make clean    - remove caches and generated results"
 
 test:
@@ -129,7 +130,10 @@ waterwell:
 waterabsorption:
 	$(PYTHON) -m phenomenology.water_absorption_report
 
+watervde:
+	$(PYTHON) -m phenomenology.water_vde_report
+
 clean:
 	$(PYTHON) -c "import pathlib, shutil; [shutil.rmtree(p, ignore_errors=True) for p in pathlib.Path('.').rglob('__pycache__')]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json', 'vortex_cascade.json', 'rotor_potential.json', 'madelung.json', 'nelson.json', 'gaussian_fluid.json', 'coherent_fluid.json', 'excited_fluid.json', 'hydrogen_fluid.json', 'hydrogen_vortex.json', 'water_analogue.json', 'water_validity.json', 'water_dispersive.json', 'water_rays.json', 'water_scattering.json', 'water_electron.json', 'water_well.json', 'water_absorption.json'}]"
-	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md', 'vortex_cascade.md', 'rotor_potential.md', 'madelung.md', 'nelson.md', 'gaussian_fluid.md', 'coherent_fluid.md', 'excited_fluid.md', 'hydrogen_fluid.md', 'hydrogen_vortex.md', 'water_analogue.md', 'water_validity.md', 'water_dispersive.md', 'water_rays.md', 'water_scattering.md', 'water_electron.md', 'water_well.md', 'water_absorption.md'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.json') if p.name not in {'hopfion3d_n64.json', 'hopfion_scale.json', 'hopfion_stability.json', 'hopfion3d_production.json', 'hopfion3d_convergence.json', 'hopfion3d_temporal.json', 'hopfion3d_extension.json', 'hopfion_purefn_stability.json', 'hopfion_saddle_escape.json', 'hopfion_length_scan.json', 'vortex_knot_spectrum.json', 'vortex_cascade.json', 'rotor_potential.json', 'madelung.json', 'nelson.json', 'gaussian_fluid.json', 'coherent_fluid.json', 'excited_fluid.json', 'hydrogen_fluid.json', 'hydrogen_vortex.json', 'water_analogue.json', 'water_validity.json', 'water_dispersive.json', 'water_rays.json', 'water_scattering.json', 'water_electron.json', 'water_well.json', 'water_absorption.json', 'water_vde.json'}]"
+	$(PYTHON) -c "import pathlib; [p.unlink() for p in pathlib.Path('results').glob('*.md') if p.name not in {'README.md', 'hopfion3d_n64.md', 'hopfion_scale.md', 'hopfion_stability.md', 'hopfion3d_production.md', 'hopfion3d_convergence.md', 'hopfion3d_temporal.md', 'hopfion3d_extension.md', 'hopfion_purefn_stability.md', 'hopfion_saddle_escape.md', 'hopfion_length_scan.md', 'vortex_knot_spectrum.md', 'vortex_cascade.md', 'rotor_potential.md', 'madelung.md', 'nelson.md', 'gaussian_fluid.md', 'coherent_fluid.md', 'excited_fluid.md', 'hydrogen_fluid.md', 'hydrogen_vortex.md', 'water_analogue.md', 'water_validity.md', 'water_dispersive.md', 'water_rays.md', 'water_scattering.md', 'water_electron.md', 'water_well.md', 'water_absorption.md', 'water_vde.md'}]"

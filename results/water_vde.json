@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "config": {
+      "observed_absorption_ev": 1.7,
+      "scope": "VDE and 1.7 eV absorption in the finite spherical well",
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "config_sha256": "716a2ab806ca42a2c0216b3cd88dc9465209dd82792d8fbb8affd5061e8cc706",
+    "generated_utc": "2026-10-30T19:33:38+00:00",
+    "git": {
+      "commit": "7b7ca67c06a6a478c3b3dd7d552f20ab53288574",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "scales": {
+      "capillary": {
+        "binding_ev": 0.5277528621120307,
+        "born_depth_ev": 2.4869878638766574,
+        "depth_excess_ev": 2.5105350372384363,
+        "depth_ratio": 2.0094681496857305,
+        "gap_ev": null,
+        "radius_excess_m": 8.740517886796192e-11,
+        "radius_m": 2.8580710555848763e-10,
+        "radius_ratio": 1.3058187748592391
+      },
+      "central": {
+        "binding_ev": 3.2699999999999996,
+        "born_depth_ev": 1.9045428904518107,
+        "depth_ev": 4.997522901115094,
+        "energy_1p_ev": -1.5699999999995224,
+        "energy_1s_ev": -3.2699999999999996,
+        "excess_ev": 3.092980010663283,
+        "gap_ev": 1.7000000000004771,
+        "radius_m": 3.7321228442644955e-10,
+        "u_1p": 3.5398482497662993,
+        "u_1s": 2.5130803168781277
+      },
+      "excess_to_reorganization": 2.9201500714041133,
+      "lower": {
+        "binding_ev": 3.17,
+        "born_depth_ev": 1.9136711423816968,
+        "depth_ev": 4.902844700316685,
+        "energy_1p_ev": -1.469999999999609,
+        "energy_1s_ev": -3.17,
+        "excess_ev": 2.989173557934988,
+        "gap_ev": 1.700000000000391,
+        "radius_m": 3.7143205391550974e-10,
+        "u_1p": 3.525697030728992,
+        "u_1s": 2.504942335760968
+      },
+      "observed_absorption_ev": 1.7,
+      "reorganization_ev": 1.0591852935750206,
+      "upper": {
+        "binding_ev": 3.37,
+        "born_depth_ev": 1.8959583212808642,
+        "depth_ev": 5.092648464698046,
+        "energy_1p_ev": -1.6699999999992357,
+        "energy_1s_ev": -3.37,
+        "excess_ev": 3.1966901434171815,
+        "gap_ev": 1.7000000000007645,
+        "radius_m": 3.749021246698476e-10,
+        "u_1p": 3.553346680055493,
+        "u_1s": 2.5208950419602516
+      },
+      "vde_ev": 3.27,
+      "vde_uncertainty_ev": 0.1
+    },
+    "verdict": {
+      "absorption_is_bound": true,
+      "capillary_outside_vde_band": true,
+      "claim_35_status": "NUMERIC (two-observable inversion; R=3.732 Angstrom, V0=4.998 eV)",
+      "finite_well_satisfies_both": true,
+      "note": "The measured VDE 3.27 +/- 0.10 eV and the 1.7 eV absorption force a bound-bound 1s->1p assignment. The finite well satisfies both only at R=3.732 Angstrom and V0=4.998 eV, where the 1p is bound by 1.57 eV. The capillary/Born cavity (R=2.858 Angstrom, V0=2.487 eV) is 30.6% smaller and 2.01x shallower, outside the VDE band. The required excess depth 3.093 eV is 2.92x the optical reorganization energy at that radius, so a simple polaron correction is insufficient; a soft-wall or different potential is the next test."
+    }
+  }
+}
