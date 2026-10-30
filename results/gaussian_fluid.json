@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "config": {
+      "large_dt": 0.001,
+      "large_duration": 9.42477796076938,
+      "omega": 1.0,
+      "scope": "Gaussian Madelung reduction; fixed point and small oscillations",
+      "small_dt": 0.0001,
+      "small_duration": 6.283185307179586
+    },
+    "config_sha256": "89116e9e715c63218f8ae5a917863d17d8ae6be7ba2b320a2e8eba15114a2043",
+    "generated_utc": "2026-10-30T15:58:49+00:00",
+    "git": {
+      "commit": "b218002a5d10cba8296f66cd0255c46f693a932c",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "fixed_point": {
+      "expected": 0.5,
+      "sigma_squared": 0.5000000000000001
+    },
+    "large_amplitude": {
+      "dt": 0.001,
+      "duration": 9.42477796076938,
+      "energy_drift": 2.7544633240950134e-12,
+      "max_sigma": 1.4142135623730951,
+      "min_sigma": 0.3535533914876349,
+      "sigma0": 1.4142135623730951
+    },
+    "omega": 1.0,
+    "quantum_width": 0.7071067811865476,
+    "small_oscillation": {
+      "dt": 0.0001,
+      "duration": 6.283185307179586,
+      "expected_period": 3.141592653589793,
+      "period": 3.1416000000000004,
+      "relative_period_error": 2.3384349969375323e-06,
+      "sigma0": 0.7212489168102786
+    },
+    "verdict": {
+      "claim_22_status": "PROVEN (Ermakov reduction; numerics confirm)",
+      "fixed_point_verified": true,
+      "note": "The Gaussian ansatz reduces the Madelung equations to the Ermakov equation. Its effective-potential minimum is the quantum ground-state width, derived from the fluid equations rather than inserted from the wavefunction. The Born rule and measurement remain outside this reduction."
+    }
+  }
+}

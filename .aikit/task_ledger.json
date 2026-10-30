@@ -1,66 +1,17 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "nelson-stochastic-v1",
+    "task_id": "gaussian-fluid-v1",
     "last_phase": "verification",
     "active_phase": 5,
     "status": "completed",
-    "updated_at": 1793374708.0281796,
+    "updated_at": 1793376283.816408,
     "owner": "opencode",
     "started_by": "opencode",
     "continuations": [],
-    "completed_at": 1793374708.20642
+    "completed_at": 1793376284.0369596
   },
   "checkpoints": [
-    {
-      "task_id": "vortex-knot-spectrum-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-008 and add failing tests for the vortex-knot mass hypothesis",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793371287.28916,
-      "timestamp_str": "2026-10-30 17:41:27",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The user direction is that particles are vortices in a fluid. The simplest falsifiable realization assigns the three charged leptons to the lowest torus knots T(2,3), T(2,5), T(2,7) with mass proportional to the thin-filament Biot-Savart energy at fixed core radius.",
-        "benefits": "A parameter-free test of the vortex-particle idea against the observed charged-lepton hierarchy and the Koide Q=2/3 relation; a negative result identifies the hierarchy mechanism a viable model must add.",
-        "risks": "contract: new claim 17, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: the thin-filament energy is a regularized proxy, so the scaling argument is reported alongside the numbers",
-        "mitigation": "Use a fixed core radius, fixed torus geometry and closed curves; report both length and energy ratios and the power p required to match the data; falsify only the simplest assignment, not the general fluid-vortex idea"
-      }
-    },
-    {
-      "task_id": "vortex-knot-spectrum-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Vortex knots T(2,3),T(2,5),T(2,7): energy ratios 1:1.4379:1.9427 vs observed 1:206.77:3477.37; Koide Q 0.3393 vs 2/3; required power p=12.28; claim 17 FALSIFIED; result/docs updated",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793371662.1158988,
-      "timestamp_str": "2026-10-30 17:47:42",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "vortex-knot-spectrum-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 184/184 accepted (2 new claim-17 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793371668.7213728,
-      "timestamp_str": "2026-10-30 17:47:48",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "vortex-knot-spectrum-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'vortex-knot-spectrum-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793371668.8504426,
-      "timestamp_str": "2026-10-30 17:47:48",
-      "agent": "opencode"
-    },
     {
       "task_id": "vortex-cascade-nogo-v1",
       "phase": "planning",
@@ -255,6 +206,55 @@
       "status": "completed",
       "timestamp": 1793374708.206422,
       "timestamp_str": "2026-10-30 18:38:28",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "gaussian-fluid-v1",
+      "phase": "planning",
+      "phase_num": 2,
+      "description": "[1/4] Pre-register ADR-013 and add failing tests for the Gaussian Madelung reduction",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793375849.0901132,
+      "timestamp_str": "2026-10-30 18:57:29",
+      "agent": "opencode",
+      "impact_assessment": {
+        "why": "The Madelung dictionary and Nelson kinematics are exact, but the quantum ground-state width was still inserted. A Gaussian ansatz reduces the fluid equations to the Ermakov equation; its fixed point should be the quantum width hbar/(2m omega).",
+        "benefits": "A self-consistent fluid derivation of the ground-state width without using the Schrodinger solution, plus a numerical test of the fixed point and its oscillation frequency.",
+        "risks": "contract: new claim 22, no existing claim changes; dependency: numpy only; concurrency: none; state: one result file; numerical: RK4 step and energy conservation",
+        "mitigation": "Derive the effective potential analytically; pre-register the fixed-point identity, the 2 omega oscillation frequency, and an energy-drift tolerance; integrate with RK4 at dt=1e-3"
+      }
+    },
+    {
+      "task_id": "gaussian-fluid-v1",
+      "phase": "implementation",
+      "phase_num": 3,
+      "description": "[3/4] Gaussian Madelung reduction: Ermakov fixed point sigma^2=0.5 exact; large-amplitude energy drift 2.8e-12; small-oscillation period 3.141600 vs pi (2.3e-6); claim 22 PROVEN",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793376278.1172674,
+      "timestamp_str": "2026-10-30 19:04:38",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "gaussian-fluid-v1",
+      "phase": "verification",
+      "phase_num": 4,
+      "description": "[4/4] Two-run verification 194/194 accepted (2 new claim-22 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1793376283.816408,
+      "timestamp_str": "2026-10-30 19:04:43",
+      "agent": "opencode"
+    },
+    {
+      "task_id": "gaussian-fluid-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'gaussian-fluid-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793376284.036964,
+      "timestamp_str": "2026-10-30 19:04:44",
       "agent": "opencode"
     }
   ]

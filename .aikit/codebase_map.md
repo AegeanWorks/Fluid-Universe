@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `91`
+- **Total Python Modules**: `94`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `500`
+- **Total Top-Level Functions**: `515`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `12905`
+- **Total Source Lines**: `13279`
 
 ---
 
@@ -84,6 +84,18 @@
 - `def run_fit(n_mc, seed, write)`
 - `def render_markdown(payload)`
 - `def main()`
+
+---
+
+### [`phenomenology/gaussian_fluid_report.py`](phenomenology/gaussian_fluid_report.py)
+> *Gaussian Madelung reduction report (claim 22, ADR-013).*
+
+**Size**: `155` lines (`5293` bytes)
+
+**Functions:**
+- `def _period(result, width)`
+- `def run_gaussian_fluid_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -666,6 +678,21 @@
 
 ---
 
+### [`tests/test_gaussian_fluid.py`](tests/test_gaussian_fluid.py)
+> *Gaussian Madelung reduction tests (claim 22).*
+
+**Size**: `73` lines (`2054` bytes)
+
+**Functions:**
+- `def test_fixed_point_is_the_quantum_width()`
+- `def test_effective_potential_has_a_minimum_at_the_quantum_width()`
+- `def test_ermakov_oscillates_around_the_fixed_point()`
+- `def test_energy_is_conserved()`
+- `def test_width_scaling()`
+- `def test_invalid_inputs_are_rejected()`
+
+---
+
 ### [`tests/test_hopf.py`](tests/test_hopf.py)
 > *Hopf-charge estimator tests (claim 15, baseline 4).*
 
@@ -1058,6 +1085,20 @@
 
 ---
 
+### [`theory/gaussian_fluid.py`](theory/gaussian_fluid.py)
+> *Gaussian reduction of the Madelung fluid (claim 22, ADR-013).*
+
+**Size**: `114` lines (`3233` bytes)
+
+**Functions:**
+- `def quantum_width(omega, hbar, mass)`
+- `def effective_potential(sigma, omega, hbar, mass)`
+- `def energy(sigma, sigma_dot, omega, hbar, mass)`
+- `def ermakov_rhs(sigma, sigma_dot, omega, hbar, mass)`
+- `def simulate(sigma0, sigma_dot0, omega, duration, hbar, mass, dt)`
+
+---
+
 ### [`theory/hopf.py`](theory/hopf.py)
 > *Hopf-charge estimators for the analytic H=1 map.*
 
@@ -1250,7 +1291,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `1858` lines (`73521` bytes)
+**Size**: `1888` lines (`74769` bytes)
 
 **Classes:**
 - `class Audit`
@@ -1294,6 +1335,7 @@
 - `def audit_rotor_potential(audit)`
 - `def audit_madelung(audit)`
 - `def audit_nelson(audit)`
+- `def audit_gaussian_fluid(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -1323,7 +1365,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `137` lines (`3563` bytes)
+**Size**: `139` lines (`3615` bytes)
 
 **Functions:**
 - `def _source_files()`

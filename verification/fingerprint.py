@@ -92,6 +92,8 @@ RESULT_FILES = (
     "madelung.md",
     "nelson.json",
     "nelson.md",
+    "gaussian_fluid.json",
+    "gaussian_fluid.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

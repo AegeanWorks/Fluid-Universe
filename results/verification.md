@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-10-30T15:36:49+00:00 | `5afa804e3d8ca053f2ef45e1fc1f30627425e4cc` | 192/192 | `90b97ede0c640f5b...` | `d2f2d42ceb908a91...` |
-| run2 | 2026-10-30T15:37:00+00:00 | `5afa804e3d8ca053f2ef45e1fc1f30627425e4cc` | 192/192 | `90b97ede0c640f5b...` | `d2f2d42ceb908a91...` |
+| run1 | 2026-10-30T16:02:59+00:00 | `b218002a5d10cba8296f66cd0255c46f693a932c` | 194/194 | `5bd042f7dd109867...` | `12eeb0d246f916cd...` |
+| run2 | 2026-10-30T16:03:12+00:00 | `b218002a5d10cba8296f66cd0255c46f693a932c` | 194/194 | `5bd042f7dd109867...` | `12eeb0d246f916cd...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -71,6 +71,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 20: dictionary verdict is recorded and not overclaimed | PASS | PASS | YES | YES | NUMERIC (exact representation verified) |
 | 21: Nelson osmotic process reproduces the ground-state density | PASS | PASS | YES | YES | variance=0.500625, ground L1=0.0177, free L1=0.0195 |
 | 21: stochastic kinematics verdict is recorded and not overclaimed | PASS | PASS | YES | YES | NUMERIC (stochastic kinematics verified) |
+| 22: Gaussian Madelung fixed point is the quantum width | PASS | PASS | YES | YES | sigma^2=0.500000000000, drift=2.754e-12 |
+| 22: small oscillations have the Ermakov 2 omega frequency | PASS | PASS | YES | YES | period=3.141600, error=2.338e-06 |
 | 2a: M != M^T for generic delta | PASS | PASS | YES | YES | M - M^T has off-diagonal 2 i c sin(delta) |
 | 2a: M = M^dagger | PASS | PASS | YES | YES | symbolic difference is the zero matrix |
 | 2b/F1: eigenpair k=0 | PASS | PASS | YES | YES | M v_k - lambda_k v_k simplifies to zero |

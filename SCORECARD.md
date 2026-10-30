@@ -45,5 +45,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 19 | FALSIFIED | Real Z3 rotor with second harmonic and flux: max Q=0.3376, zero-flux degeneracy exact, deep wells Q→1/3; no 2/3. |
 | 20 | NUMERIC (verified) | Madelung dictionary: free Gaussian L2 8.8e-13, coherent state 1.2e-4, continuity 3.3e-7, Euler 6.1e-3; exact representation, not a microphysical derivation. |
 | 21 | NUMERIC (verified) | Nelson stochastic kinematics: OU variance 0.500625 vs 0.5; ground-state L1 0.0177; free-packet L1 0.0195; exact-density drift, so a consistency check. |
+| 22 | PROVEN (Ermakov) | Gaussian Madelung reduction: σ²=0.5 is the effective-potential minimum; energy drift 2.8e-12; small-oscillation period 3.141600 vs π (2.3e-6). |
 
-Claim audit: two separate runs agree per claim, 192/192 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 194/194 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

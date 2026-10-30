@@ -1393,6 +1393,35 @@ def audit_nelson(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Gaussian Madelung reduction (claim 22/ADR-013)
+# ---------------------------------------------------------------------------
+
+
+def audit_gaussian_fluid(audit: Audit) -> None:
+    payload = load_results("gaussian_fluid.json")
+    result = payload["result"]
+    large = result["large_amplitude"]
+    small = result["small_oscillation"]
+    verdict = result["verdict"]
+    audit.record(
+        "22: Gaussian Madelung fixed point is the quantum width",
+        abs(result["fixed_point"]["sigma_squared"] - 0.5) < 1e-12
+        and large["min_sigma"] < result["quantum_width"] < large["max_sigma"]
+        and large["energy_drift"] < 1e-6,
+        f"sigma^2={result['fixed_point']['sigma_squared']:.12f}, "
+        f"drift={large['energy_drift']:.3e}",
+    )
+    audit.record(
+        "22: small oscillations have the Ermakov 2 omega frequency",
+        abs(small["period"] - 3.141592653589793) / 3.141592653589793 < 0.02
+        and verdict["fixed_point_verified"] is True
+        and verdict["claim_22_status"].startswith("PROVEN"),
+        f"period={small['period']:.6f}, "
+        f"error={small['relative_period_error']:.3e}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -1795,6 +1824,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_rotor_potential(audit)
     audit_madelung(audit)
     audit_nelson(audit)
+    audit_gaussian_fluid(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

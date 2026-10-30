@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T15:36:49+00:00",
-    "git_commit": "5afa804e3d8ca053f2ef45e1fc1f30627425e4cc",
+    "generated_utc": "2026-10-30T16:02:59+00:00",
+    "git_commit": "b218002a5d10cba8296f66cd0255c46f693a932c",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "90b97ede0c640f5bff458f32eddc3e13ceac7e325e1af9cb49267b4b29a1fa37",
-      "results_sha256": "d2f2d42ceb908a912c0b6fb556b2362f17a067a521a2d0a19f38c481efd62b42"
+      "source_sha256": "5bd042f7dd1098672b92b5b93b05393b8106f0b8a36b6f14a7e3e40487850579",
+      "results_sha256": "12eeb0d246f916cdc43f368abf9a50d8665453f10da6e2e341e8b6472f15040a"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -665,6 +665,20 @@
       "claim": "21: stochastic kinematics verdict is recorded and not overclaimed",
       "passed": true,
       "detail": "NUMERIC (stochastic kinematics verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "22: Gaussian Madelung fixed point is the quantum width",
+      "passed": true,
+      "detail": "sigma^2=0.500000000000, drift=2.754e-12",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "22: small oscillations have the Ermakov 2 omega frequency",
+      "passed": true,
+      "detail": "period=3.141600, error=2.338e-06",
       "expected": null,
       "observed": null
     },
@@ -1362,8 +1376,8 @@
       "observed": null
     }
   ],
-  "total": 192,
-  "passed": 192,
+  "total": 194,
+  "passed": 194,
   "failed": 0,
   "failures": []
 }

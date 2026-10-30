@@ -507,3 +507,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - A modified diffusion law or a mean-field closure is the next falsifiable step.
 
 - Verification after the Nelson stochastic kinematics: two separate runs, 192/192 checks each.
+
+## 2026-10-30 - Gaussian Madelung reduction (claim 22, ADR-013)
+
+**Added**
+
+- `theory/gaussian_fluid.py`, `phenomenology/gaussian_fluid_report.py`, `make gaussianfluid`, `tests/test_gaussian_fluid.py`, and `results/gaussian_fluid.{json,md}`.
+
+**Results**
+
+- With a Gaussian density and \(v=A(t)x\), the Madelung equations reduce to the Ermakov equation \(\ddot\sigma=-\omega^2\sigma+\hbar^2/(4m^2\sigma^3)\).
+- The effective potential \(V(\sigma)=\frac12\omega^2\sigma^2+\hbar^2/(8m^2\sigma^2)\) has its minimum at \(\sigma^2=\hbar/(2m\omega)=0.5\).
+- Integration from \(2\sigma_q\) gives \(\sigma\in[0.353553,1.414214]\) around \(0.707107\) with energy drift \(2.8\times10^{-12}\); small oscillations have period \(3.141600\) against \(\pi\) (relative error \(2.3\times10^{-6}\)).
+- Claim 22 is **PROVEN (Ermakov reduction; numerics confirm)**. The ground-state width is derived from the fluid equations, not inserted from the wavefunction; the Born rule and measurement remain outside the reduction.
+
+- Verification after the Gaussian Madelung reduction: two separate runs, 194/194 checks each.

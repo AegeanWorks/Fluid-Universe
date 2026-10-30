@@ -72,6 +72,8 @@ Do not edit these files by hand.
 | `madelung.md` | Human-readable version of the same |
 | `nelson.json` | Nelson stochastic kinematics: ground state and free Gaussian packet |
 | `nelson.md` | Human-readable version of the same |
+| `gaussian_fluid.json` | Gaussian Madelung reduction: Ermakov fixed point and oscillations |
+| `gaussian_fluid.md` | Human-readable version of the same |
 | `summary.md` | Combined status sheet |
 | `verification_run1.json` | Independent re-derivation, first separate run |
 | `verification_run1.md` | Human-readable version of run 1 |
