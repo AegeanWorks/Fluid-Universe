@@ -814,3 +814,16 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 41 is **NUMERIC (temperature slope -1.068 meV/K vs observed 2.4-2.8)**. The cavity is not temperature-independent, but it covers less than half of the observed shift; the residual points to a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.
 
 - Verification after the temperature-dependent Born cavity: two separate runs, 232/232 checks each.
+
+## 2026-10-31 - Residual temperature shift (claim 42, ADR-033)
+
+**Added**
+
+- The residual analysis is recorded in the existing `theory/water_temperature.py`, `phenomenology/water_temperature_report.py`, `tests/test_water_temperature.py`, and `results/water_temperature.{json,md}`.
+
+**Results**
+
+- The geometric \((E/R)(dR/dT)\) slope is \(0.946817\) meV/K, covering \(0.394507\) of the lower observed shift and \(0.338149\) of the upper.
+- The residual after the dielectric term is \(1.331964\)-\(1.731964\) meV/K; after the geometric term it is \(1.453183\)-\(1.853183\) meV/K.
+- The two cavity terms have opposite signs and net only \(-0.121218\) meV/K, \(4.3\%\)-\(5.1\%\) of the observed \(2.4\)-\(2.8\) meV/K shift; the residual after both terms is \(2.52\)-\(2.92\) meV/K and \(1.45\)-\(1.85\) meV/K with the geometric term alone.
+- Claim 42 is **NUMERIC (residual 1.33-1.85 meV/K)**. The residual is not a trivial geometric effect; it requires a temperature-dependent electronic gap or non-cavity structure.

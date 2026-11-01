@@ -8,9 +8,9 @@
 ## 📊 Codebase Metrics
 - **Total Python Modules**: `149`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `798`
+- **Total Top-Level Functions**: `799`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `20245`
+- **Total Source Lines**: `20413`
 
 ---
 
@@ -631,7 +631,7 @@
 ### [`phenomenology/water_temperature_report.py`](phenomenology/water_temperature_report.py)
 > *Temperature-dependent Born cavity (claim 41, ADR-032).*
 
-**Size**: `128` lines (`5143` bytes)
+**Size**: `186` lines (`8197` bytes)
 
 **Functions:**
 - `def run_water_temperature_check(write)`
@@ -1467,7 +1467,7 @@
 ### [`tests/test_water_temperature.py`](tests/test_water_temperature.py)
 > *Temperature-dependent Born cavity (claim 41).*
 
-**Size**: `70` lines (`2601` bytes)
+**Size**: `105` lines (`3982` bytes)
 
 **Functions:**
 - `def test_water_properties()`
@@ -1987,7 +1987,7 @@
 ### [`theory/water_temperature.py`](theory/water_temperature.py)
 > *Temperature-dependent Born cavity (claim 41, ADR-032).*
 
-**Size**: `137` lines (`4566` bytes)
+**Size**: `162` lines (`6033` bytes)
 
 **Functions:**
 - `def water_dielectric_constant(temperature_c)` - *Static dielectric constant of water, 0-100 C.*
@@ -2050,7 +2050,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2543` lines (`101748` bytes)
+**Size**: `2593` lines (`104243` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2114,6 +2114,7 @@
 - `def audit_water_born_cavity(audit)`
 - `def audit_water_marcus(audit)`
 - `def audit_water_temperature(audit)`
+- `def audit_water_temperature_residual(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`

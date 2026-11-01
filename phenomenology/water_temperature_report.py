@@ -27,15 +27,32 @@ def run_water_temperature_check(write: bool = True) -> dict:
                 "NUMERIC (temperature slope -1.068 meV/K vs observed "
                 "2.4-2.8 meV/K)"
             ),
+            "claim_42_status": (
+                "NUMERIC (residual 1.33-1.85 meV/K after the cavity terms)"
+            ),
+            "residual_above_one_mev": scales[
+                "residual_after_geometric_lower"
+            ]
+            > 1.0,
+            "geometric_coverage_below_half": scales[
+                "coverage_geometric_upper"
+            ]
+            < 0.5,
+            "cavity_terms_oppose": scales["cavity_terms_oppose"],
+            "net_coverage_below_tenth": scales["coverage_net_upper"] < 0.1,
             "note": (
                 "The water-property Born cavity predicts a lambda/VDE red "
                 "shift of 1.068036 meV/K from 0 to 45 C, 38.1%-44.5% of the "
-                "observed 2.4-2.8 meV/K peak shift. The model is not "
-                "temperature-independent, but it is insufficient. The Marcus "
-                "width broadens from 0.653822 eV at 0 C to 0.695194 eV at "
-                "45 C. The residual shift points toward a temperature-"
-                "dependent bare gap or non-cavity structure, consistent with "
-                "the Farr/Schwartz critique."
+                "observed 2.4-2.8 meV/K peak shift. The 1/R geometric slope "
+                "is +0.946817 meV/K (33.8%-39.5%), and the two terms have "
+                "opposite signs, so their signed sum is -0.121218 meV/K "
+                "(4.3%-5.1% of the observed): the cavity does not explain the "
+                "shift, and taking the geometric term alone in the observed "
+                "direction still leaves 1.45-1.85 meV/K unexplained. The "
+                "Marcus width broadens from 0.653822 eV at 0 C to 0.695194 eV "
+                "at 45 C. The residual shift points toward a "
+                "temperature-dependent bare gap or non-cavity structure, "
+                "consistent with the Farr/Schwartz critique."
             ),
         },
     }
@@ -103,6 +120,38 @@ def render_markdown(payload: dict) -> str:
         "covers only 38%-45% of the observed peak shift. The residual points "
         "to a temperature-dependent bare gap or a non-cavity structure.",
         "",
+        "## Residual shift",
+        "",
+        "| quantity | value |",
+        "|---|---:|",
+        f"| geometric 1/R slope | {scales['geometric_slope_mev_per_k']:.6f} meV/K |",
+        f"| geometric coverage of lower | "
+        f"{scales['coverage_geometric_lower']:.6f} |",
+        f"| geometric coverage of upper | "
+        f"{scales['coverage_geometric_upper']:.6f} |",
+        f"| residual after lambda, lower | "
+        f"{scales['residual_after_lambda_lower']:.6f} meV/K |",
+        f"| residual after lambda, upper | "
+        f"{scales['residual_after_lambda_upper']:.6f} meV/K |",
+        f"| residual after geometric, lower | "
+        f"{scales['residual_after_geometric_lower']:.6f} meV/K |",
+        f"| residual after geometric, upper | "
+        f"{scales['residual_after_geometric_upper']:.6f} meV/K |",
+        f"| signed net cavity slope | "
+        f"{scales['net_cavity_slope_mev_per_k']:.6f} meV/K |",
+        f"| net coverage of lower | {scales['coverage_net_lower']:.6f} |",
+        f"| net coverage of upper | {scales['coverage_net_upper']:.6f} |",
+        f"| residual after both terms, lower | "
+        f"{scales['residual_after_net_lower']:.6f} meV/K |",
+        f"| residual after both terms, upper | "
+        f"{scales['residual_after_net_upper']:.6f} meV/K |",
+        "",
+        "The cavity's dielectric and geometric terms have opposite signs, so "
+        "they do not add: their signed sum is -0.121218 meV/K, 4.3%-5.1% of "
+        "the observed shift, leaving 2.52-2.92 meV/K unexplained. Taking the "
+        "geometric term alone in the observed direction still leaves "
+        "1.45-1.85 meV/K. Neither reading is a trivial geometric effect.",
+        "",
         "## Verdict",
         "",
         f"- Nonzero temperature slope: "
@@ -111,7 +160,16 @@ def render_markdown(payload: dict) -> str:
         f"**{verdict['covers_less_than_half']}**.",
         f"- Width broadens with temperature: "
         f"**{verdict['width_broadens_with_temperature']}**.",
+        f"- Residual after the cavity terms is above 1 meV/K: "
+        f"**{verdict['residual_above_one_mev']}**.",
+        f"- Geometric coverage is below half: "
+        f"**{verdict['geometric_coverage_below_half']}**.",
+        f"- The two cavity terms have opposite signs: "
+        f"**{verdict['cavity_terms_oppose']}**.",
+        f"- The signed net cavity coverage is below a tenth: "
+        f"**{verdict['net_coverage_below_tenth']}**.",
         f"- Claim 41: **{verdict['claim_41_status']}**.",
+        f"- Claim 42: **{verdict['claim_42_status']}**.",
         "",
         verdict["note"],
         "",

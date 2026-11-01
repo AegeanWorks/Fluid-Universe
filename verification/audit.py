@@ -2058,6 +2058,55 @@ def audit_water_temperature(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Residual temperature shift (claim 42/ADR-033)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_temperature_residual(audit: Audit) -> None:
+    payload = load_results("water_temperature.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    audit.record(
+        "42: the cavity dielectric and geometric terms cover less than half the shift",
+        abs(scales["geometric_slope_mev_per_k"] - 0.9468175) < 0.001
+        and 0.33 < scales["coverage_geometric_upper"] < 0.40
+        and 0.39 < scales["coverage_geometric_lower"] < 0.45
+        and verdict["geometric_coverage_below_half"] is True,
+        f"geom={scales['geometric_slope_mev_per_k']:.6f}, "
+        f"coverage={scales['coverage_geometric_lower']:.6f}/"
+        f"{scales['coverage_geometric_upper']:.6f}",
+    )
+    audit.record(
+        "42: the unexplained residual is 1.33-1.85 meV/K",
+        1.3 < scales["residual_after_geometric_lower"] < 1.5
+        and 1.8 < scales["residual_after_geometric_upper"] < 1.9
+        and verdict["residual_above_one_mev"] is True
+        and verdict["claim_42_status"].startswith("NUMERIC"),
+        f"residual_lam={scales['residual_after_lambda_lower']:.6f}-"
+        f"{scales['residual_after_lambda_upper']:.6f}, "
+        f"residual_geom={scales['residual_after_geometric_lower']:.6f}-"
+        f"{scales['residual_after_geometric_upper']:.6f}",
+    )
+    # The per-term residuals above are one-sided. The model's actual prediction is the signed
+    # sum, and the dielectric term is negative while the geometric term is positive, so the
+    # combined coverage is far smaller than either term alone.
+    audit.record(
+        "42: the two cavity terms oppose and net under a tenth of the shift",
+        abs(scales["net_cavity_slope_mev_per_k"] + 0.1212184) < 0.001
+        and scales["cavity_terms_oppose"] is True
+        and scales["coverage_net_upper"] < 0.10
+        and 2.5 < scales["residual_after_net_lower"] < 2.6
+        and 2.9 < scales["residual_after_net_upper"] < 3.0
+        and verdict["cavity_terms_oppose"] is True
+        and verdict["net_coverage_below_tenth"] is True,
+        f"net={scales['net_cavity_slope_mev_per_k']:.6f} meV/K, "
+        f"coverage={scales['coverage_net_lower']:.6f}/"
+        f"{scales['coverage_net_upper']:.6f}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2480,6 +2529,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_born_cavity(audit)
     audit_water_marcus(audit)
     audit_water_temperature(audit)
+    audit_water_temperature_residual(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

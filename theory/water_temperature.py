@@ -122,15 +122,40 @@ def temperature_scales() -> dict:
     scan = [born_cavity_at_temperature(temperature) for temperature in temperatures]
     cold = scan[0]
     warm = scan[-1]
+    middle = scan[3]
     slope = (warm["lambda_ev"] - cold["lambda_ev"]) / 45.0 * 1000.0
     magnitude = abs(slope)
+    radius_slope = (warm["radius_m"] - cold["radius_m"]) / 45.0
+    geometric_slope = OPTICAL_EV / middle["radius_m"] * radius_slope * 1000.0
+    geometric_magnitude = abs(geometric_slope)
+    # The two cavity terms do not add in magnitude: the dielectric slope is negative and the
+    # 1/R geometric slope positive, so their signed sum is the shift the model actually predicts.
+    net_slope = slope + geometric_slope
+    net_magnitude = abs(net_slope)
     return {
         "scan": scan,
         "lambda_slope_mev_per_k": slope,
+        "geometric_slope_mev_per_k": geometric_slope,
+        "net_cavity_slope_mev_per_k": net_slope,
+        "cavity_terms_oppose": slope * geometric_slope < 0.0,
         "observed_shift_mev_per_k": OBSERVED_LOWER_MEV_PER_K,
         "observed_shift_upper_mev_per_k": OBSERVED_UPPER_MEV_PER_K,
         "fraction_of_lower": magnitude / OBSERVED_LOWER_MEV_PER_K,
         "fraction_of_upper": magnitude / OBSERVED_UPPER_MEV_PER_K,
+        "coverage_geometric_lower": geometric_magnitude
+        / OBSERVED_LOWER_MEV_PER_K,
+        "coverage_geometric_upper": geometric_magnitude
+        / OBSERVED_UPPER_MEV_PER_K,
+        "coverage_net_lower": net_magnitude / OBSERVED_LOWER_MEV_PER_K,
+        "coverage_net_upper": net_magnitude / OBSERVED_UPPER_MEV_PER_K,
+        "residual_after_lambda_lower": OBSERVED_LOWER_MEV_PER_K - magnitude,
+        "residual_after_lambda_upper": OBSERVED_UPPER_MEV_PER_K - magnitude,
+        "residual_after_geometric_lower": OBSERVED_LOWER_MEV_PER_K
+        - geometric_magnitude,
+        "residual_after_geometric_upper": OBSERVED_UPPER_MEV_PER_K
+        - geometric_magnitude,
+        "residual_after_net_lower": OBSERVED_LOWER_MEV_PER_K - net_slope,
+        "residual_after_net_upper": OBSERVED_UPPER_MEV_PER_K - net_slope,
         "width_0c_ev": cold["fwhm_ev"],
         "width_45c_ev": warm["fwhm_ev"],
         "width_change_ev": warm["fwhm_ev"] - cold["fwhm_ev"],

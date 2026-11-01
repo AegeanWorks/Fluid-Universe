@@ -51,6 +51,41 @@ def test_temperature_scales():
     assert scales["observed_shift_upper_mev_per_k"] == pytest.approx(2.8)
     assert scales["fraction_of_lower"] == pytest.approx(0.445015, rel=1e-6)
     assert scales["fraction_of_upper"] == pytest.approx(0.3814414, rel=1e-6)
+    assert scales["geometric_slope_mev_per_k"] == pytest.approx(
+        0.9468175, rel=1e-6
+    )
+    assert scales["coverage_geometric_lower"] == pytest.approx(
+        0.3945073, rel=1e-6
+    )
+    assert scales["coverage_geometric_upper"] == pytest.approx(
+        0.3381491, rel=1e-6
+    )
+    assert scales["residual_after_lambda_lower"] == pytest.approx(
+        1.3319641, rel=1e-6
+    )
+    assert scales["residual_after_lambda_upper"] == pytest.approx(
+        1.7319641, rel=1e-6
+    )
+    assert scales["residual_after_geometric_lower"] == pytest.approx(
+        1.4531825, rel=1e-6
+    )
+    assert scales["residual_after_geometric_upper"] == pytest.approx(
+        1.8531825, rel=1e-6
+    )
+    # The dielectric slope is negative and the geometric slope positive, so the two terms
+    # cancel instead of adding; the signed sum is what the model actually predicts.
+    assert scales["net_cavity_slope_mev_per_k"] == pytest.approx(
+        -0.1212184, rel=1e-6
+    )
+    assert scales["cavity_terms_oppose"] is True
+    assert scales["coverage_net_lower"] == pytest.approx(0.0505077, rel=1e-6)
+    assert scales["coverage_net_upper"] == pytest.approx(0.0432923, rel=1e-6)
+    assert scales["residual_after_net_lower"] == pytest.approx(
+        2.5212184, rel=1e-6
+    )
+    assert scales["residual_after_net_upper"] == pytest.approx(
+        2.9212184, rel=1e-6
+    )
     assert scales["width_0c_ev"] == pytest.approx(0.653821691, rel=1e-7)
     assert scales["width_45c_ev"] == pytest.approx(0.695194215, rel=1e-7)
 
