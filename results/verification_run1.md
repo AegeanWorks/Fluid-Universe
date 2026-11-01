@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**232/232 checks passed.**
+**235/235 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -139,6 +139,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 40: the width follows sqrt(T) | PASS | FWHM200=0.555964, FWHM350=0.735472, ratio=1.080123 |
 | 41: the water-property cavity has a nonzero but insufficient temperature slope | PASS | slope=-1.068036, fraction_lower=0.445015, fraction_upper=0.381441 |
 | 41: the Marcus width broadens over 0-45 C | PASS | width0=0.653822, width45=0.695194, change=0.041373 |
+| 42: the cavity dielectric and geometric terms cover less than half the shift | PASS | geom=0.946817, coverage=0.394507/0.338149 |
+| 42: the unexplained residual is 1.33-1.85 meV/K | PASS | residual_lam=1.331964-1.731964, residual_geom=1.453183-1.853183 |
+| 42: the two cavity terms oppose and net under a tenth of the shift | PASS | net=-0.121218 meV/K, coverage=0.050508/0.043292 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

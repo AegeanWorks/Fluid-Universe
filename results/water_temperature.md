@@ -34,14 +34,38 @@ with \(T\) in Celsius. The self-consistent Born cavity is solved at each tempera
 
 The cavity is not temperature-independent, but its lambda/VDE slope covers only 38%-45% of the observed peak shift. The residual points to a temperature-dependent bare gap or a non-cavity structure.
 
+## Residual shift
+
+| quantity | value |
+|---|---:|
+| geometric 1/R slope | 0.946817 meV/K |
+| geometric coverage of lower | 0.394507 |
+| geometric coverage of upper | 0.338149 |
+| residual after lambda, lower | 1.331964 meV/K |
+| residual after lambda, upper | 1.731964 meV/K |
+| residual after geometric, lower | 1.453183 meV/K |
+| residual after geometric, upper | 1.853183 meV/K |
+| signed net cavity slope | -0.121218 meV/K |
+| net coverage of lower | 0.050508 |
+| net coverage of upper | 0.043292 |
+| residual after both terms, lower | 2.521218 meV/K |
+| residual after both terms, upper | 2.921218 meV/K |
+
+The cavity's dielectric and geometric terms have opposite signs, so they do not add: their signed sum is -0.121218 meV/K, 4.3%-5.1% of the observed shift, leaving 2.52-2.92 meV/K unexplained. Taking the geometric term alone in the observed direction still leaves 1.45-1.85 meV/K. Neither reading is a trivial geometric effect.
+
 ## Verdict
 
 - Nonzero temperature slope: **True**.
 - Covers less than half of the observed shift: **True**.
 - Width broadens with temperature: **True**.
+- Residual after the cavity terms is above 1 meV/K: **True**.
+- Geometric coverage is below half: **True**.
+- The two cavity terms have opposite signs: **True**.
+- The signed net cavity coverage is below a tenth: **True**.
 - Claim 41: **NUMERIC (temperature slope -1.068 meV/K vs observed 2.4-2.8 meV/K)**.
+- Claim 42: **NUMERIC (residual 1.33-1.85 meV/K after the cavity terms)**.
 
-The water-property Born cavity predicts a lambda/VDE red shift of 1.068036 meV/K from 0 to 45 C, 38.1%-44.5% of the observed 2.4-2.8 meV/K peak shift. The model is not temperature-independent, but it is insufficient. The Marcus width broadens from 0.653822 eV at 0 C to 0.695194 eV at 45 C. The residual shift points toward a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.
+The water-property Born cavity predicts a lambda/VDE red shift of 1.068036 meV/K from 0 to 45 C, 38.1%-44.5% of the observed 2.4-2.8 meV/K peak shift. The 1/R geometric slope is +0.946817 meV/K (33.8%-39.5%), and the two terms have opposite signs, so their signed sum is -0.121218 meV/K (4.3%-5.1% of the observed): the cavity does not explain the shift, and taking the geometric term alone in the observed direction still leaves 1.45-1.85 meV/K unexplained. The Marcus width broadens from 0.653822 eV at 0 C to 0.695194 eV at 45 C. The residual shift points toward a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.
 
 - Config SHA-256: `387f20e1cbf60c52e079f2d93afac1b9d1e3c749b9848400cbcefa391d45487f`
-- Git: `28b84b563cd38e8bdafda102ab6aae9c22457ad0` (dirty=True)
+- Git: `efefa289ed6959197616ec04f3e83618884c6637` (dirty=True)

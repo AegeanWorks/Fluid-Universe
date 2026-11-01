@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-10-30T21:14:39+00:00",
-    "git_commit": "28b84b563cd38e8bdafda102ab6aae9c22457ad0",
+    "generated_utc": "2026-11-01T02:30:48+00:00",
+    "git_commit": "efefa289ed6959197616ec04f3e83618884c6637",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "fe54531e4d789a83ecb308d41ae380b0a4b3f05075f259dba7bf3cd4a992857c",
-      "results_sha256": "38a112d497c8aca02f9efbe5332fddb9afc7335572cc3685a88e19d0d80d8120"
+      "source_sha256": "8675be932c5a9f32987b224379ea0e053303abc6e3709c44099713ca98302ac9",
+      "results_sha256": "c32fbd7c20fbfa1c30c776dc92ae85fa9a3109a93aaaf76df119b60a2a8eb1cc"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -949,6 +949,27 @@
       "observed": null
     },
     {
+      "claim": "42: the cavity dielectric and geometric terms cover less than half the shift",
+      "passed": true,
+      "detail": "geom=0.946817, coverage=0.394507/0.338149",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "42: the unexplained residual is 1.33-1.85 meV/K",
+      "passed": true,
+      "detail": "residual_lam=1.331964-1.731964, residual_geom=1.453183-1.853183",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "42: the two cavity terms oppose and net under a tenth of the shift",
+      "passed": true,
+      "detail": "net=-0.121218 meV/K, coverage=0.050508/0.043292",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1642,8 +1663,8 @@
       "observed": null
     }
   ],
-  "total": 232,
-  "passed": 232,
+  "total": 235,
+  "passed": 235,
   "failed": 0,
   "failures": []
 }
