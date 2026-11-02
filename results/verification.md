@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-01T02:30:41+00:00 | `efefa289ed6959197616ec04f3e83618884c6637` | 235/235 | `8675be932c5a9f32...` | `c32fbd7c20fbfa1c...` |
-| run2 | 2026-11-01T02:30:48+00:00 | `efefa289ed6959197616ec04f3e83618884c6637` | 235/235 | `8675be932c5a9f32...` | `c32fbd7c20fbfa1c...` |
+| run1 | 2026-11-02T21:46:43+00:00 | `b5f7c485c07876410704af1ea3dfb9b583bbdc1c` | 238/238 | `9206a60480833fa5...` | `96bc8f98593ca1bc...` |
+| run2 | 2026-11-02T21:47:01+00:00 | `b5f7c485c07876410704af1ea3dfb9b583bbdc1c` | 238/238 | `9206a60480833fa5...` | `96bc8f98593ca1bc...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -127,6 +127,9 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 42: the cavity dielectric and geometric terms cover less than half the shift | PASS | PASS | YES | YES | geom=0.946817, coverage=0.394507/0.338149 |
 | 42: the two cavity terms oppose and net under a tenth of the shift | PASS | PASS | YES | YES | net=-0.121218 meV/K, coverage=0.050508/0.043292 |
 | 42: the unexplained residual is 1.33-1.85 meV/K | PASS | PASS | YES | YES | residual_lam=1.331964-1.731964, residual_geom=1.453183-1.853183 |
+| 43: the Gaussian band is exactly symmetric | PASS | PASS | YES | YES | skew=0.000000, ratio=1.000000, third=0.000e+00 |
+| 43: the predicted 0-45 C widths match sqrt(lambda T) with fixed lambda | PASS | PASS | YES | YES | width0=0.653822, width45=0.695194, ratio=1.063278 |
+| 43: the prediction is registered UNVERIFIED with kill thresholds | PASS | PASS | YES | YES | status=UNVERIFIED, tol=0.05/0.15/0.3 |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

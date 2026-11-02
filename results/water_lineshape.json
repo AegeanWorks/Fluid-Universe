@@ -1,0 +1,57 @@
+{
+  "meta": {
+    "config": {
+      "lambda_ev": 1.6171325440878093,
+      "scope": "fixed-lambda Marcus line-shape prediction, no fit",
+      "shape_ratio_tol": 0.15,
+      "skew_tol": 0.3,
+      "width_ratio_tol": 0.05
+    },
+    "config_sha256": "23df712d90f9275c016e9e5440c6f4578732e3f607ca65ff39dfebddaf01fb8b",
+    "generated_utc": "2026-11-02T21:39:56+00:00",
+    "git": {
+      "commit": "b5f7c485c07876410704af1ea3dfb9b583bbdc1c",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "scales": {
+      "lambda_ev": 1.6171325440878093,
+      "moments": {
+        "half_width_ratio": 1.0,
+        "skewness": 0.0,
+        "symmetric": true,
+        "third_central_moment": 0.0
+      },
+      "prediction": {
+        "lambda_0c_ev": 1.6375671269696452,
+        "lambda_45c_ev": 1.5895055120614294,
+        "width_0c_ev": 0.6538216910328017,
+        "width_45c_ev": 0.6951942145841887,
+        "width_change_ev": 0.041372523551386986,
+        "width_ratio_45_over_0": 1.0632779917197812
+      },
+      "thresholds": {
+        "shape_ratio_tol": 0.15,
+        "skew_tol": 0.3,
+        "width_ratio_tol": 0.05
+      }
+    },
+    "verdict": {
+      "claim_43_status": "UNVERIFIED (pre-registered prediction; no observed width-vs-T or shape comparator)",
+      "note": "With lambda fixed at 1.617132544 eV from the Born cavity, the classical Marcus Gaussian predicts W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.0633, with exact symmetry (skew 0, half-width ratio 1). No observed width change or band-shape numbers exist in this repository, so this is a prediction with kill thresholds (ratio 0.05, shape 0.15, skew 0.3), never a comparison. A future comparator kills the sqrt(lambda T) scaling if |observed ratio - 1.0633| > 0.05 and kills Gaussian-only shape if |observed half-width ratio - 1| > 0.15.",
+      "ratio_matches_sqrt_lambda_t": true,
+      "symmetry_exact": true,
+      "widths_match_temperature_scan": true
+    }
+  }
+}

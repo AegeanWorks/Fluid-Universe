@@ -6,9 +6,9 @@
       "scope": "temperature-dependent Born cavity with water properties"
     },
     "config_sha256": "387f20e1cbf60c52e079f2d93afac1b9d1e3c749b9848400cbcefa391d45487f",
-    "generated_utc": "2026-11-01T02:28:50+00:00",
+    "generated_utc": "2026-11-02T21:39:42+00:00",
     "git": {
-      "commit": "efefa289ed6959197616ec04f3e83618884c6637",
+      "commit": "b5f7c485c07876410704af1ea3dfb9b583bbdc1c",
       "dirty": true
     },
     "packages": {

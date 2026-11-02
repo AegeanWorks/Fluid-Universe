@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**235/235 checks passed.**
+**238/238 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -142,6 +142,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 42: the cavity dielectric and geometric terms cover less than half the shift | PASS | geom=0.946817, coverage=0.394507/0.338149 |
 | 42: the unexplained residual is 1.33-1.85 meV/K | PASS | residual_lam=1.331964-1.731964, residual_geom=1.453183-1.853183 |
 | 42: the two cavity terms oppose and net under a tenth of the shift | PASS | net=-0.121218 meV/K, coverage=0.050508/0.043292 |
+| 43: the Gaussian band is exactly symmetric | PASS | skew=0.000000, ratio=1.000000, third=0.000e+00 |
+| 43: the predicted 0-45 C widths match sqrt(lambda T) with fixed lambda | PASS | width0=0.653822, width45=0.695194, ratio=1.063278 |
+| 43: the prediction is registered UNVERIFIED with kill thresholds | PASS | status=UNVERIFIED, tol=0.05/0.15/0.3 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

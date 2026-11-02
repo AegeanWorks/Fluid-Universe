@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `149`
+- **Total Python Modules**: `152`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `799`
+- **Total Top-Level Functions**: `811`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `20413`
+- **Total Source Lines**: `20771`
 
 ---
 
@@ -558,6 +558,17 @@
 
 **Functions:**
 - `def run_water_electron_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_lineshape_report.py`](phenomenology/water_lineshape_report.py)
+> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43, ADR-034).*
+
+**Size**: `138` lines (`5141` bytes)
+
+**Functions:**
+- `def run_water_lineshape_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1380,6 +1391,20 @@
 
 ---
 
+### [`tests/test_water_lineshape.py`](tests/test_water_lineshape.py)
+> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43).*
+
+**Size**: `70` lines (`2060` bytes)
+
+**Functions:**
+- `def test_gaussian_symmetry_is_exact()`
+- `def test_predicted_widths_match_temperature_scan()`
+- `def test_ratio_follows_sqrt_lambda_t()`
+- `def test_kill_thresholds_are_data()`
+- `def test_lineshape_scales_use_fixed_lambda()`
+
+---
+
 ### [`tests/test_water_marcus.py`](tests/test_water_marcus.py)
 > *Marcus band width from the water reorganization energy (claim 40).*
 
@@ -1918,6 +1943,19 @@
 
 ---
 
+### [`theory/water_lineshape.py`](theory/water_lineshape.py)
+> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43, ADR-034).*
+
+**Size**: `92` lines (`3244` bytes)
+
+**Functions:**
+- `def gaussian_moments()` - *Exact symmetry facts for a Gaussian band (no inputs, no fit).*
+- `def predicted_widths()` - *Absolute Marcus widths at 0 C and 45 C from fixed inputs only.*
+- `def kill_thresholds()` - *Pre-registered kill thresholds for a future comparator (data only).*
+- `def lineshape_scales()` - *Collect the fixed-lambda prediction and its kill thresholds.*
+
+---
+
 ### [`theory/water_marcus.py`](theory/water_marcus.py)
 > *Marcus band width from the water reorganization energy (claim 40, ADR-031).*
 
@@ -2050,7 +2088,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2593` lines (`104243` bytes)
+**Size**: `2649` lines (`106794` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2115,6 +2153,7 @@
 - `def audit_water_marcus(audit)`
 - `def audit_water_temperature(audit)`
 - `def audit_water_temperature_residual(audit)`
+- `def audit_water_lineshape(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2144,7 +2183,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `177` lines (`4609` bytes)
+**Size**: `179` lines (`4663` bytes)
 
 **Functions:**
 - `def _source_files()`

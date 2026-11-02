@@ -8,9 +8,9 @@
       "scope": "classical Marcus Gaussian width from water reorganization"
     },
     "config_sha256": "fa7c645e050fd6841bf9d7bc89476024d5e666f9cf11008f7dd4ef8bcb1db530",
-    "generated_utc": "2026-10-30T20:56:58+00:00",
+    "generated_utc": "2026-11-02T21:39:30+00:00",
     "git": {
-      "commit": "baaed62863c2c781a7349c262dece024c69eeba2",
+      "commit": "b5f7c485c07876410704af1ea3dfb9b583bbdc1c",
       "dirty": true
     },
     "packages": {
