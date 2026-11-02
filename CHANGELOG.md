@@ -827,3 +827,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The residual after the dielectric term is \(1.331964\)-\(1.731964\) meV/K; after the geometric term it is \(1.453183\)-\(1.853183\) meV/K.
 - The two cavity terms have opposite signs and net only \(-0.121218\) meV/K, \(4.3\%\)-\(5.1\%\) of the observed \(2.4\)-\(2.8\) meV/K shift; the residual after both terms is \(2.52\)-\(2.92\) meV/K and \(1.45\)-\(1.85\) meV/K with the geometric term alone.
 - Claim 42 is **NUMERIC (residual 1.33-1.85 meV/K)**. The residual is not a trivial geometric effect; it requires a temperature-dependent electronic gap or non-cavity structure.
+
+## 2026-11-02 - Fixed-lambda line-shape prediction (claim 43, ADR-034)
+
+**Added**
+
+- `theory/water_lineshape.py`, `phenomenology/water_lineshape_report.py`, `make waterlineshape`, `tests/test_water_lineshape.py`, and `results/water_lineshape.{json,md}`.
+- Three audit checks in `verification/audit.py` (Gaussian symmetry, fixed-lambda widths, UNVERIFIED status with thresholds); `water_lineshape.{json,md}` added to the results fingerprint and the `make clean` preserve lists.
+
+**Results**
+
+- With lambda fixed at 1.617132544 eV, the classical Marcus Gaussian predicts W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.063278, with exact symmetry (skew 0, half-width ratio 1).
+- The ratio matches sqrt((lambda45 x 318.15)/(lambda0 x 273.15)) to 1e-9; no parameter is fitted.
+- No observed width-vs-T or shape comparator exists in this repository, so claim 43 is **UNVERIFIED (prediction; no comparator)**. Kill thresholds for a future comparator: |observed ratio - 1.0633| > 0.05 kills the sqrt(lambda T) scaling; |observed half-width ratio - 1| > 0.15 kills Gaussian-only shape.
+
+- Verification after the fixed-lambda line-shape prediction: two separate runs, 238/238 checks each.

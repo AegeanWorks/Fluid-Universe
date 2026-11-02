@@ -66,5 +66,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 40 | NUMERIC (Marcus FWHM 0.681 eV; reference 0.706-0.773 eV) | λ=1.617 eV predicts FWHM 0.680915 eV at 300 K (0.964x classical 0.706, 0.881x quantized 0.773); width scales as sqrt(T): 0.556 eV at 200 K, 0.735 eV at 350 K. |
 | 41 | NUMERIC (temperature slope -1.068 meV/K vs observed 2.4-2.8) | Water ε_s(T)/γ(T) Born cavity: R 2.420→2.481 Å, λ 1.6376→1.5895 eV over 0-45°C; slope -1.068 meV/K (38-45% of observed); FWHM 0.6538→0.6952 eV. Nonzero but insufficient; residual points to non-cavity/bare gap. |
 | 42 | NUMERIC (residual 1.33-1.85 meV/K) | Cavity λ slope -1.068 and 1/R geometric slope +0.947 have opposite signs and net -0.121 meV/K, 4.3-5.1% of the observed 2.4-2.8 meV/K shift; residual 2.52-2.92 meV/K (1.45-1.85 meV/K with the geometric term alone) requires a temperature-dependent gap or non-cavity structure. |
+| 43 | UNVERIFIED (prediction; no comparator) | Fixed-λ Marcus Gaussian predicts W(0°C)=0.653822 eV, W(45°C)=0.695194 eV, ratio 1.063278, skew 0, half-width ratio 1; kill thresholds 0.05/0.15/0.3 for a future comparator. |
 
-Claim audit: two separate runs agree per claim, 232/232 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.
+Claim audit: two separate runs agree per claim, 238/238 checks each (`python -m verification.verify`, `results/verification.md`). Guideline G-001 requires two runs for claims; the pytest suite is unchanged.

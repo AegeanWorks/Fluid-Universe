@@ -2107,6 +2107,61 @@ def audit_water_temperature_residual(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Fixed-lambda line-shape prediction (claim 43/ADR-034)
+# ---------------------------------------------------------------------------
+
+
+def audit_water_lineshape(audit: Audit) -> None:
+    payload = load_results("water_lineshape.json")
+    result = payload["result"]
+    scales = result["scales"]
+    moments = scales["moments"]
+    prediction = scales["prediction"]
+    thresholds = scales["thresholds"]
+    verdict = result["verdict"]
+    # Independent Marcus recomputation: FWHM = 2 sqrt(2 ln 2) sqrt(2 lambda kT).
+    kb = 8.617333262e-5
+    prefactor = 2.0 * math.sqrt(2.0 * math.log(2.0))
+    width_0c = prefactor * math.sqrt(2.0 * 1.637567127 * kb * 273.15)
+    width_45c = prefactor * math.sqrt(2.0 * 1.589505512 * kb * 318.15)
+    # Independent Gaussian symmetry: odd integrand, so skew 0 and ratio 1.
+    xs = np.linspace(-5.0, 5.0, 200001)
+    gauss = np.exp(-4.0 * math.log(2.0) * xs * xs)
+    third = float(np.trapezoid(xs**3 * gauss, xs) / np.trapezoid(gauss, xs))
+    audit.record(
+        "43: the Gaussian band is exactly symmetric",
+        moments["skewness"] == 0.0
+        and moments["half_width_ratio"] == 1.0
+        and abs(third) < 1.0e-12
+        and verdict["symmetry_exact"] is True,
+        f"skew={moments['skewness']:.6f}, "
+        f"ratio={moments['half_width_ratio']:.6f}, third={third:.3e}",
+    )
+    audit.record(
+        "43: the predicted 0-45 C widths match sqrt(lambda T) with fixed lambda",
+        abs(prediction["width_0c_ev"] - width_0c) < 1.0e-6
+        and abs(prediction["width_45c_ev"] - width_45c) < 1.0e-6
+        and abs(prediction["width_ratio_45_over_0"] - width_45c / width_0c)
+        < 1.0e-9
+        and verdict["widths_match_temperature_scan"] is True
+        and verdict["ratio_matches_sqrt_lambda_t"] is True,
+        f"width0={prediction['width_0c_ev']:.6f}, "
+        f"width45={prediction['width_45c_ev']:.6f}, "
+        f"ratio={prediction['width_ratio_45_over_0']:.6f}",
+    )
+    audit.record(
+        "43: the prediction is registered UNVERIFIED with kill thresholds",
+        result["verdict"]["claim_43_status"].startswith("UNVERIFIED")
+        and thresholds["width_ratio_tol"] == 0.05
+        and thresholds["shape_ratio_tol"] == 0.15
+        and thresholds["skew_tol"] == 0.3,
+        f"status={result['verdict']['claim_43_status'][:10]}, "
+        f"tol={thresholds['width_ratio_tol']}/"
+        f"{thresholds['shape_ratio_tol']}/{thresholds['skew_tol']}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -2530,6 +2585,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_marcus(audit)
     audit_water_temperature(audit)
     audit_water_temperature_residual(audit)
+    audit_water_lineshape(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
