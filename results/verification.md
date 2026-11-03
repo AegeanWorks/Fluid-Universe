@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T21:22:08+00:00 | `c5f428203702f80257980071d94eb3684d3e08d2` | 257/257 | `d9e1937941d64318...` | `8a919d84e60a6caa...` |
-| run2 | 2026-11-03T21:22:52+00:00 | `c5f428203702f80257980071d94eb3684d3e08d2` | 257/257 | `d9e1937941d64318...` | `8a919d84e60a6caa...` |
+| run1 | 2026-11-03T22:10:50+00:00 | `89f236a00a41a5617bd680d7b82a9e5ede514ca0` | 262/262 | `0393f371c81f0a3f...` | `cb86c91bb7687428...` |
+| run2 | 2026-11-03T22:11:09+00:00 | `89f236a00a41a5617bd680d7b82a9e5ede514ca0` | 262/262 | `0393f371c81f0a3f...` | `cb86c91bb7687428...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -152,6 +152,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |
+| 50: the Yasui contrast is recomputed | PASS | PASS | YES | YES | max_d=-1.062500, box=-0.125000>saddle=-1.000000 |
+| 50: the conditional extremum is recomputed | PASS | PASS | YES | YES | coarse_s=0.500000, coarse_c=0.000000 |
+| 50: the curvature split is recomputed | PASS | PASS | YES | YES | d2s=-4.000000, d2c=1.000000 |
+| 50: the saddle location is recomputed | PASS | PASS | YES | YES | s*=0.500000000000, refined=(0.500000000000,0.000000000000) |
+| 50: the scaling law is recomputed | PASS | PASS | YES | YES | refined=0.250000000000, curv=(-32.000000,0.500000) |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

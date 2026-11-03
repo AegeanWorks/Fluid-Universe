@@ -932,3 +932,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - G-M analytic extremum sigma^2 = nu/omega = 0.5; grid argmax and Newton refine exact 0.5; curvature d2J/d(s2)^2 = -2.0 (sigma-form -4.0 recorded); Yasui max derivative -0.53125 (no zero), J monotone; scalings omega=2 and mass=2 refined 0.25 exact with curvatures -16.0/-8.0; Ermakov argmin coincidence to grid resolution — NUMERIC with zero parameters. No width extremum anywhere in the surveyed literature (three explicit absences); the L-M parameter is excluded (no width selector). Shares the 0.5 fixed point with claims 21/22/48 and is not independent evidence of the full variation; claims 20-26 and 43-48 numbers are unchanged.
 
 - Verification after the Ritz width-selection: two separate runs, 257/257 checks each.
+
+## 2026-11-03 - Ritz saddle demonstrated (claim 50, ADR-042)
+
+**Added**
+
+- `theory/variational_saddle.py` (2D G-M/Yasui actions in (s, c), decoupled 1D Newton polish, conditional-slice extremum + box record, 1D-vs-2D firewall with 2x cross-check); `phenomenology/variational_saddle_report.py`, `make variationalsaddle`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`; three new independent audit checks in `verification/audit.py` (location, conditional slices + box record, curvature split, Yasui contrast, scaling law — five checks, no project imports); formulas F34.
+
+**Results**
+
+- Stationary point (0.5, 0.0) exact, Newton-refined exact; mixed curvature (-4.0, +1.0) with zero mixed partial — saddle, not extremum; joint box argmax on boundary (2.0, -1.0) above saddle value (saddle fingerprint, record only); Yasui c = 0 with max derivative -1.0625, no finite-s extremum; scaling omega = 2 gives 0.25 with curvatures (-32.0, +0.5) — NUMERIC with zero parameters. Morato-Ugolini 1994 corroborates the unique ground-state fixed point with irrotational center manifold (no Ritz numbers there — absences recorded). The L-M mu parameter is excluded (principle-knob, not trial-knob). Shares the 0.5 fixed point with claims 21/22/48/49 and is not independent evidence of the full variation; claims 20-26 and 43-49 numbers are unchanged.
+
+- Verification after the Ritz saddle: two separate runs, 262/262 checks each.

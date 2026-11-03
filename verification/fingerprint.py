@@ -146,6 +146,8 @@ RESULT_FILES = (
     "nelson_closure.md",
     "variational_width.json",
     "variational_width.md",
+    "variational_saddle.json",
+    "variational_saddle.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

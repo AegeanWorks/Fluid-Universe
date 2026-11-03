@@ -2493,6 +2493,95 @@ def audit_variational_width(audit: Audit) -> None:
         )
 
 
+def audit_variational_saddle(audit: Audit) -> None:
+    payload = load_results("variational_saddle.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    analytic = scales["analytic"]
+    grid = scales["grid"]
+    # Independent stationary point: analytic solve, no project imports.
+    nu = 1.0 / (2.0 * 1.0)
+    audit.record(
+        "50: the saddle location is recomputed",
+        abs(nu / 1.0 - 0.5) <= 1e-12
+        and abs(analytic["sigma_star_sq"] - 0.5) <= 1e-9
+        and abs(analytic["c_star"] - 0.0) <= 1e-9
+        and abs(grid["refined_s"] - 0.5) <= 1e-9
+        and abs(grid["refined_c"] - 0.0) <= 1e-9,
+        f"s*={analytic['sigma_star_sq']:.12f}, "
+        f"refined=({grid['refined_s']:.12f},{grid['refined_c']:.12f})",
+    )
+    # Independent conditional extremum on a coarse grid (math + numpy only).
+    coarse_s = np.linspace(0.125, 2.0, 201)
+    coarse_c = np.linspace(-1.0, 1.0, 81)
+    s_mesh, c_mesh = np.meshgrid(coarse_s, coarse_c, indexing="ij")
+    field = (
+        1.0 * c_mesh * c_mesh * s_mesh
+        - 0.25 / s_mesh
+        - s_mesh
+    )
+    c0 = int(np.argmin(np.abs(coarse_c)))
+    col = field[:, c0]
+    row = field[int(np.argmax(col)), :]
+    audit.record(
+        "50: the conditional extremum is recomputed",
+        abs(coarse_s[int(np.argmax(col))] - 0.5) <= 0.05
+        and abs(coarse_c[int(np.argmin(row))] - 0.0) <= 0.05
+        and abs(grid["grid_s"] - 0.5) <= grid["grid_step_s"]
+        and abs(grid["grid_c"] - 0.0) <= grid["grid_step_c"],
+        f"coarse_s={coarse_s[int(np.argmax(col))]:.6f}, "
+        f"coarse_c={coarse_c[int(np.argmin(row))]:.6f}",
+    )
+    # Independent curvature split: max in s, min in c.
+    d2s = -2.0 * 0.25 / (0.5**3)
+    d2c = 2.0 * 1.0 * 0.5
+    audit.record(
+        "50: the curvature split is recomputed",
+        abs(d2s - (-4.0)) <= 1e-9
+        and d2s < 0.0
+        and abs(d2c - 1.0) <= 1e-9
+        and d2c > 0.0
+        and abs(analytic["curvature_s"] - (-4.0)) <= 1e-9
+        and abs(analytic["curvature_c"] - 1.0) <= 1e-9
+        and all(not kill for _, kill in gates["kills"]
+                if _ in ("gm_location", "gm_slice_agree",
+                         "gm_newton_refine", "gm_curvature")),
+        f"d2s={d2s:.6f}, d2c={d2c:.6f}",
+    )
+    # Independent Yasui no-extremum + box record consistency.
+    yasui = scales["yasui"]
+    audit.record(
+        "50: the Yasui contrast is recomputed",
+        all(-0.25 / (s * s) - 1.0 < -1e-3 for s in (0.125, 0.5, 1.0, 2.0))
+        and bool(yasui["all_negative"])
+        and yasui["max_derivative"] < -1e-3
+        and grid["box_max_value"] > grid["saddle_value"],
+        f"max_d={yasui['max_derivative']:.6f}, "
+        f"box={grid['box_max_value']:.6f}>saddle={grid['saddle_value']:.6f}",
+    )
+    # Independent scaling law at omega = 2 (analytic + report consistency).
+    scal = scales["scalings"]
+    audit.record(
+        "50: the scaling law is recomputed",
+        abs(0.5 / 2.0 - 0.25) <= 1e-12
+        and abs(scal["refined_s"] - 0.25) <= 1e-9
+        and abs(scal["curvature_s"] - (-32.0)) <= 1e-9
+        and abs(scal["curvature_c"] - 0.5) <= 1e-9
+        and all(not kill for _, kill in gates["kills"]
+                if _.startswith("scaling")),
+        f"refined={scal['refined_s']:.12f}, "
+        f"curv=({scal['curvature_s']:.6f},{scal['curvature_c']:.6f})",
+    )
+    if not verdict["claim_50_status"].startswith("NUMERIC"):
+        audit.record(
+            "50: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_50_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2924,6 +3013,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_radial_node(audit)
     audit_nelson_closure(audit)
     audit_variational_width(audit)
+    audit_variational_saddle(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

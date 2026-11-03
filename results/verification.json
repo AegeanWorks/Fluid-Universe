@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "d9e1937941d643185ab94180f2c314bb73bc34bfea5f6ae7f75e0773274e2e9e",
-      "results_sha256": "8a919d84e60a6caa9a5244b0422b9665f374d7c5c40613dcb198cb30f40a4ef6"
+      "source_sha256": "0393f371c81f0a3fb53f5864f9421295b2b12cd5bedffab0b0873bc2a516299d",
+      "results_sha256": "cb86c91bb7687428aa012470af7e8789369ebcc8d747f9a84d8855435e5d8bc4"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-11-03T21:22:08+00:00",
-        "git_commit": "c5f428203702f80257980071d94eb3684d3e08d2",
-        "passed": 257,
-        "total": 257,
+        "generated_utc": "2026-11-03T22:10:50+00:00",
+        "git_commit": "89f236a00a41a5617bd680d7b82a9e5ede514ca0",
+        "passed": 262,
+        "total": 262,
         "failed": 0,
-        "checks_sha256": "998c39cc23aba0d65d50df1291fcb94fc42c402d5c334151e80bfa5434221989",
+        "checks_sha256": "42fbb7e33585e4b4989e6079925278938f0b3d3d8f7fba5e7d012c87ec2a7f75",
         "fingerprints": {
-          "source_sha256": "d9e1937941d643185ab94180f2c314bb73bc34bfea5f6ae7f75e0773274e2e9e",
-          "results_sha256": "8a919d84e60a6caa9a5244b0422b9665f374d7c5c40613dcb198cb30f40a4ef6"
+          "source_sha256": "0393f371c81f0a3fb53f5864f9421295b2b12cd5bedffab0b0873bc2a516299d",
+          "results_sha256": "cb86c91bb7687428aa012470af7e8789369ebcc8d747f9a84d8855435e5d8bc4"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-11-03T21:22:52+00:00",
-        "git_commit": "c5f428203702f80257980071d94eb3684d3e08d2",
-        "passed": 257,
-        "total": 257,
+        "generated_utc": "2026-11-03T22:11:09+00:00",
+        "git_commit": "89f236a00a41a5617bd680d7b82a9e5ede514ca0",
+        "passed": 262,
+        "total": 262,
         "failed": 0,
-        "checks_sha256": "998c39cc23aba0d65d50df1291fcb94fc42c402d5c334151e80bfa5434221989",
+        "checks_sha256": "42fbb7e33585e4b4989e6079925278938f0b3d3d8f7fba5e7d012c87ec2a7f75",
         "fingerprints": {
-          "source_sha256": "d9e1937941d643185ab94180f2c314bb73bc34bfea5f6ae7f75e0773274e2e9e",
-          "results_sha256": "8a919d84e60a6caa9a5244b0422b9665f374d7c5c40613dcb198cb30f40a4ef6"
+          "source_sha256": "0393f371c81f0a3fb53f5864f9421295b2b12cd5bedffab0b0873bc2a516299d",
+          "results_sha256": "cb86c91bb7687428aa012470af7e8789369ebcc8d747f9a84d8855435e5d8bc4"
         }
       }
     ],
@@ -1138,6 +1138,46 @@
       "agree": true,
       "detail_match": true,
       "detail": "Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328"
+    },
+    {
+      "claim": "50: the Yasui contrast is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max_d=-1.062500, box=-0.125000>saddle=-1.000000"
+    },
+    {
+      "claim": "50: the conditional extremum is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "coarse_s=0.500000, coarse_c=0.000000"
+    },
+    {
+      "claim": "50: the curvature split is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "d2s=-4.000000, d2c=1.000000"
+    },
+    {
+      "claim": "50: the saddle location is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "s*=0.500000000000, refined=(0.500000000000,0.000000000000)"
+    },
+    {
+      "claim": "50: the scaling law is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "refined=0.250000000000, curv=(-32.000000,0.500000)"
     },
     {
       "claim": "5a: independent rotor spectrum",
@@ -3208,6 +3248,41 @@
       "observed": null
     },
     {
+      "claim": "50: the saddle location is recomputed",
+      "passed": true,
+      "detail": "s*=0.500000000000, refined=(0.500000000000,0.000000000000)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "50: the conditional extremum is recomputed",
+      "passed": true,
+      "detail": "coarse_s=0.500000, coarse_c=0.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "50: the curvature split is recomputed",
+      "passed": true,
+      "detail": "d2s=-4.000000, d2c=1.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "50: the Yasui contrast is recomputed",
+      "passed": true,
+      "detail": "max_d=-1.062500, box=-0.125000>saddle=-1.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "50: the scaling law is recomputed",
+      "passed": true,
+      "detail": "refined=0.250000000000, curv=(-32.000000,0.500000)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -3901,8 +3976,8 @@
       "observed": null
     }
   ],
-  "total": 257,
-  "passed": 257,
+  "total": 262,
+  "passed": 262,
   "failed": 0,
   "failures": []
 }

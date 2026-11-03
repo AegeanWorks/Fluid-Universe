@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**257/257 checks passed.**
+**262/262 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -164,6 +164,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 49: the G-M Ritz extremum is recomputed | PASS | s2*=0.500000000000, refined=0.500000000000, curv=-2.000000 |
 | 49: the Yasui no-extremum is recomputed | PASS | max_d=-0.531250 |
 | 49: the scaling law is recomputed | PASS | scalings=2.0,1.0=0.250000000000,1.0,2.0=0.250000000000, status=NUMERIC (Ritz width-selection demonstrated) |
+| 50: the saddle location is recomputed | PASS | s*=0.500000000000, refined=(0.500000000000,0.000000000000) |
+| 50: the conditional extremum is recomputed | PASS | coarse_s=0.500000, coarse_c=0.000000 |
+| 50: the curvature split is recomputed | PASS | d2s=-4.000000, d2c=1.000000 |
+| 50: the Yasui contrast is recomputed | PASS | max_d=-1.062500, box=-0.125000>saddle=-1.000000 |
+| 50: the scaling law is recomputed | PASS | refined=0.250000000000, curv=(-32.000000,0.500000) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |
