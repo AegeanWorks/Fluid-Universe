@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**262/262 checks passed.**
+**272/272 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -169,6 +169,16 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 50: the curvature split is recomputed | PASS | d2s=-4.000000, d2c=1.000000 |
 | 50: the Yasui contrast is recomputed | PASS | max_d=-1.062500, box=-0.125000>saddle=-1.000000 |
 | 50: the scaling law is recomputed | PASS | refined=0.250000000000, curv=(-32.000000,0.500000) |
+| 51: the discrete extremum is recomputed | PASS | worst_dev=0.000e+00, worst_res=2.220e-16 |
+| 51: the analytic period is recomputed | PASS | T=2*pi/2=3.141592653590 |
+| 51: release crossings agree | PASS | f=1.01, T=3.141592130 |
+| 51: release crossings agree | PASS | f=0.99, T=3.141592130 |
+| 51: release crossings agree | PASS | f=1.1, T=3.141592123 |
+| 51: a term row is recomputed | PASS | s=0.5, a=1.500000 |
+| 51: a term row is recomputed | PASS | s=0.7071067811865476, a=-0.000000 |
+| 51: a term row is recomputed | PASS | s=1.0, a=-0.750000 |
+| 51: a term row is recomputed | PASS | s=1.5, a=-1.425926 |
+| 51: the scaling law is recomputed | PASS | T=1.570795279 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

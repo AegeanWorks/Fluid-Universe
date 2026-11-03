@@ -148,6 +148,8 @@ RESULT_FILES = (
     "variational_width.md",
     "variational_saddle.json",
     "variational_saddle.md",
+    "variational_dynamics.json",
+    "variational_dynamics.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

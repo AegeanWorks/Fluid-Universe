@@ -19,4 +19,4 @@ G-M stationary point (0.5, 0) with mixed curvature (-4.0, +1.0).
 G-M Ritz stationary point (0.5, 0) with mixed curvature (-4.0, +1.0): minimum in drift-rotation, maximum in width. Yasui selects c = 0 with no finite width.
 
 - Config SHA-256: `418d0cf0347192e61eb09bc068c89997b56bf9d9ca6e0025a2fc2f0cbd1cf4bc`
-- Git: `89f236a00a41a5617bd680d7b82a9e5ede514ca0` (dirty=True)
+- Git: `4db74bdc1a8fd6355c49c7051fd6add91b517337` (dirty=False)

@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T22:10:50+00:00 | `89f236a00a41a5617bd680d7b82a9e5ede514ca0` | 262/262 | `0393f371c81f0a3f...` | `cb86c91bb7687428...` |
-| run2 | 2026-11-03T22:11:09+00:00 | `89f236a00a41a5617bd680d7b82a9e5ede514ca0` | 262/262 | `0393f371c81f0a3f...` | `cb86c91bb7687428...` |
+| run1 | 2026-11-03T22:54:28+00:00 | `2d3a59baf4db3f6018ec7925ebf1e6ea7a16452d` | 272/272 | `f0c347f5441637fe...` | `2cc45b01e59467f6...` |
+| run2 | 2026-11-03T22:54:40+00:00 | `2d3a59baf4db3f6018ec7925ebf1e6ea7a16452d` | 272/272 | `f0c347f5441637fe...` | `2cc45b01e59467f6...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -157,6 +157,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 50: the curvature split is recomputed | PASS | PASS | YES | YES | d2s=-4.000000, d2c=1.000000 |
 | 50: the saddle location is recomputed | PASS | PASS | YES | YES | s*=0.500000000000, refined=(0.500000000000,0.000000000000) |
 | 50: the scaling law is recomputed | PASS | PASS | YES | YES | refined=0.250000000000, curv=(-32.000000,0.500000) |
+| 51: a term row is recomputed | PASS | PASS | YES | YES | s=1.5, a=-1.425926 |
+| 51: release crossings agree | PASS | PASS | YES | YES | f=1.1, T=3.141592123 |
+| 51: the analytic period is recomputed | PASS | PASS | YES | YES | T=2*pi/2=3.141592653590 |
+| 51: the discrete extremum is recomputed | PASS | PASS | YES | YES | worst_dev=0.000e+00, worst_res=2.220e-16 |
+| 51: the scaling law is recomputed | PASS | PASS | YES | YES | T=1.570795279 |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

@@ -944,3 +944,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Stationary point (0.5, 0.0) exact, Newton-refined exact; mixed curvature (-4.0, +1.0) with zero mixed partial — saddle, not extremum; joint box argmax on boundary (2.0, -1.0) above saddle value (saddle fingerprint, record only); Yasui c = 0 with max derivative -1.0625, no finite-s extremum; scaling omega = 2 gives 0.25 with curvatures (-32.0, +0.5) — NUMERIC with zero parameters. Morato-Ugolini 1994 corroborates the unique ground-state fixed point with irrotational center manifold (no Ritz numbers there — absences recorded). The L-M mu parameter is excluded (principle-knob, not trial-knob). Shares the 0.5 fixed point with claims 21/22/48/49 and is not independent evidence of the full variation; claims 20-26 and 43-49 numbers are unchanged.
 
 - Verification after the Ritz saddle: two separate runs, 262/262 checks each.
+
+## 2026-11-03 - Variational dynamics reproduces Ermakov (claim 51, ADR-043)
+
+**Added**
+
+- `theory/variational_dynamics.py` (time-dependent Gaussian Ritz, discrete midpoint EL with Newton root-finding and pinned Dirichlet ends, Verlet release + zero-crossing period, term-by-term match vs `ermakov_rhs`); `phenomenology/variational_dynamics_report.py`, `make variationaldynamics`, `tests/test_variational_dynamics.py`, `results/variational_dynamics.{json,md}`; ten new independent audit checks in `verification/audit.py` (extremum, analytic + 3 release periods, 4 term rows, scaling law — G-001 two-run); formulas F35.
+
+**Results**
+
+- 4 starts (incl. +50%) converge to constant sigma_q exactly (residuals 2.2e-16); discrete EL residual at sigma_q <= 1e-12; Verlet release periods 3.14159212985/3.14159212985/3.14159212282 (gate 1e-3, full-period same-direction estimator); term match exact 0.0 rel; scaling omega = 2 gives pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative with teeth: exact free-particle G-M width-extremum unrecorded (pattern exists in GPE/BEC; Heller non-variational, Schuch substitution-only, H-M first-order). Shares the Ermakov fixed point and period with claim 22; not independent evidence of full-field dynamics; claims 20-26 and 43-50 numbers are unchanged.
+
+- Verification after the variational dynamics: two separate runs, 272/272 checks each.

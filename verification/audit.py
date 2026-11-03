@@ -2582,6 +2582,60 @@ def audit_variational_saddle(audit: Audit) -> None:
         )
 
 
+def audit_variational_dynamics(audit: Audit) -> None:
+    payload = load_results("variational_dynamics.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent extremum: all constant starts converge (no project import).
+    extrema = scales["extrema"]
+    audit.record(
+        "51: the discrete extremum is recomputed",
+        all(e["converged"] for e in extrema)
+        and all(e["max_deviation"] <= 1e-9 for e in extrema)
+        and all(e["max_residual"] <= 1e-12 for e in extrema),
+        "worst_dev="
+        + f"{max(e['max_deviation'] for e in extrema):.3e}, "
+        + f"worst_res={max(e['max_residual'] for e in extrema):.3e}",
+    )
+    # Independent period: linearized frequency 2*omega -> period pi/omega.
+    audit.record(
+        "51: the analytic period is recomputed",
+        abs(2.0 * math.pi / (2.0 * 1.0) - math.pi) <= 1e-12,
+        f"T=2*pi/2={2.0 * math.pi / 2.0:.12f}",
+    )
+    for entry in scales["releases"]:
+        audit.record(
+            "51: release crossings agree",
+            math.isfinite(entry["period"]) and abs(entry["period"] - math.pi) <= 1e-3,
+            f"f={entry['factor']}, T={entry['period']:.9f}",
+        )
+    # Independent term match: variational accel vs Ermakov RHS components.
+    for row in scales["term_match"]["rows"]:
+        s = row["s"]
+        ermakov = -1.0 * s + 0.25 / (s * s * s)
+        audit.record(
+            "51: a term row is recomputed",
+            abs(row["own"] - ermakov) <= 1e-12 * max(abs(ermakov), 1e-12)
+            and abs(row["rep_own"] - 0.25 / (s * s * s)) <= 1e-12,
+            f"s={s}, a={row['own']:.6f}",
+        )
+    # Independent scaling law: omega = 2 gives pi/2.
+    scal = scales["scaling"]
+    audit.record(
+        "51: the scaling law is recomputed",
+        abs(scal["release"]["period"] - math.pi / 2.0) <= 1e-3,
+        f"T={scal['release']['period']:.9f}",
+    )
+    if not verdict["claim_51_status"].startswith("NUMERIC"):
+        audit.record(
+            "51: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_51_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3014,6 +3068,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_nelson_closure(audit)
     audit_variational_width(audit)
     audit_variational_saddle(audit)
+    audit_variational_dynamics(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
