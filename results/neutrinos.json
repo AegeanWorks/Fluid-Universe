@@ -66,9 +66,9 @@
       "source": "NuFit 5.2 (2022), with SK-atm"
     },
     "config_sha256": "679277a40cc0befde1c51ec80c8a86a774efa3adb9e6bc3216d232df6b892675",
-    "generated_utc": "2026-11-03T22:52:35+00:00",
+    "generated_utc": "2026-11-03T22:58:48+00:00",
     "git": {
-      "commit": "2d3a59baf4db3f6018ec7925ebf1e6ea7a16452d",
+      "commit": "ae20a5f3486c68ec1d4132573202fa398400dd40",
       "dirty": true
     },
     "packages": {
