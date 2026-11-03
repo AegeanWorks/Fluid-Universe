@@ -2434,6 +2434,65 @@ def audit_nelson_closure(audit: Audit) -> None:
     )
 
 
+def audit_variational_width(audit: Audit) -> None:
+    payload = load_results("variational_width.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    analytic = scales["analytic"]
+    grid = scales["grid"]
+    # Independent G-M extremum: analytic location, grid agreement, curvature.
+    audit.record(
+        "49: the G-M Ritz extremum is recomputed",
+        abs(analytic["sigma_star_sq"] - 0.5) <= 1e-9
+        and abs(grid["refined"] - 0.5) <= 1e-9
+        and abs(grid["grid_argmax"] - 0.5) <= grid["grid_step"]
+        and abs(analytic["curvature_s2"] - (-2.0)) <= 1e-9
+        and analytic["curvature_s2"] < 0.0
+        and all(not kill for _, kill in gates["kills"]
+                if _ in ("gm_location", "gm_grid_refine", "gm_grid_agree",
+                         "gm_curvature")),
+        f"s2*={analytic['sigma_star_sq']:.12f}, "
+        f"refined={grid['refined']:.12f}, "
+        f"curv={analytic['curvature_s2']:.6f}",
+    )
+    # Independent Yasui no-extremum: derivative sign over frozen grid.
+    yasui = scales["yasui"]
+    audit.record(
+        "49: the Yasui no-extremum is recomputed",
+        bool(yasui["all_negative"])
+        and yasui["max_derivative"] < -1e-3
+        and yasui["max_diff"] < 0.0
+        and all(not kill for _, kill in gates["kills"]
+                if _ == "yasui_no_zero"),
+        f"max_d={yasui['max_derivative']:.6f}",
+    )
+    # Independent scaling law at omega=2 and mass=2.
+    audit.record(
+        "49: the scaling law is recomputed",
+        all(
+            abs(entry["refined"] - entry["predicted"]) <= 1e-9
+            and abs(entry["predicted"] - 0.25) <= 1e-12
+            for entry in scales["scalings"]
+        )
+        and all(not kill for _, kill in gates["kills"]
+                if _.startswith("scale_")),
+        "scalings="
+        + ",".join(
+            f"{e['omega']},{e['mass']}={e['refined']:.12f}"
+            for e in scales["scalings"]
+        )
+        + f", status={verdict['claim_49_status'][:60]}",
+    )
+    if not verdict["claim_49_status"].startswith("NUMERIC"):
+        audit.record(
+            "49: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_49_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2864,6 +2923,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_node_defect(audit)
     audit_radial_node(audit)
     audit_nelson_closure(audit)
+    audit_variational_width(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T20:43:09+00:00 | `a077b0b504e997404bc1910d2de3b633de10d737` | 254/254 | `88fe603aa3705788...` | `7eabd5e266478527...` |
-| run2 | 2026-11-03T20:43:37+00:00 | `a077b0b504e997404bc1910d2de3b633de10d737` | 254/254 | `88fe603aa3705788...` | `7eabd5e266478527...` |
+| run1 | 2026-11-03T21:22:08+00:00 | `c5f428203702f80257980071d94eb3684d3e08d2` | 257/257 | `d9e1937941d64318...` | `8a919d84e60a6caa...` |
+| run2 | 2026-11-03T21:22:52+00:00 | `c5f428203702f80257980071d94eb3684d3e08d2` | 257/257 | `d9e1937941d64318...` | `8a919d84e60a6caa...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -146,6 +146,9 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 48: the residual decrease is recomputed | PASS | PASS | YES | YES | finest=bimodal=1.521e-04,gauss_0.125=1.720e-03,gauss_0.25=3.042e-04,gauss_0.5=5.379e-05,gauss_1.0=9.511e-06,gauss_2.0=1.681e-06 |
 | 48: the sigma map is recomputed | PASS | PASS | YES | YES | worst=5.677e-11, status=NUMERIC (osmotic-closure no-go demonstrated) |
 | 48: the stationary-map scaling is recomputed | PASS | PASS | YES | YES | slopes=bimodal=-1.9839,gauss_0.125=-1.9761,gauss_0.25=-1.9880,gauss_0.5=-1.9940,gauss_1.0=-1.9970,gauss_2.0=-1.9985 |
+| 49: the G-M Ritz extremum is recomputed | PASS | PASS | YES | YES | s2*=0.500000000000, refined=0.500000000000, curv=-2.000000 |
+| 49: the Yasui no-extremum is recomputed | PASS | PASS | YES | YES | max_d=-0.531250 |
+| 49: the scaling law is recomputed | PASS | PASS | YES | YES | scalings=2.0,1.0=0.250000000000,1.0,2.0=0.250000000000, status=NUMERIC (Ritz width-selection demonstrated) |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

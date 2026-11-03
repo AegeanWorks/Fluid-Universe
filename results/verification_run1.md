@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**254/254 checks passed.**
+**257/257 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -161,6 +161,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 48: the stationary-map scaling is recomputed | PASS | slopes=bimodal=-1.9839,gauss_0.125=-1.9761,gauss_0.25=-1.9880,gauss_0.5=-1.9940,gauss_1.0=-1.9970,gauss_2.0=-1.9985 |
 | 48: the residual decrease is recomputed | PASS | finest=bimodal=1.521e-04,gauss_0.125=1.720e-03,gauss_0.25=3.042e-04,gauss_0.5=5.379e-05,gauss_1.0=9.511e-06,gauss_2.0=1.681e-06 |
 | 48: the sigma map is recomputed | PASS | worst=5.677e-11, status=NUMERIC (osmotic-closure no-go demonstrated) |
+| 49: the G-M Ritz extremum is recomputed | PASS | s2*=0.500000000000, refined=0.500000000000, curv=-2.000000 |
+| 49: the Yasui no-extremum is recomputed | PASS | max_d=-0.531250 |
+| 49: the scaling law is recomputed | PASS | scalings=2.0,1.0=0.250000000000,1.0,2.0=0.250000000000, status=NUMERIC (Ritz width-selection demonstrated) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

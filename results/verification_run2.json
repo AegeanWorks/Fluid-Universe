@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-03T20:43:37+00:00",
-    "git_commit": "a077b0b504e997404bc1910d2de3b633de10d737",
+    "generated_utc": "2026-11-03T21:22:52+00:00",
+    "git_commit": "c5f428203702f80257980071d94eb3684d3e08d2",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "88fe603aa37057884d32b54e76d0ace8bb70f328276c52dfe02f3c662dbbd6c2",
-      "results_sha256": "7eabd5e26647852756b49f57f2cc273706413644df46bf411509e49356a99f5e"
+      "source_sha256": "d9e1937941d643185ab94180f2c314bb73bc34bfea5f6ae7f75e0773274e2e9e",
+      "results_sha256": "8a919d84e60a6caa9a5244b0422b9665f374d7c5c40613dcb198cb30f40a4ef6"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1103,6 +1103,27 @@
       "observed": null
     },
     {
+      "claim": "49: the G-M Ritz extremum is recomputed",
+      "passed": true,
+      "detail": "s2*=0.500000000000, refined=0.500000000000, curv=-2.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "49: the Yasui no-extremum is recomputed",
+      "passed": true,
+      "detail": "max_d=-0.531250",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "49: the scaling law is recomputed",
+      "passed": true,
+      "detail": "scalings=2.0,1.0=0.250000000000,1.0,2.0=0.250000000000, status=NUMERIC (Ritz width-selection demonstrated)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1796,8 +1817,8 @@
       "observed": null
     }
   ],
-  "total": 254,
-  "passed": 254,
+  "total": 257,
+  "passed": 257,
   "failed": 0,
   "failures": []
 }

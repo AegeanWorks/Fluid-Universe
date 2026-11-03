@@ -144,6 +144,8 @@ RESULT_FILES = (
     "radial_node.md",
     "nelson_closure.json",
     "nelson_closure.md",
+    "variational_width.json",
+    "variational_width.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

@@ -920,3 +920,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Slopes -1.976..-1.999 across 6 probes (gate +-0.1), monotone decrease everywhere, sigma-map identity 5/5 at N=2048 (worst 5.677e-11, gate 1e-9), OU/free-packet instances trivial — NUMERIC with zero parameters. The frozen absolute residual gate (<1e-6) failed on calibration (probe-dependent C in [0.018,18]) and was replaced by slope+monotone+universality gates with derivation; the mechanical FALSIFIED string was never ledgered. L6 explicit negative: the vacuity statement appears unrecorded. Shares kinematics with claim 21 and is not independent evidence of dynamics; claims 20-26 and 43-47 numbers are unchanged.
 
 - Verification after the osmotic-closure no-go: two separate runs, 254/254 checks each.
+
+## 2026-11-03 - Ritz width-selection demonstrated (claim 49, ADR-041)
+
+**Added**
+
+- `theory/variational_width.py` (G-M vs Yasui Gaussian Ritz actions, general (m,omega,hbar); Newton refinement; both curvature forms); `phenomenology/variational_width_report.py`, `make variationalwidth`, `tests/test_variational_width.py`, `results/variational_width.{json,md}`; three new independent audit checks in `verification/audit.py` (G-M extremum, Yasui no-extremum and scaling-law recomputation, no project imports); formulas F33.
+
+**Results**
+
+- G-M analytic extremum sigma^2 = nu/omega = 0.5; grid argmax and Newton refine exact 0.5; curvature d2J/d(s2)^2 = -2.0 (sigma-form -4.0 recorded); Yasui max derivative -0.53125 (no zero), J monotone; scalings omega=2 and mass=2 refined 0.25 exact with curvatures -16.0/-8.0; Ermakov argmin coincidence to grid resolution — NUMERIC with zero parameters. No width extremum anywhere in the surveyed literature (three explicit absences); the L-M parameter is excluded (no width selector). Shares the 0.5 fixed point with claims 21/22/48 and is not independent evidence of the full variation; claims 20-26 and 43-48 numbers are unchanged.
+
+- Verification after the Ritz width-selection: two separate runs, 257/257 checks each.
