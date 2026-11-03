@@ -908,3 +908,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Identity residual 0.0, node 2.0 exact, slip pi; norm 1.000000000000, overlap -2.36e-14 (gate 1e-6), peaks 0.7639320225/5.2360679775; 1s balance residuals 0 at r=0.5,1,2,5, 2p loop 6.283185307180 — NUMERIC with zero parameters. L5 shell-split doctrine (inner/outer no-crossing) labelled analogical/inferred, never sourced; Lamb ~1057.8 MHz kept as energy context only. Shares branch facts with claims 20/24/25/26/46 and is not independent evidence of dynamics; claims 20-26 and 43-46 numbers are unchanged.
 
 - Verification after the radial-node generality: two separate runs, 251/251 checks each.
+
+## 2026-11-03 - Osmotic-closure no-go demonstrated (claim 48, ADR-040)
+
+**Added**
+
+- `theory/nelson_closure.py` (stationary-map residual + frozen-drift sigma map, reusing `nelson.osmotic_velocity()`; no `fixed_point` keys); `phenomenology/nelson_closure_report.py`, `make nelsonclosure`, `tests/test_nelson_closure.py`, `results/nelson_closure.{json,md}`; three new independent audit checks in `verification/audit.py` (scaling, monotone-decrease and sigma-map recomputation, no project imports); formulas F32.
+
+**Results**
+
+- Slopes -1.976..-1.999 across 6 probes (gate +-0.1), monotone decrease everywhere, sigma-map identity 5/5 at N=2048 (worst 5.677e-11, gate 1e-9), OU/free-packet instances trivial — NUMERIC with zero parameters. The frozen absolute residual gate (<1e-6) failed on calibration (probe-dependent C in [0.018,18]) and was replaced by slope+monotone+universality gates with derivation; the mechanical FALSIFIED string was never ledgered. L6 explicit negative: the vacuity statement appears unrecorded. Shares kinematics with claim 21 and is not independent evidence of dynamics; claims 20-26 and 43-47 numbers are unchanged.
+
+- Verification after the osmotic-closure no-go: two separate runs, 254/254 checks each.

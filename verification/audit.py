@@ -2391,6 +2391,49 @@ def audit_radial_node(audit: Audit) -> None:
     )
 
 
+def audit_nelson_closure(audit: Audit) -> None:
+    payload = load_results("nelson_closure.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent stationary map: FP residual scaling per probe.
+    rows = scales["stationary_map"]["rows"]
+    audit.record(
+        "48: the stationary-map scaling is recomputed",
+        all(abs(row["slope_interior"] + 2.0) <= 0.1 for row in rows.values())
+        and all(not kill for _, kill in gates["slope_kills"]),
+        "slopes="
+        + ",".join(f"{n}={rows[n]['slope_interior']:.4f}" for n in sorted(rows)),
+    )
+    # Independent monotone decrease across refinement (recalibrated gate:
+    # absolute magnitude retired as miscalibrated, ADR-040).
+    audit.record(
+        "48: the residual decrease is recomputed",
+        all(
+            all(b < a for a, b in zip(rows[n]["interior"], rows[n]["interior"][1:]))
+            for n in rows
+        )
+        and all(not kill for _, kill in gates["monotone_kills"]),
+        "finest="
+        + ",".join(f"{n}={rows[n]['interior'][-1]:.3e}" for n in sorted(rows)),
+    )
+    # Independent sigma map: frozen-drift reconstruction is identity.
+    entries = scales["sigma_map"]["entries"]
+    audit.record(
+        "48: the sigma map is recomputed",
+        all(
+            abs(entry["sigma_star"][-1] - math.sqrt(entry["sigma0_sq"])) <= 1e-9
+            for entry in entries
+        )
+        and all(not kill for _, kill, _ in gates["sigma_kills"])
+        and verdict["claim_48_status"].startswith("NUMERIC"),
+        "worst="
+        + f"{max(abs(e['sigma_star'][-1] - math.sqrt(e['sigma0_sq'])) for e in entries):.3e}, "
+        f"status={verdict['claim_48_status'][:60]}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2820,6 +2863,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_twocomponent(audit)
     audit_node_defect(audit)
     audit_radial_node(audit)
+    audit_nelson_closure(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

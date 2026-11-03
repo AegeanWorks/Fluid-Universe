@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**251/251 checks passed.**
+**254/254 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -158,6 +158,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 47: the two-branch radial identities are recomputed | PASS | residual=0.000e+00, node=2.000000000000, slip=3.141592653590 |
 | 47: the radial norm, overlap and peaks are recomputed | PASS | norm=1.000000000000, overlap=-2.353e-14, outer=5.236067977500 |
 | 47: the preserved 1s/2p numbers are recomputed | PASS | balance_max=0.000e+00, loop=6.283185307180, status=NUMERIC (radial-node representation identities verified) |
+| 48: the stationary-map scaling is recomputed | PASS | slopes=bimodal=-1.9839,gauss_0.125=-1.9761,gauss_0.25=-1.9880,gauss_0.5=-1.9940,gauss_1.0=-1.9970,gauss_2.0=-1.9985 |
+| 48: the residual decrease is recomputed | PASS | finest=bimodal=1.521e-04,gauss_0.125=1.720e-03,gauss_0.25=3.042e-04,gauss_0.5=5.379e-05,gauss_1.0=9.511e-06,gauss_2.0=1.681e-06 |
+| 48: the sigma map is recomputed | PASS | worst=5.677e-11, status=NUMERIC (osmotic-closure no-go demonstrated) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

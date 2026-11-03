@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-03T19:44:04+00:00",
-    "git_commit": "d92b4e1e1950d2132c04c44b396fcf9c96187376",
+    "generated_utc": "2026-11-03T20:43:09+00:00",
+    "git_commit": "a077b0b504e997404bc1910d2de3b633de10d737",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "b101633edeedb159cb5891ad6b0c124e7f800b18d14216ac294f0b991469b3cb",
-      "results_sha256": "75fff95681dd99bc23e63e233f984b27001c54831901f5c8cb0223168932a88a"
+      "source_sha256": "88fe603aa37057884d32b54e76d0ace8bb70f328276c52dfe02f3c662dbbd6c2",
+      "results_sha256": "7eabd5e26647852756b49f57f2cc273706413644df46bf411509e49356a99f5e"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1082,6 +1082,27 @@
       "observed": null
     },
     {
+      "claim": "48: the stationary-map scaling is recomputed",
+      "passed": true,
+      "detail": "slopes=bimodal=-1.9839,gauss_0.125=-1.9761,gauss_0.25=-1.9880,gauss_0.5=-1.9940,gauss_1.0=-1.9970,gauss_2.0=-1.9985",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "48: the residual decrease is recomputed",
+      "passed": true,
+      "detail": "finest=bimodal=1.521e-04,gauss_0.125=1.720e-03,gauss_0.25=3.042e-04,gauss_0.5=5.379e-05,gauss_1.0=9.511e-06,gauss_2.0=1.681e-06",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "48: the sigma map is recomputed",
+      "passed": true,
+      "detail": "worst=5.677e-11, status=NUMERIC (osmotic-closure no-go demonstrated)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1775,8 +1796,8 @@
       "observed": null
     }
   ],
-  "total": 251,
-  "passed": 251,
+  "total": 254,
+  "passed": 254,
   "failed": 0,
   "failures": []
 }

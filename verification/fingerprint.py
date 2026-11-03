@@ -142,6 +142,8 @@ RESULT_FILES = (
     "node_defect.md",
     "radial_node.json",
     "radial_node.md",
+    "nelson_closure.json",
+    "nelson_closure.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
