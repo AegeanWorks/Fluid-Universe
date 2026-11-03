@@ -2307,6 +2307,48 @@ def audit_water_twocomponent(audit: Audit) -> None:
     )
 
 
+def audit_node_defect(audit: Audit) -> None:
+    payload = load_results("node_defect.json")
+    result = payload["result"]
+    scales = result["scales"]
+    branch = scales["branch"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent branch identities: psi == s*|psi|, node 0, slip pi.
+    audit.record(
+        "46: the two-branch identities are recomputed",
+        branch["identity_residual"] == 0.0
+        and branch["node_density"] == 0.0
+        and abs(branch["phase_slip"] - math.pi) < 1e-12,
+        f"residual={branch['identity_residual']:.3e}, "
+        f"density={branch['node_density']:.3e}, "
+        f"slip={branch['phase_slip']:.12f}",
+    )
+    # Independent node scaling: maxima pi/(2dx), slope -1.
+    slope = scales["scaling"]["slope"]
+    audit.record(
+        "46: the node gradient scaling is recomputed",
+        abs(slope + 1.0) <= 0.01 and gates["slope_kill"] is False,
+        f"slope={slope:.12f}",
+    )
+    # Independent vortex gate: circulation 2pi (Wallstrom condition).
+    vortex = scales["vortex"]
+    audit.record(
+        "46: the vortex circulation is recomputed",
+        abs(vortex["circulation"] - 2.0 * math.pi) / (2.0 * math.pi) < 1e-6
+        and abs(vortex["loop_circulation"] - 2.0 * math.pi) / (2.0 * math.pi)
+        < 1e-6
+        and abs(vortex["most_probable_radius"] - 4.0) < 1e-9
+        and abs(vortex["radial_norm"] - 1.0) < 1e-6
+        and gates["circulation_kill"] is False
+        and gates["loop_kill"] is False
+        and verdict["claim_46_status"].startswith("NUMERIC"),
+        f"circ={vortex['circulation']:.12f}, "
+        f"loop={vortex['loop_circulation']:.12f}, "
+        f"status={verdict['claim_46_status'][:60]}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2734,6 +2776,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_lineshape(audit)
     audit_two_state(audit)
     audit_water_twocomponent(audit)
+    audit_node_defect(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

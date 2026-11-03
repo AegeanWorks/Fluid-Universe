@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-03T18:17:56+00:00",
-    "git_commit": "66147f9bdd97c4bd597bed8599033899ae8dadfd",
+    "generated_utc": "2026-11-03T18:50:58+00:00",
+    "git_commit": "89a737d52bb1264366e34d341a48f3fdf59becf8",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "437f32a7822ae0c31f5cb42a7377a823b2e99dea30db31b97aeadeec2f8c0da9",
-      "results_sha256": "8d8110ba16c811f6e6e1cd372079f3ccefe732d6b43923383eb65747a65e85f6"
+      "source_sha256": "e58c920a7704b385d189100b001e4d71c3453cbb8b3d01805b47232bff7125f2",
+      "results_sha256": "1cfba93a76a9b79bbe27766cc278d9be7f012a0e97e2af38c8c16dbb0fef6e64"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1040,6 +1040,27 @@
       "observed": null
     },
     {
+      "claim": "46: the two-branch identities are recomputed",
+      "passed": true,
+      "detail": "residual=0.000e+00, density=0.000e+00, slip=3.141592653590",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "46: the node gradient scaling is recomputed",
+      "passed": true,
+      "detail": "slope=-1.000000000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "46: the vortex circulation is recomputed",
+      "passed": true,
+      "detail": "circ=6.283185307180, loop=6.283185307180, status=NUMERIC (two-branch representation identities verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1733,8 +1754,8 @@
       "observed": null
     }
   ],
-  "total": 245,
-  "passed": 245,
+  "total": 248,
+  "passed": 248,
   "failed": 0,
   "failures": []
 }

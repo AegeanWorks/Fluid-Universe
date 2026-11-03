@@ -884,3 +884,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim number deconflicted with the concurrent shared-lambda two-state work (claim 44, ADR-036); this model tests the tail-inclusive join that claim 44 explicitly left with claim 43.
 
 - Verification after the two-component falsification: two separate runs, 245/245 checks each.
+
+## 2026-11-03 - Two-branch defect representation verified (claim 46, ADR-038)
+
+**Added**
+
+- `theory/node_defect.py` (exact two-branch split psi_1 = s(x)·|psi_1|, zero parameters, no dynamics; Wallstrom quantization on loops excluding rho=0); `phenomenology/node_defect_report.py`, `make nodedefect`, `tests/test_node_defect.py`, `results/node_defect.{json,md}`; three new independent audit checks in `verification/audit.py` (branch identities, node-scaling and vortex-circulation recomputation, no project imports); formulas F30.
+
+**Results**
+
+- Identity residual 0.0, node density 0.0, phase slip pi; gradient maxima 20.106/40.212/80.425/160.850 at N=256/512/1024/2048, slope -1.0000000000000002 (gate 0.01); circulation 6.283185307180 with loop integral equal (gate rel 1e-6), velocity 0.5, momentum 1.0, most-probable radius 4.0, norm 1.0000000000000002 — NUMERIC with zero parameters. Q-match at x=0.996 is correspondence-only, never gated (2nd-order central gives ~6e-06, 8th-order ~8.6e-13; method-specific). Shares branch facts with claims 20/24/26 and is not independent evidence of dynamics; claims 20-26 numbers are unchanged; core-scale dynamics is the next span.
+
+- Verification after the two-branch representation: two separate runs, 248/248 checks each.

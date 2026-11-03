@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T18:17:56+00:00 | `66147f9bdd97c4bd597bed8599033899ae8dadfd` | 245/245 | `437f32a7822ae0c3...` | `8d8110ba16c811f6...` |
-| run2 | 2026-11-03T18:18:45+00:00 | `66147f9bdd97c4bd597bed8599033899ae8dadfd` | 245/245 | `437f32a7822ae0c3...` | `8d8110ba16c811f6...` |
+| run1 | 2026-11-03T18:50:58+00:00 | `89a737d52bb1264366e34d341a48f3fdf59becf8` | 248/248 | `e58c920a7704b385...` | `1cfba93a76a9b79b...` |
+| run2 | 2026-11-03T18:52:21+00:00 | `89a737d52bb1264366e34d341a48f3fdf59becf8` | 248/248 | `e58c920a7704b385...` | `1cfba93a76a9b79b...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -137,6 +137,9 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 45: the joined-model side ratio is recomputed | PASS | PASS | YES | YES | r_pred=0.863201, r_obs=1.585732, diff=0.722531 |
 | 45: the joined-model width scale is recomputed | PASS | PASS | YES | YES | fwhm=0.633441, classical_rel=0.102775, quantized_rel=0.180542 |
 | 45: the two-component join is FALSIFIED with frozen thresholds | PASS | PASS | YES | YES | status=FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; cla |
+| 46: the node gradient scaling is recomputed | PASS | PASS | YES | YES | slope=-1.000000000000 |
+| 46: the two-branch identities are recomputed | PASS | PASS | YES | YES | residual=0.000e+00, density=0.000e+00, slip=3.141592653590 |
+| 46: the vortex circulation is recomputed | PASS | PASS | YES | YES | circ=6.283185307180, loop=6.283185307180, status=NUMERIC (two-branch representation identities verified) |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

@@ -1,0 +1,112 @@
+{
+  "meta": {
+    "config": {
+      "circulation_rel_tol": 1e-06,
+      "grids": {
+        "length": 20.0,
+        "ns": [
+          256,
+          512,
+          1024,
+          2048
+        ]
+      },
+      "loop": {
+        "m": 1,
+        "r": 2.0,
+        "theta": 1.5707963267948966
+      },
+      "scope": "representation identities, zero parameters, no dynamics",
+      "slope_tol": 0.01,
+      "units": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      }
+    },
+    "config_sha256": "8b15b9497d58267298fe76b1d1f77182d0af4fb464c524899f79e40fbc0387ef",
+    "generated_utc": "2026-11-03T18:40:43+00:00",
+    "git": {
+      "commit": "89a737d52bb1264366e34d341a48f3fdf59becf8",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "circulation_kill": false,
+      "circulation_rel_tol": 1e-06,
+      "loop_kill": false,
+      "slope_kill": false,
+      "slope_tol": 0.01
+    },
+    "scales": {
+      "branch": {
+        "identity_residual": 0.0,
+        "node_density": 0.0,
+        "phase_slip": 3.141592653589793
+      },
+      "grids": {
+        "length": 20.0,
+        "ns": [
+          256,
+          512,
+          1024,
+          2048
+        ]
+      },
+      "loop": {
+        "m": 1,
+        "r": 2.0,
+        "theta": 1.5707963267948966
+      },
+      "scaling": {
+        "dx_values": [
+          0.078125,
+          0.0390625,
+          0.01953125,
+          0.009765625
+        ],
+        "grid_length": 20.0,
+        "grid_ns": [
+          256,
+          512,
+          1024,
+          2048
+        ],
+        "maxima": [
+          20.106192982974676,
+          40.21238596594935,
+          80.4247719318987,
+          160.8495438637974
+        ],
+        "slope": -1.0000000000000002
+      },
+      "units": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "vortex": {
+        "angular_momentum": 1.0,
+        "azimuthal_velocity": 0.5,
+        "circulation": 6.283185307179586,
+        "loop_circulation": 6.283185307179586,
+        "most_probable_radius": 4.0,
+        "radial_norm": 1.0000000000000002
+      }
+    },
+    "verdict": {
+      "claim_46_status": "NUMERIC (two-branch representation identities verified)",
+      "note": "Exact two-branch split psi1=s*|psi1| with Wallstrom quantization on loops; Q-match at x=0.996 is correspondence-only, never gated."
+    }
+  }
+}

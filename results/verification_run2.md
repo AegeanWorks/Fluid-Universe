@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**245/245 checks passed.**
+**248/248 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -152,6 +152,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 45: the joined-model side ratio is recomputed | PASS | r_pred=0.863201, r_obs=1.585732, diff=0.722531 |
 | 45: the joined-model width scale is recomputed | PASS | fwhm=0.633441, classical_rel=0.102775, quantized_rel=0.180542 |
 | 45: the two-component join is FALSIFIED with frozen thresholds | PASS | status=FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; cla |
+| 46: the two-branch identities are recomputed | PASS | residual=0.000e+00, density=0.000e+00, slip=3.141592653590 |
+| 46: the node gradient scaling is recomputed | PASS | slope=-1.000000000000 |
+| 46: the vortex circulation is recomputed | PASS | circ=6.283185307180, loop=6.283185307180, status=NUMERIC (two-branch representation identities verified) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |
