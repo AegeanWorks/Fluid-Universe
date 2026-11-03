@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `172`
+- **Total Python Modules**: `175`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `916`
+- **Total Top-Level Functions**: `939`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `23776`
+- **Total Source Lines**: `24395`
 
 ---
 
@@ -525,6 +525,17 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/variational_saddle_report.py`](phenomenology/variational_saddle_report.py)
+> *2D Ritz saddle check (claim 50, ADR-042).*
+
+**Size**: `157` lines (`5713` bytes)
+
+**Functions:**
+- `def run_variational_saddle_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -1427,6 +1438,24 @@
 
 ---
 
+### [`tests/test_variational_saddle.py`](tests/test_variational_saddle.py)
+> *2D Ritz saddle tests (claim 50).*
+
+**Size**: `107` lines (`3292` bytes)
+
+**Functions:**
+- `def test_saddle_location_is_half_zero()`
+- `def test_conditional_extremum_agrees_and_refines()`
+- `def test_box_maximum_sits_above_the_saddle()`
+- `def test_curvature_splits_max_min()`
+- `def test_slice_is_twice_the_1d_action()`
+- `def test_yasui_selects_rotation_not_width()`
+- `def test_scaling_point_holds()`
+- `def test_saddle_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_variational_width.py`](tests/test_variational_width.py)
 > *Gaussian Ritz width-selection tests (claim 49).*
 
@@ -2065,6 +2094,26 @@
 
 ---
 
+### [`theory/variational_saddle.py`](theory/variational_saddle.py)
+> *Ritz saddle: G-M stationary point in (s, c) (claim 50, ADR-042).*
+
+**Size**: `263` lines (`8550` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def action_gm_2d(s, c, omega, hbar, mass)`
+- `def action_yasui_2d(s, c, omega, hbar, mass)`
+- `def grad_gm_2d(s, c, omega, hbar, mass)`
+- `def hess_gm_2d(s, c, omega, hbar, mass)`
+- `def extremum_sc(omega, hbar, mass)` - *Analytic stationary point (s*, c*) = (nu/omega, 0).*
+- `def newton_refine_s(s0, c_fixed, omega, hbar, mass, steps)` - *1D Newton on dJ/ds = 0 at fixed c (definite: maximum in s).*
+- `def newton_refine_c(c0, s_fixed, omega, hbar, mass, steps)` - *1D Newton on dJ/dc = 0 at fixed s (definite: minimum in c).*
+- `def conditional_extremum(s_values, c_values, omega, hbar, mass)` - *Saddle signature on the grid: max over s at c = 0, min over c.*
+- `def yasui_scan(s_values, omega, hbar, mass)` - *Yasui derivative sign over the frozen grid (must stay negative).*
+- `def saddle_scales()` - *Collect the saddle correspondence bundle (no verdict).*
+
+---
+
 ### [`theory/variational_width.py`](theory/variational_width.py)
 > *Gaussian Ritz width-selection: G-M vs Yasui (claim 49, ADR-041).*
 
@@ -2367,7 +2416,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2987` lines (`121213` bytes)
+**Size**: `3077` lines (`124874` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2439,6 +2488,7 @@
 - `def audit_radial_node(audit)`
 - `def audit_nelson_closure(audit)`
 - `def audit_variational_width(audit)`
+- `def audit_variational_saddle(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2468,7 +2518,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `191` lines (`4967` bytes)
+**Size**: `193` lines (`5027` bytes)
 
 **Functions:**
 - `def _source_files()`
