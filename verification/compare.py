@@ -46,6 +46,8 @@ def _digest(payload: dict) -> str:
 
 
 def compare(tags: tuple[str, str] = ("run1", "run2")) -> dict:
+    if tags[0] == tags[1]:
+        raise ValueError("tags must differ (G-001: two separate processes)")
     runs = [_load(tag) for tag in tags]
     current = fingerprints()
     run_fingerprints = [run["meta"].get("fingerprints", {}) for run in runs]

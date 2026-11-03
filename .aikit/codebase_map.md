@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `175`
+- **Total Python Modules**: `180`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `939`
+- **Total Top-Level Functions**: `963`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `24395`
+- **Total Source Lines**: `25000`
 
 ---
 
@@ -525,6 +525,17 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/variational_dynamics_report.py`](phenomenology/variational_dynamics_report.py)
+> *Variational dynamics reproduces Ermakov (claim 51, ADR-043).*
+
+**Size**: `145` lines (`5262` bytes)
+
+**Functions:**
+- `def run_variational_dynamics_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -1347,6 +1358,17 @@
 
 ---
 
+### [`tests/test_rotor_sector.py`](tests/test_rotor_sector.py)
+> *Sector validation: only 0, 1, 2 select distinct Fourier sectors.*
+
+**Size**: `20` lines (`801` bytes)
+
+**Functions:**
+- `def test_rotor_sector_out_of_range_raises()`
+- `def test_rotor_potential_sector_out_of_range_raises()`
+
+---
+
 ### [`tests/test_run_all_docs.py`](tests/test_run_all_docs.py)
 > *Regression: run_all docstring must list every result file it writes.*
 
@@ -1438,6 +1460,22 @@
 
 ---
 
+### [`tests/test_variational_dynamics.py`](tests/test_variational_dynamics.py)
+> *Variational dynamics tests (claim 51).*
+
+**Size**: `96` lines (`2707` bytes)
+
+**Functions:**
+- `def test_discrete_extremum_is_constant_path()`
+- `def test_el_residual_at_constant_path()`
+- `def test_release_period_is_pi()`
+- `def test_term_match_is_exact()`
+- `def test_scaling_period_is_pi_over_two()`
+- `def test_dynamics_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_variational_saddle.py`](tests/test_variational_saddle.py)
 > *2D Ritz saddle tests (claim 50).*
 
@@ -1469,6 +1507,16 @@
 - `def test_scaling_law_holds()`
 - `def test_ritz_verdict_holds()`
 - `def test_inputs_are_frozen()`
+
+---
+
+### [`tests/test_verify_compare.py`](tests/test_verify_compare.py)
+> *G-001: two-run verification must use two distinct tags.*
+
+**Size**: `10` lines (`260` bytes)
+
+**Functions:**
+- `def test_compare_rejects_identical_tags()`
 
 ---
 
@@ -2035,7 +2083,7 @@
 ### [`theory/rotor.py`](theory/rotor.py)
 > *Quantum rotor H = L^2/(2I) + mu (1 - cos 3 phi) and its spectra.*
 
-**Size**: `175` lines (`6058` bytes)
+**Size**: `177` lines (`6143` bytes)
 
 **Classes:**
 - `class RotorSpectrum`
@@ -2058,7 +2106,7 @@
 ### [`theory/rotor_potential.py`](theory/rotor_potential.py)
 > *Real Z3 rotor potential scan (claim 19, ADR-010).*
 
-**Size**: `120` lines (`4022` bytes)
+**Size**: `122` lines (`4107` bytes)
 
 **Functions:**
 - `def sector_matrix(mu, nu, flux, sector, n_cutoff, inertia)`
@@ -2091,6 +2139,26 @@
 - `def component_ratio()` - *Observed Jou-Freeman component widths and their ratio.*
 - `def kill_thresholds()` - *Frozen kill threshold inherited from ADR-034 (never tuned here).*
 - `def two_state_scales(temperature_k)` - *Collect the shared-lambda prediction and the observed ratio.*
+
+---
+
+### [`theory/variational_dynamics.py`](theory/variational_dynamics.py)
+> *Variational dynamics reproduces Ermakov (claim 51, ADR-043).*
+
+**Size**: `271` lines (`8894` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def grid(n, omega)`
+- `def acceleration(s, omega, hbar, mass)` - *Ermakov acceleration nu^2/s^3 - omega^2*s (V1 re-derives).*
+- `def repulsion_term(s, omega, hbar, mass)`
+- `def confining_term(s, omega, hbar, mass)`
+- `def discrete_el_residual(interior, omega, hbar, mass, dt, endpoint)` - *Discrete Euler-Lagrange residuals (midpoint Lagrangian).*
+- `def newton_extremum(start_factor, omega, hbar, mass, n, steps)` - *Newton on the discrete EL system from a constant-path start.*
+- `def release_period(factor, omega, hbar, mass)` - *Verlet release from width*factor; interpolated zero-crossing period.*
+- `def term_match()` - *Variational acceleration vs Ermakov RHS, whole and per-term.*
+- `def dynamics_scales()` - *Collect the dynamics correspondence bundle (no verdict).*
 
 ---
 
@@ -2416,7 +2484,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3077` lines (`124874` bytes)
+**Size**: `3132` lines (`127084` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2489,6 +2557,7 @@
 - `def audit_nelson_closure(audit)`
 - `def audit_variational_width(audit)`
 - `def audit_variational_saddle(audit)`
+- `def audit_variational_dynamics(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2503,7 +2572,7 @@
 ### [`verification/compare.py`](verification/compare.py)
 > *Compare two independent verification runs.*
 
-**Size**: `222` lines (`8203` bytes)
+**Size**: `224` lines (`8307` bytes)
 
 **Functions:**
 - `def _load(tag)`
@@ -2518,7 +2587,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `193` lines (`5027` bytes)
+**Size**: `195` lines (`5091` bytes)
 
 **Functions:**
 - `def _source_files()`

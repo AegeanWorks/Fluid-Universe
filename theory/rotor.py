@@ -37,6 +37,8 @@ class RotorSpectrum:
 
 def sector_matrix(I: float, mu: float, sector: int, n_cutoff: int) -> np.ndarray:
     """Dense Hamiltonian in the truncated sector n = sector + 3j, |n| <= n_cutoff."""
+    if sector not in (0, 1, 2):
+        raise ValueError("sector must be 0, 1 or 2")
     if I <= 0.0:
         raise ValueError("moment of inertia must be positive")
     if n_cutoff < 0:

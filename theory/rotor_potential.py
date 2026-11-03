@@ -29,6 +29,8 @@ def sector_matrix(
     n_cutoff: int = 120,
     inertia: float = 1.0,
 ) -> np.ndarray:
+    if sector not in (0, 1, 2):
+        raise ValueError("sector must be 0, 1 or 2")
     if mu < 0.0 or nu < 0.0:
         raise ValueError("mu and nu must be non-negative")
     if inertia <= 0.0:
