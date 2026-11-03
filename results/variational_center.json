@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "config": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "gates": {
+        "loc_tol": 1e-09,
+        "period_tol": 0.001,
+        "resid_tol": 1e-12,
+        "term_rtol": 1e-09
+      },
+      "grids": {
+        "horizon_fraction": 0.25,
+        "n": 401
+      },
+      "scope": "Ritz trial pair, zero parameters, no full-field claim",
+      "starts": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.05
+        ],
+        [
+          0.0,
+          0.95
+        ],
+        [
+          0.5,
+          1.0
+        ],
+        [
+          -0.5,
+          1.0
+        ]
+      ]
+    },
+    "config_sha256": "b139b0f7680408c314b8d31621c601d8c84645f423ce9c7219357c19e65aed0d",
+    "generated_utc": "2026-11-03T23:53:05+00:00",
+    "git": {
+      "commit": "341fb600cf21edc06dc542360af6bbcd1a0a4a83",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "kills": [
+        [
+          "extremum_location",
+          false
+        ],
+        [
+          "extremum_residual",
+          false
+        ],
+        [
+          "mu_period",
+          false
+        ],
+        [
+          "sg_period",
+          false
+        ],
+        [
+          "term_match",
+          false
+        ],
+        [
+          "span51_consistency",
+          false
+        ],
+        [
+          "scaling",
+          false
+        ]
+      ],
+      "loc_tol": 1e-09,
+      "period_tol": 0.001,
+      "resid_tol": 1e-12,
+      "term_rtol": 1e-09
+    },
+    "scales": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "extrema": [
+        {
+          "converged": true,
+          "dt": 0.001963495408493621,
+          "max_dev_mu": 0.0,
+          "max_dev_sg": 0.0,
+          "max_residual": 2.220446049250313e-16,
+          "mu0": 0.0,
+          "s0_factor": 1.0
+        },
+        {
+          "converged": true,
+          "dt": 0.001963495408493621,
+          "max_dev_mu": 0.0,
+          "max_dev_sg": 0.0,
+          "max_residual": 2.220446049250313e-16,
+          "mu0": 0.0,
+          "s0_factor": 1.05
+        },
+        {
+          "converged": true,
+          "dt": 0.001963495408493621,
+          "max_dev_mu": 0.0,
+          "max_dev_sg": 0.0,
+          "max_residual": 2.220446049250313e-16,
+          "mu0": 0.0,
+          "s0_factor": 0.95
+        },
+        {
+          "converged": true,
+          "dt": 0.001963495408493621,
+          "max_dev_mu": 1.34416849539867e-21,
+          "max_dev_sg": 0.0,
+          "max_residual": 2.220446049250313e-16,
+          "mu0": 0.5,
+          "s0_factor": 1.0
+        },
+        {
+          "converged": true,
+          "dt": 0.001963495408493621,
+          "max_dev_mu": 2.327867189483216e-22,
+          "max_dev_sg": 0.0,
+          "max_residual": 2.220446049250313e-16,
+          "mu0": -0.5,
+          "s0_factor": 1.0
+        }
+      ],
+      "grids": {
+        "horizon_fraction": 0.25,
+        "n": 401
+      },
+      "releases": [
+        {
+          "mu0": 0.1,
+          "mu_period": 6.28318504539428,
+          "n_mu_crossings": 4,
+          "n_sg_crossings": 0,
+          "s0_factor": 1.0,
+          "sg_period": NaN
+        },
+        {
+          "mu0": 0.0,
+          "mu_period": NaN,
+          "n_mu_crossings": 0,
+          "n_sg_crossings": 8,
+          "s0_factor": 1.01,
+          "sg_period": 3.1415921299196228
+        },
+        {
+          "mu0": 0.3,
+          "mu_period": 6.283185045394281,
+          "n_mu_crossings": 4,
+          "n_sg_crossings": 8,
+          "s0_factor": 1.2,
+          "sg_period": 3.1415921035613668
+        }
+      ],
+      "scaling": {
+        "mu_period": 3.141592130000774,
+        "omega": 2.0,
+        "sg_period": 1.5707952793684126
+      },
+      "starts": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          0.0,
+          1.05
+        ],
+        [
+          0.0,
+          0.95
+        ],
+        [
+          0.5,
+          1.0
+        ],
+        [
+          -0.5,
+          1.0
+        ]
+      ],
+      "term_match": {
+        "max_rel_error": 0.0,
+        "mu_rows": [
+          {
+            "mu": 0.0,
+            "newton": -0.0,
+            "own": -0.0
+          },
+          {
+            "mu": 0.25,
+            "newton": -0.25,
+            "own": -0.25
+          },
+          {
+            "mu": -0.4,
+            "newton": 0.4,
+            "own": 0.4
+          }
+        ],
+        "rows": [
+          {
+            "abs": 0.0,
+            "ermakov": 1.5,
+            "own": 1.5,
+            "rel": 0.0,
+            "s": 0.5
+          },
+          {
+            "abs": 0.0,
+            "ermakov": -2.220446049250313e-16,
+            "own": -2.220446049250313e-16,
+            "rel": 0.0,
+            "s": 0.7071067811865476
+          },
+          {
+            "abs": 0.0,
+            "ermakov": -0.75,
+            "own": -0.75,
+            "rel": 0.0,
+            "s": 1.0
+          },
+          {
+            "abs": 0.0,
+            "ermakov": -1.425925925925926,
+            "own": -1.425925925925926,
+            "rel": 0.0,
+            "s": 1.5
+          }
+        ]
+      }
+    },
+    "verdict": {
+      "claim_53_status": "NUMERIC (center-width co-emergence demonstrated)",
+      "note": "Time-dependent Gaussian Ritz: constant (0, sigma_q) extremum; Newtonian center (2pi) and Ermakov width (pi) co-emerge from one action; no cross-coupling."
+    }
+  }
+}

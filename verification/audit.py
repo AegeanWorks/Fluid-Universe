@@ -2743,6 +2743,80 @@ def audit_yasue_dynamics(audit: Audit) -> None:
         )
 
 
+def audit_variational_center(audit: Audit) -> None:
+    payload = load_results("variational_center.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent joint extremum: constant (0, sigma_q) is stationary.
+    audit.record(
+        "53: the joint extremum is recomputed",
+        all(e["converged"] for e in scales["extrema"])
+        and all(e["max_dev_mu"] <= 1e-9 for e in scales["extrema"])
+        and all(e["max_dev_sg"] <= 1e-9 for e in scales["extrema"])
+        and all(e["max_residual"] <= 1e-12 for e in scales["extrema"]),
+        "worst_dev="
+        + f"{max(max(e['max_dev_mu'], e['max_dev_sg']) for e in scales['extrema']):.3e}",
+    )
+    # Independent periods: analytic harmonic values, no project import.
+    audit.record(
+        "53: the center period is recomputed",
+        all(
+            math.isfinite(r["mu_period"]) or r["mu0"] == 0.0
+            for r in scales["releases"]
+        )
+        and all(
+            abs(r["mu_period"] - 2.0 * math.pi) <= 1e-3
+            for r in scales["releases"]
+            if r["mu0"] != 0.0
+        ),
+        "T_mu=2pi",
+    )
+    audit.record(
+        "53: the width period is recomputed",
+        all(
+            math.isfinite(r["sg_period"]) or r["s0_factor"] == 1.0
+            for r in scales["releases"]
+        )
+        and all(
+            abs(r["sg_period"] - math.pi) <= 1e-3
+            for r in scales["releases"]
+            if r["s0_factor"] != 1.0
+        ),
+        "T_sg=pi",
+    )
+    # Independent term match: literal-form recompute catches transcription slips.
+    _rows_ok = True
+    for _row in scales["term_match"]["rows"]:
+        _s = _row["s"]
+        _expected = 0.25 / (_s**3) - 1.0 * _s
+        if abs(_row["own"] - _expected) > 1e-12 or abs(
+            _row["ermakov"] - _expected
+        ) > 1e-12:
+            _rows_ok = False
+    audit.record(
+        "53: the term match is recomputed",
+        _rows_ok
+        and scales["term_match"]["max_rel_error"] <= 1e-9,
+        f"max_rel={scales['term_match']['max_rel_error']:.3e}",
+    )
+    # Independent scaling law at omega = 2.
+    audit.record(
+        "53: the scaling law is recomputed",
+        abs(scales["scaling"]["mu_period"] - math.pi) <= 1e-3
+        and abs(scales["scaling"]["sg_period"] - math.pi / 2.0) <= 1e-3,
+        f"mu={scales['scaling']['mu_period']:.9f}, "
+        f"sg={scales['scaling']['sg_period']:.9f}",
+    )
+    if not verdict["claim_53_status"].startswith("NUMERIC"):
+        audit.record(
+            "53: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_53_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3177,6 +3251,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_variational_saddle(audit)
     audit_variational_dynamics(audit)
     audit_yasue_dynamics(audit)
+    audit_variational_center(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

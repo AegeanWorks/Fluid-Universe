@@ -968,3 +968,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.5e-14 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
 
 - Verification after the Yasui discriminator: two separate runs, 281/281 checks each.
+
+## 2026-11-03 - Center-width co-emergence demonstrated (claim 53, ADR-045)
+
+**Added**
+
+- `theory/variational_center.py` (2-path Gaussian Ritz: discrete EL for (mu, sigma) with Dirichlet ends, joint Newton, Verlet with per-leg zero crossings, term match vs `ermakov_rhs`); `phenomenology/variational_center_report.py`, `make variationalcenter`, `tests/test_variational_center.py`, `results/variational_center.{json,md}`; five new independent audit checks in `verification/audit.py` (joint extremum, mu period, sg period, term match, scaling — G-001 two-run); formulas F37.
+
+**Results**
+
+- Constant (0, sigma_q) extremum from 5 starts incl. +-0.5 displaced mu (max dev 1.3e-21, residuals 2.2e-16); Verlet release oscillates with mu period 2pi (err 2.6e-7) and sigma period pi (err <= 6.6e-7) simultaneously; discrete EL is Ermakov term-by-term (match exact 0.0); mixed sector exactly decoupled; scaling omega = 2 gives pi and pi/2 (err <= 1.1e-6); S1 falsification probe converged instead of diverging — NUMERIC with zero parameters. Shares the Ermakov fixed point and period with claims 21/22/48/49/51; not independent evidence of full-field dynamics; claims 20-26 and 43-52 numbers are unchanged.
+
+- Verification after the co-emergence: two separate runs, 286/286 checks each.

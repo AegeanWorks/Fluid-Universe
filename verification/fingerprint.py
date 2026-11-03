@@ -152,6 +152,8 @@ RESULT_FILES = (
     "variational_dynamics.md",
     "yasue_dynamics.json",
     "yasue_dynamics.md",
+    "variational_center.json",
+    "variational_center.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
