@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `169`
+- **Total Python Modules**: `172`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `893`
+- **Total Top-Level Functions**: `916`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `23267`
+- **Total Source Lines**: `23776`
 
 ---
 
@@ -525,6 +525,17 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/variational_width_report.py`](phenomenology/variational_width_report.py)
+> *Gaussian Ritz width-selection check (claim 49, ADR-041).*
+
+**Size**: `147` lines (`5345` bytes)
+
+**Functions:**
+- `def run_variational_width_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -1416,6 +1427,22 @@
 
 ---
 
+### [`tests/test_variational_width.py`](tests/test_variational_width.py)
+> *Gaussian Ritz width-selection tests (claim 49).*
+
+**Size**: `91` lines (`2697` bytes)
+
+**Functions:**
+- `def test_gm_extremum_is_half()`
+- `def test_gm_grid_agrees_with_analytic()`
+- `def test_gm_curvature_is_maximum()`
+- `def test_yasui_has_no_finite_extremum()`
+- `def test_scaling_law_holds()`
+- `def test_ritz_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_vortex_cascade.py`](tests/test_vortex_cascade.py)
 > *One-parameter vortex hierarchy tests (claim 18).*
 
@@ -2038,6 +2065,28 @@
 
 ---
 
+### [`theory/variational_width.py`](theory/variational_width.py)
+> *Gaussian Ritz width-selection: G-M vs Yasui (claim 49, ADR-041).*
+
+**Size**: `209` lines (`7457` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def action_gm(s2, omega, hbar, mass)`
+- `def action_yasui(s2, omega, hbar, mass)`
+- `def d_action_gm(s2, omega, hbar, mass)`
+- `def d_action_yasui(s2, omega, hbar, mass)`
+- `def d2_action_gm_s2(s2, omega, hbar, mass)` - *Curvature with respect to s2 (gate variable): -m*nu^2/s2^3.*
+- `def d2_action_gm_sigma(sigma, omega, hbar, mass)` - *Curvature with respect to sigma (record only): -3m*nu^2/s^4-m*w^2.*
+- `def extremum_s2(omega, hbar, mass)` - *Analytic G-M maximizer s2 = nu/omega with nu = hbar/(2*mass).*
+- `def newton_refine(start, omega, hbar, mass, steps)` - *Newton iterations on dJ_G/d(s2) = 0 from a grid argmax start.*
+- `def grid_maximum(s2_values, omega, hbar, mass)` - *Grid argmax of J_G plus Newton refinement (not single parabola).*
+- `def yasui_monotone(s2_values, omega, hbar, mass)` - *Yasui derivative sign over the frozen grid (must stay negative).*
+- `def ermakov_cross_check()` - *Independent argmin of V(sigma) vs analytic G-M maximizer.*
+- `def selection_scales()` - *Collect the Ritz correspondence bundle (no verdict).*
+
+---
+
 ### [`theory/vortex_cascade.py`](theory/vortex_cascade.py)
 > *One-parameter vortex/eddy hierarchy test (claim 18, ADR-009).*
 
@@ -2318,7 +2367,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2927` lines (`118901` bytes)
+**Size**: `2987` lines (`121213` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2389,6 +2438,7 @@
 - `def audit_node_defect(audit)`
 - `def audit_radial_node(audit)`
 - `def audit_nelson_closure(audit)`
+- `def audit_variational_width(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2418,7 +2468,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `189` lines (`4909` bytes)
+**Size**: `191` lines (`4967` bytes)
 
 **Functions:**
 - `def _source_files()`
