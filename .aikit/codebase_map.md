@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `166`
+- **Total Python Modules**: `169`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `876`
+- **Total Top-Level Functions**: `893`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `22795`
+- **Total Source Lines**: `23267`
 
 ---
 
@@ -241,6 +241,17 @@
 **Functions:**
 - `def _grid()`
 - `def run_madelung_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/nelson_closure_report.py`](phenomenology/nelson_closure_report.py)
+> *Osmotic-closure no-go check (claim 48, ADR-040).*
+
+**Size**: `155` lines (`5680` bytes)
+
+**Functions:**
+- `def run_nelson_closure_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1127,6 +1138,21 @@
 
 ---
 
+### [`tests/test_nelson_closure.py`](tests/test_nelson_closure.py)
+> *Osmotic-closure no-go tests (claim 48).*
+
+**Size**: `75` lines (`2073` bytes)
+
+**Functions:**
+- `def test_residual_scales_as_dx_squared()`
+- `def test_residual_decreases_monotonically()`
+- `def test_sigma_map_is_identity()`
+- `def test_sigma_map_error_is_flat_not_contracting()`
+- `def test_closure_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_neutrinos.py`](tests/test_neutrinos.py)
 > *Neutrino Q_nu scan tests (claim 7a).*
 
@@ -1901,6 +1927,23 @@
 
 ---
 
+### [`theory/nelson_closure.py`](theory/nelson_closure.py)
+> *Osmotic-closure no-go at PDE level (claim 48, ADR-040).*
+
+**Size**: `196` lines (`6947` bytes)
+
+**Functions:**
+- `def trial_gaussian(x, sigma_sq)`
+- `def trial_bimodal(x)`
+- `def fp_residual(rho, dx, diffusion)` - *Stationary FP residual for self-consistent osmotic drift.*
+- `def interior_mask(x, length)`
+- `def residual_scaling()` - *Max-abs residual vs dx for Gaussian probes and one bimodal probe.*
+- `def frozen_drift_sigma_map()` - *One frozen-drift reconstruction step per trial width.*
+- `def ou_free_packet_instances()` - *OU ground state and free packet satisfy the identity trivially.*
+- `def closure_scales()` - *Collect the no-go correspondence bundle (no verdict).*
+
+---
+
 ### [`theory/node_defect.py`](theory/node_defect.py)
 > *Two-branch defect representation of nodal states (claim 46, ADR-038).*
 
@@ -2275,7 +2318,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2883` lines (`117098` bytes)
+**Size**: `2927` lines (`118901` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2345,6 +2388,7 @@
 - `def audit_water_twocomponent(audit)`
 - `def audit_node_defect(audit)`
 - `def audit_radial_node(audit)`
+- `def audit_nelson_closure(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2374,7 +2418,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `187` lines (`4857` bytes)
+**Size**: `189` lines (`4909` bytes)
 
 **Functions:**
 - `def _source_files()`
