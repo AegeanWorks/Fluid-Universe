@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `180`
+- **Total Python Modules**: `183`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `963`
+- **Total Top-Level Functions**: `977`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `25000`
+- **Total Source Lines**: `25538`
 
 ---
 
@@ -770,6 +770,17 @@
 
 **Functions:**
 - `def run_water_well_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/yasue_dynamics_report.py`](phenomenology/yasue_dynamics_report.py)
+> *Yasui dynamical discriminator check (claim 52, ADR-044).*
+
+**Size**: `167` lines (`6053` bytes)
+
+**Functions:**
+- `def run_yasue_dynamics_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1796,6 +1807,22 @@
 
 ---
 
+### [`tests/test_yasue_dynamics.py`](tests/test_yasue_dynamics.py)
+> *Yasui dynamical discriminator tests (claim 52).*
+
+**Size**: `85` lines (`2438` bytes)
+
+**Functions:**
+- `def test_yasui_collapses_with_no_return()`
+- `def test_gm_twin_controls_the_apparatus()`
+- `def test_yasui_accel_negative_everywhere()`
+- `def test_quadrature_matches_verlet_at_mild_point()`
+- `def test_scaling_bounds_collapse()`
+- `def test_discriminator_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`theory/__init__.py`](theory/__init__.py)
 > *Exact theory utilities for the Z3/Koide core.*
 
@@ -2474,6 +2501,19 @@
 
 ---
 
+### [`theory/yasue_dynamics.py`](theory/yasue_dynamics.py)
+> *Yasui dynamical discriminator: collapse vs G-M oscillation (claim 52, ADR-044).*
+
+**Size**: `176` lines (`6015` bytes)
+
+**Functions:**
+- `def yasue_acceleration(s, omega, hbar, mass)`
+- `def yasue_release(factor, omega, hbar, mass, floor, dt, t_end)` - *Velocity-Verlet release from rest; stops at the floor.*
+- `def quadrature_mild_crossing(factor, omega, hbar, mass)` - *Energy-integral time from release to sigma = 0.5.*
+- `def yasue_scales()` - *Collect the discriminator correspondence bundle (no verdict).*
+
+---
+
 ### [`verification/__init__.py`](verification/__init__.py)
 > *Independent verification package. See audit.py.*
 
@@ -2484,7 +2524,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3132` lines (`127084` bytes)
+**Size**: `3240` lines (`131061` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2558,6 +2598,7 @@
 - `def audit_variational_width(audit)`
 - `def audit_variational_saddle(audit)`
 - `def audit_variational_dynamics(audit)`
+- `def audit_yasue_dynamics(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2587,7 +2628,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `195` lines (`5091` bytes)
+**Size**: `197` lines (`5143` bytes)
 
 **Functions:**
 - `def _source_files()`
