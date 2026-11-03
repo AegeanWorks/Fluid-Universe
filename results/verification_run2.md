@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**238/238 checks passed.**
+**240/240 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -144,7 +144,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 42: the two cavity terms oppose and net under a tenth of the shift | PASS | net=-0.121218 meV/K, coverage=0.050508/0.043292 |
 | 43: the Gaussian band is exactly symmetric | PASS | skew=0.000000, ratio=1.000000, third=0.000e+00 |
 | 43: the predicted 0-45 C widths match sqrt(lambda T) with fixed lambda | PASS | width0=0.653822, width45=0.695194, ratio=1.063278 |
-| 43: the prediction is registered UNVERIFIED with kill thresholds | PASS | status=UNVERIFIED, tol=0.05/0.15/0.3 |
+| 43: the prediction carries frozen kill thresholds | PASS | status=FALSIFIED , tol=0.05/0.15/0.3 |
+| 43: the observed width-ratio comparison is recomputed | PASS | obs_change=0.009000000000000001, obs_ratio=1.013765220890398, diff=0.04951277082938321 |
+| 43: the observed shape kill is recomputed | PASS | comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

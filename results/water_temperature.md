@@ -68,4 +68,4 @@ The cavity's dielectric and geometric terms have opposite signs, so they do not 
 The water-property Born cavity predicts a lambda/VDE red shift of 1.068036 meV/K from 0 to 45 C, 38.1%-44.5% of the observed 2.4-2.8 meV/K peak shift. The 1/R geometric slope is +0.946817 meV/K (33.8%-39.5%), and the two terms have opposite signs, so their signed sum is -0.121218 meV/K (4.3%-5.1% of the observed): the cavity does not explain the shift, and taking the geometric term alone in the observed direction still leaves 1.45-1.85 meV/K unexplained. The Marcus width broadens from 0.653822 eV at 0 C to 0.695194 eV at 45 C. The residual shift points toward a temperature-dependent bare gap or non-cavity structure, consistent with the Farr/Schwartz critique.
 
 - Config SHA-256: `387f20e1cbf60c52e079f2d93afac1b9d1e3c749b9848400cbcefa391d45487f`
-- Git: `b5f7c485c07876410704af1ea3dfb9b583bbdc1c` (dirty=True)
+- Git: `faa31f97d31eb39e7a9fb62c30b3f886514009df` (dirty=True)

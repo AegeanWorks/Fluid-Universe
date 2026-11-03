@@ -2,15 +2,21 @@
   "meta": {
     "config": {
       "lambda_ev": 1.6171325440878093,
-      "scope": "fixed-lambda Marcus line-shape prediction, no fit",
+      "observed": {
+        "g1_width_ev": 0.71,
+        "g2_width_ev": 0.37,
+        "tail_power_n_water": 4.4,
+        "width_slope_ev_per_k": 0.0002
+      },
+      "scope": "fixed-lambda Marcus line-shape vs observed comparator, no fit",
       "shape_ratio_tol": 0.15,
       "skew_tol": 0.3,
       "width_ratio_tol": 0.05
     },
-    "config_sha256": "23df712d90f9275c016e9e5440c6f4578732e3f607ca65ff39dfebddaf01fb8b",
-    "generated_utc": "2026-11-02T21:39:56+00:00",
+    "config_sha256": "a6f7303b8be40c6bef5c5d9814f1ff3168fa3507bbe1f486f849a68640abe838",
+    "generated_utc": "2026-11-03T16:46:50+00:00",
     "git": {
-      "commit": "b5f7c485c07876410704af1ea3dfb9b583bbdc1c",
+      "commit": "faa31f97d31eb39e7a9fb62c30b3f886514009df",
       "dirty": true
     },
     "packages": {
@@ -24,6 +30,54 @@
     }
   },
   "result": {
+    "comparison": {
+      "component_width_diff_vs_one": 0.9189189189189189,
+      "component_width_ratio": 1.9189189189189189,
+      "observed": {
+        "emax_ev": 1.72,
+        "shape": {
+          "band_described_as": "broad and highly asymmetric",
+          "component_width_difference_ev": 0.33999999999999997,
+          "component_width_ratio": 1.9189189189189189,
+          "g1_width_ev": 0.71,
+          "g2_width_ev": 0.37,
+          "single_gaussian_compatible": false,
+          "sources": [
+            "Jou & Freeman, Can. J. Chem. 57, 591 (1979)",
+            "Bartels et al., J. Phys. Chem. A (2005)",
+            "Turi et al., JCTC 20, 4265 (2024)"
+          ],
+          "tail_is_gaussian": false,
+          "tail_power_n_water": 4.4,
+          "tail_width_ev": 1.0,
+          "two_gaussians_plus_tail": true
+        },
+        "width": {
+          "ambiguity": "delta E_1/2 stated as half-width; FWHM vs HWHM unclear",
+          "change_as_stated_ev": 0.009000000000000001,
+          "change_if_hwhm_ev": 0.018000000000000002,
+          "slope_ev_per_k": 0.0002,
+          "source": "Christensen & Sehested 1986, d(delta E_1/2)/dT = 2e-4 eV/K",
+          "span_k": 45.0
+        }
+      },
+      "observed_change_ev": 0.009000000000000001,
+      "observed_change_if_hwhm_ev": 0.018000000000000002,
+      "observed_ratio_if_hwhm": 1.0275304417807958,
+      "observed_ratio_on_predicted_scale": 1.013765220890398,
+      "predicted_change_ev": 0.041372523551386986,
+      "predicted_ratio": 1.0632779917197812,
+      "predicted_slope_ev_per_k": 0.0009193894122530442,
+      "ratio_diff": 0.04951277082938321,
+      "ratio_diff_if_hwhm": 0.035747549938985435,
+      "ratio_kill": false,
+      "ratio_kill_if_hwhm": false,
+      "shape_kill_gaussian_only": true,
+      "shape_kill_threshold": 0.15,
+      "skew_kill_gaussian_only": true,
+      "skew_threshold": 0.3,
+      "width_ratio_threshold": 0.05
+    },
     "scales": {
       "lambda_ev": 1.6171325440878093,
       "moments": {
@@ -47,9 +101,11 @@
       }
     },
     "verdict": {
-      "claim_43_status": "UNVERIFIED (pre-registered prediction; no observed width-vs-T or shape comparator)",
-      "note": "With lambda fixed at 1.617132544 eV from the Born cavity, the classical Marcus Gaussian predicts W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.0633, with exact symmetry (skew 0, half-width ratio 1). No observed width change or band-shape numbers exist in this repository, so this is a prediction with kill thresholds (ratio 0.05, shape 0.15, skew 0.3), never a comparison. A future comparator kills the sqrt(lambda T) scaling if |observed ratio - 1.0633| > 0.05 and kills Gaussian-only shape if |observed half-width ratio - 1| > 0.15.",
+      "claim_43_status": "FALSIFIED (Gaussian-only shape; sqrt(lambda T) scaling survives: ratio diff 0.0495 <= 0.05)",
+      "note": "With lambda fixed at 1.617132544 eV from the Born cavity, the classical Marcus Gaussian predicts W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.0633, with exact symmetry (skew 0, half-width ratio 1). Observed comparator: Christensen & Sehested 1986 width slope 2e-4 eV/K (predicted slope 9.194e-04 eV/K) and Jou & Freeman 1979 two-Gaussian-plus-tail decomposition (0.71 vs 0.37 eV, tail n=4.4, asymmetric; Bartels et al. 2005 Gaussian/Lorentzian split). Ratio diff 0.0495 (HWHM reading 0.0357) vs tolerance 0.05; component-width ratio 1.9189 vs 1 (diff 0.9189 > 0.15). The single symmetric Gaussian is falsified on shape; the width-ratio scaling survives this comparator.",
+      "ratio_kill": false,
       "ratio_matches_sqrt_lambda_t": true,
+      "shape_kill_gaussian_only": true,
       "symmetry_exact": true,
       "widths_match_temperature_scan": true
     }

@@ -842,3 +842,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - No observed width-vs-T or shape comparator exists in this repository, so claim 43 is **UNVERIFIED (prediction; no comparator)**. Kill thresholds for a future comparator: |observed ratio - 1.0633| > 0.05 kills the sqrt(lambda T) scaling; |observed half-width ratio - 1| > 0.15 kills Gaussian-only shape.
 
 - Verification after the fixed-lambda line-shape prediction: two separate runs, 238/238 checks each.
+
+## 2026-11-03 - Observed comparator falsifies Gaussian-only band shape (claim 43, ADR-035)
+
+**Added**
+
+- `theory/water_observed_shape.py` (citable observed numbers only, no fit): Christensen & Sehested 1986 half-width slope 2e-4 eV/K; Jou & Freeman 1979 two-Gaussian-plus-tail decomposition (0.71 vs 0.37 eV, tail n=4.4); Bartels et al. 2005 Gaussian-low/Lorentzian-high split; Turi et al. 2024 "broad and highly asymmetric", max 1.72 eV.
+- `run_water_lineshape_comparison()` in `phenomenology/water_lineshape_report.py` (additive; thresholds frozen from ADR-034); four new tests in `tests/test_water_lineshape.py`; two new independent audit checks in `verification/audit.py` (width-ratio and shape recomputation, no project imports).
+- Comparator citations in `theory/literature.md`.
+
+**Results**
+
+- Width-ratio leg survives: observed 45 K change 0.009 eV (0.018 eV on the HWHM reading of the ambiguous "half-width") against predicted 0.04137 eV; ratio diff 0.0495 (HWHM 0.0357) vs tolerance 0.05. Predicted slope 9.19e-4 eV/K is 4.6x the observed 2e-4 eV/K, but on the pre-registered ratio criterion the scaling is not killed.
+- Shape leg kills: component-width ratio 0.71/0.37 = 1.9189 differs from 1 by 0.9189 > 0.15; tail power n=4.4 is not Gaussian; every cited source describes the band as asymmetric.
+- Claim 43 is **FALSIFIED (Gaussian-only shape; sqrt(lambda T) scaling survives)**. The single symmetric Gaussian cannot reproduce the observed band; a two-state/non-Gaussian line shape is required. This does not touch claims 39-42 (cavity scale, VDE, width magnitude, temperature slope), whose numbers are unchanged.
+
+- Verification after the observed comparator: two separate runs, 240/240 checks each.

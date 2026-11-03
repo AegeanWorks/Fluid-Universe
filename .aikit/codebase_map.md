@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `153`
+- **Total Python Modules**: `154`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `812`
+- **Total Top-Level Functions**: `820`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `20815`
+- **Total Source Lines**: `21161`
 
 ---
 
@@ -565,9 +565,10 @@
 ### [`phenomenology/water_lineshape_report.py`](phenomenology/water_lineshape_report.py)
 > *Fixed-lambda cavity-Marcus line-shape prediction (claim 43, ADR-034).*
 
-**Size**: `138` lines (`5141` bytes)
+**Size**: `260` lines (`11242` bytes)
 
 **Functions:**
+- `def run_water_lineshape_comparison(write)` - *Compare the fixed-lambda prediction against citable observed shape.*
 - `def run_water_lineshape_check(write)`
 - `def render_markdown(payload)`
 
@@ -1404,7 +1405,7 @@
 ### [`tests/test_water_lineshape.py`](tests/test_water_lineshape.py)
 > *Fixed-lambda cavity-Marcus line-shape prediction (claim 43).*
 
-**Size**: `70` lines (`2060` bytes)
+**Size**: `133` lines (`4499` bytes)
 
 **Functions:**
 - `def test_gaussian_symmetry_is_exact()`
@@ -1412,6 +1413,10 @@
 - `def test_ratio_follows_sqrt_lambda_t()`
 - `def test_kill_thresholds_are_data()`
 - `def test_lineshape_scales_use_fixed_lambda()`
+- `def test_observed_width_slope_is_citable_value()`
+- `def test_observed_shape_needs_two_gaussians_plus_tail()`
+- `def test_comparison_kills_gaussian_shape_not_ratio()`
+- `def test_observed_scales_payload_shape()`
 
 ---
 
@@ -1978,6 +1983,18 @@
 
 ---
 
+### [`theory/water_observed_shape.py`](theory/water_observed_shape.py)
+> *Observed hydrated-electron band-shape comparator data (claim 43, ADR-035).*
+
+**Size**: `117` lines (`4835` bytes)
+
+**Functions:**
+- `def observed_width_change_ev(span_k)` - *Observed half-width change over a temperature span.*
+- `def shape_evidence()` - *Observed shape facts that a single symmetric Gaussian must meet.*
+- `def observed_scales()` - *Collect the observed comparator numbers in one payload.*
+
+---
+
 ### [`theory/water_pressure.py`](theory/water_pressure.py)
 > *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
 
@@ -2098,7 +2115,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2649` lines (`106794` bytes)
+**Size**: `2693` lines (`108903` bytes)
 
 **Classes:**
 - `class Audit`

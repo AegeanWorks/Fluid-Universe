@@ -252,7 +252,14 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 
 ### ADR-034: Pre-registered fixed-lambda line-shape prediction (claim 43)
 - **Date**: 2026-11-02
-- **Status**: Accepted
+- **Status**: Superseded by ADR-035 (comparator arrived; shape leg falsified)
 - **Context**: Claims 39-42 fix lambda and its temperature dependence but leave the band shape untested. No observed width-vs-temperature or shape numbers exist in this repository, so a comparison would require inventing data. A pre-registered prediction with dated kill thresholds is the honest step and partially answers claim 16 (no new prediction).
 - **Decision**: With lambda fixed at 1.617132544 eV, predict W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.0633, exact Gaussian symmetry (skew 0, half-width ratio 1). Pre-register kill thresholds: |observed ratio - 1.0633| > 0.05 kills sqrt(lambda T) scaling; |observed half-width ratio - 1| > 0.15 kills Gaussian-only shape. No effective frequency is fitted. Verdict stays UNVERIFIED until a citable comparator arrives.
 - **Consequences**: New `theory/water_lineshape.py`, `phenomenology/water_lineshape_report.py`, `tests/test_water_lineshape.py`, `results/water_lineshape.{json,md}`, `make waterlineshape`, and three audit checks. A future comparator either kills the scaling/shape or confirms the prediction; nothing is promoted on this step.
+
+### ADR-035: Observed width-slope and band-shape comparator falsifies Gaussian-only shape (claim 43)
+- **Date**: 2026-11-03
+- **Status**: Accepted
+- **Context**: ADR-034 pre-registered kill thresholds but had no comparator. A bounded literature search found citable observed numbers: Christensen & Sehested 1986 (J. Phys. Chem. 90:1) give d(delta E_1/2)/dT = 2e-4 eV/K for the hydrated-electron half-width, and Jou & Freeman 1979 (Can. J. Chem. 57, 591) resolve the band into two Gaussians (0.71 vs 0.37 eV) plus a power-law tail (n=4.4 in water), confirmed as Gaussian-low/Lorentzian-high asymmetry by Bartels et al. 2005 and Turi et al. 2024 (max 1.72 eV). The "half-width" definition in Christensen & Sehested is ambiguous (FWHM vs HWHM), so both readings are carried.
+- **Decision**: Encode observed numbers only in `theory/water_observed_shape.py` (no fit, no effective frequency); compute the comparison additively in `phenomenology/water_lineshape_report.py` with ADR-034 thresholds frozen; add four tests and two independent audit checks. Result: width-ratio diff 0.0495 (HWHM 0.0357) vs 0.05 — scaling survives; component-width ratio 1.9189 vs 1 (diff 0.9189 > 0.15) plus non-Gaussian tail — single symmetric Gaussian falsified. Claim 43 becomes FALSIFIED on the shape leg. Claims 39-42 numbers are untouched.
+- **Consequences**: `results/water_lineshape.{json,md}` carry a `comparison` section with config hash, versions and commit; audit grows from 238 to 240 checks; the next falsifiable step is a two-state/non-Gaussian line shape with its own pre-registered thresholds, not a refit of lambda.

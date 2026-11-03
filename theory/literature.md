@@ -52,6 +52,8 @@ These are identified for engagement, not yet used quantitatively. No claim in th
 
 - **Hydrated electron**: absorption maximum about 720 nm (1.7 eV); E. J. Hart and M. Anbar, *The Hydrated Electron* (Wiley, 1970).
 - **Hydrated-electron VDE**: vertical binding energy \(3.27\pm0.10\) eV for H\(_2\)O; Y. Tang, H. Shen, K. Sekiguchi, N. Kurahashi, T. Mizuno, Y.-I. Suzuki, T. Suzuki, *Phys. Chem. Chem. Phys.* **12**, 3653 (2010), DOI: 10.1039/b925741a.
+- **Hydrated-electron temperature coefficients (claim-43 width comparator)**: spectrum measured 5-300 C; up to ~150 C, \(dE_{\max}/dT=-2.8\times10^{-3}\) eV/K and \(d(\delta E_{1/2})/dT=2\times10^{-4}\) eV/K where \(\delta E_{1/2}\) is stated as "the half-width of the spectrum" (FWHM vs HWHM ambiguous; both readings carried); H. Christensen and K. Sehested, *J. Phys. Chem.* **90:1** (1986), DOI: 10.1021/j100273a042.
+- **Hydrated-electron band shape (claim-43 shape comparator)**: spectra resolved into two Gaussian bands plus a continuum tail; in water the first Gaussian half-width \(0.71\pm0.07\) eV, the second \(0.37\pm0.08\) eV, the tail \(\sim1.0\pm0.2\) eV; high-energy side \(A/A_{\max}\sim E^{-n}\) with \(n=4.4\) in water (not Gaussian); band is broad and asymmetric; F. Jou and G. R. Freeman, *Can. J. Chem.* **57**, 591 (1979). Subcritical spectra approximately Gaussian on the low-energy side and Lorentzian on the high-energy side; D. Bartels et al., *J. Phys. Chem. A* (2005, supercritical water pulse radiolysis). Observed bulk band "broad and highly asymmetric" with maximum 1.72 eV (Jou & Freeman); L. Turi et al., *JCTC* **20**, 4265 (2024) review.
 
 ## 5. Non-peer-reviewed material deliberately not used
 

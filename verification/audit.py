@@ -2150,14 +2150,58 @@ def audit_water_lineshape(audit: Audit) -> None:
         f"ratio={prediction['width_ratio_45_over_0']:.6f}",
     )
     audit.record(
-        "43: the prediction is registered UNVERIFIED with kill thresholds",
-        result["verdict"]["claim_43_status"].startswith("UNVERIFIED")
-        and thresholds["width_ratio_tol"] == 0.05
+        "43: the prediction carries frozen kill thresholds",
+        thresholds["width_ratio_tol"] == 0.05
         and thresholds["shape_ratio_tol"] == 0.15
         and thresholds["skew_tol"] == 0.3,
         f"status={result['verdict']['claim_43_status'][:10]}, "
         f"tol={thresholds['width_ratio_tol']}/"
         f"{thresholds['shape_ratio_tol']}/{thresholds['skew_tol']}",
+    )
+    comparison = result.get("comparison", {})
+    observed = comparison.get("observed", {})
+    width_obs = observed.get("width", {})
+    shape_obs = observed.get("shape", {})
+    # Independent width-ratio recomputation: Christensen slope 2e-4 eV/K
+    # over 45 K gives 0.009 eV; ratio on the predicted 0 C scale.
+    obs_change = 2.0e-4 * 45.0
+    w0 = prediction["width_0c_ev"]
+    obs_ratio = (w0 + obs_change) / w0
+    obs_ratio_hwhm = (w0 + 2.0 * obs_change) / w0
+    audit.record(
+        "43: the observed width-ratio comparison is recomputed",
+        abs(comparison.get("observed_change_ev", -1.0) - obs_change) < 1.0e-12
+        and abs(
+            comparison.get("observed_ratio_on_predicted_scale", -1.0)
+            - obs_ratio
+        )
+        < 1.0e-9
+        and abs(comparison.get("ratio_diff", -1.0) - abs(obs_ratio - prediction["width_ratio_45_over_0"]))
+        < 1.0e-9
+        and comparison.get("ratio_kill") is False
+        and comparison.get("ratio_kill_if_hwhm") is False
+        and verdict.get("ratio_kill") is False,
+        f"obs_change={comparison.get('observed_change_ev')}, "
+        f"obs_ratio={comparison.get('observed_ratio_on_predicted_scale')}, "
+        f"diff={comparison.get('ratio_diff')}",
+    )
+    # Independent shape recomputation: Jou & Freeman 0.71 vs 0.37 eV
+    # gives ratio 1.9189, diff 0.9189 > 0.15; tail n = 4.4 is not
+    # Gaussian; the single symmetric Gaussian is falsified on shape.
+    comp_ratio = 0.71 / 0.37
+    audit.record(
+        "43: the observed shape kill is recomputed",
+        abs(comparison.get("component_width_ratio", -1.0) - comp_ratio)
+        < 1.0e-12
+        and shape_obs.get("tail_power_n_water") == 4.4
+        and shape_obs.get("tail_is_gaussian") is False
+        and comparison.get("shape_kill_gaussian_only") is True
+        and verdict.get("shape_kill_gaussian_only") is True
+        and result["verdict"]["claim_43_status"].startswith("FALSIFIED")
+        and "shape" in result["verdict"]["claim_43_status"],
+        f"comp_ratio={comparison.get('component_width_ratio')}, "
+        f"tail_n={shape_obs.get('tail_power_n_water')}, "
+        f"status={result['verdict']['claim_43_status'][:40]}",
     )
 
 
