@@ -136,6 +136,8 @@ RESULT_FILES = (
     "water_lineshape.md",
     "two_state.json",
     "two_state.md",
+    "water_twocomponent.json",
+    "water_twocomponent.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

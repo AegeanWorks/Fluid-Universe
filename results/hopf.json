@@ -10,9 +10,9 @@
       "source": "analytic H=1 Hopf map"
     },
     "config_sha256": "ea007c16579c8a2c6ddd2e87066169562ff7a91c6b755c8a756b4dd8d6850d36",
-    "generated_utc": "2026-11-03T17:02:57+00:00",
+    "generated_utc": "2026-11-03T18:08:03+00:00",
     "git": {
-      "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+      "commit": "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
       "dirty": true
     },
     "packages": {

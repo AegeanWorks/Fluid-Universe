@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T17:05:02+00:00 | `cc73aa1228e196329ff80d5086cbbfbd37209f70` | 240/240 | `49bd472afaf7eacc...` | `1660ddd05f384ffa...` |
-| run2 | 2026-11-03T17:05:16+00:00 | `cc73aa1228e196329ff80d5086cbbfbd37209f70` | 240/240 | `49bd472afaf7eacc...` | `1660ddd05f384ffa...` |
+| run1 | 2026-11-03T18:12:28+00:00 | `5e6bb615dc7bd30cd6b819efbc7d9d714b87770d` | 245/245 | `437f32a7822ae0c3...` | `2891e00ed6e5058b...` |
+| run2 | 2026-11-03T18:13:16+00:00 | `5e6bb615dc7bd30cd6b819efbc7d9d714b87770d` | 245/245 | `437f32a7822ae0c3...` | `2891e00ed6e5058b...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -132,6 +132,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 43: the observed width-ratio comparison is recomputed | PASS | PASS | YES | YES | obs_change=0.009000000000000001, obs_ratio=1.013765220890398, diff=0.04951277082938321 |
 | 43: the predicted 0-45 C widths match sqrt(lambda T) with fixed lambda | PASS | PASS | YES | YES | width0=0.653822, width45=0.695194, ratio=1.063278 |
 | 43: the prediction carries frozen kill thresholds | PASS | PASS | YES | YES | status=FALSIFIED , tol=0.05/0.15/0.3 |
+| 44: the observed component ratio kills the shared-lambda assignment | PASS | PASS | YES | YES | obs_ratio=1.9189189189189189, diff=0.9189189189189189, status=FALSIFIED (shared-lambda two-state Marcu |
+| 44: two Marcus states sharing lambda have identical widths | PASS | PASS | YES | YES | g1=0.680915, g2=0.680915, ratio=1.0 |
+| 45: the joined-model side ratio is recomputed | PASS | PASS | YES | YES | r_pred=0.863201, r_obs=1.585732, diff=0.722531 |
+| 45: the joined-model width scale is recomputed | PASS | PASS | YES | YES | fwhm=0.633441, classical_rel=0.102775, quantized_rel=0.180542 |
+| 45: the two-component join is FALSIFIED with frozen thresholds | PASS | PASS | YES | YES | status=FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; cla |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

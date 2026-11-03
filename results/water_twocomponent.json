@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "config": {
+      "emax_ev": 1.72,
+      "fwhm_classical_tol": 0.05,
+      "fwhm_quantized_tol": 0.15,
+      "reference_classical_ev": 0.706,
+      "reference_quantized_ev": 0.773,
+      "scope": "two-component join vs observed side widths, no fit",
+      "temperature_k": 299.15,
+      "width_ratio_tol": 0.15
+    },
+    "config_sha256": "072926df5cc7767316dad90ba33c9a648b2634f65c9781709c448aef36c4f42e",
+    "generated_utc": "2026-11-03T17:50:42+00:00",
+    "git": {
+      "commit": "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "scales": {
+      "blue_hwhm_ev": 0.2934662533044884,
+      "classical_rel_diff": 0.10277498272277757,
+      "emax_ev": 1.72,
+      "fwhm_model_ev": 0.633440862197719,
+      "lambda_ev": 1.6171325440878093,
+      "marcus_fwhm_ev": 0.6799492177864613,
+      "n_tail": 4.4,
+      "observed": {
+        "blue_lorentzian_hwhm_ev": 0.48248499999999994,
+        "emax_ev": 1.7326400000000002,
+        "fwhm_ev": 0.7867514999999999,
+        "red_gaussian_hwhm_ev": 0.3042665,
+        "side_ratio_blue_over_red": 1.5857315872762856,
+        "source": "Jou & Freeman fits via Coe et al. review; Wb/Wr per Bartels",
+        "temperature_k": 299.15
+      },
+      "quantized_rel_diff": 0.1805422222539211,
+      "r_obs": 1.5857315872762856,
+      "r_pred": 0.8632005027076941,
+      "ratio_diff": 0.7225310845685915,
+      "ratio_kill": true,
+      "red_hwhm_ev": 0.33997460889323067,
+      "temperature_k": 299.15,
+      "thresholds": {
+        "fwhm_classical_tol": 0.05,
+        "fwhm_quantized_tol": 0.15,
+        "width_ratio_tol": 0.15
+      },
+      "width_kill": true
+    },
+    "verdict": {
+      "claim_45_status": "FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; classical rel 0.1028 (tol 0.05)/quantized rel 0.1805 (tol 0.15))",
+      "note": "Zero-free-parameter join at Emax=1.72 eV: Gaussian red HWHM from the fixed Marcus scale plus n=4.4 power-law blue tail. Kill thresholds frozen from ADR-034. Observed side widths are the Jou-Freeman fits (G red, L blue) via the Coe review; Wb/Wr definitions per Bartels.",
+      "ratio_kill": true,
+      "width_kill": true
+    }
+  }
+}

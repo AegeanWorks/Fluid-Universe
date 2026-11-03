@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-03T17:05:16+00:00",
-    "git_commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+    "generated_utc": "2026-11-03T18:13:16+00:00",
+    "git_commit": "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "49bd472afaf7eacc375b849ff5ecc844d9beaa55b8d88de9301feb010c103477",
-      "results_sha256": "1660ddd05f384ffad2902a737c791ece85f3a96de1fa104c280d5fc18168633f"
+      "source_sha256": "437f32a7822ae0c31f5cb42a7377a823b2e99dea30db31b97aeadeec2f8c0da9",
+      "results_sha256": "2891e00ed6e5058b73b405ad3e0ae1c98fafa843979a17caaf723da0c00fd7a0"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1005,6 +1005,41 @@
       "observed": null
     },
     {
+      "claim": "44: two Marcus states sharing lambda have identical widths",
+      "passed": true,
+      "detail": "g1=0.680915, g2=0.680915, ratio=1.0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "44: the observed component ratio kills the shared-lambda assignment",
+      "passed": true,
+      "detail": "obs_ratio=1.9189189189189189, diff=0.9189189189189189, status=FALSIFIED (shared-lambda two-state Marcu",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "45: the joined-model side ratio is recomputed",
+      "passed": true,
+      "detail": "r_pred=0.863201, r_obs=1.585732, diff=0.722531",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "45: the joined-model width scale is recomputed",
+      "passed": true,
+      "detail": "fwhm=0.633441, classical_rel=0.102775, quantized_rel=0.180542",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "45: the two-component join is FALSIFIED with frozen thresholds",
+      "passed": true,
+      "detail": "status=FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; cla",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1698,8 +1733,8 @@
       "observed": null
     }
   ],
-  "total": 240,
-  "passed": 240,
+  "total": 245,
+  "passed": 245,
   "failed": 0,
   "failures": []
 }

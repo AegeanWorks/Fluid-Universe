@@ -115,3 +115,46 @@ def observed_scales() -> dict:
         "width": observed_width_change_ev(),
         "shape": shape_evidence(),
     }
+
+
+# ---------------------------------------------------------------------------
+# Side half-widths (claim 44 comparator; Jou & Freeman fits via Coe review).
+# ---------------------------------------------------------------------------
+# Jou & Freeman temperature-dependent lineshape fits for bulk H2O, as
+# tabulated in the Coe et al. review (research.cbc.osu.edu IRPC proceedings,
+# which reproduces both the Tuttle-Golden and the Jou-Freeman constraints):
+#   Emax(T) = 2.4506 - 0.0024 * T          (eV, absorption maximum)
+#   G(T)    = 0.1517 + 0.00051 * T        (eV, Gaussian HWHM, red side)
+#   L(T)    = 0.5124 - 0.00010 * T        (eV, Lorentzian HWHM, blue side)
+# with T in Kelvin. Cross-checks: G(210) = 0.2588 vs table 0.259;
+# L(210) = 0.4914 vs table 0.491; Emax(210) = 1.9466 vs table 1.947;
+# G(298) = 0.3037 with L(298) = 0.4826. Definitions (blue = Lorentzian
+# HWHM, red = Gaussian HWHM) per Bartels et al. D2O work: Wb and Wr are
+# the half-widths at half-maximum of the Lorentzian and Gaussian on the
+# blue and red sides, respectively. Jou & Freeman Table 1 itself was
+# measured at 26 C (299.15 K).
+
+JF_EMAX_INTERCEPT_EV = 2.4506
+JF_EMAX_SLOPE_EV_PER_K = -0.0024
+JF_G_INTERCEPT_EV = 0.1517
+JF_G_SLOPE_EV_PER_K = 0.00051
+JF_L_INTERCEPT_EV = 0.5124
+JF_L_SLOPE_EV_PER_K = -0.00010
+
+
+def jou_freeman_side_widths(temperature_k: float = 299.15) -> dict:
+    """Observed red/blue side half-widths from the Jou-Freeman fits."""
+    if temperature_k <= 0.0:
+        raise ValueError("temperature must be positive")
+    g = JF_G_INTERCEPT_EV + JF_G_SLOPE_EV_PER_K * temperature_k
+    l = JF_L_INTERCEPT_EV + JF_L_SLOPE_EV_PER_K * temperature_k
+    emax = JF_EMAX_INTERCEPT_EV + JF_EMAX_SLOPE_EV_PER_K * temperature_k
+    return {
+        "temperature_k": temperature_k,
+        "red_gaussian_hwhm_ev": g,
+        "blue_lorentzian_hwhm_ev": l,
+        "emax_ev": emax,
+        "side_ratio_blue_over_red": l / g,
+        "fwhm_ev": g + l,
+        "source": "Jou & Freeman fits via Coe et al. review; Wb/Wr per Bartels",
+    }

@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `154`
+- **Total Python Modules**: `160`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `820`
+- **Total Top-Level Functions**: `843`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `21161`
+- **Total Source Lines**: `21944`
 
 ---
 
@@ -459,6 +459,18 @@
 
 ---
 
+### [`phenomenology/two_state_report.py`](phenomenology/two_state_report.py)
+> *Shared-lambda two-state Marcus assignment (claim 44, ADR-036).*
+
+**Size**: `164` lines (`6546` bytes)
+
+**Functions:**
+- `def run_two_state_comparison(temperature_k, write)` - *Compare the shared-lambda equal-width prediction vs the observed ratio.*
+- `def run_two_state_check(write)`
+- `def render_markdown(payload)`
+
+---
+
 ### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
 > *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
 
@@ -647,6 +659,17 @@
 
 **Functions:**
 - `def run_water_temperature_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/water_twocomponent_report.py`](phenomenology/water_twocomponent_report.py)
+> *Two-component band-model comparison (claim 45, ADR-037).*
+
+**Size**: `116` lines (`4182` bytes)
+
+**Functions:**
+- `def run_water_twocomponent_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1301,6 +1324,21 @@
 
 ---
 
+### [`tests/test_two_state.py`](tests/test_two_state.py)
+> *Shared-lambda two-state Marcus assignment (claim 44).*
+
+**Size**: `92` lines (`2974` bytes)
+
+**Functions:**
+- `def test_shared_lambda_gives_identical_widths()`
+- `def test_ratio_prediction_is_t_independent()`
+- `def test_observed_component_ratio()`
+- `def test_kill_threshold_is_frozen()`
+- `def test_comparison_falsifies_shared_lambda_assignment()`
+- `def test_two_state_scales_use_frozen_lambda()`
+
+---
+
 ### [`tests/test_vortex_cascade.py`](tests/test_vortex_cascade.py)
 > *One-parameter vortex hierarchy tests (claim 18).*
 
@@ -1515,6 +1553,19 @@
 - `def test_temperature_scales()`
 - `def test_no_bound_1p_at_any_temperature()`
 - `def test_invalid_inputs_are_rejected()`
+
+---
+
+### [`tests/test_water_twocomponent.py`](tests/test_water_twocomponent.py)
+> *Two-component band model vs observed side widths (claim 45).*
+
+**Size**: `74` lines (`2633` bytes)
+
+**Functions:**
+- `def test_side_widths_match_jou_freeman_fits()`
+- `def test_twocomponent_prediction_uses_fixed_inputs_only()`
+- `def test_comparison_kills_both_legs()`
+- `def test_thresholds_are_frozen()`
 
 ---
 
@@ -1846,6 +1897,19 @@
 
 ---
 
+### [`theory/two_state_marcus.py`](theory/two_state_marcus.py)
+> *Shared-lambda two-state Marcus assignment (claim 44, ADR-036).*
+
+**Size**: `94` lines (`3592` bytes)
+
+**Functions:**
+- `def shared_lambda_widths(temperature_k)` - *Predicted component widths for two Marcus states sharing lambda.*
+- `def component_ratio()` - *Observed Jou-Freeman component widths and their ratio.*
+- `def kill_thresholds()` - *Frozen kill threshold inherited from ADR-034 (never tuned here).*
+- `def two_state_scales(temperature_k)` - *Collect the shared-lambda prediction and the observed ratio.*
+
+---
+
 ### [`theory/vortex_cascade.py`](theory/vortex_cascade.py)
 > *One-parameter vortex/eddy hierarchy test (claim 18, ADR-009).*
 
@@ -1986,12 +2050,13 @@
 ### [`theory/water_observed_shape.py`](theory/water_observed_shape.py)
 > *Observed hydrated-electron band-shape comparator data (claim 43, ADR-035).*
 
-**Size**: `117` lines (`4835` bytes)
+**Size**: `160` lines (`6873` bytes)
 
 **Functions:**
 - `def observed_width_change_ev(span_k)` - *Observed half-width change over a temperature span.*
 - `def shape_evidence()` - *Observed shape facts that a single symmetric Gaussian must meet.*
 - `def observed_scales()` - *Collect the observed comparator numbers in one payload.*
+- `def jou_freeman_side_widths(temperature_k)` - *Observed red/blue side half-widths from the Jou-Freeman fits.*
 
 ---
 
@@ -2065,6 +2130,16 @@
 
 ---
 
+### [`theory/water_twocomponent.py`](theory/water_twocomponent.py)
+> *Zero-free-parameter two-component band model (claim 45, ADR-037).*
+
+**Size**: `92` lines (`3559` bytes)
+
+**Functions:**
+- `def twocomponent_scales(temperature_k)` - *Fixed-input two-component prediction plus observed side widths.*
+
+---
+
 ### [`theory/water_vde.py`](theory/water_vde.py)
 > *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
 
@@ -2115,7 +2190,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2693` lines (`108903` bytes)
+**Size**: `2797` lines (`113417` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2181,6 +2256,8 @@
 - `def audit_water_temperature(audit)`
 - `def audit_water_temperature_residual(audit)`
 - `def audit_water_lineshape(audit)`
+- `def audit_two_state(audit)`
+- `def audit_water_twocomponent(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2210,7 +2287,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `179` lines (`4663` bytes)
+**Size**: `183` lines (`4765` bytes)
 
 **Functions:**
 - `def _source_files()`

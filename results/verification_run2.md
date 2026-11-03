@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**240/240 checks passed.**
+**245/245 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -147,6 +147,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 43: the prediction carries frozen kill thresholds | PASS | status=FALSIFIED , tol=0.05/0.15/0.3 |
 | 43: the observed width-ratio comparison is recomputed | PASS | obs_change=0.009000000000000001, obs_ratio=1.013765220890398, diff=0.04951277082938321 |
 | 43: the observed shape kill is recomputed | PASS | comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam |
+| 44: two Marcus states sharing lambda have identical widths | PASS | g1=0.680915, g2=0.680915, ratio=1.0 |
+| 44: the observed component ratio kills the shared-lambda assignment | PASS | obs_ratio=1.9189189189189189, diff=0.9189189189189189, status=FALSIFIED (shared-lambda two-state Marcu |
+| 45: the joined-model side ratio is recomputed | PASS | r_pred=0.863201, r_obs=1.585732, diff=0.722531 |
+| 45: the joined-model width scale is recomputed | PASS | fwhm=0.633441, classical_rel=0.102775, quantized_rel=0.180542 |
+| 45: the two-component join is FALSIFIED with frozen thresholds | PASS | status=FALSIFIED (two-component join; ratio diff 0.7225 > 0.15; cla |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

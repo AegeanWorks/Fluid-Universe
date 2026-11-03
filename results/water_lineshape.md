@@ -55,4 +55,4 @@ Model: classical Marcus Gaussian with lambda fixed from claim 39.
 With lambda fixed at 1.617132544 eV from the Born cavity, the classical Marcus Gaussian predicts W(0 C)=0.653822 eV, W(45 C)=0.695194 eV, ratio 1.0633, with exact symmetry (skew 0, half-width ratio 1). Observed comparator: Christensen & Sehested 1986 width slope 2e-4 eV/K (predicted slope 9.194e-04 eV/K) and Jou & Freeman 1979 two-Gaussian-plus-tail decomposition (0.71 vs 0.37 eV, tail n=4.4, asymmetric; Bartels et al. 2005 Gaussian/Lorentzian split). Ratio diff 0.0495 (HWHM reading 0.0357) vs tolerance 0.05; component-width ratio 1.9189 vs 1 (diff 0.9189 > 0.15). The single symmetric Gaussian is falsified on shape; the width-ratio scaling survives this comparator.
 
 - Config SHA-256: `a6f7303b8be40c6bef5c5d9814f1ff3168fa3507bbe1f486f849a68640abe838`
-- Git: `faa31f97d31eb39e7a9fb62c30b3f886514009df` (dirty=True)
+- Git: `5e6bb615dc7bd30cd6b819efbc7d9d714b87770d` (dirty=True)

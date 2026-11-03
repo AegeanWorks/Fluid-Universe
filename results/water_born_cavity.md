@@ -45,4 +45,4 @@ The required reorganization radius is only 3.0% above the self-consistent Born e
 The R-dependent Born cavity radius 2.444456 Angstrom is within 3.0% of the radius required by the VDE-optical difference (2.517841 Angstrom). The water reorganization energy there is 1.617133 eV; the Marcus relation predicts VDE=3.317133 eV, within 0.47 sigma of the measured 3.27+/-0.10 eV. The well has no bound 1p, so the 1.7 eV feature is a water reorganization transition, not a static 1s->1p gap. This is a positive synthesis of the fluid mechanics and water's dielectric contrast; the next test is the Marcus band shape and width.
 
 - Config SHA-256: `1ea395c1643dfb39df54157b733a2e7468269c6d44e01e44339ac1b7e21cd25a`
-- Git: `faa31f97d31eb39e7a9fb62c30b3f886514009df` (dirty=True)
+- Git: `5e6bb615dc7bd30cd6b819efbc7d9d714b87770d` (dirty=True)

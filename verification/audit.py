@@ -2271,7 +2271,7 @@ def audit_water_twocomponent(audit: Audit) -> None:
     r_pred = blue / red
     r_obs = l / g
     audit.record(
-        "44: the joined-model side ratio is recomputed",
+        "45: the joined-model side ratio is recomputed",
         abs(scales["red_hwhm_ev"] - red) < 1.0e-9
         and abs(scales["blue_hwhm_ev"] - blue) < 1.0e-9
         and abs(scales["r_pred"] - r_pred) < 1.0e-9
@@ -2282,7 +2282,7 @@ def audit_water_twocomponent(audit: Audit) -> None:
         f"diff={scales['ratio_diff']:.6f}",
     )
     audit.record(
-        "44: the joined-model width scale is recomputed",
+        "45: the joined-model width scale is recomputed",
         abs(scales["fwhm_model_ev"] - (blue + red)) < 1.0e-9
         and abs(
             scales["classical_rel_diff"] - abs(scales["fwhm_model_ev"] - 0.706) / 0.706
@@ -2298,12 +2298,12 @@ def audit_water_twocomponent(audit: Audit) -> None:
         f"quantized_rel={scales['quantized_rel_diff']:.6f}",
     )
     audit.record(
-        "44: the two-component join is FALSIFIED with frozen thresholds",
+        "45: the two-component join is FALSIFIED with frozen thresholds",
         scales["thresholds"]["width_ratio_tol"] == 0.15
         and scales["thresholds"]["fwhm_classical_tol"] == 0.05
         and scales["thresholds"]["fwhm_quantized_tol"] == 0.15
-        and verdict["claim_44_status"].startswith("FALSIFIED"),
-        f"status={verdict['claim_44_status'][:60]}",
+        and verdict["claim_45_status"].startswith("FALSIFIED"),
+        f"status={verdict['claim_45_status'][:60]}",
     )
 
 
@@ -2733,6 +2733,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_temperature_residual(audit)
     audit_water_lineshape(audit)
     audit_two_state(audit)
+    audit_water_twocomponent(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

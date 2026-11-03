@@ -39,4 +39,4 @@ The reference widths are the classical (0.706 eV) and quantized (0.773 eV) bulk 
 The same water reorganization energy that predicts the VDE also predicts the band width: FWHM=0.680915 eV at 300 K, 3.6% below the classical reference 0.706 eV and 11.9% below the quantized 0.773 eV. The width scales as sqrt(T): 0.555964 eV at 200 K and 0.735472 eV at 350 K. The classical Gaussian model is approximate; the experimental band is asymmetric with a blue tail. The next test is the asymmetric line shape and its temperature dependence.
 
 - Config SHA-256: `fa7c645e050fd6841bf9d7bc89476024d5e666f9cf11008f7dd4ef8bcb1db530`
-- Git: `faa31f97d31eb39e7a9fb62c30b3f886514009df` (dirty=True)
+- Git: `5e6bb615dc7bd30cd6b819efbc7d9d714b87770d` (dirty=True)

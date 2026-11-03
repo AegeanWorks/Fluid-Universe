@@ -871,3 +871,16 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - This shares its shape fact with claim 43 and is not independent evidence. A state-dependent solvation (lambda1 != lambda2) would fit the two widths but predict nothing; claims 39-43 numbers are unchanged.
 
 - Verification after the two-state falsification: two separate runs, 242/242 checks each.
+
+## 2026-11-03 - Two-component Gaussian/tail join falsified on both legs (claim 45, ADR-037)
+
+**Added**
+
+- `theory/water_twocomponent.py` (zero-free-parameter join at Emax=1.72 eV: Gaussian red HWHM = Marcus FWHM/2 plus n=4.4 power-law blue tail, continuity definitional); `phenomenology/water_twocomponent_report.py`, `make watertwocomponent`, `tests/test_water_twocomponent.py`, `results/water_twocomponent.{json,md}`; three new independent audit checks in `verification/audit.py` (side-ratio, width-scale and FALSIFIED-status recomputation, no project imports); formulas F29; side-width comparator formulas in `theory/literature.md` (Jou-Freeman fits via the Coe review; Wb/Wr per Bartels).
+
+**Results**
+
+- Predicted R=0.8632, FWHM 0.6334 eV at 299.15 K against observed side widths R=1.5857 (diff 0.7225 > 0.15) and FWHM 0.7868 eV (rel diff 10.3% vs classical 0.706, 18.1% vs quantized 0.773) — the join is FALSIFIED on both legs. Shares tail/shape facts with claims 43-44 and is not independent evidence; claims 39-44 numbers are unchanged.
+- Claim number deconflicted with the concurrent shared-lambda two-state work (claim 44, ADR-036); this model tests the tail-inclusive join that claim 44 explicitly left with claim 43.
+
+- Verification after the two-component falsification: two separate runs, 245/245 checks each.
