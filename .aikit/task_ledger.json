@@ -3,24 +3,15 @@
   "active_task": {
     "task_id": "fluid-audit-waves-0-30-v1",
     "last_phase": "in_progress",
-    "active_phase": 4,
-    "status": "in_progress",
+    "active_phase": 5,
+    "status": "completed",
     "updated_at": 1793722743.8105874,
     "owner": "kilo:audit",
     "started_by": "kilo:audit",
-    "continuations": []
+    "continuations": [],
+    "completed_at": 1793722789.5241463
   },
   "checkpoints": [
-    {
-      "task_id": "water-pressure-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-pressure-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793391770.5618515,
-      "timestamp_str": "2026-10-30 23:22:50",
-      "agent": "opencode"
-    },
     {
       "task_id": "water-reorganization-v1",
       "phase": "planning",
@@ -255,6 +246,16 @@
       "status": "in_progress",
       "timestamp": 1793722743.8105874,
       "timestamp_str": "2026-11-03 19:19:03",
+      "agent": "kilo:audit"
+    },
+    {
+      "task_id": "fluid-audit-waves-0-30-v1",
+      "phase": "completed",
+      "phase_num": 5,
+      "description": "Task 'fluid-audit-waves-0-30-v1' completed successfully.",
+      "status": "completed",
+      "timestamp": 1793722789.5241482,
+      "timestamp_str": "2026-11-03 19:19:49",
       "agent": "kilo:audit"
     }
   ]
