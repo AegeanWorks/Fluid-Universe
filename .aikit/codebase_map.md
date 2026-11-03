@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `160`
+- **Total Python Modules**: `163`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `843`
+- **Total Top-Level Functions**: `856`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `21944`
+- **Total Source Lines**: `22355`
 
 ---
 
@@ -272,6 +272,17 @@
 - `def scan_ordering(ordering, params, m_light_max, points)`
 - `def corner_max(ordering, params)` - *Maximum Q at m_light = 0 over the 3-sigma corners of the splittings.*
 - `def run_neutrino_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/node_defect_report.py`](phenomenology/node_defect_report.py)
+> *Two-branch defect representation check (claim 46, ADR-038).*
+
+**Size**: `146` lines (`5225` bytes)
+
+**Functions:**
+- `def run_node_defect_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1120,6 +1131,20 @@
 
 ---
 
+### [`tests/test_node_defect.py`](tests/test_node_defect.py)
+> *Two-branch defect representation tests (claim 46).*
+
+**Size**: `68` lines (`1944` bytes)
+
+**Functions:**
+- `def test_branch_identities_are_exact()`
+- `def test_node_scaling_meets_kill_gate()`
+- `def test_vortex_gate_is_quantized()`
+- `def test_representation_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_pmns.py`](tests/test_pmns.py)
 > *Minimal circulant PMNS branches (claim 7b).*
 
@@ -1830,6 +1855,20 @@
 
 ---
 
+### [`theory/node_defect.py`](theory/node_defect.py)
+> *Two-branch defect representation of nodal states (claim 46, ADR-038).*
+
+**Size**: `152` lines (`5157` bytes)
+
+**Functions:**
+- `def branch_split(x, omega, hbar, mass)` - *Exact two-branch split of the first-excited state.*
+- `def branch_regular_pressure_match(x, omega, hbar, mass)` - *Regular quantum pressure evaluated branch-wise away from node.*
+- `def node_scaling()` - *Phase-gradient maximum scaling over the frozen grid set.*
+- `def vortex_gate()` - *Frozen 2p vortex numbers, recomputed from the existing module.*
+- `def representation_scales()` - *Collect the representation correspondence bundle (no verdict).*
+
+---
+
 ### [`theory/reduction.py`](theory/reduction.py)
 > *Dimensional reduction and the effective moment of inertia (claim 6b).*
 
@@ -2190,7 +2229,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2797` lines (`113417` bytes)
+**Size**: `2840` lines (`115168` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2258,6 +2297,7 @@
 - `def audit_water_lineshape(audit)`
 - `def audit_two_state(audit)`
 - `def audit_water_twocomponent(audit)`
+- `def audit_node_defect(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2287,7 +2327,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `183` lines (`4765` bytes)
+**Size**: `185` lines (`4811` bytes)
 
 **Functions:**
 - `def _source_files()`
