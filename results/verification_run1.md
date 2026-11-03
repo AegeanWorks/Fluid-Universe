@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**281/281 checks passed.**
+**286/286 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -188,6 +188,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 52: the Yasui sign is recomputed | PASS | max_accel=-1.240807 |
 | 52: the quadrature crossing is recomputed | PASS | quad=0.535069109, stored=0.535069132 |
 | 52: the scaling law is recomputed | PASS | hit=0.3960000000000003, T=1.570500000 |
+| 53: the joint extremum is recomputed | PASS | worst_dev=1.344e-21 |
+| 53: the center period is recomputed | PASS | T_mu=2pi |
+| 53: the width period is recomputed | PASS | T_sg=pi |
+| 53: the term match is recomputed | PASS | max_rel=0.000e+00 |
+| 53: the scaling law is recomputed | PASS | mu=3.141592130, sg=1.570795279 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |
