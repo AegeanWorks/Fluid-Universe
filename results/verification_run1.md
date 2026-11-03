@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**248/248 checks passed.**
+**251/251 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -155,6 +155,9 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 46: the two-branch identities are recomputed | PASS | residual=0.000e+00, density=0.000e+00, slip=3.141592653590 |
 | 46: the node gradient scaling is recomputed | PASS | slope=-1.000000000000 |
 | 46: the vortex circulation is recomputed | PASS | circ=6.283185307180, loop=6.283185307180, status=NUMERIC (two-branch representation identities verified) |
+| 47: the two-branch radial identities are recomputed | PASS | residual=0.000e+00, node=2.000000000000, slip=3.141592653590 |
+| 47: the radial norm, overlap and peaks are recomputed | PASS | norm=1.000000000000, overlap=-2.353e-14, outer=5.236067977500 |
+| 47: the preserved 1s/2p numbers are recomputed | PASS | balance_max=0.000e+00, loop=6.283185307180, status=NUMERIC (radial-node representation identities verified) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

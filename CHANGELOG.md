@@ -896,3 +896,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Identity residual 0.0, node density 0.0, phase slip pi; gradient maxima 20.106/40.212/80.425/160.850 at N=256/512/1024/2048, slope -1.0000000000000002 (gate 0.01); circulation 6.283185307180 with loop integral equal (gate rel 1e-6), velocity 0.5, momentum 1.0, most-probable radius 4.0, norm 1.0000000000000002 — NUMERIC with zero parameters. Q-match at x=0.996 is correspondence-only, never gated (2nd-order central gives ~6e-06, 8th-order ~8.6e-13; method-specific). Shares branch facts with claims 20/24/26 and is not independent evidence of dynamics; claims 20-26 numbers are unchanged; core-scale dynamics is the next span.
 
 - Verification after the two-branch representation: two separate runs, 248/248 checks each.
+
+## 2026-11-03 - Radial-node generality verified (claim 47, ADR-039)
+
+**Added**
+
+- `theory/hydrogen_radial_nodes.py` (exact split R_20 = s(r)·|R_20|, radius from derived `bohr_radius()`; shell slip pi, no circulation claimed, no dynamics); `phenomenology/radial_node_report.py`, `make radialnode`, `tests/test_radial_node.py`, `results/radial_node.{json,md}`; three new independent audit checks in `verification/audit.py` (branch identities, norm/overlap/peaks and 1s/2p preservation recomputation, no project imports); formulas F31.
+
+**Results**
+
+- Identity residual 0.0, node 2.0 exact, slip pi; norm 1.000000000000, overlap -2.36e-14 (gate 1e-6), peaks 0.7639320225/5.2360679775; 1s balance residuals 0 at r=0.5,1,2,5, 2p loop 6.283185307180 — NUMERIC with zero parameters. L5 shell-split doctrine (inner/outer no-crossing) labelled analogical/inferred, never sourced; Lamb ~1057.8 MHz kept as energy context only. Shares branch facts with claims 20/24/25/26/46 and is not independent evidence of dynamics; claims 20-26 and 43-46 numbers are unchanged.
+
+- Verification after the radial-node generality: two separate runs, 251/251 checks each.

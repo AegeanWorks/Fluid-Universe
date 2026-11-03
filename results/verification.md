@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T18:50:58+00:00 | `89a737d52bb1264366e34d341a48f3fdf59becf8` | 248/248 | `e58c920a7704b385...` | `1cfba93a76a9b79b...` |
-| run2 | 2026-11-03T18:52:21+00:00 | `89a737d52bb1264366e34d341a48f3fdf59becf8` | 248/248 | `e58c920a7704b385...` | `1cfba93a76a9b79b...` |
+| run1 | 2026-11-03T19:44:04+00:00 | `d92b4e1e1950d2132c04c44b396fcf9c96187376` | 251/251 | `b101633edeedb159...` | `75fff95681dd99bc...` |
+| run2 | 2026-11-03T19:45:06+00:00 | `d92b4e1e1950d2132c04c44b396fcf9c96187376` | 251/251 | `b101633edeedb159...` | `75fff95681dd99bc...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -140,6 +140,9 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 46: the node gradient scaling is recomputed | PASS | PASS | YES | YES | slope=-1.000000000000 |
 | 46: the two-branch identities are recomputed | PASS | PASS | YES | YES | residual=0.000e+00, density=0.000e+00, slip=3.141592653590 |
 | 46: the vortex circulation is recomputed | PASS | PASS | YES | YES | circ=6.283185307180, loop=6.283185307180, status=NUMERIC (two-branch representation identities verified) |
+| 47: the preserved 1s/2p numbers are recomputed | PASS | PASS | YES | YES | balance_max=0.000e+00, loop=6.283185307180, status=NUMERIC (radial-node representation identities verified) |
+| 47: the radial norm, overlap and peaks are recomputed | PASS | PASS | YES | YES | norm=1.000000000000, overlap=-2.353e-14, outer=5.236067977500 |
+| 47: the two-branch radial identities are recomputed | PASS | PASS | YES | YES | residual=0.000e+00, node=2.000000000000, slip=3.141592653590 |
 | 4a: exact one-loop invariance would require a generation-blind RHS | PASS | PASS | YES | YES | the (3/2)y_k^2 term is generation-dependent, so Q and r run; the nonzero drift confirms it |
 | 4b: independent RGE reproduces Q(mu) and r(mu) | PASS | PASS | YES | YES | max |Delta Q|=4.441e-16, max |Delta r|=4.441e-16 vs stored table |
 | 4b: one-loop drift is nonzero but small | PASS | PASS | YES | YES | Delta Q=+2.888e-06 over ln(1e16/MZ)=32.328 |

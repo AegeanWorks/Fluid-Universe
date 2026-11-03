@@ -140,6 +140,8 @@ RESULT_FILES = (
     "water_twocomponent.md",
     "node_defect.json",
     "node_defect.md",
+    "radial_node.json",
+    "radial_node.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

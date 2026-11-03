@@ -2349,6 +2349,48 @@ def audit_node_defect(audit: Audit) -> None:
     )
 
 
+def audit_radial_node(audit: Audit) -> None:
+    payload = load_results("radial_node.json")
+    result = payload["result"]
+    scales = result["scales"]
+    branch = scales["branch"]
+    radial = scales["radial"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent branch identities: split exact, node at 2a0, slip pi.
+    audit.record(
+        "47: the two-branch radial identities are recomputed",
+        branch["identity_residual"] == 0.0
+        and abs(branch["node_radius"] - 2.0 * scales["radius"]) < 1e-9
+        and abs(branch["phase_slip"] - math.pi) < 1e-12,
+        f"residual={branch['identity_residual']:.3e}, "
+        f"node={branch['node_radius']:.12f}, "
+        f"slip={branch['phase_slip']:.12f}",
+    )
+    # Independent radial numbers: norm 1, overlap 0, peaks 3+-sqrt(5).
+    audit.record(
+        "47: the radial norm, overlap and peaks are recomputed",
+        abs(radial["norm"] - 1.0) < 1e-6
+        and abs(radial["overlap_10_20"]) < 1e-6
+        and abs(radial["outer_peak"] - (3.0 + math.sqrt(5.0))) / (3.0 + math.sqrt(5.0)) < 1e-6
+        and abs(radial["inner_peak"] - (3.0 - math.sqrt(5.0))) < 1e-6,
+        f"norm={radial['norm']:.12f}, "
+        f"overlap={radial['overlap_10_20']:.3e}, "
+        f"outer={radial['outer_peak']:.12f}",
+    )
+    # Independent no-disturbance: 1s balance and 2p loop preserved.
+    preserved = scales["preserved"]
+    audit.record(
+        "47: the preserved 1s/2p numbers are recomputed",
+        all(abs(v) <= 1e-12 for v in preserved["balance_residuals"])
+        and abs(preserved["loop_circulation"] - 2.0 * math.pi) / (2.0 * math.pi) < 1e-6
+        and verdict["claim_47_status"].startswith("NUMERIC"),
+        f"balance_max={max(abs(v) for v in preserved['balance_residuals']):.3e}, "
+        f"loop={preserved['loop_circulation']:.12f}, "
+        f"status={verdict['claim_47_status'][:60]}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2777,6 +2819,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_two_state(audit)
     audit_water_twocomponent(audit)
     audit_node_defect(audit)
+    audit_radial_node(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

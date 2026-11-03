@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "config": {
+      "gates": {
+        "balance_atol": 1e-12,
+        "loop_rel_tol": 1e-06,
+        "node_abs_tol": 1e-09,
+        "norm_rel_tol": 1e-06,
+        "overlap_abs_tol": 1e-06,
+        "peak_rel_tol": 1e-06
+      },
+      "loop": {
+        "m": 1,
+        "r": 2.0,
+        "theta": 1.5707963267948966
+      },
+      "radius_source": "theory.hydrogen_fluid.bohr_radius (claim-25 derived)",
+      "scope": "representation identities, zero parameters, no dynamics"
+    },
+    "config_sha256": "3d021566691721d2d29cdb403df4ed7ccf53e8eb9568c537fb7f41468279d8e1",
+    "generated_utc": "2026-11-03T19:23:01+00:00",
+    "git": {
+      "commit": "d92b4e1e1950d2132c04c44b396fcf9c96187376",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "balance_atol": 1e-12,
+      "kills": {
+        "balance": false,
+        "identity": false,
+        "loop": false,
+        "node": false,
+        "norm": false,
+        "overlap": false,
+        "peak": false,
+        "slip": false
+      },
+      "loop_rel_tol": 1e-06,
+      "node_abs_tol": 1e-09,
+      "norm_rel_tol": 1e-06,
+      "overlap_abs_tol": 1e-06,
+      "peak_rel_tol": 1e-06
+    },
+    "scales": {
+      "branch": {
+        "identity_residual": 0.0,
+        "node_radius": 2.0,
+        "phase_slip": 3.141592653589793
+      },
+      "loop": {
+        "m": 1,
+        "r": 2.0,
+        "theta": 1.5707963267948966
+      },
+      "preserved": {
+        "balance_residuals": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "loop_circulation": 6.283185307179586
+      },
+      "radial": {
+        "inner_peak": 0.7639320225002102,
+        "norm": 0.9999999999999915,
+        "outer_peak": 5.23606797749979,
+        "overlap_10_20": -2.353019891574832e-14
+      },
+      "radius": 1.0,
+      "radius_source": "theory.hydrogen_fluid.bohr_radius (claim-25 derived)"
+    },
+    "verdict": {
+      "claim_47_status": "NUMERIC (radial-node representation identities verified)",
+      "note": "Exact two-branch split R_20=s*|R_20| with radius from bohr_radius(); shell slip pi, no circulation claimed; 1s/2p numbers preserved via shared modules."
+    }
+  }
+}

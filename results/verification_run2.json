@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-03T18:52:21+00:00",
-    "git_commit": "89a737d52bb1264366e34d341a48f3fdf59becf8",
+    "generated_utc": "2026-11-03T19:45:06+00:00",
+    "git_commit": "d92b4e1e1950d2132c04c44b396fcf9c96187376",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "e58c920a7704b385d189100b001e4d71c3453cbb8b3d01805b47232bff7125f2",
-      "results_sha256": "1cfba93a76a9b79bbe27766cc278d9be7f012a0e97e2af38c8c16dbb0fef6e64"
+      "source_sha256": "b101633edeedb159cb5891ad6b0c124e7f800b18d14216ac294f0b991469b3cb",
+      "results_sha256": "75fff95681dd99bc23e63e233f984b27001c54831901f5c8cb0223168932a88a"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1061,6 +1061,27 @@
       "observed": null
     },
     {
+      "claim": "47: the two-branch radial identities are recomputed",
+      "passed": true,
+      "detail": "residual=0.000e+00, node=2.000000000000, slip=3.141592653590",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "47: the radial norm, overlap and peaks are recomputed",
+      "passed": true,
+      "detail": "norm=1.000000000000, overlap=-2.353e-14, outer=5.236067977500",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "47: the preserved 1s/2p numbers are recomputed",
+      "passed": true,
+      "detail": "balance_max=0.000e+00, loop=6.283185307180, status=NUMERIC (radial-node representation identities verified)",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -1754,8 +1775,8 @@
       "observed": null
     }
   ],
-  "total": 248,
-  "passed": 248,
+  "total": 251,
+  "passed": 251,
   "failed": 0,
   "failures": []
 }
