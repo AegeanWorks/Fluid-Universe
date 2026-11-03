@@ -2636,6 +2636,113 @@ def audit_variational_dynamics(audit: Audit) -> None:
         )
 
 
+def audit_yasue_dynamics(audit: Audit) -> None:
+    payload = load_results("yasue_dynamics.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent collapse: monotone releases, floor hit before pi, no returns.
+    for entry in scales["releases"]:
+        audit.record(
+            "52: a Yasui release collapses",
+            bool(entry["monotone"])
+            and entry["floor_hit_time"] is not None
+            and entry["floor_hit_time"] < math.pi
+            and entry["upward_crossings"] == 0,
+            f"f={entry['factor']}, t_hit={entry['floor_hit_time']:.6f}, "
+            f"up={entry['upward_crossings']}",
+        )
+    # Independent control: G-M twin from the same releases oscillates at pi.
+    for entry in scales["twins"]:
+        audit.record(
+            "52: the G-M twin oscillates",
+            math.isfinite(entry["period"])
+            and abs(entry["period"] - math.pi) <= 1e-3,
+            f"f={entry.get('factor', '?')}, T={entry['period']:.9f}",
+        )
+    # Independent sign: Yasui accel negative on a coarse sigma grid.
+    import numpy as _np
+
+    coarse = _np.sqrt(_np.linspace(0.125, 2.0, 201))
+    worst = max(-0.25 / (float(s) ** 3) - 1.0 * float(s) for s in coarse)
+    audit.record(
+        "52: the Yasui sign is recomputed",
+        worst < 0.0,
+        f"max_accel={worst:.6f}",
+    )
+    # Independent quadrature: energy-integral mild crossing on a coarse grid.
+    import math as _math
+
+    _s0 = 1.01 * _math.sqrt(0.5)
+    _e = -0.25 / (2.0 * _s0 * _s0) + 0.5 * _s0 * _s0
+    _umax = _math.sqrt(_s0 - 0.5)
+    _n = 2001
+    _vp = _math.sqrt(max(2.0 * 0.25 / (_s0**3) + 2.0 * 1.0 * _s0, 0.0))
+    _total, _pu, _pf = 0.0, 0.0, 2.0 / _vp if _vp > 0.0 else 0.0
+    for _i in range(1, _n):
+        _u = _umax * _i / (_n - 1)
+        _s = _s0 - _u * _u
+        _v2 = max(
+            2.0 * (_e - (-0.25 / (2.0 * _s * _s) + 0.5 * _s * _s)), 0.0
+        )
+        _cur = 2.0 * _u / _math.sqrt(_v2) if _v2 > 0.0 else 0.0
+        _total += 0.5 * (_pf + _cur) * (_u - _pu)
+        _pu, _pf = _u, _cur
+    _stored = scales["releases"][0]["mild_crossing_time"]
+    audit.record(
+        "52: the quadrature crossing is recomputed",
+        abs(_total - _stored) / _stored <= 1e-3,
+        f"quad={_total:.9f}, stored={_stored:.9f}",
+    )
+    # Independent scaling law at omega = 2 (own Verlet, no project imports).
+    _s, _v, _t, _hit2, _prev2 = 1.01 * 0.5, 0.0, 0.0, None, 1.01 * 0.5
+    while _t < math.pi:
+        _a = -0.25 / (_s**3) - 4.0 * _s
+        _v += 0.5 * 0.001 * _a
+        _s += 0.001 * _v
+        _a2 = -0.25 / (_s**3) - 4.0 * _s if _s > 0.0 else _a
+        _v += 0.5 * 0.001 * _a2
+        _t += 0.001
+        if _s <= 0.05:
+            _hit2 = _t
+            break
+    _s, _v, _t, _cross2, _prev2 = 1.01 * 0.5, 0.0, 0.0, [], 1.01 * 0.5 - 0.5
+    while _t < 4.0 * math.pi:
+        _a = 0.25 / (_s**3) - 4.0 * _s
+        _v += 0.5 * 0.001 * _a
+        _s += 0.001 * _v
+        _a2 = 0.25 / (_s**3) - 4.0 * _s if _s > 0.0 else _a
+        _v += 0.5 * 0.001 * _a2
+        _t += 0.001
+        _cur = _s - 0.5
+        if _prev2 < 0.0 <= _cur or _prev2 > 0.0 >= _cur:
+            _cross2.append(_t)
+            if len(_cross2) >= 5:
+                break
+        _prev2 = _cur
+    _per2 = (
+        sum(b - a for a, b in zip(_cross2[::2], _cross2[2::2]))
+        / ((len(_cross2) - 1) // 2)
+        if len(_cross2) >= 3
+        else float("nan")
+    )
+    audit.record(
+        "52: the scaling law is recomputed",
+        _hit2 is not None
+        and _hit2 < math.pi / 4.0
+        and math.isfinite(_per2)
+        and abs(_per2 - math.pi / 2.0) <= 1e-3,
+        f"hit={_hit2}, T={_per2:.9f}",
+    )
+    if not verdict["claim_52_status"].startswith("NUMERIC"):
+        audit.record(
+            "52: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_52_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3069,6 +3176,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_variational_width(audit)
     audit_variational_saddle(audit)
     audit_variational_dynamics(audit)
+    audit_yasue_dynamics(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

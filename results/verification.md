@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T23:00:41+00:00 | `ae20a5f3486c68ec1d4132573202fa398400dd40` | 272/272 | `37bb6835425130d2...` | `2b5240021af0f063...` |
-| run2 | 2026-11-03T23:00:52+00:00 | `ae20a5f3486c68ec1d4132573202fa398400dd40` | 272/272 | `37bb6835425130d2...` | `2b5240021af0f063...` |
+| run1 | 2026-11-03T23:31:55+00:00 | `65772fee29249c1c3707d82a3110ccd3a40f1a03` | 281/281 | `859d31c6604604e7...` | `b7325c4f01b3b1ab...` |
+| run2 | 2026-11-03T23:32:02+00:00 | `65772fee29249c1c3707d82a3110ccd3a40f1a03` | 281/281 | `859d31c6604604e7...` | `b7325c4f01b3b1ab...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -162,6 +162,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 51: the analytic period is recomputed | PASS | PASS | YES | YES | T=2*pi/2=3.141592653590 |
 | 51: the discrete extremum is recomputed | PASS | PASS | YES | YES | worst_dev=0.000e+00, worst_res=2.220e-16 |
 | 51: the scaling law is recomputed | PASS | PASS | YES | YES | T=1.570795279 |
+| 52: a Yasui release collapses | PASS | PASS | YES | YES | f=1.5, t_hit=1.151000, up=0 |
+| 52: the G-M twin oscillates | PASS | PASS | YES | YES | f=1.5, T=3.141591994 |
+| 52: the Yasui sign is recomputed | PASS | PASS | YES | YES | max_accel=-1.240807 |
+| 52: the quadrature crossing is recomputed | PASS | PASS | YES | YES | quad=0.535069109, stored=0.535069132 |
+| 52: the scaling law is recomputed | PASS | PASS | YES | YES | hit=0.3960000000000003, T=1.570500000 |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

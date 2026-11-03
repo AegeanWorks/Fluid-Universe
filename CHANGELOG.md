@@ -956,3 +956,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - 4 starts (incl. +50%) converge to constant sigma_q exactly (residuals 2.2e-16); discrete EL residual at sigma_q <= 1e-12; Verlet release periods 3.14159212985/3.14159212985/3.14159212282 (gate 1e-3, full-period same-direction estimator); term match exact 0.0 rel; scaling omega = 2 gives pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative with teeth: exact free-particle G-M width-extremum unrecorded (pattern exists in GPE/BEC; Heller non-variational, Schuch substitution-only, H-M first-order). Shares the Ermakov fixed point and period with claim 22; not independent evidence of full-field dynamics; claims 20-26 and 43-50 numbers are unchanged.
 
 - Verification after the variational dynamics: two separate runs, 272/272 checks each.
+
+## 2026-11-03 - Yasui dynamical discriminator demonstrated (claim 52, ADR-044)
+
+**Added**
+
+- `theory/yasue_dynamics.py` (Yasui trial accel with minus sign, Verlet release with floor stop + upward-crossing count, u-substituted quadrature with analytic endpoint limit, G-M twin via span-51 `release_period` composition); `phenomenology/yasue_dynamics_report.py`, `make yasuedynamics`, `tests/test_yasue_dynamics.py`, `results/yasue_dynamics.{json,md}`; nine new independent audit checks in `verification/audit.py` (3 collapse + 3 twin + sign + quadrature + scaling — G-001 two-run); formulas F36. Spelling: Yasue is the literature name; spans 49-51 wrote "Yasui" for the same referent — new code uses Yasue, old modules untouched.
+
+**Results**
+
+- Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.5e-14 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
+
+- Verification after the Yasui discriminator: two separate runs, 281/281 checks each.

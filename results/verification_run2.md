@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**272/272 checks passed.**
+**281/281 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -179,6 +179,15 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 51: a term row is recomputed | PASS | s=1.0, a=-0.750000 |
 | 51: a term row is recomputed | PASS | s=1.5, a=-1.425926 |
 | 51: the scaling law is recomputed | PASS | T=1.570795279 |
+| 52: a Yasui release collapses | PASS | f=1.01, t_hit=0.793000, up=0 |
+| 52: a Yasui release collapses | PASS | f=0.99, t_hit=0.773000, up=0 |
+| 52: a Yasui release collapses | PASS | f=1.5, t_hit=1.151000, up=0 |
+| 52: the G-M twin oscillates | PASS | f=1.01, T=3.141592130 |
+| 52: the G-M twin oscillates | PASS | f=0.99, T=3.141592130 |
+| 52: the G-M twin oscillates | PASS | f=1.5, T=3.141591994 |
+| 52: the Yasui sign is recomputed | PASS | max_accel=-1.240807 |
+| 52: the quadrature crossing is recomputed | PASS | quad=0.535069109, stored=0.535069132 |
+| 52: the scaling law is recomputed | PASS | hit=0.3960000000000003, T=1.570500000 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "37bb6835425130d28add8d0bc94ee7c5711bf132b896f44a72e6dd565ee43971",
-      "results_sha256": "2b5240021af0f0638030f9dbf0c4b75b9b5577d63b6b186513063311448c8d21"
+      "source_sha256": "859d31c6604604e79ee8219b444d7a7430fafe76ecd5bf68167f713d11df750c",
+      "results_sha256": "b7325c4f01b3b1ab03cf15498d5ff883473a748ad8a1104be0e4992dc805b215"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-11-03T23:00:41+00:00",
-        "git_commit": "ae20a5f3486c68ec1d4132573202fa398400dd40",
-        "passed": 272,
-        "total": 272,
+        "generated_utc": "2026-11-03T23:31:55+00:00",
+        "git_commit": "65772fee29249c1c3707d82a3110ccd3a40f1a03",
+        "passed": 281,
+        "total": 281,
         "failed": 0,
-        "checks_sha256": "fdde4c3d57c0e760cd3fa446170c43adbaea1773decbcd1ca54a7a733ab24063",
+        "checks_sha256": "29e5e7feb57c98db6f43ba79334cb6c1b3bd9f66bcd9c407cb8783dad1180f94",
         "fingerprints": {
-          "source_sha256": "37bb6835425130d28add8d0bc94ee7c5711bf132b896f44a72e6dd565ee43971",
-          "results_sha256": "2b5240021af0f0638030f9dbf0c4b75b9b5577d63b6b186513063311448c8d21"
+          "source_sha256": "859d31c6604604e79ee8219b444d7a7430fafe76ecd5bf68167f713d11df750c",
+          "results_sha256": "b7325c4f01b3b1ab03cf15498d5ff883473a748ad8a1104be0e4992dc805b215"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-11-03T23:00:52+00:00",
-        "git_commit": "ae20a5f3486c68ec1d4132573202fa398400dd40",
-        "passed": 272,
-        "total": 272,
+        "generated_utc": "2026-11-03T23:32:02+00:00",
+        "git_commit": "65772fee29249c1c3707d82a3110ccd3a40f1a03",
+        "passed": 281,
+        "total": 281,
         "failed": 0,
-        "checks_sha256": "fdde4c3d57c0e760cd3fa446170c43adbaea1773decbcd1ca54a7a733ab24063",
+        "checks_sha256": "29e5e7feb57c98db6f43ba79334cb6c1b3bd9f66bcd9c407cb8783dad1180f94",
         "fingerprints": {
-          "source_sha256": "37bb6835425130d28add8d0bc94ee7c5711bf132b896f44a72e6dd565ee43971",
-          "results_sha256": "2b5240021af0f0638030f9dbf0c4b75b9b5577d63b6b186513063311448c8d21"
+          "source_sha256": "859d31c6604604e79ee8219b444d7a7430fafe76ecd5bf68167f713d11df750c",
+          "results_sha256": "b7325c4f01b3b1ab03cf15498d5ff883473a748ad8a1104be0e4992dc805b215"
         }
       }
     ],
@@ -1218,6 +1218,46 @@
       "agree": true,
       "detail_match": true,
       "detail": "T=1.570795279"
+    },
+    {
+      "claim": "52: a Yasui release collapses",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "f=1.5, t_hit=1.151000, up=0"
+    },
+    {
+      "claim": "52: the G-M twin oscillates",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "f=1.5, T=3.141591994"
+    },
+    {
+      "claim": "52: the Yasui sign is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "max_accel=-1.240807"
+    },
+    {
+      "claim": "52: the quadrature crossing is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "quad=0.535069109, stored=0.535069132"
+    },
+    {
+      "claim": "52: the scaling law is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "hit=0.3960000000000003, T=1.570500000"
     },
     {
       "claim": "5a: independent rotor spectrum",
@@ -3393,6 +3433,69 @@
       "observed": null
     },
     {
+      "claim": "52: a Yasui release collapses",
+      "passed": true,
+      "detail": "f=1.01, t_hit=0.793000, up=0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: a Yasui release collapses",
+      "passed": true,
+      "detail": "f=0.99, t_hit=0.773000, up=0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: a Yasui release collapses",
+      "passed": true,
+      "detail": "f=1.5, t_hit=1.151000, up=0",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the G-M twin oscillates",
+      "passed": true,
+      "detail": "f=1.01, T=3.141592130",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the G-M twin oscillates",
+      "passed": true,
+      "detail": "f=0.99, T=3.141592130",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the G-M twin oscillates",
+      "passed": true,
+      "detail": "f=1.5, T=3.141591994",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the Yasui sign is recomputed",
+      "passed": true,
+      "detail": "max_accel=-1.240807",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the quadrature crossing is recomputed",
+      "passed": true,
+      "detail": "quad=0.535069109, stored=0.535069132",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "52: the scaling law is recomputed",
+      "passed": true,
+      "detail": "hit=0.3960000000000003, T=1.570500000",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -4086,8 +4189,8 @@
       "observed": null
     }
   ],
-  "total": 272,
-  "passed": 272,
+  "total": 281,
+  "passed": 281,
   "failed": 0,
   "failures": []
 }
