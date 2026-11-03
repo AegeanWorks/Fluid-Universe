@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `163`
+- **Total Python Modules**: `166`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `856`
+- **Total Top-Level Functions**: `876`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `22355`
+- **Total Source Lines**: `22795`
 
 ---
 
@@ -361,6 +361,17 @@
 - `def q_up(row)`
 - `def q_down(row)`
 - `def run_quark_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/radial_node_report.py`](phenomenology/radial_node_report.py)
+> *Hydrogen-2s radial-node representation check (claim 47, ADR-039).*
+
+**Size**: `167` lines (`5856` bytes)
+
+**Functions:**
+- `def run_radial_node_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1208,6 +1219,21 @@
 
 ---
 
+### [`tests/test_radial_node.py`](tests/test_radial_node.py)
+> *Hydrogen-2s radial-node representation tests (claim 47).*
+
+**Size**: `77` lines (`2173` bytes)
+
+**Functions:**
+- `def test_branch_identities_are_exact()`
+- `def test_norm_overlap_and_peaks()`
+- `def test_radius_comes_from_derived_bohr_radius()`
+- `def test_preserved_1s_2p_numbers_hold()`
+- `def test_representation_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_reduction.py`](tests/test_reduction.py)
 > *Dimensional-reduction and moment-of-inertia tests (claim 6b).*
 
@@ -1789,6 +1815,26 @@
 
 ---
 
+### [`theory/hydrogen_radial_nodes.py`](theory/hydrogen_radial_nodes.py)
+> *Hydrogen-2s radial-node two-branch representation (claim 47, ADR-039).*
+
+**Size**: `151` lines (`5071` bytes)
+
+**Functions:**
+- `def radial_10(r, radius)` - *Hydrogen 1s radial function, normalized as int r^2 R^2 dr = 1.*
+- `def radial_20(r, radius)` - *Hydrogen 2s radial function, normalized as int r^2 R^2 dr = 1.*
+- `def radial_probability_20(r, radius)`
+- `def branch_split_20(r, radius)` - *Exact two-branch split of R_20; residual is zero by construction.*
+- `def node_position(radius)` - *Analytic nodal-shell radius (zero of the 2 - r/a0 factor).*
+- `def phase_slip_20(r, radius)` - *Phase jump across the shell from the sign of R_20 (0 or pi).*
+- `def overlap_10_20(radius)` - *1s-2s radial overlap integral (analytic: 0 for n != n').*
+- `def norm_20(radius)`
+- `def peak_radii_20(radius)` - *Analytic probability-peak radii (3 +- sqrt(5)) * a0.*
+- `def balance_preserved()` - *Frozen 1s/2p numbers recomputed through the shared modules.*
+- `def representation_scales()` - *Collect the representation correspondence bundle (no verdict).*
+
+---
+
 ### [`theory/hydrogen_vortex.py`](theory/hydrogen_vortex.py)
 > *Hydrogen 2p vortex identification (claim 26, ADR-017).*
 
@@ -2229,7 +2275,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `2840` lines (`115168` bytes)
+**Size**: `2883` lines (`117098` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2298,6 +2344,7 @@
 - `def audit_two_state(audit)`
 - `def audit_water_twocomponent(audit)`
 - `def audit_node_defect(audit)`
+- `def audit_radial_node(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2327,7 +2374,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `185` lines (`4811` bytes)
+**Size**: `187` lines (`4857` bytes)
 
 **Functions:**
 - `def _source_files()`
