@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `152`
+- **Total Python Modules**: `153`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `811`
+- **Total Top-Level Functions**: `812`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `20771`
+- **Total Source Lines**: `20815`
 
 ---
 
@@ -395,7 +395,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `526` lines (`24710` bytes)
+**Size**: `530` lines (`25058` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -1221,6 +1221,16 @@
 - `def test_scan_is_falsified()`
 - `def test_invalid_inputs_are_rejected()`
 - `def test_second_harmonic_does_not_force_a_large_spread()`
+
+---
+
+### [`tests/test_run_all_docs.py`](tests/test_run_all_docs.py)
+> *Regression: run_all docstring must list every result file it writes.*
+
+**Size**: `40` lines (`1034` bytes)
+
+**Functions:**
+- `def test_run_all_docstring_lists_every_result()`
 
 ---
 

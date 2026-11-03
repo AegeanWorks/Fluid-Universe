@@ -5,8 +5,12 @@ Run from the project root:
     python -m phenomenology.run_all
 
 Writes results/pdg_fit.{json,md}, results/rg_run.{json,md}, results/rotor.{json,md},
-results/neutrinos.{json,md}, results/quarks.{json,md}, results/pmns.{json,md}, and
-results/summary.md.  Every number in prose must come from this command.
+results/neutrinos.{json,md}, results/quarks.{json,md}, results/pmns.{json,md},
+results/delta_search.{json,md}, results/frank_oseen.{json,md}, results/derrick.{json,md},
+results/topology.{json,md}, results/reduction.{json,md}, results/predictions.{json,md},
+results/lorentz.{json,md}, results/sim_core.{json,md}, results/hopf.{json,md},
+results/hopfion.{json,md}, results/hopfion3d.{json,md}, results/hopf_resolution.{json,md},
+and results/summary.md.  Every number in prose must come from this command.
 """
 
 from __future__ import annotations
