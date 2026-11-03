@@ -1,0 +1,74 @@
+{
+  "meta": {
+    "config": {
+      "lambda_ev": 1.6171325440878093,
+      "observed": {
+        "g1_width_ev": 0.71,
+        "g2_width_ev": 0.37
+      },
+      "scope": "shared-lambda two-state Marcus equal-width test, no fit",
+      "shape_ratio_tol": 0.15,
+      "temperature_k": 300.0
+    },
+    "config_sha256": "2ce6a5433f3fb62ccedaeeca1456ec306b49b468a2481ad07d7d113b002c85b9",
+    "generated_utc": "2026-11-03T17:28:54+00:00",
+    "git": {
+      "commit": "de85c70b590011f7973e8423db171b4e051a7c7e",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "comparison": {
+      "observed_g1_width_ev": 0.71,
+      "observed_g2_width_ev": 0.37,
+      "observed_ratio": 1.9189189189189189,
+      "observed_ratio_sigma": 0.4559996830767908,
+      "predicted_ratio": 1.0,
+      "predicted_width_g1_ev": 0.6809145309538259,
+      "predicted_width_g2_ev": 0.6809145309538259,
+      "ratio_diff_vs_one": 0.9189189189189189,
+      "shape_kill_shared_lambda": true,
+      "shape_kill_threshold": 0.15,
+      "temperature_k": 300.0,
+      "worst_case_diff_vs_one": 1.0
+    },
+    "scales": {
+      "lambda_ev": 1.6171325440878093,
+      "observed": {
+        "diff_vs_one": 0.9189189189189189,
+        "g1_width_ev": 0.71,
+        "g2_width_ev": 0.37,
+        "observed_ratio": 1.9189189189189189,
+        "observed_ratio_sigma": 0.4559996830767908,
+        "worst_case_diff_vs_one": 1.0,
+        "worst_case_ratio": 2.0
+      },
+      "prediction": {
+        "lambda_ev": 1.6171325440878093,
+        "predicted_ratio": 1.0,
+        "temperature_k": 300.0,
+        "width_g1_ev": 0.6809145309538259,
+        "width_g2_ev": 0.6809145309538259
+      },
+      "thresholds": {
+        "shape_ratio_tol": 0.15
+      }
+    },
+    "verdict": {
+      "claim_44_status": "FALSIFIED (shared-lambda two-state Marcus assignment; component ratio 1.9189 vs 1, diff 0.9189 > 0.15)",
+      "note": "IF the Jou-Freeman 0.71 vs 0.37 eV components were two classical Marcus states sharing the frozen Born-cavity lambda=1.617132544 eV at one temperature, both would have FWHM 0.680915 eV (ratio exactly 1, T-independent). The observed ratio is 1.9189 (+/- 0.46), diff 0.9189 > 0.15, so the shared-lambda two-state assignment is falsified. This shares its shape fact with claim 43 and is not independent evidence. A state-dependent solvation (lambda1 != lambda2) would fit but predict nothing; a non-Marcus line shape is required.",
+      "ratio_kill": true,
+      "shape_kill_shared_lambda": true,
+      "widths_identical": true
+    }
+  }
+}

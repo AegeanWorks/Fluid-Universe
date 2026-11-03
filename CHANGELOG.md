@@ -858,3 +858,16 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 43 is **FALSIFIED (Gaussian-only shape; sqrt(lambda T) scaling survives)**. The single symmetric Gaussian cannot reproduce the observed band; a two-state/non-Gaussian line shape is required. This does not touch claims 39-42 (cavity scale, VDE, width magnitude, temperature slope), whose numbers are unchanged.
 
 - Verification after the observed comparator: two separate runs, 240/240 checks each.
+
+## 2026-11-03 - Shared-lambda two-state Marcus assignment falsified (claim 44, ADR-036)
+
+**Added**
+
+- `theory/two_state_marcus.py` (conditional equal-width theorem: shared lambda and T give identical FWHM, ratio exactly 1, T- and convention-independent); `phenomenology/two_state_report.py`, `make twostate`, `tests/test_two_state.py`, `results/two_state.{json,md}`; two new independent audit checks in `verification/audit.py` (equal-width and ratio-kill recomputation, no project imports); formulas F28.
+
+**Results**
+
+- Both predicted widths 0.680915 eV at 300 K (ratio 1.0, zero free parameters) against observed 0.71/0.37 eV (ratio 1.9189 +/- ~0.47); diff 0.9189 > 0.15, so the shared-lambda two-state assignment is FALSIFIED. Even the convention-confusion worst case (ratio 2) still kills (diff 1 > 0.15).
+- This shares its shape fact with claim 43 and is not independent evidence. A state-dependent solvation (lambda1 != lambda2) would fit the two widths but predict nothing; claims 39-43 numbers are unchanged.
+
+- Verification after the two-state falsification: two separate runs, 242/242 checks each.

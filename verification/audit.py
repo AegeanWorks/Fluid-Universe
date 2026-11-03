@@ -2205,6 +2205,108 @@ def audit_water_lineshape(audit: Audit) -> None:
     )
 
 
+# Shared-lambda two-state Marcus assignment (claim 44/ADR-036)
+# ---------------------------------------------------------------------------
+
+
+def audit_two_state(audit: Audit) -> None:
+    payload = load_results("two_state.json")
+    result = payload["result"]
+    scales = result["scales"]
+    prediction = scales["prediction"]
+    observed = scales["observed"]
+    comparison = result.get("comparison", {})
+    verdict = result["verdict"]
+    # Independent Marcus recomputation: both states share lambda and T,
+    # so both FWHM values are one number; the predicted ratio is exactly 1.
+    kb = 8.617333262e-5
+    prefactor = 2.0 * math.sqrt(2.0 * math.log(2.0))
+    width = prefactor * math.sqrt(2.0 * 1.617132544 * kb * 300.0)
+    audit.record(
+        "44: two Marcus states sharing lambda have identical widths",
+        abs(prediction["width_g1_ev"] - width) < 1.0e-6
+        and abs(prediction["width_g2_ev"] - width) < 1.0e-6
+        and prediction["width_g1_ev"] == prediction["width_g2_ev"]
+        and prediction["predicted_ratio"] == 1.0
+        and verdict["widths_identical"] is True,
+        f"g1={prediction['width_g1_ev']:.6f}, "
+        f"g2={prediction['width_g2_ev']:.6f}, "
+        f"ratio={prediction['predicted_ratio']}",
+    )
+    # Independent ratio kill: Jou & Freeman 0.71 vs 0.37 eV gives 1.9189,
+    # diff 0.9189 > 0.15; the shared-lambda assignment is falsified.
+    comp_ratio = 0.71 / 0.37
+    audit.record(
+        "44: the observed component ratio kills the shared-lambda assignment",
+        abs(observed["observed_ratio"] - comp_ratio) < 1.0e-12
+        and abs(comparison.get("observed_ratio", -1.0) - comp_ratio)
+        < 1.0e-9
+        and abs(comparison.get("ratio_diff_vs_one", -1.0) - abs(comp_ratio - 1.0))
+        < 1.0e-9
+        and comparison.get("shape_kill_shared_lambda") is True
+        and verdict.get("shape_kill_shared_lambda") is True
+        and result["verdict"]["claim_44_status"].startswith("FALSIFIED"),
+        f"obs_ratio={comparison.get('observed_ratio')}, "
+        f"diff={comparison.get('ratio_diff_vs_one')}, "
+        f"status={result['verdict']['claim_44_status'][:40]}",
+    )
+
+
+def audit_water_twocomponent(audit: Audit) -> None:
+    payload = load_results("water_twocomponent.json")
+    result = payload["result"]
+    scales = result["scales"]
+    observed = scales["observed"]
+    verdict = result["verdict"]
+    # Independent side widths at 299.15 K from the Jou-Freeman fits.
+    g = 0.1517 + 0.00051 * 299.15
+    l = 0.5124 - 0.00010 * 299.15
+    # Independent join: red = FWHM(299.15)/2 with lambda fixed from
+    # claim 39, blue from continuity of (E/1.72)^-4.4 at half-maximum.
+    kb = 8.617333262e-5
+    prefactor = 2.0 * math.sqrt(2.0 * math.log(2.0))
+    fwhm = prefactor * math.sqrt(2.0 * 1.617132544 * kb * 299.15)
+    red = fwhm / 2.0
+    blue = 1.72 * (2.0 ** (1.0 / 4.4) - 1.0)
+    r_pred = blue / red
+    r_obs = l / g
+    audit.record(
+        "44: the joined-model side ratio is recomputed",
+        abs(scales["red_hwhm_ev"] - red) < 1.0e-9
+        and abs(scales["blue_hwhm_ev"] - blue) < 1.0e-9
+        and abs(scales["r_pred"] - r_pred) < 1.0e-9
+        and abs(scales["r_obs"] - r_obs) < 1.0e-9
+        and abs(scales["ratio_diff"] - abs(r_pred - r_obs)) < 1.0e-9
+        and verdict["ratio_kill"] is True,
+        f"r_pred={scales['r_pred']:.6f}, r_obs={scales['r_obs']:.6f}, "
+        f"diff={scales['ratio_diff']:.6f}",
+    )
+    audit.record(
+        "44: the joined-model width scale is recomputed",
+        abs(scales["fwhm_model_ev"] - (blue + red)) < 1.0e-9
+        and abs(
+            scales["classical_rel_diff"] - abs(scales["fwhm_model_ev"] - 0.706) / 0.706
+        )
+        < 1.0e-9
+        and abs(
+            scales["quantized_rel_diff"] - abs(scales["fwhm_model_ev"] - 0.773) / 0.773
+        )
+        < 1.0e-9
+        and verdict["width_kill"] is True,
+        f"fwhm={scales['fwhm_model_ev']:.6f}, "
+        f"classical_rel={scales['classical_rel_diff']:.6f}, "
+        f"quantized_rel={scales['quantized_rel_diff']:.6f}",
+    )
+    audit.record(
+        "44: the two-component join is FALSIFIED with frozen thresholds",
+        scales["thresholds"]["width_ratio_tol"] == 0.15
+        and scales["thresholds"]["fwhm_classical_tol"] == 0.05
+        and scales["thresholds"]["fwhm_quantized_tol"] == 0.15
+        and verdict["claim_44_status"].startswith("FALSIFIED"),
+        f"status={verdict['claim_44_status'][:60]}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -2630,6 +2732,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_water_temperature(audit)
     audit_water_temperature_residual(audit)
     audit_water_lineshape(audit)
+    audit_two_state(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)
