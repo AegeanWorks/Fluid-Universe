@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `183`
+- **Total Python Modules**: `186`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `977`
+- **Total Top-Level Functions**: `999`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `25538`
+- **Total Source Lines**: `26130`
 
 ---
 
@@ -525,6 +525,17 @@
 **Functions:**
 - `def run_topology_check(write)`
 - `def run_reduction_check(write)`
+
+---
+
+### [`phenomenology/variational_center_report.py`](phenomenology/variational_center_report.py)
+> *Co-emergence of Newtonian center and Ermakov width (claim 53, ADR-045).*
+
+**Size**: `161` lines (`5856` bytes)
+
+**Functions:**
+- `def run_variational_center_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -1471,6 +1482,23 @@
 
 ---
 
+### [`tests/test_variational_center.py`](tests/test_variational_center.py)
+> *Center+width co-emergence tests (claim 53).*
+
+**Size**: `94` lines (`2576` bytes)
+
+**Functions:**
+- `def test_joint_extremum_is_constant_path()`
+- `def test_mixed_start_converges_to_rest()`
+- `def test_center_period_is_two_pi()`
+- `def test_width_period_is_pi()`
+- `def test_term_match_is_exact()`
+- `def test_scaling_gives_pi_and_half_pi()`
+- `def test_coemergence_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_variational_dynamics.py`](tests/test_variational_dynamics.py)
 > *Variational dynamics tests (claim 51).*
 
@@ -2169,6 +2197,26 @@
 
 ---
 
+### [`theory/variational_center.py`](theory/variational_center.py)
+> *Co-emergence of Newtonian center and Ermakov width (claim 53, ADR-045).*
+
+**Size**: `260` lines (`8507` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def width_fixed_point(omega, hbar, mass)`
+- `def mu_acceleration(mu, omega)`
+- `def sigma_acceleration(s, omega, hbar, mass)`
+- `def discrete_el_system(interior, omega, hbar, mass, dt, mu_end, s_end)` - *Discrete Euler-Lagrange residuals for the (mu, sigma) pair.*
+- `def newton_pair(mu0, s0_factor, omega, hbar, mass, n, steps)` - *Joint Newton solve on the discrete EL system from a constant start.*
+- `def _period_from_crossings(times)`
+- `def release_pair(mu0, s0_factor, omega, hbar, mass, dt, t_end)` - *Joint Verlet release; per-leg zero crossings give both periods.*
+- `def term_match()` - *Sigma-leg term match vs ermakov_rhs; mu-leg analytic identity.*
+- `def dynamics_scales()` - *Collect the co-emergence bundle (no verdict).*
+
+---
+
 ### [`theory/variational_dynamics.py`](theory/variational_dynamics.py)
 > *Variational dynamics reproduces Ermakov (claim 51, ADR-043).*
 
@@ -2524,7 +2572,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3240` lines (`131061` bytes)
+**Size**: `3315` lines (`133788` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2599,6 +2647,7 @@
 - `def audit_variational_saddle(audit)`
 - `def audit_variational_dynamics(audit)`
 - `def audit_yasue_dynamics(audit)`
+- `def audit_variational_center(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2628,7 +2677,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `197` lines (`5143` bytes)
+**Size**: `199` lines (`5203` bytes)
 
 **Functions:**
 - `def _source_files()`
