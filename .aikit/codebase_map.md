@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `186`
+- **Total Python Modules**: `189`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `999`
+- **Total Top-Level Functions**: `1022`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `26130`
+- **Total Source Lines**: `26876`
 
 ---
 
@@ -108,6 +108,17 @@
 - `def run_fit(n_mc, seed, write)`
 - `def render_markdown(payload)`
 - `def main()`
+
+---
+
+### [`phenomenology/gaussian_bridge_report.py`](phenomenology/gaussian_bridge_report.py)
+> *Fixed-endpoint Gaussian bridge check (claim 54, ADR-046).*
+
+**Size**: `175` lines (`6471` bytes)
+
+**Functions:**
+- `def run_gaussian_bridge_check(write)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -1056,6 +1067,23 @@
 
 ---
 
+### [`tests/test_gaussian_bridge.py`](tests/test_gaussian_bridge.py)
+> *Fixed-endpoint Gaussian bridge tests (claim 54).*
+
+**Size**: `97` lines (`2947` bytes)
+
+**Functions:**
+- `def test_pinney_coefficients_match_quadratic()`
+- `def test_newton_finds_only_pinney_branches()`
+- `def test_both_branches_are_attained()`
+- `def test_jacobi_primary_has_no_conjugate_point()`
+- `def test_action_matches_analytic_quadrature()`
+- `def test_scaling_preserves_two_branches()`
+- `def test_bridge_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_gaussian_fluid.py`](tests/test_gaussian_fluid.py)
 > *Gaussian Madelung reduction tests (claim 22).*
 
@@ -1930,6 +1958,27 @@
 
 ---
 
+### [`theory/gaussian_bridge.py`](theory/gaussian_bridge.py)
+> *Fixed-endpoint Gaussian transport bridge (claim 54, ADR-046).*
+
+**Size**: `366` lines (`12669` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def pinney_coeffs(s0, sT, horizon_T, omega, hbar, mass)` - *Solve A (pinned start), then the quadratic for B, then C.*
+- `def pinney_path(coeffs, t_values, omega)`
+- `def jacobi_first_zero(sigma_of_t, omega, hbar, mass, t_end, n)` - *First conjugate zero of u'' + Q(t) u = 0 along a bridge path.*
+- `def newton_bridge(start_kind, omega, hbar, mass, n, steps)` - *Discrete-EL Newton solve with pinned endpoint densities.*
+- `def _discrete_residual(interior, omega, hbar, mass, dt, s0, sT)`
+- `def analytic_action(coeffs, omega, hbar, mass, n)` - *High-accuracy quadrature of the continuous action on a Pinney path.*
+- `def discrete_action(full_path, omega, hbar, mass, dt)` - *Same midpoint discrete action the Newton solver extremizes.*
+- `def match_to_branches(newton_interior, grid, branches, omega)` - *Max-abs deviation of a Newton result from each analytic branch.*
+- `def bridge_scales()` - *Collect the fixed-endpoint bridge bundle (no verdict).*
+- `def scaling_bundle()` - *omega = 2 mirror of the base bundle (same gates, rescaled horizon).*
+
+---
+
 ### [`theory/gaussian_fluid.py`](theory/gaussian_fluid.py)
 > *Gaussian reduction of the Madelung fluid (claim 22, ADR-013).*
 
@@ -2572,7 +2621,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3315` lines (`133788` bytes)
+**Size**: `3421` lines (`137989` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2648,6 +2697,7 @@
 - `def audit_variational_dynamics(audit)`
 - `def audit_yasue_dynamics(audit)`
 - `def audit_variational_center(audit)`
+- `def audit_gaussian_bridge(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2677,7 +2727,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `199` lines (`5203` bytes)
+**Size**: `201` lines (`5257` bytes)
 
 **Functions:**
 - `def _source_files()`
