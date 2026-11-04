@@ -2621,7 +2621,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3421` lines (`137989` bytes)
+**Size**: `3421` lines (`137983` bytes)
 
 **Classes:**
 - `class Audit`

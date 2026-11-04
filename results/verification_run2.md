@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**286/286 checks passed.**
+**291/291 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -193,6 +193,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 53: the width period is recomputed | PASS | T_sg=pi |
 | 53: the term match is recomputed | PASS | max_rel=0.000e+00 |
 | 53: the scaling law is recomputed | PASS | mu=3.141592130, sg=1.570795279 |
+| 54: the Pinney coefficients are recomputed | PASS | disc=1.880000 |
+| 54: no third attractor is recorded | PASS | attributed=[0, 0, 0, 0, 1, 0] |
+| 54: the Jacobi no-crossing is recomputed | PASS | zero=None |
+| 54: the analytic action is recomputed | PASS | analytic=-0.390634 |
+| 54: the scaling two-branch structure is recomputed | PASS | branches=[0], jacobi2=none |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

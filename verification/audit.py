@@ -2817,6 +2817,111 @@ def audit_variational_center(audit: Audit) -> None:
         )
 
 
+def audit_gaussian_bridge(audit: Audit) -> None:
+    payload = load_results("gaussian_bridge.json")
+    result = payload["result"]
+    scales = result["scales"]
+    gates = result["gates"]
+    verdict = result["verdict"]
+    # Independent Pinney coefficients from the endpoint conditions.
+    disc = 1.44 * 1.44 - 4.0 * 0.0484
+    b_lo = (-1.44 + math.sqrt(disc)) / 2.0
+    b_hi = (-1.44 - math.sqrt(disc)) / 2.0
+    stored = scales["pinney"]["coeffs"]
+    audit.record(
+        "54: the Pinney coefficients are recomputed",
+        abs(disc - 1.88) < 1e-12
+        and abs(stored[0]["B"] - b_lo) < 1e-9
+        and abs(stored[1]["B"] - b_hi) < 1e-9
+        and abs(stored[0]["A"] - 0.72) < 1e-12,
+        f"disc={disc:.6f}",
+    )
+    # Independent attribution: every stored Newton run lands on a branch.
+    _attributed = []
+    for _m in scales["matches"]:
+        _best = min(range(len(_m)), key=lambda _j: _m[_j])
+        _attributed.append(_best if _m[_best] <= 1e-4 else None)
+    audit.record(
+        "54: no third attractor is recorded",
+        len(_attributed) == 6 and all(a in (0, 1) for a in _attributed),
+        f"attributed={_attributed}",
+    )
+    # Independent Jacobi re-integration on a coarse grid (no project import).
+    import numpy as _np
+
+    _t = _np.linspace(0.0, math.pi / 4.0, 2001)
+    _dt = float(_t[1] - _t[0])
+    _a, _b, _c = 0.72, -0.0344345399, 0.3488690799
+    _s = _np.sqrt(_a * _np.cos(_t) ** 2 + 2.0 * _b * _np.cos(_t) * _np.sin(_t) + _c * _np.sin(_t) ** 2)
+    _q = 3.0 * 0.25 / _np.maximum(_s, 1e-12) ** 4 + 1.0
+    _u, _v, _zero = 0.0, 1.0, None
+    for _i in range(1, len(_t)):
+        _v += _dt * (-_q[_i - 1] * _u)
+        _u += _dt * _v
+        if _u <= 0.0:
+            _zero = float(_t[_i])
+            break
+    audit.record(
+        "54: the Jacobi no-crossing is recomputed",
+        _zero is None,
+        "zero=None" if _zero is None else f"zero={_zero}",
+    )
+    # Independent action quadrature (coarse, own code path).
+    _vel = _np.gradient(_s, _dt)
+    _dens = 0.5 * _vel * _vel - 0.125 / (_s * _s) - 0.5 * _s * _s
+    audit.record(
+        "54: the analytic action is recomputed",
+        abs(float(_np.trapezoid(_dens, _t)) - scales["analytic_action"]) <= 1e-4,
+        f"analytic={scales['analytic_action']:.6f}",
+    )
+    # Independent scaling re-derivation at omega = 2 (no project import).
+    _sc = scales["scaling"]
+    _a2 = _sc["s0"] ** 2
+    _uT, _vT = math.cos(math.pi / 4.0), math.sin(math.pi / 4.0) / 2.0
+    _b2, _c2 = 2.0 * _uT * _vT, _vT * _vT
+    _qa, _qb = 1.0, _a2 * _b2 / _c2
+    _qc = 0.25 - _a2 * _sc["sq"] ** 2 / _c2 + _a2 * _a2 * (_uT**2) / _c2
+    _disc2 = _qb * _qb - 4.0 * _qa * _qc
+    _b1 = (-_qb + math.sqrt(_disc2)) / 2.0
+    _b2 = (-_qb - math.sqrt(_disc2)) / 2.0
+    _smatch = []
+    for _m in _sc["matches"]:
+        _bs = min(range(len(_m)), key=lambda _j: _m[_j])
+        _smatch.append(_bs if _m[_bs] <= 1e-4 else None)
+    _ts = [float(v) for v in _np.linspace(0.0, _sc["T"], 1001)]
+    _dt2 = _ts[1] - _ts[0]
+    _ca = _sc["coeffs"][0]["A"]
+    _cb = _sc["coeffs"][0]["B"]
+    _cc = _sc["coeffs"][0]["C"]
+    _ss = [
+        math.sqrt(max(_ca * math.cos(2.0 * t) ** 2 + 2.0 * _cb * math.cos(2.0 * t) * math.sin(2.0 * t) / 2.0 + _cc * (math.sin(2.0 * t) / 2.0) ** 2, 0.0))
+        for t in _ts
+    ]
+    _uu, _vv, _z2 = 0.0, 1.0, None
+    for _i in range(1, len(_ts)):
+        _qq = 3.0 * 0.25 / max(_ss[_i - 1], 1e-12) ** 4 + 4.0
+        _vv += _dt2 * (-_qq * _uu)
+        _uu += _dt2 * _vv
+        if _uu <= 0.0:
+            _z2 = _ts[_i]
+            break
+    audit.record(
+        "54: the scaling two-branch structure is recomputed",
+        _disc2 > 0.0
+        and abs(_sc["coeffs"][0]["A"] - _a2) < 1e-12
+        and all(a in (0, 1) for a in _smatch)
+        and _sc["jacobi_first_zero"] is None
+        and _z2 is None,
+        f"branches={sorted(set(a for a in _smatch if a is not None))}, jacobi2={'none' if _z2 is None else _z2}",
+    )
+    if not verdict["claim_54_status"].startswith("NUMERIC"):
+        audit.record(
+            "54: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_54_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3252,6 +3357,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_variational_dynamics(audit)
     audit_yasue_dynamics(audit)
     audit_variational_center(audit)
+    audit_gaussian_bridge(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

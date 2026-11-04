@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "41e3b63caa5ebf4558b389ccb54990960de8dddc89f58575dde039861061621b",
-      "results_sha256": "8a8b298598b0b3716dd692501ca15ea336affa5ed5e0fe482a28b83462ae5e3b"
+      "source_sha256": "5347226ac86a5d360975bd59b0d30c7d0469d3aaa639a36643bd53950c6c9a23",
+      "results_sha256": "49d08f4079762304e60947b15b115f3b219ec8246b80a5b01ae2798615692c08"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-11-03T23:57:31+00:00",
-        "git_commit": "341fb600cf21edc06dc542360af6bbcd1a0a4a83",
-        "passed": 286,
-        "total": 286,
+        "generated_utc": "2026-11-04T16:43:01+00:00",
+        "git_commit": "20a4cb7143034ab5366b69cdfe6a68b294d0e8a9",
+        "passed": 291,
+        "total": 291,
         "failed": 0,
-        "checks_sha256": "fe3a01f10ad0d58560ea160d7406104c9e8ed4e6f417f30df8beeb292025db5b",
+        "checks_sha256": "bcac093402057d864a91ae0fb6fe281ac0c791f7fc82046fc76b60e28e6d1b34",
         "fingerprints": {
-          "source_sha256": "41e3b63caa5ebf4558b389ccb54990960de8dddc89f58575dde039861061621b",
-          "results_sha256": "8a8b298598b0b3716dd692501ca15ea336affa5ed5e0fe482a28b83462ae5e3b"
+          "source_sha256": "5347226ac86a5d360975bd59b0d30c7d0469d3aaa639a36643bd53950c6c9a23",
+          "results_sha256": "49d08f4079762304e60947b15b115f3b219ec8246b80a5b01ae2798615692c08"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-11-03T23:57:38+00:00",
-        "git_commit": "341fb600cf21edc06dc542360af6bbcd1a0a4a83",
-        "passed": 286,
-        "total": 286,
+        "generated_utc": "2026-11-04T16:43:12+00:00",
+        "git_commit": "20a4cb7143034ab5366b69cdfe6a68b294d0e8a9",
+        "passed": 291,
+        "total": 291,
         "failed": 0,
-        "checks_sha256": "fe3a01f10ad0d58560ea160d7406104c9e8ed4e6f417f30df8beeb292025db5b",
+        "checks_sha256": "bcac093402057d864a91ae0fb6fe281ac0c791f7fc82046fc76b60e28e6d1b34",
         "fingerprints": {
-          "source_sha256": "41e3b63caa5ebf4558b389ccb54990960de8dddc89f58575dde039861061621b",
-          "results_sha256": "8a8b298598b0b3716dd692501ca15ea336affa5ed5e0fe482a28b83462ae5e3b"
+          "source_sha256": "5347226ac86a5d360975bd59b0d30c7d0469d3aaa639a36643bd53950c6c9a23",
+          "results_sha256": "49d08f4079762304e60947b15b115f3b219ec8246b80a5b01ae2798615692c08"
         }
       }
     ],
@@ -1298,6 +1298,46 @@
       "agree": true,
       "detail_match": true,
       "detail": "T_sg=pi"
+    },
+    {
+      "claim": "54: no third attractor is recorded",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "attributed=[0, 0, 0, 0, 1, 0]"
+    },
+    {
+      "claim": "54: the Jacobi no-crossing is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "zero=None"
+    },
+    {
+      "claim": "54: the Pinney coefficients are recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "disc=1.880000"
+    },
+    {
+      "claim": "54: the analytic action is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "analytic=-0.390634"
+    },
+    {
+      "claim": "54: the scaling two-branch structure is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "branches=[0], jacobi2=none"
     },
     {
       "claim": "5a: independent rotor spectrum",
@@ -3571,6 +3611,41 @@
       "observed": null
     },
     {
+      "claim": "54: the Pinney coefficients are recomputed",
+      "passed": true,
+      "detail": "disc=1.880000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "54: no third attractor is recorded",
+      "passed": true,
+      "detail": "attributed=[0, 0, 0, 0, 1, 0]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "54: the Jacobi no-crossing is recomputed",
+      "passed": true,
+      "detail": "zero=None",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "54: the analytic action is recomputed",
+      "passed": true,
+      "detail": "analytic=-0.390634",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "54: the scaling two-branch structure is recomputed",
+      "passed": true,
+      "detail": "branches=[0], jacobi2=none",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -4264,8 +4339,8 @@
       "observed": null
     }
   ],
-  "total": 286,
-  "passed": 286,
+  "total": 291,
+  "passed": 291,
   "failed": 0,
   "failures": []
 }

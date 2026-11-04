@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-03T23:57:31+00:00 | `341fb600cf21edc06dc542360af6bbcd1a0a4a83` | 286/286 | `41e3b63caa5ebf45...` | `8a8b298598b0b371...` |
-| run2 | 2026-11-03T23:57:38+00:00 | `341fb600cf21edc06dc542360af6bbcd1a0a4a83` | 286/286 | `41e3b63caa5ebf45...` | `8a8b298598b0b371...` |
+| run1 | 2026-11-04T16:43:01+00:00 | `20a4cb7143034ab5366b69cdfe6a68b294d0e8a9` | 291/291 | `5347226ac86a5d36...` | `49d08f4079762304...` |
+| run2 | 2026-11-04T16:43:12+00:00 | `20a4cb7143034ab5366b69cdfe6a68b294d0e8a9` | 291/291 | `5347226ac86a5d36...` | `49d08f4079762304...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -172,6 +172,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 53: the scaling law is recomputed | PASS | PASS | YES | YES | mu=3.141592130, sg=1.570795279 |
 | 53: the term match is recomputed | PASS | PASS | YES | YES | max_rel=0.000e+00 |
 | 53: the width period is recomputed | PASS | PASS | YES | YES | T_sg=pi |
+| 54: no third attractor is recorded | PASS | PASS | YES | YES | attributed=[0, 0, 0, 0, 1, 0] |
+| 54: the Jacobi no-crossing is recomputed | PASS | PASS | YES | YES | zero=None |
+| 54: the Pinney coefficients are recomputed | PASS | PASS | YES | YES | disc=1.880000 |
+| 54: the analytic action is recomputed | PASS | PASS | YES | YES | analytic=-0.390634 |
+| 54: the scaling two-branch structure is recomputed | PASS | PASS | YES | YES | branches=[0], jacobi2=none |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

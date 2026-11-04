@@ -980,3 +980,15 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Constant (0, sigma_q) extremum from 5 starts incl. +-0.5 displaced mu (max dev 1.3e-21, residuals 2.2e-16); Verlet release oscillates with mu period 2pi (err 2.6e-7) and sigma period pi (err <= 6.6e-7) simultaneously; discrete EL is Ermakov term-by-term (match exact 0.0); mixed sector exactly decoupled; scaling omega = 2 gives pi and pi/2 (err <= 1.1e-6); S1 falsification probe converged instead of diverging — NUMERIC with zero parameters. Shares the Ermakov fixed point and period with claims 21/22/48/49/51; not independent evidence of full-field dynamics; claims 20-26 and 43-52 numbers are unchanged.
 
 - Verification after the co-emergence: two separate runs, 286/286 checks each.
+
+## 2026-11-04 - Fixed-endpoint Gaussian bridge demonstrated (claim 54, ADR-046)
+
+**Added**
+
+- `theory/gaussian_bridge.py` (pinned-endpoint discrete EL, 6-start Newton, Pinney two-branch solve, Jacobi zero search, analytic/discrete actions, omega=2 scaling bundle); `phenomenology/gaussian_bridge_report.py`, make gaussianbridge, `tests/test_gaussian_bridge.py`, `results/gaussian_bridge.json/md`; five new independent audit checks in `verification/audit.py` (Pinney coefficients, no-third-attractor, Jacobi, analytic action, scaling — G-001 two-run); formulas F38.
+
+**Results**
+
+- Pinney B_1=-0.0344345399 / B_2=-1.4055654601 from endpoint quadratic (disc=1.88); 6 starts converge (residuals <= 7.2e-10, gate 1e-9); attribution max-abs <= 8.2e-06 (gate 1e-4), both branches attained (vdip finds bounce); discrete-vs-analytic action -0.390634056 vs -0.390634083 (diff 2.7e-08, gate 1e-4); Jacobi primary none; scaling omega=2 gives 2 branches, jacobi none — NUMERIC with zero parameters. Shares the Ermakov fixed point and period with claims 21/22/48/49/51; not independent evidence of full-field dynamics; claims 20-26 and 43-53 numbers are unchanged.
+
+- Verification after the bridge: two separate runs, 291/291 checks each.
