@@ -61,7 +61,7 @@ def yasue_release(
     previous = s - width
     upward = 0
     crossings = []
-    mild_time = None
+    mild_time = 0.0 if s <= MILD_SIGMA else None
     monotone_diffs = []
     prev_s = s
     hit_time = None
@@ -73,11 +73,9 @@ def yasue_release(
         v += 0.5 * dt * acc_new
         t += dt
         monotone_diffs.append(s_new - s)
-        if mild_time is None and s > MILD_SIGMA >= s_new and factor > 1.0:
+        if mild_time is None and s > MILD_SIGMA >= s_new:
             frac = (s - MILD_SIGMA) / (s - s_new) if s != s_new else 0.0
             mild_time = t - dt + frac * dt
-        if factor < 1.0 and mild_time is None and s_new <= MILD_SIGMA:
-            mild_time = t
         current = s_new - width * factor
         if previous < 0.0 <= current and t > dt:
             upward += 1

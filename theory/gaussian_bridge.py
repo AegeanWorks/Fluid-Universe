@@ -155,7 +155,7 @@ def newton_bridge(
         interior = s0 + (sq - s0) * np.linspace(dt / T, 1.0 - dt / T, n - 2)
     elif start_kind == "bump":
         base = s0 + (sq - s0) * np.linspace(dt / T, 1.0 - dt / T, n - 2)
-        interior = base + 0.3 * np.sin(math.pi * np.linspace(dt / T, 1.0 - dt / T, n - 2))
+        interior = base + BUMP_AMP * np.sin(math.pi * np.linspace(dt / T, 1.0 - dt / T, n - 2))
     elif start_kind == "vdip":
         base = s0 + (sq - s0) * np.linspace(dt / T, 1.0 - dt / T, n - 2)
         dip = np.minimum(0.0, -0.5 * np.sin(math.pi * np.linspace(dt / T, 1.0 - dt / T, n - 2)))
@@ -225,7 +225,6 @@ def _discrete_residual(
         - 0.5 * (-mass * nu * nu / (0.5 * (left + mid)) ** 3 + mass * omega * omega * 0.5 * (left + mid))
         - 0.5 * (-mass * nu * nu / (0.5 * (mid + right)) ** 3 + mass * omega * omega * 0.5 * (mid + right))
     )
-    _ = nu
     return acc
 
 
@@ -292,7 +291,7 @@ def bridge_scales() -> dict:
     T = horizon(omega)
     grid = np.linspace(0.0, T, GRID_N)
     dt = T / (GRID_N - 1)
-    starts = ["const_s0", "const_sq", "linear", "bump", "vdip", "hbump"]
+    starts = list(STARTS)
     s0 = START_S0_FACTOR * sq
     extrema = []
     for kind in starts:

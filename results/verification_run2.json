@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-04T16:43:12+00:00",
-    "git_commit": "20a4cb7143034ab5366b69cdfe6a68b294d0e8a9",
+    "generated_utc": "2026-11-05T19:27:05+00:00",
+    "git_commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "5347226ac86a5d360975bd59b0d30c7d0469d3aaa639a36643bd53950c6c9a23",
-      "results_sha256": "49d08f4079762304e60947b15b115f3b219ec8246b80a5b01ae2798615692c08"
+      "source_sha256": "d67cac9a38f0fc10637d97127f91bd0604fb2ada56257270846dadad9f84d05d",
+      "results_sha256": "14178e6196180e728866a4af64304766e8c290ff732c181ed5aa926bf2a3cab2"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1294,7 +1294,7 @@
     {
       "claim": "53: the joint extremum is recomputed",
       "passed": true,
-      "detail": "worst_dev=1.344e-21",
+      "detail": "worst_dev=6.370e-22",
       "expected": null,
       "observed": null
     },

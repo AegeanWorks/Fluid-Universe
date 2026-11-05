@@ -23,4 +23,4 @@ Second derivative at lambda=1: 2 E4 + 6 V = 5.0.
 Derrick scaling gives a necessary condition, not an existence proof. No Hopfion solution is claimed.
 
 - Config SHA-256: `d0ef56d8f61041f2785a740d2c835b801287e3e90b5944232a80aa8534d0eb69`
-- Git: `341fb600cf21edc06dc542360af6bbcd1a0a4a83` (dirty=True)
+- Git: `e8b65396cbcfb8a43b5a987c0024dd821c39e571` (dirty=True)

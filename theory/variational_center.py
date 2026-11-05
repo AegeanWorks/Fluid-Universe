@@ -81,8 +81,8 @@ def discrete_el_system(
     res_mu = (
         mass * (mu[1:-1] - mu[:-2]) / dt**2
         - mass * (mu[2:] - mu[1:-1]) / dt**2
-        + 0.5 * mass * omega * omega * 0.5 * (mu[:-2] + mu[1:-1])
-        + 0.5 * mass * omega * omega * 0.5 * (mu[1:-1] + mu[2:])
+        - 0.5 * mass * omega * omega * 0.5 * (mu[:-2] + mu[1:-1])
+        - 0.5 * mass * omega * omega * 0.5 * (mu[1:-1] + mu[2:])
     )
 
     def _pot_prime(x: np.ndarray) -> np.ndarray:

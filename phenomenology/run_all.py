@@ -10,7 +10,8 @@ results/delta_search.{json,md}, results/frank_oseen.{json,md}, results/derrick.{
 results/topology.{json,md}, results/reduction.{json,md}, results/predictions.{json,md},
 results/lorentz.{json,md}, results/sim_core.{json,md}, results/hopf.{json,md},
 results/hopfion.{json,md}, results/hopfion3d.{json,md}, results/hopf_resolution.{json,md},
-and results/summary.md.  Every number in prose must come from this command.
+results/yasue_dynamics.{json,md}, results/variational_center.{json,md},
+results/gaussian_bridge.{json,md}, and results/summary.md.  Every number in prose must come from this command.
 """
 
 from __future__ import annotations
@@ -31,6 +32,9 @@ from .quarks import run_quark_check
 from .rg import run_rg
 from .uv_checks import run_derrick_check, run_frank_oseen_check
 from .uv_negatives import run_reduction_check, run_topology_check
+from .yasue_dynamics_report import run_yasue_dynamics_check
+from .variational_center_report import run_variational_center_check
+from .gaussian_bridge_report import run_gaussian_bridge_check
 from theory.rotor import (
     convergence,
     domain_wall_tension,
@@ -516,10 +520,15 @@ def main() -> None:
     from .hopf_resolution_report import render_markdown as render_hopf_resolution
     write_json(RESULTS_DIR / "hopf_resolution.json", hopf_resolution)
     write_text_atomic(RESULTS_DIR / "hopf_resolution.md", render_hopf_resolution(hopf_resolution))
+    # Last-three-push bundle (claims 52-54): regenerate with current theory so
+    # `make results` / `make verify` never audit stale files.
+    run_yasue_dynamics_check(write=True)
+    run_variational_center_check(write=True)
+    run_gaussian_bridge_check(write=True)
     base = build_summary(fit, rg, rotor, neutrino, quarks, pmns)
     summary = base.replace("## Not done / not claimed", extra_summary(delta, fo, derrick) + negatives_summary(topology, reduction, predictions) + lorentz_summary(lorentz) + sim_summary(sim) + hopf_summary(hopf) + hopfion_summary(hopfion) + hopfion3d_summary(hopfion3d) + hopf_resolution_summary(hopf_resolution) + "## Not done / not claimed")
     write_text_atomic(RESULTS_DIR / "summary.md", summary)
-    print("wrote results/{pdg_fit,rg_run,rotor,neutrinos,quarks,pmns,delta_search,frank_oseen,derrick,topology,reduction,predictions,lorentz,sim_core,hopf,hopfion,hopfion3d,hopf_resolution,summary}.{json,md}")
+    print("wrote results/{pdg_fit,rg_run,rotor,neutrinos,quarks,pmns,delta_search,frank_oseen,derrick,topology,reduction,predictions,lorentz,sim_core,hopf,hopfion,hopfion3d,hopf_resolution,yasue_dynamics,variational_center,gaussian_bridge,summary}.{json,md}")
     print(f"Q(pole) = {fit['point']['Q']:.12f}")
     print(f"Q(M_Z, MSbar) = {rg['drift']['Q_MZ']:.12f}")
     print(f"Delta Q (one loop, M_Z -> 1e16) = {rg['drift']['Q_change']:+.3e}")

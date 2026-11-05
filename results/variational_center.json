@@ -41,9 +41,9 @@
       ]
     },
     "config_sha256": "b139b0f7680408c314b8d31621c601d8c84645f423ce9c7219357c19e65aed0d",
-    "generated_utc": "2026-11-03T23:53:05+00:00",
+    "generated_utc": "2026-11-05T19:26:22+00:00",
     "git": {
-      "commit": "341fb600cf21edc06dc542360af6bbcd1a0a4a83",
+      "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
       "dirty": true
     },
     "packages": {
@@ -130,7 +130,7 @@
         {
           "converged": true,
           "dt": 0.001963495408493621,
-          "max_dev_mu": 1.34416849539867e-21,
+          "max_dev_mu": 6.369807704541159e-22,
           "max_dev_sg": 0.0,
           "max_residual": 2.220446049250313e-16,
           "mu0": 0.5,
@@ -139,7 +139,7 @@
         {
           "converged": true,
           "dt": 0.001963495408493621,
-          "max_dev_mu": 2.327867189483216e-22,
+          "max_dev_mu": 3.210939038933259e-23,
           "max_dev_sg": 0.0,
           "max_residual": 2.220446049250313e-16,
           "mu0": -0.5,

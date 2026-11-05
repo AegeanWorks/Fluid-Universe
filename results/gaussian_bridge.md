@@ -21,4 +21,4 @@ Two Pinney branches; Newton finds both; no third attractor.
 Discrete G-M action with pinned Gaussian endpoints admits exactly the two analytic Pinney branches (primary B_1 and bounce B_2); all Newton starts land on one of them; no third attractor. Jacobi primary branch is zero-free.
 
 - Config SHA-256: `e23cb4a7ab817b4df588bfe6dc9a2d3e7283b8ac065e8074ef574c0f351288a6`
-- Git: `20a4cb7143034ab5366b69cdfe6a68b294d0e8a9 (dirty=True)`
+- Git: `e8b65396cbcfb8a43b5a987c0024dd821c39e571 (dirty=True)`

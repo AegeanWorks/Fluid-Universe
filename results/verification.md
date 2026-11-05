@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-04T16:43:01+00:00 | `20a4cb7143034ab5366b69cdfe6a68b294d0e8a9` | 291/291 | `5347226ac86a5d36...` | `49d08f4079762304...` |
-| run2 | 2026-11-04T16:43:12+00:00 | `20a4cb7143034ab5366b69cdfe6a68b294d0e8a9` | 291/291 | `5347226ac86a5d36...` | `49d08f4079762304...` |
+| run1 | 2026-11-05T19:26:47+00:00 | `e8b65396cbcfb8a43b5a987c0024dd821c39e571` | 291/291 | `d67cac9a38f0fc10...` | `14178e6196180e72...` |
+| run2 | 2026-11-05T19:27:05+00:00 | `e8b65396cbcfb8a43b5a987c0024dd821c39e571` | 291/291 | `d67cac9a38f0fc10...` | `14178e6196180e72...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -168,7 +168,7 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 52: the quadrature crossing is recomputed | PASS | PASS | YES | YES | quad=0.535069109, stored=0.535069132 |
 | 52: the scaling law is recomputed | PASS | PASS | YES | YES | hit=0.3960000000000003, T=1.570500000 |
 | 53: the center period is recomputed | PASS | PASS | YES | YES | T_mu=2pi |
-| 53: the joint extremum is recomputed | PASS | PASS | YES | YES | worst_dev=1.344e-21 |
+| 53: the joint extremum is recomputed | PASS | PASS | YES | YES | worst_dev=6.370e-22 |
 | 53: the scaling law is recomputed | PASS | PASS | YES | YES | mu=3.141592130, sg=1.570795279 |
 | 53: the term match is recomputed | PASS | PASS | YES | YES | max_rel=0.000e+00 |
 | 53: the width period is recomputed | PASS | PASS | YES | YES | T_sg=pi |

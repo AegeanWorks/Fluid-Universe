@@ -2018,9 +2018,9 @@
       "scope": "trial-class discriminator, zero parameters, no full-field claim"
     },
     "config_sha256": "2c54a49b613d1dbaf1fc7c49cd54cd7977c41d54023a8bab4a95fcc80b4e26b1",
-    "generated_utc": "2026-11-03T23:27:08+00:00",
+    "generated_utc": "2026-11-05T19:26:13+00:00",
     "git": {
-      "commit": "65772fee29249c1c3707d82a3110ccd3a40f1a03",
+      "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
       "dirty": true
     },
     "packages": {
@@ -2120,7 +2120,7 @@
           "crossing_times": [],
           "factor": 0.99,
           "floor_hit_time": 0.7760000000000006,
-          "mild_crossing_time": 0.5120000000000003,
+          "mild_crossing_time": 0.5119745343302183,
           "min_sigma": -0.023041703440535334,
           "monotone": true,
           "upward_crossings": 0
@@ -2158,7 +2158,7 @@
           "crossing_times": [],
           "factor": 0.99,
           "floor_hit_time": 0.7730000000000006,
-          "mild_crossing_time": 0.5120000000000003,
+          "mild_crossing_time": 0.5119745343302183,
           "min_sigma": 0.048679462766674654,
           "monotone": true,
           "upward_crossings": 0
