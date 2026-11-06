@@ -1007,3 +1007,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 55 is NUMERIC (discriminator demonstrated); it shares the Ermakov fixed point and period with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-54 numbers are unchanged.
 
 - Verification after the discriminator: two separate runs, 297/297 checks each.
+
+## 2026-11-06 - Yasue-bridge analytic family demonstrated (claim 56, ADR-048)
+
+**Added**
+
+- theory/yasue_bridge.py (c<0 endpoint algebra, FD ODE identity, width-only Newton BVP, Yasue-Q Jacobi, nu-series, attribution); phenomenology/yasue_bridge_report.py, make yasuebridge, tests/test_yasue_bridge.py, results/yasue_bridge.{json,md}; five new independent audit checks in verification/audit.py (B-quadratic, ODE identity, attribution, killed sibling, Jacobi, nu-limit/scaling - G-001 two-run); formulas F40.
+- Swarm waves: 4 literature clusters (negative-c Pinney absence - provisional, Lewis sign, Jacobi/dis Dave disconjugacy, oscillator BVP - closed form verified) plus 3 fixed-seed compute batches (ODE identity, branch map, Jacobi) with config hashes; artifacts verified by sampling (independent re-run: disc=3.0, B values exact, attribution 6.26e-08, nu=0 bridge to 10 digits; websearch quota exhausted so the c<0 absence stays provisional and carries no evidentiary weight).
+
+**Results**
+
+- Endpoint pinning gives disc=3: B_1=0.3660254038 (admissible, attains the recorded claim-55 arc to 6.3e-08 vs 1e-4 gate, ODE FD identity 7.7e-09 vs 1e-6 gate, constraint exact) and B_2=-1.3660254038 (inadmissible, min s^2=-0.0658, reported as killed sibling); Jacobi with Yasue Q uniformly negative (Q in [-2.0,-0.77] at omega=1, [-8.0,-3.07] at omega=2) is zero-free; scaling omega=2 preserves the structure (same B values, attribution, Jacobi none); nu->0 with fixed endpoints is the oscillator bridge (peak 1.0823922003*a matched to 1e-9) - NUMERIC with zero parameters.
+- A Stage-3 implementation sign error in the endpoint elimination (qc +nu^2vT^2 instead of -nu^2vT^2, disc=1 garbage) was caught by the B_1/B_2 hand check and fixed before wiring; nothing downstream was affected.
+- Claim 56 is NUMERIC (family demonstrated); it shares the Ermakov fixed point with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-55 numbers are unchanged.
+
+- Verification after the span: two separate runs, 303/303 checks each.

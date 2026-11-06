@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `192`
+- **Total Python Modules**: `195`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `1048`
+- **Total Top-Level Functions**: `1071`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `27818`
+- **Total Source Lines**: `28693`
 
 ---
 
@@ -439,7 +439,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `542` lines (`25801` bytes)
+**Size**: `544` lines (`25928` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -792,6 +792,18 @@
 
 **Functions:**
 - `def run_water_well_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/yasue_bridge_report.py`](phenomenology/yasue_bridge_report.py)
+> *Pinned-endpoint Yasue bridge: the c<0 Pinney analytic family (claim 56, ADR-048).*
+
+**Size**: `322` lines (`11670` bytes)
+
+**Functions:**
+- `def _load_arc_profile()`
+- `def run_yasue_bridge_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1874,6 +1886,24 @@
 
 ---
 
+### [`tests/test_yasue_bridge.py`](tests/test_yasue_bridge.py)
+> *Yasue-bridge analytic family tests (claim 56).*
+
+**Size**: `125` lines (`4213` bytes)
+
+**Functions:**
+- `def test_branch_coefficients_match_endpoint_algebra()`
+- `def test_b1_admissible_b2_killed_sibling()`
+- `def test_ode_identity_holds_term_by_term()`
+- `def test_fresh_newton_attains_and_matches_family()`
+- `def test_jacobi_zero_free_with_yasue_sign()`
+- `def test_scaling_preserves_branch_structure()`
+- `def test_nu_zero_limit_is_oscillator_bridge()`
+- `def test_bridge_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_yasue_center.py`](tests/test_yasue_center.py)
 > *Yasue center-width discriminator tests (claim 55).*
 
@@ -2627,6 +2657,25 @@
 
 ---
 
+### [`theory/yasue_bridge.py`](theory/yasue_bridge.py)
+> *Pinned-endpoint Yasue bridge: the c<0 Pinney analytic family (claim 56, ADR-048).*
+
+**Size**: `297` lines (`9423` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def pinney_coeffs_yasue(s0, sT, horizon_T, omega, hbar, mass, nu)` - *Solve the c<0 endpoint algebra. Returns (branches, disc_norm).*
+- `def pinney_path(coeffs, t_values, omega)`
+- `def fd_ode_residual(coeffs, omega, hbar, mass, horizon_T, nu, n)` - *8th-order finite-difference check of s_ddot + nu^2/s^3 + w^2 s = 0.*
+- `def _discrete_residual_width(interior, omega, hbar, mass, nu, dt, s0, sT)`
+- `def newton_width(s0, sT, horizon_T, omega, hbar, mass, nu, n, steps)` - *Width-only BVP Newton solves from WIDTH_STARTS (Yasue sign).*
+- `def attribution_diff(analytic, recorded)`
+- `def jacobi_first_zero_yasue(t_values, s_values, omega, nu, n)` - *First conjugate zero of u'' + Q u = 0 with Yasue Q = -3nu^2/s^4 + w^2.*
+- `def nu_limit_bridge(alpha_T)` - *Closed-form nu=0 fixed-endpoint bridge (classical bank).*
+
+---
+
 ### [`theory/yasue_center.py`](theory/yasue_center.py)
 > *Yasue center-width discriminator: collapse under Yasue, co-emergence under G-M (claim 55, ADR-047).*
 
@@ -2673,7 +2722,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3538` lines (`142377` bytes)
+**Size**: `3665` lines (`146897` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2751,6 +2800,7 @@
 - `def audit_variational_center(audit)`
 - `def audit_gaussian_bridge(audit)`
 - `def audit_yasue_center(audit)`
+- `def audit_yasue_bridge(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2780,7 +2830,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `203` lines (`5305` bytes)
+**Size**: `205` lines (`5353` bytes)
 
 **Functions:**
 - `def _source_files()`

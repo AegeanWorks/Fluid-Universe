@@ -2018,9 +2018,9 @@
       "scope": "trial-class discriminator, zero parameters, no full-field claim"
     },
     "config_sha256": "2c54a49b613d1dbaf1fc7c49cd54cd7977c41d54023a8bab4a95fcc80b4e26b1",
-    "generated_utc": "2026-11-06T06:09:40+00:00",
+    "generated_utc": "2026-11-06T06:29:29+00:00",
     "git": {
-      "commit": "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8",
+      "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
       "dirty": true
     },
     "packages": {

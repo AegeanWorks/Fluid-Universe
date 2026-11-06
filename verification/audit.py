@@ -3038,6 +3038,132 @@ def audit_yasue_center(audit: Audit) -> None:
         )
 
 
+def audit_yasue_bridge(audit: Audit) -> None:
+    payload = load_results("yasue_bridge.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    rec = scales["recorded_point"]
+    # Independent B-quadratic from the endpoint conditions (no project import).
+    _uT = math.cos(math.pi / 4.0)
+    _vT = math.sin(math.pi / 4.0)
+    _A = 0.5
+    _qa, _qb = _vT**2, 2.0 * _A * _uT * _vT
+    _qc = _A**2 * _uT**2 - _A * 0.5 - 0.25 * _vT**2
+    _disc = (_qb / _qa) ** 2 - 4.0 * (_qc / _qa)
+    _b1 = (-_qb / _qa + math.sqrt(_disc)) / 2.0
+    _b2 = (-_qb / _qa - math.sqrt(_disc)) / 2.0
+    audit.record(
+        "56: the B-quadratic is recomputed",
+        abs(_disc - 3.0) < 1e-12
+        and abs(_b1 - 0.3660254037844386) < 1e-9
+        and abs(_b2 + 1.3660254037844386) < 1e-9
+        and abs(rec["disc"] - 3.0) < 1e-9,
+        f"disc={_disc:.6f}",
+    )
+    # Independent ODE identity: own 4th-order FD on the stored B_1 branch.
+    _c1 = (_b1**2 - 0.25) / _A
+    _n = 2001
+    _t = [i * (math.pi / 4.0) / (_n - 1) for i in range(_n)]
+    _s = [
+        math.sqrt(
+            max(
+                _A * math.cos(x) ** 2
+                + 2.0 * _b1 * math.cos(x) * math.sin(x)
+                + _c1 * math.sin(x) ** 2,
+                0.0,
+            )
+        )
+        for x in _t
+    ]
+    _h = _t[1] - _t[0]
+    _w = [-1.0 / 12.0, 4.0 / 3.0, -5.0 / 2.0, 4.0 / 3.0, -1.0 / 12.0]
+    _res = []
+    for _i in range(2, _n - 2):
+        _dd = sum(_w[_k] * _s[_i - 2 + _k] for _k in range(5)) / (_h * _h)
+        _res.append(abs(_dd + 0.25 / _s[_i] ** 3 + _s[_i]))
+    audit.record(
+        "56: the ODE identity is recomputed",
+        max(_res) <= 1e-6,
+        f"max_res={max(_res):.3e}",
+    )
+    # Independent attribution: stored analytic path vs stored arc profile.
+    _arc = load_results("yasue_center.json")["result"]["scales"]["arc_profile"]
+    _analytic = rec["analytic_interior"]
+    _recorded = _arc["sg"]
+    _attrib = max(abs(a - b) for a, b in zip(_analytic, _recorded))
+    audit.record(
+        "56: the attribution is recomputed",
+        _attrib <= 1e-4 and abs(_attrib - rec["attribution_max_abs"]) <= 1e-12,
+        f"attrib={_attrib:.3e}",
+    )
+    # Independent killed sibling: B_2 takes s^2 negative mid-interval.
+    _c2 = (_b2**2 - 0.25) / _A
+    _s2min = min(
+        _A * math.cos(x) ** 2
+        + 2.0 * _b2 * math.cos(x) * math.sin(x)
+        + _c2 * math.sin(x) ** 2
+        for x in _t
+    )
+    audit.record(
+        "56: the killed sibling is recomputed",
+        _s2min < 0.0 and abs(_s2min - rec["b2_min_s2"]) <= 1e-9,
+        f"min_s2={_s2min:.6f}",
+    )
+    # Independent Jacobi with the Yasue Q sign (own integrator).
+    import numpy as _np
+
+    _tt = _np.linspace(0.0, math.pi / 4.0, 20001)
+    _ss = _np.array(
+        [
+            math.sqrt(
+                max(
+                    _A * math.cos(x) ** 2
+                    + 2.0 * _b1 * math.cos(x) * math.sin(x)
+                    + _c1 * math.sin(x) ** 2,
+                    0.0,
+                )
+            )
+            for x in _tt
+        ]
+    )
+    _qq = -3.0 * 0.25 / _np.maximum(_ss, 1e-12) ** 4 + 1.0
+    _uu, _vv, _zero = 0.0, 1.0, None
+    _dt = float(_tt[1] - _tt[0])
+    for _i in range(1, len(_tt)):
+        _vv += _dt * (-float(_qq[_i - 1]) * _uu)
+        _uu += _dt * _vv
+        if _uu <= 0.0:
+            _zero = float(_tt[_i])
+            break
+    audit.record(
+        "56: the Jacobi leg is recomputed",
+        _zero is None and bool(_np.all(_qq < 0.0)),
+        f"zero={_zero}, qmax={float(_np.max(_qq)):.3f}",
+    )
+    # Independent nu = 0 limit and omega = 2 scaling algebra.
+    _alpha = (1.0 - math.cos(math.pi / 4.0)) / math.sin(math.pi / 4.0)
+    _peak = math.sqrt(1.0 + _alpha * _alpha)
+    _sc = scales["scaling"]
+    _nu0 = [e for e in scales["nu_series"] if e["nu"] == 0.0][0]
+    audit.record(
+        "56: the nu-limit and scaling are recomputed",
+        abs(_alpha - (math.sqrt(2.0) - 1.0)) <= 1e-15
+        and abs(_peak - 1.0823922003) <= 1e-9
+        and abs(_nu0["peak_ratio"] - 1.0823922003) <= 1e-4
+        and abs(_sc["b1"]["B"] - 0.3660254037844386) <= 1e-9
+        and _sc["attribution_max_abs"] <= 1e-4
+        and _sc["jacobi_first_zero"] is None,
+        f"peak={_peak:.10f}",
+    )
+    if not verdict["claim_56_status"].startswith("NUMERIC"):
+        audit.record(
+            "56: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_56_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3475,6 +3601,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_variational_center(audit)
     audit_gaussian_bridge(audit)
     audit_yasue_center(audit)
+    audit_yasue_bridge(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

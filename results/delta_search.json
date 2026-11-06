@@ -25,9 +25,9 @@
       "source_fit": "results/pdg_fit.json"
     },
     "config_sha256": "5947ca1f7edce9428e29811388c938328a636f09d8d9a05de85fbd945f87ccd3",
-    "generated_utc": "2026-11-06T06:08:37+00:00",
+    "generated_utc": "2026-11-06T06:28:30+00:00",
     "git": {
-      "commit": "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8",
+      "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
       "dirty": true
     },
     "packages": {

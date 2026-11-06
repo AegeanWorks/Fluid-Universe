@@ -33,4 +33,4 @@ Analytic tension T = (8/3) sqrt(mu) = 2.666666666667. Observed orders: 1.99, 2.0
 1D baselines only. No 3D lattice, no Hopf charge, no Z3 order parameter, and no production run. The earlier lost-run numbers are not used.
 
 - Config SHA-256: `d7d364e4c8477fa288d3c3bd105f2fe7e3d2e03ccd1c2ebbf302a6967b461d23`
-- Git: `8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8` (dirty=True)
+- Git: `efc3a078e9e1b5c8650457aa15a4bad7f940e307` (dirty=True)

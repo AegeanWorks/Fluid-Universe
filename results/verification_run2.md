@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**297/297 checks passed.**
+**303/303 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -204,6 +204,12 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 55: the Yasui width collapse is recomputed | PASS | hits=[0.783, 0.793, 0.962] |
 | 55: the G-M twin is recomputed | PASS | twin 2pi/pi |
 | 55: the scaling law is recomputed | PASS | hit=0.3960000000000003, twin_mu=3.141592 |
+| 56: the B-quadratic is recomputed | PASS | disc=3.000000 |
+| 56: the ODE identity is recomputed | PASS | max_res=6.250e-09 |
+| 56: the attribution is recomputed | PASS | attrib=6.258e-08 |
+| 56: the killed sibling is recomputed | PASS | min_s2=-0.065826 |
+| 56: the Jacobi leg is recomputed | PASS | zero=None, qmax=-0.766 |
+| 56: the nu-limit and scaling are recomputed | PASS | peak=1.0823922003 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

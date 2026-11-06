@@ -158,6 +158,8 @@ RESULT_FILES = (
     "gaussian_bridge.md",
     "yasue_center.json",
     "yasue_center.md",
+    "yasue_bridge.json",
+    "yasue_bridge.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
