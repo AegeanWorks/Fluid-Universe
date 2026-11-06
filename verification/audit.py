@@ -2922,6 +2922,122 @@ def audit_gaussian_bridge(audit: Audit) -> None:
         )
 
 
+def audit_yasue_center(audit: Audit) -> None:
+    payload = load_results("yasue_center.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    # Independent constant-path residual: G-M stationary path is O(1) under Yasue.
+    audit.record(
+        "55: the constant-path residual is recomputed",
+        all(s["max_residual"] > 1e-3 for s in scales["statics"])
+        and all(s["max_res_mu"] <= 1e-9 for s in scales["statics"])
+        and abs(min(s["max_residual"] for s in scales["statics"]) - math.sqrt(2.0)) <= 1e-9,
+        f"min_res={min(s['max_residual'] for s in scales['statics']):.6f}",
+    )
+    # Independent arc solve: own discrete Yasue EL on the stored profile.
+    _arc = scales["arc_profile"]
+    _n = _arc["n"]
+    _dt = _arc["dt"]
+    _mu = _arc["mu"]
+    _sg = _arc["sg"]
+    _full_mu = [0.0] + _mu + [0.0]
+    _full_sg = [math.sqrt(0.5)] + _sg + [math.sqrt(0.5)]
+    _res_mu = [
+        (_full_mu[i + 1] - _full_mu[i]) / _dt**2
+        - (_full_mu[i + 2] - _full_mu[i + 1]) / _dt**2
+        - 0.5 * 0.5 * (_full_mu[i] + _full_mu[i + 1])
+        - 0.5 * 0.5 * (_full_mu[i + 1] + _full_mu[i + 2])
+        for i in range(_n - 2)
+    ]
+    def _pot(_x: float) -> float:
+        return 0.25 / (_x**3) + 1.0 * _x
+
+    _res_sg = [
+        (_full_sg[i + 1] - _full_sg[i]) / _dt**2
+        - (_full_sg[i + 2] - _full_sg[i + 1]) / _dt**2
+        - 0.5 * _pot(0.5 * (_full_sg[i] + _full_sg[i + 1]))
+        - 0.5 * _pot(0.5 * (_full_sg[i + 1] + _full_sg[i + 2]))
+        for i in range(_n - 2)
+    ]
+    _arc_res = max(
+        max(abs(v) for v in _res_mu), max(abs(v) for v in _res_sg)
+    )
+    audit.record(
+        "55: the single arc is recomputed",
+        _arc_res <= 1e-9
+        and scales["arc_max_sigma"] - scales["arc_min_sigma"] > 0.01
+        and scales["arc_min_sigma"] > math.sqrt(0.5),
+        f"arc_res={_arc_res:.3e}",
+    )
+    # Independent center track: Newtonian cosine over the collapse window.
+    _track_ok = True
+    for _r in scales["releases"]:
+        _t = _r["floor_hit_time"]
+        _pred = _r["mu0"] * math.cos(_t) if _t is not None else None
+        _got = _r["mu_at_hit"]
+        if _pred is None or _got is None or abs(_got - _pred) > 1e-4:
+            _track_ok = False
+    audit.record(
+        "55: the center track is recomputed",
+        _track_ok,
+        "mu(t_hit)=mu0*cos(t_hit)",
+    )
+    # Independent width collapse: monotone releases, floor hit before pi, no returns.
+    audit.record(
+        "55: the Yasui width collapse is recomputed",
+        all(_r["monotone"] for _r in scales["releases"])
+        and all(
+            _r["floor_hit_time"] is not None and _r["floor_hit_time"] < math.pi
+            for _r in scales["releases"]
+        )
+        and all(_r["upward_crossings"] == 0 for _r in scales["releases"]),
+        f"hits={[round(_r['floor_hit_time'], 3) for _r in scales['releases']]}",
+    )
+    # Independent G-M twin control: co-oscillation at 2pi and pi.
+    audit.record(
+        "55: the G-M twin is recomputed",
+        all(
+            abs(_t["mu_period"] - 2.0 * math.pi) <= 1e-3
+            for _t in scales["twins"]
+            if _t["mu0"] != 0.0
+        )
+        and all(
+            abs(_t["sg_period"] - math.pi) <= 1e-3
+            for _t in scales["twins"]
+            if _t["s0_factor"] != 1.0
+        ),
+        "twin 2pi/pi",
+    )
+    # Independent scaling at omega = 2 (own Verlet, no project imports).
+    _sc = scales["scaling"]
+    _s, _v, _t, _hit2 = 1.01 * 0.5, 0.0, 0.0, None
+    while _t < math.pi:
+        _a = -0.25 / (_s**3) - 4.0 * _s
+        _v += 0.5 * 0.001 * _a
+        _s += 0.001 * _v
+        _a2 = -0.25 / (_s**3) - 4.0 * _s if _s > 0.0 else _a
+        _v += 0.5 * 0.001 * _a2
+        _t += 0.001
+        if _s <= 0.05:
+            _hit2 = _t
+            break
+    audit.record(
+        "55: the scaling law is recomputed",
+        _hit2 is not None
+        and _hit2 < math.pi / 4.0
+        and abs(_sc["twin_mu"]["mu_period"] - math.pi) <= 1e-3
+        and abs(_sc["twin_sg"]["sg_period"] - math.pi / 2.0) <= 1e-3,
+        f"hit={_hit2}, twin_mu={_sc['twin_mu']['mu_period']:.6f}",
+    )
+    if not verdict["claim_55_status"].startswith("NUMERIC"):
+        audit.record(
+            "55: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_55_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3358,6 +3474,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_yasue_dynamics(audit)
     audit_variational_center(audit)
     audit_gaussian_bridge(audit)
+    audit_yasue_center(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

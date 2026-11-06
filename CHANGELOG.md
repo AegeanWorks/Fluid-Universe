@@ -992,3 +992,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Pinney B_1=-0.0344345399 / B_2=-1.4055654601 from endpoint quadratic (disc=1.88); 6 starts converge (residuals <= 7.2e-10, gate 1e-9); attribution max-abs <= 8.2e-06 (gate 1e-4), both branches attained (vdip finds bounce); discrete-vs-analytic action -0.390634056 vs -0.390634083 (diff 2.7e-08, gate 1e-4); Jacobi primary none; scaling omega=2 gives 2 branches, jacobi none — NUMERIC with zero parameters. Shares the Ermakov fixed point and period with claims 21/22/48/49/51; not independent evidence of full-field dynamics; claims 20-26 and 43-53 numbers are unchanged.
 
 - Verification after the bridge: two separate runs, 291/291 checks each.
+
+## 2026-11-06 - Yasue center-width discriminator demonstrated (claim 55, ADR-047)
+
+**Added**
+
+- theory/yasue_center.py (shared center EL plus Yasue width accel, discrete Yasue EL, joint Verlet with analytic-cos center tracking and floor stop, bounded Newton arc solve, quadrature composition, omega=2 scaling bundle); phenomenology/yasue_center_report.py, make yasuecenter, tests/test_yasue_center.py, results/yasue_center.{json,md}; five new independent audit checks in verification/audit.py (static residual, single arc, center track, width collapse, twin control, scaling law - G-001 two-run); formulas F39.
+- Swan waves: 4 literature clusters (classical limit, stochastic-variational prior art, Ermakov/variational-Gaussian, nodes/Wallstrom - one paper per subagent, figure-and-equation level) plus 3 fixed-seed compute batches (analytic split, discrete EL twin, S1-style joint probe); artifacts verified by sampling (R1 split exact to 0.0; joint probe re-run bit-identical).
+
+**Results**
+
+- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC with zero parameters. The joint run ends at floor-hit before a full center period, so no full-period Yasue-center gate exists (2pi is analytic inference, flagged as such).
+- The constant path is not stationary under Yasue (residual min 1.414214) but the BVP admits a single non-constant arc (min 0.7081204372, max 0.8072253635, residual <= 8.5e-11, identical across 5 starts) - recorded, not claimed; the Stage-2 no-root hypothesis was falsified by the solver and retired plainly. No analytic arc family or Jacobi exists (future work).
+- Claim 55 is NUMERIC (discriminator demonstrated); it shares the Ermakov fixed point and period with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-54 numbers are unchanged.
+
+- Verification after the discriminator: two separate runs, 297/297 checks each.

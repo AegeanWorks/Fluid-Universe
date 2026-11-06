@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-05T19:26:47+00:00",
-    "git_commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+    "generated_utc": "2026-11-06T06:10:01+00:00",
+    "git_commit": "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "d67cac9a38f0fc10637d97127f91bd0604fb2ada56257270846dadad9f84d05d",
-      "results_sha256": "14178e6196180e728866a4af64304766e8c290ff732c181ed5aa926bf2a3cab2"
+      "source_sha256": "8436c697ee1c2d398c6da8000b253cb568f7340168af1257d522fd7b0c50e455",
+      "results_sha256": "1e9314e74a79a716abc0b919874e8ad73c136baa32200d0830e19dcdc32b1ee0"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1362,6 +1362,48 @@
       "observed": null
     },
     {
+      "claim": "55: the constant-path residual is recomputed",
+      "passed": true,
+      "detail": "min_res=1.414214",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "55: the single arc is recomputed",
+      "passed": true,
+      "detail": "arc_res=8.455e-11",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "55: the center track is recomputed",
+      "passed": true,
+      "detail": "mu(t_hit)=mu0*cos(t_hit)",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "55: the Yasui width collapse is recomputed",
+      "passed": true,
+      "detail": "hits=[0.783, 0.793, 0.962]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "55: the G-M twin is recomputed",
+      "passed": true,
+      "detail": "twin 2pi/pi",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "55: the scaling law is recomputed",
+      "passed": true,
+      "detail": "hit=0.3960000000000003, twin_mu=3.141592",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2055,8 +2097,8 @@
       "observed": null
     }
   ],
-  "total": 291,
-  "passed": 291,
+  "total": 297,
+  "passed": 297,
   "failed": 0,
   "failures": []
 }

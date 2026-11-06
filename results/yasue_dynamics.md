@@ -23,4 +23,4 @@ Yasui runs away; G-M oscillates. Same integrator, opposite outcomes.
 Yasui trial collapses monotonically to the floor with no return while the identical G-M machinery oscillates at pi: the action sign is dynamically discriminating within the trial class. No full-field claim is made.
 
 - Config SHA-256: `2c54a49b613d1dbaf1fc7c49cd54cd7977c41d54023a8bab4a95fcc80b4e26b1`
-- Git: `e8b65396cbcfb8a43b5a987c0024dd821c39e571` (dirty=True)
+- Git: `8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8` (dirty=True)

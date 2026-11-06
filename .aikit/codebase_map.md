@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `189`
+- **Total Python Modules**: `192`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `1022`
+- **Total Top-Level Functions**: `1048`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `26876`
+- **Total Source Lines**: `27818`
 
 ---
 
@@ -439,7 +439,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `530` lines (`25058` bytes)
+**Size**: `542` lines (`25801` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -792,6 +792,17 @@
 
 **Functions:**
 - `def run_water_well_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/yasue_center_report.py`](phenomenology/yasue_center_report.py)
+> *Yasue center-width discriminator (claim 55, ADR-047).*
+
+**Size**: `233` lines (`8557` bytes)
+
+**Functions:**
+- `def run_yasue_center_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1863,6 +1874,24 @@
 
 ---
 
+### [`tests/test_yasue_center.py`](tests/test_yasue_center.py)
+> *Yasue center-width discriminator tests (claim 55).*
+
+**Size**: `129` lines (`3906` bytes)
+
+**Functions:**
+- `def test_yasue_static_residual_is_order_one()`
+- `def test_yasue_arc_attained_single_attractor()`
+- `def test_yasue_center_tracks_width_collapses()`
+- `def test_gm_twin_controls_the_apparatus()`
+- `def test_yasue_accel_negative_everywhere()`
+- `def test_quadrature_matches_verlet_at_mild_point()`
+- `def test_scaling_bounds_collapse()`
+- `def test_discriminator_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_yasue_dynamics.py`](tests/test_yasue_dynamics.py)
 > *Yasui dynamical discriminator tests (claim 52).*
 
@@ -1961,7 +1990,7 @@
 ### [`theory/gaussian_bridge.py`](theory/gaussian_bridge.py)
 > *Fixed-endpoint Gaussian transport bridge (claim 54, ADR-046).*
 
-**Size**: `366` lines (`12669` bytes)
+**Size**: `365` lines (`12616` bytes)
 
 **Functions:**
 - `def diffusivity(hbar, mass)`
@@ -2598,10 +2627,33 @@
 
 ---
 
+### [`theory/yasue_center.py`](theory/yasue_center.py)
+> *Yasue center-width discriminator: collapse under Yasue, co-emergence under G-M (claim 55, ADR-047).*
+
+**Size**: `452` lines (`15916` bytes)
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def width_fixed_point(omega, hbar, mass)`
+- `def mu_acceleration(mu, omega)`
+- `def sigma_acceleration_gm(s, omega, hbar, mass)`
+- `def yasue_acceleration(s, omega, hbar, mass)` - *Yasue width acceleration: -nu^2/s^3 - omega^2*s < 0 for all s > 0.*
+- `def sigma_acceleration_yasue(s, omega, hbar, mass)`
+- `def discrete_el_system_yasue(interior, omega, hbar, mass, dt, mu_end, s_end)` - *Discrete Euler-Lagrange residuals for the (mu, sigma) pair under Yasue.*
+- `def static_residuals(omega, hbar, mass, n)` - *Discrete Yasue EL residual at the G-M stationary path (0, sigma_q).*
+- `def newton_attempt_yasue(mu0, s0_factor, omega, hbar, mass, n, steps)` - *Bounded Newton solve on the Yasue discrete EL system.*
+- `def _period_from_crossings(times)`
+- `def release_pair_yasue(mu0, s0_factor, omega, hbar, mass, dt, t_end, floor)` - *Joint Verlet release under Yasue: classical center, collapsing width.*
+- `def term_match()` - *Width-leg sign split + shared center leg, term by term.*
+- `def yasue_scales()` - *Collect the discriminator bundle (no verdict).*
+
+---
+
 ### [`theory/yasue_dynamics.py`](theory/yasue_dynamics.py)
 > *Yasui dynamical discriminator: collapse vs G-M oscillation (claim 52, ADR-044).*
 
-**Size**: `176` lines (`6015` bytes)
+**Size**: `174` lines (`5929` bytes)
 
 **Functions:**
 - `def yasue_acceleration(s, omega, hbar, mass)`
@@ -2621,7 +2673,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3421` lines (`137983` bytes)
+**Size**: `3538` lines (`142377` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2698,6 +2750,7 @@
 - `def audit_yasue_dynamics(audit)`
 - `def audit_variational_center(audit)`
 - `def audit_gaussian_bridge(audit)`
+- `def audit_yasue_center(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2727,7 +2780,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `201` lines (`5257` bytes)
+**Size**: `203` lines (`5305` bytes)
 
 **Functions:**
 - `def _source_files()`

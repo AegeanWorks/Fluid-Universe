@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**291/291 checks passed.**
+**297/297 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -198,6 +198,12 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 54: the Jacobi no-crossing is recomputed | PASS | zero=None |
 | 54: the analytic action is recomputed | PASS | analytic=-0.390634 |
 | 54: the scaling two-branch structure is recomputed | PASS | branches=[0], jacobi2=none |
+| 55: the constant-path residual is recomputed | PASS | min_res=1.414214 |
+| 55: the single arc is recomputed | PASS | arc_res=8.455e-11 |
+| 55: the center track is recomputed | PASS | mu(t_hit)=mu0*cos(t_hit) |
+| 55: the Yasui width collapse is recomputed | PASS | hits=[0.783, 0.793, 0.962] |
+| 55: the G-M twin is recomputed | PASS | twin 2pi/pi |
+| 55: the scaling law is recomputed | PASS | hit=0.3960000000000003, twin_mu=3.141592 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

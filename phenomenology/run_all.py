@@ -11,7 +11,8 @@ results/topology.{json,md}, results/reduction.{json,md}, results/predictions.{js
 results/lorentz.{json,md}, results/sim_core.{json,md}, results/hopf.{json,md},
 results/hopfion.{json,md}, results/hopfion3d.{json,md}, results/hopf_resolution.{json,md},
 results/yasue_dynamics.{json,md}, results/variational_center.{json,md},
-results/gaussian_bridge.{json,md}, and results/summary.md.  Every number in prose must come from this command.
+results/gaussian_bridge.{json,md}, results/yasue_center.{json,md},
+and results/summary.md.  Every number in prose must come from this command.
 """
 
 from __future__ import annotations
@@ -35,6 +36,7 @@ from .uv_negatives import run_reduction_check, run_topology_check
 from .yasue_dynamics_report import run_yasue_dynamics_check
 from .variational_center_report import run_variational_center_check
 from .gaussian_bridge_report import run_gaussian_bridge_check
+from .yasue_center_report import run_yasue_center_check
 from theory.rotor import (
     convergence,
     domain_wall_tension,
@@ -525,6 +527,7 @@ def main() -> None:
     run_yasue_dynamics_check(write=True)
     run_variational_center_check(write=True)
     run_gaussian_bridge_check(write=True)
+    run_yasue_center_check(write=True)
     base = build_summary(fit, rg, rotor, neutrino, quarks, pmns)
     summary = base.replace("## Not done / not claimed", extra_summary(delta, fo, derrick) + negatives_summary(topology, reduction, predictions) + lorentz_summary(lorentz) + sim_summary(sim) + hopf_summary(hopf) + hopfion_summary(hopfion) + hopfion3d_summary(hopfion3d) + hopf_resolution_summary(hopf_resolution) + "## Not done / not claimed")
     write_text_atomic(RESULTS_DIR / "summary.md", summary)
