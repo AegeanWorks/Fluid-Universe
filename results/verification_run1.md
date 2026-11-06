@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**312/312 checks passed.**
+**317/317 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -219,6 +219,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 58: the classical bank is recomputed | PASS | closed=-0.2385281374 |
 | 58: an independent optimization escapes below the bank | PASS | J=-7499111695.688187 from -0.397384 in 13 it |
 | 58: the escape record is consistent | PASS | min_J=-99136423776.8857 |
+| 59: the analytic bridge action is recomputed | PASS | J=-0.3906340559 |
+| 59: the widened minimum is recomputed | PASS | maxdiff=2.442e-15 |
+| 59: the K=0 attribution is recomputed | PASS | attrib=8.977e-06 best_max_ck=0.000e+00 |
+| 59: the classical bank is recomputed | PASS | closed=-0.2385281374 |
+| 59: the verdict follows its gates | PASS | status=UNVERIFIED (ladder_attainment; path_match) |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

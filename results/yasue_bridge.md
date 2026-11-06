@@ -25,4 +25,4 @@ c<0 Pinney form with endpoint pinning: B_1 admissible (recorded arc), B_2 inadmi
 c<0 Pinney form satisfies the Yasue ODE; endpoint pinning gives B_1 admissible (recorded arc) and B_2 inadmissible; Jacobi zero-free; scaling preserves structure; nu->0 is the oscillator bridge.
 
 - Config SHA-256: `7a1605b2c7afd4384c37674caf5c4e0938fb1782ce03e55a2ae91c87caf7e464`
-- Git: `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` (dirty=True)
+- Git: `f7315c8acbc922fad364d49dbc1169e32fd9f08e` (dirty=True)

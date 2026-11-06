@@ -36,9 +36,9 @@
       "scope": "Ritz trial BVP, zero parameters, no full-field claim"
     },
     "config_sha256": "e67bf62ce6360cdcff4c5b28cb9c6e5dc67687b2fbbba8c25e269c516019283a",
-    "generated_utc": "2026-11-06T10:32:31+00:00",
+    "generated_utc": "2026-11-06T18:13:53+00:00",
     "git": {
-      "commit": "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+      "commit": "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
       "dirty": true
     },
     "packages": {

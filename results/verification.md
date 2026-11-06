@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-06T10:36:27+00:00 | `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` | 312/312 | `85fe4cdae1245f1e...` | `53413d4a0a231fd7...` |
-| run2 | 2026-11-06T10:36:37+00:00 | `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` | 312/312 | `85fe4cdae1245f1e...` | `53413d4a0a231fd7...` |
+| run1 | 2026-11-06T18:20:17+00:00 | `f7315c8acbc922fad364d49dbc1169e32fd9f08e` | 317/317 | `8d81d4ad0de3c451...` | `60a59e20014c7651...` |
+| run2 | 2026-11-06T18:20:33+00:00 | `f7315c8acbc922fad364d49dbc1169e32fd9f08e` | 317/317 | `8d81d4ad0de3c451...` | `60a59e20014c7651...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -198,6 +198,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 58: the bridge action is recomputed | PASS | PASS | YES | YES | J=-0.3906473419 |
 | 58: the classical bank is recomputed | PASS | PASS | YES | YES | closed=-0.2385281374 |
 | 58: the escape record is consistent | PASS | PASS | YES | YES | min_J=-99136423776.8857 |
+| 59: the K=0 attribution is recomputed | PASS | PASS | YES | YES | attrib=8.977e-06 best_max_ck=0.000e+00 |
+| 59: the analytic bridge action is recomputed | PASS | PASS | YES | YES | J=-0.3906340559 |
+| 59: the classical bank is recomputed | PASS | PASS | YES | YES | closed=-0.2385281374 |
+| 59: the verdict follows its gates | PASS | PASS | YES | YES | status=UNVERIFIED (ladder_attainment; path_match) |
+| 59: the widened minimum is recomputed | PASS | PASS | YES | YES | maxdiff=2.442e-15 |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

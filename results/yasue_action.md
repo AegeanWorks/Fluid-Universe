@@ -23,4 +23,4 @@ Discrete and continuous Yasue actions agree on the B_1 arc; the probe is flat; n
 Discrete and continuous Yasue actions agree on the B_1 arc; the variation probe is flat; the nu = 0 action is the oscillator-bridge closed form; omega = 2 preserved.
 
 - Config SHA-256: `e67bf62ce6360cdcff4c5b28cb9c6e5dc67687b2fbbba8c25e269c516019283a`
-- Git: `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` (dirty=True)
+- Git: `f7315c8acbc922fad364d49dbc1169e32fd9f08e` (dirty=True)

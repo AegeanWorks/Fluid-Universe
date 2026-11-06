@@ -1052,3 +1052,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 58 is FALSIFIED as a re-selection claim; claims 20-26 and 43-57 stand unchanged (stationarity needs no minimum); the defect-core span is untouched either way.
 
 - Verification after the span: two separate runs, 312/312 checks each.
+
+## 2026-11-06 - Ritz-widened trial UNVERIFIED (claim 59, ADR-051/052)
+
+**Added**
+
+- theory/widened_ritz.py (squared-Hermite Ritz BVP K=0,2,4,6, exact mass renormalization, pinned Gaussian ends, L-BFGS plus Newton polish, 1e-6 gradient gate); phenomenology/widened_ritz_report.py (R1 nu0 K=0 with gauss/wide_sigma, R2 max_ck plus attribution gates, R3 trimmed K6 single-start for G-003), make widenedritz, tests/test_widened_ritz.py, results/widened_ritz.{json,md}; five independent audit checks in verification/audit.py (bridge action, widened minimum, K0 attribution plus best_max_ck, classical bank, verdict-gate consistency - G-001 two-run); formulas F43.
+- Swarm waves: 11 literature record notes (G-M static, Yasue field, OT/Fisher convexity with displacement-vs-ordinary distinction, SB numerics, Hermite trial, thawed Gaussian, Heller non-variational, Marsden-West DEL, Jacobi/disconjugacy, flux elimination, staggered-grid - equation numbers recorded, absences explicit, zero numeric weight) plus 4 fixed-seed compute re-derivations (K2 J-spot 7.56e-06, gradient 5.5e-10, classical exact, Hermite 4.9e-08) verified by sampling.
+
+**Results**
+
+- K0 gauss J=-0.3906473424 grad=4.652e-07 conv=True attrib=8.976e-06 best_max_ck=0.0 (bank -0.3906340559); K2 gauss/c2_bump J=-0.3906753678 grad~1e-11 conv=True attrib=0.005182 best_max_ck=0.054751; K2 wide_sigma/K4/K6 conv=False; analytic_J=-0.3906339742; NT201 K0 J=-0.3906476212 conv=True; nu0 K=0 both conv=True J=-0.23852652 vs closed -0.23852813742385703. No converged smooth below-bank (no escape); no per-rung at-bank plus shape-zero (no reversal). Stage-2 flat-valley correction applied (J-only match with c2 0.05 recorded, never promoted); nu0 K=6 over-parameterisation fixed; K6 trimmed to single start to hold G-003.
+- Claim 59 is UNVERIFIED (ladder_attainment; path_match); claims 20-26 and 43-58 numbers unchanged (stationarity untouched; trial-class program undecided in smooth class); defect-core span untouched.
+
+- Verification after the span: two separate runs, 317/317 checks each.

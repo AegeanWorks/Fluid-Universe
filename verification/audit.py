@@ -3485,6 +3485,172 @@ def audit_field_variation(audit: Audit) -> None:
         )
 
 
+def audit_widened_ritz(audit: Audit) -> None:
+    import numpy as _np
+
+    payload = load_results("widened_ritz.json")
+    result = payload["result"]
+    scales = result["result"] if "result" in result else result
+    scales = result["scales"]
+    verdict = result["verdict"]
+    _sq = math.sqrt(0.5)
+    _T = math.pi / 4.0
+    # (1) Analytic bridge action recomputed (own midpoint code).
+    _ntg, _s0, _sT = 401, 1.2 * _sq, _sq
+    _tg = _np.linspace(0.0, _T, _ntg)
+    _A = _s0**2
+    _uT, _vT = math.cos(_T), math.sin(_T)
+    _qa = _vT**2
+    _qb = 2.0 * _A * _uT * _vT
+    _qc = _A**2 * _uT**2 - _A * _sT**2 + 0.25 * _vT**2
+    _dd = (_qb / _qa) ** 2 - 4.0 * (_qc / _qa)
+    _B = (-_qb / _qa + math.sqrt(_dd)) / 2.0
+    _C = (_B * _B + 0.25) / _A
+    _sg = _np.sqrt(
+        _A * _np.cos(_tg) ** 2
+        + 2.0 * _B * _np.cos(_tg) * _np.sin(_tg)
+        + _C * _np.sin(_tg) ** 2
+    )
+    _dt = _T / (_ntg - 1)
+    _vv = (_sg[1:] - _sg[:-1]) / _dt
+    _sm = 0.5 * (_sg[1:] + _sg[:-1])
+    _Ja = float(
+        _np.sum(0.5 * _vv**2 - 0.125 / (_sm * _sm) - 0.5 * _sm**2) * _dt
+    )
+    audit.record(
+        "59: the analytic bridge action is recomputed",
+        abs(_Ja - (-0.3906340559)) <= 1e-4
+        and abs(_Ja - scales["analytic_J"]) <= 1e-6,
+        f"J={_Ja:.10f}",
+    )
+    # (2) Stored best-per-K J recomputed from stored params (own code).
+    _nx, _LN = 101, 101
+    _dx = 12.0 / _nx
+    _xc = -6.0 + _dx / 2.0 + _np.arange(_nx) * _dx
+    _ok_all = True
+    _worst = 0.0
+    for _rung in scales["ladder"]:
+        _k = _rung["k"]
+        _pr = _np.asarray(_rung["best_params"], dtype=float)
+        _nn = _LN - 2
+        _ns = _pr[0:_nn]
+        _s_full = _np.concatenate([[_s0], _ns, [_sT]])
+        _rho = _np.empty((_LN, _nx))
+        for _kk in range(_LN):
+            _y = _xc / _s_full[_kk]
+            _hh = [np.ones_like(_y), _y.copy()]
+            for _nnn in range(1, _k):
+                _hh.append(_y * _hh[_nnn] - _nnn * _hh[_nnn - 1])
+            _hh = _hh[: _k + 1]
+            _P = _np.ones(_nx)
+            for _jj in range(1, _k + 1):
+                _cfull = _np.concatenate(
+                    [[0.0], _pr[_jj * _nn : (_jj + 1) * _nn], [0.0]]
+                )
+                _P = _P + _cfull[_kk] * _hh[_jj]
+            _gg = _np.exp(-_y * _y / 2.0) / math.sqrt(2.0 * math.pi * _s_full[_kk] ** 2)
+            _rr = _gg * _P * _P
+            _rho[_kk] = _rr / (_rr.sum() * _dx)
+        _JJ = 0.0
+        _dtn = _T / (_LN - 1)
+        for _kk in range(_LN - 1):
+            _a, _b = _rho[_kk], _rho[_kk + 1]
+            _rm = 0.5 * (_a + _b)
+            _dd = (_b - _a) / _dtn
+            _ff = _np.zeros(_nx + 1)
+            for _ii in range(_nx):
+                _ff[_ii + 1] = _ff[_ii] - _dx * _dd[_ii]
+            _fvv = 0.5 * (_ff[:-1] + _ff[1:])
+            _drr = _np.empty(_nx)
+            _drr[1:-1] = (_rm[2:] - _rm[:-2]) / (2.0 * _dx)
+            _drr[0] = (_rm[1] - _rm[0]) / _dx
+            _drr[-1] = (_rm[-1] - _rm[-2]) / _dx
+            _safe = _np.maximum(_rm, 1e-150)
+            _live = (_rm > 1e-12).astype(float)
+            _JJ += float(
+                _np.sum(
+                    (
+                        0.5 * _fvv**2 / _safe
+                        - 0.125 * _drr**2 / _safe
+                        - 0.5 * _xc**2 * _safe
+                    )
+                    * _live
+                )
+                * _dx
+                * _dtn
+            )
+        _stored_best = min(
+            _rung["runs"], key=lambda _r: abs(_r["J_final"] + 0.3906340559)
+        )
+        _diff = abs(_JJ - _stored_best["J_final"])
+        _worst = max(_worst, _diff)
+        if not (_diff <= 1e-6):
+            _ok_all = False
+    audit.record(
+        "59: the widened minimum is recomputed",
+        bool(_ok_all),
+        f"maxdiff={_worst:.3e}",
+    )
+    # (3) Attribution recompute on the K=0 rung (own code, same grid).
+    _r0 = next(_r for _r in scales["ladder"] if _r["k"] == 0)
+    _pr0 = _np.asarray(_r0["best_params"], dtype=float)
+    _n0 = 101 - 2
+    _s0v = _np.concatenate([[1.2 * _sq], _pr0[0:_n0], [_sq]])
+    _rho0 = _np.empty((101, _nx))
+    for _kk in range(101):
+        _gg0 = _np.exp(-_xc**2 / (2.0 * _s0v[_kk] ** 2)) / math.sqrt(
+            2.0 * math.pi * _s0v[_kk] ** 2
+        )
+        _rho0[_kk] = _gg0 / (_gg0.sum() * _dx)
+    _tg0 = _np.linspace(0.0, _T, 101)
+    _sg0 = _np.sqrt(
+        _A * _np.cos(_tg0) ** 2
+        + 2.0 * _B * _np.cos(_tg0) * _np.sin(_tg0)
+        + _C * _np.sin(_tg0) ** 2
+    )
+    _ref0 = _np.exp(-_xc[None, :] ** 2 / (2.0 * _sg0[:, None] ** 2)) / _np.sqrt(
+        2.0 * math.pi * _sg0[:, None] ** 2
+    )
+    _ref0 = _ref0 / (_ref0.sum(axis=1, keepdims=True) * _dx)
+    _attr0 = float(_np.max(_np.abs(_rho0 - _ref0)))
+    audit.record(
+        "59: the K=0 attribution is recomputed",
+        _attr0 <= 1e-4 and abs(_attr0 - float(_r0["attribution"])) <= 1e-9
+        and float(_r0.get("best_max_ck", 0.0) or 0.0) <= 1e-4,
+        f"attrib={_attr0:.3e} best_max_ck={float(_r0.get('best_max_ck', 0.0) or 0.0):.3e}",
+    )
+    # (4) Classical bank arithmetic + stored nu0 near-miss.
+    _A0 = 1.2 * _sq
+    _B0 = (_sq - _A0 * math.cos(_T)) / math.sin(_T)
+    _closed = 0.5 * (_sq * (-_A0 * math.sin(_T) + _B0 * math.cos(_T)) - _A0 * _B0)
+    _nu0 = scales["nu0_runs"]
+    _best0 = min(r["J_final"] for r in _nu0)
+    audit.record(
+        "59: the classical bank is recomputed",
+        abs(_closed - (-0.23852813742385703)) <= 1e-12
+        and abs(float(scales["classical_closed"]) - _closed) <= 1e-12
+        and abs(_best0 - _closed) <= 1e-3,
+        f"closed={_closed:.10f}",
+    )
+    # (5) Verdict-gate consistency from the stored kill lists.
+    _hard = dict(result["gates"]["kills_hard"])
+    _soft = dict(result["gates"]["kills_soft"])
+    _st = verdict["claim_59_status"]
+    _consistent = (
+        (_st.startswith("CONFIRMED FALSIFIED") and bool(_hard.get("escape_below")))
+        or (_st.startswith("NUMERIC-REVERSAL") and bool(_hard.get("reversal_branch")))
+        or (
+            _st.startswith("UNVERIFIED")
+            and (any(_soft.values()) or not any(_hard.values()))
+        )
+    )
+    audit.record(
+        "59: the verdict follows its gates",
+        bool(_consistent),
+        f"status={_st[:60]}",
+    )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3925,6 +4091,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_yasue_bridge(audit)
     audit_yasue_action(audit)
     audit_field_variation(audit)
+    audit_widened_ritz(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

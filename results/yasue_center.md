@@ -24,4 +24,4 @@ the G-M twin co-oscillates (2pi and pi).
 Yasue 2-path trial: center tracks Newton over the collapse window with collapsing width (floor-hit < pi, zero returns); G-M twin co-oscillates (2pi and pi); single BVP arc recorded; no fitted parameters.
 
 - Config SHA-256: `aa42690452424bd13048266841145e49da32c9232f97877b866c2f8a81a124fc`
-- Git: `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` (dirty=True)
+- Git: `f7315c8acbc922fad364d49dbc1169e32fd9f08e` (dirty=True)

@@ -164,6 +164,8 @@ RESULT_FILES = (
     "yasue_action.md",
     "field_variation.json",
     "field_variation.md",
+    "widened_ritz.json",
+    "widened_ritz.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",
