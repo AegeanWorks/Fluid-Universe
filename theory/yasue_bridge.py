@@ -187,22 +187,23 @@ def newton_width(
     nu: float | None = None,
     n: int = GRID_N,
     steps: int = 12,
+    starts: tuple = WIDTH_STARTS,
 ) -> list:
-    """Width-only BVP Newton solves from WIDTH_STARTS (Yasue sign)."""
+    """Width-only BVP Newton solves from the given starts (Yasue sign)."""
     if nu is None:
         nu = diffusivity(hbar, mass)
     dt = horizon_T / (n - 1)
     grid = np.linspace(dt / horizon_T, 1.0 - dt / horizon_T, n - 2)
     base = s0 + (sT - s0) * grid
-    starts = {
+    inits = {
         "const_s0": np.full(n - 2, s0),
         "const_sT": np.full(n - 2, sT),
         "linear": base.copy(),
         "bump": base + BUMP_AMP * np.sin(math.pi * grid),
     }
     out = []
-    for name in WIDTH_STARTS:
-        interior = starts[name].copy()
+    for name in starts:
+        interior = inits[name].copy()
         converged = True
         try:
             for _ in range(steps):

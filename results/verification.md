@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-06T06:29:44+00:00 | `efc3a078e9e1b5c8650457aa15a4bad7f940e307` | 303/303 | `cc4625d9c97580f0...` | `d3b92dc7abb9dba2...` |
-| run2 | 2026-11-06T06:29:50+00:00 | `efc3a078e9e1b5c8650457aa15a4bad7f940e307` | 303/303 | `cc4625d9c97580f0...` | `d3b92dc7abb9dba2...` |
+| run1 | 2026-11-06T08:29:50+00:00 | `f14f687c3f36b97c3ef74235bda4f103eafe73c2` | 308/308 | `3eb1dde578e7e20b...` | `b30052dfc7dd383c...` |
+| run2 | 2026-11-06T08:29:56+00:00 | `f14f687c3f36b97c3ef74235bda4f103eafe73c2` | 308/308 | `3eb1dde578e7e20b...` | `b30052dfc7dd383c...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -189,6 +189,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 56: the attribution is recomputed | PASS | PASS | YES | YES | attrib=6.258e-08 |
 | 56: the killed sibling is recomputed | PASS | PASS | YES | YES | min_s2=-0.065826 |
 | 56: the nu-limit and scaling are recomputed | PASS | PASS | YES | YES | peak=1.0823922003 |
+| 57: the action pair is recomputed | PASS | PASS | YES | YES | diff=2.036e-07 |
+| 57: the classical closed form is recomputed | PASS | PASS | YES | YES | closed=-0.2071067812 |
+| 57: the killed sibling is recomputed | PASS | PASS | YES | YES | min_s2=-0.065826 |
+| 57: the probe slopes are recomputed | PASS | PASS | YES | YES | max_slope=4.828e-08 |
+| 57: the scaling pair is recomputed | PASS | PASS | YES | YES | diff=2.036e-07 |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

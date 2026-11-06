@@ -1022,3 +1022,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 56 is NUMERIC (family demonstrated); it shares the Ermakov fixed point with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-55 numbers are unchanged.
 
 - Verification after the span: two separate runs, 303/303 checks each.
+
+## 2026-11-06 - Yasue-bridge action stationarity demonstrated (claim 57, ADR-049)
+
+**Added**
+
+- theory/yasue_action.py (own Yasue midpoint/continuous densities, never the G-M functions; variation probe; closed-form nu=0 value), phenomenology/yasue_action_report.py, make yasueaction, tests/test_yasue_action.py, results/yasue_action.{json,md}; five new independent audit checks in verification/audit.py (action pair, probe slopes, classical closed form, scaling pair, killed sibling - G-001 two-run); formulas F41.
+- Swarm waves: 3 literature clusters (Marsden-West DEL correspondence - forms verified, numbers pending sighting; Yasue/G-M static identity locus with provisional negative on pinned-arc action numbers; classical bridge closed form derived twice plus Feynman-Hibbs) plus 5 fixed-seed compute batches (nu-series/S1 actions, scaling pair, gradient identity, analytic quadrature, 2-shape probe) with config hashes; artifacts verified by sampling (independent re-run: discrete J to 4.4e-13, classical value triple-legged, nu=0 discrete 7.4e-08).
+
+**Results**
+
+- Midpoint discrete Yasue action on the Newton B_1 arc agrees with the continuous-action quadrature on the analytic path (diff 2.04e-07 vs 1e-4 gate); 2-shape variation probe flat (slopes <= 4.9e-08 vs 1e-6 residual-scaled gate with 100x bound check); nu = 0 discrete action (-0.20710671) matches the closed form (-0.20710678 vs 1e-4 gate) with quadrature cross-check at 6e-13; scaling omega = 2 preserves the pair (diff 2.04e-07); B_2 form structurally admits no action - NUMERIC with zero fitted parameters.
+- The Stage-1 classical value -0.4142135624 (the a^2 = 1 value, from a dropped Lagrangian 1/2 in the hand integral) was caught by the swarm derivation (direct integration plus boundary-term route plus Feynman-Hibbs general formula, all agreeing) and corrected to -0.2071067812 before wiring; nothing downstream was affected.
+- Claim 57 is NUMERIC (stationarity demonstrated); it shares the Ermakov fixed point with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-56 numbers are unchanged.
+
+- Verification after the span: two separate runs, 308/308 checks each.

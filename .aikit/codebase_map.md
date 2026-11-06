@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `195`
+- **Total Python Modules**: `198`
 - **Total Classes**: `6`
-- **Total Top-Level Functions**: `1071`
+- **Total Top-Level Functions**: `1087`
 - **Total Class Methods**: `4`
-- **Total Source Lines**: `28693`
+- **Total Source Lines**: `29407`
 
 ---
 
@@ -439,7 +439,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `544` lines (`25928` bytes)
+**Size**: `546` lines (`26055` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -792,6 +792,17 @@
 
 **Functions:**
 - `def run_water_well_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/yasue_action_report.py`](phenomenology/yasue_action_report.py)
+> *Pinned-endpoint Yasue-bridge action stationarity (claim 57, ADR-049).*
+
+**Size**: `298` lines (`10973` bytes)
+
+**Functions:**
+- `def run_yasue_action_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1886,6 +1897,23 @@
 
 ---
 
+### [`tests/test_yasue_action.py`](tests/test_yasue_action.py)
+> *Yasue-bridge action stationarity tests (claim 57).*
+
+**Size**: `134` lines (`4230` bytes)
+
+**Functions:**
+- `def test_action_densities_match_on_recorded_arc()`
+- `def test_classical_closed_form_value()`
+- `def test_nu0_action_matches_closed_form()`
+- `def test_probe_slopes_flat_two_shapes()`
+- `def test_scaling_action_pair_matches()`
+- `def test_b2_form_admits_no_action()`
+- `def test_action_verdict_holds()`
+- `def test_inputs_are_frozen()`
+
+---
+
 ### [`tests/test_yasue_bridge.py`](tests/test_yasue_bridge.py)
 > *Yasue-bridge analytic family tests (claim 56).*
 
@@ -2657,10 +2685,24 @@
 
 ---
 
+### [`theory/yasue_action.py`](theory/yasue_action.py)
+> *Pinned-endpoint Yasue-bridge action stationarity (claim 57, ADR-049).*
+
+**Size**: `135` lines (`3935` bytes)
+
+**Functions:**
+- `def yasue_discrete_action(full_path, omega, hbar, mass, nu, dt)` - *Midpoint discrete Yasue action (own density: +m*nu^2/2mid^2).*
+- `def yasue_analytic_action(coeffs, omega, hbar, mass, nu, horizon_T, n)` - *High-accuracy quadrature of the continuous Yasue action on a branch.*
+- `def classical_bridge_action(a, omega, mass)` - *Closed-form nu = 0 fixed-endpoint action J = -m*w*a^2*alpha.*
+- `def variation_probe(base_path, horizon_T, bump_kind)` - *Discrete Yasue J along base + lam*amp*bump (own bump family).*
+- `def probe_slope(base_path, bump, omega, hbar, mass, nu, dt, lam, amp)`
+
+---
+
 ### [`theory/yasue_bridge.py`](theory/yasue_bridge.py)
 > *Pinned-endpoint Yasue bridge: the c<0 Pinney analytic family (claim 56, ADR-048).*
 
-**Size**: `297` lines (`9423` bytes)
+**Size**: `298` lines (`9453` bytes)
 
 **Functions:**
 - `def diffusivity(hbar, mass)`
@@ -2669,7 +2711,7 @@
 - `def pinney_path(coeffs, t_values, omega)`
 - `def fd_ode_residual(coeffs, omega, hbar, mass, horizon_T, nu, n)` - *8th-order finite-difference check of s_ddot + nu^2/s^3 + w^2 s = 0.*
 - `def _discrete_residual_width(interior, omega, hbar, mass, nu, dt, s0, sT)`
-- `def newton_width(s0, sT, horizon_T, omega, hbar, mass, nu, n, steps)` - *Width-only BVP Newton solves from WIDTH_STARTS (Yasue sign).*
+- `def newton_width(s0, sT, horizon_T, omega, hbar, mass, nu, n, steps, starts)` - *Width-only BVP Newton solves from the given starts (Yasue sign).*
 - `def attribution_diff(analytic, recorded)`
 - `def jacobi_first_zero_yasue(t_values, s_values, omega, nu, n)` - *First conjugate zero of u'' + Q u = 0 with Yasue Q = -3nu^2/s^4 + w^2.*
 - `def nu_limit_bridge(alpha_T)` - *Closed-form nu=0 fixed-endpoint bridge (classical bank).*
@@ -2722,7 +2764,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3665` lines (`146897` bytes)
+**Size**: `3807` lines (`152295` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2801,6 +2843,7 @@
 - `def audit_gaussian_bridge(audit)`
 - `def audit_yasue_center(audit)`
 - `def audit_yasue_bridge(audit)`
+- `def audit_yasue_action(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2830,7 +2873,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `205` lines (`5353` bytes)
+**Size**: `207` lines (`5401` bytes)
 
 **Functions:**
 - `def _source_files()`

@@ -3164,6 +3164,147 @@ def audit_yasue_bridge(audit: Audit) -> None:
         )
 
 
+def audit_yasue_action(audit: Audit) -> None:
+    payload = load_results("yasue_action.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    rec = scales["recorded_point"]
+    # Independent action pair from the stored B_1 coeffs (own code path).
+    import numpy as _np
+
+    _A = rec["b1"]["A"]
+    _B = rec["b1"]["B"]
+    _C = rec["b1"]["C"]
+    _T = math.pi / 4.0
+    _g = _np.linspace(0.0, _T, 401)
+    _dt = float(_g[1] - _g[0])
+    _s = _np.sqrt(
+        _A * _np.cos(_g) ** 2
+        + 2.0 * _B * _np.cos(_g) * _np.sin(_g)
+        + _C * _np.sin(_g) ** 2
+    )
+    _v = (_s[1:] - _s[:-1]) / _dt
+    _m = 0.5 * (_s[:-1] + _s[1:])
+    _jd = float(_np.sum(0.5 * _v**2 + 0.25 / (2.0 * _m**2) - 0.5 * _m**2) * _dt)
+    _tq = _np.linspace(0.0, _T, 200001)
+    _hq = float(_tq[1] - _tq[0])
+    _sq = _np.sqrt(
+        _A * _np.cos(_tq) ** 2
+        + 2.0 * _B * _np.cos(_tq) * _np.sin(_tq)
+        + _C * _np.sin(_tq) ** 2
+    )
+    _vq = _np.gradient(_sq, _hq)
+    _ja = float(
+        _np.trapezoid(0.5 * _vq**2 + 0.25 / (2.0 * _sq**2) - 0.5 * _sq**2, _tq)
+    )
+    audit.record(
+        "57: the action pair is recomputed",
+        abs(_jd - _ja) <= 1e-4
+        and abs(_ja - rec["j_analytic"]) <= 1e-6
+        and abs(_jd - rec["j_discrete_analytic_path"]) <= 1e-9
+        and abs(rec["j_discrete_newton"] - rec["j_analytic"]) <= 1e-4,
+        f"diff={abs(_jd - _ja):.3e}",
+    )
+    # Independent probe slopes on the own path (two bump shapes).
+    _slopes = []
+    for _k in (1, 2):
+        _b = _np.sin(_k * math.pi * _g / _T)
+        for _lam in (0.01, 0.02):
+            _lo = _s - _lam * 0.05 * _b
+            _hi = _s + _lam * 0.05 * _b
+            _jl = float(
+                _np.sum(
+                    0.5 * ((_lo[1:] - _lo[:-1]) / _dt) ** 2
+                    + 0.25 / (2.0 * (0.5 * (_lo[:-1] + _lo[1:])) ** 2)
+                    - 0.5 * (0.5 * (_lo[:-1] + _lo[1:])) ** 2
+                )
+                * _dt
+            )
+            _jh = float(
+                _np.sum(
+                    0.5 * ((_hi[1:] - _hi[:-1]) / _dt) ** 2
+                    + 0.25 / (2.0 * (0.5 * (_hi[:-1] + _hi[1:])) ** 2)
+                    - 0.5 * (0.5 * (_hi[:-1] + _hi[1:])) ** 2
+                )
+                * _dt
+            )
+            _slopes.append((_jh - _jl) / (2.0 * _lam))
+    _stored = [p["slope"] for p in scales["probes"]]
+    audit.record(
+        "57: the probe slopes are recomputed",
+        all(abs(s) <= 1e-6 for s in _slopes)
+        and max(abs(a - b) for a, b in zip(_slopes, _stored)) <= 1e-9,
+        f"max_slope={max(abs(s) for s in _slopes):.3e}",
+    )
+    # Independent classical closed form (own arithmetic).
+    _alpha = math.sqrt(2.0) - 1.0
+    _closed = -1.0 * 1.0 * 0.5 * _alpha
+    _nu0 = [e for e in scales["nu_series"] if e["nu"] == 0.0][0]
+    audit.record(
+        "57: the classical closed form is recomputed",
+        abs(_closed - (-0.20710678118654752)) <= 1e-15
+        and abs(_closed - scales["classical"]["closed"]) <= 1e-15
+        and abs(_nu0["j_discrete"] - _closed) <= 1e-4
+        and abs(scales["classical"]["quad_nu0"] - _closed) <= 1e-6,
+        f"closed={_closed:.10f}",
+    )
+    # Independent omega = 2 scaling pair.
+    _uT, _vT, _A2 = math.cos(math.pi / 4.0), math.sin(math.pi / 4.0) / 2.0, 0.25
+    _qa, _qb = _vT**2, 2.0 * _A2 * _uT * _vT
+    _qc = _A2**2 * _uT**2 - _A2 * 0.25 - 0.25 * _vT**2
+    _dd = (_qb / _qa) ** 2 - 4.0 * (_qc / _qa)
+    _B1 = (-_qb / _qa + math.sqrt(_dd)) / 2.0
+    _C1 = (_B1**2 - 0.25) / _A2
+    _sc = scales["scaling"]
+    _T2 = math.pi / 8.0
+    _g2 = _np.linspace(0.0, _T2, 401)
+    _d2 = float(_g2[1] - _g2[0])
+    _s2 = _np.sqrt(
+        _A2 * _np.cos(2.0 * _g2) ** 2
+        + 2.0 * _B1 * _np.cos(2.0 * _g2) * _np.sin(2.0 * _g2) / 2.0
+        + _C1 * (_np.sin(2.0 * _g2) / 2.0) ** 2
+    )
+    _v2 = (_s2[1:] - _s2[:-1]) / _d2
+    _m2 = 0.5 * (_s2[:-1] + _s2[1:])
+    _jd2 = float(_np.sum(0.5 * _v2**2 + 0.25 / (2.0 * _m2**2) - 0.5 * 4.0 * _m2**2) * _d2)
+    audit.record(
+        "57: the scaling pair is recomputed",
+        abs(_B1 - 0.3660254037844386) <= 1e-9
+        and abs(_sc["b1"]["B"] - _B1) <= 1e-12
+        and abs(_jd2 - _sc["j_analytic"]) <= 1e-4
+        and abs(_sc["j_discrete"] - _sc["j_analytic"]) <= 1e-4
+        and _sc["attained"] is True,
+        f"diff={abs(_jd2 - _sc['j_analytic']):.3e}",
+    )
+    # Independent B_2 structural record (own evaluation).
+    _uT1, _vT1 = math.cos(math.pi / 4.0), math.sin(math.pi / 4.0)
+    _A1 = 0.5
+    _q1a, _q1b = _vT1**2, 2.0 * _A1 * _uT1 * _vT1
+    _q1c = _A1**2 * _uT1**2 - _A1 * 0.5 - 0.25 * _vT1**2
+    _d1 = (_q1b / _q1a) ** 2 - 4.0 * (_q1c / _q1a)
+    _b2 = (-_q1b / _q1a - math.sqrt(_d1)) / 2.0
+    _c2 = (_b2**2 - 0.25) / _A1
+    _tt = _np.linspace(0.0, math.pi / 4.0, 2001)
+    _s2b = (
+        _A1 * _np.cos(_tt) ** 2
+        + 2.0 * _b2 * _np.cos(_tt) * _np.sin(_tt)
+        + _c2 * _np.sin(_tt) ** 2
+    )
+    audit.record(
+        "57: the killed sibling is recomputed",
+        float(_np.min(_s2b)) < 0.0
+        and abs(float(_np.min(_s2b)) - rec["b2_min_s2"]) <= 1e-9,
+        f"min_s2={float(_np.min(_s2b)):.6f}",
+    )
+    if not verdict["claim_57_status"].startswith("NUMERIC"):
+        audit.record(
+            "57: verdict is NUMERIC",
+            False,
+            f"status={verdict['claim_57_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3602,6 +3743,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_gaussian_bridge(audit)
     audit_yasue_center(audit)
     audit_yasue_bridge(audit)
+    audit_yasue_action(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

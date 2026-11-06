@@ -160,6 +160,8 @@ RESULT_FILES = (
     "yasue_center.md",
     "yasue_bridge.json",
     "yasue_bridge.md",
+    "yasue_action.json",
+    "yasue_action.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

@@ -1,0 +1,260 @@
+{
+  "meta": {
+    "config": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "gates": {
+        "action_tol": 0.0001,
+        "probe_tol": 1e-06,
+        "resid_tol": 1e-09
+      },
+      "grids": {
+        "n": 401,
+        "quad_n": 200001
+      },
+      "nu_series": [
+        0.5,
+        0.25,
+        0.125,
+        0.0
+      ],
+      "s1_grid": {
+        "horizon_factors": [
+          0.6666666666666666,
+          1.0,
+          1.3333333333333333
+        ],
+        "s0_factors": [
+          1.0,
+          1.1,
+          1.2
+        ]
+      },
+      "scope": "Ritz trial BVP, zero parameters, no full-field claim"
+    },
+    "config_sha256": "e67bf62ce6360cdcff4c5b28cb9c6e5dc67687b2fbbba8c25e269c516019283a",
+    "generated_utc": "2026-11-06T08:29:43+00:00",
+    "git": {
+      "commit": "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "action_tol": 0.0001,
+      "kills_hard": [
+        [
+          "action_match",
+          false
+        ],
+        [
+          "classical_match",
+          false
+        ],
+        [
+          "classical_quad",
+          false
+        ],
+        [
+          "probe",
+          false
+        ],
+        [
+          "scaling_match",
+          false
+        ]
+      ],
+      "kills_soft": [
+        [
+          "newton_attainment",
+          false
+        ],
+        [
+          "nu_attainment",
+          false
+        ],
+        [
+          "scaling_attainment",
+          false
+        ]
+      ],
+      "probe_tol": 1e-06,
+      "resid_tol": 1e-09
+    },
+    "scales": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "nu": 0.5,
+        "omega": 1.0
+      },
+      "classical": {
+        "alpha": 0.41421356237309515,
+        "closed": -0.20710678118654763,
+        "quad_nu0": -0.2071067811871388
+      },
+      "nu_series": [
+        {
+          "attained": true,
+          "best_residual": 7.467648721615205e-11,
+          "j_discrete": -0.03678572597557681,
+          "nu": 0.5
+        },
+        {
+          "attained": true,
+          "best_residual": 4.460731783950678e-11,
+          "j_discrete": -0.1633564982809217,
+          "nu": 0.25
+        },
+        {
+          "attained": true,
+          "best_residual": 4.842320988629467e-11,
+          "j_discrete": -0.19608666269671385,
+          "nu": 0.125
+        },
+        {
+          "attained": true,
+          "best_residual": 4.6419312837997495e-11,
+          "j_discrete": -0.20710670728092864,
+          "nu": 0.0
+        }
+      ],
+      "probes": [
+        {
+          "bump": "fundamental",
+          "lam": 0.01,
+          "slope": -2.881252909869847e-08
+        },
+        {
+          "bump": "fundamental",
+          "lam": 0.02,
+          "slope": -4.8275773309458536e-08
+        },
+        {
+          "bump": "harmonic",
+          "lam": 0.01,
+          "slope": -3.469446951953614e-16
+        },
+        {
+          "bump": "harmonic",
+          "lam": 0.02,
+          "slope": -1.734723475976807e-16
+        }
+      ],
+      "recorded_point": {
+        "b1": {
+          "A": 0.5000000000000001,
+          "B": 0.3660254037844386,
+          "C": -0.2320508075688773
+        },
+        "b2": {
+          "A": 0.5000000000000001,
+          "B": -1.3660254037844386,
+          "C": 3.2320508075688763
+        },
+        "b2_min_s2": -0.06582624879369803,
+        "disc": 2.9999999999999996,
+        "discrete_analytic_diff": 2.0357928628977895e-07,
+        "j_analytic": -0.0367859295548631,
+        "j_discrete_analytic_path": -0.0367857259755606,
+        "j_discrete_newton": -0.03678572597557681,
+        "newton_residual": 7.467648721615205e-11
+      },
+      "s1_map": [
+        {
+          "attained": true,
+          "best_residual": 1.1229461804873608e-10,
+          "horizon_factor": 0.6666666666666666,
+          "j_discrete": -0.011402605814073489,
+          "s0_factor": 1.0
+        },
+        {
+          "attained": true,
+          "best_residual": 7.467648721615205e-11,
+          "horizon_factor": 1.0,
+          "j_discrete": -0.03678572597557681,
+          "s0_factor": 1.0
+        },
+        {
+          "attained": true,
+          "best_residual": 2.5366819755845427e-11,
+          "horizon_factor": 1.3333333333333333,
+          "j_discrete": -0.08338722871053024,
+          "s0_factor": 1.0
+        },
+        {
+          "attained": true,
+          "best_residual": 9.926270916338353e-11,
+          "horizon_factor": 0.6666666666666666,
+          "j_discrete": -0.03125084663085182,
+          "s0_factor": 1.1
+        },
+        {
+          "attained": true,
+          "best_residual": 5.579015027734613e-11,
+          "horizon_factor": 1.0,
+          "j_discrete": -0.06956286764445152,
+          "s0_factor": 1.1
+        },
+        {
+          "attained": true,
+          "best_residual": 2.7786217771108568e-11,
+          "horizon_factor": 1.3333333333333333,
+          "j_discrete": -0.1279453154982879,
+          "s0_factor": 1.1
+        },
+        {
+          "attained": true,
+          "best_residual": 1.169979668702581e-10,
+          "horizon_factor": 0.6666666666666666,
+          "j_discrete": -0.04071639610846636,
+          "s0_factor": 1.2
+        },
+        {
+          "attained": true,
+          "best_residual": 5.258748991820994e-11,
+          "horizon_factor": 1.0,
+          "j_discrete": -0.09509064775864781,
+          "s0_factor": 1.2
+        },
+        {
+          "attained": true,
+          "best_residual": 2.7892799181472583e-11,
+          "horizon_factor": 1.3333333333333333,
+          "j_discrete": -0.16704456435107745,
+          "s0_factor": 1.2
+        }
+      ],
+      "scaling": {
+        "attained": true,
+        "b1": {
+          "A": 0.25,
+          "B": 0.3660254037844386,
+          "C": -0.4641016151377547
+        },
+        "best_residual": 2.2193380466717372e-10,
+        "diff": 2.0357928627590116e-07,
+        "disc": 2.9999999999999996,
+        "j_analytic": -0.036785929554863046,
+        "j_discrete": -0.03678572597557677,
+        "omega": 2.0
+      }
+    },
+    "verdict": {
+      "claim_57_status": "NUMERIC (Yasue-bridge action stationarity demonstrated)",
+      "note": "Discrete and continuous Yasue actions agree on the B_1 arc; the variation probe is flat; the nu = 0 action is the oscillator-bridge closed form; omega = 2 preserved."
+    }
+  }
+}
