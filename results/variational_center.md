@@ -19,4 +19,4 @@ One G-M action gives Newtonian center (2pi) and Ermakov width (pi).
 Time-dependent Gaussian Ritz: constant (0, sigma_q) extremum; Newtonian center (2pi) and Ermakov width (pi) co-emerge from one action; no cross-coupling.
 
 - Config SHA-256: `b139b0f7680408c314b8d31621c601d8c84645f423ce9c7219357c19e65aed0d`
-- Git: `f14f687c3f36b97c3ef74235bda4f103eafe73c2` (dirty=True)
+- Git: `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` (dirty=True)

@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `198`
-- **Total Classes**: `6`
-- **Total Top-Level Functions**: `1087`
-- **Total Class Methods**: `4`
-- **Total Source Lines**: `29407`
+- **Total Python Modules**: `201`
+- **Total Classes**: `7`
+- **Total Top-Level Functions**: `1105`
+- **Total Class Methods**: `9`
+- **Total Source Lines**: `30356`
 
 ---
 
@@ -89,6 +89,21 @@
 - `def render_markdown(state)`
 - `def _format_projection(steps, time_value)`
 - `def main(argv)`
+
+---
+
+### [`phenomenology/field_variation_report.py`](phenomenology/field_variation_report.py)
+> *Unstructured 1D fixed-endpoint-density G-M field variation (claim 58, ADR-050).*
+
+**Size**: `390` lines (`14207` bytes)
+
+**Functions:**
+- `def _analytic_bridge_rho(problem)`
+- `def _field_action_on_rho(problem, rho)`
+- `def run_field_variation_check(write)`
+- `def _classical_transport_action(s0, sT, horizon_T, omega, mass)` - *Closed-form nu = 0 Gaussian transport action.*
+- `def _verdict_note(status)`
+- `def render_markdown(payload)`
 
 ---
 
@@ -439,7 +454,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `546` lines (`26055` bytes)
+**Size**: `548` lines (`26194` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -1068,6 +1083,21 @@
 - `def test_phase_slip_and_gradient()`
 - `def test_phase_gradient_scales_as_inverse_dx()`
 - `def test_invalid_inputs_are_rejected()`
+
+---
+
+### [`tests/test_field_variation.py`](tests/test_field_variation.py)
+> *Unstructured field variation tests (claim 58).*
+
+**Size**: `101` lines (`3145` bytes)
+
+**Functions:**
+- `def test_gradient_matches_finite_differences()`
+- `def test_quantum_and_classical_banks_are_frozen()`
+- `def test_classical_closed_form_matches_quadrature()`
+- `def test_field_action_on_bridge_matches_bank()`
+- `def test_mass_conserved_and_positive()`
+- `def test_field_verdict_holds()`
 
 ---
 
@@ -2029,6 +2059,28 @@
 
 ---
 
+### [`theory/field_variation.py`](theory/field_variation.py)
+> *Unstructured 1D fixed-endpoint-density G-M field variation (claim 58, ADR-050).*
+
+**Size**: `273` lines (`9949` bytes)
+
+**Classes:**
+- `class FieldProblem` - *Discrete G-M field action with exact flux elimination.*
+  - Method `.__init__(nx, nt, nu, omega, mass, x_lim, s0_factor)`
+  - Method `.unpack(phi)`
+  - Method `.action_and_gradient(phi)`
+  - Method `._dT(g_dr, dx)` - *Exact transpose of the central/one-sided difference operator.*
+  - Method `.optimize(start, maxiter)`
+
+**Functions:**
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def endpoint_densities(s0, sT, xc)`
+- `def bridge_widths(t, s0, omega)` - *Analytic G-M primary-branch widths for the (s0 -> sigma_q) ends.*
+- `def start_fields(kind, nt_interior, xc, dx, rho0, rhoT, sq)` - *Initial interior densities (mass-1 normalized slices).*
+
+---
+
 ### [`theory/frank_oseen.py`](theory/frank_oseen.py)
 > *Linearised Frank-Oseen director modes.*
 
@@ -2764,7 +2816,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3807` lines (`152295` bytes)
+**Size**: `3988` lines (`159033` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2844,6 +2896,7 @@
 - `def audit_yasue_center(audit)`
 - `def audit_yasue_bridge(audit)`
 - `def audit_yasue_action(audit)`
+- `def audit_field_variation(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2873,7 +2926,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `207` lines (`5401` bytes)
+**Size**: `209` lines (`5455` bytes)
 
 **Functions:**
 - `def _source_files()`

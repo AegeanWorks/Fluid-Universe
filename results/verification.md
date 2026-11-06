@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-06T08:29:50+00:00 | `f14f687c3f36b97c3ef74235bda4f103eafe73c2` | 308/308 | `3eb1dde578e7e20b...` | `b30052dfc7dd383c...` |
-| run2 | 2026-11-06T08:29:56+00:00 | `f14f687c3f36b97c3ef74235bda4f103eafe73c2` | 308/308 | `3eb1dde578e7e20b...` | `b30052dfc7dd383c...` |
+| run1 | 2026-11-06T10:36:27+00:00 | `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` | 312/312 | `85fe4cdae1245f1e...` | `53413d4a0a231fd7...` |
+| run2 | 2026-11-06T10:36:37+00:00 | `96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc` | 312/312 | `85fe4cdae1245f1e...` | `53413d4a0a231fd7...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -194,6 +194,10 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 57: the killed sibling is recomputed | PASS | PASS | YES | YES | min_s2=-0.065826 |
 | 57: the probe slopes are recomputed | PASS | PASS | YES | YES | max_slope=4.828e-08 |
 | 57: the scaling pair is recomputed | PASS | PASS | YES | YES | diff=2.036e-07 |
+| 58: an independent optimization escapes below the bank | PASS | PASS | YES | YES | J=-7499111695.688187 from -0.397384 in 13 it |
+| 58: the bridge action is recomputed | PASS | PASS | YES | YES | J=-0.3906473419 |
+| 58: the classical bank is recomputed | PASS | PASS | YES | YES | closed=-0.2385281374 |
+| 58: the escape record is consistent | PASS | PASS | YES | YES | min_J=-99136423776.8857 |
 | 5a: independent rotor spectrum | PASS | PASS | YES | YES | independent E0=0.891186159736, E1=1.317034514042, E2=1.317034514042 |
 | 5a: truncation convergence | PASS | PASS | YES | YES | E0 at n=20,40,80,160: [np.float64(0.8911861597406692), np.float64(0.8911861597407595), np.float64(0.8911861597404851), np.float64(0.8911861597373525)] |
 | 5b: free-rotor limit | PASS | PASS | YES | YES | E(sector 0)=0, 4.5 (twofold); E(sector 1)=0.5, 2, 8, 12.5 at mu=0, I=1 |

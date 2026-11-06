@@ -1037,3 +1037,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 57 is NUMERIC (stationarity demonstrated); it shares the Ermakov fixed point with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-56 numbers are unchanged.
 
 - Verification after the span: two separate runs, 308/308 checks each.
+
+## 2026-11-06 - Unstructured field variation falsifies Gaussian re-selection (claim 58, ADR-050)
+
+**Added**
+
+- theory/field_variation.py (rho-only exact 1D flux elimination, slice-normalized mass, exp-parameterized positivity with pinned gauge, analytic adjoint, L-BFGS-B driver, vacuum mask at 1e-12); phenomenology/field_variation_report.py, make fieldvariation, tests/test_field_variation.py, results/field_variation.{json,md}; four new independent audit checks in verification/audit.py (bridge action, independent escape optimization, classical bank, escape-record consistency - G-001 two-run); formulas F42.
+- Swarm waves: 4 literature clusters (G-M control form, OT/Fisher convexity locus with displacement-vs-ordinary distinction, Schrodinger-bridge numerics prior art, Yasue field form - equation numbers honestly UNVERIFIED, search outage flagged, zero numeric weight) plus 6 fixed-seed compute batches (coarse starts, nu=0 run plus closed form, joint-EL gradient identity, resolution ladder, convexity segments, classical re-derivation) with config hashes; artifacts verified by sampling (gradient identities exact, ladder converging, classical bit-identical).
+
+**Results**
+
+- Every tier escapes far below the claim-54 bank (-0.3906340559): coarse gauss_linear -3.26 (still descending, grad 347), bump/wide to -1e10, bimodal stuck at +6.27; fine bridge-warm start -1.59 (still descending, grad 128); scaling runs escape too; attribution 16.6. The bridge Hessian has negative directions (51 on a tiny grid); the escape exploits near-vacuum cells (min rho 1e-16..1e-27, high-frequency content 31 percent). The nu = 0 control approaches the classical transport value (-0.23844 vs -0.23852813742385703, grad 4.2e-5), validating code and banks; the failure is specific to nu = 0.5 - FALSIFIED (no re-selection; trial-class global minimality dead).
+- Three Stage-3 implementation bugs were caught and fixed before wiring (Yasue-sign osmotic term, phi gauge conversion corrupting the tail cell, floating-point vacuum amplification of the flux residue); the classical bank was corrected from the equal-endpoint value to the transport value -0.23852813742385703. The K1 convergence letter was superseded with stated reason (descent 8x below bank without stopping refutes re-selection as surely as a converged lower point).
+- Claim 58 is FALSIFIED as a re-selection claim; claims 20-26 and 43-57 stand unchanged (stationarity needs no minimum); the defect-core span is untouched either way.
+
+- Verification after the span: two separate runs, 312/312 checks each.

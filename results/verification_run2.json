@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-06T08:29:56+00:00",
-    "git_commit": "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+    "generated_utc": "2026-11-06T10:36:37+00:00",
+    "git_commit": "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "3eb1dde578e7e20bb8979876a9119b428bf7f55b5b2d1c809f0924551a29bd46",
-      "results_sha256": "b30052dfc7dd383c1d4fd7197c391d08ed54ca8b6b78d342e5c9fd991a4e6eed"
+      "source_sha256": "85fe4cdae1245f1ec2a4677430a186559c04a2303fbe4dcb3697b4a25f66b96f",
+      "results_sha256": "53413d4a0a231fd7c9a36ea056f38e62365163a1033903108c8d0ec5caa23cd4"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1481,6 +1481,34 @@
       "observed": null
     },
     {
+      "claim": "58: the bridge action is recomputed",
+      "passed": true,
+      "detail": "J=-0.3906473419",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "58: the classical bank is recomputed",
+      "passed": true,
+      "detail": "closed=-0.2385281374",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "58: an independent optimization escapes below the bank",
+      "passed": true,
+      "detail": "J=-7499111695.688187 from -0.397384 in 13 it",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "58: the escape record is consistent",
+      "passed": true,
+      "detail": "min_J=-99136423776.8857",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2174,8 +2202,8 @@
       "observed": null
     }
   ],
-  "total": 308,
-  "passed": 308,
+  "total": 312,
+  "passed": 312,
   "failed": 0,
   "failures": []
 }

@@ -3305,6 +3305,186 @@ def audit_yasue_action(audit: Audit) -> None:
         )
 
 
+def audit_field_variation(audit: Audit) -> None:
+    import numpy as _np
+
+    payload = load_results("field_variation.json")
+    result = payload["result"]
+    scales = result["scales"]
+    verdict = result["verdict"]
+    # Independent Gaussian-bridge field action (own cell-centered code).
+    _sq = math.sqrt(0.5)
+    _s0, _sT, _T = 1.2 * _sq, _sq, math.pi / 4.0
+    _A = _s0**2
+    _uT, _vT = math.cos(_T), math.sin(_T)
+    _qa, _qb = _vT**2, 2.0 * _A * _uT * _vT
+    _qc = _A**2 * _uT**2 - _A * _sT**2 + 0.25 * _vT**2
+    _dd = (_qb / _qa) ** 2 - 4.0 * (_qc / _qa)
+    _B = (-_qb / _qa + math.sqrt(_dd)) / 2.0
+    _C = (_B**2 + 0.25) / _A
+    _nx, _nt, _L = 101, 101, 6.0
+    _dx = 2.0 * _L / _nx
+    _xc = -_L + _dx / 2.0 + _np.arange(_nx) * _dx
+    _dt = _T / (_nt - 1)
+    _tg = _np.linspace(0.0, _T, _nt)
+    _sg = _np.sqrt(
+        _A * _np.cos(_tg) ** 2
+        + 2.0 * _B * _np.cos(_tg) * _np.sin(_tg)
+        + _C * _np.sin(_tg) ** 2
+    )
+    _rho = _np.exp(-_xc[None, :] ** 2 / (2.0 * _sg[:, None] ** 2)) / _np.sqrt(
+        2.0 * math.pi * _sg[:, None] ** 2
+    )
+    _rho = _rho / (_rho.sum(axis=1, keepdims=True) * _dx)
+    _J = 0.0
+    for _k in range(_nt - 1):
+        _a, _b = _rho[_k], _rho[_k + 1]
+        _rm = 0.5 * (_a + _b)
+        _d = (_b - _a) / _dt
+        _f = _np.zeros(_nx + 1)
+        for _i in range(_nx):
+            _f[_i + 1] = _f[_i] - _dx * _d[_i]
+        _fv = 0.5 * (_f[:-1] + _f[1:])
+        _dr = _np.empty(_nx)
+        _dr[1:-1] = (_rm[2:] - _rm[:-2]) / (2.0 * _dx)
+        _dr[0] = (_rm[1] - _rm[0]) / _dx
+        _dr[-1] = (_rm[-1] - _rm[-2]) / _dx
+        _safe = _np.maximum(_rm, 1e-150)
+        _live = (_rm > 1e-12).astype(float)
+        _J += float(
+            _np.sum(
+                (
+                    0.5 * _fv**2 / _safe
+                    - 0.125 * _dr**2 / _safe
+                    - 0.5 * _xc**2 * _safe
+                )
+                * _live
+            )
+            * _dx
+            * _dt
+        )
+    audit.record(
+        "58: the bridge action is recomputed",
+        abs(_J - (-0.3906340559)) <= 1e-4
+        and abs(_J - scales["bridge_field_J"]) <= 1e-6,
+        f"J={_J:.10f}",
+    )
+    # Independent classical bank arithmetic (transport ends) + near-miss.
+    _s0, _sT, _Tw = 1.2 * math.sqrt(0.5), math.sqrt(0.5), math.pi / 4.0
+    _A0 = _s0
+    _B0 = (_sT - _s0 * math.cos(_Tw)) / math.sin(_Tw)
+    _sd0 = _B0
+    _sdT = -_A0 * math.sin(_Tw) + _B0 * math.cos(_Tw)
+    _closed = 0.5 * (_sT * _sdT - _s0 * _sd0)
+    _nu0 = scales["coarse_nu0_runs"]
+    _best0 = min(r["J_final"] for r in _nu0)
+    audit.record(
+        "58: the classical bank is recomputed",
+        abs(_A0 - 0.848528137423857) <= 1e-12
+        and abs(_B0 - 0.1514718625761429) <= 1e-12
+        and abs(_closed - (-0.23852813742385703)) <= 1e-12
+        and abs(scales["classical"]["value"] - _closed) <= 1e-12
+        and abs(_best0 - _closed) <= 1e-3,
+        f"closed={_closed:.10f}",
+    )
+    # Independent Hessian saddle check on a tiny grid (own FD Hessian).
+    _n2x, _n2t = 21, 11
+    _dx2 = 12.0 / _n2x
+    _xc2 = -6.0 + _dx2 / 2.0 + _np.arange(_n2x) * _dx2
+    _T2, _dt2 = math.pi / 4.0, (math.pi / 4.0) / (_n2t - 1)
+    _tg2 = _np.linspace(0.0, _T2, _n2t)
+    _sg2 = _np.sqrt(
+        _A * _np.cos(_tg2) ** 2
+        + 2.0 * _B * _np.cos(_tg2) * _np.sin(_tg2)
+        + _C * _np.sin(_tg2) ** 2
+    )
+    _r2 = _np.exp(-_xc2[None, :] ** 2 / (2.0 * _sg2[:, None] ** 2)) / _np.sqrt(
+        2.0 * math.pi * _sg2[:, None] ** 2
+    )
+    _r2 = _r2 / (_r2.sum(axis=1, keepdims=True) * _dx2)
+    _p2 = _np.log(_np.maximum(_r2[1:-1] * _dx2, 1e-300))
+    _p2 = (_p2 - _p2[:, -1:])[:, :-1]
+    _x0 = _p2.ravel()
+
+    def _Jtiny(_pp: _np.ndarray) -> float:
+        _P = _pp.reshape(_n2t - 2, _n2x - 1)
+        _R = _np.empty((_n2t, _n2x))
+        _R[0] = _r2[0] / (_r2[0].sum() * _dx2)
+        _R[-1] = _r2[-1] / (_r2[-1].sum() * _dx2)
+        for _kk in range(_n2t - 2):
+            _full = _np.concatenate([_P[_kk], [0.0]])
+            _e = _np.exp(_full - _full.max())
+            _R[_kk + 1] = _e / (_e.sum() * _dx2)
+        _Jj = 0.0
+        for _kk in range(_n2t - 1):
+            _aa, _bb = _R[_kk], _R[_kk + 1]
+            _rmm = 0.5 * (_aa + _bb)
+            _ddv = (_bb - _aa) / _dt2
+            _ff = _np.zeros(_n2x + 1)
+            for _ii in range(_n2x):
+                _ff[_ii + 1] = _ff[_ii] - _dx2 * _ddv[_ii]
+            _fvv = 0.5 * (_ff[:-1] + _ff[1:])
+            _drr = _np.empty(_n2x)
+            _drr[1:-1] = (_rmm[2:] - _rmm[:-2]) / (2.0 * _dx2)
+            _drr[0] = (_rmm[1] - _rmm[0]) / _dx2
+            _drr[-1] = (_rmm[-1] - _rmm[-2]) / _dx2
+            _ss = _np.maximum(_rmm, 1e-150)
+            _ll = (_rmm > 1e-12).astype(float)
+            _Jj += float(
+                _np.sum(
+                    (
+                        0.5 * _fvv**2 / _ss
+                        - 0.125 * _drr**2 / _ss
+                        - 0.5 * _xc2**2 * _ss
+                    )
+                    * _ll
+                )
+                * _dx2
+                * _dt2
+            )
+        return _Jj
+
+    # Independent escape demonstration: own tiny-grid optimization from a
+    # Gaussian start descends below the bank (own code, FD gradients).
+    from scipy.optimize import minimize as _minimize
+
+    _lam = _np.linspace(0.0, 1.0, _n2t)[1:-1]
+    _sg0 = (1.2 * _sq) + _lam * (_sq - 1.2 * _sq)
+    _rs = _np.exp(-_xc2[None, :] ** 2 / (2.0 * _sg0[:, None] ** 2)) / _np.sqrt(
+        2.0 * math.pi * _sg0[:, None] ** 2
+    )
+    _rs = _rs / (_rs.sum(axis=1, keepdims=True) * _dx2)
+    _ps = _np.log(_np.maximum(_rs * _dx2, 1e-300))
+    _ps = (_ps - _ps[:, -1:])[:, :-1]
+    _Jstart = _Jtiny(_ps.ravel())
+    _res2 = _minimize(
+        _Jtiny,
+        _ps.ravel(),
+        method="L-BFGS-B",
+        options={"maxiter": 60, "ftol": 1e-14, "gtol": 1e-7, "maxcor": 10},
+    )
+    audit.record(
+        "58: an independent optimization escapes below the bank",
+        _res2.fun < -0.3906340559 - 1e-4 and _res2.fun < _Jstart,
+        f"J={_res2.fun:.6f} from {float(_Jstart):.6f} in {int(_res2.nit)} it",
+    )
+    # Stored multi-start record: all non-converged, all below bank.
+    _runs = scales["coarse_runs"] + scales["fine_runs"]
+    audit.record(
+        "58: the escape record is consistent",
+        all(not r["converged"] for r in _runs)
+        and all(r["J_final"] < scales["bank"] for r in _runs)
+        and all(r["grad_inf"] > 0 for r in _runs),
+        f"min_J={min(r['J_final'] for r in _runs):.4f}",
+    )
+    if not verdict["claim_58_status"].startswith("FALSIFIED"):
+        audit.record(
+            "58: verdict is FALSIFIED",
+            False,
+            f"status={verdict['claim_58_status'][:60]}",
+        )
+
+
 # ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
@@ -3744,6 +3924,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_yasue_center(audit)
     audit_yasue_bridge(audit)
     audit_yasue_action(audit)
+    audit_field_variation(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

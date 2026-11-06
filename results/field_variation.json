@@ -1,0 +1,284 @@
+{
+  "meta": {
+    "config": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "fine_starts": [
+        "bridge_warm",
+        "wide"
+      ],
+      "gates": {
+        "action_tol": 0.0001,
+        "attrib_tol": 0.0001,
+        "grad_tol": 1e-06
+      },
+      "grids": {
+        "coarse": [
+          101,
+          101
+        ],
+        "fine": [
+          201,
+          201
+        ]
+      },
+      "nu0_starts": [
+        "gauss_linear",
+        "wide"
+      ],
+      "scope": "1D field BVP, zero parameters, no full-field claim",
+      "starts": [
+        "gauss_linear",
+        "bump",
+        "bimodal",
+        "wide"
+      ]
+    },
+    "config_sha256": "a5f51d455af69679b631624ac8680a9fabfc4e4abbdb4ab58cebda740f1e3e7f",
+    "generated_utc": "2026-11-06T10:36:11+00:00",
+    "git": {
+      "commit": "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "action_tol": 0.0001,
+      "attrib_tol": 0.0001,
+      "grad_tol": 1e-06,
+      "kills_hard": [
+        [
+          "escape_below",
+          true
+        ],
+        [
+          "path_match",
+          true
+        ],
+        [
+          "classical_match",
+          false
+        ],
+        [
+          "scaling_match",
+          true
+        ]
+      ],
+      "kills_soft": [
+        [
+          "coarse_attainment",
+          true
+        ],
+        [
+          "fine_attainment",
+          true
+        ],
+        [
+          "nu0_attainment",
+          true
+        ],
+        [
+          "scaling_attainment",
+          true
+        ],
+        [
+          "coarse_below_unconfirmed",
+          false
+        ],
+        [
+          "higher_non_gaussian",
+          false
+        ]
+      ]
+    },
+    "scales": {
+      "attribution": 16.60961998406119,
+      "bank": -0.3906340559,
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "nu": 0.5,
+        "omega": 1.0
+      },
+      "bridge_field_J": -0.390647341891218,
+      "classical": {
+        "A": 0.848528137423857,
+        "B": 0.1514718625761429,
+        "value": -0.23852813742385703
+      },
+      "coarse_nu0_runs": [
+        {
+          "J_final": -0.2384368583509171,
+          "J_init": -0.22677850808204528,
+          "converged": false,
+          "grad_inf": 6.028447339583125e-05,
+          "mass_err": 5.551115123125783e-16,
+          "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+          "min_rho": 2.660033632021784e-16,
+          "nfev": 2043,
+          "nit": 2000,
+          "start": "gauss_linear"
+        },
+        {
+          "J_final": -0.2377105147972985,
+          "J_init": 6.438069117035736,
+          "converged": false,
+          "grad_inf": 0.0001768597741359556,
+          "mass_err": 5.551115123125783e-16,
+          "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+          "min_rho": 2.660033632021784e-16,
+          "nfev": 2051,
+          "nit": 2000,
+          "start": "wide"
+        }
+      ],
+      "coarse_runs": [
+        {
+          "J_final": -3.354804077488641,
+          "J_init": -0.3895152638355454,
+          "converged": false,
+          "grad_inf": 181.17441876513587,
+          "mass_err": 4.440892098500626e-16,
+          "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+          "min_rho": 1.1995533743466608e-16,
+          "nfev": 2235,
+          "nit": 2000,
+          "start": "gauss_linear"
+        },
+        {
+          "J_final": -11196111287.698124,
+          "J_init": 13.108450283453893,
+          "converged": false,
+          "grad_inf": 11127874511.366022,
+          "mass_err": 5.551115123125783e-16,
+          "message": "ABNORMAL: ",
+          "min_rho": 1.9290334875342243e-59,
+          "nfev": 78,
+          "nit": 26,
+          "start": "bump"
+        },
+        {
+          "J_final": -14068314954.462734,
+          "J_init": 6.2709449448770425,
+          "converged": false,
+          "grad_inf": 13637736335.49396,
+          "mass_err": 5.551115123125783e-16,
+          "message": "ABNORMAL: ",
+          "min_rho": 3.1273369702352303e-81,
+          "nfev": 193,
+          "nit": 107,
+          "start": "bimodal"
+        },
+        {
+          "J_final": -62236515807.50059,
+          "J_init": 6.3393862484587205,
+          "converged": false,
+          "grad_inf": 33732417736.185387,
+          "mass_err": 3.3306690738754696e-16,
+          "message": "ABNORMAL: ",
+          "min_rho": 1.9335619779008568e-29,
+          "nfev": 178,
+          "nit": 127,
+          "start": "wide"
+        }
+      ],
+      "fine_runs": [
+        {
+          "J_final": -1.550788556510169,
+          "converged": false,
+          "grad_inf": 62.515004703803164,
+          "mass_err": 4.440892098500626e-16,
+          "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+          "min_rho": 7.595291599733076e-17,
+          "nfev": 2178,
+          "nit": 2000,
+          "start": "bridge_warm"
+        },
+        {
+          "J_final": -99136423776.88571,
+          "J_init": 13.173372703740693,
+          "converged": false,
+          "grad_inf": 252453929459.1969,
+          "mass_err": 4.440892098500626e-16,
+          "message": "ABNORMAL: ",
+          "min_rho": 0.0,
+          "nfev": 254,
+          "nit": 200,
+          "start": "wide"
+        }
+      ],
+      "grids": {
+        "coarse": [
+          101,
+          101
+        ],
+        "fine": [
+          201,
+          201
+        ]
+      },
+      "scaling": {
+        "bridge_field_J": -0.3906882223057356,
+        "omega": 2.0,
+        "runs": [
+          {
+            "J_final": -85.15202703620211,
+            "J_init": -0.3895603933189167,
+            "converged": false,
+            "grad_inf": 8372.856977111358,
+            "mass_err": 3.3306690738754696e-16,
+            "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+            "min_rho": 1.4747668889471149e-31,
+            "nfev": 2206,
+            "nit": 2000,
+            "start": "gauss_linear"
+          },
+          {
+            "J_final": -85028372026.24881,
+            "J_init": 50.35052437415557,
+            "converged": false,
+            "grad_inf": 111763268931.46646,
+            "mass_err": 4.440892098500626e-16,
+            "message": "ABNORMAL: ",
+            "min_rho": 1.7736347514650371e-31,
+            "nfev": 507,
+            "nit": 264,
+            "start": "wide"
+          }
+        ]
+      },
+      "segments": {
+        "bimodal": [
+          -0.38951526383554524,
+          -0.06624702484331682,
+          0.9836396721923573,
+          2.9751924214820136,
+          6.2709449448770425
+        ],
+        "wide": [
+          -0.38951526383554524,
+          0.17432225010023183,
+          1.586092864393054,
+          3.6691637160908077,
+          6.3393862484587205
+        ]
+      }
+    },
+    "verdict": {
+      "claim_58_status": "FALSIFIED (unstructured field escapes far below the bank; trial-class global minimality dead; escape_below; path_match; scaling_match)",
+      "note": "The fixed-endpoint G-M field does not re-select the Gaussian: every tier escapes far below the bank, still descending; the bridge Hessian has negative directions; the escape exploits near-vacuum cells. Stationarity results of claims 51-57 stand; only the global-minimum reading dies."
+    }
+  }
+}
