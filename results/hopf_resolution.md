@@ -15,4 +15,4 @@ Coarse (N<32) under-resolved: **True**; fine (N>=32) within 1e-3: **True**.
 The grid estimator needs N>=32 for 1e-3 accuracy on the analytic map. This explains why the N=32 3D pilot H values are resolution-limited.
 
 - Config SHA-256: `5b16c483c1242e4a75f5c58702165a85135422063f67310d7069a25f9385d683`
-- Git: `f7315c8acbc922fad364d49dbc1169e32fd9f08e` (dirty=True)
+- Git: `0d14fcc8f87a17a664b950750ddc0251be6b7906` (dirty=True)

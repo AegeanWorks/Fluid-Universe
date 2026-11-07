@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-06T18:20:33+00:00",
-    "git_commit": "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
+    "generated_utc": "2026-11-07T08:26:33+00:00",
+    "git_commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "8d81d4ad0de3c451ea78cffde9f6cbebba0614e9995549ec35d8312c2bd3f6da",
-      "results_sha256": "60a59e20014c7651c61a7553caf00ef5e8ab7123726cc96523f8417de58f1e36"
+      "source_sha256": "99f2114b314212856bc15fb9277e065d83c6d2b969198581410a075ad96babda",
+      "results_sha256": "5002a236fc8f5c4a510d6c8910af5b3c9210dab367225d77e904053e2946e9e5"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1544,6 +1544,41 @@
       "observed": null
     },
     {
+      "claim": "60: eps0 is predicted from bohr_radius",
+      "passed": true,
+      "detail": "eps0=0.100000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "60: singular slope is recomputed",
+      "passed": true,
+      "detail": "slope=-1.000000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "60: core slip is recomputed",
+      "passed": true,
+      "detail": "slip=3.121584",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "60: core Q analytic is recomputed",
+      "passed": true,
+      "detail": "Q0=-49.5000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "60: the verdict follows its gates",
+      "passed": true,
+      "detail": "status=NUMERIC (finite-core regularized defect demonstrated at eps0",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2237,8 +2272,8 @@
       "observed": null
     }
   ],
-  "total": 317,
-  "passed": 317,
+  "total": 322,
+  "passed": 322,
   "failed": 0,
   "failures": []
 }

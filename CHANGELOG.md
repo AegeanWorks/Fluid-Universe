@@ -1066,3 +1066,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 59 is UNVERIFIED (ladder_attainment; path_match); claims 20-26 and 43-58 numbers unchanged (stationarity untouched; trial-class program undecided in smooth class); defect-core span untouched.
 
 - Verification after the span: two separate runs, 317/317 checks each.
+
+## 2026-11-06 - HO-1 finite-core node probe NUMERIC (claim 60, ADR-054)
+
+**Added**
+
+- theory/vortex_core.py (HO-1 complex-shift core psi_eps=A(x+i*eps)exp(-x^2/2s^2), pre-registered eps0=0.1*a0 from bohr_radius, v=-(h/m)eps/(x^2+eps^2), Q_eps(0)=-h^2/2m(1/eps^2-1/s^2)); phenomenology/vortex_core_report.py (grids 256/512/1024/2048 L=20, frozen gates slip pi+-0.05 plus monotone, Q finite plus N-convergence +-5%, singular slope -1+-0.01 apparatus, far Q soft), make vortexcore, tests/test_vortex_core.py, results/vortex_core.{json,md}; five independent audit checks in verification/audit.py (eps0, slope, slip, Q analytic, gate consistency - G-001 two-run); formulas F44.
+- Swarm waves: 5 literature record notes (Wallstrom/Takabayasi/Bohm/blob/positivity, file artifacts results/swarm/core_*.md with config hashes, paywall absences explicit, zero numeric weight) plus 4 fixed compute baselines (N=256/512/1024/2048 singular HO-1) verified by sampling (slip pi, gmax pi/2dx 20.106/160.85, Q 1.003992, a0 1.0).
+
+**Results**
+
+- Singular slope -1.0000000000000002 (apparatus intact); slips 3.12151/3.12155/3.12157/3.12158 (2048 diff 0.0200<=0.05), monotone True all grids; Q analytic -49.5, FD -43.4388/-47.6890/-49.0226/-49.3790 (fine-vs-analytic 0.24%, step 0.73%, both <=5%); far Q(0.996)=1.003992; vmax 10.0=1/eps0; config 21bfe56d1de6. No winding break, no Q divergence.
+- Claim 60 is NUMERIC (finite-core regularized defect demonstrated at eps0; HO-1 probe only, 2p loop and 2s shell queued); claims 20-26 and 43-59 numbers unchanged (representations plus stationarity stand; core survival does not claim full-field dynamics).
+
+- Verification after the span: two separate runs, 322/322 checks each.

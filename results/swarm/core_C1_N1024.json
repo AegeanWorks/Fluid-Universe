@@ -1,0 +1,138 @@
+{
+  "meta": {
+    "config": {
+      "epsilon": 0.1,
+      "epsilon_range_allowed": [
+        0.01,
+        0.5
+      ],
+      "epsilon_source": "0.1 x a0, a0 = bohr_radius() from theory.hydrogen_fluid (claim-25 law); pre-registered, no circulation fit",
+      "grids": {
+        "N": 1024,
+        "convention": "(arange(N)-N//2)*dx, includes x=0 exactly",
+        "dx": 0.01953125,
+        "length": 20.0
+      },
+      "methods": [
+        "numpy.trapezoid norms",
+        "numpy.gradient(dx) velocity",
+        "2nd-order central Q",
+        "no fitting"
+      ],
+      "model": "C1",
+      "model_equations": {
+        "core_raw": "psi_eps(x) = A (x + i eps) exp(-x^2/(2 s^2))",
+        "core_renorm": "psi_hat(x) = psi_eps(x)/sqrt(Nraw), Nraw = 1 + 2 eps^2/s^2 (analytic)",
+        "exact": "psi1(x) = A x exp(-x^2/(2 s^2)), A = sqrt(2)/(pi^1/4 sqrt(s))/s",
+        "phase": "phi(x) = arg(x + i eps) in (0,pi), smooth on real line",
+        "quantum_pressure_analytic_center": "Q(0) = -(hbar^2/2m)(1/eps^2 - 1/s^2)",
+        "quantum_pressure_discrete": "Q_j = -(hbar^2/2m) (s_{j+1}-2s_j+s_{j-1})/dx^2/s_j, s = sqrt(rho_hat), interior only",
+        "velocity": "v(x) = (hbar/m) eps/(x^2+eps^2), continuum max (hbar/m)/eps at x=0"
+      },
+      "scope": "HO-1 finite-core independent compute at N=1024; raw numbers only, NO verdict",
+      "units": {
+        "a0": 1.0,
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0,
+        "sigma": 1.0
+      }
+    },
+    "config_sha256": "b107ae67add4939b80335435ad650e2a3802954da16caf00feb1e294cc8c554d",
+    "generated_utc": "2026-11-06T18:37:01+00:00",
+    "git": {
+      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "controls_untouched": {
+      "a0": 1.0,
+      "angular_momentum": 1.0,
+      "azimuthal_velocity_r2": 0.5,
+      "circulation_2pi": 6.283185307179586,
+      "force_balance_1s": {
+        "0.5": 0.0,
+        "1.0": 0.0,
+        "2.0": 0.0,
+        "5.0": 0.0
+      },
+      "loop_circulation_r2": 6.283185307179586,
+      "most_probable_radius_2p": 4.0,
+      "note": "controls recomputed from theory modules; C1 core NOT applied to controls",
+      "radial_norm_2p": 1.0000000000000002,
+      "sigma": 1.0
+    },
+    "core_C1_N1024": {
+      "Q0_analytic": -49.49999999999999,
+      "Q0_discrete": -49.02264767127691,
+      "Q0_rel_err": 0.009643481388345171,
+      "Q_regular_branch_limit_at_0": 1.5,
+      "Qcap_interior_10": 49.02264767127691,
+      "eps_over_dx": 5.12,
+      "eps_to_zero_recovery_analytic": "vmax=1/eps -> inf (slope -1 in eps); Q0 ~ -1/(2eps^2) -> -inf; node density ~ A^2 eps^2 -> 0",
+      "epsilon": 0.1,
+      "node_density_analytic": 0.011062540853877577,
+      "node_density_numeric": 0.011062540853877579,
+      "phase_slip_discrete_abs": 3.1215737527054213,
+      "phase_slip_finite_domain_analytic_abs": 3.1215737527054213,
+      "phase_slip_infinite_line_analytic": 3.141592653589793,
+      "raw_norm_analytic": 1.02,
+      "raw_norm_numeric": 1.02,
+      "renorm_norm_numeric": 1.0,
+      "resolved": true,
+      "velocity_max_analytic": 10.0,
+      "velocity_max_discrete": 9.875676787608302,
+      "velocity_max_rel_err": 0.012432321239169753,
+      "velocity_sign_convention": "discrete v=dphi/dx is signed-negative (phase falls pi->0); analytic column is +eps/(x^2+eps^2) magnitude; gate on abs values",
+      "velocity_probes": {
+        "1.0": {
+          "Q_discrete": 0.988843727832283,
+          "rho_exact": 0.4150948129955483,
+          "rho_hat": 0.4110572366839342,
+          "v_analytic": 0.0997802082692604,
+          "v_discrete": -0.099817696347381,
+          "x": 0.99609375
+        },
+        "2.0": {
+          "Q_discrete": -0.4870931170642421,
+          "rho_exact": 0.08462189539472172,
+          "rho_hat": 0.08317167905832978,
+          "v_analytic": 0.025133136285290552,
+          "v_discrete": -0.02513553808622664,
+          "x": 1.9921875
+        },
+        "5.0": {
+          "Q_discrete": -11.006608330607543,
+          "rho_exact": 3.917716632754334e-10,
+          "rho_hat": 3.842435019026896e-10,
+          "v_analytic": 0.003998400639744102,
+          "v_discrete": -0.003998461594517178,
+          "x": 5.0
+        }
+      }
+    },
+    "exact_N1024": {
+      "N": 1024,
+      "dx": 0.01953125,
+      "gradient_max": 80.4247719318987,
+      "identity_residual": 0.0,
+      "node_density": 0.0,
+      "phase_slip": 3.141592653589793,
+      "pi_over_2dx": 80.4247719318987,
+      "x_max": 9.98046875,
+      "x_min": -10.0
+    },
+    "note": "Independent compute, NO verdict. eps pre-registered from Bohr radius; no epsilon scan, no circulation fit. Qcap/velocity/norm numbers are raw inputs to the claim-60 gate.",
+    "verdict": null
+  }
+}

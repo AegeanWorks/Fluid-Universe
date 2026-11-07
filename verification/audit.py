@@ -3652,6 +3652,70 @@ def audit_widened_ritz(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Finite-core node probe (claim 60, ADR-054; HO-1 core only)
+# ---------------------------------------------------------------------------
+
+
+def audit_vortex_core(audit: Audit) -> None:
+    import numpy as _np
+
+    payload = load_results("vortex_core.json")
+    result = payload["result"]
+    s = result["scales"]
+    verdict = result["verdict"]
+    # (1) eps0 is predicted from bohr_radius (own recompute, no project import).
+    _a0 = 1.0 * 1.0 / 1.0 / 1.0
+    audit.record(
+        "60: eps0 is predicted from bohr_radius",
+        abs(float(s["eps0"]) - 0.1 * _a0) <= 1e-12,
+        f"eps0={float(s['eps0']):.6f}",
+    )
+    # (2) Singular slope recomputed from stored gmax (own log-log fit).
+    _dx = _np.array(s["singular"]["dx"], dtype=float)
+    _gm = _np.array(s["singular"]["gmax"], dtype=float)
+    _slope = float(_np.polyfit(_np.log(_dx), _np.log(_gm), 1)[0])
+    audit.record(
+        "60: singular slope is recomputed",
+        abs(_slope - float(s["singular"]["slope"])) <= 1e-9
+        and abs(_slope + 1.0) <= 0.01,
+        f"slope={_slope:.6f}",
+    )
+    # (3) Core slip recomputed (own arctan2, no project import).
+    _n = 2048
+    _dxf = 20.0 / _n
+    _x = (_np.arange(_n) - _n // 2) * _dxf
+    _ph = _np.arctan2(_np.full_like(_x, 0.1), _x)
+    _slip = float(_np.max(_ph) - _np.min(_ph))
+    audit.record(
+        "60: core slip is recomputed",
+        abs(_slip - float(s["slips"]["2048"] if "2048" in s["slips"] else s["slips"][2048])) <= 1e-9
+        and abs(_slip - math.pi) <= 0.05,
+        f"slip={_slip:.6f}",
+    )
+    # (4) Core Q analytics recomputed (own closed form).
+    _q = -0.5 * (1.0 / 0.01 - 1.0)
+    audit.record(
+        "60: core Q analytic is recomputed",
+        abs(_q - float(s["q_analytic"])) <= 1e-9 and math.isfinite(_q),
+        f"Q0={_q:.4f}",
+    )
+    # (5) Verdict follows gates.
+    _hard = dict(result["gates"]["kills_hard"])
+    _soft = dict(result["gates"]["kills_soft"])
+    _st = str(verdict["claim_60_status"])
+    _consistent = (
+        (_st.startswith("FALSIFIED") and (bool(_hard.get("winding_below")) or bool(_hard.get("qcap_below"))))
+        or (_st.startswith("NUMERIC") and not any(_hard.values()))
+        or (_st.startswith("UNVERIFIED") and (any(_soft.values()) or any(_hard.values())))
+    )
+    audit.record(
+        "60: the verdict follows its gates",
+        bool(_consistent),
+        f"status={_st[:60]}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -4092,6 +4156,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_yasue_action(audit)
     audit_field_variation(audit)
     audit_widened_ritz(audit)
+    audit_vortex_core(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

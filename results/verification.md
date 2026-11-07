@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-06T18:20:17+00:00 | `f7315c8acbc922fad364d49dbc1169e32fd9f08e` | 317/317 | `8d81d4ad0de3c451...` | `60a59e20014c7651...` |
-| run2 | 2026-11-06T18:20:33+00:00 | `f7315c8acbc922fad364d49dbc1169e32fd9f08e` | 317/317 | `8d81d4ad0de3c451...` | `60a59e20014c7651...` |
+| run1 | 2026-11-07T08:26:18+00:00 | `0d14fcc8f87a17a664b950750ddc0251be6b7906` | 322/322 | `99f2114b31421285...` | `5002a236fc8f5c4a...` |
+| run2 | 2026-11-07T08:26:33+00:00 | `0d14fcc8f87a17a664b950750ddc0251be6b7906` | 322/322 | `99f2114b31421285...` | `5002a236fc8f5c4a...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -209,6 +209,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 5c: k=1 and k=2 exactly degenerate | PASS | PASS | YES | YES | |E1-E2|=0.000e+00 |
 | 5c: naive map gives two distinct roots | PASS | PASS | YES | YES | mapped roots [1.4589839654780183, 1.0331356111713113, 1.033135611171311] -> 2 distinct (3 needed) |
 | 5d: c/a=1/2 bound is false | PASS | PASS | YES | YES | (10,1,1): a=4.000, c/a=0.750000, Q=0.7083333333 |
+| 60: core Q analytic is recomputed | PASS | PASS | YES | YES | Q0=-49.5000 |
+| 60: core slip is recomputed | PASS | PASS | YES | YES | slip=3.121584 |
+| 60: eps0 is predicted from bohr_radius | PASS | PASS | YES | YES | eps0=0.100000 |
+| 60: singular slope is recomputed | PASS | PASS | YES | YES | slope=-1.000000 |
+| 60: the verdict follows its gates | PASS | PASS | YES | YES | status=NUMERIC (finite-core regularized defect demonstrated at eps0 |
 | 6a: 1-cos(3phi) = 2 sin^2(3phi/2) | PASS | PASS | YES | YES | symbolic identity used to remove the absolute value on 0 <= phi <= 2pi/3 |
 | 6a: domain-wall tension symbolic | PASS | PASS | YES | YES | sympy integral = 8*sqrt(mu)/3 (sin(3phi/2) >= 0 on the interval) |
 | 6a: tension quadrature mu=0.5 | PASS | PASS | YES | YES | 1.885618083164 vs 1.885618083164 |

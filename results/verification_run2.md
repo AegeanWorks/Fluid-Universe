@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**317/317 checks passed.**
+**322/322 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -224,6 +224,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 59: the K=0 attribution is recomputed | PASS | attrib=8.977e-06 best_max_ck=0.000e+00 |
 | 59: the classical bank is recomputed | PASS | closed=-0.2385281374 |
 | 59: the verdict follows its gates | PASS | status=UNVERIFIED (ladder_attainment; path_match) |
+| 60: eps0 is predicted from bohr_radius | PASS | eps0=0.100000 |
+| 60: singular slope is recomputed | PASS | slope=-1.000000 |
+| 60: core slip is recomputed | PASS | slip=3.121584 |
+| 60: core Q analytic is recomputed | PASS | Q0=-49.5000 |
+| 60: the verdict follows its gates | PASS | status=NUMERIC (finite-core regularized defect demonstrated at eps0 |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

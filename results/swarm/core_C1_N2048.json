@@ -1,0 +1,87 @@
+{
+  "meta": {
+    "config": {
+      "claim": 60,
+      "core": "C1",
+      "kind": "HO-1 singular baseline",
+      "scope": "singular baseline, no regularization; Gaussian-core regularization deferred",
+      "state": "psi1",
+      "grids": {
+        "n": 2048,
+        "length": 20.0,
+        "dx": 0.009765625
+      },
+      "units": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      },
+      "sigma": 1.0,
+      "eps0_preregistered_deferred": 0.1,
+      "x0_probe": 0.996
+    },
+    "config_sha256": "0112bdf05cfbfa09cc926dd50efb10ca9f095ee9d2795138fb37df36da2ca3ac",
+    "generated_utc": "2026-11-06T18:37:45.534834+00:00",
+    "git": {
+      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "dirty": true
+    },
+    "packages": {
+      "python": "3.14.7",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "pytest": "9.1.1",
+      "hypothesis": "6.170.9",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "singular_baseline": {
+      "n": 2048,
+      "length": 20.0,
+      "dx": 0.009765625,
+      "omega": 1.0,
+      "hbar": 1.0,
+      "mass": 1.0,
+      "sigma": 1.0,
+      "node_density": 0.0,
+      "phase_slip": 3.141592653589793,
+      "pi": 3.141592653589793,
+      "gradient_max": 160.8495438637974,
+      "analytic_max_pi_over_2dx": 160.8495438637974,
+      "abs_diff_vs_analytic": 0.0,
+      "identity_residual": 0.0,
+      "regular_Q": {
+        "analytic_at_0_996": 1.003992,
+        "nearest_index": 1126,
+        "nearest_grid_x": 0.99609375,
+        "analytic_at_nearest_grid": 1.0038986206054688,
+        "numerical_fd_at_nearest_grid": 1.0038022648829554,
+        "relative_error_fd_vs_analytic": 9.598152695458984e-05
+      }
+    },
+    "dx": 0.009765625,
+    "nx": 2048,
+    "length": 20.0,
+    "omega": 1.0,
+    "hbar": 1.0,
+    "mass": 1.0,
+    "sigma": 1.0,
+    "eps0": 0.1,
+    "pi": 3.141592653589793,
+    "node_density": 0.0,
+    "phase_slip": 3.141592653589793,
+    "gradient_max": 160.8495438637974,
+    "gradient_max_expected_pi_over_2dx": 160.8495438637974,
+    "gradient_max_minus_expected": 0.0,
+    "regular_Q": {
+      "analytic_at_0_996": 1.003992,
+      "nearest_index": 1126,
+      "nearest_grid_x": 0.99609375,
+      "analytic_at_nearest_grid": 1.0038986206054688,
+      "numerical_fd_at_nearest_grid": 1.0038022648829554,
+      "relative_error_fd_vs_analytic": 9.598152695458984e-05
+    }
+  }
+}

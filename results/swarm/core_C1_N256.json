@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "config": {
+      "dx": 0.078125,
+      "eps0": 0.1,
+      "hbar": 1.0,
+      "length": 20.0,
+      "mass": 1.0,
+      "nx": 256,
+      "omega": 1.0,
+      "scope": "claim-60 singular baseline N256; Gaussian-core regularization deferred",
+      "sigma": 1.0
+    },
+    "config_sha256": "82d6ad9206302cb017334a066f8fee378a88109816883c527e26f7d562a390e4",
+    "generated_utc": "2026-11-06T18:35:31+00:00",
+    "git": {
+      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "dx": 0.078125,
+    "eps0": 0.1,
+    "gradient_max": 20.106192982974676,
+    "gradient_max_expected_pi_over_2dx": 20.106192982974676,
+    "gradient_max_minus_expected": 0.0,
+    "hbar": 1.0,
+    "length": 20.0,
+    "mass": 1.0,
+    "node_density": 0.0,
+    "nx": 256,
+    "omega": 1.0,
+    "phase_slip": 3.141592653589793,
+    "pi": 3.141592653589793,
+    "regular_Q": {
+      "analytic_at_0_996": 1.003992,
+      "analytic_at_nearest_grid": 0.9842529296875,
+      "nearest_grid_x": 1.015625,
+      "nearest_index": 141,
+      "numerical_at_nearest_grid": 0.9842529296874954,
+      "relative_error_at_nearest_grid": 4.624740515030393e-15
+    },
+    "sigma": 1.0
+  }
+}

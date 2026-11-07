@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "config": {
+      "eps0_factor": 0.1,
+      "eps0_from": "theory.hydrogen_fluid.bohr_radius",
+      "gates": {
+        "qconv_tol": 0.05,
+        "slip_tol": 0.05,
+        "slope_tol": 0.01
+      },
+      "grids": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "length": 20.0,
+      "scope": "HO-1 finite-core node probe only; no 2p/2s claim"
+    },
+    "config_sha256": "21bfe56d1de651f1e6154fd4c460e2262fe99c86cad315b076eea37685831829",
+    "generated_utc": "2026-11-07T08:26:03+00:00",
+    "git": {
+      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "kills_hard": [
+        [
+          "singular_control_broken",
+          false
+        ],
+        [
+          "winding_below",
+          false
+        ],
+        [
+          "qcap_below",
+          false
+        ]
+      ],
+      "kills_soft": [
+        [
+          "slope_attainment",
+          false
+        ],
+        [
+          "far_match",
+          false
+        ]
+      ],
+      "qconv_tol": 0.05,
+      "slip_tol": 0.05,
+      "slope_tol": 0.01
+    },
+    "scales": {
+      "base": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0,
+        "sigma": 1.0
+      },
+      "eps0": 0.1,
+      "eps0_factor": 0.1,
+      "grids": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "length": 20.0,
+      "monotone": {
+        "256": true,
+        "512": true,
+        "1024": true,
+        "2048": true
+      },
+      "q_analytic": -49.49999999999999,
+      "q_far_0996": 1.003992,
+      "q_fd": {
+        "256": -43.4388198059403,
+        "512": -47.68903499040444,
+        "1024": -49.0226476712776,
+        "2048": -49.37898922801816
+      },
+      "singular": {
+        "dx": [
+          0.078125,
+          0.0390625,
+          0.01953125,
+          0.009765625
+        ],
+        "gmax": [
+          20.106192982974676,
+          40.21238596594935,
+          80.4247719318987,
+          160.8495438637974
+        ],
+        "slope": -1.0000000000000002
+      },
+      "slips": {
+        "256": 3.121514587994361,
+        "512": 3.1215541084667606,
+        "1024": 3.1215737527054213,
+        "2048": 3.121583546023772
+      }
+    },
+    "verdict": {
+      "claim_60_status": "NUMERIC (finite-core regularized defect demonstrated at eps0; winding preserved, Q finite and N-converged)",
+      "note": "HO-1 core probe only; 2p/2s queued."
+    }
+  }
+}

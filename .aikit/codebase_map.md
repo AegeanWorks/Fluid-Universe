@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `201`
-- **Total Classes**: `7`
-- **Total Top-Level Functions**: `1105`
-- **Total Class Methods**: `9`
-- **Total Source Lines**: `30356`
+- **Total Python Modules**: `207`
+- **Total Classes**: `8`
+- **Total Top-Level Functions**: `1136`
+- **Total Class Methods**: `19`
+- **Total Source Lines**: `31752`
 
 ---
 
@@ -454,7 +454,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `548` lines (`26194` bytes)
+**Size**: `553` lines (`26413` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -606,6 +606,17 @@
 **Functions:**
 - `def load_lepton_masses()`
 - `def run_cascade_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/vortex_core_report.py`](phenomenology/vortex_core_report.py)
+> *HO-1 finite-core node probe (claim 60, ADR-054).*
+
+**Size**: `172` lines (`5988` bytes)
+
+**Functions:**
+- `def run_vortex_core_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -807,6 +818,18 @@
 
 **Functions:**
 - `def run_water_well_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/widened_ritz_report.py`](phenomenology/widened_ritz_report.py)
+> *Ritz-widened squared-Hermite trial BVP (claim 59, ADR-051).*
+
+**Size**: `360` lines (`12612` bytes)
+
+**Functions:**
+- `def _analytic_bridge_J(problem)`
+- `def run_widened_ritz_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1665,6 +1688,19 @@
 
 ---
 
+### [`tests/test_vortex_core.py`](tests/test_vortex_core.py)
+> *Finite-core node probe tests (claim 60).*
+
+**Size**: `44` lines (`1144` bytes)
+
+**Functions:**
+- `def test_eps0_is_predicted()`
+- `def test_core_velocity_capped()`
+- `def test_core_q_zero_closed_form()`
+- `def test_core_winding_and_q_converge()`
+
+---
+
 ### [`tests/test_vortex_particles.py`](tests/test_vortex_particles.py)
 > *Vortex-knot mass hypothesis tests (claim 17).*
 
@@ -1924,6 +1960,22 @@
 - `def test_required_depth_at_three_point_two_angstrom()`
 - `def test_minimum_required_depth()`
 - `def test_invalid_inputs_are_rejected()`
+
+---
+
+### [`tests/test_widened_ritz.py`](tests/test_widened_ritz.py)
+> *Ritz-widened trial class tests (claim 59).*
+
+**Size**: `105` lines (`3147` bytes)
+
+**Functions:**
+- `def test_hermite_basis_orthonormal()`
+- `def test_gradient_matches_finite_differences()`
+- `def test_k0_reproduces_trial_action()`
+- `def test_widened_verdict_holds()`
+- `def test_inputs_are_frozen()`
+- `def test_nu0_k0_matches_closed_form()`
+- `def test_reversal_needs_shape_modes()`
 
 ---
 
@@ -2481,6 +2533,23 @@
 
 ---
 
+### [`theory/vortex_core.py`](theory/vortex_core.py)
+> *HO-1 finite-core node probe (claim 60, ADR-054).*
+
+**Size**: `95` lines (`3567` bytes)
+
+**Functions:**
+- `def core_radius()` - *Pre-registered core radius eps0 = 0.1 * a0 (predicted, not fit).*
+- `def ho_sigma(omega, hbar, mass)`
+- `def core_norm(eps, sigma)` - *Exact L2 norm squared of (x+i*eps)*exp(-x^2/2s^2): s*sqrt(pi)*(s^2/2+eps^2).*
+- `def core_density(x, eps, sigma)`
+- `def core_phase(x, eps)` - *Phase arg(x + i*eps); singular arg(x) at eps = 0.*
+- `def core_velocity(x, eps, hbar, mass)` - *v = (hbar/m) dS/dx with S = arg(x+i*eps): v = -(hbar/m)*eps/(x^2+eps^2).*
+- `def core_q_zero(eps, sigma, hbar, mass)` - *Analytic Q at x=0: -hbar^2/2m * (1/eps^2 - 1/sigma^2). eps > 0 required.*
+- `def fd_q_zero(eps, n, length, sigma)` - *Second-order central FD Q at x=0 from sqrt(rho); N-convergence probe.*
+
+---
+
 ### [`theory/vortex_particles.py`](theory/vortex_particles.py)
 > *Thin-filament vortex-knot mass hypothesis (claim 17, ADR-008).*
 
@@ -2737,6 +2806,33 @@
 
 ---
 
+### [`theory/widened_ritz.py`](theory/widened_ritz.py)
+> *Ritz-widened squared-Hermite trial BVP (claim 59, ADR-051).*
+
+**Size**: `375` lines (`14107` bytes)
+
+**Classes:**
+- `class WidenedProblem` - *Squared-Hermite Ritz BVP with exact mass normalization.*
+  - Method `.__init__(k_max, nx, nt, nu, omega, mass, x_lim, s0_factor)`
+  - Method `.n_vars()`
+  - Method `.unpack(params)`
+  - Method `.build_rho(fields)`
+  - Method `.action_and_gradient(params)`
+  - Method `.start_vector(kind)`
+  - Method `.solve(kind, maxiter)`
+  - Method `.refine(x0, maxiter)`
+  - Method `.newton_polish(x0, h, steps, tol)` - *Dense Newton with finite-difference Hessian (R4 pattern).*
+  - Method `._finish(x, res)`
+
+**Functions:**
+- `def _dT_adj(g, dx)` - *Exact transpose of the central/one-sided difference operator.*
+- `def diffusivity(hbar, mass)`
+- `def horizon(omega)`
+- `def hermite_basis(y, k_max)` - *Probabilists' Hermite He_0..He_k via recurrence.*
+- `def bridge_widths(t_values, s0, omega)` - *Analytic G-M primary-branch widths for the (s0 -> sigma_q) ends.*
+
+---
+
 ### [`theory/yasue_action.py`](theory/yasue_action.py)
 > *Pinned-endpoint Yasue-bridge action stationarity (claim 57, ADR-049).*
 
@@ -2816,7 +2912,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `3988` lines (`159033` bytes)
+**Size**: `4220` lines (`167817` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2897,6 +2993,8 @@
 - `def audit_yasue_bridge(audit)`
 - `def audit_yasue_action(audit)`
 - `def audit_field_variation(audit)`
+- `def audit_widened_ritz(audit)`
+- `def audit_vortex_core(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -2926,7 +3024,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `209` lines (`5455` bytes)
+**Size**: `213` lines (`5549` bytes)
 
 **Functions:**
 - `def _source_files()`
@@ -2940,7 +3038,7 @@
 ### [`verification/verify.py`](verification/verify.py)
 > *Run the full claim-verification workflow in separate processes.*
 
-**Size**: `66` lines (`2089` bytes)
+**Size**: `70` lines (`2385` bytes)
 
 **Functions:**
 - `def _run(module, *args)`

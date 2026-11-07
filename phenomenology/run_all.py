@@ -42,6 +42,7 @@ from .yasue_bridge_report import run_yasue_bridge_check
 from .yasue_action_report import run_yasue_action_check
 from .widened_ritz_report import run_widened_ritz_check
 from .field_variation_report import run_field_variation_check
+from .vortex_core_report import run_vortex_core_check
 from theory.rotor import (
     convergence,
     domain_wall_tension,
@@ -537,6 +538,7 @@ def main() -> None:
     run_yasue_action_check(write=True)
     run_widened_ritz_check(write=True)
     run_field_variation_check(write=True)
+    run_vortex_core_check(write=True)
     base = build_summary(fit, rg, rotor, neutrino, quarks, pmns)
     summary = base.replace("## Not done / not claimed", extra_summary(delta, fo, derrick) + negatives_summary(topology, reduction, predictions) + lorentz_summary(lorentz) + sim_summary(sim) + hopf_summary(hopf) + hopfion_summary(hopfion) + hopfion3d_summary(hopfion3d) + hopf_resolution_summary(hopf_resolution) + "## Not done / not claimed")
     write_text_atomic(RESULTS_DIR / "summary.md", summary)

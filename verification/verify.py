@@ -22,7 +22,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TIMEOUT = 600
+# Harness budget (ADR-055): run_all regenerates ~10 reports including the
+# ~700 s widened ladder; a 600 s per-step cap aborts it before any physics
+# check runs. 3600 s covers the full regeneration on current hardware while
+# every individual simulation still enforces its own G-003 900 s cap.
+TIMEOUT = 3600
 
 
 def _run(module: str, *args: str) -> None:

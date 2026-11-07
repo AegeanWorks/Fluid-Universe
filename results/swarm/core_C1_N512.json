@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "config": {
+      "claim": 60,
+      "core": "C1",
+      "grids": {
+        "dx": 0.0390625,
+        "length": 20.0,
+        "n": 512
+      },
+      "kind": "HO-1 singular baseline",
+      "scope": "singular baseline, no regularization",
+      "state": "psi1",
+      "units": {
+        "hbar": 1.0,
+        "mass": 1.0,
+        "omega": 1.0
+      }
+    },
+    "config_sha256": "744bcdcf0c1f260e37d219692847d17c8cc06d38cfd62f3e94f87893072fe392",
+    "generated_utc": "2026-11-06T18:35:37+00:00",
+    "git": {
+      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "singular_baseline": {
+      "abs_diff_vs_analytic": 0.0,
+      "analytic_max_pi_over_2dx": 40.21238596594935,
+      "dx": 0.0390625,
+      "gradient_max": 40.21238596594935,
+      "hbar": 1.0,
+      "identity_residual": 0.0,
+      "length": 20.0,
+      "mass": 1.0,
+      "n": 512,
+      "node_density": 0.0,
+      "omega": 1.0,
+      "phase_slip": 3.141592653589793
+    }
+  }
+}
