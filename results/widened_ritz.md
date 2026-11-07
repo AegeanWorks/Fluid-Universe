@@ -19,4 +19,4 @@ K-ladder re-derivation of the fixed-endpoint Gaussian bridge.
 K-ladder re-derivation with zero fitted parameters; verdict follows the gates.
 
 - Config SHA-256: `a3f52c43b17b83813f1d7d4af224261aaa40136d2b1997ac122a29302cc52a25`
-- Git: `0d14fcc8f87a17a664b950750ddc0251be6b7906` (dirty=True)
+- Git: `95b5403e2c3a620131ebed326f9054fa6923b401` (dirty=True)

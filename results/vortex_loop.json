@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "config": {
+      "delta0_factor": 0.1,
+      "delta0_from": "theory.hydrogen_fluid.bohr_radius (transferred claim-60, local-linearity)",
+      "gates": {
+        "loop_tol": 1e-06
+      },
+      "grids": [
+        256,
+        512,
+        1024,
+        2048
+      ],
+      "loops": [
+        0.1,
+        0.2,
+        2.0
+      ],
+      "samples": 4000,
+      "scope": "2p core-threading loop probe only; no 2s claim"
+    },
+    "config_sha256": "864b4d2667d2eb8a3a7595d87ceef2252c99bafcff6303a28e6648b3bc132c04",
+    "generated_utc": "2026-11-07T09:22:19+00:00",
+    "git": {
+      "commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "gates": {
+      "kills_hard": [
+        [
+          "singular_control_broken",
+          false
+        ],
+        [
+          "blob_below",
+          true
+        ],
+        [
+          "floorcap_below",
+          true
+        ]
+      ],
+      "kills_soft": [
+        [
+          "far_match",
+          false
+        ],
+        [
+          "umax_finite",
+          false
+        ]
+      ],
+      "loop_tol": 1e-06
+    },
+    "scales": {
+      "blob": {
+        "0.1": {
+          "analytic": 3.141592653589793,
+          "fraction": 0.5,
+          "numeric": 3.141592653589793
+        },
+        "0.2": {
+          "analytic": 5.026548245743669,
+          "fraction": 0.8,
+          "numeric": 5.026548245743669
+        },
+        "2.0": {
+          "analytic": 6.267516515889862,
+          "fraction": 0.9975062344139651,
+          "numeric": 6.267516515889862
+        }
+      },
+      "blob_umax": 5.0,
+      "delta0": 0.1,
+      "far_field": {
+        "1.0": 1.0,
+        "2.0": 0.5,
+        "4.0": 0.25,
+        "8.0": 0.125
+      },
+      "floor_loop_r2": 6.283185307179586,
+      "floor_vmax": {
+        "256": 25.6,
+        "512": 51.2,
+        "1024": 102.4,
+        "2048": 204.8
+      },
+      "loops": [
+        0.1,
+        0.2,
+        2.0
+      ],
+      "samples": 4000,
+      "singular_loop_r2": 6.283185307179586,
+      "theta": 1.5707963267948966
+    },
+    "verdict": {
+      "claim_61_status": "FALSIFIED (single-valued regularized 2p vortex insufficient: blob loops [0.5, 0.8, 0.997506] vs 1; floor vmax 25.6->204.8 diverges)",
+      "note": "2p core-loop probe only; 2s shell queued."
+    }
+  }
+}

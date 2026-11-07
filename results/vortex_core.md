@@ -18,4 +18,4 @@ HO-1 complex-shift core at pre-registered eps0 = 0.1*a0.
 HO-1 core probe only; 2p/2s queued.
 
 - Config SHA-256: `21bfe56d1de651f1e6154fd4c460e2262fe99c86cad315b076eea37685831829`
-- Git: `0d14fcc8f87a17a664b950750ddc0251be6b7906` (dirty=True)
+- Git: `95b5403e2c3a620131ebed326f9054fa6923b401` (dirty=True)

@@ -3716,6 +3716,77 @@ def audit_vortex_core(audit: Audit) -> None:
 
 
 # ---------------------------------------------------------------------------
+# 2p core-threading loop probe (claim 61, ADR-056; 2p loops only)
+# ---------------------------------------------------------------------------
+
+
+def audit_vortex_loop(audit: Audit) -> None:
+    import numpy as _np
+
+    payload = load_results("vortex_loop.json")
+    result = payload["result"]
+    s = result["scales"]
+    verdict = result["verdict"]
+    # (1) delta0 is predicted from bohr_radius (own recompute, no project import).
+    _a0 = 1.0 * 1.0 / 1.0 / 1.0
+    audit.record(
+        "61: delta0 is predicted from bohr_radius",
+        abs(float(s["delta0"]) - 0.1 * _a0) <= 1e-12,
+        f"delta0={float(s['delta0']):.6f}",
+    )
+    # (2) Singular loop recomputed (own quadrature, no project import).
+    _phi = _np.linspace(0.0, 2.0 * _np.pi, 4000, endpoint=True)
+    _v = 1.0 / (2.0 * math.sin(math.pi / 2.0))
+    _loop = float(_np.trapezoid(_np.full(4000, _v * 2.0 * 1.0), _phi))
+    audit.record(
+        "61: singular loop is recomputed",
+        abs(_loop - float(s["singular_loop_r2"])) <= 1e-9
+        and abs(_loop - 2.0 * math.pi) / (2.0 * math.pi) <= 1e-6,
+        f"loop={_loop:.9f}",
+    )
+    # (3) Blob fractions recomputed (own arithmetic + quadrature).
+    _ok = True
+    for _r, _f in ((0.1, 0.5), (0.2, 0.8), (2.0, 0.9975062344139651)):
+        _a = (_r * _r) / (_r * _r + 0.1 * 0.1)
+        _key = str(_r)
+        _stored = s["blob"][_key]["fraction"] if _key in s["blob"] else s["blob"][_r]["fraction"]
+        if abs(_a - _f) > 1e-12 or abs(_a - float(_stored)) > 1e-9:
+            _ok = False
+    audit.record(
+        "61: blob fractions are recomputed",
+        bool(_ok),
+        f"fracs={[round(s['blob'][k]['fraction'], 6) for k in sorted(s['blob'])]}",
+    )
+    # (4) Floor divergence rule recomputed (own r_min rule).
+    _vmax = {n: 1.0 / ((20.0 / n) / 2.0) for n in (256, 512, 1024, 2048)}
+    _stored_max = s["floor_vmax"]
+    _div = _vmax[2048] > _vmax[1024] > _vmax[512] > _vmax[256]
+    _match = all(
+        abs(_vmax[n] - float(_stored_max[str(n)] if str(n) in _stored_max else _stored_max[n])) <= 1e-9
+        for n in _vmax
+    )
+    audit.record(
+        "61: floor divergence rule is recomputed",
+        bool(_div and _match),
+        f"vmax={_vmax[256]:.1f}->{_vmax[2048]:.1f}",
+    )
+    # (5) Verdict follows gates.
+    _hard = dict(result["gates"]["kills_hard"])
+    _soft = dict(result["gates"]["kills_soft"])
+    _st = str(verdict["claim_61_status"])
+    _consistent = (
+        (_st.startswith("FALSIFIED") and (bool(_hard.get("blob_below")) or bool(_hard.get("floorcap_below"))))
+        or (_st.startswith("NUMERIC") and not any(_hard.values()))
+        or (_st.startswith("UNVERIFIED") and (any(_soft.values()) or any(_hard.values())))
+    )
+    audit.record(
+        "61: the verdict follows its gates",
+        bool(_consistent),
+        f"status={_st[:60]}",
+    )
+
+
+# ---------------------------------------------------------------------------
 # Production claim-15 scan
 # ---------------------------------------------------------------------------
 
@@ -4157,6 +4228,7 @@ def run(write: bool = True, tag: str | None = None) -> dict:
     audit_field_variation(audit)
     audit_widened_ritz(audit)
     audit_vortex_core(audit)
+    audit_vortex_loop(audit)
     audit_production(audit)
     audit_convergence(audit)
     audit_temporal(audit)

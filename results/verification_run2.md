@@ -2,7 +2,7 @@
 
 Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here without importing `theory` or `phenomenology`.
 
-**322/322 checks passed.**
+**327/327 checks passed.**
 
 | claim | result | detail |
 |---|---|---|
@@ -229,6 +229,11 @@ Every claim currently marked PROVEN, VERIFIED, or NUMERIC is re-derived here wit
 | 60: core slip is recomputed | PASS | slip=3.121584 |
 | 60: core Q analytic is recomputed | PASS | Q0=-49.5000 |
 | 60: the verdict follows its gates | PASS | status=NUMERIC (finite-core regularized defect demonstrated at eps0 |
+| 61: delta0 is predicted from bohr_radius | PASS | delta0=0.100000 |
+| 61: singular loop is recomputed | PASS | loop=6.283185307 |
+| 61: blob fractions are recomputed | PASS | fracs=[0.5, 0.8, 0.997506] |
+| 61: floor divergence rule is recomputed | PASS | vmax=25.6->204.8 |
+| 61: the verdict follows its gates | PASS | status=FALSIFIED (single-valued regularized 2p vortex insufficient: |
 | 15: production scan is the pre-registered N=64 run within G-003 limit | PASS | H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02 |
 | 15: production verdict follows the pre-registered rule | PASS | status=UNVERIFIED (H estimator not converged; not converged; field under-resolved), ready=False |
 | 15: production dt check is recorded | PASS | dH=1.660e-06, dZ3=4.076e-06, converged=True |

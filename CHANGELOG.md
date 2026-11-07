@@ -1080,3 +1080,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 60 is NUMERIC (finite-core regularized defect demonstrated at eps0; HO-1 probe only, 2p loop and 2s shell queued); claims 20-26 and 43-59 numbers unchanged (representations plus stationarity stand; core survival does not claim full-field dynamics).
 
 - Verification after the span: two separate runs, 322/322 checks each.
+
+## 2026-11-07 - 2p core-threading loop probe FALSIFIED (claim 61, ADR-056)
+
+**Added**
+
+- theory/vortex_loop.py (blob u_th=G/2pi*r/(r^2+d^2), loop fraction r^2/(r^2+d^2), pre-registered delta0=0.1*a0 transferred claim-60 via local linearity, floor phase-exact with vmax=1/r_min rule, umax=G/4pidelta); phenomenology/vortex_loop_report.py (loops delta0/2delta0/2, theta=pi/2, samples=4000, grids 256-2048, frozen 2pi+-1e-6 gates plus singular control), make vortexloop, tests/test_vortex_loop.py, results/vortex_loop.{json,md}; five independent audit checks in verification/audit.py (delta0, singular loop, blob fractions, floor rule, gate consistency - G-001 two-run); formulas F45.
+- Swarm waves: 7 literature record notes on file (Wallstrom/Takabayasi/circulation/Fetter/reconnection/Landau/Holland, artifacts results/swarm/loop_*.md with config hashes, paywall absences explicit, zero numeric weight; the 8th, healing-length conventions, returned chat-only with no file and is void per binding) plus 3 fixed compute batches (fractions, caps, far-field) verified by sampling (2pi, vphi=0.5, fractions 0.5/0.8/0.99750623, vmax N/10, norm 1.0).
+
+**Results**
+
+- Singular far-loop control 6.283185307179586 (apparatus intact); blob analytic fractions 0.5/0.8/0.99750623 with numeric quadrature match to 1e-9; blob umax 5.0 finite (grid 4.9984); floor loop r=2 holds 2pi but vmax 25.6/51.2/102.4/204.8 diverges; far vphi 1.0/0.5/0.25/0.125; norm 1.0000000000000002.
+- Claim 61 is FALSIFIED (single-valued regularized 2p vortex insufficient: capping and exact quantization incompatible inside the core); singular-phase and multi-component routes open; claims 20-26 and 43-60 numbers unchanged (HO-1 core stands; representations plus stationarity stand); 2s shell queued.
+
+- Verification after the span: two separate runs, 327/327 checks each.

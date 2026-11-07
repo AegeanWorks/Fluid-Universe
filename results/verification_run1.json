@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated_utc": "2026-11-07T08:26:18+00:00",
-    "git_commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+    "generated_utc": "2026-11-07T09:22:28+00:00",
+    "git_commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
     "git_dirty": true,
     "fingerprints": {
-      "source_sha256": "99f2114b314212856bc15fb9277e065d83c6d2b969198581410a075ad96babda",
-      "results_sha256": "5002a236fc8f5c4a510d6c8910af5b3c9210dab367225d77e904053e2946e9e5"
+      "source_sha256": "3e563db6ddb57ab2df542d998da4ddf38cbf325440d4f0234a9158ef06ce4861",
+      "results_sha256": "3dca3bf379f3c3f35652b4405e412fe0366a557ab8bce3b2f2b77064207ab16d"
     },
     "python": "3.14.7",
     "platform": "Windows-11-10.0.26200-SP0",
@@ -1579,6 +1579,41 @@
       "observed": null
     },
     {
+      "claim": "61: delta0 is predicted from bohr_radius",
+      "passed": true,
+      "detail": "delta0=0.100000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: singular loop is recomputed",
+      "passed": true,
+      "detail": "loop=6.283185307",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: blob fractions are recomputed",
+      "passed": true,
+      "detail": "fracs=[0.5, 0.8, 0.997506]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: floor divergence rule is recomputed",
+      "passed": true,
+      "detail": "vmax=25.6->204.8",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: the verdict follows its gates",
+      "passed": true,
+      "detail": "status=FALSIFIED (single-valued regularized 2p vortex insufficient:",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -2272,8 +2307,8 @@
       "observed": null
     }
   ],
-  "total": 322,
-  "passed": 322,
+  "total": 327,
+  "passed": 327,
   "failed": 0,
   "failures": []
 }

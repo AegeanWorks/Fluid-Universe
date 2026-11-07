@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "config": {
+      "hbar": 1.0,
+      "loop_r": 2.0,
+      "loop_samples": 4000,
+      "loop_theta": 1.5707963267948966,
+      "m": 1,
+      "mass": 1.0,
+      "methods": [
+        "theory.hydrogen_vortex.azimuthal_velocity",
+        "theory.hydrogen_vortex.loop_circulation + manual trapezoid (same quadrature)",
+        "numpy.trapezoid radial norm of R_21"
+      ],
+      "model": "C3",
+      "quadrature": "numpy.trapezoid uniform phi endpoint=True; radial trapezoid",
+      "radial_grid": {
+        "n": 160001,
+        "start": 0.0,
+        "stop": 80.0
+      },
+      "radii": [
+        1.0,
+        2.0,
+        4.0,
+        8.0
+      ],
+      "radius_a0": 1.0,
+      "scope": "claim-61 singular far-field 1/r + floor phase-exact loop + R21 norm; raw numbers only, NO verdict",
+      "theta": 1.5707963267948966,
+      "units": {
+        "a0": 1.0,
+        "hbar": 1.0,
+        "mass": 1.0
+      }
+    },
+    "config_sha256": "cc3c432bb057fcfeb86d174aa83a5721915c5d6a34f10fc25f4b164149639e1c",
+    "generated_utc": "2026-11-07T08:30:58+00:00",
+    "git": {
+      "commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "azimuthal_velocities": {
+      "1.0": 1.0,
+      "2.0": 0.5,
+      "4.0": 0.25,
+      "8.0": 0.125
+    },
+    "circulation_analytic_2pi": 6.283185307179586,
+    "expected_velocities": {
+      "1.0": 1.0,
+      "2.0": 0.5,
+      "4.0": 0.25,
+      "8.0": 0.125
+    },
+    "loop_floor_phase_exact_r2": 6.283185307179586,
+    "loop_singular_r2": 6.283185307179586,
+    "note": "Independent compute, NO verdict. (a) singular 1/r via azimuthal_velocity; (b) floor phase-exact same quadrature as singular; (c) R_21 norm on 0-80/160001 grid.",
+    "radial_norm_2p": 1.0000000000000002,
+    "tolerances": {
+      "loop_atol": 1e-12,
+      "radial_norm_atol": 1e-06,
+      "velocity_atol": 1e-12
+    },
+    "verdict": null
+  }
+}

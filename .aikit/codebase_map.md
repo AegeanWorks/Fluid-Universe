@@ -6,11 +6,11 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `207`
+- **Total Python Modules**: `210`
 - **Total Classes**: `8`
-- **Total Top-Level Functions**: `1136`
+- **Total Top-Level Functions**: `1149`
 - **Total Class Methods**: `19`
-- **Total Source Lines**: `31752`
+- **Total Source Lines**: `32106`
 
 ---
 
@@ -454,7 +454,7 @@
 ### [`phenomenology/run_all.py`](phenomenology/run_all.py)
 > *Regenerate every result file from scratch.*
 
-**Size**: `553` lines (`26413` bytes)
+**Size**: `555` lines (`26505` bytes)
 
 **Functions:**
 - `def rotor_payload()`
@@ -617,6 +617,17 @@
 
 **Functions:**
 - `def run_vortex_core_check(write)`
+- `def render_markdown(payload)`
+
+---
+
+### [`phenomenology/vortex_loop_report.py`](phenomenology/vortex_loop_report.py)
+> *2p core-threading loop probe (claim 61, ADR-056).*
+
+**Size**: `154` lines (`5676` bytes)
+
+**Functions:**
+- `def run_vortex_loop_check(write)`
 - `def render_markdown(payload)`
 
 ---
@@ -1701,6 +1712,19 @@
 
 ---
 
+### [`tests/test_vortex_loop.py`](tests/test_vortex_loop.py)
+> *2p core-threading loop probe tests (claim 61).*
+
+**Size**: `40` lines (`1215` bytes)
+
+**Functions:**
+- `def test_delta0_is_predicted()`
+- `def test_blob_fractions_match_frozen_values()`
+- `def test_floor_vmax_diverges_by_rule()`
+- `def test_loop_verdict_follows_gates()`
+
+---
+
 ### [`tests/test_vortex_particles.py`](tests/test_vortex_particles.py)
 > *Vortex-knot mass hypothesis tests (claim 17).*
 
@@ -2550,6 +2574,21 @@
 
 ---
 
+### [`theory/vortex_loop.py`](theory/vortex_loop.py)
+> *2p core-threading loop probe (claim 61, ADR-056).*
+
+**Size**: `84` lines (`3234` bytes)
+
+**Functions:**
+- `def core_scale()` - *Pre-registered core scale delta0 = 0.1 * a0 (predicted, never scanned).*
+- `def blob_fraction(r, delta)` - *Analytic loop fraction r^2/(r^2+delta^2) for the blob kernel.*
+- `def blob_loop(r, delta, gamma)` - *Circulation on loop radius r for blob-capped velocity.*
+- `def blob_umax(delta, gamma)` - *Finite cap: max of r/(r^2+delta^2) is 1/2delta at r=delta.*
+- `def floor_vmax(n, length)` - *Constructional divergence: vmax = 1/r_min, r_min = dx/2, hbar=m=1.*
+- `def numeric_blob_loop(r, delta, samples, gamma)` - *Own trapezoid quadrature of the blob field (no project imports).*
+
+---
+
 ### [`theory/vortex_particles.py`](theory/vortex_particles.py)
 > *Thin-filament vortex-knot mass hypothesis (claim 17, ADR-008).*
 
@@ -2912,7 +2951,7 @@
 ### [`verification/audit.py`](verification/audit.py)
 > *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
 
-**Size**: `4220` lines (`167817` bytes)
+**Size**: `4292` lines (`170759` bytes)
 
 **Classes:**
 - `class Audit`
@@ -2995,6 +3034,7 @@
 - `def audit_field_variation(audit)`
 - `def audit_widened_ritz(audit)`
 - `def audit_vortex_core(audit)`
+- `def audit_vortex_loop(audit)`
 - `def audit_production(audit)`
 - `def audit_convergence(audit)`
 - `def audit_temporal(audit)`
@@ -3024,7 +3064,7 @@
 ### [`verification/fingerprint.py`](verification/fingerprint.py)
 > *Stable fingerprints for the two-run claim audit.*
 
-**Size**: `213` lines (`5549` bytes)
+**Size**: `215` lines (`5595` bytes)
 
 **Functions:**
 - `def _source_files()`

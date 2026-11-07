@@ -4,8 +4,8 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 
 | run | generated (UTC) | commit | passed/total | source SHA-256 | results SHA-256 |
 |---|---|---|---|---|---|
-| run1 | 2026-11-07T08:26:18+00:00 | `0d14fcc8f87a17a664b950750ddc0251be6b7906` | 322/322 | `99f2114b31421285...` | `5002a236fc8f5c4a...` |
-| run2 | 2026-11-07T08:26:33+00:00 | `0d14fcc8f87a17a664b950750ddc0251be6b7906` | 322/322 | `99f2114b31421285...` | `5002a236fc8f5c4a...` |
+| run1 | 2026-11-07T09:22:28+00:00 | `95b5403e2c3a620131ebed326f9054fa6923b401` | 327/327 | `3e563db6ddb57ab2...` | `3dca3bf379f3c3f3...` |
+| run2 | 2026-11-07T09:22:39+00:00 | `95b5403e2c3a620131ebed326f9054fa6923b401` | 327/327 | `3e563db6ddb57ab2...` | `3dca3bf379f3c3f3...` |
 
 - per-claim agreement: **True**
 - per-claim detail equality: **True**
@@ -214,6 +214,11 @@ Project rule G-001: every claim in `claims.md` marked PROVEN, NUMERIC, or VERIFI
 | 60: eps0 is predicted from bohr_radius | PASS | PASS | YES | YES | eps0=0.100000 |
 | 60: singular slope is recomputed | PASS | PASS | YES | YES | slope=-1.000000 |
 | 60: the verdict follows its gates | PASS | PASS | YES | YES | status=NUMERIC (finite-core regularized defect demonstrated at eps0 |
+| 61: blob fractions are recomputed | PASS | PASS | YES | YES | fracs=[0.5, 0.8, 0.997506] |
+| 61: delta0 is predicted from bohr_radius | PASS | PASS | YES | YES | delta0=0.100000 |
+| 61: floor divergence rule is recomputed | PASS | PASS | YES | YES | vmax=25.6->204.8 |
+| 61: singular loop is recomputed | PASS | PASS | YES | YES | loop=6.283185307 |
+| 61: the verdict follows its gates | PASS | PASS | YES | YES | status=FALSIFIED (single-valued regularized 2p vortex insufficient: |
 | 6a: 1-cos(3phi) = 2 sin^2(3phi/2) | PASS | PASS | YES | YES | symbolic identity used to remove the absolute value on 0 <= phi <= 2pi/3 |
 | 6a: domain-wall tension symbolic | PASS | PASS | YES | YES | sympy integral = 8*sqrt(mu)/3 (sin(3phi/2) >= 0 on the interval) |
 | 6a: tension quadrature mu=0.5 | PASS | PASS | YES | YES | 1.885618083164 vs 1.885618083164 |

@@ -168,6 +168,8 @@ RESULT_FILES = (
     "widened_ritz.md",
     "vortex_core.json",
     "vortex_core.md",
+    "vortex_loop.json",
+    "vortex_loop.md",
     "hopf_resolution.json",
     "hopf_resolution.md",
     "summary.md",

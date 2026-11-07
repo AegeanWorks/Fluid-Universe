@@ -18,9 +18,9 @@
       "scope": "HO-1 finite-core node probe only; no 2p/2s claim"
     },
     "config_sha256": "21bfe56d1de651f1e6154fd4c460e2262fe99c86cad315b076eea37685831829",
-    "generated_utc": "2026-11-07T08:26:03+00:00",
+    "generated_utc": "2026-11-07T09:22:19+00:00",
     "git": {
-      "commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+      "commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
       "dirty": true
     },
     "packages": {

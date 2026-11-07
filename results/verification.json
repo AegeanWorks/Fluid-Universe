@@ -3,34 +3,34 @@
     "rule": "G-001: each claim is verified in two separate processes; per-claim results must agree",
     "scope": "claims.md claims, not the pytest suite",
     "current_fingerprints": {
-      "source_sha256": "99f2114b314212856bc15fb9277e065d83c6d2b969198581410a075ad96babda",
-      "results_sha256": "5002a236fc8f5c4a510d6c8910af5b3c9210dab367225d77e904053e2946e9e5"
+      "source_sha256": "3e563db6ddb57ab2df542d998da4ddf38cbf325440d4f0234a9158ef06ce4861",
+      "results_sha256": "3dca3bf379f3c3f35652b4405e412fe0366a557ab8bce3b2f2b77064207ab16d"
     },
     "runs": [
       {
         "tag": "run1",
-        "generated_utc": "2026-11-07T08:26:18+00:00",
-        "git_commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
-        "passed": 322,
-        "total": 322,
+        "generated_utc": "2026-11-07T09:22:28+00:00",
+        "git_commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
+        "passed": 327,
+        "total": 327,
         "failed": 0,
-        "checks_sha256": "0bb195d68aa42ea97f3fed1839e1ccf5383377c32c0e4308d04395bd5c1bb654",
+        "checks_sha256": "6704bdcc8239513bacda63cbf4adb72ff3172b0da18680fb72c80c823efd9e46",
         "fingerprints": {
-          "source_sha256": "99f2114b314212856bc15fb9277e065d83c6d2b969198581410a075ad96babda",
-          "results_sha256": "5002a236fc8f5c4a510d6c8910af5b3c9210dab367225d77e904053e2946e9e5"
+          "source_sha256": "3e563db6ddb57ab2df542d998da4ddf38cbf325440d4f0234a9158ef06ce4861",
+          "results_sha256": "3dca3bf379f3c3f35652b4405e412fe0366a557ab8bce3b2f2b77064207ab16d"
         }
       },
       {
         "tag": "run2",
-        "generated_utc": "2026-11-07T08:26:33+00:00",
-        "git_commit": "0d14fcc8f87a17a664b950750ddc0251be6b7906",
-        "passed": 322,
-        "total": 322,
+        "generated_utc": "2026-11-07T09:22:39+00:00",
+        "git_commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
+        "passed": 327,
+        "total": 327,
         "failed": 0,
-        "checks_sha256": "0bb195d68aa42ea97f3fed1839e1ccf5383377c32c0e4308d04395bd5c1bb654",
+        "checks_sha256": "6704bdcc8239513bacda63cbf4adb72ff3172b0da18680fb72c80c823efd9e46",
         "fingerprints": {
-          "source_sha256": "99f2114b314212856bc15fb9277e065d83c6d2b969198581410a075ad96babda",
-          "results_sha256": "5002a236fc8f5c4a510d6c8910af5b3c9210dab367225d77e904053e2946e9e5"
+          "source_sha256": "3e563db6ddb57ab2df542d998da4ddf38cbf325440d4f0234a9158ef06ce4861",
+          "results_sha256": "3dca3bf379f3c3f35652b4405e412fe0366a557ab8bce3b2f2b77064207ab16d"
         }
       }
     ],
@@ -1634,6 +1634,46 @@
       "agree": true,
       "detail_match": true,
       "detail": "status=NUMERIC (finite-core regularized defect demonstrated at eps0"
+    },
+    {
+      "claim": "61: blob fractions are recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "fracs=[0.5, 0.8, 0.997506]"
+    },
+    {
+      "claim": "61: delta0 is predicted from bohr_radius",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "delta0=0.100000"
+    },
+    {
+      "claim": "61: floor divergence rule is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "vmax=25.6->204.8"
+    },
+    {
+      "claim": "61: singular loop is recomputed",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "loop=6.283185307"
+    },
+    {
+      "claim": "61: the verdict follows its gates",
+      "run1": "PASS",
+      "run2": "PASS",
+      "agree": true,
+      "detail_match": true,
+      "detail": "status=FALSIFIED (single-valued regularized 2p vortex insufficient:"
     },
     {
       "claim": "6a: 1-cos(3phi) = 2 sin^2(3phi/2)",
@@ -4111,6 +4151,41 @@
       "observed": null
     },
     {
+      "claim": "61: delta0 is predicted from bohr_radius",
+      "passed": true,
+      "detail": "delta0=0.100000",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: singular loop is recomputed",
+      "passed": true,
+      "detail": "loop=6.283185307",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: blob fractions are recomputed",
+      "passed": true,
+      "detail": "fracs=[0.5, 0.8, 0.997506]",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: floor divergence rule is recomputed",
+      "passed": true,
+      "detail": "vmax=25.6->204.8",
+      "expected": null,
+      "observed": null
+    },
+    {
+      "claim": "61: the verdict follows its gates",
+      "passed": true,
+      "detail": "status=FALSIFIED (single-valued regularized 2p vortex insufficient:",
+      "expected": null,
+      "observed": null
+    },
+    {
       "claim": "15: production scan is the pre-registered N=64 run within G-003 limit",
       "passed": true,
       "detail": "H=0.788000, Hup=0.989238, Z3=0.607430, rms=3.716e-02",
@@ -4804,8 +4879,8 @@
       "observed": null
     }
   ],
-  "total": 322,
-  "passed": 322,
+  "total": 327,
+  "passed": 327,
   "failed": 0,
   "failures": []
 }

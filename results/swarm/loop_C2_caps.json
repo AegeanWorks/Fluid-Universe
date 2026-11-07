@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "config": {
+      "blob_model": {
+        "delta": 0.1,
+        "gamma": 6.283185307179586,
+        "gamma_from": "2*pi (one quantum of circulation, hbar=m=1)",
+        "kernel": "K_delta algebraic blob (B1): u_theta(r)=Gamma/(2pi)*r/(r^2+delta^2)",
+        "umax_rule": "umax=Gamma/(4*pi*delta) at r=delta"
+      },
+      "claim": 61,
+      "floor_model": {
+        "dx_rule": "dx=L/N",
+        "grid": "Cartesian, straddling origin: x_i=(i-N/2+0.5)*dx",
+        "hbar": 1.0,
+        "length": 20.0,
+        "mass": 1.0,
+        "ns": [
+          256,
+          512,
+          1024,
+          2048
+        ],
+        "rmin_rule": "r_min=dx/2",
+        "vmax_rule": "vmax=(hbar/mass)/r_min=1/r_min"
+      },
+      "loop": "C2",
+      "scope": "velocity-cap calibration only; no decision, no dynamics, no quantization claim"
+    },
+    "config_sha256": "e6540544d7752258611f05766efb1b8e42bf2df8370aa93e82b82f7aa627d2e0",
+    "generated_utc": "2026-11-07T08:31:17+00:00",
+    "git": {
+      "commit": "95b5403e2c3a620131ebed326f9054fa6923b401",
+      "dirty": true
+    },
+    "packages": {
+      "hypothesis": "6.170.9",
+      "numpy": "2.5.3",
+      "platform": "Windows-11-10.0.26200-SP0",
+      "pytest": "9.1.1",
+      "python": "3.14.7",
+      "scipy": "1.18.1",
+      "sympy": "1.14.0"
+    }
+  },
+  "result": {
+    "blob_model": {
+      "arithmetic": {
+        "denominator": 1.2566370614359172,
+        "division": 5.0,
+        "numerator": 6.283185307179586
+      },
+      "bounded_per_N_1d": [
+        {
+          "dx": 0.078125,
+          "grid_max": 4.937763604567431,
+          "n": 256
+        },
+        {
+          "dx": 0.0390625,
+          "grid_max": 4.9985941453966065,
+          "n": 512
+        },
+        {
+          "dx": 0.01953125,
+          "grid_max": 4.987213182111206,
+          "n": 1024
+        },
+        {
+          "dx": 0.009765625,
+          "grid_max": 4.9984286933609035,
+          "n": 2048
+        }
+      ],
+      "cap_note": "grid max within 0.04% of analytic 5.0 at N=2048; bounded ~5 across N unlike floor model",
+      "grid_check_1d_N2048": {
+        "abs_diff_vs_analytic": 0.001571306639096548,
+        "dx": 0.009765625,
+        "grid_max": 4.9984286933609035,
+        "grid_r_at_max": 0.1025390625,
+        "n": 2048,
+        "rel_diff_vs_analytic": 0.0003142613278193096
+      },
+      "grid_check_2d_N2048": {
+        "abs_diff_vs_analytic": 0.0003231873661286855,
+        "dx": 0.009765625,
+        "grid_max": 4.999676812633871,
+        "grid_r_at_max": 0.09886941763338178,
+        "n": 2048
+      },
+      "umax_analytic": 5.0
+    },
+    "floor_model": {
+      "divergence": "vmax doubles per doubling of N (25.6/51.2/102.4/204.8); vmax=2N/L=N/10 -> unbounded as N->inf at fixed L",
+      "doubling_ratios": [
+        2.0,
+        2.0,
+        2.0
+      ],
+      "rows": [
+        {
+          "analytic_minus_grid": 0.0,
+          "dx": 0.078125,
+          "grid_rmin": 0.0390625,
+          "grid_vmax": 25.6,
+          "n": 256,
+          "r_min": 0.0390625,
+          "vmax_analytic": 25.6
+        },
+        {
+          "analytic_minus_grid": 0.0,
+          "dx": 0.0390625,
+          "grid_rmin": 0.01953125,
+          "grid_vmax": 51.2,
+          "n": 512,
+          "r_min": 0.01953125,
+          "vmax_analytic": 51.2
+        },
+        {
+          "analytic_minus_grid": 0.0,
+          "dx": 0.01953125,
+          "grid_rmin": 0.009765625,
+          "grid_vmax": 102.4,
+          "n": 1024,
+          "r_min": 0.009765625,
+          "vmax_analytic": 102.4
+        },
+        {
+          "analytic_minus_grid": 0.0,
+          "dx": 0.009765625,
+          "grid_rmin": 0.0048828125,
+          "grid_vmax": 204.8,
+          "n": 2048,
+          "r_min": 0.0048828125,
+          "vmax_analytic": 204.8
+        }
+      ]
+    }
+  }
+}
