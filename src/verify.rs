@@ -1,7 +1,7 @@
 //! Project rule G-001: every check must be re-derived in two SEPARATE processes.
 //!
 //! The library offers a pure comparator; the binary's `verify` subcommand runs
-//! itself twice with `--json`, so the two results cannot share mutable state.
+//! itself twice with `fingerprint`, so the two results cannot share mutable state.
 
 use crate::{Check, all_checks, fingerprint};
 

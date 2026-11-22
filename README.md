@@ -28,7 +28,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```bash
   cargo run -- verify
   ```
-  The binary spawns itself twice with `json`, fingerprints both ordered check lists, and exits
+  The binary spawns itself twice with `fingerprint`, compares the two 64-bit fingerprints, and exits
   non-zero on disagreement. One process deriving a result twice is explicitly not accepted.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.

@@ -5,6 +5,8 @@ K-ladder re-derivation of the fixed-endpoint Gaussian bridge.
 | check | value |
 |---|---|
 | bank | -0.3906340559 |
+| classical closed form (nu0 K=0) | J=-0.23852813742385703 |
+| K=0 nu0 control | J=-0.23852651819379234, grad=3.45e-12, conv=True |
 | K=0 gauss | J=-0.3906473424, grad=4.652e-07, conv=True |
 | K=2 gauss | J=-0.3906753678, grad=1.277e-11, conv=True |
 | K=2 c2_bump | J=-0.3906753678, grad=7.991e-12, conv=True |

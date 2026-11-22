@@ -19,64 +19,6 @@
   },
   "checkpoints": [
     {
-      "task_id": "fluid-audit-waves-0-30-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'fluid-audit-waves-0-30-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793722789.5241482,
-      "timestamp_str": "2026-11-03 19:19:49",
-      "agent": "kilo:audit"
-    },
-    {
-      "task_id": "reforge:run-2",
-      "phase": "reforge run",
-      "phase_num": 3,
-      "description": "run started (start=3, step=3, stop=None)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795348083.4764733,
-      "timestamp_str": "2026-11-22 14:48:03",
-      "agent": "opencode",
-      "operator_task": "fluid-audit-waves-0-30-v1"
-    },
-    {
-      "task_id": "reforge:run-2",
-      "phase": "reforge stage 1",
-      "phase_num": 3,
-      "description": "Reforge stage 1: window 3, 3 commit(s), 101 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795348117.9781346,
-      "timestamp_str": "2026-11-22 14:48:37",
-      "agent": "opencode",
-      "operator_task": "fluid-audit-waves-0-30-v1"
-    },
-    {
-      "task_id": "reforge:run-2",
-      "phase": "reforge stage 1",
-      "phase_num": 3,
-      "description": "Reforge stage 1: stage 1 host review reviewed; run active; coverage 279/279",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795349532.531669,
-      "timestamp_str": "2026-11-22 15:12:12",
-      "agent": "opencode",
-      "operator_task": "fluid-audit-waves-0-30-v1"
-    },
-    {
-      "task_id": "reforge:run-2",
-      "phase": "reforge stage 2",
-      "phase_num": 3,
-      "description": "Reforge stage 2: window 6, 3 commit(s), 76 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795349624.4894888,
-      "timestamp_str": "2026-11-22 15:13:44",
-      "agent": "opencode",
-      "operator_task": "fluid-audit-waves-0-30-v1"
-    },
-    {
       "task_id": "reforge:run-2",
       "phase": "reforge stage 2",
       "phase_num": 3,
@@ -263,6 +205,66 @@
       "status": "in_progress",
       "timestamp": 1795357298.770829,
       "timestamp_str": "2026-11-22 17:21:38",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: window 8, 3 commit(s), 74 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795357471.5153558,
+      "timestamp_str": "2026-11-22 17:24:31",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 77/77",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795358047.150193,
+      "timestamp_str": "2026-11-22 17:34:07",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 77/77",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795358131.982042,
+      "timestamp_str": "2026-11-22 17:35:31",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 77/77",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795358175.3675213,
+      "timestamp_str": "2026-11-22 17:36:15",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: stage 3 host review reviewed; run active; coverage 77/77",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795358225.1505792,
+      "timestamp_str": "2026-11-22 17:37:05",
       "agent": "opencode",
       "operator_task": "rust-rewrite-2026-11-22"
     }
