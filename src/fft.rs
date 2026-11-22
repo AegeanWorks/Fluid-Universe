@@ -64,6 +64,7 @@ pub fn fft1d(re: &mut [f64], im: &mut [f64], inverse: bool) {
 
 /// 3D FFT over a flat row-major `(x*n + y)*n + z` field.
 pub fn fft3d(re: &mut [f64], im: &mut [f64], n: usize, inverse: bool) {
+    assert!(n.is_power_of_two() && n >= 2, "fft3d: n must be a power of two >= 2");
     assert_eq!(re.len(), n * n * n);
     assert_eq!(im.len(), re.len());
     for axis in 0..3 {
