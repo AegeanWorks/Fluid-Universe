@@ -11,7 +11,7 @@ Stationary FP with b=D*grad(ln rho) is the identity; sigma map flat.
 | gauss_2.0 | -1.998502 | 1.681e-06 |
 | bimodal | -1.983850 | 1.521e-04 |
 
-| sigma0^2 | sigma* @N=2048 | |err| |
+| sigma0^2 | sigma* @N=2048 | \|err\| |
 |---|---|---:|
 | 0.125 | 0.353553390593 | 0.000e+00 |
 | 0.25 | 0.500000000000 | 5.551e-17 |
