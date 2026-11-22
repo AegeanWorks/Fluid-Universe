@@ -12,6 +12,7 @@ pub mod confinement;
 pub mod derrick;
 pub mod fft;
 pub mod fn_scan;
+pub mod flux_quantization;
 pub mod fluid;
 pub mod geometry;
 pub mod froggatt;
@@ -83,6 +84,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(unification::checks());
     out.extend(unified_model::checks());
     out.extend(shape_freedom::checks());
+    out.extend(flux_quantization::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
