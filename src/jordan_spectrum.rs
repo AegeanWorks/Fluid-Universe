@@ -63,6 +63,47 @@ fn sqrt_ratios(m: [f64; 3]) -> (f64, f64) {
     ((m[1] / m[0]).sqrt(), (m[2] / m[1]).sqrt())
 }
 
+// ---- neutrino sector (previously unaddressed) ----
+
+/// Koide quotient of the arithmetic spectrum {q-d, q, q+d} with masses
+/// proportional to lambda^2: Q = sum(lambda^2)/(sum lambda)^2 = 1/3 + 1/(12 q^2).
+pub fn arithmetic_q(q: f64) -> f64 { 1.0 / 3.0 + 1.0 / (12.0 * q * q) }
+
+/// Minimum Q compatible with an all-positive arithmetic spectrum (q > d):
+/// Q_min = 1/3 + 1/(12 d^2) = 1/3 + 2/9 = 5/9 exactly, since d^2 = 3/8.
+pub fn min_positive_q() -> f64 { 1.0 / 3.0 + 1.0 / (12.0 * jordan_delta().powi(2)) }
+
+/// Recorded maximum neutrino Koide quotient (normal ordering, m0=0).
+pub fn nu_q_max() -> f64 { 0.5856120093687199 }
+
+/// Neutrino sqrt-mass ratios at a representative lightest mass m0 (eV).
+pub fn nu_target_ratios(m0: f64) -> (f64, f64) {
+    let dm21 = 7.41e-5_f64;
+    let dm31 = 2.507e-3_f64;
+    let m = [m0, (m0 * m0 + dm21).sqrt(), (m0 * m0 + dm31).sqrt()];
+    let mut s: Vec<f64> = m.iter().map(|v| v.sqrt()).collect();
+    s.sort_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Equal));
+    (s[1] / s[0], s[2] / s[1])
+}
+
+/// Best joint fit of the arithmetic spectrum to the neutrino ratio pair,
+/// scanning q > delta. Returns (joint_error, q, r1, r2).
+pub fn nu_best_fit(m0: f64) -> (f64, f64, f64, f64) {
+    let t = nu_target_ratios(m0);
+    let d = jordan_delta();
+    let mut best = (f64::INFINITY, 0.0, 0.0, 0.0);
+    for i in 1..=200_000 {
+        let q = d * (1.0 + 5.0 * i as f64 / 200_000.0);
+        let r1 = q / (q - d);
+        let r2 = (q + d) / q;
+        let err = ((r1 / t.0 - 1.0).powi(2) + (r2 / t.1 - 1.0).powi(2)).sqrt();
+        if err < best.0 {
+            best = (err, q, r1, r2);
+        }
+    }
+    best
+}
+
 pub fn checks() -> Vec<Check> {
     let (_, down_obs) = sqrt_ratios(pdg_down());
     let (up_obs, _) = sqrt_ratios(pdg_up());
@@ -80,6 +121,12 @@ pub fn checks() -> Vec<Check> {
                    "implied Q_down (measured range starts 0.73854)"),
         Check::new("jordan.q_up_implied", implied_q(ratio_c(), ratio_t()),
                    "implied Q_up (measured range starts 0.88757)"),
+        Check::new("jordan.q_min_positive", min_positive_q(),
+                   "minimum Q for positive arithmetic spectrum (=5/9)"),
+        Check::new("jordan.nu_window", nu_q_max() - min_positive_q(),
+                   "width of neutrino Q window compatible with positivity"),
+        Check::new("jordan.nu_best_err", nu_best_fit(0.001).0,
+                   "best arithmetic-spectrum fit to neutrino ratios"),
     ]
 }
 
@@ -112,6 +159,21 @@ mod tests {
     fn implied_q_is_below_measured_ranges() {
         assert!(implied_q(ratio_d(), ratio_b()) < 0.73854);
         assert!(implied_q(ratio_c(), ratio_t()) < 0.88757);
+    }
+
+    #[test]
+    fn neutrino_positivity_forces_q_at_least_five_ninths() {
+        assert!((min_positive_q() - 5.0 / 9.0).abs() < 1e-12);
+        // The recorded neutrino Q_max sits just above this bound: only a
+        // narrow window 5/9 < Q < 0.5856 can be realized with positive masses.
+        assert!(nu_q_max() > min_positive_q());
+        assert!(nu_q_max() - min_positive_q() < 0.04);
+    }
+
+    #[test]
+    fn neutrino_ratios_cannot_be_fit_by_the_arithmetic_spectrum() {
+        let (err, q, _, _) = nu_best_fit(0.001);
+        assert!(err > 0.1, "neutrino joint error = {err} at q={q}");
     }
 
     #[test]
