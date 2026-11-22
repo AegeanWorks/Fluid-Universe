@@ -4582,7 +4582,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T20:10:39",
+      "updated": "2026-11-22T20:23:45",
       "last_audit": {
         "run": "run-3",
         "stage": 23,
@@ -4734,8 +4734,10 @@
         "counts": {},
         "reviewed": 57,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "results/nelson_closure.md:14: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             ".aikit/decisions.md",
             "CHANGELOG.md",
@@ -4797,6 +4799,14 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-23-71be15b91cd7.md",
           "redacted": 0,
+          "coverage": {
+            "reported": 61,
+            "total": 61,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
           "findings": [],
           "attestations": []
         },
@@ -8188,8 +8198,10 @@
           "counts": {},
           "reviewed": 57,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "results/nelson_closure.md:14: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               ".aikit/decisions.md",
               "CHANGELOG.md",
@@ -8251,6 +8263,14 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-23-71be15b91cd7.md",
             "redacted": 0,
+            "coverage": {
+              "reported": 61,
+              "total": 61,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
             "findings": [],
             "attestations": []
           },
@@ -8494,8 +8514,10 @@
     "counts": {},
     "reviewed": 57,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "results/nelson_closure.md:14: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         ".aikit/decisions.md",
         "CHANGELOG.md",
@@ -8557,6 +8579,14 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-23-71be15b91cd7.md",
       "redacted": 0,
+      "coverage": {
+        "reported": 61,
+        "total": 61,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
       "findings": [],
       "attestations": []
     },
