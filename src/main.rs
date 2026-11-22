@@ -100,6 +100,41 @@ fn main() {
                 }
             }
         }
+        "simulate" => {
+            match args.get(1).map(String::as_str).unwrap_or("") {
+                "muscan" => {
+                    let n: usize = 10;
+                    let length = 8.0;
+                    let steps = 200usize;
+                    let dt = 0.05;
+                    println!("mu,n,steps,dt,e2,e4,potential,energy,z3,force_rms,max_bond,mean_bond,energy_drop");
+                    for index in 0..=20usize {
+                        let mu = index as f64; // 0..20
+                        let field = simulation::analytic_field(n, length, false);
+                        let (_, history, m) = simulation::relax(&field, mu, dt, steps, 1.0, 1.0);
+                        let drop = history.first().copied().unwrap_or(0.0)
+                            - history.last().copied().unwrap_or(0.0);
+                        println!("{:.1},{},{},{:.3},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 mu, n, steps, dt, m.e2, m.e4, m.potential, m.energy,
+                                 m.z3, m.force_rms, m.max_bond, m.mean_bond, drop);
+                    }
+                }
+                "history" => {
+                    println!("mu,step,energy");
+                    for mu in [0.0_f64, 5.0, 20.0] {
+                        let field = simulation::analytic_field(10, 8.0, false);
+                        let (_, history, _) = simulation::relax(&field, mu, 0.05, 200, 1.0, 1.0);
+                        for (step, energy) in history.iter().enumerate() {
+                            println!("{mu:.1},{step},{energy:.9}");
+                        }
+                    }
+                }
+                other => {
+                    eprintln!("Why: unknown simulation {other:?}.\nFix: choose `muscan|history`.");
+                    std::process::exit(2);
+                }
+            }
+        }
         "scan" => {
             match args.get(1).map(String::as_str).unwrap_or("") {
                 "neutrino" => {
@@ -148,7 +183,7 @@ fn main() {
             std::process::exit(if result.agree { 0 } else { 1 });
         }
         other => {
-            eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|scan|regenerate|json|fingerprint|verify|selftest.");
+            eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|scan|simulate|regenerate|json|fingerprint|verify|selftest.");
             std::process::exit(2);
         }
     }

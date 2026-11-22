@@ -36,6 +36,20 @@ fn two_derivations_agree_without_shared_state() {
 }
 
 #[test]
+fn relaxation_scan_is_deterministic_and_bounded() {
+    let field = simulation::analytic_field(8, 8.0, false);
+    let run = |mu: f64| simulation::relax(&field, mu, 0.05, 12, 1.0, 1.0);
+    let (_, first_history, first) = run(0.5);
+    let (_, second_history, second) = run(0.5);
+    assert_eq!(first_history, second_history, "relaxation must be deterministic");
+    assert!(first_history.last() < first_history.first(), "energy must decrease");
+    assert!((0.0..=1.0).contains(&first.z3));
+    assert!((0.0..=1.0).contains(&second.z3));
+    let strong = run(20.0).2;
+    assert!(strong.potential > first.potential, "larger mu raises the potential term");
+}
+
+#[test]
 fn neutrino_scan_endpoints_match_the_ledger() {
     use fluid_universe::linalg::approx;
     let zero = spectra::q_from_masses(&spectra::neutrino_masses(0.0, 7.41e-5, 2.507e-3, false));
