@@ -10,6 +10,7 @@ pub mod circulant;
 pub mod confinement;
 pub mod derrick;
 pub mod fft;
+pub mod fn_scan;
 pub mod fluid;
 pub mod froggatt;
 pub mod flux_sector;
@@ -92,6 +93,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(orthogonal::checks());
     out.extend(confinement::checks());
     out.extend(froggatt::checks());
+    out.extend(fn_scan::checks());
     out
 }
 

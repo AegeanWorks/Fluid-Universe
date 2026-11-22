@@ -4,10 +4,10 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector, lorentz,
-    mass_spectrum, potential_family, potts_sector, puddle, quark_rg, reports, rg_sector, rotor,
-    simulation, spectra, spinodal, two_component, unification, verify, water, water_mechanics,
-    froggatt, orthogonal, poisson, variation, vortex_unification, water_unification, xy_z3,
+    Check, all_checks, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector,
+    fn_scan, froggatt, lorentz, mass_spectrum, orthogonal, poisson, potential_family, potts_sector, puddle,
+    quark_rg, reports, rg_sector, rotor, simulation, spectra, spinodal, two_component, unification,
+    variation, verify, vortex_unification, water, water_mechanics, water_unification, xy_z3,
 };
 
 fn json_escape(text: &str) -> String {
@@ -70,7 +70,7 @@ fn main() {
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
         | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
-        | "confinement" | "froggatt" => {
+        | "confinement" | "froggatt" | "fn_scan" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -101,6 +101,7 @@ fn main() {
                 "orthogonal" => orthogonal::checks(),
                 "confinement" => confinement::checks(),
                 "froggatt" => froggatt::checks(),
+                "fn_scan" => fn_scan::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -180,6 +181,14 @@ fn main() {
                         let k = water_mechanics::minimum_wave_number(h);
                         let klc = k * lc;
                         println!("h_over_lc={d:.9},k_lc={klc:.12},ratio={:.12}", klc * klc);
+                    }
+                }
+                "fnscan" => {
+                    println!("charges,eps,heavy,light,joint_error");
+                    for a in fn_scan::scan(14).iter().take(12) {
+                        println!("{}-{}-{}, {:.9},{:.9},{:.9},{:.9}",
+                                 a.charges[0], a.charges[1], a.charges[2],
+                                 a.eps, a.heavy, a.light, a.error);
                     }
                 }
                 "confinescan" => {
