@@ -19,6 +19,7 @@ pub mod fluid;
 pub mod geometry;
 pub mod froggatt;
 pub mod flux_sector;
+pub mod jordan_spectrum;
 pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
@@ -101,6 +102,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(conformal_block::checks());
     out.extend(monodromy::checks());
     out.extend(rep_scan::checks());
+    out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
