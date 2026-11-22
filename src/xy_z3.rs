@@ -49,20 +49,21 @@ pub fn z3_order(theta: &[f64]) -> f64 {
 /// each individual link difference is smaller than pi.
 pub fn winding_number(theta: &[f64], n: usize) -> f64 {
     let mut sum = 0.0;
-    // Traverse the boundary counter-clockwise: top -> right -> bottom -> left.
-    for x in 0..n {
-        sum += principal(theta[(x + 1) % n] - theta[x]);
+    // One connected counter-clockwise perimeter loop: top edge, right edge,
+    // bottom edge backwards, left edge backwards. Closing each edge on its own
+    // with a wrap-around link would sample four interior-free loops and miss a
+    // diffuse vortex, returning half the true winding.
+    for x in 0..n - 1 {
+        sum += principal(theta[x + 1] - theta[x]);
     }
-    for y in 0..n {
-        sum += principal(theta[((y + 1) % n) * n + n - 1] - theta[y * n + n - 1]);
+    for y in 0..n - 1 {
+        sum += principal(theta[(y + 1) * n + n - 1] - theta[y * n + n - 1]);
     }
-    for x in (0..n).rev() {
-        let previous = (x + n - 1) % n;
-        sum += principal(theta[(n - 1) * n + previous] - theta[(n - 1) * n + x]);
+    for x in (1..n).rev() {
+        sum += principal(theta[(n - 1) * n + x - 1] - theta[(n - 1) * n + x]);
     }
-    for y in (0..n).rev() {
-        let previous = (y + n - 1) % n;
-        sum += principal(theta[previous * n] - theta[y * n]);
+    for y in (1..n).rev() {
+        sum += principal(theta[(y - 1) * n] - theta[y * n]);
     }
     sum / TWO_PI
 }
@@ -176,7 +177,10 @@ mod tests {
             .collect();
         assert!(winding_number(&theta, n).abs() < 1e-9);
         let vortex = seeded_vortex(n);
-        assert!(winding_number(&vortex, n).abs() < 1e-9);
+        // A single unit-winding vortex must register its full charge. The old
+        // assertion of zero locked in a boundary walk that closed each edge
+        // separately and missed the interior vortex.
+        assert!((winding_number(&vortex, n) - 1.0).abs() < 1e-9);
     }
 
     #[test]
