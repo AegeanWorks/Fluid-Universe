@@ -5,8 +5,8 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
-    mass_spectrum, potential_family, potts_sector, reports, rg_sector, rotor, simulation, spectra,
-    spinodal, two_component, unification, verify, water, xy_z3,
+    mass_spectrum, potential_family, potts_sector, quark_rg, reports, rg_sector, rotor, simulation,
+    spectra, spinodal, two_component, unification, verify, water, water_mechanics, xy_z3,
 };
 
 fn json_escape(text: &str) -> String {
@@ -67,7 +67,7 @@ fn main() {
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
-        | "potts_sector" | "xy_z3" => {
+        | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -88,6 +88,8 @@ fn main() {
                 "two_component" => two_component::checks(),
                 "potts_sector" => potts_sector::checks(),
                 "xy_z3" => xy_z3::checks(),
+                "quark_rg" => quark_rg::checks(),
+                "water_mechanics" => water_mechanics::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -158,6 +160,27 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "watercheck" => {
+                    let lc = water_mechanics::capillary_length();
+                    for d in [1.0_f64, 1.5, 2.0, 2.007084679301, 2.5, 3.0] {
+                        let h = d * lc;
+                        let k = water_mechanics::minimum_wave_number(h);
+                        let klc = k * lc;
+                        println!("h_over_lc={d:.9},k_lc={klc:.12},ratio={:.12}", klc * klc);
+                    }
+                }
+                "water" => {
+                    let lc = water_mechanics::capillary_length();
+                    println!("depth_over_lc,ratio_at_minimum,phase_speed_squared");
+                    for index in 0..=60 {
+                        let d = 0.1_f64.powf(-2.0 + index as f64 / 20.0);
+                        let h = d * lc;
+                        let k = water_mechanics::minimum_wave_number(h);
+                        println!("{d:.6},{:.9},{:.9}",
+                                 water_mechanics::energy_ratio_at_minimum(h),
+                                 water_mechanics::phase_speed_squared(k, h));
                     }
                 }
                 "bridge" => {

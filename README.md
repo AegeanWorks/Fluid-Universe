@@ -150,6 +150,8 @@ fluid-universe/
 │   ├── two_component.rs      <- coupled topological and Z3-ordered layers
 │   ├── potts_sector.rs       <- Z3 centre/Potts transfer matrix and Koide ratio
 │   ├── xy_z3.rs              <- 2D XY+Z3 model and topological winding
+│   ├── quark_rg.rs           <- down-quark RG and the Koide ratio
+│   ├── water_mechanics.rs    <- gravity-capillary dispersion and analogue horizon
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

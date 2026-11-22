@@ -15,6 +15,7 @@ pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
 pub mod potential_family;
+pub mod quark_rg;
 pub mod potts_sector;
 pub mod rg_sector;
 pub mod reports;
@@ -26,6 +27,7 @@ pub mod two_component;
 pub mod unification;
 pub mod verify;
 pub mod water;
+pub mod water_mechanics;
 pub mod xy_z3;
 
 use std::fmt;
@@ -72,6 +74,8 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(two_component::checks());
     out.extend(potts_sector::checks());
     out.extend(xy_z3::checks());
+    out.extend(quark_rg::checks());
+    out.extend(water_mechanics::checks());
     out
 }
 
