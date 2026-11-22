@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
     mass_spectrum, potential_family, reports, rg_sector, rotor, simulation, spectra, spinodal,
-    unification, verify, water,
+    two_component, unification, verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -66,7 +66,7 @@ fn main() {
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
-        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" => {
+        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -84,6 +84,7 @@ fn main() {
                 "flux_sector" => flux_sector::checks(),
                 "spinodal" => spinodal::checks(),
                 "rg_sector" => rg_sector::checks(),
+                "two_component" => two_component::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -154,6 +155,23 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "twocomp" => {
+                    let n = 16usize;
+                    let topo = simulation::analytic_field(n, 8.0, false);
+                    let ordered = two_component::z3_layer(n, 8.0, 0.0);
+                    let h0 = simulation::hopf_charge_spectral(&topo);
+                    let z1 = simulation::z3_order(&ordered);
+                    println!("eta,overlap,H_ratio,Z3_ratio,product");
+                    for index in 0..=20 {
+                        let eta = index as f64 * 0.05;
+                        let mixed = two_component::blended(&topo, &ordered, eta);
+                        let hr = simulation::hopf_charge_spectral(&mixed) / h0;
+                        let zr = simulation::z3_order(&mixed) / z1;
+                        println!("{eta:.2},{:.9},{:.9},{:.9},{:.9}",
+                                 two_component::mean_overlap(&topo, &ordered),
+                                 hr, zr, hr * zr);
                     }
                 }
                 "rgscan" => {

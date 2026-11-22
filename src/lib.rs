@@ -21,6 +21,7 @@ pub mod rotor;
 pub mod simulation;
 pub mod spectra;
 pub mod spinodal;
+pub mod two_component;
 pub mod unification;
 pub mod verify;
 pub mod water;
@@ -66,6 +67,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(flux_sector::checks());
     out.extend(spinodal::checks());
     out.extend(rg_sector::checks());
+    out.extend(two_component::checks());
     out
 }
 
