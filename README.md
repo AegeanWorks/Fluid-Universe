@@ -146,6 +146,7 @@ fluid-universe/
 │   ├── shape_freedom.rs      <- proof that p is free under the symmetry
 │   ├── flux_quantization.rs  <- discrete-flux candidate to fix p (fails)
 │   ├── wzw.rs                <- SU(3)_3 conformal dimension derives delta=2/9
+│   ├── wzw_crosscheck.rs     <- independent neutrino/quark sector cross-check
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
