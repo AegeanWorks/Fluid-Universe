@@ -30,6 +30,9 @@ pub fn stationary(guess: f64, h: f64) -> Option<(f64, f64)> {
             break;
         }
     }
+    if first(phi, h).abs() > 1e-8 {
+        return None;
+    }
     Some((phi.rem_euclid(TWO_PI), second(phi, h)))
 }
 

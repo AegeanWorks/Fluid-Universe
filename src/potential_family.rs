@@ -37,15 +37,11 @@ pub fn levels(p: f64, mu: f64, cutoff: usize) -> Vec<f64> {
         matrix[row][row] = (n * n) as f64 / 2.0 + mu * modes[0];
         for shift in 1..=3 {
             let strength = mu * modes[shift] / 2.0;
-            let target = n + 3 * shift as isize;
             let bound = cutoff as isize;
-            if (-bound..=bound).contains(&target) {
-                let col = (target + bound) as usize;
-                matrix[row][col] += strength;
-                let target2 = n - 3 * shift as isize;
-                if (-bound..=bound).contains(&target2) {
-                    let col2 = (target2 + bound) as usize;
-                    matrix[row][col2] += strength;
+            for target in [n + 3 * shift as isize, n - 3 * shift as isize] {
+                if (-bound..=bound).contains(&target) {
+                    let col = (target + bound) as usize;
+                    matrix[row][col] += strength;
                 }
             }
         }
