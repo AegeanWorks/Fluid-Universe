@@ -14,6 +14,7 @@ pub mod flux_sector;
 pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
+pub mod poisson;
 pub mod potential_family;
 pub mod puddle;
 pub mod quark_rg;
@@ -84,6 +85,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(puddle::checks());
     out.extend(vortex_unification::checks());
     out.extend(variation::checks());
+    out.extend(poisson::checks());
     out
 }
 

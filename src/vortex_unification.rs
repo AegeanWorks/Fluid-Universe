@@ -4,7 +4,7 @@
 //! circulation fraction f(r) = r^2/(r^2 + delta^2). The Koide value 2/3 occurs
 //! at r = sqrt(2) delta. This module checks whether that radius coincides with
 //! any length fixed by the model (core scale delta_0 = 0.1 a0, the 2p most
-//! probable radius 4 a0, or the sqrt(6) a0 radial mean), without fitting.
+//! probable radius 4 a0, or the 5 a0 radial mean), without fitting.
 
 use crate::Check;
 
@@ -33,7 +33,7 @@ pub fn checks() -> Vec<Check> {
     let delta0 = 0.1; // pre-registered core in units of a0
     let r_koide = koide_radius_over_delta() * delta0;
     let r_most_probable = 4.0; // 2p radial maximum in a0
-    let r_radial_mean = 6.0_f64.sqrt(); // <r> for 2p
+    let r_radial_mean = 5.0; // <r> for 2p = (a0/2)(3n^2 - l(l+1)) = 5 a0
     vec![
         Check::new("vortex_unification.koide_radius_over_delta", koide_radius_over_delta(),
                    "r/delta where the blob loop fraction equals 2/3"),
