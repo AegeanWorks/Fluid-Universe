@@ -26,7 +26,9 @@ pub mod spectra;
 pub mod spinodal;
 pub mod two_component;
 pub mod unification;
+pub mod variation;
 pub mod verify;
+pub mod vortex_unification;
 pub mod water;
 pub mod water_mechanics;
 pub mod water_unification;
@@ -80,6 +82,8 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(water_mechanics::checks());
     out.extend(water_unification::checks());
     out.extend(puddle::checks());
+    out.extend(vortex_unification::checks());
+    out.extend(variation::checks());
     out
 }
 
