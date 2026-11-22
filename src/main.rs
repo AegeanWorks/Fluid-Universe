@@ -5,7 +5,7 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector,
-    fn_scan, froggatt, lorentz, mass_spectrum, modular, orthogonal, poisson, potential_family,
+    fn_scan, froggatt, geometry, lorentz, mass_spectrum, modular, orthogonal, poisson, potential_family,
     potts_sector, puddle,
     quark_rg, reports, rg_sector, rotor, simulation, spectra, spinodal, su3, two_component,
     unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
@@ -72,7 +72,7 @@ fn main() {
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
         | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
-        | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" => {
+        | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -106,6 +106,7 @@ fn main() {
                 "fn_scan" => fn_scan::checks(),
                 "modular" => modular::checks(),
                 "su3" => su3::checks(),
+                "geometry" => geometry::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

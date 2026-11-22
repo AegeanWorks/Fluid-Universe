@@ -12,6 +12,7 @@ pub mod derrick;
 pub mod fft;
 pub mod fn_scan;
 pub mod fluid;
+pub mod geometry;
 pub mod froggatt;
 pub mod flux_sector;
 pub mod linalg;
@@ -98,6 +99,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(fn_scan::checks());
     out.extend(modular::checks());
     out.extend(su3::checks());
+    out.extend(geometry::checks());
     out
 }
 
