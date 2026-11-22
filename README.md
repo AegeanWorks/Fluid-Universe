@@ -140,6 +140,8 @@ fluid-universe/
 │   ├── water.rs              <- shallow-water analogue
 │   ├── lorentz.rs            <- director anisotropy
 │   ├── linalg.rs             <- Jacobi eigensolver and quadrature
+│   ├── fft.rs                <- dependency-free radix-2 3D FFT
+│   ├── unification.rs        <- parameter-free Koide condition and bridge gap
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration
