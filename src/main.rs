@@ -5,7 +5,7 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, lorentz, reports, rotor,
-    simulation, spectra, verify, water,
+    simulation, spectra, unification, verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -64,7 +64,7 @@ fn main() {
             println!("{} check(s), fingerprint {}", checks.len(), fingerprint(&checks));
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
-        | "simulation" | "audit" | "reports" => {
+        | "simulation" | "audit" | "reports" | "unification" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -76,6 +76,7 @@ fn main() {
                 "simulation" => simulation::checks(),
                 "audit" => audit::checks(),
                 "reports" => reports::checks(),
+                "unification" => unification::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -117,6 +118,35 @@ fn main() {
                         println!("{:.1},{},{},{:.3},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
                                  mu, n, steps, dt, m.e2, m.e4, m.potential, m.energy,
                                  m.z3, m.force_rms, m.max_bond, m.mean_bond, drop);
+                    }
+                }
+                "search" => {
+                    let n = 16usize;
+                    let steps = 120usize;
+                    let baseline = simulation::hopf_charge_spectral(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("mu,K,kappa,init,hopf_baseline,hopf_ratio,z3,",
+                                     "force_rms,max_bond"));
+                    for mu in [1.0_f64, 2.0, 5.0, 10.0] {
+                        for k in [0.5_f64, 1.0, 2.0] {
+                            for kappa in [0.25_f64, 0.5, 1.0, 2.0] {
+                                for init in ["analytic", "perturbed"] {
+                                    let seed = if init == "analytic" {
+                                        simulation::analytic_field(n, 8.0, false)
+                                    } else {
+                                        simulation::perturbed_field(n, 8.0, 20261122, 0.05)
+                                    };
+                                    let (relaxed, _, m) =
+                                        simulation::relax(&seed, mu, 0.05, steps, k, kappa);
+                                    let h = simulation::hopf_charge_spectral(&relaxed);
+                                    let (z3, force_rms, max_bond) = (m.z3, m.force_rms, m.max_bond);
+                                    println!(concat!("{:.1},{:.1},{:.2},{},{:.9},{:.9},",
+                                                     "{:.9},{:.9},{:.9}"),
+                                             mu, k, kappa, init, baseline, h / baseline,
+                                             z3, force_rms, max_bond);
+                                }
+                            }
+                        }
                     }
                 }
                 "evolve" => {
@@ -171,11 +201,12 @@ fn main() {
                     }
                 }
                 "hopfcheck" => {
-                    println!("n,hopf_grid,hopf_preimage,z3");
-                    for n in [8usize, 12, 16, 20, 24, 32] {
+                    println!("n,hopf_jacobi,hopf_spectral,hopf_preimage,z3");
+                    for n in [8usize, 16, 32, 64, 128] {
                         let field = simulation::analytic_field(n, 8.0, false);
-                        println!("{},{:.9},{:.9},{:.9}", n,
+                        println!("{},{:.9},{:.9},{:.9},{:.9}", n,
                                  simulation::hopf_charge_grid(&field),
+                                 simulation::hopf_charge_spectral(&field),
                                  simulation::hopf_charge_preimage(200),
                                  simulation::z3_order(&field));
                     }

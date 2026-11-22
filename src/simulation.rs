@@ -455,6 +455,22 @@ pub fn relax(
     (f, history, m)
 }
 
+/// Deterministic perturbation of the analytic seed, for initial-condition scans.
+/// The same seed always produces the same field.
+pub fn perturbed_field(n: usize, length: f64, seed: u64, amplitude: f64) -> Field3 {
+    let mut field = analytic_field(n, length, false);
+    let mut state = seed ^ 0x9e3779b97f4a7c15;
+    for value in field.data.iter_mut() {
+        for component in value.iter_mut() {
+            state = state.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+            let uniform = ((state >> 33) as f64) / ((1u64 << 31) as f64);
+            *component += amplitude * (2.0 * uniform - 1.0);
+        }
+    }
+    normalize_field(&mut field);
+    field
+}
+
 /// Grid Chern--Simons Hopf charge of an arbitrary field.
 ///
 /// This is the finite-difference counterpart of the analytic preimage estimator:
@@ -542,6 +558,98 @@ pub fn hopf_charge_grid(field: &Field3) -> f64 {
             }
         }
         a = next;
+    }
+    let mut integral = 0.0;
+    for site in 0..count {
+        integral += dot(a[site], b[site]);
+    }
+    -integral * h * h * h / (16.0 * std::f64::consts::PI * std::f64::consts::PI)
+}
+
+/// Spectral Hopf charge: the same `B` field, but the Poisson problem is solved
+/// mode-by-mode with an FFT. This converges to the preimage charge on modest grids
+/// where the Jacobi solver is still under-resolved.
+pub fn hopf_charge_spectral(field: &Field3) -> f64 {
+    use crate::fft::{fft3d, signed_k};
+
+    let n = field.n;
+    assert!(n.is_power_of_two() && n >= 4, "spectral solver needs a power-of-two grid");
+    let h = field.dx;
+    let count = n * n * n;
+    let mut derivatives = vec![[0.0; 3]; count * 3];
+    for x in 0..n {
+        for y in 0..n {
+            for z in 0..n {
+                let site = idx(n, x, y, z);
+                for dir in 0..3 {
+                    let plus = field.data[neighbor(n, x, y, z, dir, 1)];
+                    let minus = field.data[neighbor(n, x, y, z, dir, -1)];
+                    derivatives[dir * count + site] = scale(sub(plus, minus), 1.0 / (2.0 * h));
+                }
+            }
+        }
+    }
+    let mut b = vec![[0.0; 3]; count];
+    for x in 0..n {
+        for y in 0..n {
+            for z in 0..n {
+                let site = idx(n, x, y, z);
+                b[site] = [
+                    dot(field.data[site], cross(derivatives[count + site], derivatives[2 * count + site])),
+                    dot(field.data[site], cross(derivatives[2 * count + site], derivatives[site])),
+                    dot(field.data[site], cross(derivatives[site], derivatives[count + site])),
+                ];
+            }
+        }
+    }
+    let mut curl = vec![[0.0; 3]; count];
+    for x in 0..n {
+        for y in 0..n {
+            for z in 0..n {
+                let site = idx(n, x, y, z);
+                curl[site] = [
+                    (b[neighbor(n, x, y, z, 1, 1)][2] - b[neighbor(n, x, y, z, 1, -1)][2]) / (2.0 * h)
+                        - (b[neighbor(n, x, y, z, 2, 1)][1] - b[neighbor(n, x, y, z, 2, -1)][1]) / (2.0 * h),
+                    (b[neighbor(n, x, y, z, 2, 1)][0] - b[neighbor(n, x, y, z, 2, -1)][0]) / (2.0 * h)
+                        - (b[neighbor(n, x, y, z, 0, 1)][2] - b[neighbor(n, x, y, z, 0, -1)][2]) / (2.0 * h),
+                    (b[neighbor(n, x, y, z, 0, 1)][1] - b[neighbor(n, x, y, z, 0, -1)][1]) / (2.0 * h)
+                        - (b[neighbor(n, x, y, z, 1, 1)][0] - b[neighbor(n, x, y, z, 1, -1)][0]) / (2.0 * h),
+                ];
+            }
+        }
+    }
+    // nabla^2 A = -curl B  =>  A_k = (curl B)_k / k^2, with the zero mode set to zero.
+    let mut a = curl;
+    for component in 0..3 {
+        let mut re = vec![0.0; count];
+        let mut im = vec![0.0; count];
+        for (slot, value) in a.iter().enumerate() {
+            re[slot] = value[component];
+        }
+        fft3d(&mut re, &mut im, n, false);
+        let factor = 2.0 * std::f64::consts::PI / (n as f64 * h);
+        for x in 0..n {
+            for y in 0..n {
+                for z in 0..n {
+                    let slot = idx(n, x, y, z);
+                    let kx = signed_k(x, n) as f64 * factor;
+                    let ky = signed_k(y, n) as f64 * factor;
+                    let kz = signed_k(z, n) as f64 * factor;
+                    let k2 = kx * kx + ky * ky + kz * kz;
+                    if k2 > 1e-20 {
+                        re[slot] /= k2;
+                        im[slot] /= k2;
+                    } else {
+                        re[slot] = 0.0;
+                        im[slot] = 0.0;
+                    }
+                }
+            }
+        }
+        fft3d(&mut re, &mut im, n, true);
+        for (slot, value) in a.iter_mut().enumerate() {
+            value[component] = re[slot];
+        }
     }
     let mut integral = 0.0;
     for site in 0..count {

@@ -8,6 +8,7 @@
 pub mod audit;
 pub mod circulant;
 pub mod derrick;
+pub mod fft;
 pub mod fluid;
 pub mod linalg;
 pub mod lorentz;
@@ -15,6 +16,7 @@ pub mod reports;
 pub mod rotor;
 pub mod simulation;
 pub mod spectra;
+pub mod unification;
 pub mod verify;
 pub mod water;
 
@@ -53,6 +55,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(simulation::checks());
     out.extend(audit::checks());
     out.extend(reports::checks());
+    out.extend(unification::checks());
     out
 }
 
