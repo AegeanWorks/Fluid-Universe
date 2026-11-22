@@ -38,18 +38,6 @@
     },
     {
       "task_id": "reforge:run-3",
-      "phase": "reforge stage 33",
-      "phase_num": 3,
-      "description": "Reforge stage 33: stage 33 host review reviewed; run active; coverage 10/10",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795372181.6651244,
-      "timestamp_str": "2026-11-22 21:29:41",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
-      "task_id": "reforge:run-3",
       "phase": "reforge stage 34",
       "phase_num": 3,
       "description": "Reforge stage 34: window 101, 3 commit(s), 2 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
@@ -261,6 +249,18 @@
       "status": "in_progress",
       "timestamp": 1795375500.1642573,
       "timestamp_str": "2026-11-22 22:25:00",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 43",
+      "phase_num": 3,
+      "description": "Reforge stage 43: window 128, 3 commit(s), 5 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795375545.438545,
+      "timestamp_str": "2026-11-22 22:25:45",
       "agent": "opencode",
       "operator_task": "rust-rewrite-2026-11-22"
     }
