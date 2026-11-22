@@ -54,6 +54,11 @@ pub fn blended(topological: &Field3, ordered: &Field3, eta: f64) -> Field3 {
         }
     }
     normalize_field(&mut out);
+    for v in out.data.iter_mut() {
+        if (v[0] * v[0] + v[1] * v[1] + v[2] * v[2]).sqrt() <= 1e-12 {
+            *v = [0.0, 0.0, 1.0];
+        }
+    }
     out
 }
 
