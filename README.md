@@ -10,32 +10,29 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 **Epistemic status (2026-10-25):** the algebra is verified and is likely known (Brannen 2006). The Z3/circulant structure by itself does **not** predict the Koide value; it has three parameters for three masses, and Koide is the extra condition \(|c|/a=1/\sqrt2\). The exact one-loop statement "\(|c|/a\) is RG-invariant" is false, although the numerical drift for charged leptons is only about \(3\times10^{-6}\) over 16 decades. The nematic-fluid UV track has **no** validated calculation yet and is kept in a separate, clearly speculative section.
 
-## 30-Second Cold-Start Quick Reference
+## 30-Second Cold-Start Quick Reference (Rust implementation)
 
-- **Runtime Prerequisites**: Python 3.10 or newer; `numpy`, `scipy`, `sympy`, `jax`; `pytest` and `hypothesis` for the test suite.
-- **Install**: `python -m pip install -e ".[dev]"`
+- **Runtime Prerequisites**: Rust 2024 (cargo/rustc 1.85+). No crates, no Python, no network.
 - **Canonical Regression Shield Gate**:
   ```bash
-  python -m pytest -q
+  cargo test
   ```
-- **Regenerate every number**:
+  On a host without the MSVC `link.exe`, build with `cargo test --target x86_64-pc-windows-gnu`.
+- **Regenerate every reproducible number**:
   ```bash
-  python -m phenomenology.run_all
+  cargo run -- all            # human-readable check list
+  cargo run -- json           # machine-readable check list
+  cargo run -- <module>       # one family: circulant|spectra|rotor|derrick|fluid|water|lorentz
   ```
-  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, `results/neutrinos.json`, `results/neutrinos.md`, `results/quarks.json`, `results/quarks.md`, `results/pmns.json`, `results/pmns.md`, `results/delta_search.json`, `results/delta_search.md`, `results/frank_oseen.json`, `results/frank_oseen.md`, `results/derrick.json`, `results/derrick.md`, `results/topology.json`, `results/topology.md`, `results/reduction.json`, `results/reduction.md`, `results/predictions.json`, `results/predictions.md`, `results/lorentz.json`, `results/lorentz.md`, `results/sim_core.json`, `results/sim_core.md`, `results/hopf.json`, `results/hopf.md`, `results/hopfion.json`, `results/hopfion.md`, `results/hopfion3d.json`, `results/hopfion3d.md`, `results/hopf_resolution.json`, `results/hopf_resolution.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
-- **Verify every claim independently (two runs)**:
+- **Verify independently (two separate processes, project rule G-001)**:
   ```bash
-  python -m verification.verify
-  # or, where make is installed:
-  make verify
-  # explicit steps, always two separate processes:
-  python -m verification.audit --tag run1
-  python -m verification.audit --tag run2
-  python -m verification.compare
+  cargo run -- verify
   ```
-  This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 312/312 checks each (`python -m verification.verify`).
-- **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
+  The binary spawns itself twice with `json`, fingerprints both ordered check lists, and exits
+  non-zero on disagreement. One process deriving a result twice is explicitly not accepted.
+- **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
+  directories are kept as a reference ledger; the Rust crate is the canonical implementation.
+- **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](theory/formulas.md).
 
 ### AIKit Commands (run from the AIKit folder)
 
@@ -50,13 +47,13 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 | Item | Verdict | Where |
 |---|---|---|
-| Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `theory/circulant.py`, `tests/test_circulant.py` |
-| \(Q=\sum m/(\sum\sqrt m)^2=1/3+2c^2/(3a^2)\) for the signed eigenvalues | PROVEN, with a positivity condition; likely known | `theory/formulas.md` F1-F3 |
+| Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `src/circulant.rs`, `src/circulant.rs` |
+| \(Q=\sum m/(\sum\sqrt m)^2=1/3+2c^2/(3a^2)\) for the signed eigenvalues | PROVEN, with a positivity condition; likely known | `src/ (Rust core)` F1-F3 |
 | \(Q=2/3\) iff \(\lvert c\rvert/a=1/\sqrt2\) | PROVEN algebra; NOT a prediction of Z3 alone | `claims.md` 1a/1b |
-| Pole-mass fit and uncertainty propagation | NUMERIC | `phenomenology/fit.py`, `results/pdg_fit.json` |
+| Pole-mass fit and uncertainty propagation | NUMERIC | `src/circulant.rs`, `results/pdg_fit.json` |
 | \(Q=2/3\) for MS-bar masses at \(M_Z\) | FALSIFIED: \(Q(M_Z)\approx0.6678\) | `results/rg_run.json` |
-| \(\lvert c\rvert/a\) exactly RG-invariant at one loop | FALSIFIED; drift is numerically tiny | `phenomenology/rg.py`, `results/rg_run.json` |
-| Rotor spectrum and free-rotor limit | PROVEN numerically | `theory/rotor.py`, `results/rotor.json` |
+| \(\lvert c\rvert/a\) exactly RG-invariant at one loop | FALSIFIED; drift is numerically tiny | `src/reports.rs`, `results/rg_run.json` |
+| Rotor spectrum and free-rotor limit | PROVEN numerically | `src/rotor.rs`, `results/rotor.json` |
 | Rotor \(\to\) three distinct masses | FALSIFIED: sectors 1 and 2 are exactly degenerate | `results/rotor.json` |
 | Domain-wall tension \((8/3)\sqrt\mu\) | PROVEN | `results/rotor.json` |
 | Closed form for \(\delta\) | UNVERIFIED (null): 2/9 at 0.407\(\sigma\), look-elsewhere \(p=7.9\times10^{-4}\), not promoted | `results/delta_search.json` |
@@ -115,7 +112,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
 | Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |
 | Direct quark Koide extension | FALSIFIED: \(Q_U\approx0.888\), \(Q_D\approx0.748\) at \(M_Z\) | `results/quarks.json` |
-| Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `sims/README.md` |
+| Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside
 
@@ -130,25 +127,35 @@ fluid-universe/
 ├── ASSETS.md                 <- Asset/data manifest: what the license covers
 ├── assets/                   <- brand artwork and social preview
 ├── README.md
-├── Makefile                  <- test, results, and two-run verification targets
-├── pyproject.toml            <- dependencies and pytest configuration
+├── Cargo.toml                <- dependency-free Rust crate
+├── src/                      <- Rust implementation and CLI
+│   ├── circulant.rs          <- Koide/circulant algebra
+│   ├── spectra.rs            <- neutrino, quark and PMNS checks
+│   ├── rotor.rs              <- rotor sectors and wall tension
+│   ├── derrick.rs            <- scaling and virial
+│   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
+│   ├── water.rs              <- shallow-water analogue
+│   ├── lorentz.rs            <- director anisotropy
+│   ├── linalg.rs             <- Jacobi eigensolver and quadrature
+│   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
+│   ├── audit.rs              <- independent per-claim audit
+│   ├── reports.rs            <- deterministic result regeneration
+│   ├── verify.rs             <- G-001 two-process comparison
+│   ├── lib.rs                <- crate root and check registry
+│   └── main.rs               <- CLI
+├── tests/integration.rs      <- Rust integration tests
 ├── claims.md                 <- claim ledger with statuses and kill tests
 ├── CHANGELOG.md              <- append-only corrections and retractions
 ├── SCORECARD.md              <- one-line status per claim
-├── theory/                   <- symbolic algebra, formula registry, literature notes
-├── phenomenology/            <- PDG data, circulant fit, one-loop SM RGE
-├── tests/                    <- pytest identities, limits, regression numbers
-├── verification/             <- independent re-derivation of verified claims
-├── sims/                     <- validated 1D core and bounded 3D diagnostics
 ├── paper/                    <- two LaTeX documents, separate scopes
-└── results/                  <- machine-generated outputs only
+└── results/                  <- rust_*.json|md regenerated by the Rust binary
 ```
 
 ## Conventions and Non-Negotiables
 
-- Every number in prose must regenerate from `python -m phenomenology.run_all`; the JSON records seed, config hash, package versions, and git commit.
+- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and the G-001 two-process fingerprint.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
-- No production 3D simulation number is cited until `sims/core.py` passes the full baseline set in `sims/README.md`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
+- No production 3D simulation number is cited until `src/simulation.rs` passes the full baseline set in `src/ (Rust core)`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
 - The Z3/Koide/RG paper must stand without any fluid-universe material.
 

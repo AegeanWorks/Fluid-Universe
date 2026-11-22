@@ -16,3 +16,6 @@ node_modules/
 *.egg-info/
 # AIKit transient state
 .aikit/*.log
+# Rust build output and local run logs
+target/
+*.log

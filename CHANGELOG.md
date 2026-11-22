@@ -997,7 +997,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- theory/yasue_center.py (shared center EL plus Yasue width accel, discrete Yasue EL, joint Verlet with analytic-cos center tracking and floor stop, bounded Newton arc solve, quadrature composition, omega=2 scaling bundle); phenomenology/yasue_center_report.py, make yasuecenter, tests/test_yasue_center.py, results/yasue_center.{json,md}; five new independent audit checks in verification/audit.py (static residual, single arc, center track, width collapse, twin control, scaling law - G-001 two-run); formulas F39.
+- theory/yasue_center.py (shared center EL plus Yasue width accel, discrete Yasue EL, joint Verlet with analytic-cos center tracking and floor stop, bounded Newton arc solve, quadrature composition, omega=2 scaling bundle); phenomenology/yasue_center_report.py, make yasuecenter, tests/test_yasue_center.py, results/yasue_center.{json,md}; six new independent audit checks in verification/audit.py (static residual, single arc, center track, width collapse, twin control, scaling law - G-001 two-run); formulas F39.
 - Swan waves: 4 literature clusters (classical limit, stochastic-variational prior art, Ermakov/variational-Gaussian, nodes/Wallstrom - one paper per subagent, figure-and-equation level) plus 3 fixed-seed compute batches (analytic split, discrete EL twin, S1-style joint probe); artifacts verified by sampling (R1 split exact to 0.0; joint probe re-run bit-identical).
 
 **Results**
@@ -1012,7 +1012,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- theory/yasue_bridge.py (c<0 endpoint algebra, FD ODE identity, width-only Newton BVP, Yasue-Q Jacobi, nu-series, attribution); phenomenology/yasue_bridge_report.py, make yasuebridge, tests/test_yasue_bridge.py, results/yasue_bridge.{json,md}; five new independent audit checks in verification/audit.py (B-quadratic, ODE identity, attribution, killed sibling, Jacobi, nu-limit/scaling - G-001 two-run); formulas F40.
+- theory/yasue_bridge.py (c<0 endpoint algebra, FD ODE identity, width-only Newton BVP, Yasue-Q Jacobi, nu-series, attribution); phenomenology/yasue_bridge_report.py, make yasuebridge, tests/test_yasue_bridge.py, results/yasue_bridge.{json,md}; six new independent audit checks in verification/audit.py (B-quadratic, ODE identity, attribution, killed sibling, Jacobi, nu-limit/scaling - G-001 two-run); formulas F40.
 - Swarm waves: 4 literature clusters (negative-c Pinney absence - provisional, Lewis sign, Jacobi/dis Dave disconjugacy, oscillator BVP - closed form verified) plus 3 fixed-seed compute batches (ODE identity, branch map, Jacobi) with config hashes; artifacts verified by sampling (independent re-run: disc=3.0, B values exact, attribution 6.26e-08, nu=0 bridge to 10 digits; websearch quota exhausted so the c<0 absence stays provisional and carries no evidentiary weight).
 
 **Results**

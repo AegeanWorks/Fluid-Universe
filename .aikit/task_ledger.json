@@ -13,94 +13,6 @@
   },
   "checkpoints": [
     {
-      "task_id": "water-reorganization-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-029 and add failing tests for the water reorganization relation; predict lambda(Rcap)=1.383104 eV, VDE-optical difference 1.57 eV (12% residual), required R=2.517841 A, pressure-balanced lambda=0.994862 eV",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392198.3013866,
-      "timestamp_str": "2026-10-30 23:29:58",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The static well models conflate the VDE and the optical gap. Water's static and optical dielectric constants differ strongly; the reorganization energy is the natural link between the 3.27 eV VDE and the 1.7 eV absorption.",
-        "benefits": "A water-property relation that avoids fitting a deeper well; it explains the VDE-optical difference as solvent reorganization and identifies the capillary radius as the relevant scale.",
-        "risks": "contract: new claim 38; dependency: math only; concurrency: none; state: one result file; data: VDE 3.27 +/- 0.10, optical 1.7; model: phenomenological reorganization relation, not a full two-state calculation",
-        "mitigation": "Use the standard reorganization formula with water's epsilon_s and epsilon_infinity, pre-register the capillary and pressure-balanced values, report the 12% residual and the 1.9-sigma VDE tension, and state that a two-state Marcus calculation is the next test"
-      }
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Water reorganization: lambda(Rcap)=1.383104 eV vs observed difference 1.57 eV (11.9% residual, 1.87 sigma); required R=2.517841 A (0.881x cap); pressure R=3.973423 A gives lambda=0.994862 eV (0.634x), inconsistent; claim 38 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392534.2281487,
-      "timestamp_str": "2026-10-30 23:35:34",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 226/226 accepted (2 new claim-38 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392537.1025605,
-      "timestamp_str": "2026-10-30 23:35:37",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-reorganization-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793392537.2375045,
-      "timestamp_str": "2026-10-30 23:35:37",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-030 and add failing tests for the self-consistent Born cavity; predict R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p, lambda=1.617133, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x equilibrium)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392920.7853246,
-      "timestamp_str": "2026-10-30 23:42:00",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The reorganization relation points to R=2.518 A, close to the finite-well Born equilibrium R=2.444 A. The cavity radius should be set by the R-dependent Born solvation, not a fixed well depth.",
-        "benefits": "A positive synthesis: the fluid/Born cavity radius and water's dielectric reorganization jointly explain the 1.7 eV optical feature and the 3.27 eV VDE without a deeper well or a bound 1p.",
-        "risks": "contract: new claim 39; dependency: scipy/math; concurrency: none; state: one result file; model: Born depth V0=Born(R), no separate image term; data: VDE 3.27 +/- 0.10, optical 1.7",
-        "mitigation": "Minimize the finite-well energy at V0=Born(R) plus surface energy, check the minimum, verify no bound 1p, compute lambda at R_eq, compare the predicted VDE and required radius, and state that the Marcus relation is phenomenological"
-      }
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Born cavity: R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p; lambda=1.617133 eV, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x); claim 39 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793393269.1727834,
-      "timestamp_str": "2026-10-30 23:47:49",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 228/228 accepted (2 new claim-39 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793393272.3890867,
-      "timestamp_str": "2026-10-30 23:47:52",
-      "agent": "opencode"
-    },
-    {
       "task_id": "water-born-cavity-v1",
       "phase": "completed",
       "phase_num": 5,
@@ -257,6 +169,90 @@
       "timestamp": 1793722789.5241482,
       "timestamp_str": "2026-11-03 19:19:49",
       "agent": "kilo:audit"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge run",
+      "phase_num": 3,
+      "description": "run started (start=3, step=3, stop=None)",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795348083.4764733,
+      "timestamp_str": "2026-11-22 14:48:03",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 1",
+      "phase_num": 3,
+      "description": "Reforge stage 1: window 3, 3 commit(s), 101 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795348117.9781346,
+      "timestamp_str": "2026-11-22 14:48:37",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 1",
+      "phase_num": 3,
+      "description": "Reforge stage 1: stage 1 host review reviewed; run active; coverage 279/279",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795349532.531669,
+      "timestamp_str": "2026-11-22 15:12:12",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 2",
+      "phase_num": 3,
+      "description": "Reforge stage 2: window 6, 3 commit(s), 76 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795349624.4894888,
+      "timestamp_str": "2026-11-22 15:13:44",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 2",
+      "phase_num": 3,
+      "description": "Reforge stage 2: stage 2 host review reviewed; run active; coverage 250/250",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795350451.0255148,
+      "timestamp_str": "2026-11-22 15:27:31",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: window 9, 3 commit(s), 70 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795350470.1826887,
+      "timestamp_str": "2026-11-22 15:27:50",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
+    },
+    {
+      "task_id": "reforge:run-2",
+      "phase": "reforge stage 3",
+      "phase_num": 3,
+      "description": "Reforge stage 3: run stopped at stage 3; resume it with `reforge resume`",
+      "files_affected": [],
+      "status": "suspended",
+      "timestamp": 1795353495.112148,
+      "timestamp_str": "2026-11-22 16:18:15",
+      "agent": "opencode",
+      "operator_task": "fluid-audit-waves-0-30-v1"
     }
   ]
 }
