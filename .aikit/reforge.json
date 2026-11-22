@@ -4508,8 +4508,8 @@
       "start": 2,
       "step": 3,
       "stop": null,
-      "stage": 5,
-      "window": 14,
+      "stage": 6,
+      "window": 17,
       "audited_commits": [
         "7a4c28badabba2fad58d559c205983a5869df5c4",
         "c8ffca325307c44a8667d00350287eeab4a531a3",
@@ -4524,16 +4524,21 @@
         "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
         "c27412e82e947faf4a3195dd08ae4d937db13261",
         "23943afa86b115e9ebed35f842daf49cde9889b8",
-        "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+        "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+        "2d6ea11472cac7d448a0a08a1024609baab3a184",
+        "8b95146767f59b951a57017dc16ad271e6dbaf45",
+        "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T18:15:29",
+      "updated": "2026-11-22T18:17:18",
       "last_audit": {
         "run": "run-3",
-        "stage": 5,
-        "window": 14,
+        "stage": 6,
+        "window": 17,
         "commits": [
+          "2d6ea11472cac7d448a0a08a1024609baab3a184",
+          "8b95146767f59b951a57017dc16ad271e6dbaf45",
           "c27412e82e947faf4a3195dd08ae4d937db13261",
           "23943afa86b115e9ebed35f842daf49cde9889b8",
           "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
@@ -4547,12 +4552,13 @@
           "0d14fcc8f87a17a664b950750ddc0251be6b7906",
           "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
           "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
-          "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+          "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+          "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
         ],
         "new_commits": [
-          "c27412e82e947faf4a3195dd08ae4d937db13261",
-          "23943afa86b115e9ebed35f842daf49cde9889b8",
-          "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+          "2d6ea11472cac7d448a0a08a1024609baab3a184",
+          "8b95146767f59b951a57017dc16ad271e6dbaf45",
+          "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
         ],
         "prior_commits": [
           "7a4c28badabba2fad58d559c205983a5869df5c4",
@@ -4565,30 +4571,28 @@
           "0d14fcc8f87a17a664b950750ddc0251be6b7906",
           "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
           "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
-          "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc"
+          "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+          "c27412e82e947faf4a3195dd08ae4d937db13261",
+          "23943afa86b115e9ebed35f842daf49cde9889b8",
+          "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
         ],
         "findings": [],
         "repairs": [],
         "counts": {},
-        "reviewed": 66,
+        "reviewed": 65,
         "review": {
-          "status": "reviewed",
-          "rejected": [
-            "claims.md:86: the evidence is not in the current file (it may quote a removed line)",
-            "CHANGELOG.md:1020: the evidence is not in the current file (it may quote a removed line)",
-            "claims.md:223: the evidence is not in the current file (it may quote a removed line)",
-            "CHANGELOG.md:1050: the evidence is not in the current file (it may quote a removed line)",
-            "claims.md:227: the evidence is not in the current file (it may quote a removed line)"
-          ],
+          "status": "unreviewed",
+          "rejected": [],
           "files": [
             ".aikit/decisions.md",
+            ".aikit/project.json",
             "CHANGELOG.md",
             "Makefile",
             "README.md",
             "SCORECARD.md",
             "claims.md",
             "phenomenology/run_all.py",
-            "phenomenology/yasue_bridge_report.py",
+            "phenomenology/yasue_center_report.py",
             "results/delta_search.json",
             "results/delta_search.md",
             "results/derrick.json",
@@ -4636,28 +4640,18 @@
             "results/verification_run1.md",
             "results/verification_run2.json",
             "results/verification_run2.md",
-            "results/yasue_bridge.json",
-            "results/yasue_bridge.md",
             "results/yasue_center.json",
             "results/yasue_center.md",
             "results/yasue_dynamics.json",
             "results/yasue_dynamics.md",
-            "tests/test_yasue_bridge.py",
+            "tests/test_yasue_center.py",
             "theory/formulas.md",
-            "theory/yasue_bridge.py",
+            "theory/yasue_center.py",
             "verification/audit.py",
             "verification/fingerprint.py"
           ],
-          "packet": ".aikit/reforge.reviews/stage-run-3-5-c27412e82e94.md",
+          "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
           "redacted": 0,
-          "coverage": {
-            "reported": 74,
-            "total": 74,
-            "carried": [],
-            "missing": [],
-            "unknown": [],
-            "invalid": []
-          },
           "findings": [],
           "attestations": []
         },
@@ -4670,9 +4664,9 @@
           "pushed": false,
           "push_error": null,
           "empty": true,
-          "timestamp": "2026-11-22T18:07:59"
+          "timestamp": "2026-11-22T18:17:18"
         },
-        "timestamp": "2026-11-22T18:07:59"
+        "timestamp": "2026-11-22T18:17:18"
       },
       "history": [
         {
@@ -5675,13 +5669,149 @@
             "timestamp": "2026-11-22T18:07:59"
           },
           "timestamp": "2026-11-22T18:07:59"
+        },
+        {
+          "run": "run-3",
+          "stage": 6,
+          "window": 17,
+          "commits": [
+            "2d6ea11472cac7d448a0a08a1024609baab3a184",
+            "8b95146767f59b951a57017dc16ad271e6dbaf45",
+            "c27412e82e947faf4a3195dd08ae4d937db13261",
+            "23943afa86b115e9ebed35f842daf49cde9889b8",
+            "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
+            "5a088bced492a6793b3370b1247a636bf39ba4d8",
+            "d6fa027bbb207f77ee52b1a1fd3358c699e38696",
+            "7a4c28badabba2fad58d559c205983a5869df5c4",
+            "c8ffca325307c44a8667d00350287eeab4a531a3",
+            "175ce7f0715b53b4b19cecc1b9bdcdebb243723c",
+            "7b4efe141dfbcc267b0efceb82247f5004186c06",
+            "95b5403e2c3a620131ebed326f9054fa6923b401",
+            "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+            "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
+            "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+            "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+            "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
+          ],
+          "new_commits": [
+            "2d6ea11472cac7d448a0a08a1024609baab3a184",
+            "8b95146767f59b951a57017dc16ad271e6dbaf45",
+            "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
+          ],
+          "prior_commits": [
+            "7a4c28badabba2fad58d559c205983a5869df5c4",
+            "c8ffca325307c44a8667d00350287eeab4a531a3",
+            "175ce7f0715b53b4b19cecc1b9bdcdebb243723c",
+            "7b4efe141dfbcc267b0efceb82247f5004186c06",
+            "95b5403e2c3a620131ebed326f9054fa6923b401",
+            "5a088bced492a6793b3370b1247a636bf39ba4d8",
+            "d6fa027bbb207f77ee52b1a1fd3358c699e38696",
+            "0d14fcc8f87a17a664b950750ddc0251be6b7906",
+            "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
+            "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
+            "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+            "c27412e82e947faf4a3195dd08ae4d937db13261",
+            "23943afa86b115e9ebed35f842daf49cde9889b8",
+            "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+          ],
+          "findings": [],
+          "repairs": [],
+          "counts": {},
+          "reviewed": 65,
+          "review": {
+            "status": "unreviewed",
+            "rejected": [],
+            "files": [
+              ".aikit/decisions.md",
+              ".aikit/project.json",
+              "CHANGELOG.md",
+              "Makefile",
+              "README.md",
+              "SCORECARD.md",
+              "claims.md",
+              "phenomenology/run_all.py",
+              "phenomenology/yasue_center_report.py",
+              "results/delta_search.json",
+              "results/delta_search.md",
+              "results/derrick.json",
+              "results/derrick.md",
+              "results/frank_oseen.json",
+              "results/frank_oseen.md",
+              "results/gaussian_bridge.json",
+              "results/gaussian_bridge.md",
+              "results/hopf.json",
+              "results/hopf.md",
+              "results/hopf_resolution.json",
+              "results/hopf_resolution.md",
+              "results/hopfion.json",
+              "results/hopfion.md",
+              "results/hopfion3d.json",
+              "results/hopfion3d.md",
+              "results/lorentz.json",
+              "results/lorentz.md",
+              "results/neutrinos.json",
+              "results/neutrinos.md",
+              "results/pdg_fit.json",
+              "results/pdg_fit.md",
+              "results/pmns.json",
+              "results/pmns.md",
+              "results/predictions.json",
+              "results/predictions.md",
+              "results/quarks.json",
+              "results/quarks.md",
+              "results/reduction.json",
+              "results/reduction.md",
+              "results/rg_run.json",
+              "results/rg_run.md",
+              "results/rotor.json",
+              "results/rotor.md",
+              "results/sim_core.json",
+              "results/sim_core.md",
+              "results/summary.md",
+              "results/topology.json",
+              "results/topology.md",
+              "results/variational_center.json",
+              "results/variational_center.md",
+              "results/verification.json",
+              "results/verification.md",
+              "results/verification_run1.json",
+              "results/verification_run1.md",
+              "results/verification_run2.json",
+              "results/verification_run2.md",
+              "results/yasue_center.json",
+              "results/yasue_center.md",
+              "results/yasue_dynamics.json",
+              "results/yasue_dynamics.md",
+              "tests/test_yasue_center.py",
+              "theory/formulas.md",
+              "theory/yasue_center.py",
+              "verification/audit.py",
+              "verification/fingerprint.py"
+            ],
+            "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
+            "redacted": 0,
+            "findings": [],
+            "attestations": []
+          },
+          "skipped": [],
+          "tests": {},
+          "gates": {},
+          "delivery": {
+            "commit": "",
+            "short": "",
+            "pushed": false,
+            "push_error": null,
+            "empty": true,
+            "timestamp": "2026-11-22T18:17:18"
+          },
+          "timestamp": "2026-11-22T18:17:18"
         }
       ],
-      "total_commits": 107
+      "total_commits": 109
     }
   ],
-  "stage": 5,
-  "window": 14,
+  "stage": 6,
+  "window": 17,
   "audited_commits": [
     "7a4c28badabba2fad58d559c205983a5869df5c4",
     "c8ffca325307c44a8667d00350287eeab4a531a3",
@@ -5696,13 +5826,18 @@
     "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
     "c27412e82e947faf4a3195dd08ae4d937db13261",
     "23943afa86b115e9ebed35f842daf49cde9889b8",
-    "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+    "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+    "2d6ea11472cac7d448a0a08a1024609baab3a184",
+    "8b95146767f59b951a57017dc16ad271e6dbaf45",
+    "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
   ],
   "last_audit": {
     "run": "run-3",
-    "stage": 5,
-    "window": 14,
+    "stage": 6,
+    "window": 17,
     "commits": [
+      "2d6ea11472cac7d448a0a08a1024609baab3a184",
+      "8b95146767f59b951a57017dc16ad271e6dbaf45",
       "c27412e82e947faf4a3195dd08ae4d937db13261",
       "23943afa86b115e9ebed35f842daf49cde9889b8",
       "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
@@ -5716,12 +5851,13 @@
       "0d14fcc8f87a17a664b950750ddc0251be6b7906",
       "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
       "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
-      "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+      "f14f687c3f36b97c3ef74235bda4f103eafe73c2",
+      "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
     ],
     "new_commits": [
-      "c27412e82e947faf4a3195dd08ae4d937db13261",
-      "23943afa86b115e9ebed35f842daf49cde9889b8",
-      "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
+      "2d6ea11472cac7d448a0a08a1024609baab3a184",
+      "8b95146767f59b951a57017dc16ad271e6dbaf45",
+      "efc3a078e9e1b5c8650457aa15a4bad7f940e307"
     ],
     "prior_commits": [
       "7a4c28badabba2fad58d559c205983a5869df5c4",
@@ -5734,30 +5870,28 @@
       "0d14fcc8f87a17a664b950750ddc0251be6b7906",
       "9c4f30aacd2903aaccd9cc1e8a6fdd636ac15c87",
       "f7315c8acbc922fad364d49dbc1169e32fd9f08e",
-      "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc"
+      "96eb57c0dc34b84b6a1d948bd8b69f8cd870e1dc",
+      "c27412e82e947faf4a3195dd08ae4d937db13261",
+      "23943afa86b115e9ebed35f842daf49cde9889b8",
+      "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
     ],
     "findings": [],
     "repairs": [],
     "counts": {},
-    "reviewed": 66,
+    "reviewed": 65,
     "review": {
-      "status": "reviewed",
-      "rejected": [
-        "claims.md:86: the evidence is not in the current file (it may quote a removed line)",
-        "CHANGELOG.md:1020: the evidence is not in the current file (it may quote a removed line)",
-        "claims.md:223: the evidence is not in the current file (it may quote a removed line)",
-        "CHANGELOG.md:1050: the evidence is not in the current file (it may quote a removed line)",
-        "claims.md:227: the evidence is not in the current file (it may quote a removed line)"
-      ],
+      "status": "unreviewed",
+      "rejected": [],
       "files": [
         ".aikit/decisions.md",
+        ".aikit/project.json",
         "CHANGELOG.md",
         "Makefile",
         "README.md",
         "SCORECARD.md",
         "claims.md",
         "phenomenology/run_all.py",
-        "phenomenology/yasue_bridge_report.py",
+        "phenomenology/yasue_center_report.py",
         "results/delta_search.json",
         "results/delta_search.md",
         "results/derrick.json",
@@ -5805,28 +5939,18 @@
         "results/verification_run1.md",
         "results/verification_run2.json",
         "results/verification_run2.md",
-        "results/yasue_bridge.json",
-        "results/yasue_bridge.md",
         "results/yasue_center.json",
         "results/yasue_center.md",
         "results/yasue_dynamics.json",
         "results/yasue_dynamics.md",
-        "tests/test_yasue_bridge.py",
+        "tests/test_yasue_center.py",
         "theory/formulas.md",
-        "theory/yasue_bridge.py",
+        "theory/yasue_center.py",
         "verification/audit.py",
         "verification/fingerprint.py"
       ],
-      "packet": ".aikit/reforge.reviews/stage-run-3-5-c27412e82e94.md",
+      "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
       "redacted": 0,
-      "coverage": {
-        "reported": 74,
-        "total": 74,
-        "carried": [],
-        "missing": [],
-        "unknown": [],
-        "invalid": []
-      },
       "findings": [],
       "attestations": []
     },
@@ -5839,9 +5963,9 @@
       "pushed": false,
       "push_error": null,
       "empty": true,
-      "timestamp": "2026-11-22T18:07:59"
+      "timestamp": "2026-11-22T18:17:18"
     },
-    "timestamp": "2026-11-22T18:07:59"
+    "timestamp": "2026-11-22T18:17:18"
   },
   "history": []
 }

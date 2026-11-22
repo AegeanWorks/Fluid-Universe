@@ -38,18 +38,6 @@
     },
     {
       "task_id": "reforge:run-3",
-      "phase": "reforge run",
-      "phase_num": 3,
-      "description": "run started (start=2, step=3, stop=None)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795356058.4640477,
-      "timestamp_str": "2026-11-22 17:00:58",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
-      "task_id": "reforge:run-3",
       "phase": "reforge stage 1",
       "phase_num": 3,
       "description": "Reforge stage 1: window 2, 2 commit(s), 1 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
@@ -265,6 +253,18 @@
       "status": "in_progress",
       "timestamp": 1795360529.645978,
       "timestamp_str": "2026-11-22 18:15:29",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 6",
+      "phase_num": 3,
+      "description": "Reforge stage 6: window 17, 3 commit(s), 65 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795360638.0944586,
+      "timestamp_str": "2026-11-22 18:17:18",
       "agent": "opencode",
       "operator_task": "rust-rewrite-2026-11-22"
     }
