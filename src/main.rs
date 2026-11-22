@@ -4,8 +4,9 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, audit, circulant, derrick, fingerprint, fluid, lorentz, mass_spectrum,
-    reports, rotor, simulation, spectra, unification, verify, water,
+    Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
+    mass_spectrum, potential_family, reports, rotor, simulation, spectra, spinodal, unification,
+    verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -64,7 +65,8 @@ fn main() {
             println!("{} check(s), fingerprint {}", checks.len(), fingerprint(&checks));
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
-        | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum" => {
+        | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
+        | "potential_family" | "flux_sector" | "spinodal" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -78,6 +80,9 @@ fn main() {
                 "reports" => reports::checks(),
                 "unification" => unification::checks(),
                 "mass_spectrum" => mass_spectrum::checks(),
+                "potential_family" => potential_family::checks(),
+                "flux_sector" => flux_sector::checks(),
+                "spinodal" => spinodal::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -148,6 +153,40 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "spinodal" => {
+                    println!("h,n_minima,curvature_1,curvature_2,curvature_3,Q");
+                    for index in 0..=90 {
+                        let h = index as f64 * 0.1;
+                        let values: Vec<f64> = spinodal::minima(h)
+                            .iter().map(|(_, c)| *c).collect();
+                        let (a, b, c) = (values.first().copied().unwrap_or(0.0),
+                                         values.get(1).copied().unwrap_or(0.0),
+                                         values.get(2).copied().unwrap_or(0.0));
+                        println!("{h:.1},{},{:.9},{:.9},{:.9},{:.9}",
+                                 values.len(), a, b, c,
+                                 spinodal::q_from_curvatures(&values));
+                    }
+                }
+                "fluxscan" => {
+                    println!("alpha,e0,e1,e2,split,Q,deviation_from_2_3");
+                    for index in 0..=100 {
+                        let alpha = index as f64 * 0.01;
+                        let v = flux_sector::flux_levels(alpha, 1.0, 50);
+                        let q = flux_sector::q_levels(&[v[0], v[1], v[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 alpha, v[0], v[1], v[2], v[2] - v[1], q, q - 2.0 / 3.0);
+                    }
+                }
+                "potentialfamily" => {
+                    println!("p,e0,e1,e2,Q,deviation_from_2_3");
+                    for index in 0..=40 {
+                        let p = 0.25 + index as f64 * 0.05;
+                        let v = potential_family::levels(p, 1.0, 50);
+                        let q = potential_family::q_levels(&[v[0], v[1], v[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 p, v[0], v[1], v[2], q, q - 2.0 / 3.0);
                     }
                 }
                 "tune" => {

@@ -143,6 +143,9 @@ fluid-universe/
 │   ├── fft.rs                <- dependency-free radix-2 3D FFT
 │   ├── unification.rs        <- parameter-free Koide condition and bridge gap
 │   ├── mass_spectrum.rs      <- Z3 rotor with symmetry breaking and mass-ratio scan
+│   ├── potential_family.rs   <- generalised (1-cos3phi)^p wall
+│   ├── flux_sector.rs        <- flux-threaded rotor and level splitting
+│   ├── spinodal.rs           <- tilted Z3 potential spinodal and curvature masses
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

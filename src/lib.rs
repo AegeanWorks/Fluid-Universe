@@ -10,13 +10,16 @@ pub mod circulant;
 pub mod derrick;
 pub mod fft;
 pub mod fluid;
+pub mod flux_sector;
 pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
+pub mod potential_family;
 pub mod reports;
 pub mod rotor;
 pub mod simulation;
 pub mod spectra;
+pub mod spinodal;
 pub mod unification;
 pub mod verify;
 pub mod water;
@@ -58,6 +61,9 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(reports::checks());
     out.extend(unification::checks());
     out.extend(mass_spectrum::checks());
+    out.extend(potential_family::checks());
+    out.extend(flux_sector::checks());
+    out.extend(spinodal::checks());
     out
 }
 
