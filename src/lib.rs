@@ -9,6 +9,7 @@ pub mod anomaly;
 pub mod audit;
 pub mod circulant;
 pub mod circulant_inverse;
+pub mod conformal_block;
 pub mod confinement;
 pub mod derrick;
 pub mod fft;
@@ -95,6 +96,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(quark_phases::checks());
     out.extend(circulant_inverse::checks());
     out.extend(phase_arithmetic::checks());
+    out.extend(conformal_block::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
