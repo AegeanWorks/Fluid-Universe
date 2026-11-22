@@ -4531,7 +4531,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T18:17:18",
+      "updated": "2026-11-22T18:22:58",
       "last_audit": {
         "run": "run-3",
         "stage": 6,
@@ -4576,13 +4576,58 @@
           "23943afa86b115e9ebed35f842daf49cde9889b8",
           "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review",
+            "category": "review",
+            "severity": "low",
+            "path": "CHANGELOG.md",
+            "line": 1005,
+            "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+            "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+            "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+            "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": true,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+            "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+          },
+          {
+            "code": "review",
+            "category": "review",
+            "severity": "low",
+            "path": "claims.md",
+            "line": 221,
+            "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+            "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+            "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+            "hunk": "efc3a078e9e1:claims.md#2",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "review": 2
+        },
         "reviewed": 65,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+          ],
           "files": [
             ".aikit/decisions.md",
             ".aikit/project.json",
@@ -4652,7 +4697,56 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 73,
+            "total": 73,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "low",
+              "path": "CHANGELOG.md",
+              "line": 1005,
+              "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+              "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+              "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+              "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+            },
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "low",
+              "path": "claims.md",
+              "line": 221,
+              "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+              "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+              "hunk": "efc3a078e9e1:claims.md#2",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -5714,13 +5808,58 @@
             "23943afa86b115e9ebed35f842daf49cde9889b8",
             "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "low",
+              "path": "CHANGELOG.md",
+              "line": 1005,
+              "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+              "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+              "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": true,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+              "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+            },
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "low",
+              "path": "claims.md",
+              "line": 221,
+              "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+              "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+              "hunk": "efc3a078e9e1:claims.md#2",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "review": 2
+          },
           "reviewed": 65,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+            ],
             "files": [
               ".aikit/decisions.md",
               ".aikit/project.json",
@@ -5790,7 +5929,56 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 73,
+              "total": 73,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review",
+                "category": "review",
+                "severity": "low",
+                "path": "CHANGELOG.md",
+                "line": 1005,
+                "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+                "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+                "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+                "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": true,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+                "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+              },
+              {
+                "code": "review",
+                "category": "review",
+                "severity": "low",
+                "path": "claims.md",
+                "line": 221,
+                "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+                "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+                "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+                "hunk": "efc3a078e9e1:claims.md#2",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -5875,13 +6063,58 @@
       "23943afa86b115e9ebed35f842daf49cde9889b8",
       "f14f687c3f36b97c3ef74235bda4f103eafe73c2"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review",
+        "category": "review",
+        "severity": "low",
+        "path": "CHANGELOG.md",
+        "line": 1005,
+        "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+        "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+        "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+        "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": true,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+        "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+      },
+      {
+        "code": "review",
+        "category": "review",
+        "severity": "low",
+        "path": "claims.md",
+        "line": 221,
+        "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+        "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+        "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+        "hunk": "efc3a078e9e1:claims.md#2",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "review": 2
+    },
     "reviewed": 65,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+      ],
       "files": [
         ".aikit/decisions.md",
         ".aikit/project.json",
@@ -5951,7 +6184,56 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-6-2d6ea11472ca.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 73,
+        "total": 73,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review",
+          "category": "review",
+          "severity": "low",
+          "path": "CHANGELOG.md",
+          "line": 1005,
+          "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
+          "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
+          "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+          "hunk": "efc3a078e9e1:CHANGELOG.md#1",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": true,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
+          "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
+        },
+        {
+          "code": "review",
+          "category": "review",
+          "severity": "low",
+          "path": "claims.md",
+          "line": 221,
+          "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
+          "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
+          "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
+          "hunk": "efc3a078e9e1:claims.md#2",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
