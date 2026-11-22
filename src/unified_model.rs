@@ -130,6 +130,18 @@ pub fn held_out_tau_over_mu(observed_mu_e: f64) -> Option<f64> {
     Some(ratios_of_cubic(p).1)
 }
 
+/// Second held-out: the level-spacing ratio (x2-x1)/(x3-x2), a different
+/// observable from either hierarchy ratio, predicted from p fitted to mu/e.
+pub fn held_out_spacing_from_mu_e(observed_mu_e: f64) -> Option<f64> {
+    let p = fit_p_to_ratio(observed_mu_e)?;
+    let (lo, hi) = ratios_of_cubic(p);
+    // Roots with sum 3: x1=3/(1 + lo + lo*hi), x2=lo*x1, x3=hi*x2.
+    let x1 = 3.0 / (1.0 + lo + lo * hi);
+    let x2 = lo * x1;
+    let x3 = hi * x2;
+    Some((x2 - x1) / (x3 - x2))
+}
+
 pub fn checks() -> Vec<Check> {
     let (lo, hi) = hierarchy_ratios(r_koide(), delta_star());
     let sym = symmetric(&roots(r_koide(), delta_star()));
@@ -149,6 +161,9 @@ pub fn checks() -> Vec<Check> {
         Check::new("unified_model.held_out_tau_mu",
                    held_out_tau_over_mu(14.377).unwrap_or(f64::NAN),
                    "held-out tau/mu predicted from fitting p to mu/e only"),
+        Check::new("unified_model.held_out_spacing",
+                   held_out_spacing_from_mu_e(14.377).unwrap_or(f64::NAN),
+                   "second held-out: level-spacing ratio predicted from p fitted to mu/e"),
     ]
 }
 
@@ -198,5 +213,15 @@ mod tests {
         // The fitted p is close to 1/18 but not forced to it.
         let p = fit_p_to_ratio(14.377).unwrap();
         assert!((p - 1.0 / 18.0).abs() < 0.001, "fitted p = {p}");
+    }
+
+    #[test]
+    fn second_held_out_spacing_ratio() {
+        // An observable independent of both hierarchy ratios, predicted from
+        // the same single fitted p, compared with the value computed from PDG.
+        let predicted = held_out_spacing_from_mu_e(14.377).unwrap();
+        let pdg = crate::shape_freedom::pdg_spacing_ratio();
+        assert!((predicted - pdg).abs() / pdg < 0.01,
+                "predicted spacing = {predicted}, PDG = {pdg}");
     }
 }

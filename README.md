@@ -143,6 +143,7 @@ fluid-universe/
 │   ├── geometry.rs           <- exact Q=2/3 <=> 45-degree angle to (1,1,1)
 │   ├── anomaly.rs            <- anomaly-free generation-charge no-go
 │   ├── unified_model.rs      <- single Z3-circulant model with held-out prediction
+│   ├── shape_freedom.rs      <- proof that p is free under the symmetry
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue

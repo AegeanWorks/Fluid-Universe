@@ -7,7 +7,7 @@ use fluid_universe::{
     Check, all_checks, anomaly, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector,
     fn_scan, froggatt, geometry, lorentz, mass_spectrum, modular, orthogonal, poisson, potential_family,
     potts_sector, puddle,
-    quark_rg, reports, rg_sector, rotor, simulation, spectra, spinodal, su3, two_component,
+    quark_rg, reports, rg_sector, rotor, shape_freedom, simulation, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
     xy_z3,
 };
@@ -73,7 +73,7 @@ fn main() {
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
         | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
         | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" | "anomaly"
-        | "unified_model" => {
+        | "unified_model" | "shape_freedom" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -110,6 +110,7 @@ fn main() {
                 "geometry" => geometry::checks(),
                 "anomaly" => anomaly::checks(),
                 "unified_model" => unified_model::checks(),
+                "shape_freedom" => shape_freedom::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

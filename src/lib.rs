@@ -27,6 +27,7 @@ pub mod puddle;
 pub mod quark_rg;
 pub mod potts_sector;
 pub mod rg_sector;
+pub mod shape_freedom;
 pub mod reports;
 pub mod rotor;
 pub mod simulation;
@@ -81,6 +82,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(reports::checks());
     out.extend(unification::checks());
     out.extend(unified_model::checks());
+    out.extend(shape_freedom::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
