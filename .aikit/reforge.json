@@ -4628,7 +4628,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T21:52:20",
+      "updated": "2026-11-22T22:03:27",
       "last_audit": {
         "run": "run-3",
         "stage": 38,
@@ -4866,13 +4866,39 @@
           "cc73aa1228e196329ff80d5086cbbfbd37209f70",
           "faa31f97d31eb39e7a9fb62c30b3f886514009df"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review-hawking-output-untested",
+            "category": "improvement",
+            "severity": "low",
+            "path": "src/water_mechanics.rs",
+            "line": 69,
+            "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+            "evidence": "let hawking = 1.054571817e-34 * kappa",
+            "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+            "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "improvement": 1
+        },
         "reviewed": 6,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "src/quark_rg.rs:17: the evidence is not in the current file (it may quote a removed line)",
+            "src/quark_rg.rs:22: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             "README.md",
             "src/lib.rs",
@@ -4883,7 +4909,36 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-38-174bf1cb0173.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 17,
+            "total": 17,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review-hawking-output-untested",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/water_mechanics.rs",
+              "line": 69,
+              "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+              "evidence": "let hawking = 1.054571817e-34 * kappa",
+              "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+              "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -10135,13 +10190,39 @@
             "cc73aa1228e196329ff80d5086cbbfbd37209f70",
             "faa31f97d31eb39e7a9fb62c30b3f886514009df"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review-hawking-output-untested",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/water_mechanics.rs",
+              "line": 69,
+              "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+              "evidence": "let hawking = 1.054571817e-34 * kappa",
+              "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+              "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "improvement": 1
+          },
           "reviewed": 6,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "src/quark_rg.rs:17: the evidence is not in the current file (it may quote a removed line)",
+              "src/quark_rg.rs:22: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               "README.md",
               "src/lib.rs",
@@ -10152,7 +10233,36 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-38-174bf1cb0173.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 17,
+              "total": 17,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review-hawking-output-untested",
+                "category": "improvement",
+                "severity": "low",
+                "path": "src/water_mechanics.rs",
+                "line": 69,
+                "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+                "evidence": "let hawking = 1.054571817e-34 * kappa",
+                "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+                "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -10527,13 +10637,39 @@
       "cc73aa1228e196329ff80d5086cbbfbd37209f70",
       "faa31f97d31eb39e7a9fb62c30b3f886514009df"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review-hawking-output-untested",
+        "category": "improvement",
+        "severity": "low",
+        "path": "src/water_mechanics.rs",
+        "line": 69,
+        "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+        "evidence": "let hawking = 1.054571817e-34 * kappa",
+        "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+        "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "improvement": 1
+    },
     "reviewed": 6,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "src/quark_rg.rs:17: the evidence is not in the current file (it may quote a removed line)",
+        "src/quark_rg.rs:22: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         "README.md",
         "src/lib.rs",
@@ -10544,7 +10680,36 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-38-174bf1cb0173.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 17,
+        "total": 17,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review-hawking-output-untested",
+          "category": "improvement",
+          "severity": "low",
+          "path": "src/water_mechanics.rs",
+          "line": 69,
+          "message": "The new `horizon` function returns an analogue Hawking temperature and `checks()` publishes it as `water_mechanics.hawking_temperature`, yet the only test of `horizon` discards that slot as `_` and asserts c, radius and kappa alone. A regression in the temperature expression, including a wrong unit factor, would pass the suite unnoticed; add a fixed expected-value assertion for the fourth tuple me",
+          "evidence": "let hawking = 1.054571817e-34 * kappa",
+          "commit": "202ffc5ef90d177cb1e46f36f2ed57c99694f7f9",
+          "hunk": "202ffc5ef90d:src/water_mechanics.rs#1",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
