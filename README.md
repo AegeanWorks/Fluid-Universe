@@ -152,6 +152,7 @@ fluid-universe/
 │   ├── phase_arithmetic.rs   <- delta rational-in-radians vs pi-multiple angles
 │   ├── conformal_block.rs    <- N=3 uniqueness from h_box and braiding data
 │   ├── monodromy.rs          <- cube identity arg(z^3)=Q; N=3 over-determination
+│   ├── rep_scan.rs           <- exhaustive SU(3)_k rep scan: only leptons fit
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue

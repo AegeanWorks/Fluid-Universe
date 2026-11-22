@@ -35,6 +35,7 @@ pub mod potts_sector;
 pub mod rg_sector;
 pub mod shape_freedom;
 pub mod reports;
+pub mod rep_scan;
 pub mod rotor;
 pub mod simulation;
 pub mod spectra;
@@ -99,6 +100,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(phase_arithmetic::checks());
     out.extend(conformal_block::checks());
     out.extend(monodromy::checks());
+    out.extend(rep_scan::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());

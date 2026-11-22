@@ -8,7 +8,7 @@ use fluid_universe::{
     flux_quantization, flux_sector,
     fn_scan, froggatt, geometry, lorentz, mass_spectrum, modular, monodromy, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
-    quark_rg, reports, rg_sector, rotor, shape_freedom, simulation, spectra, spinodal, su3, two_component,
+    quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
     quark_phases, wzw, wzw_crosscheck, xy_z3,
 };
@@ -76,7 +76,7 @@ fn main() {
         | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" | "anomaly"
         | "unified_model" | "shape_freedom" | "flux_quantization" | "wzw" | "wzw_crosscheck"
         | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
-        | "monodromy" => {
+        | "monodromy" | "rep_scan" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -122,6 +122,7 @@ fn main() {
                 "phase_arithmetic" => phase_arithmetic::checks(),
                 "conformal_block" => conformal_block::checks(),
                 "monodromy" => monodromy::checks(),
+                "rep_scan" => rep_scan::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
