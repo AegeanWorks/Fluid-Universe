@@ -44,6 +44,7 @@ pub mod vortex_unification;
 pub mod water;
 pub mod water_mechanics;
 pub mod water_unification;
+pub mod wzw;
 pub mod xy_z3;
 
 use std::fmt;
@@ -85,6 +86,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(unified_model::checks());
     out.extend(shape_freedom::checks());
     out.extend(flux_quantization::checks());
+    out.extend(wzw::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
