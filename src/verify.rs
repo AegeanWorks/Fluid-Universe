@@ -27,6 +27,10 @@ impl Verification {
 
 /// Re-derive all checks twice in the same process. Useful as a cheap determinism
 /// smoke test; delivery uses `verify` in the binary, which spawns two processes.
+/// NOT valid G-001 evidence: both derivations share one process.
+/// The `verify` subcommand must spawn two child processes instead.
+/// NOT valid G-001 evidence: both derivations share one process.
+/// The `verify` subcommand must spawn two child processes instead.
 pub fn verify_in_process() -> Verification {
     let first = all_checks();
     let second = all_checks();
