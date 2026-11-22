@@ -4624,7 +4624,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T21:37:37",
+      "updated": "2026-11-22T21:48:49",
       "last_audit": {
         "run": "run-3",
         "stage": 37,
@@ -4855,12 +4855,35 @@
           "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
           "de85c70b590011f7973e8423db171b4e051a7c7e"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review-shape-kill-wrong-observable",
+            "category": "review",
+            "severity": "medium",
+            "path": "results/verification.json",
+            "line": 956,
+            "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+            "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+            "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+            "hunk": "cc73aa1228e1:results/verification.json#2",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "review": 1
+        },
         "reviewed": 62,
         "review": {
-          "status": "unreviewed",
+          "status": "reviewed",
           "rejected": [],
           "files": [
             ".aikit/decisions.md",
@@ -4928,7 +4951,36 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-37-015ab759b995.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 72,
+            "total": 72,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review-shape-kill-wrong-observable",
+              "category": "review",
+              "severity": "medium",
+              "path": "results/verification.json",
+              "line": 956,
+              "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+              "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+              "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+              "hunk": "cc73aa1228e1:results/verification.json#2",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -10013,12 +10065,35 @@
             "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
             "de85c70b590011f7973e8423db171b4e051a7c7e"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review-shape-kill-wrong-observable",
+              "category": "review",
+              "severity": "medium",
+              "path": "results/verification.json",
+              "line": 956,
+              "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+              "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+              "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+              "hunk": "cc73aa1228e1:results/verification.json#2",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "review": 1
+          },
           "reviewed": 62,
           "review": {
-            "status": "unreviewed",
+            "status": "reviewed",
             "rejected": [],
             "files": [
               ".aikit/decisions.md",
@@ -10086,7 +10161,36 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-37-015ab759b995.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 72,
+              "total": 72,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review-shape-kill-wrong-observable",
+                "category": "review",
+                "severity": "medium",
+                "path": "results/verification.json",
+                "line": 956,
+                "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+                "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+                "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+                "hunk": "cc73aa1228e1:results/verification.json#2",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -10450,12 +10554,35 @@
       "5e6bb615dc7bd30cd6b819efbc7d9d714b87770d",
       "de85c70b590011f7973e8423db171b4e051a7c7e"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review-shape-kill-wrong-observable",
+        "category": "review",
+        "severity": "medium",
+        "path": "results/verification.json",
+        "line": 956,
+        "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+        "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+        "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+        "hunk": "cc73aa1228e1:results/verification.json#2",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "review": 1
+    },
     "reviewed": 62,
     "review": {
-      "status": "unreviewed",
+      "status": "reviewed",
       "rejected": [],
       "files": [
         ".aikit/decisions.md",
@@ -10523,7 +10650,36 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-37-015ab759b995.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 72,
+        "total": 72,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review-shape-kill-wrong-observable",
+          "category": "review",
+          "severity": "medium",
+          "path": "results/verification.json",
+          "line": 956,
+          "message": "ADR-034 registered the 0.15 kill threshold for the observed band's high/low half-width ratio and 0.3 for skew, but this recomputation feeds it the ratio of two fitted Gaussian component widths (0.71/0.37) and never checks any skew value, while still reporting FALSIFIED. The pre-registered symmetry test is not what gets verified here.",
+          "evidence": "\"detail\": \"comp_ratio=1.9189189189189189, tail_n=4.4, status=FALSIFIED (Gaussian-only shape; sqrt(lam\"",
+          "commit": "cc73aa1228e196329ff80d5086cbbfbd37209f70",
+          "hunk": "cc73aa1228e1:results/verification.json#2",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
