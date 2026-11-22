@@ -38,30 +38,6 @@
     },
     {
       "task_id": "reforge:run-3",
-      "phase": "reforge stage 30",
-      "phase_num": 3,
-      "description": "Reforge stage 30: stage 30 host review reviewed; run active; coverage 79/79",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795370631.57615,
-      "timestamp_str": "2026-11-22 21:03:51",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
-      "task_id": "reforge:run-3",
-      "phase": "reforge stage 31",
-      "phase_num": 3,
-      "description": "Reforge stage 31: window 92, 4 commit(s), 5 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795370659.2084274,
-      "timestamp_str": "2026-11-22 21:04:19",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
-      "task_id": "reforge:run-3",
       "phase": "reforge stage 31",
       "phase_num": 3,
       "description": "Reforge stage 31: stage 31 host review reviewed; run active; coverage 9/9",
@@ -261,6 +237,30 @@
       "status": "in_progress",
       "timestamp": 1795374686.8539665,
       "timestamp_str": "2026-11-22 22:11:26",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 40",
+      "phase_num": 3,
+      "description": "Reforge stage 40: window 119, 2 commit(s), 1 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795374740.1393406,
+      "timestamp_str": "2026-11-22 22:12:20",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 40",
+      "phase_num": 3,
+      "description": "Reforge stage 40: stage 40 host review reviewed; run active; coverage 1/1",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795374800.8879387,
+      "timestamp_str": "2026-11-22 22:13:20",
       "agent": "opencode",
       "operator_task": "rust-rewrite-2026-11-22"
     }
