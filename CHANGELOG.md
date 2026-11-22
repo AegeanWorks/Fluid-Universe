@@ -965,7 +965,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Results**
 
-- Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.5e-14 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
+- Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.49e-08 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
 
 - Verification after the Yasui discriminator: two separate runs, 281/281 checks each.
 
