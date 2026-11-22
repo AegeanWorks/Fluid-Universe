@@ -21,7 +21,7 @@ pub fn root_y() -> f64 {
 }
 
 /// Exact depth/l_c at which q = k l_c = 1/sqrt(2) at the phase-speed minimum.
-/// From the stationarity condition with q=1/sqrt2: sinh(2x)=3x, x=d/sqrt2.
+/// From the stationarity condition with q=1/sqrt2: sinh(2x)=6x, x=d/sqrt2.
 pub fn required_depth_over_lc() -> f64 {
     // y = 2x and d = sqrt(2) x, so d = y / sqrt(2).
     root_y() / std::f64::consts::SQRT_2
