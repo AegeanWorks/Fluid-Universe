@@ -147,6 +147,7 @@ fluid-universe/
 │   ├── flux_quantization.rs  <- discrete-flux candidate to fix p (fails)
 │   ├── wzw.rs                <- SU(3)_3 conformal dimension derives delta=2/9
 │   ├── wzw_crosscheck.rs     <- independent neutrino/quark sector cross-check
+│   ├── quark_phases.rs       <- literature quark phases fail the hierarchies
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue

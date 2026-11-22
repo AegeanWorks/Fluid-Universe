@@ -25,6 +25,7 @@ pub mod poisson;
 pub mod orthogonal;
 pub mod potential_family;
 pub mod puddle;
+pub mod quark_phases;
 pub mod quark_rg;
 pub mod potts_sector;
 pub mod rg_sector;
@@ -89,6 +90,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(flux_quantization::checks());
     out.extend(wzw::checks());
     out.extend(wzw_crosscheck::checks());
+    out.extend(quark_phases::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
