@@ -12,7 +12,7 @@ Two Pinney branches; Newton finds both; no third attractor.
 | hbump | B_1 (5.65e-08) | 4.676e-11 |
 | Jacobi B_1 first zero | None |
 | analytic action B_1 | -0.390634083 |
-| scaling omega=2 branches | 2 |
+| scaling omega=2 branches attained | 1 (both runs land on B_1) |
 
 ## Verdict
 
