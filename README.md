@@ -148,6 +148,7 @@ fluid-universe/
 │   ├── spinodal.rs           <- tilted Z3 potential spinodal and curvature masses
 │   ├── rg_sector.rs          <- one-loop RG flow of the Koide phase and ratio
 │   ├── two_component.rs      <- coupled topological and Z3-ordered layers
+│   ├── potts_sector.rs       <- Z3 centre/Potts transfer matrix and Koide ratio
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

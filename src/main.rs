@@ -5,8 +5,8 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
-    mass_spectrum, potential_family, reports, rg_sector, rotor, simulation, spectra, spinodal,
-    two_component, unification, verify, water,
+    mass_spectrum, potential_family, potts_sector, reports, rg_sector, rotor, simulation, spectra,
+    spinodal, two_component, unification, verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -66,7 +66,8 @@ fn main() {
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
-        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component" => {
+        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
+        | "potts_sector" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -85,6 +86,7 @@ fn main() {
                 "spinodal" => spinodal::checks(),
                 "rg_sector" => rg_sector::checks(),
                 "two_component" => two_component::checks(),
+                "potts_sector" => potts_sector::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -155,6 +157,17 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "potts" => {
+                    println!("K,ratio,Q,delta_check");
+                    for index in 0..=80 {
+                        let k = index as f64 * 0.025;
+                        let ratio = potts_sector::transfer_ratio(k);
+                        let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));
+                        println!("{k:.3},{ratio:.9},{:.9},{}",
+                                 q.unwrap_or(f64::NAN),
+                                 if q.is_some() { "positive" } else { "negative" });
                     }
                 }
                 "twocomp" => {
