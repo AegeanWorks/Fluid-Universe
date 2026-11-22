@@ -5,6 +5,7 @@
 //! module ports one family of checks from the former Python implementation;
 //! `verify` re-derives the results in two separate processes (project rule G-001).
 
+pub mod anomaly;
 pub mod audit;
 pub mod circulant;
 pub mod confinement;
@@ -100,6 +101,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(modular::checks());
     out.extend(su3::checks());
     out.extend(geometry::checks());
+    out.extend(anomaly::checks());
     out
 }
 
