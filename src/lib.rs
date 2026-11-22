@@ -34,6 +34,7 @@ pub mod spectra;
 pub mod su3;
 pub mod spinodal;
 pub mod two_component;
+pub mod unified_model;
 pub mod unification;
 pub mod variation;
 pub mod verify;
@@ -79,6 +80,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(audit::checks());
     out.extend(reports::checks());
     out.extend(unification::checks());
+    out.extend(unified_model::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
