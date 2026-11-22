@@ -37,30 +37,6 @@
       ]
     },
     {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 9",
-      "phase_num": 3,
-      "description": "Reforge stage 9: run resumed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1795355936.775261,
-      "timestamp_str": "2026-11-22 16:58:56",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
-      "task_id": "reforge:run-1",
-      "phase": "reforge stage 9",
-      "phase_num": 3,
-      "description": "Reforge stage 9: run stopped at stage 9; resume it with `reforge resume`",
-      "files_affected": [],
-      "status": "suspended",
-      "timestamp": 1795356057.9941218,
-      "timestamp_str": "2026-11-22 17:00:57",
-      "agent": "opencode",
-      "operator_task": "rust-rewrite-2026-11-22"
-    },
-    {
       "task_id": "reforge:run-3",
       "phase": "reforge run",
       "phase_num": 3,
@@ -265,6 +241,30 @@
       "status": "in_progress",
       "timestamp": 1795359925.778829,
       "timestamp_str": "2026-11-22 18:05:25",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: window 14, 3 commit(s), 66 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795360079.3857882,
+      "timestamp_str": "2026-11-22 18:07:59",
+      "agent": "opencode",
+      "operator_task": "rust-rewrite-2026-11-22"
+    },
+    {
+      "task_id": "reforge:run-3",
+      "phase": "reforge stage 5",
+      "phase_num": 3,
+      "description": "Reforge stage 5: stage 5 host review reviewed; run active; coverage 74/74",
+      "files_affected": [],
+      "status": "in_progress",
+      "timestamp": 1795360529.645978,
+      "timestamp_str": "2026-11-22 18:15:29",
       "agent": "opencode",
       "operator_task": "rust-rewrite-2026-11-22"
     }
