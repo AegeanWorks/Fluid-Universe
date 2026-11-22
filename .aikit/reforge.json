@@ -4546,7 +4546,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T19:16:44",
+      "updated": "2026-11-22T19:19:06",
       "last_audit": {
         "run": "run-3",
         "stage": 11,
@@ -4637,7 +4637,7 @@
             "reproducible": false,
             "fixable": true,
             "interaction": "",
-            "repaired": false,
+            "repaired": true,
             "source": "review",
             "patch_old": "4 starts incl. +-0.5 displaced mu converge",
             "patch_new": "5 starts incl. +-0.5 displaced mu converge"
@@ -4663,7 +4663,16 @@
             "patch_new": ""
           }
         ],
-        "repairs": [],
+        "repairs": [
+          {
+            "code": "review-claim53-start-count-mismatch",
+            "path": "claims.md",
+            "line": 83,
+            "summary": "already repaired by hand: Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but ST",
+            "test_name": "",
+            "applied": true
+          }
+        ],
         "counts": {
           "review": 2
         },
@@ -4671,7 +4680,8 @@
         "review": {
           "status": "reviewed",
           "rejected": [
-            "claims.md:209: suggestion dropped (the quoted text is outside the lines this stage added)"
+            "claims.md:83: the evidence is not in the current file (it may quote a removed line)",
+            "claims.md:209: the evidence is not in the current file (it may quote a removed line)"
           ],
           "files": [
             ".aikit/decisions.md",
@@ -4742,48 +4752,7 @@
             "unknown": [],
             "invalid": []
           },
-          "findings": [
-            {
-              "code": "review-claim53-start-count-mismatch",
-              "category": "review",
-              "severity": "medium",
-              "path": "claims.md",
-              "line": 83,
-              "message": "Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but STARTS in theory/variational_center.py and meta.config.starts / result.scales.extrema in results/variational_center.json contain five starts ((0,1), (0,1.05), (0,0.95), (0.5,1), (-0.5,1)); ADR-045, CHANGELOG and SCORECARD from the same commit all say five. The canonical ledger understates the evidence base.",
-              "evidence": "| 53 | The time-dependent Gaussian Ritz trial with center mu(t) and width sigma(t) extremizes the G-M action exactly at the constant path (0, sigma_q); mu oscillates at 2pi and sigma at pi (jointly in one run), the EL matches Ermakov term-by-term, and the mixed sector stays decoupled. | numeric (center-width co-emergence demonstrated) | **NUMERIC (center-width co-emergence demonstrated)** | `theor",
-              "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-              "hunk": "d7a28ab4ed30:claims.md#1",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": true,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "4 starts incl. +-0.5 displaced mu converge",
-              "patch_new": "5 starts incl. +-0.5 displaced mu converge"
-            },
-            {
-              "code": "review",
-              "category": "review",
-              "severity": "medium",
-              "path": "claims.md",
-              "line": 209,
-              "message": "Claim 53 status-history entry repeats 'from 4 starts including +-0.5 displaced centers' although the artifact records five converged extrema including both displaced centers; the status history should match the five-start ADR-045 and result config.",
-              "evidence": "- 2026-11-03 (center-width co-emergence demonstrated, claim 53): the time-dependent Gaussian Ritz trial with moving center mu(t) and breathing width sigma(t) extremizes one G-M action exactly at the constant path (0, sigma_q) from 4 starts including +-0.5 displaced centers (max dev 1.3e-21, residuals 2.2e-16); Verlet release oscillates with mu period 2pi (err 2.6e-7) and sigma period pi (err 5.2e-",
-              "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-              "hunk": "d7a28ab4ed30:claims.md#2",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": false,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "",
-              "patch_new": ""
-            }
-          ],
+          "findings": [],
           "attestations": []
         },
         "skipped": [],
@@ -4794,10 +4763,11 @@
           "short": "",
           "pushed": false,
           "push_error": null,
-          "empty": true,
-          "timestamp": "2026-11-22T18:41:31"
+          "empty": false,
+          "timestamp": "2026-11-22T19:19:06"
         },
-        "timestamp": "2026-11-22T18:41:31"
+        "timestamp": "2026-11-22T18:41:31",
+        "dirty_targets": []
       },
       "history": [
         {
@@ -6620,7 +6590,7 @@
               "reproducible": false,
               "fixable": true,
               "interaction": "",
-              "repaired": false,
+              "repaired": true,
               "source": "review",
               "patch_old": "4 starts incl. +-0.5 displaced mu converge",
               "patch_new": "5 starts incl. +-0.5 displaced mu converge"
@@ -6646,7 +6616,16 @@
               "patch_new": ""
             }
           ],
-          "repairs": [],
+          "repairs": [
+            {
+              "code": "review-claim53-start-count-mismatch",
+              "path": "claims.md",
+              "line": 83,
+              "summary": "already repaired by hand: Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but ST",
+              "test_name": "",
+              "applied": true
+            }
+          ],
           "counts": {
             "review": 2
           },
@@ -6654,7 +6633,8 @@
           "review": {
             "status": "reviewed",
             "rejected": [
-              "claims.md:209: suggestion dropped (the quoted text is outside the lines this stage added)"
+              "claims.md:83: the evidence is not in the current file (it may quote a removed line)",
+              "claims.md:209: the evidence is not in the current file (it may quote a removed line)"
             ],
             "files": [
               ".aikit/decisions.md",
@@ -6725,48 +6705,7 @@
               "unknown": [],
               "invalid": []
             },
-            "findings": [
-              {
-                "code": "review-claim53-start-count-mismatch",
-                "category": "review",
-                "severity": "medium",
-                "path": "claims.md",
-                "line": 83,
-                "message": "Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but STARTS in theory/variational_center.py and meta.config.starts / result.scales.extrema in results/variational_center.json contain five starts ((0,1), (0,1.05), (0,0.95), (0.5,1), (-0.5,1)); ADR-045, CHANGELOG and SCORECARD from the same commit all say five. The canonical ledger understates the evidence base.",
-                "evidence": "| 53 | The time-dependent Gaussian Ritz trial with center mu(t) and width sigma(t) extremizes the G-M action exactly at the constant path (0, sigma_q); mu oscillates at 2pi and sigma at pi (jointly in one run), the EL matches Ermakov term-by-term, and the mixed sector stays decoupled. | numeric (center-width co-emergence demonstrated) | **NUMERIC (center-width co-emergence demonstrated)** | `theor",
-                "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-                "hunk": "d7a28ab4ed30:claims.md#1",
-                "symbol": "",
-                "introduced": true,
-                "reproducible": false,
-                "fixable": true,
-                "interaction": "",
-                "repaired": false,
-                "source": "review",
-                "patch_old": "4 starts incl. +-0.5 displaced mu converge",
-                "patch_new": "5 starts incl. +-0.5 displaced mu converge"
-              },
-              {
-                "code": "review",
-                "category": "review",
-                "severity": "medium",
-                "path": "claims.md",
-                "line": 209,
-                "message": "Claim 53 status-history entry repeats 'from 4 starts including +-0.5 displaced centers' although the artifact records five converged extrema including both displaced centers; the status history should match the five-start ADR-045 and result config.",
-                "evidence": "- 2026-11-03 (center-width co-emergence demonstrated, claim 53): the time-dependent Gaussian Ritz trial with moving center mu(t) and breathing width sigma(t) extremizes one G-M action exactly at the constant path (0, sigma_q) from 4 starts including +-0.5 displaced centers (max dev 1.3e-21, residuals 2.2e-16); Verlet release oscillates with mu period 2pi (err 2.6e-7) and sigma period pi (err 5.2e-",
-                "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-                "hunk": "d7a28ab4ed30:claims.md#2",
-                "symbol": "",
-                "introduced": true,
-                "reproducible": false,
-                "fixable": false,
-                "interaction": "",
-                "repaired": false,
-                "source": "review",
-                "patch_old": "",
-                "patch_new": ""
-              }
-            ],
+            "findings": [],
             "attestations": []
           },
           "skipped": [],
@@ -6777,10 +6716,11 @@
             "short": "",
             "pushed": false,
             "push_error": null,
-            "empty": true,
-            "timestamp": "2026-11-22T18:41:31"
+            "empty": false,
+            "timestamp": "2026-11-22T19:19:06"
           },
-          "timestamp": "2026-11-22T18:41:31"
+          "timestamp": "2026-11-22T18:41:31",
+          "dirty_targets": []
         }
       ],
       "total_commits": 118
@@ -6912,7 +6852,7 @@
         "reproducible": false,
         "fixable": true,
         "interaction": "",
-        "repaired": false,
+        "repaired": true,
         "source": "review",
         "patch_old": "4 starts incl. +-0.5 displaced mu converge",
         "patch_new": "5 starts incl. +-0.5 displaced mu converge"
@@ -6938,7 +6878,16 @@
         "patch_new": ""
       }
     ],
-    "repairs": [],
+    "repairs": [
+      {
+        "code": "review-claim53-start-count-mismatch",
+        "path": "claims.md",
+        "line": 83,
+        "summary": "already repaired by hand: Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but ST",
+        "test_name": "",
+        "applied": true
+      }
+    ],
     "counts": {
       "review": 2
     },
@@ -6946,7 +6895,8 @@
     "review": {
       "status": "reviewed",
       "rejected": [
-        "claims.md:209: suggestion dropped (the quoted text is outside the lines this stage added)"
+        "claims.md:83: the evidence is not in the current file (it may quote a removed line)",
+        "claims.md:209: the evidence is not in the current file (it may quote a removed line)"
       ],
       "files": [
         ".aikit/decisions.md",
@@ -7017,48 +6967,7 @@
         "unknown": [],
         "invalid": []
       },
-      "findings": [
-        {
-          "code": "review-claim53-start-count-mismatch",
-          "category": "review",
-          "severity": "medium",
-          "path": "claims.md",
-          "line": 83,
-          "message": "Claim 53 ledger row reports '4 starts incl. +-0.5 displaced mu converge', but STARTS in theory/variational_center.py and meta.config.starts / result.scales.extrema in results/variational_center.json contain five starts ((0,1), (0,1.05), (0,0.95), (0.5,1), (-0.5,1)); ADR-045, CHANGELOG and SCORECARD from the same commit all say five. The canonical ledger understates the evidence base.",
-          "evidence": "| 53 | The time-dependent Gaussian Ritz trial with center mu(t) and width sigma(t) extremizes the G-M action exactly at the constant path (0, sigma_q); mu oscillates at 2pi and sigma at pi (jointly in one run), the EL matches Ermakov term-by-term, and the mixed sector stays decoupled. | numeric (center-width co-emergence demonstrated) | **NUMERIC (center-width co-emergence demonstrated)** | `theor",
-          "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-          "hunk": "d7a28ab4ed30:claims.md#1",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": true,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "4 starts incl. +-0.5 displaced mu converge",
-          "patch_new": "5 starts incl. +-0.5 displaced mu converge"
-        },
-        {
-          "code": "review",
-          "category": "review",
-          "severity": "medium",
-          "path": "claims.md",
-          "line": 209,
-          "message": "Claim 53 status-history entry repeats 'from 4 starts including +-0.5 displaced centers' although the artifact records five converged extrema including both displaced centers; the status history should match the five-start ADR-045 and result config.",
-          "evidence": "- 2026-11-03 (center-width co-emergence demonstrated, claim 53): the time-dependent Gaussian Ritz trial with moving center mu(t) and breathing width sigma(t) extremizes one G-M action exactly at the constant path (0, sigma_q) from 4 starts including +-0.5 displaced centers (max dev 1.3e-21, residuals 2.2e-16); Verlet release oscillates with mu period 2pi (err 2.6e-7) and sigma period pi (err 5.2e-",
-          "commit": "d7a28ab4ed302b50b66239b4d55dcd9ba8e415a1",
-          "hunk": "d7a28ab4ed30:claims.md#2",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": false,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "",
-          "patch_new": ""
-        }
-      ],
+      "findings": [],
       "attestations": []
     },
     "skipped": [],
@@ -7069,10 +6978,11 @@
       "short": "",
       "pushed": false,
       "push_error": null,
-      "empty": true,
-      "timestamp": "2026-11-22T18:41:31"
+      "empty": false,
+      "timestamp": "2026-11-22T19:19:06"
     },
-    "timestamp": "2026-11-22T18:41:31"
+    "timestamp": "2026-11-22T18:41:31",
+    "dirty_targets": []
   },
   "history": []
 }
