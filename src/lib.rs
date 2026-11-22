@@ -15,6 +15,7 @@ pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
 pub mod potential_family;
+pub mod rg_sector;
 pub mod reports;
 pub mod rotor;
 pub mod simulation;
@@ -64,6 +65,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());
     out.extend(spinodal::checks());
+    out.extend(rg_sector::checks());
     out
 }
 

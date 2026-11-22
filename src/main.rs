@@ -5,8 +5,8 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
-    mass_spectrum, potential_family, reports, rotor, simulation, spectra, spinodal, unification,
-    verify, water,
+    mass_spectrum, potential_family, reports, rg_sector, rotor, simulation, spectra, spinodal,
+    unification, verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -66,7 +66,7 @@ fn main() {
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
-        | "potential_family" | "flux_sector" | "spinodal" => {
+        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -83,6 +83,7 @@ fn main() {
                 "potential_family" => potential_family::checks(),
                 "flux_sector" => flux_sector::checks(),
                 "spinodal" => spinodal::checks(),
+                "rg_sector" => rg_sector::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -153,6 +154,18 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "rgscan" => {
+                    println!("delta0,delta_mz,drift,ratio_mz");
+                    for index in 0..=40 {
+                        let delta0 = index as f64 * 0.025;
+                        let state = rg_sector::run_high_to_mz(
+                            delta0, 2.0_f64.powf(-0.5));
+                        println!("{delta0:.3},{:.9},{:+.3e},{:.9}",
+                                 rg_sector::phase(&state),
+                                 rg_sector::phase(&state) - delta0,
+                                 rg_sector::effective_ratio(&state));
                     }
                 }
                 "spinodal" => {
