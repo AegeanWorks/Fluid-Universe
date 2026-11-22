@@ -5,8 +5,8 @@ use std::process::Command;
 
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
-    mass_spectrum, potential_family, potts_sector, quark_rg, reports, rg_sector, rotor, simulation,
-    spectra, spinodal, two_component, unification, verify, water, water_mechanics,
+    mass_spectrum, potential_family, potts_sector, puddle, quark_rg, reports, rg_sector, rotor,
+    simulation, spectra, spinodal, two_component, unification, verify, water, water_mechanics,
     water_unification, xy_z3,
 };
 
@@ -68,7 +68,8 @@ fn main() {
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
-        | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification" => {
+        | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
+        | "puddle" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -92,6 +93,7 @@ fn main() {
                 "quark_rg" => quark_rg::checks(),
                 "water_mechanics" => water_mechanics::checks(),
                 "water_unification" => water_unification::checks(),
+                "puddle" => puddle::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

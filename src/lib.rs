@@ -15,6 +15,7 @@ pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
 pub mod potential_family;
+pub mod puddle;
 pub mod quark_rg;
 pub mod potts_sector;
 pub mod rg_sector;
@@ -78,6 +79,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(quark_rg::checks());
     out.extend(water_mechanics::checks());
     out.extend(water_unification::checks());
+    out.extend(puddle::checks());
     out
 }
 

@@ -14,12 +14,12 @@ const C: f64 = 1.0 / (16.0 * PI * PI);
 fn deriv(s: &State) -> State {
     let [yd, ys, yb, yt, g1, g2, g3] = s;
     let t = yt * yt + yd * yd + ys * ys + yb * yb;
-    let common = t - 8.0 * g3 * g3 - g1 * g1 / 6.0 - 2.25 * g2 * g2;
+    let common = t - 8.0 * g3 * g3 - (5.0 / 12.0) * g1 * g1 - 2.25 * g2 * g2;
     [
         C * yd * (1.5 * yd * yd + common),
         C * ys * (1.5 * ys * ys + common),
         C * yb * (1.5 * yb * yb + common),
-        C * yt * (3.0 * yt * yt + 0.5 * t - 8.0 * g3 * g3
+        C * yt * (4.0 * yt * yt + 0.5 * t - 8.0 * g3 * g3
                   - 17.0 / 12.0 * g1 * g1 - 2.25 * g2 * g2),
         C * (41.0 / 6.0) * g1 * g1 * g1,
         C * (-19.0 / 6.0) * g2 * g2 * g2,
