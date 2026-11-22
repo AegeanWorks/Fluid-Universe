@@ -23,6 +23,7 @@ pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
 pub mod modular;
+pub mod monodromy;
 pub mod poisson;
 pub mod orthogonal;
 pub mod potential_family;
@@ -97,6 +98,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(circulant_inverse::checks());
     out.extend(phase_arithmetic::checks());
     out.extend(conformal_block::checks());
+    out.extend(monodromy::checks());
     out.extend(mass_spectrum::checks());
     out.extend(potential_family::checks());
     out.extend(flux_sector::checks());

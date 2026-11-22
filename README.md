@@ -151,6 +151,7 @@ fluid-universe/
 │   ├── circulant_inverse.rs  <- exact no-go: quark hierarchies imply wrong Q
 │   ├── phase_arithmetic.rs   <- delta rational-in-radians vs pi-multiple angles
 │   ├── conformal_block.rs    <- N=3 uniqueness from h_box and braiding data
+│   ├── monodromy.rs          <- cube identity arg(z^3)=Q; N=3 over-determination
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
