@@ -11,6 +11,7 @@ pub mod confinement;
 pub mod derrick;
 pub mod fft;
 pub mod fluid;
+pub mod froggatt;
 pub mod flux_sector;
 pub mod linalg;
 pub mod lorentz;
@@ -90,6 +91,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(poisson::checks());
     out.extend(orthogonal::checks());
     out.extend(confinement::checks());
+    out.extend(froggatt::checks());
     out
 }
 

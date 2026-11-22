@@ -137,6 +137,7 @@ fluid-universe/
 │   ├── rotor.rs              <- rotor sectors and wall tension
 │   ├── derrick.rs            <- scaling and virial
 │   ├── confinement.rs        <- Cornell-potential radial spectrum and Koide Q
+│   ├── froggatt.rs           <- FN integer-charge mass ansatz and hierarchy test
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
 │   ├── lorentz.rs            <- director anisotropy
