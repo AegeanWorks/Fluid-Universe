@@ -4540,7 +4540,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T18:30:53",
+      "updated": "2026-11-22T18:39:42",
       "last_audit": {
         "run": "run-3",
         "stage": 9,
@@ -4603,13 +4603,38 @@
           "6e422a66db14a66efe9032f8ab71d40d6b29b583",
           "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review",
+            "category": "review",
+            "severity": "medium",
+            "path": "results/verification.json",
+            "line": 3932,
+            "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+            "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+            "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+            "hunk": "e8b65396cbcf:results/verification.json#3",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "review": 1
+        },
         "reviewed": 21,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "results/gaussian_bridge.md:15: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             ".aikit/decisions.md",
             ".aikit/project.json",
@@ -4635,7 +4660,36 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-9-ef7b953affba.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 25,
+            "total": 25,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "medium",
+              "path": "results/verification.json",
+              "line": 3932,
+              "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+              "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+              "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+              "hunk": "e8b65396cbcf:results/verification.json#3",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -6176,13 +6230,38 @@
             "6e422a66db14a66efe9032f8ab71d40d6b29b583",
             "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review",
+              "category": "review",
+              "severity": "medium",
+              "path": "results/verification.json",
+              "line": 3932,
+              "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+              "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+              "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+              "hunk": "e8b65396cbcf:results/verification.json#3",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "review": 1
+          },
           "reviewed": 21,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "results/gaussian_bridge.md:15: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               ".aikit/decisions.md",
               ".aikit/project.json",
@@ -6208,7 +6287,36 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-9-ef7b953affba.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 25,
+              "total": 25,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review",
+                "category": "review",
+                "severity": "medium",
+                "path": "results/verification.json",
+                "line": 3932,
+                "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+                "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+                "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+                "hunk": "e8b65396cbcf:results/verification.json#3",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -6320,13 +6428,38 @@
       "6e422a66db14a66efe9032f8ab71d40d6b29b583",
       "8b78d71a6075801dbbc9ea66ecd2c7407a3a6ac8"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review",
+        "category": "review",
+        "severity": "medium",
+        "path": "results/verification.json",
+        "line": 3932,
+        "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+        "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+        "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+        "hunk": "e8b65396cbcf:results/verification.json#3",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "review": 1
+    },
     "reviewed": 21,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "results/gaussian_bridge.md:15: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         ".aikit/decisions.md",
         ".aikit/project.json",
@@ -6352,7 +6485,36 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-9-ef7b953affba.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 25,
+        "total": 25,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review",
+          "category": "review",
+          "severity": "medium",
+          "path": "results/verification.json",
+          "line": 3932,
+          "message": "The check named '54: the scaling two-branch structure is recomputed' is recorded passed:true with detail 'branches=[0], jacobi2=none'. Its acceptance condition only requires a positive discriminant and every scaling match in {0,1}; it never checks that both branch indices occur, so a PASS cannot support the 'two-branch structure preserved' claim in claims.md and CHANGELOG.md. Require both indices ",
+          "evidence": "\"detail\": \"branches=[0], jacobi2=none\",",
+          "commit": "e8b65396cbcfb8a43b5a987c0024dd821c39e571",
+          "hunk": "e8b65396cbcf:results/verification.json#3",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
