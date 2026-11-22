@@ -4642,7 +4642,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T22:25:45",
+      "updated": "2026-11-22T22:33:49",
       "last_audit": {
         "run": "run-3",
         "stage": 43,
@@ -4909,13 +4909,38 @@
           "4d231befbefb58f29d49a0d6e8ce817045861e25",
           "d750f8661900a383e87176b04e37a4e9fe9e6348"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review-tree-omits-new-module-row",
+            "category": "improvement",
+            "severity": "low",
+            "path": "README.md",
+            "line": 157,
+            "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+            "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+            "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+            "hunk": "17b1e4e54fa9:README.md#1",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "improvement": 1
+        },
         "reviewed": 5,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "src/vortex_unification.rs:36: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             "README.md",
             "src/lib.rs",
@@ -4925,7 +4950,36 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-43-36ff9fce068e.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 8,
+            "total": 8,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review-tree-omits-new-module-row",
+              "category": "improvement",
+              "severity": "low",
+              "path": "README.md",
+              "line": 157,
+              "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+              "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+              "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+              "hunk": "17b1e4e54fa9:README.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -10777,13 +10831,38 @@
             "4d231befbefb58f29d49a0d6e8ce817045861e25",
             "d750f8661900a383e87176b04e37a4e9fe9e6348"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review-tree-omits-new-module-row",
+              "category": "improvement",
+              "severity": "low",
+              "path": "README.md",
+              "line": 157,
+              "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+              "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+              "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+              "hunk": "17b1e4e54fa9:README.md#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "improvement": 1
+          },
           "reviewed": 5,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "src/vortex_unification.rs:36: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               "README.md",
               "src/lib.rs",
@@ -10793,7 +10872,36 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-43-36ff9fce068e.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 8,
+              "total": 8,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review-tree-omits-new-module-row",
+                "category": "improvement",
+                "severity": "low",
+                "path": "README.md",
+                "line": 157,
+                "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+                "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+                "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+                "hunk": "17b1e4e54fa9:README.md#1",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -11211,13 +11319,38 @@
       "4d231befbefb58f29d49a0d6e8ce817045861e25",
       "d750f8661900a383e87176b04e37a4e9fe9e6348"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review-tree-omits-new-module-row",
+        "category": "improvement",
+        "severity": "low",
+        "path": "README.md",
+        "line": 157,
+        "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+        "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+        "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+        "hunk": "17b1e4e54fa9:README.md#1",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "improvement": 1
+    },
     "reviewed": 5,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "src/vortex_unification.rs:36: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         "README.md",
         "src/lib.rs",
@@ -11227,7 +11360,36 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-43-36ff9fce068e.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 8,
+        "total": 8,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review-tree-omits-new-module-row",
+          "category": "improvement",
+          "severity": "low",
+          "path": "README.md",
+          "line": 157,
+          "message": "The source tree gained a row for variation.rs but not for the other module this same commit creates and registers, vortex_unification.rs, so the documented map no longer enumerates every module in src/.",
+          "evidence": "\u2502 \u251c\u2500\u2500 variation.rs <- exact Q=(1+CV^2)/3 identity and distribution scan",
+          "commit": "17b1e4e54fa92571ae1bad0cf13db3d9dbd4e2cc",
+          "hunk": "17b1e4e54fa9:README.md#1",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
