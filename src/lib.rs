@@ -17,6 +17,7 @@ pub mod flux_sector;
 pub mod linalg;
 pub mod lorentz;
 pub mod mass_spectrum;
+pub mod modular;
 pub mod poisson;
 pub mod orthogonal;
 pub mod potential_family;
@@ -94,6 +95,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(confinement::checks());
     out.extend(froggatt::checks());
     out.extend(fn_scan::checks());
+    out.extend(modular::checks());
     out
 }
 
