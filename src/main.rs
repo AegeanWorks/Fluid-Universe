@@ -40,19 +40,16 @@ fn print_json(checks: &[Check]) {
 
 fn spawn_fingerprint() -> Option<String> {
     let exe = std::env::current_exe().ok()?;
-    let out = Command::new(exe).arg("json").output().ok()?;
+    let out = Command::new(exe).arg("fingerprint").output().ok()?;
     if !out.status.success() {
         return None;
     }
     let text = String::from_utf8(out.stdout).ok()?;
-    // The JSON is a flat check list; recompute its canonical fingerprint from
-    // the printed values in the exact same order the library produces them.
-    let checks = all_checks();
-    let printed = text.matches("\"id\":").count();
-    if printed != checks.len() {
+    let token = text.trim();
+    if token.len() != 16 || !token.bytes().all(|b| b.is_ascii_hexdigit()) {
         return None;
     }
-    Some(fingerprint(&checks))
+    Some(token.to_string())
 }
 
 fn main() {

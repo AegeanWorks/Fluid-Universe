@@ -4519,7 +4519,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T17:20:15",
+      "updated": "2026-11-22T17:21:38",
       "last_audit": {
         "run": "run-3",
         "stage": 2,
@@ -4867,12 +4867,12 @@
         },
         "gates": {},
         "delivery": {
-          "commit": "",
-          "short": "",
+          "commit": "d6fa027bbb207f77ee52b1a1fd3358c699e38696",
+          "short": "d6fa027",
           "pushed": false,
           "push_error": null,
           "empty": false,
-          "timestamp": "2026-11-22T17:20:15"
+          "timestamp": "2026-11-22T17:21:38"
         },
         "timestamp": "2026-11-22T17:03:35",
         "dirty_targets": [
@@ -5276,12 +5276,12 @@
           },
           "gates": {},
           "delivery": {
-            "commit": "",
-            "short": "",
+            "commit": "d6fa027bbb207f77ee52b1a1fd3358c699e38696",
+            "short": "d6fa027",
             "pushed": false,
             "push_error": null,
             "empty": false,
-            "timestamp": "2026-11-22T17:20:15"
+            "timestamp": "2026-11-22T17:21:38"
           },
           "timestamp": "2026-11-22T17:03:35",
           "dirty_targets": [
@@ -5648,12 +5648,12 @@
     },
     "gates": {},
     "delivery": {
-      "commit": "",
-      "short": "",
+      "commit": "d6fa027bbb207f77ee52b1a1fd3358c699e38696",
+      "short": "d6fa027",
       "pushed": false,
       "push_error": null,
       "empty": false,
-      "timestamp": "2026-11-22T17:20:15"
+      "timestamp": "2026-11-22T17:21:38"
     },
     "timestamp": "2026-11-22T17:03:35",
     "dirty_targets": [
