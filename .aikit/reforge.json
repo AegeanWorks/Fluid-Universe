@@ -4591,7 +4591,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T20:33:24",
+      "updated": "2026-11-22T20:39:15",
       "last_audit": {
         "run": "run-3",
         "stage": 26,
@@ -4761,7 +4761,7 @@
         "counts": {},
         "reviewed": 57,
         "review": {
-          "status": "unreviewed",
+          "status": "reviewed",
           "rejected": [],
           "files": [
             ".aikit/decisions.md",
@@ -4824,6 +4824,14 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-26-d0ef2fb24f39.md",
           "redacted": 0,
+          "coverage": {
+            "reported": 61,
+            "total": 61,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
           "findings": [],
           "attestations": []
         },
@@ -8387,7 +8395,7 @@
           "counts": {},
           "reviewed": 57,
           "review": {
-            "status": "unreviewed",
+            "status": "reviewed",
             "rejected": [],
             "files": [
               ".aikit/decisions.md",
@@ -8450,6 +8458,14 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-26-d0ef2fb24f39.md",
             "redacted": 0,
+            "coverage": {
+              "reported": 61,
+              "total": 61,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
             "findings": [],
             "attestations": []
           },
@@ -8720,7 +8736,7 @@
     "counts": {},
     "reviewed": 57,
     "review": {
-      "status": "unreviewed",
+      "status": "reviewed",
       "rejected": [],
       "files": [
         ".aikit/decisions.md",
@@ -8783,6 +8799,14 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-26-d0ef2fb24f39.md",
       "redacted": 0,
+      "coverage": {
+        "reported": 61,
+        "total": 61,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
       "findings": [],
       "attestations": []
     },
