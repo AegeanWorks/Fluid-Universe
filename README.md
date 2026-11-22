@@ -127,7 +127,10 @@ fluid-universe/
 ├── ASSETS.md                 <- Asset/data manifest: what the license covers
 ├── assets/                   <- brand artwork and social preview
 ├── README.md
+├── .gitattributes            <- LF line endings
 ├── Cargo.toml                <- dependency-free Rust crate
+├── Cargo.lock                <- locked crate metadata
+├── MIGRATION.md              <- Python-to-Rust migration map
 ├── src/                      <- Rust implementation and CLI
 │   ├── circulant.rs          <- Koide/circulant algebra
 │   ├── spectra.rs            <- neutrino, quark and PMNS checks
@@ -143,7 +146,8 @@ fluid-universe/
 │   ├── verify.rs             <- G-001 two-process comparison
 │   ├── lib.rs                <- crate root and check registry
 │   └── main.rs               <- CLI
-├── tests/integration.rs      <- Rust integration tests
+├── tests/                    <- Rust integration tests
+│   └── integration.rs        <- crate-level test suite
 ├── claims.md                 <- claim ledger with statuses and kill tests
 ├── CHANGELOG.md              <- append-only corrections and retractions
 ├── SCORECARD.md              <- one-line status per claim
@@ -155,7 +159,7 @@ fluid-universe/
 
 - Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and the G-001 two-process fingerprint.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
-- No production 3D simulation number is cited until `src/simulation.rs` passes the full baseline set in `src/ (Rust core)`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
+- No production 3D simulation number is cited until `src/simulation.rs` passes its full baseline test set. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
 - The Z3/Koide/RG paper must stand without any fluid-universe material.
 
