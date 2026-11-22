@@ -4531,7 +4531,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T18:22:58",
+      "updated": "2026-11-22T18:24:20",
       "last_audit": {
         "run": "run-3",
         "stage": 6,
@@ -4592,7 +4592,7 @@
             "reproducible": false,
             "fixable": true,
             "interaction": "",
-            "repaired": false,
+            "repaired": true,
             "source": "review",
             "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
             "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
@@ -4618,7 +4618,16 @@
             "patch_new": ""
           }
         ],
-        "repairs": [],
+        "repairs": [
+          {
+            "code": "review",
+            "path": "CHANGELOG.md",
+            "line": 1005,
+            "summary": "already repaired by hand: The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but",
+            "test_name": "",
+            "applied": true
+          }
+        ],
         "counts": {
           "review": 2
         },
@@ -4626,7 +4635,8 @@
         "review": {
           "status": "reviewed",
           "rejected": [
-            "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+            "CHANGELOG.md:1005: the evidence is not in the current file (it may quote a removed line)",
+            "claims.md:221: the evidence is not in the current file (it may quote a removed line)"
           ],
           "files": [
             ".aikit/decisions.md",
@@ -4705,62 +4715,49 @@
             "unknown": [],
             "invalid": []
           },
-          "findings": [
-            {
-              "code": "review",
-              "category": "review",
-              "severity": "low",
-              "path": "CHANGELOG.md",
-              "line": 1005,
-              "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
-              "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
-              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-              "hunk": "efc3a078e9e1:CHANGELOG.md#1",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": true,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
-              "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
-            },
-            {
-              "code": "review",
-              "category": "review",
-              "severity": "low",
-              "path": "claims.md",
-              "line": 221,
-              "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
-              "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
-              "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-              "hunk": "efc3a078e9e1:claims.md#2",
-              "symbol": "",
-              "introduced": true,
-              "reproducible": false,
-              "fixable": false,
-              "interaction": "",
-              "repaired": false,
-              "source": "review",
-              "patch_old": "",
-              "patch_new": ""
-            }
-          ],
+          "findings": [],
           "attestations": []
         },
         "skipped": [],
-        "tests": {},
+        "tests": {
+          "command": "cargo test --target x86_64-pc-windows-gnu",
+          "code": 0,
+          "passed": true,
+          "output": "running 71 tests\ntest audit::tests::circulant_identity_and_sign_caveat_are_rederived ... ok\ntest circulant::tests::eigenvalues_and_q_definitions ... ok\ntest circulant::tests::invalid_inputs_are_rejected ... ok\ntest circulant::tests::koide_tau_prediction_reference ... ok\ntest circulant::tests::inverse_dft_roundtrip_and_fit ... ok\ntest circulant::tests::signed_root_q_identity_over_many_draws ... ok\ntest derrick::tests::derivative_at_one_equals_virial ... ok\ntest derrick::tests::exponents_match_contract ... ok\ntest derrick::tests::checks_have_stable_unique_ids ... ok\ntest derrick::tests::minimum_fields_are_consistent ... ok\ntest derrick::tests::stationary_point_conditions ... ok\ntest derrick::tests::virial_vanishes_at_stationary_scale ... ok\ntest fluid::tests::blob_loop_fractions_match_frozen_values ... ok\ntest fluid::tests::marcus_fwhm_reference_and_sqrt_t_scaling ... ok\ntest fluid::tests::pinney_branches_match_recorded_reference ... ok\ntest fluid::tests::pinney_det_is_minus_nu_squared_for_yasue ... ok\ntest derrick::tests::stationary_scale_matches_hopfion_reference ... ok\ntest audit::tests::gauss_linking_is_one_and_flips_under_reflection ... ok\ntest linalg::tests::jacobi_diagonal_symmetric ... ok\ntest linalg::tests::simpson_exact_for_quadratic ... ok\ntest fluid::tests::ermakov_fixed_point_and_gm_action_extremum ... ok\ntest audit::tests::every_verdict_is_allowed_and_all_four_appear ... ok\ntest fluid::tests::koide_matches_two_thirds_and_single_value ... ok\ntest fluid::tests::vortex_core_q_zero_matches_closed_form ... ok\ntest linalg::tests::bisect_finds_root ... ok\ntest audit::tests::locally_rederived_physics_matches_references ... ok\ntest fluid::tests::checks_are_stable_unique_and_match_references ... ok\ntest fluid::tests::vortex_core_velocity_is_even_and_capped ... ok\ntest audit::tests::frozen_ledger_expected_verdicts ... ok\ntest reports::tests::json_escape_handles_special_characters ... ok\ntest audit::tests::no_record_value_is_nan_or_infinite ... ok\ntest lorentz::tests::checks_are_stable_unique_and_match_references ... ok\ntest rotor::tests::free_levels_are_exact ... ok\ntest lorentz::tests::elastic_eigenvalues_are_sorted_and_sign_invariant ... ok\ntest lorentz::tests::elastic_eigenvalues_match_axis_reference ... ok\ntest lorentz::tests::residual_anisotropy_vanishes_for_equal_frank_constants ... ok\ntest audit::tests::checks_are_stable_unique_and_prefixed ... ok\ntest rotor::tests::sector_matrix_diagonal_and_couplings ... ok\ntest lorentz::tests::residual_anisotropy_k123_is_deterministic_and_order_one ... ok\ntest rotor::tests::wall_tension_closed_form_matches_quadrature ... ok\ntest audit::tests::fingerprint_is_deterministic_and_independent_of_call_order ... ok\ntest simulation::tests::z3_order_bounded_and_reaches_unity ... ok\ntest simulation::tests::energy_terms_are_nonnegative_and_scale_with_couplings ... ok\ntest simulation::tests::force_matches_scalar_finite_difference ... ok\ntest spectra::tests::checks_are_stable_and_finite ... ok\ntest spectra::tests::koide_ratio_definition ... ok\ntest simulation::tests::hopf_map_is_unit_and_analytic_field_normalized ... ok\ntest simulation::tests::relax_lowers_energy_and_metrics_are_consistent ... ok\ntest spectra::tests::neutrino_ordering_formula ... ok\ntest simulation::tests::checks_are_stable_prefixed_and_unique ... ok\ntest spectra::tests::neutrino_q_max_regression ... ok\ntest simulation::tests::hopf_charge_is_one_and_flips_under_reflection ... ok\ntest spectra::tests::pmns_angles_identity_and_trimaximal ... ok\ntest spectra::tests::quark_mz_constants ... ok\ntest verify::tests::different_runs_disagree ... ok\ntest verify::tests::fingerprint_is_order_sensitive ... ok\ntest verify::tests::identical_runs_agree ... ok\ntest water::tests::capillary_length_and_ratio_match_reference ... ok\ntest water::tests::checks_are_stable_unique_and_match_references ... ok\ntest water::tests::hawking_temperature_matches_reference ... ok\ntest water::tests::horizon_and_surface_gravity_match_reference ... ok\ntest water::tests::sound_speed_matches_shallow_water_reference ... ok\ntest rotor::tests::sectors_one_and_two_are_degenerate ... ok\ntest rotor::tests::lowest_levels_reproduce_reference ... ok\ntest rotor::tests::checks_have_stable_unique_ids ... ok\ntest reports::tests::checks_report_coverage_and_determinism ... ok\ntest reports::tests::markdown_has_heading_table_and_provenance ... ok\ntest reports::tests::json_has_schema_generator_checks_and_audit ... ok\ntest reports::tests::every_family_produces_a_non_empty_report ... ok\ntest reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok\ntest reports::tests::config_hash_is_stable_across_two_builds ... ok\n\ntest result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 6 tests\ntest neutrino_scan_endpoints_match_the_ledger ... ok\ntest check_ids_are_unique ... ok\ntest headline_numbers_match_the_python_ledger ... ok\ntest all_modules_publish_checks ... ok\ntest fingerprint_is_stable_and_hex ... ok\ntest two_derivations_agree_without_shared_state ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s\n     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)\n     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)\n     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)\n   Doc-tests fluid_universe",
+          "tail": [
+            "test reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok",
+            "test reports::tests::config_hash_is_stable_across_two_builds ... ok",
+            "test result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s",
+            "running 0 tests",
+            "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "running 6 tests",
+            "test neutrino_scan_endpoints_match_the_ledger ... ok",
+            "test check_ids_are_unique ... ok",
+            "test headline_numbers_match_the_python_ledger ... ok",
+            "test all_modules_publish_checks ... ok",
+            "test fingerprint_is_stable_and_hex ... ok",
+            "test two_derivations_agree_without_shared_state ... ok",
+            "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s",
+            "running 0 tests",
+            "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+            "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s",
+            "     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)",
+            "     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)",
+            "     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)",
+            "   Doc-tests fluid_universe"
+          ]
+        },
         "gates": {},
         "delivery": {
           "commit": "",
           "short": "",
           "pushed": false,
           "push_error": null,
-          "empty": true,
-          "timestamp": "2026-11-22T18:17:18"
+          "empty": false,
+          "timestamp": "2026-11-22T18:24:20"
         },
-        "timestamp": "2026-11-22T18:17:18"
+        "timestamp": "2026-11-22T18:17:18",
+        "dirty_targets": []
       },
       "history": [
         {
@@ -5824,7 +5821,7 @@
               "reproducible": false,
               "fixable": true,
               "interaction": "",
-              "repaired": false,
+              "repaired": true,
               "source": "review",
               "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
               "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
@@ -5850,7 +5847,16 @@
               "patch_new": ""
             }
           ],
-          "repairs": [],
+          "repairs": [
+            {
+              "code": "review",
+              "path": "CHANGELOG.md",
+              "line": 1005,
+              "summary": "already repaired by hand: The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but",
+              "test_name": "",
+              "applied": true
+            }
+          ],
           "counts": {
             "review": 2
           },
@@ -5858,7 +5864,8 @@
           "review": {
             "status": "reviewed",
             "rejected": [
-              "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+              "CHANGELOG.md:1005: the evidence is not in the current file (it may quote a removed line)",
+              "claims.md:221: the evidence is not in the current file (it may quote a removed line)"
             ],
             "files": [
               ".aikit/decisions.md",
@@ -5937,62 +5944,49 @@
               "unknown": [],
               "invalid": []
             },
-            "findings": [
-              {
-                "code": "review",
-                "category": "review",
-                "severity": "low",
-                "path": "CHANGELOG.md",
-                "line": 1005,
-                "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
-                "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
-                "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-                "hunk": "efc3a078e9e1:CHANGELOG.md#1",
-                "symbol": "",
-                "introduced": true,
-                "reproducible": false,
-                "fixable": true,
-                "interaction": "",
-                "repaired": false,
-                "source": "review",
-                "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
-                "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
-              },
-              {
-                "code": "review",
-                "category": "review",
-                "severity": "low",
-                "path": "claims.md",
-                "line": 221,
-                "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
-                "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
-                "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-                "hunk": "efc3a078e9e1:claims.md#2",
-                "symbol": "",
-                "introduced": true,
-                "reproducible": false,
-                "fixable": false,
-                "interaction": "",
-                "repaired": false,
-                "source": "review",
-                "patch_old": "",
-                "patch_new": ""
-              }
-            ],
+            "findings": [],
             "attestations": []
           },
           "skipped": [],
-          "tests": {},
+          "tests": {
+            "command": "cargo test --target x86_64-pc-windows-gnu",
+            "code": 0,
+            "passed": true,
+            "output": "running 71 tests\ntest audit::tests::circulant_identity_and_sign_caveat_are_rederived ... ok\ntest circulant::tests::eigenvalues_and_q_definitions ... ok\ntest circulant::tests::invalid_inputs_are_rejected ... ok\ntest circulant::tests::koide_tau_prediction_reference ... ok\ntest circulant::tests::inverse_dft_roundtrip_and_fit ... ok\ntest circulant::tests::signed_root_q_identity_over_many_draws ... ok\ntest derrick::tests::derivative_at_one_equals_virial ... ok\ntest derrick::tests::exponents_match_contract ... ok\ntest derrick::tests::checks_have_stable_unique_ids ... ok\ntest derrick::tests::minimum_fields_are_consistent ... ok\ntest derrick::tests::stationary_point_conditions ... ok\ntest derrick::tests::virial_vanishes_at_stationary_scale ... ok\ntest fluid::tests::blob_loop_fractions_match_frozen_values ... ok\ntest fluid::tests::marcus_fwhm_reference_and_sqrt_t_scaling ... ok\ntest fluid::tests::pinney_branches_match_recorded_reference ... ok\ntest fluid::tests::pinney_det_is_minus_nu_squared_for_yasue ... ok\ntest derrick::tests::stationary_scale_matches_hopfion_reference ... ok\ntest audit::tests::gauss_linking_is_one_and_flips_under_reflection ... ok\ntest linalg::tests::jacobi_diagonal_symmetric ... ok\ntest linalg::tests::simpson_exact_for_quadratic ... ok\ntest fluid::tests::ermakov_fixed_point_and_gm_action_extremum ... ok\ntest audit::tests::every_verdict_is_allowed_and_all_four_appear ... ok\ntest fluid::tests::koide_matches_two_thirds_and_single_value ... ok\ntest fluid::tests::vortex_core_q_zero_matches_closed_form ... ok\ntest linalg::tests::bisect_finds_root ... ok\ntest audit::tests::locally_rederived_physics_matches_references ... ok\ntest fluid::tests::checks_are_stable_unique_and_match_references ... ok\ntest fluid::tests::vortex_core_velocity_is_even_and_capped ... ok\ntest audit::tests::frozen_ledger_expected_verdicts ... ok\ntest reports::tests::json_escape_handles_special_characters ... ok\ntest audit::tests::no_record_value_is_nan_or_infinite ... ok\ntest lorentz::tests::checks_are_stable_unique_and_match_references ... ok\ntest rotor::tests::free_levels_are_exact ... ok\ntest lorentz::tests::elastic_eigenvalues_are_sorted_and_sign_invariant ... ok\ntest lorentz::tests::elastic_eigenvalues_match_axis_reference ... ok\ntest lorentz::tests::residual_anisotropy_vanishes_for_equal_frank_constants ... ok\ntest audit::tests::checks_are_stable_unique_and_prefixed ... ok\ntest rotor::tests::sector_matrix_diagonal_and_couplings ... ok\ntest lorentz::tests::residual_anisotropy_k123_is_deterministic_and_order_one ... ok\ntest rotor::tests::wall_tension_closed_form_matches_quadrature ... ok\ntest audit::tests::fingerprint_is_deterministic_and_independent_of_call_order ... ok\ntest simulation::tests::z3_order_bounded_and_reaches_unity ... ok\ntest simulation::tests::energy_terms_are_nonnegative_and_scale_with_couplings ... ok\ntest simulation::tests::force_matches_scalar_finite_difference ... ok\ntest spectra::tests::checks_are_stable_and_finite ... ok\ntest spectra::tests::koide_ratio_definition ... ok\ntest simulation::tests::hopf_map_is_unit_and_analytic_field_normalized ... ok\ntest simulation::tests::relax_lowers_energy_and_metrics_are_consistent ... ok\ntest spectra::tests::neutrino_ordering_formula ... ok\ntest simulation::tests::checks_are_stable_prefixed_and_unique ... ok\ntest spectra::tests::neutrino_q_max_regression ... ok\ntest simulation::tests::hopf_charge_is_one_and_flips_under_reflection ... ok\ntest spectra::tests::pmns_angles_identity_and_trimaximal ... ok\ntest spectra::tests::quark_mz_constants ... ok\ntest verify::tests::different_runs_disagree ... ok\ntest verify::tests::fingerprint_is_order_sensitive ... ok\ntest verify::tests::identical_runs_agree ... ok\ntest water::tests::capillary_length_and_ratio_match_reference ... ok\ntest water::tests::checks_are_stable_unique_and_match_references ... ok\ntest water::tests::hawking_temperature_matches_reference ... ok\ntest water::tests::horizon_and_surface_gravity_match_reference ... ok\ntest water::tests::sound_speed_matches_shallow_water_reference ... ok\ntest rotor::tests::sectors_one_and_two_are_degenerate ... ok\ntest rotor::tests::lowest_levels_reproduce_reference ... ok\ntest rotor::tests::checks_have_stable_unique_ids ... ok\ntest reports::tests::checks_report_coverage_and_determinism ... ok\ntest reports::tests::markdown_has_heading_table_and_provenance ... ok\ntest reports::tests::json_has_schema_generator_checks_and_audit ... ok\ntest reports::tests::every_family_produces_a_non_empty_report ... ok\ntest reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok\ntest reports::tests::config_hash_is_stable_across_two_builds ... ok\n\ntest result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 6 tests\ntest neutrino_scan_endpoints_match_the_ledger ... ok\ntest check_ids_are_unique ... ok\ntest headline_numbers_match_the_python_ledger ... ok\ntest all_modules_publish_checks ... ok\ntest fingerprint_is_stable_and_hex ... ok\ntest two_derivations_agree_without_shared_state ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s\n     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)\n     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)\n     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)\n   Doc-tests fluid_universe",
+            "tail": [
+              "test reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok",
+              "test reports::tests::config_hash_is_stable_across_two_builds ... ok",
+              "test result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s",
+              "running 0 tests",
+              "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+              "running 6 tests",
+              "test neutrino_scan_endpoints_match_the_ledger ... ok",
+              "test check_ids_are_unique ... ok",
+              "test headline_numbers_match_the_python_ledger ... ok",
+              "test all_modules_publish_checks ... ok",
+              "test fingerprint_is_stable_and_hex ... ok",
+              "test two_derivations_agree_without_shared_state ... ok",
+              "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s",
+              "running 0 tests",
+              "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+              "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s",
+              "     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)",
+              "     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)",
+              "     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)",
+              "   Doc-tests fluid_universe"
+            ]
+          },
           "gates": {},
           "delivery": {
             "commit": "",
             "short": "",
             "pushed": false,
             "push_error": null,
-            "empty": true,
-            "timestamp": "2026-11-22T18:17:18"
+            "empty": false,
+            "timestamp": "2026-11-22T18:24:20"
           },
-          "timestamp": "2026-11-22T18:17:18"
+          "timestamp": "2026-11-22T18:17:18",
+          "dirty_targets": []
         }
       ],
       "total_commits": 109
@@ -6079,7 +6073,7 @@
         "reproducible": false,
         "fixable": true,
         "interaction": "",
-        "repaired": false,
+        "repaired": true,
         "source": "review",
         "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
         "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
@@ -6105,7 +6099,16 @@
         "patch_new": ""
       }
     ],
-    "repairs": [],
+    "repairs": [
+      {
+        "code": "review",
+        "path": "CHANGELOG.md",
+        "line": 1005,
+        "summary": "already repaired by hand: The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but",
+        "test_name": "",
+        "applied": true
+      }
+    ],
     "counts": {
       "review": 2
     },
@@ -6113,7 +6116,8 @@
     "review": {
       "status": "reviewed",
       "rejected": [
-        "claims.md:221: suggestion dropped (the quoted text is outside the lines this stage added)"
+        "CHANGELOG.md:1005: the evidence is not in the current file (it may quote a removed line)",
+        "claims.md:221: the evidence is not in the current file (it may quote a removed line)"
       ],
       "files": [
         ".aikit/decisions.md",
@@ -6192,62 +6196,49 @@
         "unknown": [],
         "invalid": []
       },
-      "findings": [
-        {
-          "code": "review",
-          "category": "review",
-          "severity": "low",
-          "path": "CHANGELOG.md",
-          "line": 1005,
-          "message": "The claim-55 results entry publishes the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json records scaling.yasue.floor_hit_time = 0.3960000000000003 (and results/yasue_center.md prints 0.3960000000000003). The published figure contradicts the very artifact this section reports; the correct value is 0.396.",
-          "evidence": "- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC",
-          "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-          "hunk": "efc3a078e9e1:CHANGELOG.md#1",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": true,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "floor-hit 0.395 (< pi/4) with twin pi/pi/2",
-          "patch_new": "floor-hit 0.396 (< pi/4) with twin pi/pi/2"
-        },
-        {
-          "code": "review",
-          "category": "review",
-          "severity": "low",
-          "path": "claims.md",
-          "line": 221,
-          "message": "The claim-55 status-history entry repeats the omega=2 scaling floor-hit as 0.395, but results/yasue_center.json has 0.3960000000000003 for scaling.yasue.floor_hit_time. Both the ledger history and the artifact are stage-head data, so the recorded figure is wrong; it should read 0.396.",
-          "evidence": "- 2026-11-06 (Yasue center-width discriminator demonstrated, claim 55): the Yasue 2-path trial tracks mu0*cos(omega*t) on the center leg (max dev 9.9e-09 vs 1e-4 gate) while the width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); the identical G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature-vs-Verlet mild match exact; scaling omega = 2",
-          "commit": "efc3a078e9e1b5c8650457aa15a4bad7f940e307",
-          "hunk": "efc3a078e9e1:claims.md#2",
-          "symbol": "",
-          "introduced": true,
-          "reproducible": false,
-          "fixable": false,
-          "interaction": "",
-          "repaired": false,
-          "source": "review",
-          "patch_old": "",
-          "patch_new": ""
-        }
-      ],
+      "findings": [],
       "attestations": []
     },
     "skipped": [],
-    "tests": {},
+    "tests": {
+      "command": "cargo test --target x86_64-pc-windows-gnu",
+      "code": 0,
+      "passed": true,
+      "output": "running 71 tests\ntest audit::tests::circulant_identity_and_sign_caveat_are_rederived ... ok\ntest circulant::tests::eigenvalues_and_q_definitions ... ok\ntest circulant::tests::invalid_inputs_are_rejected ... ok\ntest circulant::tests::koide_tau_prediction_reference ... ok\ntest circulant::tests::inverse_dft_roundtrip_and_fit ... ok\ntest circulant::tests::signed_root_q_identity_over_many_draws ... ok\ntest derrick::tests::derivative_at_one_equals_virial ... ok\ntest derrick::tests::exponents_match_contract ... ok\ntest derrick::tests::checks_have_stable_unique_ids ... ok\ntest derrick::tests::minimum_fields_are_consistent ... ok\ntest derrick::tests::stationary_point_conditions ... ok\ntest derrick::tests::virial_vanishes_at_stationary_scale ... ok\ntest fluid::tests::blob_loop_fractions_match_frozen_values ... ok\ntest fluid::tests::marcus_fwhm_reference_and_sqrt_t_scaling ... ok\ntest fluid::tests::pinney_branches_match_recorded_reference ... ok\ntest fluid::tests::pinney_det_is_minus_nu_squared_for_yasue ... ok\ntest derrick::tests::stationary_scale_matches_hopfion_reference ... ok\ntest audit::tests::gauss_linking_is_one_and_flips_under_reflection ... ok\ntest linalg::tests::jacobi_diagonal_symmetric ... ok\ntest linalg::tests::simpson_exact_for_quadratic ... ok\ntest fluid::tests::ermakov_fixed_point_and_gm_action_extremum ... ok\ntest audit::tests::every_verdict_is_allowed_and_all_four_appear ... ok\ntest fluid::tests::koide_matches_two_thirds_and_single_value ... ok\ntest fluid::tests::vortex_core_q_zero_matches_closed_form ... ok\ntest linalg::tests::bisect_finds_root ... ok\ntest audit::tests::locally_rederived_physics_matches_references ... ok\ntest fluid::tests::checks_are_stable_unique_and_match_references ... ok\ntest fluid::tests::vortex_core_velocity_is_even_and_capped ... ok\ntest audit::tests::frozen_ledger_expected_verdicts ... ok\ntest reports::tests::json_escape_handles_special_characters ... ok\ntest audit::tests::no_record_value_is_nan_or_infinite ... ok\ntest lorentz::tests::checks_are_stable_unique_and_match_references ... ok\ntest rotor::tests::free_levels_are_exact ... ok\ntest lorentz::tests::elastic_eigenvalues_are_sorted_and_sign_invariant ... ok\ntest lorentz::tests::elastic_eigenvalues_match_axis_reference ... ok\ntest lorentz::tests::residual_anisotropy_vanishes_for_equal_frank_constants ... ok\ntest audit::tests::checks_are_stable_unique_and_prefixed ... ok\ntest rotor::tests::sector_matrix_diagonal_and_couplings ... ok\ntest lorentz::tests::residual_anisotropy_k123_is_deterministic_and_order_one ... ok\ntest rotor::tests::wall_tension_closed_form_matches_quadrature ... ok\ntest audit::tests::fingerprint_is_deterministic_and_independent_of_call_order ... ok\ntest simulation::tests::z3_order_bounded_and_reaches_unity ... ok\ntest simulation::tests::energy_terms_are_nonnegative_and_scale_with_couplings ... ok\ntest simulation::tests::force_matches_scalar_finite_difference ... ok\ntest spectra::tests::checks_are_stable_and_finite ... ok\ntest spectra::tests::koide_ratio_definition ... ok\ntest simulation::tests::hopf_map_is_unit_and_analytic_field_normalized ... ok\ntest simulation::tests::relax_lowers_energy_and_metrics_are_consistent ... ok\ntest spectra::tests::neutrino_ordering_formula ... ok\ntest simulation::tests::checks_are_stable_prefixed_and_unique ... ok\ntest spectra::tests::neutrino_q_max_regression ... ok\ntest simulation::tests::hopf_charge_is_one_and_flips_under_reflection ... ok\ntest spectra::tests::pmns_angles_identity_and_trimaximal ... ok\ntest spectra::tests::quark_mz_constants ... ok\ntest verify::tests::different_runs_disagree ... ok\ntest verify::tests::fingerprint_is_order_sensitive ... ok\ntest verify::tests::identical_runs_agree ... ok\ntest water::tests::capillary_length_and_ratio_match_reference ... ok\ntest water::tests::checks_are_stable_unique_and_match_references ... ok\ntest water::tests::hawking_temperature_matches_reference ... ok\ntest water::tests::horizon_and_surface_gravity_match_reference ... ok\ntest water::tests::sound_speed_matches_shallow_water_reference ... ok\ntest rotor::tests::sectors_one_and_two_are_degenerate ... ok\ntest rotor::tests::lowest_levels_reproduce_reference ... ok\ntest rotor::tests::checks_have_stable_unique_ids ... ok\ntest reports::tests::checks_report_coverage_and_determinism ... ok\ntest reports::tests::markdown_has_heading_table_and_provenance ... ok\ntest reports::tests::json_has_schema_generator_checks_and_audit ... ok\ntest reports::tests::every_family_produces_a_non_empty_report ... ok\ntest reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok\ntest reports::tests::config_hash_is_stable_across_two_builds ... ok\n\ntest result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n\nrunning 6 tests\ntest neutrino_scan_endpoints_match_the_ledger ... ok\ntest check_ids_are_unique ... ok\ntest headline_numbers_match_the_python_ledger ... ok\ntest all_modules_publish_checks ... ok\ntest fingerprint_is_stable_and_hex ... ok\ntest two_derivations_agree_without_shared_state ... ok\n\ntest result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s\n\n\nrunning 0 tests\n\ntest result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s\n\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s\n     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)\n     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)\n     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)\n   Doc-tests fluid_universe",
+      "tail": [
+        "test reports::tests::write_reports_creates_two_files_per_report_and_cleans_up ... ok",
+        "test reports::tests::config_hash_is_stable_across_two_builds ... ok",
+        "test result: ok. 71 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 6.95s",
+        "running 0 tests",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "running 6 tests",
+        "test neutrino_scan_endpoints_match_the_ledger ... ok",
+        "test check_ids_are_unique ... ok",
+        "test headline_numbers_match_the_python_ledger ... ok",
+        "test all_modules_publish_checks ... ok",
+        "test fingerprint_is_stable_and_hex ... ok",
+        "test two_derivations_agree_without_shared_state ... ok",
+        "test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 4.01s",
+        "running 0 tests",
+        "test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s",
+        "    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.03s",
+        "     Running unittests src\\lib.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/9e6ecffea7c54017\\out\\fluid_universe-9e6ecffea7c54017.exe)",
+        "     Running unittests src\\main.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/31deb8ff5790235e\\out\\fluid_universe-31deb8ff5790235e.exe)",
+        "     Running tests\\integration.rs (target\\x86_64-pc-windows-gnu\\debug\\build\\fluid_universe/1192ea7b8b8dad41\\out\\integration-1192ea7b8b8dad41.exe)",
+        "   Doc-tests fluid_universe"
+      ]
+    },
     "gates": {},
     "delivery": {
       "commit": "",
       "short": "",
       "pushed": false,
       "push_error": null,
-      "empty": true,
-      "timestamp": "2026-11-22T18:17:18"
+      "empty": false,
+      "timestamp": "2026-11-22T18:24:20"
     },
-    "timestamp": "2026-11-22T18:17:18"
+    "timestamp": "2026-11-22T18:17:18",
+    "dirty_targets": []
   },
   "history": []
 }
