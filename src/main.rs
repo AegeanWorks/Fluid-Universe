@@ -160,6 +160,40 @@ fn main() {
                         }
                     }
                 }
+                "bridge" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(16);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(10.0);
+                    let steps: usize = args.get(4).and_then(|v| v.parse().ok()).unwrap_or(240);
+                    let mut field = simulation::analytic_field(n, 8.0, false);
+                    let baseline = simulation::hopf_charge_spectral(&field);
+                    let target = 2.0_f64.powf(-0.5);
+                    let mut previous: Option<(f64, f64)> = None;
+                    println!("crossing_search,n={n},mu={mu},target_Z3={target:.9}");
+                    for step in 0..=steps {
+                        let z3 = simulation::z3_order(&field);
+                        let h = simulation::hopf_charge_spectral(&field) / baseline;
+                        if z3 >= target {
+                            if let Some((z0, h0)) = previous {
+                                let weight = if (z3 - z0).abs() > 1e-12 {
+                                    (target - z0) / (z3 - z0)
+                                } else { 0.0 };
+                                let h_at = h0 + weight * (h - h0);
+                                let deviation = h_at - 2.0 / 3.0;
+                                println!(concat!("step={},Z3_before={:.9},",
+                                                 "Z3_after={:.9},H_at_target={:.9},",
+                                                 "deviation_from_2_3={:.9}"),
+                                         step, z0, z3, h_at, deviation);
+                            }
+                            break;
+                        }
+                        previous = Some((z3, h));
+                        if step < steps {
+                            let (next, _, _) =
+                                simulation::relax(&field, mu, 0.05, 1, 1.0, 1.0);
+                            field = next;
+                        }
+                    }
+                }
                 "xyinit" => {
                     let n = 16usize;
                     let twist: Vec<f64> = (0..n * n)
