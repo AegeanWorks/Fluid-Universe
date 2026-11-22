@@ -455,6 +455,49 @@ pub fn relax(
     (f, history, m)
 }
 
+/// Complex Z3 order parameter: `sum w exp(3 i phi) / sum w`.
+/// Its modulus is `z3_order`; its argument is the triatic phase selected by a field.
+pub fn z3_complex(field: &Field3) -> (f64, f64) {
+    let mut re = 0.0f64;
+    let mut im = 0.0f64;
+    let mut weight_sum = 0.0f64;
+    for value in &field.data {
+        let nx = value[0];
+        let ny = value[1];
+        let weight = nx * nx + ny * ny;
+        let rho2 = weight + 1e-12;
+        let c3 = (nx * nx * nx - 3.0 * nx * ny * ny) / (rho2 * rho2.sqrt());
+        let s3 = (3.0 * nx * nx * ny - ny * ny * ny) / (rho2 * rho2.sqrt());
+        re += weight * c3;
+        im += weight * s3;
+        weight_sum += weight;
+    }
+    if weight_sum <= 0.0 {
+        (0.0, 0.0)
+    } else {
+        (re / weight_sum, im / weight_sum)
+    }
+}
+
+/// Triatic phase in `(-pi/3, pi/3]`, the natural analogue of the Koide phase delta.
+pub fn z3_phase(field: &Field3) -> f64 {
+    let (re, im) = z3_complex(field);
+    im.atan2(re)
+}
+
+/// Rotate the azimuthal phase of the analytic H=1 seed by `theta`.
+/// This keeps the Hopf charge fixed but changes the initial triatic phase.
+pub fn phase_rotated_field(n: usize, length: f64, theta: f64) -> Field3 {
+    let mut field = analytic_field(n, length, false);
+    let (c, s) = (theta.cos(), theta.sin());
+    for value in field.data.iter_mut() {
+        let (nx, ny) = (value[0], value[1]);
+        value[0] = c * nx - s * ny;
+        value[1] = s * nx + c * ny;
+    }
+    field
+}
+
 /// Deterministic perturbation of the analytic seed, for initial-condition scans.
 /// The same seed always produces the same field.
 pub fn perturbed_field(n: usize, length: f64, seed: u64, amplitude: f64) -> Field3 {

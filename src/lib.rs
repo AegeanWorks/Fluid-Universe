@@ -12,6 +12,7 @@ pub mod fft;
 pub mod fluid;
 pub mod linalg;
 pub mod lorentz;
+pub mod mass_spectrum;
 pub mod reports;
 pub mod rotor;
 pub mod simulation;
@@ -56,6 +57,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(audit::checks());
     out.extend(reports::checks());
     out.extend(unification::checks());
+    out.extend(mass_spectrum::checks());
     out
 }
 

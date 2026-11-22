@@ -142,6 +142,7 @@ fluid-universe/
 │   ├── linalg.rs             <- Jacobi eigensolver and quadrature
 │   ├── fft.rs                <- dependency-free radix-2 3D FFT
 │   ├── unification.rs        <- parameter-free Koide condition and bridge gap
+│   ├── mass_spectrum.rs      <- Z3 rotor with symmetry breaking and mass-ratio scan
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

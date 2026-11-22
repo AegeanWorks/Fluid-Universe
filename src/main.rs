@@ -4,8 +4,8 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, audit, circulant, derrick, fingerprint, fluid, lorentz, reports, rotor,
-    simulation, spectra, unification, verify, water,
+    Check, all_checks, audit, circulant, derrick, fingerprint, fluid, lorentz, mass_spectrum,
+    reports, rotor, simulation, spectra, unification, verify, water,
 };
 
 fn json_escape(text: &str) -> String {
@@ -64,7 +64,7 @@ fn main() {
             println!("{} check(s), fingerprint {}", checks.len(), fingerprint(&checks));
         }
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
-        | "simulation" | "audit" | "reports" | "unification" => {
+        | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -77,6 +77,7 @@ fn main() {
                 "audit" => audit::checks(),
                 "reports" => reports::checks(),
                 "unification" => unification::checks(),
+                "mass_spectrum" => mass_spectrum::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -147,6 +148,111 @@ fn main() {
                                 }
                             }
                         }
+                    }
+                }
+                "tune" => {
+                    println!("mu,I,h_crossing,eight_thirds,relative_gap");
+                    for mu in [0.25_f64, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0] {
+                        for inertia in [0.5_f64, 1.0, 2.0] {
+                            let q = |h: f64| {
+                                let levels = mass_spectrum::rotor_levels(
+                                    inertia, mu, h, 60, 3);
+                                mass_spectrum::koide_from_levels(
+                                    &[levels[0], levels[1], levels[2]])
+                            };
+                            let (mut lo, mut hi) = (0.5_f64, 8.0_f64);
+                            if q(lo) >= 2.0 / 3.0 || q(hi) <= 2.0 / 3.0 {
+                                println!("{mu:.2},{inertia:.1},NONE,{:.9},NONE", 8.0 / 3.0);
+                                continue;
+                            }
+                            for _ in 0..70 {
+                                let mid = 0.5 * (lo + hi);
+                                if q(mid) < 2.0 / 3.0 { lo = mid; } else { hi = mid; }
+                            }
+                            let crossing = 0.5 * (lo + hi);
+                            let target = 8.0 / 3.0;
+                            let gap = (crossing - target).abs() / target;
+                            println!("{mu:.2},{inertia:.1},{crossing:.9},{target:.9},{gap:.6}");
+                        }
+                    }
+                }
+                "solveh" => {
+                    let solve = |use_spacings: bool| -> f64 {
+                        let q = |h: f64| {
+                            let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, 80, 3);
+                            let triple = [levels[0], levels[1], levels[2]];
+                            if use_spacings {
+                                mass_spectrum::koide_from_spacings(&triple)
+                            } else {
+                                mass_spectrum::koide_from_levels(&triple)
+                            }
+                        };
+                        let mut lo = 2.0f64;
+                        let mut hi = 3.2f64;
+                        for _ in 0..80 {
+                            let mid = 0.5 * (lo + hi);
+                            if q(mid) < 2.0 / 3.0 { lo = mid; } else { hi = mid; }
+                        }
+                        0.5 * (lo + hi)
+                    };
+                    let h_levels = solve(false);
+                    let h_spacings = solve(true);
+                    let levels = mass_spectrum::rotor_levels(1.0, 1.0, 8.0 / 3.0, 80, 3);
+                    println!("h_crossing_levels={h_levels:.9}");
+                    println!("h_crossing_spacings={h_spacings:.9}");
+                    println!("eight_thirds={:.9}", 8.0 / 3.0);
+                    println!("Q_at_eight_thirds_levels={:.9}",
+                             mass_spectrum::koide_from_levels(&[levels[0], levels[1], levels[2]]));
+                    println!("Q_at_eight_thirds_spacings={:.9}",
+                             mass_spectrum::koide_from_spacings(&[levels[0], levels[1], levels[2]]));
+                }
+                "predict" => {
+                    // Parameter-free candidate: the proven Z3 wall tension T=(8/3)sqrt(mu)
+                    // supplies the symmetry-breaking field h = T/sqrt(mu) = 8/3.
+                    let h = 8.0 / 3.0;
+                    println!("cutoff,h,e0,e1,e2,Q,deviation_from_2_3");
+                    for cutoff in [20usize, 40, 60, 80, 120, 160] {
+                        let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, cutoff, 3);
+                        let q = mass_spectrum::koide_from_levels(&[
+                            levels[0], levels[1], levels[2]]);
+                        println!("{},{:.12},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 cutoff, h, levels[0], levels[1], levels[2], q,
+                                 q - 2.0 / 3.0);
+                    }
+                }
+                "rotorh" => {
+                    println!("h,e0,e1,e2,split,Q,deviation_from_2_3");
+                    for index in 0..=120 {
+                        let h = index as f64 * 0.05;
+                        let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, 60, 3);
+                        let q = mass_spectrum::koide_from_levels(&[
+                            levels[0], levels[1], levels[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 h, levels[0], levels[1], levels[2],
+                                 levels[2] - levels[1], q, q - 2.0 / 3.0);
+                    }
+                }
+                "phaseattr" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(32);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(5.0);
+                    let steps = 160usize;
+                    let baseline = simulation::hopf_charge_spectral(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("n,mu,initial_theta,initial_phase,final_phase,",
+                                     "phase_deg,z3,hopf_ratio,force_rms"));
+                    for index in 0..12 {
+                        let theta = std::f64::consts::PI * index as f64 / 6.0;
+                        let seed = simulation::phase_rotated_field(n, 8.0, theta);
+                        let initial_phase = simulation::z3_phase(&seed);
+                        let (relaxed, _, m) =
+                            simulation::relax(&seed, mu, 0.05, steps, 1.0, 1.0);
+                        let final_phase = simulation::z3_phase(&relaxed);
+                        let h = simulation::hopf_charge_spectral(&relaxed);
+                        let (z3, force_rms) = (m.z3, m.force_rms);
+                        println!(concat!("{},{:.1},{:.6},{:.9},{:.9},{:.3},",
+                                         "{:.9},{:.9},{:.9}"),
+                                 n, mu, theta, initial_phase, final_phase,
+                                 final_phase.to_degrees(), z3, h / baseline, force_rms);
                     }
                 }
                 "evolve" => {
