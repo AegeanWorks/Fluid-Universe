@@ -4611,7 +4611,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T21:11:47",
+      "updated": "2026-11-22T21:19:15",
       "last_audit": {
         "run": "run-3",
         "stage": 32,
@@ -4814,13 +4814,58 @@
           "3a5a18eb2e522c524ce7c58fd25f5623e4566b92",
           "21864c704a4e214286dba93baac54af5a765bc25"
         ],
-        "findings": [],
+        "findings": [
+          {
+            "code": "review-potts-scan-never-varies-twist",
+            "category": "improvement",
+            "severity": "low",
+            "path": "src/main.rs",
+            "line": 167,
+            "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+            "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+            "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+            "hunk": "8868e382b517:src/main.rs#4",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          },
+          {
+            "code": "review-zero-vector-guard-untested",
+            "category": "improvement",
+            "severity": "low",
+            "path": "src/two_component.rs",
+            "line": 59,
+            "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+            "evidence": "*v = [0.0, 0.0, 1.0];",
+            "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+            "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+            "symbol": "",
+            "introduced": true,
+            "reproducible": false,
+            "fixable": false,
+            "interaction": "",
+            "repaired": false,
+            "source": "review",
+            "patch_old": "",
+            "patch_new": ""
+          }
+        ],
         "repairs": [],
-        "counts": {},
+        "counts": {
+          "improvement": 2
+        },
         "reviewed": 5,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "src/potts_sector.rs:31: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             "README.md",
             "src/lib.rs",
@@ -4830,7 +4875,56 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-32-e6bbbbf04d6b.md",
           "redacted": 0,
-          "findings": [],
+          "coverage": {
+            "reported": 9,
+            "total": 9,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
+          "findings": [
+            {
+              "code": "review-potts-scan-never-varies-twist",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/main.rs",
+              "line": 167,
+              "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+              "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+              "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+              "hunk": "8868e382b517:src/main.rs#4",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            },
+            {
+              "code": "review-zero-vector-guard-untested",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/two_component.rs",
+              "line": 59,
+              "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+              "evidence": "*v = [0.0, 0.0, 1.0];",
+              "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+              "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "attestations": []
         },
         "skipped": [],
@@ -9239,13 +9333,58 @@
             "3a5a18eb2e522c524ce7c58fd25f5623e4566b92",
             "21864c704a4e214286dba93baac54af5a765bc25"
           ],
-          "findings": [],
+          "findings": [
+            {
+              "code": "review-potts-scan-never-varies-twist",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/main.rs",
+              "line": 167,
+              "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+              "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+              "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+              "hunk": "8868e382b517:src/main.rs#4",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            },
+            {
+              "code": "review-zero-vector-guard-untested",
+              "category": "improvement",
+              "severity": "low",
+              "path": "src/two_component.rs",
+              "line": 59,
+              "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+              "evidence": "*v = [0.0, 0.0, 1.0];",
+              "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+              "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+              "symbol": "",
+              "introduced": true,
+              "reproducible": false,
+              "fixable": false,
+              "interaction": "",
+              "repaired": false,
+              "source": "review",
+              "patch_old": "",
+              "patch_new": ""
+            }
+          ],
           "repairs": [],
-          "counts": {},
+          "counts": {
+            "improvement": 2
+          },
           "reviewed": 5,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "src/potts_sector.rs:31: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               "README.md",
               "src/lib.rs",
@@ -9255,7 +9394,56 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-32-e6bbbbf04d6b.md",
             "redacted": 0,
-            "findings": [],
+            "coverage": {
+              "reported": 9,
+              "total": 9,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
+            "findings": [
+              {
+                "code": "review-potts-scan-never-varies-twist",
+                "category": "improvement",
+                "severity": "low",
+                "path": "src/main.rs",
+                "line": 167,
+                "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+                "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+                "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+                "hunk": "8868e382b517:src/main.rs#4",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              },
+              {
+                "code": "review-zero-vector-guard-untested",
+                "category": "improvement",
+                "severity": "low",
+                "path": "src/two_component.rs",
+                "line": 59,
+                "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+                "evidence": "*v = [0.0, 0.0, 1.0];",
+                "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+                "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+                "symbol": "",
+                "introduced": true,
+                "reproducible": false,
+                "fixable": false,
+                "interaction": "",
+                "repaired": false,
+                "source": "review",
+                "patch_old": "",
+                "patch_new": ""
+              }
+            ],
             "attestations": []
           },
           "skipped": [],
@@ -9578,13 +9766,58 @@
       "3a5a18eb2e522c524ce7c58fd25f5623e4566b92",
       "21864c704a4e214286dba93baac54af5a765bc25"
     ],
-    "findings": [],
+    "findings": [
+      {
+        "code": "review-potts-scan-never-varies-twist",
+        "category": "improvement",
+        "severity": "low",
+        "path": "src/main.rs",
+        "line": 167,
+        "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+        "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+        "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+        "hunk": "8868e382b517:src/main.rs#4",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      },
+      {
+        "code": "review-zero-vector-guard-untested",
+        "category": "improvement",
+        "severity": "low",
+        "path": "src/two_component.rs",
+        "line": 59,
+        "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+        "evidence": "*v = [0.0, 0.0, 1.0];",
+        "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+        "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+        "symbol": "",
+        "introduced": true,
+        "reproducible": false,
+        "fixable": false,
+        "interaction": "",
+        "repaired": false,
+        "source": "review",
+        "patch_old": "",
+        "patch_new": ""
+      }
+    ],
     "repairs": [],
-    "counts": {},
+    "counts": {
+      "improvement": 2
+    },
     "reviewed": 5,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "src/potts_sector.rs:31: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         "README.md",
         "src/lib.rs",
@@ -9594,7 +9827,56 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-32-e6bbbbf04d6b.md",
       "redacted": 0,
-      "findings": [],
+      "coverage": {
+        "reported": 9,
+        "total": 9,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
+      "findings": [
+        {
+          "code": "review-potts-scan-never-varies-twist",
+          "category": "improvement",
+          "severity": "low",
+          "path": "src/main.rs",
+          "line": 167,
+          "message": "The new scan hardcodes a zero twist, where the eigenvalue sum is always 3*exp(K)>0, so q is always Some and the delta_check column can never print 'negative'. The sign diagnostic is dead and the documented twist parameter is never explored; scan delta or report the sign of the smallest eigenvalue instead.",
+          "evidence": "let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));",
+          "commit": "8868e382b51753ccaef7ac493def048007539ba2",
+          "hunk": "8868e382b517:src/main.rs#4",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        },
+        {
+          "code": "review-zero-vector-guard-untested",
+          "category": "improvement",
+          "severity": "low",
+          "path": "src/two_component.rs",
+          "line": 59,
+          "message": "The new fallback that rewrites near-null blend sites has no regression test that builds an antiparallel blend at eta=0.5 and asserts every site stays finite and unit, so the NaNs this guard was added to stop could silently return.",
+          "evidence": "*v = [0.0, 0.0, 1.0];",
+          "commit": "a3fc3f7378e4f7c2fd043f5f7e046356c1f249e4",
+          "hunk": "a3fc3f7378e4:src/two_component.rs#1",
+          "symbol": "",
+          "introduced": true,
+          "reproducible": false,
+          "fixable": false,
+          "interaction": "",
+          "repaired": false,
+          "source": "review",
+          "patch_old": "",
+          "patch_new": ""
+        }
+      ],
       "attestations": []
     },
     "skipped": [],
