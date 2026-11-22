@@ -148,6 +148,7 @@ fluid-universe/
 │   ├── wzw.rs                <- SU(3)_3 conformal dimension derives delta=2/9
 │   ├── wzw_crosscheck.rs     <- independent neutrino/quark sector cross-check
 │   ├── quark_phases.rs       <- literature quark phases fail the hierarchies
+│   ├── circulant_inverse.rs  <- exact no-go: quark hierarchies imply wrong Q
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue

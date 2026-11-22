@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, anomaly, audit, circulant, confinement, derrick, fingerprint, fluid,
+    Check, all_checks, anomaly, audit, circulant, circulant_inverse, confinement, derrick, fingerprint, fluid,
     flux_quantization, flux_sector,
     fn_scan, froggatt, geometry, lorentz, mass_spectrum, modular, orthogonal, poisson, potential_family,
     potts_sector, puddle,
@@ -75,7 +75,7 @@ fn main() {
         | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
         | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" | "anomaly"
         | "unified_model" | "shape_freedom" | "flux_quantization" | "wzw" | "wzw_crosscheck"
-        | "quark_phases" => {
+        | "quark_phases" | "circulant_inverse" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -117,6 +117,7 @@ fn main() {
                 "wzw" => wzw::checks(),
                 "wzw_crosscheck" => wzw_crosscheck::checks(),
                 "quark_phases" => quark_phases::checks(),
+                "circulant_inverse" => circulant_inverse::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
