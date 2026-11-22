@@ -119,6 +119,67 @@ fn main() {
                                  m.z3, m.force_rms, m.max_bond, m.mean_bond, drop);
                     }
                 }
+                "evolve" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(12);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(20.0);
+                    let kappa: f64 = args.get(4).and_then(|v| v.parse().ok()).unwrap_or(1.0);
+                    let steps: usize = args.get(5).and_then(|v| v.parse().ok()).unwrap_or(400);
+                    let dt: f64 = args.get(6).and_then(|v| v.parse().ok()).unwrap_or(0.05);
+                    let baseline = simulation::hopf_charge_grid(
+                        &simulation::analytic_field(n, 8.0, false));
+                    let mut field = simulation::analytic_field(n, 8.0, false);
+                    println!("n,mu,kappa,step,hopf_baseline,hopf_grid,hopf_ratio,z3,energy,force_rms");
+                    for step in 0..=steps {
+                        if step % 10 == 0 || step == steps {
+                            let h = simulation::hopf_charge_grid(&field);
+                            let m = simulation::metrics(&field, mu);
+                            let ratio = h / baseline;
+                            println!(concat!("{},{:.1},{:.1},{},{:.9},{:.9},{:.9},",
+                                             "{:.9},{:.9},{:.9}"),
+                                     n, mu, kappa, step, baseline, h, ratio, m.z3,
+                                     m.energy, m.force_rms);
+                        }
+                        if step < steps {
+                            let (next, _, _) = simulation::relax(&field, mu, dt, 1, 1.0, kappa);
+                            field = next;
+                        }
+                    }
+                }
+                "phase" => {
+                    let n = 12usize;
+                    let steps = 100usize;
+                    let baseline = simulation::hopf_charge_grid(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("mu,kappa,n,hopf_baseline,hopf_grid,hopf_ratio,z3,",
+                                     "e2,e4,potential,force_rms,max_bond,energy_drop"));
+                    for mu in [0.0_f64, 1.0, 2.0, 5.0, 10.0, 15.0, 20.0] {
+                        for kappa in [0.5_f64, 1.0, 2.0] {
+                            let field = simulation::analytic_field(n, 8.0, false);
+                            let (relaxed, history, m) =
+                                simulation::relax(&field, mu, 0.05, steps, 1.0, kappa);
+                            let h = simulation::hopf_charge_grid(&relaxed);
+                            let ratio = if baseline.abs() > 1e-12 { h / baseline } else { 0.0 };
+                            let drop = history.first().copied().unwrap_or(0.0)
+                                - history.last().copied().unwrap_or(0.0);
+                            let (z3, e2, e4, potential, force_rms, max_bond) =
+                                (m.z3, m.e2, m.e4, m.potential, m.force_rms, m.max_bond);
+                            println!(concat!("{:.1},{:.1},{},{:.9},{:.9},{:.9},{:.9},",
+                                             "{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}"),
+                                     mu, kappa, n, baseline, h, ratio, z3, e2, e4,
+                                     potential, force_rms, max_bond, drop);
+                        }
+                    }
+                }
+                "hopfcheck" => {
+                    println!("n,hopf_grid,hopf_preimage,z3");
+                    for n in [8usize, 12, 16, 20, 24, 32] {
+                        let field = simulation::analytic_field(n, 8.0, false);
+                        println!("{},{:.9},{:.9},{:.9}", n,
+                                 simulation::hopf_charge_grid(&field),
+                                 simulation::hopf_charge_preimage(200),
+                                 simulation::z3_order(&field));
+                    }
+                }
                 "history" => {
                     println!("mu,step,energy");
                     for mu in [0.0_f64, 5.0, 20.0] {

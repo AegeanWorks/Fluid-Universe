@@ -455,6 +455,101 @@ pub fn relax(
     (f, history, m)
 }
 
+/// Grid Chern--Simons Hopf charge of an arbitrary field.
+///
+/// This is the finite-difference counterpart of the analytic preimage estimator:
+/// `F_ij = n . (d_i n x d_j n)`, `B = (F_23, F_31, F_12)`, solve the periodic
+/// Poisson problem `nabla^2 A = -curl B` by Jacobi sweeps, then
+/// `H = -1/(16 pi^2) integral A . B`. No FFT dependency; the normalisation
+/// follows the factor-of-two convention recorded in the project's formula F16b.
+pub fn hopf_charge_grid(field: &Field3) -> f64 {
+    let n = field.n;
+    let h = field.dx;
+    let count = n * n * n;
+    let mut derivative = vec![[0.0; 3]; count * 3]; // [dir*count + site]
+    for x in 0..n {
+        for y in 0..n {
+            for z in 0..n {
+                let site = idx(n, x, y, z);
+                for dir in 0..3 {
+                    let plus = field.data[neighbor(n, x, y, z, dir, 1)];
+                    let minus = field.data[neighbor(n, x, y, z, dir, -1)];
+                    derivative[dir * count + site] = scale(sub(plus, minus), 1.0 / (2.0 * h));
+                }
+            }
+        }
+    }
+    let mut b = vec![[0.0; 3]; count];
+    for x in 0..n {
+        for y in 0..n {
+            for z in 0..n {
+                let site = idx(n, x, y, z);
+                let f23 = dot(field.data[site], cross(derivative[1 * count + site],
+                                                      derivative[2 * count + site]));
+                let f31 = dot(field.data[site], cross(derivative[2 * count + site],
+                                                      derivative[0 * count + site]));
+                let f12 = dot(field.data[site], cross(derivative[0 * count + site],
+                                                      derivative[1 * count + site]));
+                b[site] = [f23, f31, f12];
+            }
+        }
+    }
+    // rhs = curl B, so nabla^2 A = -rhs => A = (sum neighbours + h^2 rhs)/6.
+    let mut a = vec![[0.0; 3]; count];
+    for _ in 0..260 {
+        let mut next = vec![[0.0; 3]; count];
+        for x in 0..n {
+            for y in 0..n {
+                for z in 0..n {
+                    let site = idx(n, x, y, z);
+                    let mut sum = [0.0; 3];
+                    for dir in 0..3 {
+                        for step in [-1isize, 1] {
+                            let nb = neighbor(n, x, y, z, dir, step);
+                            acc(&mut sum, a[nb], 1.0);
+                        }
+                    }
+                    let curl = [
+                        (b[neighbor(n, x, y, z, 1, 1)][2] - b[neighbor(n, x, y, z, 1, -1)][2])
+                            / (2.0 * h)
+                            - (b[neighbor(n, x, y, z, 2, 1)][1] - b[neighbor(n, x, y, z, 2, -1)][1])
+                                / (2.0 * h),
+                        (b[neighbor(n, x, y, z, 2, 1)][0] - b[neighbor(n, x, y, z, 2, -1)][0])
+                            / (2.0 * h)
+                            - (b[neighbor(n, x, y, z, 0, 1)][2] - b[neighbor(n, x, y, z, 0, -1)][2])
+                                / (2.0 * h),
+                        (b[neighbor(n, x, y, z, 0, 1)][1] - b[neighbor(n, x, y, z, 0, -1)][1])
+                            / (2.0 * h)
+                            - (b[neighbor(n, x, y, z, 1, 1)][0] - b[neighbor(n, x, y, z, 1, -1)][0])
+                                / (2.0 * h),
+                    ];
+                    for c in 0..3 {
+                        next[site][c] = (sum[c] + h * h * curl[c]) / 6.0;
+                    }
+                }
+            }
+        }
+        let mut mean = [0.0; 3];
+        for value in &next {
+            acc(&mut mean, *value, 1.0);
+        }
+        for c in 0..3 {
+            mean[c] /= count as f64;
+        }
+        for value in next.iter_mut() {
+            for c in 0..3 {
+                value[c] -= mean[c];
+            }
+        }
+        a = next;
+    }
+    let mut integral = 0.0;
+    for site in 0..count {
+        integral += dot(a[site], b[site]);
+    }
+    -integral * h * h * h / (16.0 * std::f64::consts::PI * std::f64::consts::PI)
+}
+
 /// Summary observables of a field.
 ///
 /// `e2`/`e4`/`potential`/`energy` use the canonical unit couplings
