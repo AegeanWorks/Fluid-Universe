@@ -71,7 +71,8 @@ pub fn phase(state: &State) -> f64 {
         re += x[k] * angle.cos();
         im += x[k] * angle.sin();
     }
-    im.atan2(re).rem_euclid(2.0 * PI)
+    let angle = im.atan2(re).rem_euclid(2.0 * PI);
+    if angle > 2.0 * PI - 1e-12 { 0.0 } else { angle }
 }
 
 /// Effective ratio |c|/a recovered from the running Yukawas.
