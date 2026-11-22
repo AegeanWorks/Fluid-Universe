@@ -152,6 +152,7 @@ fluid-universe/
 │   ├── xy_z3.rs              <- 2D XY+Z3 model and topological winding
 │   ├── quark_rg.rs           <- down-quark RG and the Koide ratio
 │   ├── water_mechanics.rs    <- gravity-capillary dispersion and analogue horizon
+│   ├── water_unification.rs  <- independent h=2 l_c fixation from wave-speed matching
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

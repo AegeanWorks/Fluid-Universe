@@ -28,6 +28,7 @@ pub mod unification;
 pub mod verify;
 pub mod water;
 pub mod water_mechanics;
+pub mod water_unification;
 pub mod xy_z3;
 
 use std::fmt;
@@ -76,6 +77,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(xy_z3::checks());
     out.extend(quark_rg::checks());
     out.extend(water_mechanics::checks());
+    out.extend(water_unification::checks());
     out
 }
 
