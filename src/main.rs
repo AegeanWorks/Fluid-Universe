@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
     mass_spectrum, potential_family, potts_sector, reports, rg_sector, rotor, simulation, spectra,
-    spinodal, two_component, unification, verify, water,
+    spinodal, two_component, unification, verify, water, xy_z3,
 };
 
 fn json_escape(text: &str) -> String {
@@ -67,7 +67,7 @@ fn main() {
         "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
-        | "potts_sector" => {
+        | "potts_sector" | "xy_z3" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -87,6 +87,7 @@ fn main() {
                 "rg_sector" => rg_sector::checks(),
                 "two_component" => two_component::checks(),
                 "potts_sector" => potts_sector::checks(),
+                "xy_z3" => xy_z3::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -156,6 +157,40 @@ fn main() {
                                              z3, force_rms, max_bond);
                                 }
                             }
+                        }
+                    }
+                }
+                "xyinit" => {
+                    let n = 16usize;
+                    let twist: Vec<f64> = (0..n * n)
+                        .map(|i| std::f64::consts::TAU * (i % n) as f64 / n as f64)
+                        .collect();
+                    println!("twist winding: {}", xy_z3::winding_number(&twist, n));
+                    let theta = xy_z3::seeded_vortex(n);
+                    println!("vortex winding: {}", xy_z3::winding_number(&theta, n));
+                }
+                "xyscan" => {
+                    println!("start,h,J,temperature,z3,winding,energy");
+                    for start in ["smooth", "vortex"] {
+                        for index in 0..=20 {
+                            let h = index as f64 * 0.2;
+                            let initial = if start == "vortex" {
+                                xy_z3::seeded_vortex(16)
+                            } else {
+                                let mut smooth = Vec::with_capacity(16 * 16);
+                                for y in 0..16 {
+                                    for x in 0..16 {
+                                        smooth.push(0.1 * ((x + y) as f64 - 16.0));
+                                    }
+                                }
+                                smooth
+                            };
+                            let theta = xy_z3::relax_from(
+                                &initial, 16, 1.0, h, 0.5, 60, 20261122);
+                            println!("{start},{h:.1},1.0,0.5,{:.9},{:.9},{:.9}",
+                                     xy_z3::z3_order(&theta),
+                                     xy_z3::winding_density(&theta, 16),
+                                     xy_z3::energy(&theta, 16, 1.0, h));
                         }
                     }
                 }

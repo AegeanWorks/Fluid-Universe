@@ -28,7 +28,7 @@ pub fn eigenvalues(k: f64, delta: f64) -> [f64; 3] {
 pub fn q_signed(values: &[f64; 3]) -> Option<f64> {
     let sum: f64 = values.iter().sum();
     let squares: f64 = values.iter().map(|v| v * v).sum();
-    if sum > 0.0 { Some(squares / (sum * sum)) } else { None }
+    if values.iter().all(|v| *v > 0.0) { Some(squares / (sum * sum)) } else { None }
 }
 
 /// Coupling at which the circulant Q hits 2/3, i.e. r = 1/sqrt(2).

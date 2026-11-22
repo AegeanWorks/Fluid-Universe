@@ -118,6 +118,16 @@ mod tests {
     }
 
     #[test]
+    fn blend_repairs_zero_length_sites() {
+        let n = 4usize;
+        let dx = 8.0 / n as f64;
+        let zero = Field3 { n, dx, data: vec![[0.0; 3]; n * n * n] };
+        let mixed = blended(&zero, &zero, 0.5);
+        assert!(mixed.data.iter().all(|v| approx(
+            (v[0] * v[0] + v[1] * v[1] + v[2] * v[2]).sqrt(), 1.0, 1e-12)));
+    }
+
+    #[test]
     fn overlap_is_bounded() {
         let (a, b) = small();
         let value = mean_overlap(&a, &b);

@@ -149,6 +149,7 @@ fluid-universe/
 │   ├── rg_sector.rs          <- one-loop RG flow of the Koide phase and ratio
 │   ├── two_component.rs      <- coupled topological and Z3-ordered layers
 │   ├── potts_sector.rs       <- Z3 centre/Potts transfer matrix and Koide ratio
+│   ├── xy_z3.rs              <- 2D XY+Z3 model and topological winding
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

@@ -26,6 +26,7 @@ pub mod two_component;
 pub mod unification;
 pub mod verify;
 pub mod water;
+pub mod xy_z3;
 
 use std::fmt;
 
@@ -70,6 +71,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(rg_sector::checks());
     out.extend(two_component::checks());
     out.extend(potts_sector::checks());
+    out.extend(xy_z3::checks());
     out
 }
 
