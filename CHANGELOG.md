@@ -937,7 +937,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- `theory/variational_saddle.py` (2D G-M/Yasui actions in (s, c), decoupled 1D Newton polish, conditional-slice extremum + box record, 1D-vs-2D firewall with 2x cross-check); `phenomenology/variational_saddle_report.py`, `make variationalsaddle`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`; three new independent audit checks in `verification/audit.py` (location, conditional slices + box record, curvature split, Yasui contrast, scaling law — five checks, no project imports); formulas F34.
+- `theory/variational_saddle.py` (2D G-M/Yasui actions in (s, c), decoupled 1D Newton polish, conditional-slice extremum + box record, 1D-vs-2D firewall with 2x cross-check); `phenomenology/variational_saddle_report.py`, `make variationalsaddle`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`; five new independent audit checks in `verification/audit.py` (location, conditional slices + box record, curvature split, Yasui contrast, scaling law — five checks, no project imports); formulas F34.
 
 **Results**
 
