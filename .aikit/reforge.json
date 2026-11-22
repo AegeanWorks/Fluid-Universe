@@ -4567,7 +4567,7 @@
       ],
       "status": "active",
       "created": "2026-11-22T17:00:58",
-      "updated": "2026-11-22T19:44:10",
+      "updated": "2026-11-22T19:50:50",
       "last_audit": {
         "run": "run-3",
         "stage": 18,
@@ -4689,8 +4689,11 @@
         "counts": {},
         "reviewed": 57,
         "review": {
-          "status": "unreviewed",
-          "rejected": [],
+          "status": "reviewed",
+          "rejected": [
+            "CHANGELOG.md:940: the evidence is not in the current file (it may quote a removed line)",
+            ".aikit/decisions.md:312: the evidence is not in the current file (it may quote a removed line)"
+          ],
           "files": [
             ".aikit/decisions.md",
             "CHANGELOG.md",
@@ -4752,6 +4755,14 @@
           ],
           "packet": ".aikit/reforge.reviews/stage-run-3-18-2fa9db3a0f2a.md",
           "redacted": 0,
+          "coverage": {
+            "reported": 61,
+            "total": 61,
+            "carried": [],
+            "missing": [],
+            "unknown": [],
+            "invalid": []
+          },
           "findings": [],
           "attestations": []
         },
@@ -7752,8 +7763,11 @@
           "counts": {},
           "reviewed": 57,
           "review": {
-            "status": "unreviewed",
-            "rejected": [],
+            "status": "reviewed",
+            "rejected": [
+              "CHANGELOG.md:940: the evidence is not in the current file (it may quote a removed line)",
+              ".aikit/decisions.md:312: the evidence is not in the current file (it may quote a removed line)"
+            ],
             "files": [
               ".aikit/decisions.md",
               "CHANGELOG.md",
@@ -7815,6 +7829,14 @@
             ],
             "packet": ".aikit/reforge.reviews/stage-run-3-18-2fa9db3a0f2a.md",
             "redacted": 0,
+            "coverage": {
+              "reported": 61,
+              "total": 61,
+              "carried": [],
+              "missing": [],
+              "unknown": [],
+              "invalid": []
+            },
             "findings": [],
             "attestations": []
           },
@@ -8013,8 +8035,11 @@
     "counts": {},
     "reviewed": 57,
     "review": {
-      "status": "unreviewed",
-      "rejected": [],
+      "status": "reviewed",
+      "rejected": [
+        "CHANGELOG.md:940: the evidence is not in the current file (it may quote a removed line)",
+        ".aikit/decisions.md:312: the evidence is not in the current file (it may quote a removed line)"
+      ],
       "files": [
         ".aikit/decisions.md",
         "CHANGELOG.md",
@@ -8076,6 +8101,14 @@
       ],
       "packet": ".aikit/reforge.reviews/stage-run-3-18-2fa9db3a0f2a.md",
       "redacted": 0,
+      "coverage": {
+        "reported": 61,
+        "total": 61,
+        "carried": [],
+        "missing": [],
+        "unknown": [],
+        "invalid": []
+      },
       "findings": [],
       "attestations": []
     },
