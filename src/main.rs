@@ -7,8 +7,9 @@ use fluid_universe::{
     Check, all_checks, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector,
     fn_scan, froggatt, lorentz, mass_spectrum, modular, orthogonal, poisson, potential_family,
     potts_sector, puddle,
-    quark_rg, reports, rg_sector, rotor, simulation, spectra, spinodal, two_component, unification,
-    variation, verify, vortex_unification, water, water_mechanics, water_unification, xy_z3,
+    quark_rg, reports, rg_sector, rotor, simulation, spectra, spinodal, su3, two_component,
+    unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
+    xy_z3,
 };
 
 fn json_escape(text: &str) -> String {
@@ -71,7 +72,7 @@ fn main() {
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
         | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
-        | "confinement" | "froggatt" | "fn_scan" | "modular" => {
+        | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -104,6 +105,7 @@ fn main() {
                 "froggatt" => froggatt::checks(),
                 "fn_scan" => fn_scan::checks(),
                 "modular" => modular::checks(),
+                "su3" => su3::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

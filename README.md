@@ -140,6 +140,7 @@ fluid-universe/
 │   ├── froggatt.rs           <- FN integer-charge mass ansatz and hierarchy test
 │   ├── fn_scan.rs            <- joint FN charge scan over both hierarchy ratios
 │   ├── modular.rs            <- theta-series singular moduli at Z3 CM points
+│   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
 │   ├── lorentz.rs            <- director anisotropy

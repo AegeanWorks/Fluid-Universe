@@ -29,6 +29,7 @@ pub mod reports;
 pub mod rotor;
 pub mod simulation;
 pub mod spectra;
+pub mod su3;
 pub mod spinodal;
 pub mod two_component;
 pub mod unification;
@@ -96,6 +97,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(froggatt::checks());
     out.extend(fn_scan::checks());
     out.extend(modular::checks());
+    out.extend(su3::checks());
     out
 }
 
