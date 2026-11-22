@@ -100,6 +100,26 @@ fn main() {
                 }
             }
         }
+        "scan" => {
+            match args.get(1).map(String::as_str).unwrap_or("") {
+                "neutrino" => {
+                    println!("ordering,m_light_eV,Q");
+                    for step in 0..=2000usize {
+                        let m0 = 0.2 * step as f64 / 2000.0;
+                        for inverted in [false, true] {
+                            let masses = spectra::neutrino_masses(m0, 7.41e-5, 2.507e-3, inverted);
+                            println!("{},{:.8},{:.12}",
+                                     if inverted { "IO" } else { "NO" }, m0,
+                                     spectra::q_from_masses(&masses));
+                        }
+                    }
+                }
+                other => {
+                    eprintln!("Why: unknown scan {other:?}.\nFix: choose `neutrino`.");
+                    std::process::exit(2);
+                }
+            }
+        }
         "claims" => {
             for record in audit::run_audit() {
                 println!("{:<7} {:<44} {:<12.6e} {}", record.verdict, record.claim,
@@ -128,7 +148,7 @@ fn main() {
             std::process::exit(if result.agree { 0 } else { 1 });
         }
         other => {
-            eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|regenerate|json|fingerprint|verify|selftest.");
+            eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|scan|regenerate|json|fingerprint|verify|selftest.");
             std::process::exit(2);
         }
     }

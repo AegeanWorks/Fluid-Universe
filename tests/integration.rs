@@ -36,6 +36,15 @@ fn two_derivations_agree_without_shared_state() {
 }
 
 #[test]
+fn neutrino_scan_endpoints_match_the_ledger() {
+    use fluid_universe::linalg::approx;
+    let zero = spectra::q_from_masses(&spectra::neutrino_masses(0.0, 7.41e-5, 2.507e-3, false));
+    let heavy = spectra::q_from_masses(&spectra::neutrino_masses(0.2, 7.41e-5, 2.507e-3, false));
+    assert!(approx(zero, 0.585612009369, 1e-9), "Q(NO, m0=0) = {zero}");
+    assert!(approx(heavy, 0.333350018656, 1e-8), "Q(NO, m0=0.2) = {heavy}");
+}
+
+#[test]
 fn fingerprint_is_stable_and_hex() {
     let a = fingerprint(&all_checks());
     let b = fingerprint(&all_checks());
