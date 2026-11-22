@@ -7,6 +7,7 @@
 
 pub mod audit;
 pub mod circulant;
+pub mod confinement;
 pub mod derrick;
 pub mod fft;
 pub mod fluid;
@@ -88,6 +89,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(variation::checks());
     out.extend(poisson::checks());
     out.extend(orthogonal::checks());
+    out.extend(confinement::checks());
     out
 }
 

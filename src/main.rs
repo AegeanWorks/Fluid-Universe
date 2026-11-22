@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
+    Check, all_checks, audit, circulant, confinement, derrick, fingerprint, fluid, flux_sector, lorentz,
     mass_spectrum, potential_family, potts_sector, puddle, quark_rg, reports, rg_sector, rotor,
     simulation, spectra, spinodal, two_component, unification, verify, water, water_mechanics,
     orthogonal, poisson, variation, vortex_unification, water_unification, xy_z3,
@@ -69,7 +69,8 @@ fn main() {
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
-        | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal" => {
+        | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
+        | "confinement" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -98,6 +99,7 @@ fn main() {
                 "variation" => variation::checks(),
                 "poisson" => poisson::checks(),
                 "orthogonal" => orthogonal::checks(),
+                "confinement" => confinement::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
@@ -177,6 +179,15 @@ fn main() {
                         let k = water_mechanics::minimum_wave_number(h);
                         let klc = k * lc;
                         println!("h_over_lc={d:.9},k_lc={klc:.12},ratio={:.12}", klc * klc);
+                    }
+                }
+                "confinescan" => {
+                    println!("lambda,E1,E2,E3,Q");
+                    for index in 0..=40 {
+                        let lambda = index as f64 * 0.1;
+                        let v = confinement::levels(lambda, 50, 24.0);
+                        println!("{lambda:.1},{:.9},{:.9},{:.9},{:.9}",
+                                 v[0], v[1], v[2], confinement::q_of_levels(&v));
                     }
                 }
                 "water" => {
