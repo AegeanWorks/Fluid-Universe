@@ -7,7 +7,7 @@ use fluid_universe::{
     Check, all_checks, audit, circulant, derrick, fingerprint, fluid, flux_sector, lorentz,
     mass_spectrum, potential_family, potts_sector, puddle, quark_rg, reports, rg_sector, rotor,
     simulation, spectra, spinodal, two_component, unification, verify, water, water_mechanics,
-    poisson, variation, vortex_unification, water_unification, xy_z3,
+    orthogonal, poisson, variation, vortex_unification, water_unification, xy_z3,
 };
 
 fn json_escape(text: &str) -> String {
@@ -69,7 +69,7 @@ fn main() {
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
-        | "puddle" | "vortex_unification" | "variation" | "poisson" => {
+        | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -97,6 +97,7 @@ fn main() {
                 "vortex_unification" => vortex_unification::checks(),
                 "variation" => variation::checks(),
                 "poisson" => poisson::checks(),
+                "orthogonal" => orthogonal::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

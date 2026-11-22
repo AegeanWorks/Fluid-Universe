@@ -156,6 +156,7 @@ fluid-universe/
 │   ├── puddle.rs             <- exact depth condition and puddle-height exclusion
 │   ├── variation.rs          <- exact Q=(1+CV^2)/3 identity and distribution scan
 │   ├── poisson.rs            <- exponential population vs sample CV test
+│   ├── orthogonal.rs         <- exact Q=2/3 from Laguerre L_3^(-1) zeros
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration
