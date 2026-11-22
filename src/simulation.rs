@@ -482,7 +482,7 @@ pub fn z3_complex(field: &Field3) -> (f64, f64) {
 /// Triatic phase in `(-pi/3, pi/3]`, the natural analogue of the Koide phase delta.
 pub fn z3_phase(field: &Field3) -> f64 {
     let (re, im) = z3_complex(field);
-    im.atan2(re)
+    im.atan2(re) / 3.0
 }
 
 /// Rotate the azimuthal phase of the analytic H=1 seed by `theta`.
