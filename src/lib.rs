@@ -15,6 +15,7 @@ pub mod conformal_block;
 pub mod compact_identity;
 pub mod confinement;
 pub mod derrick;
+pub mod dynamical_flow;
 pub mod exceptional_nonsimply;
 pub mod exceptional_scan;
 pub mod fft;
@@ -127,6 +128,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(gravity_relation::checks());
     out.extend(compact_identity::checks());
     out.extend(classical_scan::checks());
+    out.extend(dynamical_flow::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
