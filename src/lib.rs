@@ -61,6 +61,7 @@ pub mod potts_sector;
 pub mod rg_sector;
 pub mod shape_freedom;
 pub mod reports;
+pub mod sector_count;
 pub mod rep_scan;
 pub mod rotor;
 pub mod scale_choice;
@@ -157,6 +158,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_running::checks());
     out.extend(foot_geometry::checks());
     out.extend(nosusy_unification::checks());
+    out.extend(sector_count::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
