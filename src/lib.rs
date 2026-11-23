@@ -62,6 +62,7 @@ pub mod rep_scan;
 pub mod rotor;
 pub mod scale_choice;
 pub mod simulation;
+pub mod single_phase_rule;
 pub mod spectra;
 pub mod su3;
 pub mod so10_gut;
@@ -151,6 +152,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_neutrino::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
+    out.extend(single_phase_rule::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
