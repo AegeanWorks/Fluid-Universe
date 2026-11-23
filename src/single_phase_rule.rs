@@ -1,4 +1,4 @@
-//! Clarification of the up-quark tension: it is an AMPLITUDE precision issue,
+﻿//! Clarification of the up-quark tension: it is an AMPLITUDE precision issue,
 //! not a phase-rule failure.
 //!
 //! Earlier (up_phase_resolution.rs) we resolved the +2.61 sigma up tension by

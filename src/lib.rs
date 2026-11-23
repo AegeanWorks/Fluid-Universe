@@ -53,6 +53,7 @@ pub mod null_model;
 pub mod monodromy;
 pub mod poisson;
 pub mod orthogonal;
+pub mod phase_interpolation;
 pub mod peer_reviewed_37;
 pub mod potential_family;
 pub mod phase_arithmetic;
@@ -163,6 +164,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(sector_count::checks());
     out.extend(ew_from_planck::checks());
     out.extend(d3_only_synthesis::checks());
+    out.extend(phase_interpolation::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
