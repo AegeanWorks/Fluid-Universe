@@ -37,6 +37,7 @@ pub mod flux_quantization;
 pub mod foot_geometry;
 pub mod fluid;
 pub mod geometry;
+pub mod gj_relation;
 pub mod froggatt;
 pub mod gravity_relation;
 pub mod index_framework;
@@ -173,6 +174,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(wzw_phase_origin::checks());
     out.extend(exact_phase_labels::checks());
     out.extend(natural_phase_labels::checks());
+    out.extend(gj_relation::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());

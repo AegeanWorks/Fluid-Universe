@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, cosmology_validation, exact_phase_labels, natural_phase_labels, wzw_phase_origin, d3_chain, d3_neutrino, d3_only_synthesis, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, ew_from_planck, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, foot_geometry, null_model, peer_reviewed_37, phase_interpolation, sector_count,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, cosmology_validation, exact_phase_labels, gj_relation, natural_phase_labels, wzw_phase_origin, d3_chain, d3_neutrino, d3_only_synthesis, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, ew_from_planck, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, foot_geometry, null_model, peer_reviewed_37, phase_interpolation, sector_count,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, nosusy_unification, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
@@ -86,7 +86,7 @@ fn main() {
         | "up_amplitude_gauge" | "d3_running" | "foot_geometry" | "nosusy_unification"
         | "sector_count" | "ew_from_planck" | "d3_only_synthesis" | "phase_interpolation"
         | "cosmology_validation" | "wzw_phase_origin" | "exact_phase_labels"
-        | "natural_phase_labels" => {
+        | "natural_phase_labels" | "gj_relation" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -172,6 +172,7 @@ fn main() {
                 "wzw_phase_origin" => wzw_phase_origin::checks(),
                 "exact_phase_labels" => exact_phase_labels::checks(),
                 "natural_phase_labels" => natural_phase_labels::checks(),
+                "gj_relation" => gj_relation::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
