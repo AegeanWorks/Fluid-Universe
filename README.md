@@ -156,6 +156,8 @@ fluid-universe/
 │   ├── jordan_spectrum.rs    <- non-circulant J3(O) spectrum: B,C fit, D,T fail
 │   ├── mass_convention.rs    <- CORRECTION: mixed-mass no-go was an artifact
 │   ├── fibonacci_phase.rs    <- post-hoc delta=A^2/F^2 pattern + uncertainty correction
+│   ├── gauge_running.rs      <- gauge couplings: SM non-unification, RG stability
+│   ├── exceptional_scan.rs   <- E6_k quantum dimensions: no A^2/delta match
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
