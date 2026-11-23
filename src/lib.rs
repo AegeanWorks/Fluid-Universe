@@ -54,6 +54,7 @@ pub mod shape_freedom;
 pub mod reports;
 pub mod rep_scan;
 pub mod rotor;
+pub mod scale_choice;
 pub mod simulation;
 pub mod spectra;
 pub mod su3;
@@ -135,6 +136,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(null_model::checks());
     out.extend(fib_significance::checks());
     out.extend(gauge_flavor::checks());
+    out.extend(scale_choice::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
