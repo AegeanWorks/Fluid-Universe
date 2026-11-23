@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, conformal_block, confinement, derrick, exceptional_nonsimply, exceptional_scan, fingerprint, fluid,
     flux_quantization, flux_sector,
-    fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, index_framework, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
+    fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, index_framework, index_uncertainty, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
     quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
@@ -78,7 +78,7 @@ fn main() {
         | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
         | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" | "fibonacci_phase"
         | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
-        | "so10_gut" | "amplitude_seesaw" | "index_framework" => {
+        | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -135,6 +135,7 @@ fn main() {
                 "so10_gut" => so10_gut::checks(),
                 "amplitude_seesaw" => amplitude_seesaw::checks(),
                 "index_framework" => index_framework::checks(),
+                "index_uncertainty" => index_uncertainty::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
