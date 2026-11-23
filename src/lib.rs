@@ -21,6 +21,7 @@ pub mod d3_spectrum;
 pub mod d3_validation;
 pub mod derrick;
 pub mod dynamical_flow;
+pub mod ew_from_planck;
 pub mod exceptional_nonsimply;
 pub mod exceptional_scan;
 pub mod fib_significance;
@@ -159,6 +160,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(foot_geometry::checks());
     out.extend(nosusy_unification::checks());
     out.extend(sector_count::checks());
+    out.extend(ew_from_planck::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
