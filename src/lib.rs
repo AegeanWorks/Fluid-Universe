@@ -87,6 +87,7 @@ pub mod water;
 pub mod water_mechanics;
 pub mod water_unification;
 pub mod wzw;
+pub mod wzw_phase_origin;
 pub mod wzw_crosscheck;
 pub mod xy_z3;
 
@@ -167,6 +168,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_only_synthesis::checks());
     out.extend(phase_interpolation::checks());
     out.extend(cosmology_validation::checks());
+    out.extend(wzw_phase_origin::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
