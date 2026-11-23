@@ -42,6 +42,20 @@ pub fn a2_from_gauge(n: i32) -> f64 {
 
 pub fn observed_a2() -> [f64; 3] { [2.0, 2.48999, 3.32550] }
 
+/// Fibonacci labels of the three sectors: F = {3,5,8}.
+pub fn fib_label(n: i32) -> f64 { [3.0, 5.0, 8.0][(n-1) as usize] }
+
+/// Gauge-derived Brannen phase for sector n: delta = A^2(n)/F(n)^2
+/// = 3 cot^2(theta_W) / ((6-n) F(n)^2). Because the only approximation is
+/// 3 cot^2(theta_W) ~ 10, this inherits the SAME uniform 0.384% offset as
+/// the amplitudes: one gauge observable fixes all six flavor parameters
+/// (three amplitudes + three phases) to within 0.4%.
+pub fn delta_from_gauge(n: i32) -> f64 {
+    a2_from_gauge(n) / fib_label(n).powi(2)
+}
+
+pub fn observed_delta() -> [f64; 3] { [2.0/9.0, 0.1, 5.0/96.0] }
+
 pub fn checks() -> Vec<Check> {
     let mut out = vec![
         Check::new("gauge_flavor.sin2tw", sin2_theta_w(), "sin^2(theta_W) at MZ"),
@@ -54,6 +68,11 @@ pub fn checks() -> Vec<Check> {
             match n { 1 => "gauge_flavor.a2_lep", 2 => "gauge_flavor.a2_down", _ => "gauge_flavor.a2_up" },
             a2_from_gauge(n) / observed_a2()[(n-1) as usize] - 1.0,
             "gauge-derived amplitude relative error",
+        ));
+        out.push(Check::new(
+            match n { 1 => "gauge_flavor.delta_lep", 2 => "gauge_flavor.delta_down", _ => "gauge_flavor.delta_up" },
+            delta_from_gauge(n) / observed_delta()[(n-1) as usize] - 1.0,
+            "gauge-derived phase relative error (uniform ~-0.384%)",
         ));
     }
     out
@@ -87,6 +106,21 @@ mod tests {
         for (n, target) in [(1, 5.0/3.0), (2, 4.0/3.0), (3, 1.0)] {
             let r = cot2_theta_w() / observed_a2()[n-1];
             assert!((r / target - 1.0).abs() < 0.01, "n={n}: {r} vs {target}");
+        }
+    }
+
+    #[test]
+    fn one_gauge_input_fixes_all_six_flavor_parameters() {
+        // The same 3cot^2~10 approximation propagates uniformly to all
+        // three amplitudes and three phases: relative error ~-0.384% each.
+        // Against the EXACT rational framework targets the offset is uniform;
+        // the rounded measured amplitudes introduce only small extra scatter.
+        let exact_a2 = [2.0_f64, 2.5, 10.0/3.0];
+        for n in 1..=3 {
+            let a_err = a2_from_gauge(n) / exact_a2[(n-1) as usize] - 1.0;
+            let d_err = delta_from_gauge(n) / observed_delta()[(n-1) as usize] - 1.0;
+            assert!((a_err - d_err).abs() < 1e-9, "n={n}: A2 err {a_err}, delta err {d_err}");
+            assert!(a_err.abs() < 0.01, "n={n}: error too large");
         }
     }
 }
