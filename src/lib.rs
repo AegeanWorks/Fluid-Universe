@@ -30,6 +30,7 @@ pub mod gauge_flavor;
 pub mod gauge_running;
 pub mod fn_scan;
 pub mod flux_quantization;
+pub mod foot_geometry;
 pub mod fluid;
 pub mod geometry;
 pub mod froggatt;
@@ -153,6 +154,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_spectrum::checks());
     out.extend(d3_neutrino::checks());
     out.extend(d3_running::checks());
+    out.extend(foot_geometry::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());

@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, d3_chain, d3_neutrino, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model, peer_reviewed_37,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, d3_chain, d3_neutrino, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, foot_geometry, null_model, peer_reviewed_37,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
@@ -83,7 +83,7 @@ fn main() {
         | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice"
         | "informational_geometry" | "d3_validation" | "d3_chain" | "d3_spectrum"
         | "d3_neutrino" | "peer_reviewed_37" | "up_phase_resolution" | "single_phase_rule"
-        | "up_amplitude_gauge" | "d3_running" => {
+        | "up_amplitude_gauge" | "d3_running" | "foot_geometry" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -159,6 +159,7 @@ fn main() {
                 "single_phase_rule" => single_phase_rule::checks(),
                 "up_amplitude_gauge" => up_amplitude_gauge::checks(),
                 "d3_running" => d3_running::checks(),
+                "foot_geometry" => foot_geometry::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
