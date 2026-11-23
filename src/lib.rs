@@ -28,6 +28,7 @@ pub mod linalg;
 pub mod lorentz;
 pub mod mass_convention;
 pub mod mass_spectrum;
+pub mod monodromy_block;
 pub mod modular;
 pub mod monodromy;
 pub mod poisson;
@@ -106,6 +107,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(phase_arithmetic::checks());
     out.extend(conformal_block::checks());
     out.extend(monodromy::checks());
+    out.extend(monodromy_block::checks());
     out.extend(mass_convention::checks());
     out.extend(fibonacci_phase::checks());
     out.extend(gauge_running::checks());
