@@ -16,6 +16,7 @@ pub mod compact_identity;
 pub mod confinement;
 pub mod d3_chain;
 pub mod d3_neutrino;
+pub mod d3_only_synthesis;
 pub mod d3_running;
 pub mod d3_spectrum;
 pub mod d3_validation;
@@ -161,6 +162,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(nosusy_unification::checks());
     out.extend(sector_count::checks());
     out.extend(ew_from_planck::checks());
+    out.extend(d3_only_synthesis::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
