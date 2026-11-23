@@ -27,6 +27,7 @@ pub mod ew_from_planck;
 pub mod exceptional_nonsimply;
 pub mod exceptional_scan;
 pub mod fib_significance;
+pub mod exact_phase_labels;
 pub mod fft;
 pub mod fibonacci_phase;
 pub mod gauge_flavor;
@@ -169,6 +170,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(phase_interpolation::checks());
     out.extend(cosmology_validation::checks());
     out.extend(wzw_phase_origin::checks());
+    out.extend(exact_phase_labels::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
