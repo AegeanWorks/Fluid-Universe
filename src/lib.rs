@@ -48,6 +48,7 @@ pub mod null_model;
 pub mod monodromy;
 pub mod poisson;
 pub mod orthogonal;
+pub mod peer_reviewed_37;
 pub mod potential_family;
 pub mod phase_arithmetic;
 pub mod puddle;
@@ -147,6 +148,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_chain::checks());
     out.extend(d3_spectrum::checks());
     out.extend(d3_neutrino::checks());
+    out.extend(peer_reviewed_37::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
