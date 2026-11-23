@@ -68,6 +68,7 @@ pub mod so10_gut;
 pub mod spinodal;
 pub mod two_component;
 pub mod unified_model;
+pub mod up_phase_resolution;
 pub mod unification;
 pub mod variation;
 pub mod verify;
@@ -149,6 +150,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_spectrum::checks());
     out.extend(d3_neutrino::checks());
     out.extend(peer_reviewed_37::checks());
+    out.extend(up_phase_resolution::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
