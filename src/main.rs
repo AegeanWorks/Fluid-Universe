@@ -8,7 +8,7 @@ use fluid_universe::{
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
-    quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, spectra, spinodal, su3, two_component,
+    quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
     quark_phases, wzw, wzw_crosscheck, xy_z3,
 };
@@ -77,7 +77,8 @@ fn main() {
         | "unified_model" | "shape_freedom" | "flux_quantization" | "wzw" | "wzw_crosscheck"
         | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
         | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" | "fibonacci_phase"
-        | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block" => {
+        | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
+        | "so10_gut" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -131,6 +132,7 @@ fn main() {
                 "exceptional_scan" => exceptional_scan::checks(),
                 "exceptional_nonsimply" => exceptional_nonsimply::checks(),
                 "monodromy_block" => monodromy_block::checks(),
+                "so10_gut" => so10_gut::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

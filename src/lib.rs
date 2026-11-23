@@ -47,6 +47,7 @@ pub mod rotor;
 pub mod simulation;
 pub mod spectra;
 pub mod su3;
+pub mod so10_gut;
 pub mod spinodal;
 pub mod two_component;
 pub mod unified_model;
@@ -113,6 +114,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(gauge_running::checks());
     out.extend(exceptional_scan::checks());
     out.extend(exceptional_nonsimply::checks());
+    out.extend(so10_gut::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());

@@ -160,6 +160,7 @@ fluid-universe/
 │   ├── exceptional_scan.rs   <- E6_k quantum dimensions: no A^2/delta match
 │   ├── exceptional_nonsimply.rs <- F4/G2 with correct root-length normalization
 │   ├── monodromy_block.rs    <- explicit SU(3)_3 S-matrix, Verlinde fusion, braiding label 2/9
+│   ├── so10_gut.rs          <- SO(10) mass test + MSSM gauge unification at 2e16 GeV
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
