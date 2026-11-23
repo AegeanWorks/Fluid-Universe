@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, d3_chain, d3_neutrino, d3_spectrum, d3_validation, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model, peer_reviewed_37,
     flux_quantization, flux_sector,
-    fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_phase_resolution,
+    fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
     quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
@@ -82,7 +82,8 @@ fn main() {
         | "gravity_relation" | "compact_identity" | "classical_scan" | "dynamical_flow"
         | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice"
         | "informational_geometry" | "d3_validation" | "d3_chain" | "d3_spectrum"
-        | "d3_neutrino" | "peer_reviewed_37" | "up_phase_resolution" | "single_phase_rule" => {
+        | "d3_neutrino" | "peer_reviewed_37" | "up_phase_resolution" | "single_phase_rule"
+        | "up_amplitude_gauge" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -156,6 +157,7 @@ fn main() {
                 "peer_reviewed_37" => peer_reviewed_37::checks(),
                 "up_phase_resolution" => up_phase_resolution::checks(),
                 "single_phase_rule" => single_phase_rule::checks(),
+                "up_amplitude_gauge" => up_amplitude_gauge::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

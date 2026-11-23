@@ -70,6 +70,7 @@ pub mod spinodal;
 pub mod two_component;
 pub mod unified_model;
 pub mod up_phase_resolution;
+pub mod up_amplitude_gauge;
 pub mod unification;
 pub mod variation;
 pub mod verify;
@@ -153,6 +154,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
+    out.extend(up_amplitude_gauge::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
