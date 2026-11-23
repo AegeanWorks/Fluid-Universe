@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, conformal_block, confinement, derrick, exceptional_nonsimply, exceptional_scan, fingerprint, fluid,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, compact_identity, conformal_block, confinement, derrick, exceptional_nonsimply, exceptional_scan, fingerprint, fluid,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
@@ -79,7 +79,7 @@ fn main() {
         | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" | "fibonacci_phase"
         | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
         | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty"
-        | "gravity_relation" => {
+        | "gravity_relation" | "compact_identity" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -138,6 +138,7 @@ fn main() {
                 "index_framework" => index_framework::checks(),
                 "index_uncertainty" => index_uncertainty::checks(),
                 "gravity_relation" => gravity_relation::checks(),
+                "compact_identity" => compact_identity::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
