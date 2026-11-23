@@ -73,6 +73,7 @@ pub mod rep_scan;
 pub mod rotor;
 pub mod scale_choice;
 pub mod simulation;
+pub mod single_model_test;
 pub mod single_phase_rule;
 pub mod spectra;
 pub mod su3;
@@ -177,6 +178,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(natural_phase_labels::checks());
     out.extend(gj_relation::checks());
     out.extend(threshold_unification::checks());
+    out.extend(single_model_test::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
