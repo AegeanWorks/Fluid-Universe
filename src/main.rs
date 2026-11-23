@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, anomaly, audit, circulant, circulant_inverse, conformal_block, confinement, derrick, exceptional_nonsimply, exceptional_scan, fingerprint, fluid,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, conformal_block, confinement, derrick, exceptional_nonsimply, exceptional_scan, fingerprint, fluid,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
@@ -78,7 +78,7 @@ fn main() {
         | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
         | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" | "fibonacci_phase"
         | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
-        | "so10_gut" => {
+        | "so10_gut" | "amplitude_seesaw" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -133,6 +133,7 @@ fn main() {
                 "exceptional_nonsimply" => exceptional_nonsimply::checks(),
                 "monodromy_block" => monodromy_block::checks(),
                 "so10_gut" => so10_gut::checks(),
+                "amplitude_seesaw" => amplitude_seesaw::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

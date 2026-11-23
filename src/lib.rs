@@ -5,6 +5,7 @@
 //! module ports one family of checks from the former Python implementation;
 //! `verify` re-derives the results in two separate processes (project rule G-001).
 
+pub mod amplitude_seesaw;
 pub mod anomaly;
 pub mod audit;
 pub mod circulant;
@@ -115,6 +116,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(exceptional_scan::checks());
     out.extend(exceptional_nonsimply::checks());
     out.extend(so10_gut::checks());
+    out.extend(amplitude_seesaw::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
