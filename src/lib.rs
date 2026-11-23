@@ -23,6 +23,7 @@ pub mod flux_quantization;
 pub mod fluid;
 pub mod geometry;
 pub mod froggatt;
+pub mod gravity_relation;
 pub mod index_framework;
 pub mod index_uncertainty;
 pub mod flux_sector;
@@ -121,6 +122,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(amplitude_seesaw::checks());
     out.extend(index_framework::checks());
     out.extend(index_uncertainty::checks());
+    out.extend(gravity_relation::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
