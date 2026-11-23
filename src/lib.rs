@@ -12,6 +12,7 @@ pub mod circulant_inverse;
 pub mod conformal_block;
 pub mod confinement;
 pub mod derrick;
+pub mod exceptional_nonsimply;
 pub mod exceptional_scan;
 pub mod fft;
 pub mod fibonacci_phase;
@@ -109,6 +110,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(fibonacci_phase::checks());
     out.extend(gauge_running::checks());
     out.extend(exceptional_scan::checks());
+    out.extend(exceptional_nonsimply::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
