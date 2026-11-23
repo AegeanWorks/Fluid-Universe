@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, d3_validation, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, d3_chain, d3_validation, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice,
     potts_sector, puddle,
@@ -81,7 +81,7 @@ fn main() {
         | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty"
         | "gravity_relation" | "compact_identity" | "classical_scan" | "dynamical_flow"
         | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice"
-        | "informational_geometry" | "d3_validation" => {
+        | "informational_geometry" | "d3_validation" | "d3_chain" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -149,6 +149,7 @@ fn main() {
                 "scale_choice" => scale_choice::checks(),
                 "informational_geometry" => informational_geometry::checks(),
                 "d3_validation" => d3_validation::checks(),
+                "d3_chain" => d3_chain::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
