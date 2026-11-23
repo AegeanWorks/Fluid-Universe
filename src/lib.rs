@@ -10,6 +10,7 @@ pub mod anomaly;
 pub mod audit;
 pub mod circulant;
 pub mod circulant_inverse;
+pub mod classical_scan;
 pub mod conformal_block;
 pub mod compact_identity;
 pub mod confinement;
@@ -125,6 +126,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(index_uncertainty::checks());
     out.extend(gravity_relation::checks());
     out.extend(compact_identity::checks());
+    out.extend(classical_scan::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
