@@ -30,6 +30,7 @@ pub mod geometry;
 pub mod froggatt;
 pub mod gravity_relation;
 pub mod index_framework;
+pub mod informational_geometry;
 pub mod index_uncertainty;
 pub mod flux_sector;
 pub mod jordan_spectrum;
@@ -137,6 +138,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(fib_significance::checks());
     out.extend(gauge_flavor::checks());
     out.extend(scale_choice::checks());
+    out.extend(informational_geometry::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());

@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model,
     flux_quantization, flux_sector,
-    fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice,
+    fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice,
     potts_sector, puddle,
     quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
@@ -80,7 +80,8 @@ fn main() {
         | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
         | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty"
         | "gravity_relation" | "compact_identity" | "classical_scan" | "dynamical_flow"
-        | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice" => {
+        | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice"
+        | "informational_geometry" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -146,6 +147,7 @@ fn main() {
                 "fib_significance" => fib_significance::checks(),
                 "gauge_flavor" => gauge_flavor::checks(),
                 "scale_choice" => scale_choice::checks(),
+                "informational_geometry" => informational_geometry::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {
