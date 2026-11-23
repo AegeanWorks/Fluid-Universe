@@ -4,7 +4,7 @@
 use std::process::Command;
 
 use fluid_universe::{
-    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fingerprint, fluid, null_model,
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, derrick, dynamical_flow, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, null_model,
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
@@ -80,7 +80,7 @@ fn main() {
         | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
         | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty"
         | "gravity_relation" | "compact_identity" | "classical_scan" | "dynamical_flow"
-        | "null_model" => {
+        | "null_model" | "fib_significance" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -143,6 +143,7 @@ fn main() {
                 "classical_scan" => classical_scan::checks(),
                 "dynamical_flow" => dynamical_flow::checks(),
                 "null_model" => null_model::checks(),
+                "fib_significance" => fib_significance::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

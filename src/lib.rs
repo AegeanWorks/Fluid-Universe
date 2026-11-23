@@ -18,6 +18,7 @@ pub mod derrick;
 pub mod dynamical_flow;
 pub mod exceptional_nonsimply;
 pub mod exceptional_scan;
+pub mod fib_significance;
 pub mod fft;
 pub mod fibonacci_phase;
 pub mod gauge_running;
@@ -131,6 +132,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(classical_scan::checks());
     out.extend(dynamical_flow::checks());
     out.extend(null_model::checks());
+    out.extend(fib_significance::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
