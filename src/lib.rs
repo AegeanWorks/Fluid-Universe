@@ -15,6 +15,7 @@ pub mod conformal_block;
 pub mod compact_identity;
 pub mod confinement;
 pub mod d3_chain;
+pub mod d3_spectrum;
 pub mod d3_validation;
 pub mod derrick;
 pub mod dynamical_flow;
@@ -143,6 +144,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(informational_geometry::checks());
     out.extend(d3_validation::checks());
     out.extend(d3_chain::checks());
+    out.extend(d3_spectrum::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
