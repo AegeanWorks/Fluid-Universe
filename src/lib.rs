@@ -46,6 +46,7 @@ pub mod mass_convention;
 pub mod mass_spectrum;
 pub mod monodromy_block;
 pub mod modular;
+pub mod nosusy_unification;
 pub mod null_model;
 pub mod monodromy;
 pub mod poisson;
@@ -155,6 +156,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(d3_neutrino::checks());
     out.extend(d3_running::checks());
     out.extend(foot_geometry::checks());
+    out.extend(nosusy_unification::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
