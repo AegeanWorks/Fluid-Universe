@@ -50,6 +50,7 @@ pub mod mass_convention;
 pub mod mass_spectrum;
 pub mod monodromy_block;
 pub mod modular;
+pub mod natural_phase_labels;
 pub mod nosusy_unification;
 pub mod null_model;
 pub mod monodromy;
@@ -171,6 +172,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(cosmology_validation::checks());
     out.extend(wzw_phase_origin::checks());
     out.extend(exact_phase_labels::checks());
+    out.extend(natural_phase_labels::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
