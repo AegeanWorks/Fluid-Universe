@@ -14,6 +14,7 @@ pub mod classical_scan;
 pub mod conformal_block;
 pub mod compact_identity;
 pub mod confinement;
+pub mod cosmology_validation;
 pub mod d3_chain;
 pub mod d3_neutrino;
 pub mod d3_only_synthesis;
@@ -165,6 +166,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(ew_from_planck::checks());
     out.extend(d3_only_synthesis::checks());
     out.extend(phase_interpolation::checks());
+    out.extend(cosmology_validation::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());
