@@ -155,6 +155,7 @@ fluid-universe/
 │   ├── rep_scan.rs           <- exhaustive SU(3)_k rep scan: only leptons fit
 │   ├── jordan_spectrum.rs    <- non-circulant J3(O) spectrum: B,C fit, D,T fail
 │   ├── mass_convention.rs    <- CORRECTION: mixed-mass no-go was an artifact
+│   ├── fibonacci_phase.rs    <- post-hoc delta=A^2/F^2 pattern + uncertainty correction
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue

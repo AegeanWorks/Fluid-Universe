@@ -13,6 +13,7 @@ pub mod conformal_block;
 pub mod confinement;
 pub mod derrick;
 pub mod fft;
+pub mod fibonacci_phase;
 pub mod fn_scan;
 pub mod flux_quantization;
 pub mod fluid;
@@ -103,6 +104,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(conformal_block::checks());
     out.extend(monodromy::checks());
     out.extend(mass_convention::checks());
+    out.extend(fibonacci_phase::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
