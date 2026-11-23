@@ -5,11 +5,15 @@
 //! the two ratios r1=y2/y1, r2=y3/y2 determine the roots EXACTLY:
 //!   y1 = 3/(1+r1+r1*r2), y2=r1*y1, y3=r2*y2.
 //! The Koide-like quotient of the masses y_k^2 is then Q = sum(y_k^2)/9, with
-//! no fitting of A or delta. Applying this to the recorded quark hierarchies
-//! gives Q_up=0.8465 and Q_down=0.7339, both BELOW the measured running-mass
-//! ranges [0.88757,0.89255] and [0.73854,0.74807]. A circulant representation
-//! of the observed quark hierarchies is therefore inconsistent with the
-//! observed quark Koide quotients. This is a rigorous no-go, not a fit failure.
+//! no fitting of A or delta. This inversion is an IDENTITY: for any three
+//! positive masses the implied Q equals the Q computed directly from them.
+//!
+//! CORRECTION (see mass_convention.rs): an earlier version mixed two mass
+//! conventions -- ratios from a simplified set (m_u=4.18 MeV, m_c=1.27 GeV,
+//! m_t=171.7 GeV) but Q from the Huang-Zhou MZ set -- and reported a spurious
+//! "no-go" gap of 0.0411. With ONE consistent set the gap is zero and the
+//! no-go is RETRACTED. The module is retained for the exact inversion identity
+//! and the lepton cross-check, not as a physical obstruction.
 
 use crate::Check;
 
@@ -25,13 +29,14 @@ pub fn implied_q(r1: f64, r2: f64) -> f64 {
     (y[0] * y[0] + y[1] * y[1] + y[2] * y[2]) / 9.0
 }
 
-/// Recorded quark hierarchy ratios at the reference scale (GeV masses).
+/// Hierarchy ratios from the SAME Huang-Zhou MZ masses that define the
+/// recorded Q values (full SM, M_Z; GeV).
 pub fn up_ratios() -> (f64, f64) {
-    ((1.27_f64 / 0.00418).sqrt(), (171.7_f64 / 1.27).sqrt())
+    crate::mass_convention::sqrt_ratios(crate::mass_convention::up_masses_mz())
 }
 
 pub fn down_ratios() -> (f64, f64) {
-    ((0.093_f64 / 0.00418).sqrt(), (4.18_f64 / 0.093).sqrt())
+    crate::mass_convention::sqrt_ratios(crate::mass_convention::down_masses_mz())
 }
 
 pub fn checks() -> Vec<Check> {
@@ -45,8 +50,8 @@ pub fn checks() -> Vec<Check> {
                    "Q implied by the up hierarchy (recorded range starts 0.88757)"),
         Check::new("circulant_inverse.q_down_implied", implied_q(d1, d2),
                    "Q implied by the down hierarchy (recorded range starts 0.73854)"),
-        Check::new("circulant_inverse.up_gap", 0.8875692313187327 - implied_q(u1, u2),
-                   "measured minus implied up Q (positive = no-go)"),
+        Check::new("circulant_inverse.up_gap", implied_q(u1, u2) - 0.8875692313187327,
+                   "implied minus measured up Q with consistent masses (zero; no-go retracted)"),
     ]
 }
 
@@ -69,10 +74,10 @@ mod tests {
     }
 
     #[test]
-    fn quark_hierarchies_imply_q_below_measured() {
+    fn consistent_masses_imply_exactly_the_measured_q() {
         let (u1, u2) = up_ratios();
         let (d1, d2) = down_ratios();
-        assert!(implied_q(u1, u2) < 0.88757, "up implied = {}", implied_q(u1, u2));
-        assert!(implied_q(d1, d2) < 0.73854, "down implied = {}", implied_q(d1, d2));
+        assert!((implied_q(u1, u2) - 0.8875692313187327).abs() < 1e-9);
+        assert!((implied_q(d1, d2) - 0.7480650548031402).abs() < 1e-9);
     }
 }

@@ -6,7 +6,7 @@ use std::process::Command;
 use fluid_universe::{
     Check, all_checks, anomaly, audit, circulant, circulant_inverse, conformal_block, confinement, derrick, fingerprint, fluid,
     flux_quantization, flux_sector,
-    fn_scan, froggatt, geometry, jordan_spectrum, lorentz, mass_spectrum, modular, monodromy, orthogonal, phase_arithmetic, poisson, potential_family,
+    fn_scan, froggatt, geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, orthogonal, phase_arithmetic, poisson, potential_family,
     potts_sector, puddle,
     quark_rg, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, spectra, spinodal, su3, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
@@ -76,7 +76,7 @@ fn main() {
         | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" | "anomaly"
         | "unified_model" | "shape_freedom" | "flux_quantization" | "wzw" | "wzw_crosscheck"
         | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
-        | "monodromy" | "rep_scan" | "jordan_spectrum" => {
+        | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" => {
             let checks: Vec<Check> = match command {
                 "circulant" => circulant::checks(),
                 "spectra" => spectra::checks(),
@@ -124,6 +124,7 @@ fn main() {
                 "monodromy" => monodromy::checks(),
                 "rep_scan" => rep_scan::checks(),
                 "jordan_spectrum" => jordan_spectrum::checks(),
+                "mass_convention" => mass_convention::checks(),
                 _ => unreachable!(),
             };
             for c in &checks {

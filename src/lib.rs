@@ -22,6 +22,7 @@ pub mod flux_sector;
 pub mod jordan_spectrum;
 pub mod linalg;
 pub mod lorentz;
+pub mod mass_convention;
 pub mod mass_spectrum;
 pub mod modular;
 pub mod monodromy;
@@ -101,6 +102,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(phase_arithmetic::checks());
     out.extend(conformal_block::checks());
     out.extend(monodromy::checks());
+    out.extend(mass_convention::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());

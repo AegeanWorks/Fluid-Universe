@@ -2,9 +2,11 @@
 //!
 //! Literature assigns quark phases 2/27 (up) and 4/27 (down), with the
 //! amplitude fixed by the measured Koide-like Q rather than by sqrt(2).
-//! We test both (a) scanning the phase to fit the two hierarchy ratios and
-//! (b) the literature fixed phases, against PDG-derived ratios. Both fail:
-//! a single circulant phase/amplitude cannot reproduce the quark hierarchies.
+//! We test the literature fixed phases against the hierarchy ratios from the
+//! SAME Huang-Zhou MZ mass set that defines the recorded Q values (see
+//! mass_convention.rs). The literature phases fail. The earlier version of
+//! this module used a different, simplified mass set; its reported error
+//! values were artifacts of that mixed convention and are corrected here.
 
 use crate::Check;
 use std::f64::consts::PI;
@@ -23,13 +25,13 @@ pub fn ratios(a: f64, d: f64) -> Option<(f64, f64)> {
     Some((y[1] / y[0], y[2] / y[1]))
 }
 
-/// PDG-derived target ratios (GeV masses at MZ-like scales).
+/// Target ratios from the Huang-Zhou MZ masses that define the recorded Q.
 pub fn up_target() -> (f64, f64) {
-    ((1.27_f64 / 0.00418).sqrt(), (171.7_f64 / 1.27).sqrt())
+    crate::mass_convention::sqrt_ratios(crate::mass_convention::up_masses_mz())
 }
 
 pub fn down_target() -> (f64, f64) {
-    ((0.093_f64 / 0.00418).sqrt(), (4.18_f64 / 0.093).sqrt())
+    crate::mass_convention::sqrt_ratios(crate::mass_convention::down_masses_mz())
 }
 
 /// Joint relative error of a predicted ratio pair against a target.

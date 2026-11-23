@@ -101,14 +101,11 @@ fn joint_error(p: (f64, f64), t: (f64, f64)) -> f64 {
 
 pub fn checks() -> Vec<Check> {
     let (re, im) = cube(3);
-    let (mu_e, tau_mu) = (
-        (1.27_f64 / 0.00418).sqrt(),
-        (171.7_f64 / 1.27).sqrt(),
-    );
-    let (d_t, d_r) = (
-        (0.093_f64 / 0.00418).sqrt(),
-        (4.18_f64 / 0.093).sqrt(),
-    );
+    // Consistent Huang-Zhou MZ targets (see mass_convention.rs).
+    let (mu_e, tau_mu) = crate::mass_convention::sqrt_ratios(
+        crate::mass_convention::up_masses_mz());
+    let (d_t, d_r) = crate::mass_convention::sqrt_ratios(
+        crate::mass_convention::down_masses_mz());
     let a_down = amplitude_from_q(0.7480650548031402);
     let a_up = amplitude_from_q(0.8875692313187327);
     let lit_down = ratios(a_down, 1.0 / 9.0).map(|r| joint_error(r, (d_t, d_r))).unwrap_or(-1.0);
@@ -164,8 +161,10 @@ mod tests {
         // 2/27,4/27. With amplitude fixed by measured Q both miss the ratios.
         let a_down = amplitude_from_q(0.7480650548031402);
         let a_up = amplitude_from_q(0.8875692313187327);
-        let d_t = ((0.093_f64 / 0.00418).sqrt(), (4.18_f64 / 0.093).sqrt());
-        let u_t = ((1.27_f64 / 0.00418).sqrt(), (171.7_f64 / 1.27).sqrt());
+        let d_t = crate::mass_convention::sqrt_ratios(
+            crate::mass_convention::down_masses_mz());
+        let u_t = crate::mass_convention::sqrt_ratios(
+            crate::mass_convention::up_masses_mz());
         let rd = ratios(a_down, 1.0 / 9.0).unwrap();
         let ru = ratios(a_up, 2.0 / 39.0).unwrap();
         assert!(joint_error(rd, d_t) > 0.05, "down err={}", joint_error(rd, d_t));

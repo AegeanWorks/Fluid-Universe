@@ -154,6 +154,7 @@ fluid-universe/
 │   ├── monodromy.rs          <- cube identity arg(z^3)=Q; N=3 over-determination
 │   ├── rep_scan.rs           <- exhaustive SU(3)_k rep scan: only leptons fit
 │   ├── jordan_spectrum.rs    <- non-circulant J3(O) spectrum: B,C fit, D,T fail
+│   ├── mass_convention.rs    <- CORRECTION: mixed-mass no-go was an artifact
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
 │   ├── water.rs              <- shallow-water analogue
