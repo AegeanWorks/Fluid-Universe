@@ -37,6 +37,7 @@ pub mod mass_convention;
 pub mod mass_spectrum;
 pub mod monodromy_block;
 pub mod modular;
+pub mod null_model;
 pub mod monodromy;
 pub mod poisson;
 pub mod orthogonal;
@@ -129,6 +130,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(compact_identity::checks());
     out.extend(classical_scan::checks());
     out.extend(dynamical_flow::checks());
+    out.extend(null_model::checks());
     out.extend(rep_scan::checks());
     out.extend(jordan_spectrum::checks());
     out.extend(mass_spectrum::checks());
