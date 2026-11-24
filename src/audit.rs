@@ -1450,6 +1450,43 @@ fn rows() -> Vec<Row> {
         value: quantum_values[0],
     });
 
+    // 72: direct conformal embedding of the SM gauge algebra is excluded by central charge.
+    let host_c_numerator = 1163_i64 * (7 * 7 - 1);
+    let host_c_denominator = 1163_i64 + 7;
+    let sm_c_bound_numerator = 12_i64;
+    let embedding_excluded = host_c_numerator > sm_c_bound_numerator * host_c_denominator;
+    out.push(Row {
+        id: "audit.sm_conformal_embedding",
+        claim: "72: SU(7)_1163 directly conformally embeds the SM gauge algebra",
+        verdict: if embedding_excluded { "FALSIFIED" } else { "UNVERIFIED" },
+        detail: format!("c_host={host_c_numerator}/{host_c_denominator}=9304/195 > 12 >= c_SM_gauge; direct embedding excluded={embedding_excluded}"),
+        value: host_c_numerator as f64 / host_c_denominator as f64,
+    });
+
+    let coset_numerator = host_c_numerator - sm_c_bound_numerator * host_c_denominator;
+    out.push(Row {
+        id: "audit.sm_coset_central_charge",
+        claim: "72: coset central-charge floor after SM gauge removal",
+        verdict: "NUMERIC",
+        detail: format!("c_coset >= c_host-12 = {coset_numerator}/{host_c_denominator}=6964/195"),
+        value: coset_numerator as f64 / host_c_denominator as f64,
+    });
+
+    let su17_c_numerator = 1153_i64 * (17 * 17 - 1);
+    let su17_c_denominator = 1153_i64 + 17;
+    let su23_c_numerator = 1147_i64 * (23 * 23 - 1);
+    let su23_c_denominator = 1147_i64 + 23;
+    let all_hosts_excluded = host_c_numerator > 12 * host_c_denominator
+        && su17_c_numerator > 12 * su17_c_denominator
+        && su23_c_numerator > 12 * su23_c_denominator;
+    out.push(Row {
+        id: "audit.all_hosts_sm_embedding",
+        claim: "72: any explicit host directly embeds the SM gauge algebra",
+        verdict: if all_hosts_excluded { "FALSIFIED" } else { "UNVERIFIED" },
+        detail: format!("c7={host_c_numerator}/{host_c_denominator}, c17={su17_c_numerator}/{su17_c_denominator}, c23={su23_c_numerator}/{su23_c_denominator}; all >12={all_hosts_excluded}"),
+        value: host_c_numerator as f64 / host_c_denominator as f64,
+    });
+
     out
 }
 
@@ -1575,6 +1612,9 @@ mod tests {
         assert_eq!(verdict("current SU(7)_1163 witnesses are lexicographic"), "PROVEN");
         assert_eq!(verdict("canonical SU(7)_1163 conformal weights"), "PROVEN");
         assert_eq!(verdict("canonical SU(7)_1163 quantum dimensions"), "NUMERIC");
+        assert_eq!(verdict("directly conformally embeds the SM gauge algebra"), "FALSIFIED");
+        assert_eq!(verdict("coset central-charge floor after SM gauge removal"), "NUMERIC");
+        assert_eq!(verdict("any explicit host directly embeds the SM gauge algebra"), "FALSIFIED");
     }
 
     #[test]
@@ -1632,6 +1672,9 @@ mod tests {
         assert!(approx(value("current SU(7)_1163 witnesses are lexicographic"), 1.0, 1e-12));
         assert!(approx(value("canonical SU(7)_1163 conformal weights"), 934.0 / 4095.0, 1e-15));
         assert!(approx(value("canonical SU(7)_1163 quantum dimensions"), 1.136464998628996e11, 1e-3));
+        assert!(approx(value("directly conformally embeds the SM gauge algebra"), 9304.0 / 195.0, 1e-14));
+        assert!(approx(value("coset central-charge floor after SM gauge removal"), 6964.0 / 195.0, 1e-14));
+        assert!(approx(value("any explicit host directly embeds the SM gauge algebra"), 9304.0 / 195.0, 1e-14));
     }
 
     #[test]

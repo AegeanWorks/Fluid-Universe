@@ -13,6 +13,12 @@ path = "src/lib.rs"
 name = "fluid-universe"
 path = "src/main.rs"
 
+[profile.dev]
+opt-level = 2
+
+[profile.test]
+opt-level = 2
+
 [profile.release]
 strip = true
 lto = "thin"

@@ -1,8 +1,9 @@
 use fluid_universe::single_model_test::{
     WITNESSES, all_witnesses_exact, braiding_fraction, canonical_conformal_weights,
-    canonical_quantum_dimensions, inverse_search, lower_rank_inverse_search,
-    minimal_level_inverse_search, minimal_witness_search, relaxed_inverse_search, search,
-    single_model_exists, witness_exact, witness_fractions,
+    canonical_quantum_dimensions, central_charge, inverse_search, lower_rank_inverse_search,
+    minimal_level_inverse_search, minimal_witness_search, relaxed_inverse_search,
+    sm_charge_compatible, sm_gauge_central_charge_upper_bound, su7_minimal_coset_central_charge,
+    search, single_model_exists, witness_exact, witness_fractions,
 };
 
 #[test]
@@ -78,6 +79,18 @@ fn canonical_su7_conformal_data_matches_pre_registration() {
         assert!((actual - target).abs() / target <= 1e-12);
     }
     assert!(dimensions[0] > dimensions[1] && dimensions[1] > dimensions[2]);
+}
+
+#[test]
+fn su7_host_cannot_directly_embed_the_sm_gauge_algebra() {
+    let host = central_charge(7, 1163);
+    assert!((host - 9304.0 / 195.0).abs() <= 1e-14);
+    assert_eq!(sm_gauge_central_charge_upper_bound(), 12.0);
+    assert!(host > 12.0);
+    assert!(!sm_charge_compatible());
+    assert!((su7_minimal_coset_central_charge() - 6964.0 / 195.0).abs() <= 1e-14);
+    assert!(central_charge(17, 1153) > 12.0);
+    assert!(central_charge(23, 1147) > 12.0);
 }
 
 #[test]

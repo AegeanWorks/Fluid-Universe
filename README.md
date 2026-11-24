@@ -13,6 +13,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 ## 30-Second Cold-Start Quick Reference (Rust implementation)
 
 - **Runtime Prerequisites**: Rust 2024 (cargo/rustc 1.85+). No crates, no Python, no network.
+- **Test performance**: dev/test builds use `opt-level=2` so the exact bounded WZW searches remain practical; assertions and search domains are unchanged.
 - **Canonical Regression Shield Gate**:
   ```bash
   cargo test
@@ -117,7 +118,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | HO-2 finite-core radial shell | NUMERIC: monotone regular phase, vmax=10, Q=-49.875 with converged FD, zero m=0 circulation | `src/radial_shell.rs`; `results/rust_radial_shell.json` |
 | HO-3 finite-core double shell | NUMERIC: both 3s nodes keep regular product phase, finite velocity/Q and local FD convergence; zero m=0 circulation | `src/multi_radial_shell.rs`; `results/rust_multi_radial_shell.json` |
 | Small-domain single WZW model | FALSIFIED: 474 bounded models and 1,337,784 primaries, zero hits; N<=7 all-level inverse search also negative | `src/single_model_test.rs`; `tests/single_model_search.rs` |
-| Explicit single WZW model hosts | PROVEN: SU(7)_1163, SU(17)_1153 and SU(23)_1147 each host all three phases exactly; SU(7)_1163 is lowest-rank/minimal-level with canonical minimal witnesses and computed conformal data | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Explicit single WZW model hosts | PROVEN: SU(7)_1163, SU(17)_1153 and SU(23)_1147 each host all three phases exactly; SU(7)_1163 is lowest-rank/minimal-level with canonical conformal data, and direct SM conformal embedding is excluded for every known host by central charge | `src/single_model_test.rs`; `tests/single_model_search.rs` |
 | Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside

@@ -21,7 +21,7 @@ two separate processes (project rule G-001).
 | `src/lorentz.rs` | `theory/lorentz.py` | 2x2 elastic eigenvalues, residual anisotropy over deterministic unit directions, equal-K isotropy |
 | `src/linalg.rs` | (new) | cyclic Jacobi symmetric eigensolver, Simpson quadrature, bisection, tolerance helper |
 | `src/simulation.rs` | `sims/core3d.py`, `sims/production.py`, `theory/hopf.py` | analytic H=1 field, central-difference E2/E4/V, Z3 order, Hopf linking, analytic force, relaxation and field metrics |
-| `src/audit.rs` | `verification/audit.py` | 42 independently re-derived claim records with frozen verdicts and a deterministic fingerprint |
+| `src/audit.rs` | `verification/audit.py` | 45 independently re-derived claim records with frozen verdicts and a deterministic fingerprint |
 | `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and G-001 provenance |
 | `src/verify.rs` | `verification/verify.py` | G-001 two-process comparison and fingerprinting |
 
@@ -53,6 +53,10 @@ cargo run --release -- all      # optimised binary
 4. **Falsification status preserved.** The Rust core reports numbers and identities;
    it does not promote a claim. Verdicts remain in `claims.md` / `SCORECARD.md`
    and are driven by the same gates as before.
+5. **Practical exact verification.** Dev/test builds use `opt-level=2` because the
+   bounded SU(N)_k searches enumerate tens of millions of primaries. This changes
+   optimization only; assertions, domains, tolerances and fingerprints remain the
+   evidence contract.
 
 ## Migration status — complete
 
@@ -64,9 +68,9 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **599 reproducible checks**, **370 passing tests** (340 unit + 7 existing
-integration + 6 single-shell + 7 double-shell + 10 single-WZW-search integration)
-and a G-001 two-process fingerprint agreement (`cb077d3bfe1b69dd`). All four AIKit
+Verified: **609 reproducible checks**, **371 passing tests** (340 unit + 7 existing
+integration + 6 single-shell + 7 double-shell + 11 single-WZW-search integration)
+and a G-001 two-process fingerprint agreement (`fa06647a67fd4b6d`). All four AIKit
 project gates pass on clean `main`.
 
 On this host the MSVC `link.exe` is absent, so the registered test command is

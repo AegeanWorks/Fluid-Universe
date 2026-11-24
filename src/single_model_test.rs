@@ -559,6 +559,24 @@ pub fn quantum_dimension(n: i64, k: i64, dynkin: &[i64]) -> f64 {
     dimension
 }
 
+pub fn central_charge(n: i64, k: i64) -> f64 {
+    k as f64 * (n * n - 1) as f64 / (k + n) as f64
+}
+
+pub fn sm_gauge_central_charge_upper_bound() -> f64 {
+    8.0 + 3.0 + 1.0
+}
+
+/// Necessary central-charge compatibility only; this is not a sufficient
+/// conformal-embedding test when it returns true.
+pub fn sm_charge_compatible() -> bool {
+    central_charge(7, 1163) < sm_gauge_central_charge_upper_bound()
+}
+
+pub fn su7_minimal_coset_central_charge() -> f64 {
+    central_charge(7, 1163) - sm_gauge_central_charge_upper_bound()
+}
+
 pub fn canonical_conformal_weights() -> [f64; 3] {
     std::array::from_fn(|index| {
         conformal_weight(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
@@ -594,6 +612,17 @@ pub fn checks() -> Vec<Check> {
     let quantum_dimensions = canonical_quantum_dimensions();
     let quantum_ordered = quantum_dimensions[0] > quantum_dimensions[1]
         && quantum_dimensions[1] > quantum_dimensions[2];
+    let host_central_charge = central_charge(7, 1163);
+    let known_host_central_charges = [
+        central_charge(7, 1163),
+        central_charge(17, 1153),
+        central_charge(23, 1147),
+    ];
+    let all_hosts_sm_incompatible = known_host_central_charges
+        .iter()
+        .all(|charge| *charge >= sm_gauge_central_charge_upper_bound());
+    let coset_central_charge_floor = su7_minimal_coset_central_charge();
+    let sm_charge_compatible = sm_charge_compatible();
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -724,6 +753,41 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.su7_qdim_ordered",
             if quantum_ordered { 1.0 } else { 0.0 },
             "quantum dimensions ordered lepton>down>up",
+        ),
+        Check::new(
+            "singlemodel.su7_central_charge",
+            host_central_charge,
+            "SU(7)_1163 central charge 9304/195",
+        ),
+        Check::new(
+            "singlemodel.su17_central_charge",
+            known_host_central_charges[1],
+            "SU(17)_1153 central charge 18448/65",
+        ),
+        Check::new(
+            "singlemodel.su23_central_charge",
+            known_host_central_charges[2],
+            "SU(23)_1147 central charge 100936/195",
+        ),
+        Check::new(
+            "singlemodel.all_hosts_sm_incompatible",
+            if all_hosts_sm_incompatible { 1.0 } else { 0.0 },
+            "all explicit hosts exceed the SM gauge central-charge bound",
+        ),
+        Check::new(
+            "singlemodel.sm_gauge_c_bound",
+            sm_gauge_central_charge_upper_bound(),
+            "strict SM gauge WZW central-charge upper bound 12",
+        ),
+        Check::new(
+            "singlemodel.su7_coset_c_floor",
+            coset_central_charge_floor,
+            "minimum coset central charge after any SM gauge subsector, 6964/195",
+        ),
+        Check::new(
+            "singlemodel.sm_charge_compatible",
+            if sm_charge_compatible { 1.0 } else { 0.0 },
+            "necessary central-charge compatibility for direct SM conformal embedding",
         ),
         Check::new(
             "singlemodel.minimal_witness_labels",

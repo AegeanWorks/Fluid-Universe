@@ -44,9 +44,12 @@
 | `audit.minimal_witness_canonical` | `1.000000000000000e0` | PROVEN \| counts=[4, 2, 2], canonical=[[0, 0, 2, 11, 2, 1], [0, 0, 3, 6, 0, 1], [0, 0, 0, 6, 0, 0]], expected=[[0, 0, 2, 11, 2, 1], [0, 0, 3, 6, 0, 1], [0, 0, 0, 6, 0, 0]] |
 | `audit.su7_conformal_weights` | `2.280830280830281e-1` | PROVEN \| weights=[0.22808302808302808, 0.10586080586080586, 0.05714285714285714], exact=true |
 | `audit.su7_quantum_dimensions` | `1.136464998628996e11` | NUMERIC \| qdim=[113646499862.8996, 407238213.43906987, 456865.8409657278], ordered=true |
+| `audit.sm_conformal_embedding` | `4.771282051282051e1` | FALSIFIED \| c_host=55824/1170=9304/195 > 12 >= c_SM_gauge; direct embedding excluded=true |
+| `audit.sm_coset_central_charge` | `3.571282051282051e1` | NUMERIC \| c_coset >= c_host-12 = 41784/1170=6964/195 |
+| `audit.all_hosts_sm_embedding` | `4.771282051282051e1` | FALSIFIED \| c7=55824/1170, c17=332064/1170, c23=605616/1170; all >12=true |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=cb077d3bfe1b69dd, run2=cb077d3bfe1b69dd, agreement=PASS.
-- config_sha256 (FNV-1a): `9bf7e71c162c5c94`.
+- G-001 two-process fingerprint: run1=fa06647a67fd4b6d, run2=fa06647a67fd4b6d, agreement=PASS.
+- config_sha256 (FNV-1a): `7c1b4e043ce9bdf4`.

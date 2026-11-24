@@ -1240,3 +1240,19 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Quantum dimensions: 1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5, ordered lepton>down>up.
 - Claim 71 is NUMERIC. No mass relation, sector dynamics or physical host selection is asserted.
 - Full suite: 370 passing tests. G-001: two separate Rust processes agree on 599 checks, fingerprint `cb077d3bfe1b69dd`.
+
+## 2026-11-24 - Direct SM conformal embedding FALSIFIED (claim 72, ADR-070)
+
+**Added**
+
+- Exact WZW central-charge functions and the strict SM gauge central-charge bound.
+- Integration regression showing SU(7)_1163 is charge-incompatible with direct SM conformal embedding.
+- Independent exact-inequality audit row.
+
+**Results**
+
+- Host central charges are SU(7)_1163: 9304/195≈47.7128, SU(17)_1153: 18448/65≈283.8154, SU(23)_1147: 100936/195≈517.6205.
+- The SM gauge WZW algebra has c<8+3+1=12 at all positive levels.
+- Claim 72 is FALSIFIED for direct conformal embedding only. Coset, subsector and non-conformal interpretations remain open, but any coset after removing an SM gauge subsector has c>=6964/195≈35.71.
+- Dev/test builds now use `opt-level=2`; the 85,766,121-primary exact search test dropped from tens of seconds to about 2.1 seconds without changing assertions or domains.
+- Full suite: 371 passing tests. G-001: two separate Rust processes agree on 609 checks, fingerprint `fa06647a67fd4b6d`.
