@@ -33,9 +33,12 @@
 | `audit.single_model_search_coverage` | `1.337784000000000e6` | NUMERIC \| models=474, integrable primaries=1337784, N=2..7, k=1..79, Dynkin 0..4 |
 | `audit.single_model_known_labels` | `1.000000000000000e0` | PROVEN \| SU(3)_9, SU(2)_13 and SU(3)_49 singlets match 2/9, 1/10 and 2/39 by exact cross-multiplication |
 | `audit.single_model_exists` | `0.000000000000000e0` | FALSIFIED \| hit=false after 474 models and 1337784 primaries; bounded negative only |
+| `audit.single_model_witness_su17` | `1.000000000000000e0` | PROVEN \| three integrable primaries match 2/9, 1/10 and 2/39 by exact cross-multiplication |
+| `audit.single_model_witness_su23` | `1.000000000000000e0` | PROVEN \| second distinct host matches all three phases exactly; existence is non-unique |
+| `audit.single_model_inverse_search` | `1.953000000000000e4` | FALSIFIED \| labels=19530, models_with_any_phase=694, all_phase_hit=false |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=ab7ba301c6e2f200, run2=ab7ba301c6e2f200, agreement=PASS.
-- config_sha256 (FNV-1a): `8392e2efc0f5038c`.
+- G-001 two-process fingerprint: run1=9b29f0d753327252, run2=9b29f0d753327252, agreement=PASS.
+- config_sha256 (FNV-1a): `d6b5530d9136d6c7`.

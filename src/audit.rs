@@ -481,6 +481,88 @@ fn independent_single_model_search() -> &'static (u64, u64, bool) {
     })
 }
 
+/// Independent braiding numerator for explicit witnesses, with no import from
+/// `single_model_test`.
+fn independent_braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
+    let mut rows = vec![0_i64; n as usize];
+    for i in (0..dynkin.len()).rev() {
+        rows[i] = dynkin[i..].iter().sum();
+    }
+    let boxes = rows.iter().sum::<i64>();
+    let a = rows
+        .iter()
+        .enumerate()
+        .map(|(i, row)| row * (row + n + 1 - 2 * (i as i64 + 1)))
+        .sum::<i64>();
+    (n * a - boxes * boxes - 2 * (n * n - 1)).abs()
+}
+
+fn independent_witness_exact(n: i64, k: i64, primaries: &[&[i64]]) -> bool {
+    let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
+    primaries.iter().zip(targets).all(|(dynkin, (p, q))| {
+        let numerator = independent_braiding_numerator(n, dynkin);
+        let denominator = 2 * n * (k + n);
+        numerator * q == p * denominator && dynkin.iter().sum::<i64>() <= k
+    })
+}
+
+/// Independent all-positive-level inverse search for N<=7, Dynkin labels 0..4.
+fn independent_inverse_single_model_search() -> &'static (u64, u64, bool) {
+    static RESULT: std::sync::OnceLock<(u64, u64, bool)> = std::sync::OnceLock::new();
+    RESULT.get_or_init(|| {
+        let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
+        let mut labels = 0_u64;
+        let mut masks = std::collections::HashMap::<(i64, i64), u8>::new();
+
+        fn walk(
+            n: i64,
+            index: usize,
+            dynkin: &mut [i64],
+            label_sum: i64,
+            labels: &mut u64,
+            masks: &mut std::collections::HashMap<(i64, i64), u8>,
+            targets: &[(i64, i64); 3],
+        ) {
+            if index == dynkin.len() {
+                *labels += 1;
+                let numerator = independent_braiding_numerator(n, dynkin);
+                for (phase_index, &(p, q)) in targets.iter().enumerate() {
+                    let denominator = 2 * n * p;
+                    let scaled = numerator * q;
+                    if scaled % denominator != 0 {
+                        continue;
+                    }
+                    let k = scaled / denominator - n;
+                    if k > 0 && label_sum <= k {
+                        *masks.entry((n, k)).or_default() |= 1 << phase_index;
+                    }
+                }
+                return;
+            }
+            for value in 0..=4_i64 {
+                dynkin[index] = value;
+                walk(
+                    n,
+                    index + 1,
+                    dynkin,
+                    label_sum + value,
+                    labels,
+                    masks,
+                    targets,
+                );
+            }
+        }
+
+        for n in 2..=7_i64 {
+            let mut dynkin = vec![0_i64; n as usize - 1];
+            walk(n, 0, &mut dynkin, 0, &mut labels, &mut masks, &targets);
+        }
+        let models = masks.len() as u64;
+        let any_hit = masks.values().any(|mask| *mask == 0b111);
+        (labels, models, any_hit)
+    })
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -965,6 +1047,46 @@ fn rows() -> Vec<Row> {
         value: if single_any_hit { 1.0 } else { 0.0 },
     });
 
+    // 65/1: explicit SU(17)_1153 witness, independently re-derived.
+    let su17: [&[i64]; 3] = [
+        &[0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 1, 0, 0, 0, 1],
+        &[0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 0, 0, 0, 0, 0, 1],
+        &[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 1],
+    ];
+    let su17_ok = independent_witness_exact(17, 1153, &su17);
+    out.push(Row {
+        id: "audit.single_model_witness_su17",
+        claim: "65: SU(17)_1153 exact all-phase witness",
+        verdict: if su17_ok { "PROVEN" } else { "FALSIFIED" },
+        detail: "three integrable primaries match 2/9, 1/10 and 2/39 by exact cross-multiplication".to_string(),
+        value: if su17_ok { 1.0 } else { 0.0 },
+    });
+
+    // 65/2: explicit SU(23)_1147 witness proves non-uniqueness.
+    let su23: [&[i64]; 3] = [
+        &[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1, 0, 2, 0, 0, 0],
+        &[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
+        &[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
+    ];
+    let su23_ok = independent_witness_exact(23, 1147, &su23);
+    out.push(Row {
+        id: "audit.single_model_witness_su23",
+        claim: "65: SU(23)_1147 exact all-phase witness",
+        verdict: if su23_ok { "PROVEN" } else { "FALSIFIED" },
+        detail: "second distinct host matches all three phases exactly; existence is non-unique".to_string(),
+        value: if su23_ok { 1.0 } else { 0.0 },
+    });
+
+    // 65/3: retained all-level N<=7 inverse search is a bounded negative.
+    let (inverse_labels, inverse_models, inverse_hit) = *independent_inverse_single_model_search();
+    out.push(Row {
+        id: "audit.single_model_inverse_search",
+        claim: "65: one N<=7 all-level host exists",
+        verdict: if inverse_hit { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("labels={inverse_labels}, models_with_any_phase={inverse_models}, all_phase_hit={inverse_hit}"),
+        value: inverse_labels as f64,
+    });
+
     out
 }
 
@@ -1079,6 +1201,9 @@ mod tests {
         assert_eq!(verdict("HO-3 double radial nodes"), "NUMERIC");
         assert_eq!(verdict("HO-3 velocity"), "NUMERIC");
         assert_eq!(verdict("one single SU(N)_k"), "FALSIFIED");
+        assert_eq!(verdict("SU(17)_1153 exact"), "PROVEN");
+        assert_eq!(verdict("SU(23)_1147 exact"), "PROVEN");
+        assert_eq!(verdict("one N<=7 all-level host"), "FALSIFIED");
     }
 
     #[test]
@@ -1125,6 +1250,9 @@ mod tests {
         assert!(approx(value("bounded single-WZW search coverage"), 1_337_784.0, 1e-9));
         assert!(approx(value("known singlet braiding labels"), 1.0, 1e-12));
         assert!(approx(value("one single SU(N)_k"), 0.0, 1e-12));
+        assert!(approx(value("SU(17)_1153 exact"), 1.0, 1e-12));
+        assert!(approx(value("SU(23)_1147 exact"), 1.0, 1e-12));
+        assert!(approx(value("one N<=7 all-level host"), 19_530.0, 1e-9));
     }
 
     #[test]

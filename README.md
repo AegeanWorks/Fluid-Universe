@@ -116,7 +116,8 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Regularized 2p vortex | FALSIFIED: blob loops miss 2pi and density-floor velocity diverges with resolution | `src/fluid.rs`; `results/rust_fluid.json` |
 | HO-2 finite-core radial shell | NUMERIC: monotone regular phase, vmax=10, Q=-49.875 with converged FD, zero m=0 circulation | `src/radial_shell.rs`; `results/rust_radial_shell.json` |
 | HO-3 finite-core double shell | NUMERIC: both 3s nodes keep regular product phase, finite velocity/Q and local FD convergence; zero m=0 circulation | `src/multi_radial_shell.rs`; `results/rust_multi_radial_shell.json` |
-| One WZW model for all three phases | FALSIFIED in the bounded search: 474 SU(N)_k models and 1,337,784 primaries, zero hits | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Small-domain single WZW model | FALSIFIED: 474 bounded models and 1,337,784 primaries, zero hits; N<=7 all-level inverse search also negative | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Explicit single WZW model hosts | PROVEN: SU(17)_1153 and SU(23)_1147 each host all three phases exactly; physical selection remains open | `src/single_model_test.rs`; `tests/single_model_search.rs` |
 | Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside

@@ -1137,3 +1137,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The exact Casimir/label arithmetic reproduces the independent Python pre-registration count: 474 models, 1,337,784 primaries, zero hits.
 - Claim 64 is FALSIFIED only inside the stated domain. The natural phase assignments require SU(3)_9, SU(2)_13 and SU(3)_49; larger N, k or Dynkin labels remain open.
 - Full suite: 361 passing tests. G-001: two separate Rust processes agree on 550 checks, fingerprint `ab7ba301c6e2f200`.
+
+## 2026-11-24 - Explicit single-WZW-model hosts PROVEN (claim 65, ADR-062/ADR-063)
+
+**Added**
+
+- Exact SU(17)_1153 and SU(23)_1147 witness constants, integer label checks and integrability gates in `src/single_model_test.rs`.
+- All-positive-level inverse search for N<=7 and Dynkin labels 0..4, covering 19,530 primaries and 694 models with any phase.
+- Integration regressions for both witnesses, the retained bounded negative and the all-level small-domain negative; three independent audit rows.
+
+**Results**
+
+- SU(17)_1153 and SU(23)_1147 each host all three phases exactly with three integrable primaries. Claim 65 is PROVEN for existence and non-uniqueness.
+- The N<=7 all-level inverse search has no all-phase host; claim 64's smaller bounded negative remains unchanged.
+- No rule physically selects either large host, no sector-assignment dynamics is supplied, and this is not itself a unified field theory. The next bottleneck is model selection/naturalness.
+- Full suite: 364 passing tests. G-001: two separate Rust processes agree on 564 checks, fingerprint `9b29f0d753327252`.
