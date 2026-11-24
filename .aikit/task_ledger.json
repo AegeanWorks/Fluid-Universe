@@ -3,8 +3,8 @@
   "active_task": {
     "task_id": "fluid-claim-67-no-rank6-v1",
     "last_phase": "phase 4",
-    "active_phase": 4,
-    "status": "in_progress",
+    "active_phase": 5,
+    "status": "completed",
     "updated_at": 1795544109.471545,
     "owner": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
     "lease_until": 1795551309.471545,
@@ -15,34 +15,12 @@
         "name": "fluid-universe",
         "path": "projects/fluid-universe"
       }
-    ]
+    ],
+    "completed_at": 1795544183.4444163,
+    "completed_head": "f93652fa8396a5d50831a230935e9eaec76ed386",
+    "completed_tree": "e8dea1321e665b130bcff137a85f29ffc2cc6fa9"
   },
   "checkpoints": [
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "checklists": "passed",
-      "description": "[2/2] Rust main delivery repair complete: BOM removed, README tree and map synchronized, ADR-057 records Rust as sole canonical implementation; 4/4 gates, 341 tests and G-001 verification pass",
-      "files_affected": [
-        ".aikit/codebase_map.md",
-        ".aikit/decisions.md",
-        ".aikit/task_ledger.json",
-        ".aikit/task_ledger_archive.jsonl",
-        "README.md",
-        "src/single_phase_rule.rs"
-      ],
-      "phase": "phase 4",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "rust-rewrite-2026-11-22",
-      "timestamp": 1795536796.3905594,
-      "timestamp_str": "2026-11-24 19:13:16",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
     {
       "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
       "delivery": {
@@ -633,6 +611,23 @@
           "path": "projects/fluid-universe"
         }
       ]
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          "."
+        ]
+      },
+      "description": "Task 'fluid-claim-67-no-rank6-v1' completed successfully.",
+      "head": "f93652fa8396a5d50831a230935e9eaec76ed386",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-claim-67-no-rank6-v1",
+      "timestamp": 1795544183.551864,
+      "timestamp_str": "2026-11-24 21:16:23"
     }
   ]
 }
