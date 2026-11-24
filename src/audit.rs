@@ -412,6 +412,75 @@ fn multi_shell_norm_relative_error() -> f64 {
     (numeric - analytic).abs() / analytic
 }
 
+/// Independent exact bounded search for one SU(N)_k model containing all three
+/// sector phases.  This does not import or call `single_model_test`.
+fn independent_single_model_search() -> &'static (u64, u64, bool) {
+    static RESULT: std::sync::OnceLock<(u64, u64, bool)> = std::sync::OnceLock::new();
+    RESULT.get_or_init(|| {
+        let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
+        let mut models = 0_u64;
+        let mut labels = 0_u64;
+        let mut any_hit = false;
+
+        fn walk(
+            n: i64,
+            k: i64,
+            index: usize,
+            remaining: i64,
+            dynkin: &mut [i64],
+            found: &mut u8,
+            labels: &mut u64,
+            targets: &[(i64, i64); 3],
+        ) {
+            if index == dynkin.len() {
+                *labels += 1;
+                let mut rows = vec![0_i64; n as usize];
+                for i in (0..dynkin.len()).rev() {
+                    rows[i] = dynkin[i..].iter().sum();
+                }
+                let boxes = rows.iter().sum::<i64>();
+                let a = rows
+                    .iter()
+                    .enumerate()
+                    .map(|(i, row)| row * (row + n + 1 - 2 * (i as i64 + 1)))
+                    .sum::<i64>();
+                let numerator = (n * a - boxes * boxes - 2 * (n * n - 1)).abs();
+                let denominator = 2 * n * (k + n);
+                for (target_index, &(p, q)) in targets.iter().enumerate() {
+                    if numerator * q == p * denominator {
+                        *found |= 1 << target_index;
+                    }
+                }
+                return;
+            }
+            for value in 0..=remaining.min(4) {
+                dynkin[index] = value;
+                walk(
+                    n,
+                    k,
+                    index + 1,
+                    remaining - value,
+                    dynkin,
+                    found,
+                    labels,
+                    targets,
+                );
+            }
+        }
+
+        for n in 2..=7_i64 {
+            for k in 1..=79_i64 {
+                models += 1;
+                let mut dynkin = vec![0_i64; n as usize - 1];
+                let mut found = 0_u8;
+                walk(n, k, 0, k, &mut dynkin, &mut found, &mut labels, &targets);
+                any_hit |= found == 0b111;
+            }
+        }
+        (models, labels, any_hit)
+    })
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -861,6 +930,41 @@ fn rows() -> Vec<Row> {
         },
     });
 
+    // 64/1: bounded search coverage is reproduced independently.
+    let (single_models, single_labels, single_any_hit) = *independent_single_model_search();
+    out.push(Row {
+        id: "audit.single_model_search_coverage",
+        claim: "64: bounded single-WZW search coverage",
+        verdict: "NUMERIC",
+        detail: format!("models={single_models}, integrable primaries={single_labels}, N=2..7, k=1..79, Dynkin 0..4"),
+        value: single_labels as f64,
+    });
+
+    // 64/2: the three natural singlet assignments are exact rational labels.
+    let known_labels = [(3_i64, 9_i64, 2_i64, 9_i64), (2, 13, 1, 10), (3, 49, 2, 39)];
+    let mut known_ok = true;
+    for &(n, k, p, q) in &known_labels {
+        let numerator = 2 * (n * n - 1);
+        let denominator = 2 * n * (k + n);
+        known_ok &= numerator * q == p * denominator;
+    }
+    out.push(Row {
+        id: "audit.single_model_known_labels",
+        claim: "64: known singlet braiding labels",
+        verdict: if known_ok { "PROVEN" } else { "FALSIFIED" },
+        detail: "SU(3)_9, SU(2)_13 and SU(3)_49 singlets match 2/9, 1/10 and 2/39 by exact cross-multiplication".to_string(),
+        value: if known_ok { 1.0 } else { 0.0 },
+    });
+
+    // 64/3: the single-model existence hypothesis is falsified in this domain.
+    out.push(Row {
+        id: "audit.single_model_exists",
+        claim: "64: one single SU(N)_k hosts all three phases",
+        verdict: if single_any_hit { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("hit={single_any_hit} after {single_models} models and {single_labels} primaries; bounded negative only"),
+        value: if single_any_hit { 1.0 } else { 0.0 },
+    });
+
     out
 }
 
@@ -974,6 +1078,7 @@ mod tests {
         assert_eq!(verdict("HO-2 zero circulation"), "NUMERIC");
         assert_eq!(verdict("HO-3 double radial nodes"), "NUMERIC");
         assert_eq!(verdict("HO-3 velocity"), "NUMERIC");
+        assert_eq!(verdict("one single SU(N)_k"), "FALSIFIED");
     }
 
     #[test]
@@ -1017,6 +1122,9 @@ mod tests {
         assert!(approx(value("HO-3 product phase"), 6.2032919230819665, 1e-9));
         assert!(approx(value("HO-3 finite and N-converged"), -49.843277943472785, 1e-9));
         assert!(approx(value("HO-3 velocity"), 1.0, 1e-12));
+        assert!(approx(value("bounded single-WZW search coverage"), 1_337_784.0, 1e-9));
+        assert!(approx(value("known singlet braiding labels"), 1.0, 1e-12));
+        assert!(approx(value("one single SU(N)_k"), 0.0, 1e-12));
     }
 
     #[test]

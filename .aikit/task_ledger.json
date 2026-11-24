@@ -1,13 +1,13 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "fluid-claim-63-ho3-double-shell-v1",
+    "task_id": "fluid-claim-64-single-wzw-search-v1",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1795539766.8691883,
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1795540592.7812934,
     "owner": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-    "lease_until": 1795546966.8691883,
+    "lease_until": 1795547792.7812934,
     "started_by": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
     "continuations": [],
     "workspaces": [
@@ -15,36 +15,9 @@
         "name": "fluid-universe",
         "path": "projects/fluid-universe"
       }
-    ],
-    "completed_at": 1795539886.13459,
-    "completed_head": "dc92e9a858155083f7fcacbb7dd78d7cd7cc1b87",
-    "completed_tree": "9f752b85c7747b50820cdbb9ed79b0844f3be5b8"
+    ]
   },
   "checkpoints": [
-    {
-      "agent": "opencode",
-      "description": "Reforge stage 39: window 116, 3 commit(s), 5 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "operator_task": "rust-rewrite-2026-11-22",
-      "phase": "reforge stage 39",
-      "phase_num": 3,
-      "status": "in_progress",
-      "task_id": "reforge:run-3",
-      "timestamp": 1795374245.0006585,
-      "timestamp_str": "2026-11-22 22:04:05"
-    },
-    {
-      "agent": "opencode",
-      "description": "Reforge stage 39: stage 39 host review reviewed; run active; coverage 8/8",
-      "files_affected": [],
-      "operator_task": "rust-rewrite-2026-11-22",
-      "phase": "reforge stage 39",
-      "phase_num": 3,
-      "status": "in_progress",
-      "task_id": "reforge:run-3",
-      "timestamp": 1795374686.8539665,
-      "timestamp_str": "2026-11-22 22:11:26"
-    },
     {
       "agent": "opencode",
       "description": "Reforge stage 40: window 119, 2 commit(s), 1 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
@@ -419,6 +392,83 @@
       "task_id": "fluid-claim-63-ho3-double-shell-v1",
       "timestamp": 1795539886.5242205,
       "timestamp_str": "2026-11-24 20:04:46"
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "description": "[1/2] Replace the hardcoded single-WZW-model negative with an exact bounded SU(N)_k enumeration, failing-first tests and an independent audit",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Turns a central negative result into reproducible exact-integer evidence, exposes any search bug or hidden hit, and gives the unified-field program a concrete model-selection constraint.",
+        "mitigation": "Use exact integer cross-multiplication against rational targets; enumerate Dynkin labels 0..4 with sum<=k for N=2..7 and k=1..79; validate known SU(2)/SU(3) labels and model/label counts; independently re-derive the search in audit.rs; run tests, timing and two-process verification before delivery.",
+        "risks": "contract: single_model_test checks and fingerprints change; dependency: stdlib only; concurrency: none; state: source, tests, audit, reports and docs; performance: 474 models and about 1.34 million integrable primaries must remain inside the 900-second G-003 cap; correctness: Casimir normalization or integrability errors could create or erase hits.",
+        "why": "The latest unification bottleneck is the claim that no single SU(N)_k model hosts all three sector phases, but single_model_exists() is currently a hardcoded false and the tests only assert that constant."
+      },
+      "phase": "phase 2",
+      "phase_num": 2,
+      "plan_digest": "44f0d7932f478f0674dd7468ccb1041d98ec8c6d6e5673f0b29fda18d4404f07",
+      "status": "in_progress",
+      "task_id": "fluid-claim-64-single-wzw-search-v1",
+      "timestamp": 1795540057.948851,
+      "timestamp_str": "2026-11-24 20:07:37",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "checklists": "passed",
+      "description": "[2/2] Bounded single-WZW search complete: exact Rust enumeration and independent audit reproduce 474 models, 1,337,784 primaries and zero hits; claim 64 FALSIFIED in-domain; 361 tests, 550 checks and G-001 fingerprint ab7ba301c6e2f200 pass",
+      "files_affected": [
+        ".aikit/codebase_map.md",
+        ".aikit/decisions.md",
+        ".aikit/task_ledger.json",
+        ".aikit/task_ledger_archive.jsonl",
+        "CHANGELOG.md",
+        "MIGRATION.md",
+        "README.md",
+        "SCORECARD.md",
+        "claims.md",
+        "results/rust_audit.json",
+        "results/rust_audit.md",
+        "results/rust_circulant.json",
+        "results/rust_circulant.md",
+        "results/rust_derrick.json",
+        "results/rust_derrick.md",
+        "results/rust_fluid.json",
+        "results/rust_fluid.md",
+        "results/rust_lorentz.json",
+        "results/rust_lorentz.md",
+        "results/rust_multi_radial_shell.json",
+        "results/rust_multi_radial_shell.md",
+        "results/rust_radial_shell.json",
+        "results/rust_radial_shell.md",
+        "results/rust_rotor.json",
+        "results/rust_rotor.md",
+        "results/rust_simulation.json",
+        "results/rust_simulation.md",
+        "results/rust_spectra.json",
+        "results/rust_spectra.md",
+        "results/rust_water.json",
+        "results/rust_water.md",
+        "src/audit.rs",
+        "src/single_model_test.rs",
+        "tests/single_model_search.rs"
+      ],
+      "phase": "phase 4",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-claim-64-single-wzw-search-v1",
+      "timestamp": 1795540592.7812934,
+      "timestamp_str": "2026-11-24 20:16:32",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
     }
   ]
 }

@@ -1123,3 +1123,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Q1=-49.843277943473 and Q2=-49.971578003293; local FD fine errors 2.523e-5/2.504e-5 and step errors 7.570e-5/7.512e-5; m=0 circulation 0; raw-norm relative error 2.071e-10.
 - Claim 63 is NUMERIC for the local double-shell core only. It does not claim exact finite-domain 2pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-62 are unchanged.
 - Full suite: 358 passing tests. G-001: two separate Rust processes agree on 545 checks, fingerprint `688c44f88c23ffb7`.
+
+## 2026-11-24 - Single-WZW-model existence FALSIFIED in the bounded domain (claim 64, ADR-060)
+
+**Added**
+
+- Replaced the hardcoded `single_model_exists() -> false` with a cached exact-integer Rust enumeration over N=2..7, k=1..79 and integrable primaries with Dynkin labels 0..4.
+- `tests/single_model_search.rs`: integration coverage for exact known singlet labels, 474 models, 1,337,784 primaries and zero hit models.
+- Three independent audit rows re-derive coverage, known labels and the bounded existence verdict without importing the search module.
+
+**Results**
+
+- The exact Casimir/label arithmetic reproduces the independent Python pre-registration count: 474 models, 1,337,784 primaries, zero hits.
+- Claim 64 is FALSIFIED only inside the stated domain. The natural phase assignments require SU(3)_9, SU(2)_13 and SU(3)_49; larger N, k or Dynkin labels remain open.
+- Full suite: 361 passing tests. G-001: two separate Rust processes agree on 550 checks, fingerprint `ab7ba301c6e2f200`.

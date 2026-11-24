@@ -30,9 +30,12 @@
 | `audit.multi_radial_shell_phase` | `6.203291923081967e0` | NUMERIC \| slip=6.203291923082, deficit=0.079893384098 <= bound 0.146609564597, monotone=true |
 | `audit.multi_radial_shell_quantum_pressure` | `-4.984327794347278e1` | NUMERIC \| Q1=-49.843277943, Q2=-49.971578003, fine errors=2.523e-5/2.504e-5, step errors=7.570e-5/7.512e-5 |
 | `audit.multi_radial_shell_gates` | `1.000000000000000e0` | NUMERIC \| vmax=10.003702332469, m=0 circulation=0, norm relative error=2.071e-10, status=NUMERIC |
+| `audit.single_model_search_coverage` | `1.337784000000000e6` | NUMERIC \| models=474, integrable primaries=1337784, N=2..7, k=1..79, Dynkin 0..4 |
+| `audit.single_model_known_labels` | `1.000000000000000e0` | PROVEN \| SU(3)_9, SU(2)_13 and SU(3)_49 singlets match 2/9, 1/10 and 2/39 by exact cross-multiplication |
+| `audit.single_model_exists` | `0.000000000000000e0` | FALSIFIED \| hit=false after 474 models and 1337784 primaries; bounded negative only |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=688c44f88c23ffb7, run2=688c44f88c23ffb7, agreement=PASS.
-- config_sha256 (FNV-1a): `b84ef3db31d25e80`.
+- G-001 two-process fingerprint: run1=ab7ba301c6e2f200, run2=ab7ba301c6e2f200, agreement=PASS.
+- config_sha256 (FNV-1a): `8392e2efc0f5038c`.
