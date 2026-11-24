@@ -1094,3 +1094,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 61 is FALSIFIED (single-valued regularized 2p vortex insufficient: capping and exact quantization incompatible inside the core); singular-phase and multi-component routes open; claims 20-26 and 43-60 numbers unchanged (HO-1 core stands; representations plus stationarity stand); 2s shell queued.
 
 - Verification after the span: two separate runs, 327/327 checks each.
+
+## 2026-11-24 - HO-2 radial-shell finite-core probe NUMERIC (claim 62, ADR-058)
+
+**Added**
+
+- `src/radial_shell.rs`: dependency-free Rust implementation of the complex-shift hydrogen-2s radial shell, the reduced radial amplitude `u=r*R_eps`, physical grids N=250/500/1000/2000, analytic phase/velocity/Q/norm gates and a deterministic verdict.
+- `tests/radial_shell.rs`: six failing-first integration tests for predicted scales, phase monotonicity and deficit bound, singular `dx^-1` control, finite/N-converged quantum pressure, raw norm and gate consistency.
+- Five independent claim-62 rows in `src/audit.rs`; module wiring in `src/lib.rs`, `src/main.rs` and `src/reports.rs`; `results/rust_radial_shell.{json,md}` and regenerated Rust reports.
+
+**Results**
+
+- Singular slope -1.000000000000; regular phase slip 3.086078759467, deficit 0.055513894123 <= 0.105555555556; vmax 10.0; Q0=-49.875, FD fine=-49.749996890480, fine error 0.002506328 and step error 0.007446371; m=0 circulation 0; raw-norm relative error 2.678e-12.
+- Claim 62 is NUMERIC for the local radial-shell core only. It does not claim exact finite-domain pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-61 are unchanged.
+- Full suite: 349 passing tests. G-001: two separate Rust processes agree on 524 checks, fingerprint `e390d30df6a4d0a3`.

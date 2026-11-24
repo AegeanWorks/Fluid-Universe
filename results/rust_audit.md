@@ -20,9 +20,14 @@
 | `audit.z3_limits` | `6.123233995736765e-17` | NUMERIC \| four evenly spaced phases -> Z3=6.123e-17 (min); single phase -> Z3=1.000e0 (max 1) |
 | `audit.vortex_blob_fraction` | `8.000000000000000e-1` | NUMERIC \| r^2/(r^2+delta^2) at r=2*delta = 0.800000000000 (delta point 0.5, 20-delta point 400/401) |
 | `audit.marcus_width` | `6.809145309595547e-1` | NUMERIC \| FWHM(lambda=1.617132544 eV, T=300K)=0.680914531 eV; scales as sqrt(T) |
+| `audit.radial_shell_scale` | `1.000000000000000e-1` | NUMERIC \| eps0=0.1*a0 and r0=2*a0 with a0=1; transferred from claim 60, never scanned |
+| `audit.radial_shell_singular_slope` | `-1.000000000000000e0` | NUMERIC \| gmax=pi/dx on N=250/500/1000/2000 gives slope -1.000000000000 |
+| `audit.radial_shell_phase` | `3.086078759467158e0` | NUMERIC \| slip=3.086078759467, deficit=0.055513894123 <= bound 0.105555555556, monotone=true |
+| `audit.radial_shell_quantum_pressure` | `-4.987499999999999e1` | NUMERIC \| Q0=-49.875000, FD fine=-49.749997, fine error=2.506e-3, step error=7.446e-3 |
+| `audit.radial_shell_gates` | `1.000000000000000e0` | NUMERIC \| m=0 circulation=0, norm relative error=2.678e-12, hard gates=true, status=NUMERIC |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=b276f1b9c6d822a8, run2=b276f1b9c6d822a8, agreement=PASS.
-- config_sha256 (FNV-1a): `255b8af2fd3dd5bc`.
+- G-001 two-process fingerprint: run1=e390d30df6a4d0a3, run2=e390d30df6a4d0a3, agreement=PASS.
+- config_sha256 (FNV-1a): `9e7481d4cf30a43d`.

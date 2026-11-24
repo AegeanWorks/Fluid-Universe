@@ -1,62 +1,23 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "rust-rewrite-2026-11-22",
+    "task_id": "fluid-claim-62-ho2-shell-v1",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1795536796.3905594,
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1795538774.1238787,
     "owner": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-    "lease_until": 1795543996.3905594,
-    "started_by": "opencode:hy4",
-    "continuations": [
-      {
-        "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-        "from": "opencode:hy4",
-        "at": 1795536117.8925564
-      }
-    ],
+    "lease_until": 1795545974.1238787,
+    "started_by": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+    "continuations": [],
     "workspaces": [
       {
         "name": "fluid-universe",
         "path": "projects/fluid-universe"
       }
-    ],
-    "completed_at": 1795536924.1578903,
-    "completed_head": "03d4dd151f902d7564ed402668e46ffc0e64de53",
-    "completed_tree": "8e7f5cbff53d6322d8ee6479a3344b9a44a39b28"
+    ]
   },
   "checkpoints": [
-    {
-      "agent": "opencode:hy4",
-      "checklists": "passed",
-      "description": "Rewrote the whole project as a dependency-free Rust crate; removed Python packages; 95 checks, 76 tests, 4/4 gates pass",
-      "files_affected": [],
-      "phase": "phase 4",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "rust-rewrite-2026-11-22",
-      "timestamp": 1795355561.4895182,
-      "timestamp_str": "2026-11-22 16:52:41",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
-    {
-      "agent": "opencode",
-      "description": "Reforge stage 36: stage 36 host review reviewed; run active; coverage 49/49",
-      "files_affected": [],
-      "operator_task": "rust-rewrite-2026-11-22",
-      "phase": "reforge stage 36",
-      "phase_num": 3,
-      "status": "in_progress",
-      "task_id": "reforge:run-3",
-      "timestamp": 1795372639.5944948,
-      "timestamp_str": "2026-11-22 21:37:19"
-    },
     {
       "agent": "opencode",
       "description": "Reforge stage 37: window 110, 3 commit(s), 62 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
@@ -309,6 +270,85 @@
       "task_id": "rust-rewrite-2026-11-22",
       "timestamp": 1795536924.2335978,
       "timestamp_str": "2026-11-24 19:15:24"
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "description": "[1/2] Pre-register and implement the HO-2 radial-shell finite-core probe in Rust with failing-first unit tests and independent audit rows",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Advances the defect-core program on the sole Rust main implementation, distinguishes radial shells from quantized vortices, and adds independently re-derived G-001 evidence rather than another representation-only identity.",
+        "mitigation": "Use u=rR so u''/u equals the full s-wave radial Laplacian ratio; freeze eps0=0.1a0, physical grids and analytic phase/Q/norm gates in ADR-058 before seeing results; add compile-failing tests first; independently re-derive the gates in audit.rs and verify in two processes.",
+        "risks": "contract: new fluid checks and audit rows change fingerprints/report counts; dependency: stdlib only; concurrency: none; state: source, tests, ledger, scorecard, changelog and generated reports; physics: an incorrect radial Laplacian or trivial finite-domain phase gate could misclassify the shell.",
+        "why": "Claim 61 explicitly queues the hydrogen-2s radial shell; the Rust core currently has only the HO-1 and 2p closed forms, so the next falsifiable gap is whether a single-valued complex-shift 2s core has finite radial velocity and quantum pressure while preserving the singular control and zero m=0 circulation."
+      },
+      "phase": "phase 2",
+      "phase_num": 2,
+      "plan_digest": "db36868e4244155b834f73e34a0ac9feeeb1243480d722c9e2788cb5a7bf44e2",
+      "status": "in_progress",
+      "task_id": "fluid-claim-62-ho2-shell-v1",
+      "timestamp": 1795537125.4412382,
+      "timestamp_str": "2026-11-24 19:18:45",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "checklists": "passed",
+      "description": "[2/2] HO-2 radial-shell probe complete in Rust: NUMERIC local core, five independent audit rows, regenerated reports and synchronized claim/docs; 349 tests, 524 checks and G-001 fingerprint e390d30df6a4d0a3 pass",
+      "files_affected": [
+        ".aikit/codebase_map.md",
+        ".aikit/decisions.md",
+        ".aikit/task_ledger.json",
+        ".aikit/task_ledger_archive.jsonl",
+        "CHANGELOG.md",
+        "MIGRATION.md",
+        "README.md",
+        "SCORECARD.md",
+        "claims.md",
+        "results/README.md",
+        "results/rust_audit.json",
+        "results/rust_audit.md",
+        "results/rust_circulant.json",
+        "results/rust_circulant.md",
+        "results/rust_derrick.json",
+        "results/rust_derrick.md",
+        "results/rust_fluid.json",
+        "results/rust_fluid.md",
+        "results/rust_lorentz.json",
+        "results/rust_lorentz.md",
+        "results/rust_rotor.json",
+        "results/rust_rotor.md",
+        "results/rust_simulation.json",
+        "results/rust_simulation.md",
+        "results/rust_spectra.json",
+        "results/rust_spectra.md",
+        "results/rust_water.json",
+        "results/rust_water.md",
+        "src/audit.rs",
+        "src/lib.rs",
+        "src/main.rs",
+        "src/reports.rs",
+        "results/rust_radial_shell.json",
+        "results/rust_radial_shell.md",
+        "src/radial_shell.rs",
+        "tests/radial_shell.rs"
+      ],
+      "phase": "phase 4",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-claim-62-ho2-shell-v1",
+      "timestamp": 1795538774.1238787,
+      "timestamp_str": "2026-11-24 19:46:14",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
     }
   ]
 }

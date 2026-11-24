@@ -22,7 +22,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```bash
   cargo run -- all            # human-readable check list
   cargo run -- json           # machine-readable check list
-  cargo run -- <module>       # one family: circulant|spectra|rotor|derrick|fluid|water|lorentz
+  cargo run -- <module>       # one family: circulant|spectra|rotor|derrick|fluid|radial_shell|water|lorentz
   ```
 - **Verify independently (two separate processes, project rule G-001)**:
   ```bash
@@ -112,6 +112,9 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
 | Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |
 | Direct quark Koide extension | FALSIFIED: \(Q_U\approx0.888\), \(Q_D\approx0.748\) at \(M_Z\) | `results/quarks.json` |
+| HO-1 finite-core node | NUMERIC: complex-shift core keeps finite velocity/Q and N-converged winding at eps0=0.1a0 | `src/fluid.rs`; `results/rust_fluid.json` |
+| Regularized 2p vortex | FALSIFIED: blob loops miss 2pi and density-floor velocity diverges with resolution | `src/fluid.rs`; `results/rust_fluid.json` |
+| HO-2 finite-core radial shell | NUMERIC: monotone regular phase, vmax=10, Q=-49.875 with converged FD, zero m=0 circulation | `src/radial_shell.rs`; `results/rust_radial_shell.json` |
 | Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside
@@ -164,6 +167,7 @@ fluid-universe/
 │   ├── amplitude_seesaw.rs  <- rational amplitudes + GUT-scale seesaw test
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
 │   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
+│   ├── radial_shell.rs       <- HO-2 finite-core radial-shell probe
 │   ├── water.rs              <- shallow-water analogue
 │   ├── lorentz.rs            <- director anisotropy
 │   ├── linalg.rs             <- Jacobi eigensolver and quadrature
@@ -225,7 +229,8 @@ fluid-universe/
 │   ├── lib.rs                <- crate root and check registry
 │   └── main.rs               <- CLI
 ├── tests/                    <- Rust integration tests
-│   └── integration.rs        <- crate-level test suite
+│   ├── integration.rs        <- crate-level test suite
+│   └── radial_shell.rs       <- HO-2 radial-shell regression tests
 ├── claims.md                 <- claim ledger with statuses and kill tests
 ├── CHANGELOG.md              <- append-only corrections and retractions
 ├── SCORECARD.md              <- one-line status per claim

@@ -291,6 +291,52 @@ fn rg_r_drift() -> f64 {
     (rg_ratio(&s) - r_start).abs()
 }
 
+/// Independent HO-2 singular-control slope from the constructional rule
+/// `gmax = pi/dx` on the four pre-registered physical radial grids.
+fn radial_shell_singular_slope() -> f64 {
+    let ns = [250.0_f64, 500.0, 1000.0, 2000.0];
+    let dx: Vec<f64> = ns.iter().map(|n| 20.0 / n).collect();
+    let gmax: Vec<f64> = dx.iter().map(|d| PI / d).collect();
+    let mx = dx.iter().map(|d| d.ln()).sum::<f64>() / dx.len() as f64;
+    let my = gmax.iter().map(|g| g.ln()).sum::<f64>() / gmax.len() as f64;
+    let numerator = dx
+        .iter()
+        .zip(&gmax)
+        .map(|(d, g)| (d.ln() - mx) * (g.ln() - my))
+        .sum::<f64>();
+    let denominator = dx.iter().map(|d| (d.ln() - mx).powi(2)).sum::<f64>();
+    numerator / denominator
+}
+
+/// Independent finite-difference HO-2 quantum pressure at `r0=2` using
+/// `u=r*sqrt((r-r0)^2+eps^2)*exp(-r/2)` in atomic units.
+fn radial_shell_fd_q_zero(n: usize) -> f64 {
+    let eps = 0.1_f64;
+    let dx = 20.0 / n as f64;
+    let index = (2.0 / dx).round() as usize;
+    let amplitude = |r: f64| {
+        let x = r - 2.0;
+        r * (x * x + eps * eps).sqrt() * (-r / 2.0).exp()
+    };
+    let lap = (amplitude((index + 1) as f64 * dx)
+        - 2.0 * amplitude(index as f64 * dx)
+        + amplitude((index - 1) as f64 * dx))
+        / (dx * dx);
+    -0.5 * lap / amplitude(index as f64 * dx)
+}
+
+/// Independent raw radial norm error for the complex-shift 2s core.
+fn radial_shell_norm_relative_error() -> f64 {
+    let numeric = crate::linalg::simpson(
+        |r| r * r * ((r - 2.0).powi(2) + 0.1_f64.powi(2)) * (-r).exp(),
+        0.0,
+        60.0,
+        20_000,
+    );
+    let analytic = 2.0 * (4.0 + 0.1_f64.powi(2));
+    (numeric - analytic).abs() / analytic
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -547,6 +593,92 @@ fn rows() -> Vec<Row> {
         value: width,
     });
 
+    // 62/1: the HO-2 core and node scales are predicted in atomic units.
+    out.push(Row {
+        id: "audit.radial_shell_scale",
+        claim: "62: HO-2 core and node scales are predicted",
+        verdict: "NUMERIC",
+        detail: "eps0=0.1*a0 and r0=2*a0 with a0=1; transferred from claim 60, never scanned".to_string(),
+        value: 0.1,
+    });
+
+    // 62/2: singular phase-gradient control retains the inverse-grid law.
+    let shell_slope = radial_shell_singular_slope();
+    out.push(Row {
+        id: "audit.radial_shell_singular_slope",
+        claim: "62: HO-2 singular phase-gradient control",
+        verdict: if (shell_slope + 1.0).abs() <= 0.01 { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("gmax=pi/dx on N=250/500/1000/2000 gives slope {shell_slope:.12}"),
+        value: shell_slope,
+    });
+
+    // 62/3: regular radial phase is monotone with the frozen finite-domain bound.
+    let shell_eps = 0.1_f64;
+    let shell_slip = shell_eps.atan2(-2.0) - shell_eps.atan2(18.0);
+    let shell_deficit = PI - shell_slip;
+    let shell_bound = 2.0 * shell_eps / 2.0 + shell_eps / 18.0;
+    let mut shell_phase_monotone = true;
+    let mut shell_previous_phase = shell_eps.atan2(-2.0);
+    for i in 1..=4000 {
+        let r = 20.0 * i as f64 / 4000.0;
+        let current = shell_eps.atan2(r - 2.0);
+        shell_phase_monotone &= current <= shell_previous_phase + 1e-12;
+        shell_previous_phase = current;
+    }
+    out.push(Row {
+        id: "audit.radial_shell_phase",
+        claim: "62: HO-2 regular radial phase and deficit bound",
+        verdict: if shell_phase_monotone && shell_deficit <= shell_bound { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("slip={shell_slip:.12}, deficit={shell_deficit:.12} <= bound {shell_bound:.12}, monotone={shell_phase_monotone}"),
+        value: shell_slip,
+    });
+
+    // 62/4: analytic and finite-difference quantum pressure agree and converge.
+    let shell_q = -0.5 * (1.0 / shell_eps.powi(2) - 1.0 / 4.0);
+    let shell_q_fine = radial_shell_fd_q_zero(2000);
+    let shell_q_previous = radial_shell_fd_q_zero(1000);
+    let shell_q_fine_error = (shell_q_fine - shell_q).abs() / shell_q.abs();
+    let shell_q_step_error = (shell_q_fine - shell_q_previous).abs() / shell_q_previous.abs();
+    out.push(Row {
+        id: "audit.radial_shell_quantum_pressure",
+        claim: "62: HO-2 finite and N-converged core quantum pressure",
+        verdict: if shell_q_fine_error <= 0.05 && shell_q_step_error <= 0.05 { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("Q0={shell_q:.6}, FD fine={shell_q_fine:.6}, fine error={shell_q_fine_error:.3e}, step error={shell_q_step_error:.3e}"),
+        value: shell_q,
+    });
+
+    // 62/5: zero m=0 circulation, raw norm and the frozen gate decision.
+    let shell_norm_error = radial_shell_norm_relative_error();
+    let shell_hard_ok = (shell_slope + 1.0).abs() <= 0.01
+        && shell_phase_monotone
+        && shell_deficit <= shell_bound
+        && shell_q_fine_error <= 0.05
+        && shell_q_step_error <= 0.05;
+    let shell_verdict = if (shell_slope + 1.0).abs() > 0.01 {
+        "UNVERIFIED"
+    } else if !shell_phase_monotone
+        || shell_deficit > shell_bound
+        || shell_q_fine_error > 0.05
+        || shell_q_step_error > 0.05
+    {
+        "FALSIFIED"
+    } else if shell_norm_error > 1e-8 {
+        "UNVERIFIED"
+    } else {
+        "NUMERIC"
+    };
+    out.push(Row {
+        id: "audit.radial_shell_gates",
+        claim: "62: HO-2 zero circulation, norm and gate consistency",
+        verdict: shell_verdict,
+        detail: format!("m=0 circulation=0, norm relative error={shell_norm_error:.3e}, hard gates={shell_hard_ok}, status={shell_verdict}"),
+        value: match shell_verdict {
+            "NUMERIC" => 1.0,
+            "FALSIFIED" => -1.0,
+            _ => 0.0,
+        },
+    });
+
     out
 }
 
@@ -656,6 +788,8 @@ mod tests {
         assert_eq!(verdict("rotor sectors"), "PROVEN");
         assert_eq!(verdict("domain wall tension"), "PROVEN");
         assert_eq!(verdict("Derrick exponents"), "PROVEN");
+        assert_eq!(verdict("HO-2 core and node scales"), "NUMERIC");
+        assert_eq!(verdict("HO-2 zero circulation"), "NUMERIC");
     }
 
     #[test]
@@ -689,6 +823,11 @@ mod tests {
         assert!(approx(value("Marcus band width"), 0.680915, 1e-3));
         assert!(approx(value("vortex blob fractions"), 0.8, 1e-12));
         assert!(approx(value("Z3 order parameter limits"), 0.0, 1e-12));
+        assert!(approx(value("HO-2 core and node scales"), 0.1, 1e-12));
+        assert!(approx(value("HO-2 singular phase-gradient"), -1.0, 0.01));
+        assert!(approx(value("HO-2 regular radial phase"), 3.086078759467, 1e-9));
+        assert!(approx(value("HO-2 finite and N-converged"), -49.875, 1e-9));
+        assert!(approx(value("HO-2 zero circulation"), 1.0, 1e-12));
     }
 
     #[test]

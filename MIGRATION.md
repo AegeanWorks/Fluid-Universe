@@ -15,11 +15,12 @@ two separate processes (project rule G-001).
 | `src/rotor.rs` | `theory/rotor.py` | sector Hamiltonians, lowest levels via Jacobi eigensolver, free-rotor limit, domain-wall tension, parity obstruction |
 | `src/derrick.rs` | `theory/derrick.py` | scaling exponents/energy, virial, curvature, stationary scale and minimum, stability region |
 | `src/fluid.rs` | `theory/*fluid*.py`, vortex modules | Ermakov fixed point, G-M action, Pinney branches, vortex core velocity/Q, blob loop fraction, Marcus width |
+| `src/radial_shell.rs` | claim-62 extension | HO-2 complex-shift radial shell, full radial-Laplacian quantum pressure, phase/velocity/Q/norm gates |
 | `src/water.rs` | `theory/water_analogue.py` | sound speed, horizon radius, surface gravity, analogue Hawking temperature, capillary length/ratio |
 | `src/lorentz.rs` | `theory/lorentz.py` | 2x2 elastic eigenvalues, residual anisotropy over deterministic unit directions, equal-K isotropy |
 | `src/linalg.rs` | (new) | cyclic Jacobi symmetric eigensolver, Simpson quadrature, bisection, tolerance helper |
 | `src/simulation.rs` | `sims/core3d.py`, `sims/production.py`, `theory/hopf.py` | analytic H=1 field, central-difference E2/E4/V, Z3 order, Hopf linking, analytic force, relaxation and field metrics |
-| `src/audit.rs` | `verification/audit.py` | 18 independently re-derived claim records with frozen verdicts and a deterministic fingerprint |
+| `src/audit.rs` | `verification/audit.py` | 23 independently re-derived claim records with frozen verdicts and a deterministic fingerprint |
 | `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and G-001 provenance |
 | `src/verify.rs` | `verification/verify.py` | G-001 two-process comparison and fingerprinting |
 
@@ -28,7 +29,7 @@ two separate processes (project rule G-001).
 ```bash
 cargo test                      # unit + integration suite (no network, no Python)
 cargo run -- all                # print every reproducible check
-cargo run -- <module>           # circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports
+cargo run -- <module>           # circulant|spectra|rotor|derrick|fluid|radial_shell|water|lorentz|simulation|audit|reports
 cargo run -- claims             # independent per-claim verdicts
 cargo run -- regenerate [dir]   # write rust_*.json|md (default: results/)
 cargo run -- json               # machine-readable check list
@@ -62,9 +63,9 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **95 reproducible checks**, **76 passing tests** (71 unit + 5 integration)
-and a G-001 two-process fingerprint agreement. All five AIKit project gates pass;
-`check` exits 3 only because the rewrite is not yet committed.
+Verified: **524 reproducible checks**, **349 passing tests** (336 unit + 7 existing
+integration + 6 radial-shell integration) and a G-001 two-process fingerprint
+agreement (`e390d30df6a4d0a3`). All four AIKit project gates pass on clean `main`.
 
 On this host the MSVC `link.exe` is absent, so the registered test command is
 `cargo test --target x86_64-pc-windows-gnu`. On a host with Visual Studio Build

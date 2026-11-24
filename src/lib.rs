@@ -67,6 +67,7 @@ pub mod quark_rg;
 pub mod potts_sector;
 pub mod rg_sector;
 pub mod shape_freedom;
+pub mod radial_shell;
 pub mod reports;
 pub mod sector_count;
 pub mod rep_scan;
@@ -126,6 +127,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(rotor::checks());
     out.extend(derrick::checks());
     out.extend(fluid::checks());
+    out.extend(radial_shell::checks());
     out.extend(water::checks());
     out.extend(lorentz::checks());
     out.extend(simulation::checks());
