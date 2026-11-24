@@ -3,8 +3,8 @@
   "active_task": {
     "task_id": "rust-rewrite-2026-11-22",
     "last_phase": "phase 4",
-    "active_phase": 4,
-    "status": "in_progress",
+    "active_phase": 5,
+    "status": "completed",
     "updated_at": 1795536796.3905594,
     "owner": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
     "lease_until": 1795543996.3905594,
@@ -21,7 +21,10 @@
         "name": "fluid-universe",
         "path": "projects/fluid-universe"
       }
-    ]
+    ],
+    "completed_at": 1795536924.1578903,
+    "completed_head": "03d4dd151f902d7564ed402668e46ffc0e64de53",
+    "completed_tree": "8e7f5cbff53d6322d8ee6479a3344b9a44a39b28"
   },
   "checkpoints": [
     {
@@ -41,18 +44,6 @@
           "path": "projects/fluid-universe"
         }
       ]
-    },
-    {
-      "agent": "opencode",
-      "description": "Reforge stage 36: window 107, 3 commit(s), 55 file(s) reviewed (unreviewed), 0 finding(s), 0 repaired, empty \u2014 nothing to commit",
-      "files_affected": [],
-      "operator_task": "rust-rewrite-2026-11-22",
-      "phase": "reforge stage 36",
-      "phase_num": 3,
-      "status": "in_progress",
-      "task_id": "reforge:run-3",
-      "timestamp": 1795372346.6165233,
-      "timestamp_str": "2026-11-22 21:32:26"
     },
     {
       "agent": "opencode",
@@ -301,6 +292,23 @@
           "path": "projects/fluid-universe"
         }
       ]
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          "."
+        ]
+      },
+      "description": "Task 'rust-rewrite-2026-11-22' completed successfully.",
+      "head": "03d4dd151f902d7564ed402668e46ffc0e64de53",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "rust-rewrite-2026-11-22",
+      "timestamp": 1795536924.2335978,
+      "timestamp_str": "2026-11-24 19:15:24"
     }
   ]
 }
