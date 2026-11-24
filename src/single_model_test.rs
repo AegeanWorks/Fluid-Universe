@@ -1,9 +1,9 @@
 //! Single-WZW-model existence and bounded non-existence evidence.
 //!
-//! Two explicit exact witnesses exist: SU(17)_1153 and SU(23)_1147 each contain
-//! three integrable primaries whose braiding labels are 2/9, 1/10 and 2/39.
-//! This proves existence and non-uniqueness, not physical naturalness or sector
-//! selection.
+//! Three explicit exact witnesses exist: SU(7)_1163, SU(17)_1153 and
+//! SU(23)_1147 each contain three integrable primaries whose braiding labels
+//! are 2/9, 1/10 and 2/39.  This proves existence and non-uniqueness, not
+//! physical naturalness or sector selection.
 //!
 //! Two bounded searches supply scope evidence:
 //! * N=2..7, k=1..79, Dynkin labels 0..4: 474 models, 1,337,784 primaries,
@@ -22,6 +22,9 @@ use crate::Check;
 const MAX_N: i64 = 7;
 const MAX_K: i64 = 79;
 const MAX_DYNKIN: i64 = 4;
+const RELAXED_MAX_DYNKIN: i64 = 6;
+const RELAXED_MAX_SUM: i64 = 24;
+const MAX_WITNESS_DYNKIN: i64 = 6;
 const TARGETS: [(i64, i64); 3] = [(2, 9), (1, 10), (2, 39)];
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -31,7 +34,7 @@ pub struct Witness {
     pub dynkin: &'static [&'static [i64]],
 }
 
-pub const WITNESSES: [Witness; 2] = [
+pub const WITNESSES: [Witness; 3] = [
     Witness {
         n: 17,
         k: 1153,
@@ -49,6 +52,11 @@ pub const WITNESSES: [Witness; 2] = [
             &[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1],
             &[0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2],
         ],
+    },
+    Witness {
+        n: 7,
+        k: 1163,
+        dynkin: &[&[0, 0, 4, 4, 6, 5], &[0, 0, 1, 3, 4, 4], &[0, 0, 0, 4, 2, 1]],
     },
 ];
 
@@ -69,6 +77,7 @@ pub struct InverseSearchSummary {
 
 static SEARCH: OnceLock<SearchSummary> = OnceLock::new();
 static INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
+static RELAXED_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
 
 pub fn phases() -> [f64; 3] {
     [2.0 / 9.0, 0.1, 2.0 / 39.0]
@@ -82,7 +91,7 @@ pub fn models() -> [(i64, i64); 3] {
 fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
     assert!(n >= 2 && n <= 23);
     assert_eq!(dynkin.len(), n as usize - 1);
-    assert!(dynkin.iter().all(|value| *value >= 0 && *value <= MAX_DYNKIN));
+    assert!(dynkin.iter().all(|value| *value >= 0 && *value <= MAX_WITNESS_DYNKIN));
 
     let mut rows = [0_i64; 23];
     let mut running = 0_i64;
@@ -249,6 +258,70 @@ pub fn inverse_search() -> &'static InverseSearchSummary {
     })
 }
 
+fn enumerate_relaxed_inverse_primaries(
+    n: i64,
+    index: usize,
+    remaining: i64,
+    dynkin: &mut [i64],
+    label_sum: i64,
+    labels_tested: &mut u64,
+    phase_masks: &mut BTreeMap<(i64, i64), u8>,
+) {
+    if index == dynkin.len() {
+        *labels_tested += 1;
+        let numerator = braiding_numerator(n, dynkin);
+        for (target_index, &(p, q)) in TARGETS.iter().enumerate() {
+            if let Some(k) = required_level(n, numerator, label_sum, p, q) {
+                *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
+            }
+        }
+        return;
+    }
+    let upper = remaining.min(RELAXED_MAX_DYNKIN);
+    for value in 0..=upper {
+        dynkin[index] = value;
+        enumerate_relaxed_inverse_primaries(
+            n,
+            index + 1,
+            remaining - value,
+            dynkin,
+            label_sum + value,
+            labels_tested,
+            phase_masks,
+        );
+    }
+}
+
+/// All-level inverse search for N<=7, Dynkin labels 0..6 and label sum <=24.
+pub fn relaxed_inverse_search() -> &'static InverseSearchSummary {
+    RELAXED_INVERSE_SEARCH.get_or_init(|| {
+        let mut labels_tested = 0_u64;
+        let mut phase_masks = BTreeMap::new();
+        for n in 2..=MAX_N {
+            let mut dynkin = vec![0_i64; n as usize - 1];
+            enumerate_relaxed_inverse_primaries(
+                n,
+                0,
+                RELAXED_MAX_SUM,
+                &mut dynkin,
+                0,
+                &mut labels_tested,
+                &mut phase_masks,
+            );
+        }
+        let hit_models = phase_masks
+            .iter()
+            .filter_map(|(&model, &mask)| (mask == 0b111).then_some(model))
+            .collect();
+        InverseSearchSummary {
+            labels_tested,
+            models_with_any_phase: phase_masks.len() as u64,
+            hit_models,
+            phase_masks,
+        }
+    })
+}
+
 pub fn witness_fractions(index: usize) -> [(i64, i64); 3] {
     let witness = WITNESSES[index];
     witness
@@ -273,12 +346,16 @@ pub fn all_witnesses_exact() -> bool {
 }
 
 pub fn single_model_exists() -> bool {
-    all_witnesses_exact() || !search().hit_models.is_empty() || !inverse_search().hit_models.is_empty()
+    all_witnesses_exact()
+        || !search().hit_models.is_empty()
+        || !inverse_search().hit_models.is_empty()
+        || !relaxed_inverse_search().hit_models.is_empty()
 }
 
 pub fn checks() -> Vec<Check> {
     let result = search();
     let inverse = inverse_search();
+    let relaxed = relaxed_inverse_search();
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -293,7 +370,7 @@ pub fn checks() -> Vec<Check> {
         Check::new(
             "singlemodel.exists",
             if single_model_exists() { 1.0 } else { 0.0 },
-            "two explicit single-model witnesses exist (SU(17)_1153 and SU(23)_1147)",
+            "three explicit single-model witnesses exist (SU(7)_1163, SU(17)_1153, SU(23)_1147)",
         ),
         Check::new(
             "singlemodel.models_tested",
@@ -341,9 +418,39 @@ pub fn checks() -> Vec<Check> {
             "all three SU(23)_1147 labels exact and integrable",
         ),
         Check::new(
+            "singlemodel.witness2_n",
+            WITNESSES[2].n as f64,
+            "third witness SU(7) rank",
+        ),
+        Check::new(
+            "singlemodel.witness2_k",
+            WITNESSES[2].k as f64,
+            "third witness level 1163",
+        ),
+        Check::new(
+            "singlemodel.witness2_exact",
+            if witness_exact(2) { 1.0 } else { 0.0 },
+            "all three SU(7)_1163 labels exact and integrable",
+        ),
+        Check::new(
+            "singlemodel.relaxed_inverse_labels",
+            relaxed.labels_tested as f64,
+            "N<=7, labels<=6, sum<=24 inverse-search primaries",
+        ),
+        Check::new(
+            "singlemodel.relaxed_inverse_models_any",
+            relaxed.models_with_any_phase as f64,
+            "relaxed-domain models hosting at least one phase",
+        ),
+        Check::new(
+            "singlemodel.relaxed_inverse_hits",
+            relaxed.hit_models.len() as f64,
+            "relaxed-domain all-phase hit count (SU(7)_1163)",
+        ),
+        Check::new(
             "singlemodel.witness_all_exact",
             if all_witnesses_exact() { 1.0 } else { 0.0 },
-            "both explicit witnesses exact and integrable",
+            "all three explicit witnesses exact and integrable",
         ),
         Check::new(
             "singlemodel.inverse_labels",

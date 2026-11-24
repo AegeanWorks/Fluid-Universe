@@ -563,6 +563,66 @@ fn independent_inverse_single_model_search() -> &'static (u64, u64, bool) {
     })
 }
 
+/// Independent relaxed-label all-level inverse search for N<=7, labels 0..6
+/// and total label sum <=24.
+fn independent_relaxed_inverse_search() -> &'static (u64, u64, bool) {
+    static RESULT: std::sync::OnceLock<(u64, u64, bool)> = std::sync::OnceLock::new();
+    RESULT.get_or_init(|| {
+        let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
+        let mut labels = 0_u64;
+        let mut masks = std::collections::HashMap::<(i64, i64), u8>::new();
+
+        fn walk(
+            n: i64,
+            index: usize,
+            remaining: i64,
+            dynkin: &mut [i64],
+            label_sum: i64,
+            labels: &mut u64,
+            masks: &mut std::collections::HashMap<(i64, i64), u8>,
+            targets: &[(i64, i64); 3],
+        ) {
+            if index == dynkin.len() {
+                *labels += 1;
+                let numerator = independent_braiding_numerator(n, dynkin);
+                for (phase_index, &(p, q)) in targets.iter().enumerate() {
+                    let denominator = 2 * n * p;
+                    let scaled = numerator * q;
+                    if scaled % denominator != 0 {
+                        continue;
+                    }
+                    let k = scaled / denominator - n;
+                    if k > 0 && label_sum <= k {
+                        *masks.entry((n, k)).or_default() |= 1 << phase_index;
+                    }
+                }
+                return;
+            }
+            for value in 0..=remaining.min(6) {
+                dynkin[index] = value;
+                walk(
+                    n,
+                    index + 1,
+                    remaining - value,
+                    dynkin,
+                    label_sum + value,
+                    labels,
+                    masks,
+                    targets,
+                );
+            }
+        }
+
+        for n in 2..=7_i64 {
+            let mut dynkin = vec![0_i64; n as usize - 1];
+            walk(n, 0, 24, &mut dynkin, 0, &mut labels, &mut masks, &targets);
+        }
+        let models = masks.len() as u64;
+        let hit = masks.get(&(7, 1163)).copied().unwrap_or(0) == 0b111;
+        (labels, models, hit)
+    })
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -1087,6 +1147,31 @@ fn rows() -> Vec<Row> {
         value: inverse_labels as f64,
     });
 
+    // 66/1: explicit lowest-rank SU(7)_1163 witness.
+    let su7: [&[i64]; 3] = [
+        &[0, 0, 4, 4, 6, 5],
+        &[0, 0, 1, 3, 4, 4],
+        &[0, 0, 0, 4, 2, 1],
+    ];
+    let su7_ok = independent_witness_exact(7, 1163, &su7);
+    out.push(Row {
+        id: "audit.single_model_witness_su7",
+        claim: "66: SU(7)_1163 exact all-phase witness",
+        verdict: if su7_ok { "PROVEN" } else { "FALSIFIED" },
+        detail: "rank-7 host matches all three phases exactly with label sums 19/12/7 <=1163".to_string(),
+        value: if su7_ok { 1.0 } else { 0.0 },
+    });
+
+    // 66/2: relaxed-label inverse search reproduces the rank-7 hit.
+    let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
+    out.push(Row {
+        id: "audit.single_model_relaxed_inverse",
+        claim: "66: relaxed N<=7 inverse search finds rank-7 host",
+        verdict: if relaxed_hit { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("labels={relaxed_labels}, models_with_any_phase={relaxed_models}, SU(7)_1163_hit={relaxed_hit}"),
+        value: relaxed_labels as f64,
+    });
+
     out
 }
 
@@ -1204,6 +1289,8 @@ mod tests {
         assert_eq!(verdict("SU(17)_1153 exact"), "PROVEN");
         assert_eq!(verdict("SU(23)_1147 exact"), "PROVEN");
         assert_eq!(verdict("one N<=7 all-level host"), "FALSIFIED");
+        assert_eq!(verdict("SU(7)_1163 exact"), "PROVEN");
+        assert_eq!(verdict("relaxed N<=7 inverse"), "NUMERIC");
     }
 
     #[test]
@@ -1253,6 +1340,8 @@ mod tests {
         assert!(approx(value("SU(17)_1153 exact"), 1.0, 1e-12));
         assert!(approx(value("SU(23)_1147 exact"), 1.0, 1e-12));
         assert!(approx(value("one N<=7 all-level host"), 19_530.0, 1e-9));
+        assert!(approx(value("SU(7)_1163 exact"), 1.0, 1e-12));
+        assert!(approx(value("relaxed N<=7 inverse"), 125_888.0, 1e-9));
     }
 
     #[test]

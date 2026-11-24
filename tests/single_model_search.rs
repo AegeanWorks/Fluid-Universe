@@ -1,6 +1,6 @@
 use fluid_universe::single_model_test::{
-    WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search, search,
-    single_model_exists, witness_exact, witness_fractions,
+    WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search,
+    relaxed_inverse_search, search, single_model_exists, witness_exact, witness_fractions,
 };
 
 #[test]
@@ -33,10 +33,19 @@ fn all_positive_levels_reproduce_the_inverse_negative() {
 }
 
 #[test]
+fn relaxed_label_inverse_search_finds_the_rank_seven_host() {
+    let result = relaxed_inverse_search();
+    assert_eq!(result.labels_tested, 125_888);
+    assert_eq!(result.models_with_any_phase, 1_259);
+    assert_eq!(result.hit_models, vec![(7, 1163)]);
+}
+
+#[test]
 fn explicit_single_model_witnesses_are_exact_and_integrable() {
-    assert_eq!(WITNESSES.len(), 2);
+    assert_eq!(WITNESSES.len(), 3);
     assert_eq!((WITNESSES[0].n, WITNESSES[0].k), (17, 1153));
     assert_eq!((WITNESSES[1].n, WITNESSES[1].k), (23, 1147));
+    assert_eq!((WITNESSES[2].n, WITNESSES[2].k), (7, 1163));
     assert!(all_witnesses_exact());
     assert!(single_model_exists());
     let targets = [(2, 9), (1, 10), (2, 39)];

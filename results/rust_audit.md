@@ -36,9 +36,11 @@
 | `audit.single_model_witness_su17` | `1.000000000000000e0` | PROVEN \| three integrable primaries match 2/9, 1/10 and 2/39 by exact cross-multiplication |
 | `audit.single_model_witness_su23` | `1.000000000000000e0` | PROVEN \| second distinct host matches all three phases exactly; existence is non-unique |
 | `audit.single_model_inverse_search` | `1.953000000000000e4` | FALSIFIED \| labels=19530, models_with_any_phase=694, all_phase_hit=false |
+| `audit.single_model_witness_su7` | `1.000000000000000e0` | PROVEN \| rank-7 host matches all three phases exactly with label sums 19/12/7 <=1163 |
+| `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=9b29f0d753327252, run2=9b29f0d753327252, agreement=PASS.
-- config_sha256 (FNV-1a): `d6b5530d9136d6c7`.
+- G-001 two-process fingerprint: run1=acc3d2ad4e447832, run2=acc3d2ad4e447832, agreement=PASS.
+- config_sha256 (FNV-1a): `0646f47a2b6199d2`.

@@ -1152,3 +1152,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The N<=7 all-level inverse search has no all-phase host; claim 64's smaller bounded negative remains unchanged.
 - No rule physically selects either large host, no sector-assignment dynamics is supplied, and this is not itself a unified field theory. The next bottleneck is model selection/naturalness.
 - Full suite: 364 passing tests. G-001: two separate Rust processes agree on 564 checks, fingerprint `9b29f0d753327252`.
+
+## 2026-11-24 - Lowest-rank SU(7)_1163 host PROVEN (claim 66, ADR-064)
+
+**Added**
+
+- Third exact witness registry entry for SU(7)_1163 and regression assertions for all three labels and integrability.
+- Relaxed all-level inverse search over N<=7, Dynkin labels 0..6 and total label sum <=24.
+- Independent SU(7) witness and relaxed-search audit rows.
+
+**Results**
+
+- SU(7)_1163 matches all three phases exactly with label sums 19/12/7 <=1163.
+- The relaxed search examines 125,888 primaries and 1,259 any-phase models, finding only SU(7)_1163 as an all-phase host.
+- Claim 66 is PROVEN for the lowest rank in this domain. Level 1163 and labels up to 6 remain post-hoc; no physical model selection, sector dynamics or unified field theory is claimed.
+- Full suite: 365 passing tests. G-001: two separate Rust processes agree on 572 checks, fingerprint `acc3d2ad4e447832`.

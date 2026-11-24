@@ -457,3 +457,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The wider inverse search N<=24, total Dynkin-label sum<=8 and labels 0..6 found a second all-phase host at the lower level SU(23)_1147, alongside SU(17)_1153. Exact direct arithmetic verifies all three labels and integrability.
 - **Decision**: Encode a second witness alongside SU(17)_1153. For SU(23)_1147: 2/9 uses Dynkin labels (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,2,0,0,0), boxes=87, A=895, C2=6508/23; 1/10 uses (0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1), boxes=73, A=509, C2=3189/23; 2/39 uses (0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2), boxes=51, A=279, C2=1908/23. Each label is checked exactly and each label sum is <=1147. Two distinct hosts prove existence and non-uniqueness; neither is physically selected by the framework.
 - **Consequences**: Claim 65 records at least two explicit single-model hosts. The next unification problem is selection/naturalness, not existence. No dynamics, sector assignment or unified field theory is claimed.
+
+### ADR-064: Lowest-rank SU(7)_1163 host (claim 66)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The ADR-063 hosts have ranks 17 and 23. An all-level inverse search with N<=7, Dynkin labels 0..6 and total label sum <=24 found a rank-7 host, SU(7)_1163, after 125,888 primaries and 1,259 any-phase models.
+- **Decision**: Add SU(7)_1163 as the third explicit witness. For 2/9 use Dynkin labels (0,0,4,4,6,5), boxes=88, A=1640, C2=1868/7; for 1/10 use (0,0,1,3,4,4), boxes=59, A=745, C2=867/7; for 2/39 use (0,0,0,4,2,1), boxes=32, A=280, C2=468/7. Label sums 19/12/7 are <=1163 and exact cross-multiplication matches all targets. Claim 66 is PROVEN for this explicit host and for lowest rank within the stated search domain only. Level 1163 and labels up to 6 remain post-hoc; no physical selection or dynamics is claimed.
+- **Consequences**: Extend the witness registry and checks, add the relaxed-label inverse search and integration/audit rows, regenerate reports and update claim 66 documentation. Claims 60-65 remain unchanged.
