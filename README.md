@@ -184,6 +184,40 @@ fluid-universe/
 │   ├── variation.rs          <- exact Q=(1+CV^2)/3 identity and distribution scan
 │   ├── poisson.rs            <- exponential population vs sample CV test
 │   ├── orthogonal.rs         <- exact Q=2/3 from Laguerre L_3^(-1) zeros
+│   ├── classical_scan.rs     <- remaining classical WZW families
+│   ├── compact_identity.rs   <- compact algebraic identity and SU(Fib) test
+│   ├── cosmology_validation.rs <- d=3 cosmological prediction checks
+│   ├── d3_chain.rs           <- non-post-hoc d=3 and electric-charge derivation
+│   ├── d3_neutrino.rs        <- d=3 neutrino prediction validation
+│   ├── d3_only_synthesis.rs  <- complete measured-input-free d=3 parameter set
+│   ├── d3_running.rs         <- RG test of the d=3 fixed point
+│   ├── d3_spectrum.rs        <- independent d=3 spectral-axiom checks
+│   ├── d3_validation.rs      <- independent d=3 prediction validation
+│   ├── dynamical_flow.rs     <- RG-flow test of compact-index targets
+│   ├── ew_from_planck.rs     <- electroweak scale from the Planck scale
+│   ├── exact_phase_labels.rs <- exact WZW labels for two required phases
+│   ├── fib_significance.rs   <- significance of the Fibonacci-phase pattern
+│   ├── foot_geometry.rs      <- peer-reviewed geometric Koide check
+│   ├── gauge_flavor.rs       <- weak-angle and flavor-amplitude relation
+│   ├── gj_relation.rs        <- d=3 Georgi-Jarlskog b-tau test
+│   ├── gravity_relation.rs   <- numerical gauge-gravity relation
+│   ├── index_framework.rs    <- compact one-index sector framework
+│   ├── index_uncertainty.rs  <- uncertainty-aware index-framework verdict
+│   ├── informational_geometry.rs <- external d=3 constant identities
+│   ├── natural_phase_labels.rs <- singlet braiding labels at natural levels
+│   ├── nosusy_unification.rs <- no-SUSY gauge-gravity boundary test
+│   ├── null_model.rs         <- rational-amplitude statistical null model
+│   ├── peer_reviewed_37.rs   <- external support for the 3/13 relation
+│   ├── phase_interpolation.rs <- single d=3 phase-rule interpolation
+│   ├── scale_choice.rs       <- M_W versus M_Z scale-choice diagnostic
+│   ├── sector_count.rs       <- d=3 derivation of the sector count
+│   ├── single_model_test.rs  <- no single SU(N)_k hosts all phase labels
+│   ├── single_phase_rule.rs  <- up-quark amplitude-precision clarification
+│   ├── threshold_unification.rs <- one-threshold no-SUSY negative test
+│   ├── up_amplitude_gauge.rs <- up amplitude from the weak mixing angle
+│   ├── up_phase_resolution.rs <- up-quark tension with a d=3 phase
+│   ├── vortex_unification.rs <- pre-registered vortex-core unification test
+│   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-block phase derivation
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

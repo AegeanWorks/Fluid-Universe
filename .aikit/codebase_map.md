@@ -14,7 +14,7 @@
 
 ## 🧭 Map Coverage
 - **Indexed**: python (`0` module(s))
-- **Not indexed by this map**: rust (`21` file(s))
+- **Not indexed by this map**: rust (`93` file(s))
 
 > Only Python symbols are catalogued. A language above is reported as not indexed, never as verified by this map.
 
