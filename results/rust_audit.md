@@ -38,9 +38,10 @@
 | `audit.single_model_inverse_search` | `1.953000000000000e4` | FALSIFIED \| labels=19530, models_with_any_phase=694, all_phase_hit=false |
 | `audit.single_model_witness_su7` | `1.000000000000000e0` | PROVEN \| rank-7 host matches all three phases exactly with label sums 19/12/7 <=1163 |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
+| `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=acc3d2ad4e447832, run2=acc3d2ad4e447832, agreement=PASS.
-- config_sha256 (FNV-1a): `0646f47a2b6199d2`.
+- G-001 two-process fingerprint: run1=22e571695a54bbdc, run2=22e571695a54bbdc, agreement=PASS.
+- config_sha256 (FNV-1a): `73a7000a184fdef8`.

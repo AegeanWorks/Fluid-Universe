@@ -1167,3 +1167,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The relaxed search examines 125,888 primaries and 1,259 any-phase models, finding only SU(7)_1163 as an all-phase host.
 - Claim 66 is PROVEN for the lowest rank in this domain. Level 1163 and labels up to 6 remain post-hoc; no physical model selection, sector dynamics or unified field theory is claimed.
 - Full suite: 365 passing tests. G-001: two separate Rust processes agree on 572 checks, fingerprint `acc3d2ad4e447832`.
+
+## 2026-11-24 - Lower-rank single-WZW existence FALSIFIED in the widened domain (claim 67, ADR-065)
+
+**Added**
+
+- Cached all-level inverse search for N<=6 and Dynkin labels 0..20.
+- Integration regression for 4,288,305 primaries, 5,499 any-phase models and zero all-phase hits.
+- Independent lower-rank audit row.
+
+**Results**
+
+- No rank<=6 host exists in the stated label domain at any positive level.
+- Claim 67 is FALSIFIED only inside that domain. Labels above 20 remain open, and SU(7)_1163 remains an explicit host rather than a physically selected theory.
+- Full suite: 366 passing tests. G-001: two separate Rust processes agree on 576 checks, fingerprint `22e571695a54bbdc`.

@@ -5,13 +5,15 @@
 //! are 2/9, 1/10 and 2/39.  This proves existence and non-uniqueness, not
 //! physical naturalness or sector selection.
 //!
-//! Two bounded searches supply scope evidence:
+//! Three bounded searches supply scope evidence:
 //! * N=2..7, k=1..79, Dynkin labels 0..4: 474 models, 1,337,784 primaries,
 //!   no all-phase host.
 //! * N=2..7, every positive level, Dynkin labels 0..4: 19,530 primaries,
 //!   694 models with any phase, no all-phase host.
+//! * N=2..6, every positive level, Dynkin labels 0..20: 4,288,305 primaries,
+//!   5,499 models with any phase, no all-phase host.
 //!
-//! HONEST CAVEAT: SU(17)_1153 is a large, post-hoc host.  No rule selects it,
+//! HONEST CAVEAT: the explicit hosts are large/post-hoc.  No rule selects them,
 //! no dynamics follows from it, and it is not itself a unified field theory.
 
 use std::collections::BTreeMap;
@@ -24,7 +26,9 @@ const MAX_K: i64 = 79;
 const MAX_DYNKIN: i64 = 4;
 const RELAXED_MAX_DYNKIN: i64 = 6;
 const RELAXED_MAX_SUM: i64 = 24;
-const MAX_WITNESS_DYNKIN: i64 = 6;
+const LOWER_MAX_DYNKIN: i64 = 20;
+const LOWER_MAX_N: i64 = 6;
+const MAX_SEARCH_DYNKIN: i64 = 20;
 const TARGETS: [(i64, i64); 3] = [(2, 9), (1, 10), (2, 39)];
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -78,6 +82,7 @@ pub struct InverseSearchSummary {
 static SEARCH: OnceLock<SearchSummary> = OnceLock::new();
 static INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
 static RELAXED_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
+static LOWER_RANK_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
 
 pub fn phases() -> [f64; 3] {
     [2.0 / 9.0, 0.1, 2.0 / 39.0]
@@ -88,18 +93,16 @@ pub fn models() -> [(i64, i64); 3] {
 }
 
 /// Numerator of `|C2-2*C2(box)|/(k+N)` before the level denominator.
-fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
-    assert!(n >= 2 && n <= 23);
-    assert_eq!(dynkin.len(), n as usize - 1);
-    assert!(dynkin.iter().all(|value| *value >= 0 && *value <= MAX_WITNESS_DYNKIN));
-
+#[inline]
+fn braiding_numerator_unchecked(n: i64, dynkin: &[i64]) -> i64 {
     let mut rows = [0_i64; 23];
     let mut running = 0_i64;
+    let mut boxes = 0_i64;
     for i in (0..dynkin.len()).rev() {
         running += dynkin[i];
         rows[i] = running;
+        boxes += running;
     }
-    let boxes = rows.iter().sum::<i64>();
     let a = rows
         .iter()
         .take(dynkin.len())
@@ -107,6 +110,13 @@ fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
         .map(|(index, row)| row * (row + n + 1 - 2 * (index as i64 + 1)))
         .sum::<i64>();
     (n * a - boxes * boxes - 2 * (n * n - 1)).abs()
+}
+
+fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
+    assert!(n >= 2 && n <= 23);
+    assert_eq!(dynkin.len(), n as usize - 1);
+    assert!(dynkin.iter().all(|value| *value >= 0 && *value <= MAX_SEARCH_DYNKIN));
+    braiding_numerator_unchecked(n, dynkin)
 }
 
 /// Exact unreduced numerator/denominator of the braiding label for one primary.
@@ -184,6 +194,7 @@ pub fn search() -> &'static SearchSummary {
     })
 }
 
+#[inline]
 fn required_level(n: i64, numerator: i64, label_sum: i64, p: i64, q: i64) -> Option<i64> {
     let denominator = 2 * n * p;
     let scaled = numerator * q;
@@ -208,7 +219,7 @@ fn enumerate_inverse_primaries(
 ) {
     if index == dynkin.len() {
         *labels_tested += 1;
-        let numerator = braiding_numerator(n, dynkin);
+        let numerator = braiding_numerator_unchecked(n, dynkin);
         for (target_index, &(p, q)) in TARGETS.iter().enumerate() {
             if let Some(k) = required_level(n, numerator, label_sum, p, q) {
                 *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
@@ -269,7 +280,7 @@ fn enumerate_relaxed_inverse_primaries(
 ) {
     if index == dynkin.len() {
         *labels_tested += 1;
-        let numerator = braiding_numerator(n, dynkin);
+        let numerator = braiding_numerator_unchecked(n, dynkin);
         for (target_index, &(p, q)) in TARGETS.iter().enumerate() {
             if let Some(k) = required_level(n, numerator, label_sum, p, q) {
                 *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
@@ -322,6 +333,66 @@ pub fn relaxed_inverse_search() -> &'static InverseSearchSummary {
     })
 }
 
+fn enumerate_lower_rank_primaries(
+    n: i64,
+    index: usize,
+    dynkin: &mut [i64],
+    label_sum: i64,
+    labels_tested: &mut u64,
+    phase_masks: &mut BTreeMap<(i64, i64), u8>,
+) {
+    if index == dynkin.len() {
+        *labels_tested += 1;
+        let numerator = braiding_numerator_unchecked(n, dynkin);
+        for (target_index, &(p, q)) in TARGETS.iter().enumerate() {
+            if let Some(k) = required_level(n, numerator, label_sum, p, q) {
+                *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
+            }
+        }
+        return;
+    }
+    for value in 0..=LOWER_MAX_DYNKIN {
+        dynkin[index] = value;
+        enumerate_lower_rank_primaries(
+            n,
+            index + 1,
+            dynkin,
+            label_sum + value,
+            labels_tested,
+            phase_masks,
+        );
+    }
+}
+
+/// All-level inverse search for N<=6 and Dynkin labels 0..20.
+pub fn lower_rank_inverse_search() -> &'static InverseSearchSummary {
+    LOWER_RANK_INVERSE_SEARCH.get_or_init(|| {
+        let mut labels_tested = 0_u64;
+        let mut phase_masks = BTreeMap::new();
+        for n in 2..=LOWER_MAX_N {
+            let mut dynkin = vec![0_i64; n as usize - 1];
+            enumerate_lower_rank_primaries(
+                n,
+                0,
+                &mut dynkin,
+                0,
+                &mut labels_tested,
+                &mut phase_masks,
+            );
+        }
+        let hit_models = phase_masks
+            .iter()
+            .filter_map(|(&model, &mask)| (mask == 0b111).then_some(model))
+            .collect();
+        InverseSearchSummary {
+            labels_tested,
+            models_with_any_phase: phase_masks.len() as u64,
+            hit_models,
+            phase_masks,
+        }
+    })
+}
+
 pub fn witness_fractions(index: usize) -> [(i64, i64); 3] {
     let witness = WITNESSES[index];
     witness
@@ -350,12 +421,14 @@ pub fn single_model_exists() -> bool {
         || !search().hit_models.is_empty()
         || !inverse_search().hit_models.is_empty()
         || !relaxed_inverse_search().hit_models.is_empty()
+        || !lower_rank_inverse_search().hit_models.is_empty()
 }
 
 pub fn checks() -> Vec<Check> {
     let result = search();
     let inverse = inverse_search();
     let relaxed = relaxed_inverse_search();
+    let lower = lower_rank_inverse_search();
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -451,6 +524,21 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.witness_all_exact",
             if all_witnesses_exact() { 1.0 } else { 0.0 },
             "all three explicit witnesses exact and integrable",
+        ),
+        Check::new(
+            "singlemodel.lower_rank_labels",
+            lower.labels_tested as f64,
+            "N<=6, Dynkin<=20 all-level inverse-search primaries",
+        ),
+        Check::new(
+            "singlemodel.lower_rank_models_any",
+            lower.models_with_any_phase as f64,
+            "lower-rank models hosting at least one phase",
+        ),
+        Check::new(
+            "singlemodel.lower_rank_hits",
+            lower.hit_models.len() as f64,
+            "lower-rank all-phase hit count (zero in this domain)",
         ),
         Check::new(
             "singlemodel.inverse_labels",

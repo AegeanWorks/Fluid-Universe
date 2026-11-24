@@ -623,6 +623,69 @@ fn independent_relaxed_inverse_search() -> &'static (u64, u64, bool) {
     })
 }
 
+/// Independent all-level lower-rank search for N<=6, Dynkin labels 0..20.
+fn independent_lower_rank_inverse_search() -> &'static (u64, u64, bool) {
+    static RESULT: std::sync::OnceLock<(u64, u64, bool)> = std::sync::OnceLock::new();
+    RESULT.get_or_init(|| {
+        let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
+        let mut labels = 0_u64;
+        let mut masks = std::collections::HashMap::<(i64, i64), u8>::new();
+
+        fn walk(
+            n: i64,
+            index: usize,
+            dynkin: &mut [i64],
+            label_sum: i64,
+            labels: &mut u64,
+            masks: &mut std::collections::HashMap<(i64, i64), u8>,
+            targets: &[(i64, i64); 3],
+        ) {
+            if index == dynkin.len() {
+                *labels += 1;
+                let mut rows = [0_i64; 6];
+                let mut running = 0_i64;
+                let mut boxes = 0_i64;
+                for i in (0..dynkin.len()).rev() {
+                    running += dynkin[i];
+                    rows[i] = running;
+                    boxes += running;
+                }
+                let a = rows
+                    .iter()
+                    .take(dynkin.len())
+                    .enumerate()
+                    .map(|(i, row)| row * (row + n + 1 - 2 * (i as i64 + 1)))
+                    .sum::<i64>();
+                let numerator = (n * a - boxes * boxes - 2 * (n * n - 1)).abs();
+                for (phase_index, &(p, q)) in targets.iter().enumerate() {
+                    let denominator = 2 * n * p;
+                    let scaled = numerator * q;
+                    if scaled % denominator != 0 {
+                        continue;
+                    }
+                    let k = scaled / denominator - n;
+                    if k > 0 && label_sum <= k {
+                        *masks.entry((n, k)).or_default() |= 1 << phase_index;
+                    }
+                }
+                return;
+            }
+            for value in 0..=20_i64 {
+                dynkin[index] = value;
+                walk(n, index + 1, dynkin, label_sum + value, labels, masks, targets);
+            }
+        }
+
+        for n in 2..=6_i64 {
+            let mut dynkin = vec![0_i64; n as usize - 1];
+            walk(n, 0, &mut dynkin, 0, &mut labels, &mut masks, &targets);
+        }
+        let models = masks.len() as u64;
+        let any_hit = masks.values().any(|mask| *mask == 0b111);
+        (labels, models, any_hit)
+    })
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -1172,6 +1235,16 @@ fn rows() -> Vec<Row> {
         value: relaxed_labels as f64,
     });
 
+    // 67: no lower-rank all-phase host in the N<=6, Dynkin<=20 domain.
+    let (lower_labels, lower_models, lower_hit) = *independent_lower_rank_inverse_search();
+    out.push(Row {
+        id: "audit.lower_rank_inverse_search",
+        claim: "67: one N<=6, Dynkin<=20 all-level host exists",
+        verdict: if lower_hit { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("labels={lower_labels}, models_with_any_phase={lower_models}, all_phase_hit={lower_hit}"),
+        value: lower_labels as f64,
+    });
+
     out
 }
 
@@ -1291,6 +1364,7 @@ mod tests {
         assert_eq!(verdict("one N<=7 all-level host"), "FALSIFIED");
         assert_eq!(verdict("SU(7)_1163 exact"), "PROVEN");
         assert_eq!(verdict("relaxed N<=7 inverse"), "NUMERIC");
+        assert_eq!(verdict("one N<=6, Dynkin<=20"), "FALSIFIED");
     }
 
     #[test]
@@ -1342,6 +1416,7 @@ mod tests {
         assert!(approx(value("one N<=7 all-level host"), 19_530.0, 1e-9));
         assert!(approx(value("SU(7)_1163 exact"), 1.0, 1e-12));
         assert!(approx(value("relaxed N<=7 inverse"), 125_888.0, 1e-9));
+        assert!(approx(value("one N<=6, Dynkin<=20"), 4_288_305.0, 1e-9));
     }
 
     #[test]

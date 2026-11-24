@@ -1,6 +1,7 @@
 use fluid_universe::single_model_test::{
     WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search,
-    relaxed_inverse_search, search, single_model_exists, witness_exact, witness_fractions,
+    lower_rank_inverse_search, relaxed_inverse_search, search, single_model_exists,
+    witness_exact, witness_fractions,
 };
 
 #[test]
@@ -38,6 +39,14 @@ fn relaxed_label_inverse_search_finds_the_rank_seven_host() {
     assert_eq!(result.labels_tested, 125_888);
     assert_eq!(result.models_with_any_phase, 1_259);
     assert_eq!(result.hit_models, vec![(7, 1163)]);
+}
+
+#[test]
+fn lower_rank_search_reproduces_the_bounded_negative() {
+    let result = lower_rank_inverse_search();
+    assert_eq!(result.labels_tested, 4_288_305);
+    assert_eq!(result.models_with_any_phase, 5_499);
+    assert!(result.hit_models.is_empty());
 }
 
 #[test]

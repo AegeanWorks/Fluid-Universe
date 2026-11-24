@@ -464,3 +464,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The ADR-063 hosts have ranks 17 and 23. An all-level inverse search with N<=7, Dynkin labels 0..6 and total label sum <=24 found a rank-7 host, SU(7)_1163, after 125,888 primaries and 1,259 any-phase models.
 - **Decision**: Add SU(7)_1163 as the third explicit witness. For 2/9 use Dynkin labels (0,0,4,4,6,5), boxes=88, A=1640, C2=1868/7; for 1/10 use (0,0,1,3,4,4), boxes=59, A=745, C2=867/7; for 2/39 use (0,0,0,4,2,1), boxes=32, A=280, C2=468/7. Label sums 19/12/7 are <=1163 and exact cross-multiplication matches all targets. Claim 66 is PROVEN for this explicit host and for lowest rank within the stated search domain only. Level 1163 and labels up to 6 remain post-hoc; no physical selection or dynamics is claimed.
 - **Consequences**: Extend the witness registry and checks, add the relaxed-label inverse search and integration/audit rows, regenerate reports and update claim 66 documentation. Claims 60-65 remain unchanged.
+
+### ADR-065: No lower-rank host in the N<=6, Dynkin<=20 domain (claim 67)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 66 establishes SU(7)_1163 as the lowest-rank host with labels<=6. To test lower ranks more broadly, an all-positive-level inverse search over N<=6 and Dynkin labels 0..20 found no all-phase host.
+- **Decision**: Enumerate every Dynkin vector for N=2..6 with entries 0..20, solve each target's required positive integer level exactly and enforce label-sum integrability. The independent Python pre-registration count is 4,288,305 primaries, 5,499 models with at least one phase and zero all-phase hits. Claim 67 is FALSIFIED for lower-rank existence only inside this domain; labels above 20 and ranks above 6 are not addressed. SU(7)_1163 remains an explicit host, not a physically selected theory.
+- **Consequences**: Add a cached lower-rank inverse search, check rows, integration regression and independent audit; regenerate reports and update claim 67 documentation. Claims 60-66 remain unchanged.
