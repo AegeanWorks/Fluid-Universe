@@ -91,6 +91,8 @@ pub struct MinimalDomainSummary {
     pub hit_models: Vec<(i64, i64)>,
     pub phase_masks: BTreeMap<(i64, i64), u8>,
     pub best_sums: [i64; 3],
+    pub representative_counts: [u64; 3],
+    pub canonical_dynkin: [Vec<i64>; 3],
 }
 
 static SEARCH: OnceLock<SearchSummary> = OnceLock::new();
@@ -415,6 +417,8 @@ fn enumerate_minimal_domain_primaries(
     labels_tested: &mut u64,
     phase_masks: &mut BTreeMap<(i64, i64), u8>,
     best_sums: &mut [i64; 3],
+    representative_counts: &mut [u64; 3],
+    canonical_dynkin: &mut [Vec<i64>; 3],
 ) {
     if index == dynkin.len() {
         *labels_tested += 1;
@@ -433,8 +437,17 @@ fn enumerate_minimal_domain_primaries(
             if k < MINIMAL_LEVEL_CAP {
                 *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
             }
-            if k == 1163 && label_sum < best_sums[target_index] {
-                best_sums[target_index] = label_sum;
+            if k == 1163 {
+                if label_sum < best_sums[target_index] {
+                    best_sums[target_index] = label_sum;
+                    representative_counts[target_index] = 1;
+                    canonical_dynkin[target_index] = dynkin.to_vec();
+                } else if label_sum == best_sums[target_index] {
+                    representative_counts[target_index] += 1;
+                    if &dynkin[..] < canonical_dynkin[target_index].as_slice() {
+                        canonical_dynkin[target_index] = dynkin.to_vec();
+                    }
+                }
             }
         }
         return;
@@ -448,6 +461,8 @@ fn enumerate_minimal_domain_primaries(
             labels_tested,
             phase_masks,
             best_sums,
+            representative_counts,
+            canonical_dynkin,
         );
     }
 }
@@ -457,6 +472,8 @@ fn minimal_domain_search() -> &'static MinimalDomainSummary {
         let mut labels_tested = 0_u64;
         let mut phase_masks = BTreeMap::new();
         let mut best_sums = [i64::MAX; 3];
+        let mut representative_counts = [0_u64; 3];
+        let mut canonical_dynkin = [Vec::new(), Vec::new(), Vec::new()];
         let mut dynkin = vec![0_i64; 6];
         enumerate_minimal_domain_primaries(
             0,
@@ -465,6 +482,8 @@ fn minimal_domain_search() -> &'static MinimalDomainSummary {
             &mut labels_tested,
             &mut phase_masks,
             &mut best_sums,
+            &mut representative_counts,
+            &mut canonical_dynkin,
         );
         let hit_models = phase_masks
             .iter()
@@ -476,6 +495,8 @@ fn minimal_domain_search() -> &'static MinimalDomainSummary {
             hit_models,
             phase_masks,
             best_sums,
+            representative_counts,
+            canonical_dynkin,
         }
     })
 }
@@ -529,6 +550,9 @@ pub fn checks() -> Vec<Check> {
     let lower = lower_rank_inverse_search();
     let minimal = minimal_level_inverse_search();
     let minimal_witness = minimal_witness_search();
+    let canonical_ok = (0..3).all(|index| {
+        minimal_witness.canonical_dynkin[index].as_slice() == WITNESSES[2].dynkin[index]
+    });
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -644,6 +668,26 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.minimal_witness_sum_up",
             minimal_witness.best_sums[2] as f64,
             "minimum label sum for the 2/39 witness at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_reps_lep",
+            minimal_witness.representative_counts[0] as f64,
+            "minimal-sum 2/9 representative count at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_reps_down",
+            minimal_witness.representative_counts[1] as f64,
+            "minimal-sum 1/10 representative count at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_reps_up",
+            minimal_witness.representative_counts[2] as f64,
+            "minimal-sum 2/39 representative count at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_canonical",
+            if canonical_ok { 1.0 } else { 0.0 },
+            "current SU(7)_1163 witnesses are lexicographic minima",
         ),
         Check::new(
             "singlemodel.minimal_level_labels",

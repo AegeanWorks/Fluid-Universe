@@ -57,6 +57,15 @@ fn su7_witnesses_have_minimal_label_sums() {
 }
 
 #[test]
+fn minimal_witness_families_have_canonical_current_vectors() {
+    let result = minimal_witness_search();
+    assert_eq!(result.representative_counts, [4, 2, 2]);
+    for phase in 0..3 {
+        assert_eq!(result.canonical_dynkin[phase], WITNESSES[2].dynkin[phase]);
+    }
+}
+
+#[test]
 fn explicit_single_model_witnesses_are_exact_and_integrable() {
     assert_eq!(WITNESSES.len(), 3);
     assert_eq!((WITNESSES[0].n, WITNESSES[0].k), (17, 1153));

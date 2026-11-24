@@ -93,5 +93,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 67 | FALSIFIED (bounded lower-rank existence) | All-level inverse search over N<=6 and Dynkin labels<=20 examines 4,288,305 primaries and 5,499 any-phase models with zero all-phase hits. Labels above 20 remain open. |
 | 68 | PROVEN (minimal-level host in the widened domain) | SU(7) search with labels<=20 and k<1163 examines 85,766,121 primaries and 244 any-phase models with zero all-phase hits. Combined with claim 67, SU(7)_1163 is lowest-rank/minimal-level in the N<=7, labels<=20 domain. Physical selection remains open. |
 | 69 | PROVEN (minimal label-sum witnesses at SU(7)_1163) | Fixed-level search over 85,766,121 primaries finds minimum sums 16/10/6 for 2/9, 1/10 and 2/39. Witness complexity is reduced; physical selection remains open. |
+| 70 | PROVEN (canonical minimal witnesses at SU(7)_1163) | Minimal-sum families contain 4/2/2 representatives; the current vectors are exactly the lexicographic minima. Witness choice is canonicalized; physical host selection remains open. |
 
-Claim audit: two separate Rust processes agree, 585/585 checks (`cargo run -- verify`, fingerprint `feeb1181129560d7`). The full suite has 368 passing tests. Guideline G-001 requires two processes for claims; tests remain a single run.
+Claim audit: two separate Rust processes agree, 590/590 checks (`cargo run -- verify`, fingerprint `200c4a753fd496e9`). The full suite has 369 passing tests. Guideline G-001 requires two processes for claims; tests remain a single run.

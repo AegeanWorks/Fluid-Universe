@@ -1210,3 +1210,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The fixed-level search proves minimum sums 16/10/6 for the three phases within labels<=20.
 - Claim 69 is PROVEN for witness-complexity minimality at SU(7)_1163 only. This does not establish physical naturalness, sector dynamics or model selection.
 - Full suite: 368 passing tests. G-001: two separate Rust processes agree on 585 checks, fingerprint `feeb1181129560d7`.
+
+## 2026-11-24 - Canonical SU(7)_1163 witnesses PROVEN (claim 70, ADR-068)
+
+**Added**
+
+- Representative counts and lexicographic canonical vectors in the existing combined SU(7) minimal-domain search.
+- Integration regression for family sizes 4/2/2 and exact registry equality.
+- Independent canonical-witness audit row.
+
+**Results**
+
+- The three minimal-sum families contain 4, 2 and 2 representatives.
+- The current SU(7)_1163 witnesses are exactly the lexicographically smallest minimum-sum vectors for each phase.
+- Claim 70 is PROVEN for witness canonicalization only. It does not select the host physically or provide sector dynamics.
+- Full suite: 369 passing tests. G-001: two separate Rust processes agree on 590 checks, fingerprint `200c4a753fd496e9`.
