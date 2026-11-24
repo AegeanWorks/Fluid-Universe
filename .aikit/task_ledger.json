@@ -1,13 +1,13 @@
 {
   "version": 1,
   "active_task": {
-    "task_id": "fluid-claim-67-no-rank6-v1",
+    "task_id": "fluid-claim-68-minimal-level-v1",
     "last_phase": "phase 4",
-    "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1795544109.471545,
+    "active_phase": 4,
+    "status": "in_progress",
+    "updated_at": 1795545135.318263,
     "owner": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-    "lease_until": 1795551309.471545,
+    "lease_until": 1795552335.318263,
     "started_by": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
     "continuations": [],
     "workspaces": [
@@ -15,53 +15,9 @@
         "name": "fluid-universe",
         "path": "projects/fluid-universe"
       }
-    ],
-    "completed_at": 1795544183.4444163,
-    "completed_head": "f93652fa8396a5d50831a230935e9eaec76ed386",
-    "completed_tree": "e8dea1321e665b130bcff137a85f29ffc2cc6fa9"
+    ]
   },
   "checkpoints": [
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          "."
-        ]
-      },
-      "description": "Task 'rust-rewrite-2026-11-22' completed successfully.",
-      "head": "03d4dd151f902d7564ed402668e46ffc0e64de53",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "rust-rewrite-2026-11-22",
-      "timestamp": 1795536924.2335978,
-      "timestamp_str": "2026-11-24 19:15:24"
-    },
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "description": "[1/2] Pre-register and implement the HO-2 radial-shell finite-core probe in Rust with failing-first unit tests and independent audit rows",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Advances the defect-core program on the sole Rust main implementation, distinguishes radial shells from quantized vortices, and adds independently re-derived G-001 evidence rather than another representation-only identity.",
-        "mitigation": "Use u=rR so u''/u equals the full s-wave radial Laplacian ratio; freeze eps0=0.1a0, physical grids and analytic phase/Q/norm gates in ADR-058 before seeing results; add compile-failing tests first; independently re-derive the gates in audit.rs and verify in two processes.",
-        "risks": "contract: new fluid checks and audit rows change fingerprints/report counts; dependency: stdlib only; concurrency: none; state: source, tests, ledger, scorecard, changelog and generated reports; physics: an incorrect radial Laplacian or trivial finite-domain phase gate could misclassify the shell.",
-        "why": "Claim 61 explicitly queues the hydrogen-2s radial shell; the Rust core currently has only the HO-1 and 2p closed forms, so the next falsifiable gap is whether a single-valued complex-shift 2s core has finite radial velocity and quantum pressure while preserving the singular control and zero m=0 circulation."
-      },
-      "phase": "phase 2",
-      "phase_num": 2,
-      "plan_digest": "db36868e4244155b834f73e34a0ac9feeeb1243480d722c9e2788cb5a7bf44e2",
-      "status": "in_progress",
-      "task_id": "fluid-claim-62-ho2-shell-v1",
-      "timestamp": 1795537125.4412382,
-      "timestamp_str": "2026-11-24 19:18:45",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
     {
       "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
       "checklists": "passed",
@@ -628,6 +584,82 @@
       "task_id": "fluid-claim-67-no-rank6-v1",
       "timestamp": 1795544183.551864,
       "timestamp_str": "2026-11-24 21:16:23"
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "description": "[1/2] Implement the SU(7), Dynkin<=20, level<1163 exact search and independent audit for the minimal-level host result",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Establishes SU(7)_1163 as the minimal-level and lowest-rank explicit host in a wide, precisely bounded domain, sharpening the model-selection target.",
+        "mitigation": "Pre-register the standalone count of 85,766,121 primaries, 244 any-phase models below 1163 and zero hits in ADR-066; use cached exact integer enumeration with k<1163; add an integration regression and independent audit; run full timing, tests and two-process verification.",
+        "risks": "contract: new minimal-level checks and audit row change fingerprints; dependency: stdlib only; concurrency: none; state: source, tests, reports and docs; performance: 85.77 million primaries plus independent audit must remain inside the 900-second cap; correctness: the strict level cap and integrability gate must exclude k>=1163.",
+        "why": "Claim 67 rules out lower ranks with labels<=20, and claim 66 supplies SU(7)_1163. An optimized standalone exact search over 85,766,121 SU(7) primaries found no all-phase host below level 1163, completing the minimal-level evidence in this domain."
+      },
+      "phase": "phase 2",
+      "phase_num": 2,
+      "plan_digest": "dd57f0c0242d9047135f681f0b3ffadaa7f4aeb0619b1c640b722be3b2d05745",
+      "status": "in_progress",
+      "task_id": "fluid-claim-68-minimal-level-v1",
+      "timestamp": 1795544305.4085715,
+      "timestamp_str": "2026-11-24 21:18:25",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
+    },
+    {
+      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
+      "checklists": "passed",
+      "description": "[2/2] Claim 68 complete: SU(7)_1163 minimal-level host proven by 85,766,121-primary k<1163 search and independent audit; 367 tests, 580 checks and G-001 fingerprint be11880226be1f59 pass",
+      "files_affected": [
+        ".aikit/decisions.md",
+        ".aikit/task_ledger.json",
+        ".aikit/task_ledger_archive.jsonl",
+        "CHANGELOG.md",
+        "MIGRATION.md",
+        "README.md",
+        "SCORECARD.md",
+        "claims.md",
+        "results/rust_audit.json",
+        "results/rust_audit.md",
+        "results/rust_circulant.json",
+        "results/rust_circulant.md",
+        "results/rust_derrick.json",
+        "results/rust_derrick.md",
+        "results/rust_fluid.json",
+        "results/rust_fluid.md",
+        "results/rust_lorentz.json",
+        "results/rust_lorentz.md",
+        "results/rust_multi_radial_shell.json",
+        "results/rust_multi_radial_shell.md",
+        "results/rust_radial_shell.json",
+        "results/rust_radial_shell.md",
+        "results/rust_rotor.json",
+        "results/rust_rotor.md",
+        "results/rust_simulation.json",
+        "results/rust_simulation.md",
+        "results/rust_spectra.json",
+        "results/rust_spectra.md",
+        "results/rust_water.json",
+        "results/rust_water.md",
+        "src/audit.rs",
+        "src/single_model_test.rs",
+        "tests/single_model_search.rs"
+      ],
+      "phase": "phase 4",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-claim-68-minimal-level-v1",
+      "timestamp": 1795545135.318263,
+      "timestamp_str": "2026-11-24 21:32:15",
+      "workspaces": [
+        {
+          "name": "fluid-universe",
+          "path": "projects/fluid-universe"
+        }
+      ]
     }
   ]
 }

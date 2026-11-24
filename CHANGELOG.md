@@ -1181,3 +1181,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - No rank<=6 host exists in the stated label domain at any positive level.
 - Claim 67 is FALSIFIED only inside that domain. Labels above 20 remain open, and SU(7)_1163 remains an explicit host rather than a physically selected theory.
 - Full suite: 366 passing tests. G-001: two separate Rust processes agree on 576 checks, fingerprint `22e571695a54bbdc`.
+
+## 2026-11-24 - SU(7)_1163 minimal-level host PROVEN in the widened domain (claim 68, ADR-066)
+
+**Added**
+
+- Cached SU(7) inverse search with Dynkin labels 0..20 and strict level cap k<1163.
+- Integration regression for 85,766,121 primaries, 244 any-phase models and zero all-phase hits.
+- Independent minimal-level audit row.
+
+**Results**
+
+- No SU(7) all-phase host exists below level 1163 in the stated label domain.
+- Combined with claim 67, SU(7)_1163 is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain.
+- Claim 68 is PROVEN only inside that domain. Labels above 20, other ranks and physical model selection remain open; no unified field theory is claimed.
+- Full suite: 367 passing tests. G-001: two separate Rust processes agree on 580 checks, fingerprint `be11880226be1f59`.

@@ -471,3 +471,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 66 establishes SU(7)_1163 as the lowest-rank host with labels<=6. To test lower ranks more broadly, an all-positive-level inverse search over N<=6 and Dynkin labels 0..20 found no all-phase host.
 - **Decision**: Enumerate every Dynkin vector for N=2..6 with entries 0..20, solve each target's required positive integer level exactly and enforce label-sum integrability. The independent Python pre-registration count is 4,288,305 primaries, 5,499 models with at least one phase and zero all-phase hits. Claim 67 is FALSIFIED for lower-rank existence only inside this domain; labels above 20 and ranks above 6 are not addressed. SU(7)_1163 remains an explicit host, not a physically selected theory.
 - **Consequences**: Add a cached lower-rank inverse search, check rows, integration regression and independent audit; regenerate reports and update claim 67 documentation. Claims 60-66 remain unchanged.
+
+### ADR-066: SU(7)_1163 is the minimal-level host in the widened domain (claim 68)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 67 excludes lower ranks with Dynkin labels<=20, and claim 66 proves SU(7)_1163 exists. A standalone optimized exact search over SU(7) primaries with labels 0..20 found no all-phase host below level 1163.
+- **Decision**: Enumerate all 21^6=85,766,121 SU(7) Dynkin vectors, solve each target's required positive integer level exactly and retain only k<1163 with label-sum integrability. The pre-registered result is 244 models with at least one phase below 1163 and zero all-phase hits. Claim 68 is PROVEN for minimal level within N=7 and labels<=20; combined with claim 67 it is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain. Labels above 20 and other ranks remain outside this minimality statement, and no physical selection is derived.
+- **Consequences**: Add a cached minimal-level search, checks, integration regression and independent audit; regenerate reports and update claim 68 documentation. Claims 60-67 remain unchanged.

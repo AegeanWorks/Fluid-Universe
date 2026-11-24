@@ -1,7 +1,7 @@
 use fluid_universe::single_model_test::{
     WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search,
-    lower_rank_inverse_search, relaxed_inverse_search, search, single_model_exists,
-    witness_exact, witness_fractions,
+    lower_rank_inverse_search, minimal_level_inverse_search, relaxed_inverse_search,
+    search, single_model_exists, witness_exact, witness_fractions,
 };
 
 #[test]
@@ -64,4 +64,12 @@ fn explicit_single_model_witnesses_are_exact_and_integrable() {
             assert_eq!(fraction.0 * q, p * fraction.1);
         }
     }
+}
+
+#[test]
+fn su7_host_is_minimal_level_in_the_widened_domain() {
+    let result = minimal_level_inverse_search();
+    assert_eq!(result.labels_tested, 85_766_121);
+    assert_eq!(result.models_with_any_phase, 244);
+    assert!(result.hit_models.is_empty());
 }
