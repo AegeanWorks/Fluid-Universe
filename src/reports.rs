@@ -9,14 +9,15 @@
 use std::fmt::Write as _;
 use std::path::{Path, PathBuf};
 
-/// The ten check families in a fixed order; the order is part of every hash.
-const FAMILIES: [&str; 10] = [
+/// The eleven check families in a fixed order; the order is part of every hash.
+const FAMILIES: [&str; 11] = [
     "circulant",
     "spectra",
     "rotor",
     "derrick",
     "fluid",
     "radial_shell",
+    "multi_radial_shell",
     "water",
     "lorentz",
     "simulation",
@@ -43,6 +44,7 @@ fn family_checks(name: &str) -> Vec<crate::Check> {
         "derrick" => crate::derrick::checks(),
         "fluid" => crate::fluid::checks(),
         "radial_shell" => crate::radial_shell::checks(),
+        "multi_radial_shell" => crate::multi_radial_shell::checks(),
         "water" => crate::water::checks(),
         "lorentz" => crate::lorentz::checks(),
         "simulation" => crate::simulation::checks(),

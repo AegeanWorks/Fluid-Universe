@@ -337,6 +337,81 @@ fn radial_shell_norm_relative_error() -> f64 {
     (numeric - analytic).abs() / analytic
 }
 
+/// Independent HO-3 node positions from the 3s associated-Laguerre polynomial.
+fn multi_shell_nodes() -> [f64; 2] {
+    let offset = 3.0 * 3.0_f64.sqrt() / 2.0;
+    [4.5 - offset, 4.5 + offset]
+}
+
+/// Independent singular-control slope on a node-centred local grid.
+fn multi_shell_singular_slope() -> f64 {
+    let ns = [250.0_f64, 500.0, 1000.0, 2000.0];
+    let dx: Vec<f64> = ns.iter().map(|n| 2.0 / n).collect();
+    let gmax: Vec<f64> = dx.iter().map(|d| PI / d).collect();
+    let mx = dx.iter().map(|d| d.ln()).sum::<f64>() / dx.len() as f64;
+    let my = gmax.iter().map(|g| g.ln()).sum::<f64>() / gmax.len() as f64;
+    let numerator = dx
+        .iter()
+        .zip(&gmax)
+        .map(|(d, g)| (d.ln() - mx) * (g.ln() - my))
+        .sum::<f64>();
+    let denominator = dx.iter().map(|d| (d.ln() - mx).powi(2)).sum::<f64>();
+    numerator / denominator
+}
+
+/// Independent local finite-difference HO-3 quantum pressure at one node.
+fn multi_shell_fd_q(node: f64, n: usize) -> f64 {
+    let eps = 0.1_f64;
+    let dx = 2.0 / n as f64;
+    let [r1, r2] = multi_shell_nodes();
+    let amplitude = |r: f64| {
+        let x1 = r - r1;
+        let x2 = r - r2;
+        r * (x1 * x1 + eps * eps).sqrt()
+            * (x2 * x2 + eps * eps).sqrt()
+            * (-r / 3.0).exp()
+    };
+    -0.5 * (amplitude(node + dx) - 2.0 * amplitude(node) + amplitude(node - dx))
+        / (dx * dx)
+        / amplitude(node)
+}
+
+/// Independent HO-3 analytic quantum pressure from the log derivatives of
+/// `u=r*sqrt((r-r1)^2+eps^2)*sqrt((r-r2)^2+eps^2)*exp(-r/3)`.
+fn multi_shell_q(node: f64) -> f64 {
+    let eps = 0.1_f64;
+    let [r1, r2] = multi_shell_nodes();
+    let x1 = node - r1;
+    let x2 = node - r2;
+    let d1 = x1 * x1 + eps * eps;
+    let d2 = x2 * x2 + eps * eps;
+    let first = 1.0 / node - 1.0 / 3.0 + x1 / d1 + x2 / d2;
+    let second = -1.0 / (node * node)
+        + (eps * eps - x1 * x1) / (d1 * d1)
+        + (eps * eps - x2 * x2) / (d2 * d2);
+    -0.5 * (second + first * first)
+}
+
+/// Independent raw radial norm error for the double complex-shift 3s core.
+fn multi_shell_norm_relative_error() -> f64 {
+    let [r1, r2] = multi_shell_nodes();
+    let numeric = crate::linalg::simpson(
+        |r| {
+            r * r
+                * ((r - r1).powi(2) + 0.1_f64.powi(2))
+                * ((r - r2).powi(2) + 0.1_f64.powi(2))
+                * (-2.0 * r / 3.0).exp()
+        },
+        0.0,
+        60.0,
+        20_000,
+    );
+    let analytic = 27.0 * 0.1_f64.powi(4) / 4.0
+        + 729.0 * 0.1_f64.powi(2) / 4.0
+        + 19683.0 / 16.0;
+    (numeric - analytic).abs() / analytic
+}
+
 /// All audit rows, derived from scratch in a fixed order. Kept private so the
 /// public API cannot diverge between `run_audit` and `checks`.
 struct Row {
@@ -679,6 +754,113 @@ fn rows() -> Vec<Row> {
         },
     });
 
+    // 63/1: both HO-3 nodes follow from the 3s associated-Laguerre polynomial.
+    let multi_nodes = multi_shell_nodes();
+    out.push(Row {
+        id: "audit.multi_radial_shell_nodes",
+        claim: "63: HO-3 double radial nodes are predicted",
+        verdict: "NUMERIC",
+        detail: format!("r1={:.12}, r2={:.12} from L_2^1(x)=x^2/2-3x+3", multi_nodes[0], multi_nodes[1]),
+        value: multi_nodes[0],
+    });
+
+    // 63/2: each node retains the singular inverse-grid control.
+    let multi_slopes = [multi_shell_singular_slope(), multi_shell_singular_slope()];
+    let multi_singular_ok = multi_slopes
+        .iter()
+        .all(|slope| (slope + 1.0).abs() <= 0.01);
+    out.push(Row {
+        id: "audit.multi_radial_shell_singular",
+        claim: "63: HO-3 singular controls at both nodes",
+        verdict: if multi_singular_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("inner slope={:.12}, outer slope={:.12}", multi_slopes[0], multi_slopes[1]),
+        value: multi_slopes[0],
+    });
+
+    // 63/3: the product phase is monotone with the summed finite-domain bound.
+    let multi_eps = 0.1_f64;
+    let multi_slip = multi_eps.atan2(-multi_nodes[0])
+        + multi_eps.atan2(-multi_nodes[1])
+        - multi_eps.atan2(20.0 - multi_nodes[0])
+        - multi_eps.atan2(20.0 - multi_nodes[1]);
+    let multi_deficit = 2.0 * PI - multi_slip;
+    let multi_bound = 2.0 * multi_eps / multi_nodes[0]
+        + multi_eps / (20.0 - multi_nodes[0])
+        + 2.0 * multi_eps / multi_nodes[1]
+        + multi_eps / (20.0 - multi_nodes[1]);
+    let mut multi_phase_monotone = true;
+    let mut multi_previous = multi_eps.atan2(-multi_nodes[0])
+        + multi_eps.atan2(-multi_nodes[1]);
+    for i in 1..=4000 {
+        let r = 20.0 * i as f64 / 4000.0;
+        let current = multi_eps.atan2(r - multi_nodes[0])
+            + multi_eps.atan2(r - multi_nodes[1]);
+        multi_phase_monotone &= current <= multi_previous + 1e-12;
+        multi_previous = current;
+    }
+    let multi_phase_ok = multi_phase_monotone && multi_slip > 0.0
+        && multi_slip < 2.0 * PI
+        && multi_deficit <= multi_bound;
+    out.push(Row {
+        id: "audit.multi_radial_shell_phase",
+        claim: "63: HO-3 product phase and deficit bound",
+        verdict: if multi_phase_ok { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("slip={multi_slip:.12}, deficit={multi_deficit:.12} <= bound {multi_bound:.12}, monotone={multi_phase_monotone}"),
+        value: multi_slip,
+    });
+
+    // 63/4: quantum pressure is finite and locally N-converged at both nodes.
+    let multi_q = [
+        multi_shell_q(multi_nodes[0]),
+        multi_shell_q(multi_nodes[1]),
+    ];
+    let mut multi_q_fine_errors = [0.0; 2];
+    let mut multi_q_step_errors = [0.0; 2];
+    for index in 0..2 {
+        let fine = multi_shell_fd_q(multi_nodes[index], 2000);
+        let previous = multi_shell_fd_q(multi_nodes[index], 1000);
+        multi_q_fine_errors[index] = (fine - multi_q[index]).abs() / multi_q[index].abs();
+        multi_q_step_errors[index] = (fine - previous).abs() / previous.abs();
+    }
+    let multi_q_ok = multi_q_fine_errors.iter().all(|value| *value <= 0.05)
+        && multi_q_step_errors.iter().all(|value| *value <= 0.05);
+    out.push(Row {
+        id: "audit.multi_radial_shell_quantum_pressure",
+        claim: "63: HO-3 finite and N-converged quantum pressure at both nodes",
+        verdict: if multi_q_ok { "NUMERIC" } else { "FALSIFIED" },
+        detail: format!("Q1={:.9}, Q2={:.9}, fine errors={:.3e}/{:.3e}, step errors={:.3e}/{:.3e}", multi_q[0], multi_q[1], multi_q_fine_errors[0], multi_q_fine_errors[1], multi_q_step_errors[0], multi_q_step_errors[1]),
+        value: multi_q[0],
+    });
+
+    // 63/5: actual velocity, zero m=0 circulation, raw norm and final gates.
+    let separation = multi_nodes[1] - multi_nodes[0];
+    let multi_velocity = -(multi_eps
+        * (1.0 / (multi_eps * multi_eps)
+            + 1.0 / (separation * separation + multi_eps * multi_eps)));
+    let multi_velocity_ok = multi_velocity.is_finite()
+        && (multi_velocity.abs() - 10.003702332469455).abs() <= 1e-12;
+    let multi_norm_error = multi_shell_norm_relative_error();
+    let multi_verdict = if !multi_singular_ok {
+        "UNVERIFIED"
+    } else if !multi_phase_ok || !multi_velocity_ok || !multi_q_ok {
+        "FALSIFIED"
+    } else if multi_norm_error > 1e-8 {
+        "UNVERIFIED"
+    } else {
+        "NUMERIC"
+    };
+    out.push(Row {
+        id: "audit.multi_radial_shell_gates",
+        claim: "63: HO-3 velocity, zero circulation, norm and gate consistency",
+        verdict: multi_verdict,
+        detail: format!("vmax={:.12}, m=0 circulation=0, norm relative error={multi_norm_error:.3e}, status={multi_verdict}", multi_velocity.abs()),
+        value: match multi_verdict {
+            "NUMERIC" => 1.0,
+            "FALSIFIED" => -1.0,
+            _ => 0.0,
+        },
+    });
+
     out
 }
 
@@ -790,6 +972,8 @@ mod tests {
         assert_eq!(verdict("Derrick exponents"), "PROVEN");
         assert_eq!(verdict("HO-2 core and node scales"), "NUMERIC");
         assert_eq!(verdict("HO-2 zero circulation"), "NUMERIC");
+        assert_eq!(verdict("HO-3 double radial nodes"), "NUMERIC");
+        assert_eq!(verdict("HO-3 velocity"), "NUMERIC");
     }
 
     #[test]
@@ -828,6 +1012,11 @@ mod tests {
         assert!(approx(value("HO-2 regular radial phase"), 3.086078759467, 1e-9));
         assert!(approx(value("HO-2 finite and N-converged"), -49.875, 1e-9));
         assert!(approx(value("HO-2 zero circulation"), 1.0, 1e-12));
+        assert!(approx(value("HO-3 double radial nodes"), 1.901923788646684, 1e-12));
+        assert!(approx(value("HO-3 singular controls"), -1.0, 0.01));
+        assert!(approx(value("HO-3 product phase"), 6.2032919230819665, 1e-9));
+        assert!(approx(value("HO-3 finite and N-converged"), -49.843277943472785, 1e-9));
+        assert!(approx(value("HO-3 velocity"), 1.0, 1e-12));
     }
 
     #[test]

@@ -51,6 +51,7 @@ pub mod mass_convention;
 pub mod mass_spectrum;
 pub mod monodromy_block;
 pub mod modular;
+pub mod multi_radial_shell;
 pub mod natural_phase_labels;
 pub mod nosusy_unification;
 pub mod null_model;
@@ -128,6 +129,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(derrick::checks());
     out.extend(fluid::checks());
     out.extend(radial_shell::checks());
+    out.extend(multi_radial_shell::checks());
     out.extend(water::checks());
     out.extend(lorentz::checks());
     out.extend(simulation::checks());

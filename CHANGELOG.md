@@ -1108,3 +1108,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Singular slope -1.000000000000; regular phase slip 3.086078759467, deficit 0.055513894123 <= 0.105555555556; vmax 10.0; Q0=-49.875, FD fine=-49.749996890480, fine error 0.002506328 and step error 0.007446371; m=0 circulation 0; raw-norm relative error 2.678e-12.
 - Claim 62 is NUMERIC for the local radial-shell core only. It does not claim exact finite-domain pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-61 are unchanged.
 - Full suite: 349 passing tests. G-001: two separate Rust processes agree on 524 checks, fingerprint `e390d30df6a4d0a3`.
+
+## 2026-11-24 - HO-3 double-radial-shell finite-core probe NUMERIC (claim 63, ADR-059)
+
+**Added**
+
+- `src/multi_radial_shell.rs`: dependency-free Rust implementation of the hydrogen-3s double complex-shift core, exact associated-Laguerre node positions, full-domain product phase, node-local singular/FD grids, analytic velocity/Q/norm gates and a deterministic verdict.
+- `tests/multi_radial_shell.rs`: seven failing-first integration tests for both predicted nodes, product-phase monotonicity and deficit bound, both singular controls, actual velocity, node-local quantum-pressure convergence, raw norm and gate consistency.
+- Five independent claim-63 rows in `src/audit.rs`; module wiring in `src/lib.rs`, `src/main.rs` and `src/reports.rs`; `results/rust_multi_radial_shell.{json,md}` and regenerated Rust reports.
+
+**Results**
+
+- Nodes 1.901923788647/7.098076211353; both singular slopes -1.000000000000; product-phase slip 6.203291923082, deficit 0.079893384098 <= 0.146609564597; vmax 10.003702332469 at both nodes.
+- Q1=-49.843277943473 and Q2=-49.971578003293; local FD fine errors 2.523e-5/2.504e-5 and step errors 7.570e-5/7.512e-5; m=0 circulation 0; raw-norm relative error 2.071e-10.
+- Claim 63 is NUMERIC for the local double-shell core only. It does not claim exact finite-domain 2pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-62 are unchanged.
+- Full suite: 358 passing tests. G-001: two separate Rust processes agree on 545 checks, fingerprint `688c44f88c23ffb7`.

@@ -25,9 +25,14 @@
 | `audit.radial_shell_phase` | `3.086078759467158e0` | NUMERIC \| slip=3.086078759467, deficit=0.055513894123 <= bound 0.105555555556, monotone=true |
 | `audit.radial_shell_quantum_pressure` | `-4.987499999999999e1` | NUMERIC \| Q0=-49.875000, FD fine=-49.749997, fine error=2.506e-3, step error=7.446e-3 |
 | `audit.radial_shell_gates` | `1.000000000000000e0` | NUMERIC \| m=0 circulation=0, norm relative error=2.678e-12, hard gates=true, status=NUMERIC |
+| `audit.multi_radial_shell_nodes` | `1.901923788646684e0` | NUMERIC \| r1=1.901923788647, r2=7.098076211353 from L_2^1(x)=x^2/2-3x+3 |
+| `audit.multi_radial_shell_singular` | `-1.000000000000000e0` | NUMERIC \| inner slope=-1.000000000000, outer slope=-1.000000000000 |
+| `audit.multi_radial_shell_phase` | `6.203291923081967e0` | NUMERIC \| slip=6.203291923082, deficit=0.079893384098 <= bound 0.146609564597, monotone=true |
+| `audit.multi_radial_shell_quantum_pressure` | `-4.984327794347278e1` | NUMERIC \| Q1=-49.843277943, Q2=-49.971578003, fine errors=2.523e-5/2.504e-5, step errors=7.570e-5/7.512e-5 |
+| `audit.multi_radial_shell_gates` | `1.000000000000000e0` | NUMERIC \| vmax=10.003702332469, m=0 circulation=0, norm relative error=2.071e-10, status=NUMERIC |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=e390d30df6a4d0a3, run2=e390d30df6a4d0a3, agreement=PASS.
-- config_sha256 (FNV-1a): `9e7481d4cf30a43d`.
+- G-001 two-process fingerprint: run1=688c44f88c23ffb7, run2=688c44f88c23ffb7, agreement=PASS.
+- config_sha256 (FNV-1a): `b84ef3db31d25e80`.

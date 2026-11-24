@@ -9,7 +9,7 @@ use fluid_universe::{
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, nosusy_unification, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
     quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
-    unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification,
+    unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification, multi_radial_shell,
     quark_phases, wzw, wzw_crosscheck, xy_z3,
 };
 
@@ -68,7 +68,7 @@ fn main() {
             }
             println!("{} check(s), fingerprint {}", checks.len(), fingerprint(&checks));
         }
-        "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "radial_shell" | "water" | "lorentz"
+        "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "radial_shell" | "multi_radial_shell" | "water" | "lorentz"
         | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
         | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
         | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
@@ -94,6 +94,7 @@ fn main() {
                 "derrick" => derrick::checks(),
                 "fluid" => fluid::checks(),
                 "radial_shell" => radial_shell::checks(),
+                "multi_radial_shell" => multi_radial_shell::checks(),
                 "water" => water::checks(),
                 "lorentz" => lorentz::checks(),
                 "simulation" => simulation::checks(),

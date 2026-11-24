@@ -10,6 +10,8 @@ two-process G-001 fingerprint. Do not edit generated files by hand.
 |---|---|
 | `rust_radial_shell.json` | HO-2 radial-shell finite-core checks, gates and G-001 provenance |
 | `rust_radial_shell.md` | Human-readable HO-2 radial-shell report |
+| `rust_multi_radial_shell.json` | HO-3 double-radial-shell checks, gates and G-001 provenance |
+| `rust_multi_radial_shell.md` | Human-readable HO-3 double-radial-shell report |
 | `rust_audit.json` | Independent claim audit rows, including claim 62 |
 | `rust_audit.md` | Human-readable independent audit |
 
