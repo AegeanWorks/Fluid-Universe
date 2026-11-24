@@ -40,9 +40,10 @@
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
+| `audit.minimal_witness_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, best_sums=[16, 10, 6], expected_minimal=true |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=be11880226be1f59, run2=be11880226be1f59, agreement=PASS.
-- config_sha256 (FNV-1a): `aaeca0eee172ae18`.
+- G-001 two-process fingerprint: run1=feeb1181129560d7, run2=feeb1181129560d7, agreement=PASS.
+- config_sha256 (FNV-1a): `e70a24a3fb11001b`.

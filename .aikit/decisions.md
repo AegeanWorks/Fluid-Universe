@@ -478,3 +478,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 67 excludes lower ranks with Dynkin labels<=20, and claim 66 proves SU(7)_1163 exists. A standalone optimized exact search over SU(7) primaries with labels 0..20 found no all-phase host below level 1163.
 - **Decision**: Enumerate all 21^6=85,766,121 SU(7) Dynkin vectors, solve each target's required positive integer level exactly and retain only k<1163 with label-sum integrability. The pre-registered result is 244 models with at least one phase below 1163 and zero all-phase hits. Claim 68 is PROVEN for minimal level within N=7 and labels<=20; combined with claim 67 it is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain. Labels above 20 and other ranks remain outside this minimality statement, and no physical selection is derived.
 - **Consequences**: Add a cached minimal-level search, checks, integration regression and independent audit; regenerate reports and update claim 68 documentation. Claims 60-67 remain unchanged.
+
+### ADR-067: Minimal label-sum witnesses at SU(7)_1163 (claim 69)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 68 fixes SU(7)_1163 as the minimal host in the widened domain. Its initial witnesses have Dynkin-label sums 19/12/7; a fixed-level exact search over labels 0..20 found lower sums 16/10/6.
+- **Decision**: Replace the SU(7)_1163 witnesses with (0,0,2,11,2,1) for 2/9 (boxes=66, A=1156, C2=1868/7), (0,0,3,6,0,1) for 1/10 (boxes=39, A=465, C2=867/7), and (0,0,0,6,0,0) for 2/39 (boxes=24, A=216, C2=468/7). The fixed-level search examines 85,766,121 vectors and proves no smaller label sum for any phase within labels<=20. Claim 69 is PROVEN for witness-complexity minimality at this host only; it does not establish physical naturalness or model selection.
+- **Consequences**: Update the witness registry, add a fixed-level minimal-witness search/checks, integration regression and independent audit; regenerate reports and update claim 69 documentation. Claims 60-68 remain unchanged.

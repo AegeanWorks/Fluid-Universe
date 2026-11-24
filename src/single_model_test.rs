@@ -5,7 +5,7 @@
 //! are 2/9, 1/10 and 2/39.  This proves existence and non-uniqueness, not
 //! physical naturalness or sector selection.
 //!
-//! Four bounded searches supply scope evidence:
+//! Five bounded searches supply scope evidence:
 //! * N=2..7, k=1..79, Dynkin labels 0..4: 474 models, 1,337,784 primaries,
 //!   no all-phase host.
 //! * N=2..7, every positive level, Dynkin labels 0..4: 19,530 primaries,
@@ -14,6 +14,8 @@
 //!   5,499 models with any phase, no all-phase host.
 //! * SU(7), level k<1163, Dynkin labels 0..20: 85,766,121 primaries,
 //!   244 models with any phase, no all-phase host.
+//! * SU(7)_1163 fixed-level witness search: 85,766,121 primaries,
+//!   minimum label sums 16/10/6 for the three phases.
 //!
 //! HONEST CAVEAT: the explicit hosts are large/post-hoc.  No rule selects them,
 //! no dynamics follows from it, and it is not itself a unified field theory.
@@ -63,7 +65,7 @@ pub const WITNESSES: [Witness; 3] = [
     Witness {
         n: 7,
         k: 1163,
-        dynkin: &[&[0, 0, 4, 4, 6, 5], &[0, 0, 1, 3, 4, 4], &[0, 0, 0, 4, 2, 1]],
+        dynkin: &[&[0, 0, 2, 11, 2, 1], &[0, 0, 3, 6, 0, 1], &[0, 0, 0, 6, 0, 0]],
     },
 ];
 
@@ -82,11 +84,20 @@ pub struct InverseSearchSummary {
     pub phase_masks: BTreeMap<(i64, i64), u8>,
 }
 
+#[derive(Clone, Debug, PartialEq, Eq)]
+pub struct MinimalDomainSummary {
+    pub labels_tested: u64,
+    pub models_with_any_phase: u64,
+    pub hit_models: Vec<(i64, i64)>,
+    pub phase_masks: BTreeMap<(i64, i64), u8>,
+    pub best_sums: [i64; 3],
+}
+
 static SEARCH: OnceLock<SearchSummary> = OnceLock::new();
 static INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
 static RELAXED_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
 static LOWER_RANK_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
-static MINIMAL_LEVEL_INVERSE_SEARCH: OnceLock<InverseSearchSummary> = OnceLock::new();
+static MINIMAL_DOMAIN_SEARCH: OnceLock<MinimalDomainSummary> = OnceLock::new();
 
 pub fn phases() -> [f64; 3] {
     [2.0 / 9.0, 0.1, 2.0 / 39.0]
@@ -397,12 +408,13 @@ pub fn lower_rank_inverse_search() -> &'static InverseSearchSummary {
     })
 }
 
-fn enumerate_minimal_level_primaries(
+fn enumerate_minimal_domain_primaries(
     index: usize,
     dynkin: &mut [i64],
     label_sum: i64,
     labels_tested: &mut u64,
     phase_masks: &mut BTreeMap<(i64, i64), u8>,
+    best_sums: &mut [i64; 3],
 ) {
     if index == dynkin.len() {
         *labels_tested += 1;
@@ -415,48 +427,67 @@ fn enumerate_minimal_level_primaries(
                 continue;
             }
             let k = scaled / denominator - n;
-            if k > 0 && k < MINIMAL_LEVEL_CAP && label_sum <= k {
+            if k <= 0 || label_sum > k {
+                continue;
+            }
+            if k < MINIMAL_LEVEL_CAP {
                 *phase_masks.entry((n, k)).or_default() |= 1 << target_index;
+            }
+            if k == 1163 && label_sum < best_sums[target_index] {
+                best_sums[target_index] = label_sum;
             }
         }
         return;
     }
     for value in 0..=MAX_SEARCH_DYNKIN {
         dynkin[index] = value;
-        enumerate_minimal_level_primaries(
+        enumerate_minimal_domain_primaries(
             index + 1,
             dynkin,
             label_sum + value,
             labels_tested,
             phase_masks,
+            best_sums,
         );
     }
 }
 
-/// SU(7) all-level inverse search restricted to k<1163 and Dynkin labels<=20.
-pub fn minimal_level_inverse_search() -> &'static InverseSearchSummary {
-    MINIMAL_LEVEL_INVERSE_SEARCH.get_or_init(|| {
+fn minimal_domain_search() -> &'static MinimalDomainSummary {
+    MINIMAL_DOMAIN_SEARCH.get_or_init(|| {
         let mut labels_tested = 0_u64;
         let mut phase_masks = BTreeMap::new();
+        let mut best_sums = [i64::MAX; 3];
         let mut dynkin = vec![0_i64; 6];
-        enumerate_minimal_level_primaries(
+        enumerate_minimal_domain_primaries(
             0,
             &mut dynkin,
             0,
             &mut labels_tested,
             &mut phase_masks,
+            &mut best_sums,
         );
         let hit_models = phase_masks
             .iter()
             .filter_map(|(&model, &mask)| (mask == 0b111).then_some(model))
             .collect();
-        InverseSearchSummary {
+        MinimalDomainSummary {
             labels_tested,
             models_with_any_phase: phase_masks.len() as u64,
             hit_models,
             phase_masks,
+            best_sums,
         }
     })
+}
+
+/// SU(7) inverse search restricted to k<1163 and Dynkin labels<=20.
+pub fn minimal_level_inverse_search() -> &'static MinimalDomainSummary {
+    minimal_domain_search()
+}
+
+/// Fixed SU(7)_1163 search for the minimum label sum of each phase witness.
+pub fn minimal_witness_search() -> &'static MinimalDomainSummary {
+    minimal_domain_search()
 }
 
 pub fn witness_fractions(index: usize) -> [(i64, i64); 3] {
@@ -497,6 +528,7 @@ pub fn checks() -> Vec<Check> {
     let relaxed = relaxed_inverse_search();
     let lower = lower_rank_inverse_search();
     let minimal = minimal_level_inverse_search();
+    let minimal_witness = minimal_witness_search();
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -592,6 +624,26 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.witness_all_exact",
             if all_witnesses_exact() { 1.0 } else { 0.0 },
             "all three explicit witnesses exact and integrable",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_labels",
+            minimal_witness.labels_tested as f64,
+            "SU(7)_1163 fixed-level witness-search primaries",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_sum_lep",
+            minimal_witness.best_sums[0] as f64,
+            "minimum label sum for the 2/9 witness at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_sum_down",
+            minimal_witness.best_sums[1] as f64,
+            "minimum label sum for the 1/10 witness at SU(7)_1163",
+        ),
+        Check::new(
+            "singlemodel.minimal_witness_sum_up",
+            minimal_witness.best_sums[2] as f64,
+            "minimum label sum for the 2/39 witness at SU(7)_1163",
         ),
         Check::new(
             "singlemodel.minimal_level_labels",

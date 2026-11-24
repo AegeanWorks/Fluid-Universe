@@ -1196,3 +1196,17 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Combined with claim 67, SU(7)_1163 is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain.
 - Claim 68 is PROVEN only inside that domain. Labels above 20, other ranks and physical model selection remain open; no unified field theory is claimed.
 - Full suite: 367 passing tests. G-001: two separate Rust processes agree on 580 checks, fingerprint `be11880226be1f59`.
+
+## 2026-11-24 - Minimal SU(7)_1163 witnesses PROVEN (claim 69, ADR-067)
+
+**Added**
+
+- Simpler SU(7)_1163 witnesses with Dynkin-label sums 16/10/6.
+- Combined fixed-level minimal-witness and below-level search, sharing one 85,766,121-primary enumeration.
+- Integration regression and independent audit for the minimum sums.
+
+**Results**
+
+- The fixed-level search proves minimum sums 16/10/6 for the three phases within labels<=20.
+- Claim 69 is PROVEN for witness-complexity minimality at SU(7)_1163 only. This does not establish physical naturalness, sector dynamics or model selection.
+- Full suite: 368 passing tests. G-001: two separate Rust processes agree on 585 checks, fingerprint `feeb1181129560d7`.

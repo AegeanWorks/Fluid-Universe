@@ -686,13 +686,14 @@ fn independent_lower_rank_inverse_search() -> &'static (u64, u64, bool) {
     })
 }
 
-/// Independent SU(7) minimal-level search for Dynkin labels 0..20 and k<1163.
-fn independent_minimal_level_search() -> &'static (u64, u64, bool) {
-    static RESULT: std::sync::OnceLock<(u64, u64, bool)> = std::sync::OnceLock::new();
+/// Independent combined SU(7) minimal-level and fixed-level witness search.
+fn independent_minimal_domain_search() -> &'static (u64, u64, bool, [i64; 3]) {
+    static RESULT: std::sync::OnceLock<(u64, u64, bool, [i64; 3])> = std::sync::OnceLock::new();
     RESULT.get_or_init(|| {
         let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
         let mut labels = 0_u64;
         let mut masks = std::collections::HashMap::<(i64, i64), u8>::new();
+        let mut best = [i64::MAX; 3];
         let mut dynkin = [0_i64; 6];
 
         fn walk(
@@ -701,6 +702,7 @@ fn independent_minimal_level_search() -> &'static (u64, u64, bool) {
             label_sum: i64,
             labels: &mut u64,
             masks: &mut std::collections::HashMap<(i64, i64), u8>,
+            best: &mut [i64; 3],
             targets: &[(i64, i64); 3],
         ) {
             if index == dynkin.len() {
@@ -727,22 +729,28 @@ fn independent_minimal_level_search() -> &'static (u64, u64, bool) {
                         continue;
                     }
                     let k = scaled / denominator - n;
-                    if k > 0 && k < 1163 && label_sum <= k {
+                    if k <= 0 || label_sum > k {
+                        continue;
+                    }
+                    if k < 1163 {
                         *masks.entry((n, k)).or_default() |= 1 << phase_index;
+                    }
+                    if k == 1163 && label_sum < best[phase_index] {
+                        best[phase_index] = label_sum;
                     }
                 }
                 return;
             }
             for value in 0..=20_i64 {
                 dynkin[index] = value;
-                walk(index + 1, dynkin, label_sum + value, labels, masks, targets);
+                walk(index + 1, dynkin, label_sum + value, labels, masks, best, targets);
             }
         }
 
-        walk(0, &mut dynkin, 0, &mut labels, &mut masks, &targets);
+        walk(0, &mut dynkin, 0, &mut labels, &mut masks, &mut best, &targets);
         let models = masks.len() as u64;
         let any_hit = masks.values().any(|mask| *mask == 0b111);
-        (labels, models, any_hit)
+        (labels, models, any_hit, best)
     })
 }
 
@@ -1306,13 +1314,24 @@ fn rows() -> Vec<Row> {
     });
 
     // 68: no SU(7) all-phase host below level 1163 with Dynkin labels<=20.
-    let (minimal_labels, minimal_models, minimal_hit) = *independent_minimal_level_search();
+    let (minimal_labels, minimal_models, minimal_hit, _) = *independent_minimal_domain_search();
     out.push(Row {
         id: "audit.minimal_level_inverse_search",
         claim: "68: one SU(7) all-phase host exists below level 1163 with labels<=20",
         verdict: if minimal_hit { "NUMERIC" } else { "FALSIFIED" },
         detail: format!("labels={minimal_labels}, models_with_any_phase={minimal_models}, all_phase_hit={minimal_hit}"),
         value: minimal_labels as f64,
+    });
+
+    // 69: no smaller label-sum SU(7)_1163 witnesses in the labels<=20 domain.
+    let (witness_labels, _, _, witness_best) = *independent_minimal_domain_search();
+    let witness_minimal = witness_best == [16, 10, 6];
+    out.push(Row {
+        id: "audit.minimal_witness_search",
+        claim: "69: smaller label-sum SU(7)_1163 witnesses exist",
+        verdict: if witness_minimal { "FALSIFIED" } else { "UNVERIFIED" },
+        detail: format!("labels={witness_labels}, best_sums={witness_best:?}, expected_minimal={witness_minimal}"),
+        value: witness_labels as f64,
     });
 
     out
@@ -1436,6 +1455,7 @@ mod tests {
         assert_eq!(verdict("relaxed N<=7 inverse"), "NUMERIC");
         assert_eq!(verdict("one N<=6, Dynkin<=20"), "FALSIFIED");
         assert_eq!(verdict("one SU(7) all-phase host exists below"), "FALSIFIED");
+        assert_eq!(verdict("smaller label-sum SU(7)_1163"), "FALSIFIED");
     }
 
     #[test]
@@ -1489,6 +1509,7 @@ mod tests {
         assert!(approx(value("relaxed N<=7 inverse"), 125_888.0, 1e-9));
         assert!(approx(value("one N<=6, Dynkin<=20"), 4_288_305.0, 1e-9));
         assert!(approx(value("one SU(7) all-phase host exists below"), 85_766_121.0, 1e-9));
+        assert!(approx(value("smaller label-sum SU(7)_1163"), 85_766_121.0, 1e-9));
     }
 
     #[test]

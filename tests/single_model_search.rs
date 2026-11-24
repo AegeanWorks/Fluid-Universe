@@ -1,7 +1,7 @@
 use fluid_universe::single_model_test::{
     WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search,
-    lower_rank_inverse_search, minimal_level_inverse_search, relaxed_inverse_search,
-    search, single_model_exists, witness_exact, witness_fractions,
+    lower_rank_inverse_search, minimal_level_inverse_search, minimal_witness_search,
+    relaxed_inverse_search, search, single_model_exists, witness_exact, witness_fractions,
 };
 
 #[test]
@@ -47,6 +47,13 @@ fn lower_rank_search_reproduces_the_bounded_negative() {
     assert_eq!(result.labels_tested, 4_288_305);
     assert_eq!(result.models_with_any_phase, 5_499);
     assert!(result.hit_models.is_empty());
+}
+
+#[test]
+fn su7_witnesses_have_minimal_label_sums() {
+    let result = minimal_witness_search();
+    assert_eq!(result.labels_tested, 85_766_121);
+    assert_eq!(result.best_sums, [16, 10, 6]);
 }
 
 #[test]
