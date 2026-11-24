@@ -492,3 +492,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 69 fixes the minimum label sums but leaves multiple representatives: standalone exact enumeration finds family sizes 4, 2 and 2 for the three phases. Downstream calculations need a deterministic witness choice.
 - **Decision**: Among all minimum-sum representatives in the labels<=20 domain, choose the lexicographically smallest Dynkin vector for each phase. The pre-registered canonical vectors are (0,0,2,11,2,1), (0,0,3,6,0,1), (0,0,0,6,0,0), exactly the current SU(7)_1163 witnesses. Claim 70 is PROVEN for representative counts 4/2/2 and lexicographic canonicity. This is a bookkeeping rule for witnesses only; it does not select the host physically or supply sector dynamics.
 - **Consequences**: Extend the combined minimal-domain summary with representative counts and canonical vectors, add checks and integration/audit assertions, regenerate reports and update claim 70 documentation. Claims 60-69 remain unchanged.
+
+### ADR-069: Conformal data of the canonical SU(7)_1163 witnesses (claim 71)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claims 66-70 determine a canonical host and canonical representatives, but their physical WZW invariants are not yet recorded. These invariants are prerequisites for any future sector-dynamics construction.
+- **Decision**: Compute each canonical SU(7)_1163 conformal weight as h=C2/(k+N) using exact integer Casimir arithmetic, and each quantum dimension from the Weyl product over positive roots `sin(pi*(lambda+rho,alpha)/(k+N))/sin(pi*(rho,alpha)/(k+N))`. Pre-registered weights are 934/4095, 289/2730 and 2/35; pre-registered quantum dimensions are 1.136464998628996e11, 4.072382134390699e8 and 4.568658409657278e5, ordered lepton>down>up. Claim 71 is NUMERIC for these invariants. No equality or scaling with particle masses is asserted.
+- **Consequences**: Add conformal-weight/quantum-dimension functions and checks, integration regression, independent audit rows, regenerated reports and claim 71 documentation. Claims 60-70 remain unchanged.

@@ -497,6 +497,34 @@ fn independent_braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
     (n * a - boxes * boxes - 2 * (n * n - 1)).abs()
 }
 
+fn independent_casimir_twice_n(n: i64, dynkin: &[i64]) -> i64 {
+    let mut rows = vec![0_i64; n as usize];
+    for i in (0..dynkin.len()).rev() {
+        rows[i] = dynkin[i..].iter().sum();
+    }
+    let boxes = rows.iter().sum::<i64>();
+    let a = rows
+        .iter()
+        .enumerate()
+        .map(|(i, row)| row * (row + n + 1 - 2 * (i as i64 + 1)))
+        .sum::<i64>();
+    n * a - boxes * boxes
+}
+
+fn independent_quantum_dimension(n: i64, k: i64, dynkin: &[i64]) -> f64 {
+    let pi = std::f64::consts::PI;
+    let scale = (k + n) as f64;
+    let mut dimension = 1.0;
+    for i in 0..n as usize {
+        for j in i + 1..n as usize {
+            let numerator: i64 = dynkin[i..j].iter().map(|value| value + 1).sum();
+            dimension *= (pi * numerator as f64 / scale).sin()
+                / (pi * (j - i) as f64 / scale).sin();
+        }
+    }
+    dimension
+}
+
 fn independent_witness_exact(n: i64, k: i64, primaries: &[&[i64]]) -> bool {
     let targets = [(2_i64, 9_i64), (1, 10), (2, 39)];
     primaries.iter().zip(targets).all(|(dynkin, (p, q))| {
@@ -1384,6 +1412,44 @@ fn rows() -> Vec<Row> {
         value: if canonical_ok { 1.0 } else { 0.0 },
     });
 
+    // 71/1: exact conformal weights of the canonical SU(7)_1163 primaries.
+    let expected_h_num = [934_i64, 289, 2];
+    let expected_h_den = [4095_i64, 2730, 35];
+    let conformal_ok = (0..3).all(|index| {
+        independent_casimir_twice_n(7, expected_canonical[index]) * expected_h_den[index]
+            == expected_h_num[index] * 2 * 7 * (1163 + 7)
+    });
+    let conformal_values: [f64; 3] = std::array::from_fn(|index| {
+        independent_casimir_twice_n(7, expected_canonical[index]) as f64
+            / (2.0 * 7.0 * (1163 + 7) as f64)
+    });
+    out.push(Row {
+        id: "audit.su7_conformal_weights",
+        claim: "71: canonical SU(7)_1163 conformal weights",
+        verdict: if conformal_ok { "PROVEN" } else { "FALSIFIED" },
+        detail: format!("weights={conformal_values:?}, exact={conformal_ok}"),
+        value: conformal_values[0],
+    });
+
+    // 71/2: quantum dimensions from the independent Weyl product.
+    let quantum_values: [f64; 3] = std::array::from_fn(|index| {
+        independent_quantum_dimension(7, 1163, expected_canonical[index])
+    });
+    let quantum_expected = [1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5];
+    let quantum_ok = quantum_values
+        .iter()
+        .zip(quantum_expected)
+        .all(|(actual, target)| (actual - target).abs() / target <= 1e-12)
+        && quantum_values[0] > quantum_values[1]
+        && quantum_values[1] > quantum_values[2];
+    out.push(Row {
+        id: "audit.su7_quantum_dimensions",
+        claim: "71: canonical SU(7)_1163 quantum dimensions",
+        verdict: if quantum_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("qdim={quantum_values:?}, ordered={quantum_ok}"),
+        value: quantum_values[0],
+    });
+
     out
 }
 
@@ -1507,6 +1573,8 @@ mod tests {
         assert_eq!(verdict("one SU(7) all-phase host exists below"), "FALSIFIED");
         assert_eq!(verdict("smaller label-sum SU(7)_1163"), "FALSIFIED");
         assert_eq!(verdict("current SU(7)_1163 witnesses are lexicographic"), "PROVEN");
+        assert_eq!(verdict("canonical SU(7)_1163 conformal weights"), "PROVEN");
+        assert_eq!(verdict("canonical SU(7)_1163 quantum dimensions"), "NUMERIC");
     }
 
     #[test]
@@ -1562,6 +1630,8 @@ mod tests {
         assert!(approx(value("one SU(7) all-phase host exists below"), 85_766_121.0, 1e-9));
         assert!(approx(value("smaller label-sum SU(7)_1163"), 85_766_121.0, 1e-9));
         assert!(approx(value("current SU(7)_1163 witnesses are lexicographic"), 1.0, 1e-12));
+        assert!(approx(value("canonical SU(7)_1163 conformal weights"), 934.0 / 4095.0, 1e-15));
+        assert!(approx(value("canonical SU(7)_1163 quantum dimensions"), 1.136464998628996e11, 1e-3));
     }
 
     #[test]

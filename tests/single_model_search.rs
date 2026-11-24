@@ -1,7 +1,8 @@
 use fluid_universe::single_model_test::{
-    WITNESSES, all_witnesses_exact, braiding_fraction, inverse_search,
-    lower_rank_inverse_search, minimal_level_inverse_search, minimal_witness_search,
-    relaxed_inverse_search, search, single_model_exists, witness_exact, witness_fractions,
+    WITNESSES, all_witnesses_exact, braiding_fraction, canonical_conformal_weights,
+    canonical_quantum_dimensions, inverse_search, lower_rank_inverse_search,
+    minimal_level_inverse_search, minimal_witness_search, relaxed_inverse_search, search,
+    single_model_exists, witness_exact, witness_fractions,
 };
 
 #[test]
@@ -63,6 +64,20 @@ fn minimal_witness_families_have_canonical_current_vectors() {
     for phase in 0..3 {
         assert_eq!(result.canonical_dynkin[phase], WITNESSES[2].dynkin[phase]);
     }
+}
+
+#[test]
+fn canonical_su7_conformal_data_matches_pre_registration() {
+    let weights = canonical_conformal_weights();
+    assert!((weights[0] - 934.0 / 4095.0).abs() <= 1e-15);
+    assert!((weights[1] - 289.0 / 2730.0).abs() <= 1e-15);
+    assert!((weights[2] - 2.0 / 35.0).abs() <= 1e-15);
+    let dimensions = canonical_quantum_dimensions();
+    let expected = [1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5];
+    for (actual, target) in dimensions.iter().zip(expected) {
+        assert!((actual - target).abs() / target <= 1e-12);
+    }
+    assert!(dimensions[0] > dimensions[1] && dimensions[1] > dimensions[2]);
 }
 
 #[test]

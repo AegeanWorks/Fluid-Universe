@@ -1225,3 +1225,18 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - The current SU(7)_1163 witnesses are exactly the lexicographically smallest minimum-sum vectors for each phase.
 - Claim 70 is PROVEN for witness canonicalization only. It does not select the host physically or provide sector dynamics.
 - Full suite: 369 passing tests. G-001: two separate Rust processes agree on 590 checks, fingerprint `200c4a753fd496e9`.
+
+## 2026-11-24 - Canonical SU(7)_1163 conformal data NUMERIC (claim 71, ADR-069)
+
+**Added**
+
+- Exact conformal-weight and Weyl-product quantum-dimension functions for WZW primaries.
+- Checks and integration regression for the three canonical SU(7)_1163 phase primaries.
+- Independent exact-weight and numeric quantum-dimension audit rows.
+
+**Results**
+
+- Exact weights: 934/4095, 289/2730, 2/35.
+- Quantum dimensions: 1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5, ordered lepton>down>up.
+- Claim 71 is NUMERIC. No mass relation, sector dynamics or physical host selection is asserted.
+- Full suite: 370 passing tests. G-001: two separate Rust processes agree on 599 checks, fingerprint `cb077d3bfe1b69dd`.

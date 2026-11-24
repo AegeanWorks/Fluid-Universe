@@ -109,9 +109,9 @@ pub fn models() -> [(i64, i64); 3] {
     [(3, 9), (2, 13), (3, 49)]
 }
 
-/// Numerator of `|C2-2*C2(box)|/(k+N)` before the level denominator.
+/// Twice N times the quadratic Casimir: `2*N*C2 = N*A - boxes^2`.
 #[inline]
-fn braiding_numerator_unchecked(n: i64, dynkin: &[i64]) -> i64 {
+fn casimir_twice_n(n: i64, dynkin: &[i64]) -> i64 {
     let mut rows = [0_i64; 23];
     let mut running = 0_i64;
     let mut boxes = 0_i64;
@@ -126,7 +126,13 @@ fn braiding_numerator_unchecked(n: i64, dynkin: &[i64]) -> i64 {
         .enumerate()
         .map(|(index, row)| row * (row + n + 1 - 2 * (index as i64 + 1)))
         .sum::<i64>();
-    (n * a - boxes * boxes - 2 * (n * n - 1)).abs()
+    n * a - boxes * boxes
+}
+
+/// Numerator of `|C2-2*C2(box)|/(k+N)` before the level denominator.
+#[inline]
+fn braiding_numerator_unchecked(n: i64, dynkin: &[i64]) -> i64 {
+    (casimir_twice_n(n, dynkin) - 2 * (n * n - 1)).abs()
 }
 
 fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
@@ -534,6 +540,37 @@ pub fn all_witnesses_exact() -> bool {
     (0..WITNESSES.len()).all(witness_exact)
 }
 
+pub fn conformal_weight(n: i64, k: i64, dynkin: &[i64]) -> f64 {
+    casimir_twice_n(n, dynkin) as f64 / (2.0 * n as f64 * (k + n) as f64)
+}
+
+pub fn quantum_dimension(n: i64, k: i64, dynkin: &[i64]) -> f64 {
+    let pi = std::f64::consts::PI;
+    let denominator_scale = (k + n) as f64;
+    let mut dimension = 1.0;
+    for i in 0..n as usize {
+        for j in i + 1..n as usize {
+            let numerator: i64 = dynkin[i..j].iter().map(|value| value + 1).sum();
+            let rho_pairing = (j - i) as f64;
+            dimension *= (pi * numerator as f64 / denominator_scale).sin()
+                / (pi * rho_pairing / denominator_scale).sin();
+        }
+    }
+    dimension
+}
+
+pub fn canonical_conformal_weights() -> [f64; 3] {
+    std::array::from_fn(|index| {
+        conformal_weight(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
+    })
+}
+
+pub fn canonical_quantum_dimensions() -> [f64; 3] {
+    std::array::from_fn(|index| {
+        quantum_dimension(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
+    })
+}
+
 pub fn single_model_exists() -> bool {
     all_witnesses_exact()
         || !search().hit_models.is_empty()
@@ -553,6 +590,10 @@ pub fn checks() -> Vec<Check> {
     let canonical_ok = (0..3).all(|index| {
         minimal_witness.canonical_dynkin[index].as_slice() == WITNESSES[2].dynkin[index]
     });
+    let conformal_weights = canonical_conformal_weights();
+    let quantum_dimensions = canonical_quantum_dimensions();
+    let quantum_ordered = quantum_dimensions[0] > quantum_dimensions[1]
+        && quantum_dimensions[1] > quantum_dimensions[2];
     vec![
         Check::new(
             "singlemodel.phase_count",
@@ -648,6 +689,41 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.witness_all_exact",
             if all_witnesses_exact() { 1.0 } else { 0.0 },
             "all three explicit witnesses exact and integrable",
+        ),
+        Check::new(
+            "singlemodel.su7_h_lep",
+            conformal_weights[0],
+            "canonical SU(7)_1163 lepton-phase conformal weight 934/4095",
+        ),
+        Check::new(
+            "singlemodel.su7_h_down",
+            conformal_weights[1],
+            "canonical SU(7)_1163 down-phase conformal weight 289/2730",
+        ),
+        Check::new(
+            "singlemodel.su7_h_up",
+            conformal_weights[2],
+            "canonical SU(7)_1163 up-phase conformal weight 2/35",
+        ),
+        Check::new(
+            "singlemodel.su7_qdim_lep",
+            quantum_dimensions[0],
+            "canonical SU(7)_1163 lepton-phase quantum dimension",
+        ),
+        Check::new(
+            "singlemodel.su7_qdim_down",
+            quantum_dimensions[1],
+            "canonical SU(7)_1163 down-phase quantum dimension",
+        ),
+        Check::new(
+            "singlemodel.su7_qdim_up",
+            quantum_dimensions[2],
+            "canonical SU(7)_1163 up-phase quantum dimension",
+        ),
+        Check::new(
+            "singlemodel.su7_qdim_ordered",
+            if quantum_ordered { 1.0 } else { 0.0 },
+            "quantum dimensions ordered lepton>down>up",
         ),
         Check::new(
             "singlemodel.minimal_witness_labels",
