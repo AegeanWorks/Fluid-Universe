@@ -585,6 +585,33 @@ pub fn su7_block_coset_central_charge() -> f64 {
     central_charge(7, 1163) - su7_block_sm_central_charge()
 }
 
+/// Branch 21 + 3 anti-7 under the chosen SU(3) x SU(2) x U(1) subgroup.
+/// Entries are (signed color dimension, weak dimension, 6Y, multiplicity).
+/// This counts representation weights; it does not establish a physical spectrum.
+pub fn su7_hypercharge_branching() -> Vec<(i8, u8, i8, u8)> {
+    let y6 = [-2_i8, -2, -2, 3, 3, 0, 0];
+    let mut weights = BTreeMap::<(i8, u8, i8), u8>::new();
+    for i in 0..7 {
+        for j in (i + 1)..7 {
+            let colors = u8::from(i < 3) + u8::from(j < 3);
+            let weaks = u8::from((3..5).contains(&i)) + u8::from((3..5).contains(&j));
+            let color = match colors { 2 => -3, 1 => 3, _ => 1 };
+            let weak = if weaks == 1 { 2 } else { 1 };
+            *weights.entry((color, weak, y6[i] + y6[j])).or_default() += 1;
+        }
+    }
+    for (i, &charge) in y6.iter().enumerate() {
+        let color = if i < 3 { -3 } else { 1 };
+        let weak = if (3..5).contains(&i) { 2 } else { 1 };
+        *weights.entry((color, weak, -charge)).or_default() += 3;
+    }
+    weights.into_iter().map(|((color, weak, charge), count)| {
+        let dimension = color.unsigned_abs() * weak;
+        debug_assert_eq!(count % dimension, 0);
+        (color, weak, charge, count / dimension)
+    }).collect()
+}
+
 pub fn canonical_conformal_weights() -> [f64; 3] {
     std::array::from_fn(|index| {
         conformal_weight(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
@@ -803,6 +830,12 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.su7_block_coset_c",
             block_coset_central_charge,
             "SU(7)_1163 / block-SM coset central charge 920175833/26488605",
+        ),
+        Check::new(
+            "singlemodel.su7_branching_dimension",
+            su7_hypercharge_branching().iter().map(|(color, weak, _, copies)|
+                color.unsigned_abs() as usize * *weak as usize * *copies as usize).sum::<usize>() as f64,
+            "dimension of 21 plus three anti-7 representations under the chosen hypercharge",
         ),
         Check::new(
             "singlemodel.sm_charge_compatible",

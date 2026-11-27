@@ -1322,3 +1322,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - The three `singlemodel.witness*_n` checks report the SU(N) parameter N, not rank; their descriptions now say so. The SU(7) search test name now correctly says rank six.
 - Numeric witness values and search results are unchanged; regenerated report fingerprints reflect the corrected descriptions.
+
+## 2026-11-27 - SU(7) hypercharge branching exercise (ADR-084)
+
+- Enumerated integer hypercharges and block multiplicities for `21 + 3 anti-7` with `Y=diag(-2,-2,-2,3,3,0,0)/6`: one SU(5) `10 + anti-5`, two `5 + anti-5` pairs and seven singlets, totaling 42 states.
+- This is representation bookkeeping only; physical states, anomaly cancellation, dynamics and any link to the WZW phase witnesses remain open. Independent audit is a separate pending milestone.

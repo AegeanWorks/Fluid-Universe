@@ -58,6 +58,11 @@ centralizer has three U(1) directions, and one remains in the coset. This
 calculation does not identify Standard Model hypercharge or matter dynamics.
 For SU(N), the group rank is N-1; witness checks ending in `_n` report N.
 
+As a representation exercise, choosing `Y=diag(-2,-2,-2,3,3,0,0)/6` gives
+`21 + 3 anti-7` the SU(5)-block content `10 + anti-5 + 2(5 + anti-5) + 7 singlets`.
+This is charge bookkeeping, not a derived fermion spectrum, anomaly result, or
+connection between these representations and the phase witnesses.
+
 | Item | Verdict | Where |
 |---|---|---|
 | Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `src/circulant.rs`, `src/circulant.rs` |

@@ -8,6 +8,19 @@ use fluid_universe::single_model_test::{
 };
 
 #[test]
+fn su7_hypercharge_branching_has_one_generation_and_vectorlike_pairs() {
+    // (signed SU(3) dimension, SU(2) dimension, 6Y, multiplicity).
+    let expected = vec![
+        (-3, 1, -4, 1), (-3, 1, 2, 3), (1, 1, 0, 7), (1, 1, 6, 1),
+        (1, 2, -3, 3), (1, 2, 3, 2), (3, 1, -2, 2), (3, 2, 1, 1),
+    ];
+    assert_eq!(fluid_universe::single_model_test::su7_hypercharge_branching(), expected);
+    let dimensions: usize = expected.iter().map(|(color, weak, _, copies)|
+        (*color as i32).unsigned_abs() as usize * *weak as usize * *copies as usize).sum();
+    assert_eq!(dimensions, 42);
+}
+
+#[test]
 fn known_singlet_labels_are_exact_rationals() {
     let lepton = braiding_fraction(3, 9, &[0, 0]);
     let down = braiding_fraction(2, 13, &[0]);

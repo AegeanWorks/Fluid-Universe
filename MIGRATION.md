@@ -74,8 +74,8 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **616 reproducible checks**, **379 passing tests** (347 unit + 7 existing
-integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
+Verified: **617 reproducible checks**, **380 passing tests** (347 unit + 7 existing
+integration + 6 single-shell + 7 double-shell + 13 single-WZW-search integration)
 and a two-process comparison of 50 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
 
 On this host the MSVC `link.exe` is absent, so the registered test command is

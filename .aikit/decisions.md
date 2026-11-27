@@ -597,3 +597,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Three numeric checks named witnessN_n report N=17, 23 and 7 but described these values as group ranks; a test name also called SU(7) rank seven.
 - **Decision**: Keep check identifiers and numeric values as N, label them parameter N, and correct the test name to rank six.
 - **Consequences**: Check details and generated fingerprints change; the group representations and search arithmetic do not.
+
+### ADR-084: Explore SU(7) hypercharge branching of 21 plus three anti-fundamentals
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The block SU(7) subsector leaves hypercharge and matter content open. The SU(5) 10 plus anti-5 assignment is standard background (https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf).
+- **Decision**: Choose Y=diag(-2,-2,-2,3,3,0,0)/6 and enumerate the exterior square 21 plus three conjugate fundamentals as a representation-content exercise. Expected branching is one 10 plus anti-5, two 5 plus anti-5 vectorlike pairs, and seven singlets under the SU(5) block. Compute integer hypercharges and dimensions explicitly.
+- **Consequences**: This is algebraic branching only. It does not establish physical fermions, anomaly cancellation, dynamics, mass generation, WZW sector selection or connection to the phase witnesses.
