@@ -3,8 +3,8 @@
 The Python packages were removed from the tree; their history remains in git. The
 **whole project is now the dependency-free Rust crate** declared in `Cargo.toml`.
 The rewrite was started because the Python audit/repair loop took hours for 99 commits;
-the full Rust suite runs in seconds and `cargo run -- verify` re-derives every check in
-two separate processes (project rule G-001).
+the full Rust suite runs in seconds and `cargo run -- verify` compares the available
+audit records in two separate processes. Complete G-001 claim coverage remains open.
 
 ## Layout
 
@@ -21,9 +21,9 @@ two separate processes (project rule G-001).
 | `src/lorentz.rs` | `theory/lorentz.py` | 2x2 elastic eigenvalues, residual anisotropy over deterministic unit directions, equal-K isotropy |
 | `src/linalg.rs` | (new) | cyclic Jacobi symmetric eigensolver, Simpson quadrature, bisection, tolerance helper |
 | `src/simulation.rs` | `sims/core3d.py`, `sims/production.py`, `theory/hopf.py` | analytic H=1 field, central-difference E2/E4/V, Z3 order, Hopf linking, analytic force, relaxation and field metrics |
-| `src/audit.rs` | `verification/audit.py` | 45 independently re-derived claim records with frozen verdicts and a deterministic fingerprint |
-| `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and G-001 provenance |
-| `src/verify.rs` | `verification/verify.py` | G-001 two-process comparison and fingerprinting |
+| `src/audit.rs` | `verification/audit.py` | 46 independently re-derived audit records with frozen verdicts and a deterministic fingerprint |
+| `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and in-process provenance |
+| `src/verify.rs` | `verification/verify.py` | exact comparison of two process audit records; ledger coverage remains open |
 
 ## Commands
 
@@ -35,7 +35,7 @@ cargo run -- claims             # independent per-claim verdicts
 cargo run -- regenerate [dir]   # write rust_*.json|md (default: results/)
 cargo run -- json               # machine-readable check list
 cargo run -- fingerprint        # FNV-1a of the ordered check list
-cargo run -- verify             # G-001: spawn two child processes and compare
+cargo run -- verify             # compare available audit records in two child processes
 cargo run --release -- all      # optimised binary
 ```
 
@@ -68,9 +68,9 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **612 reproducible checks**, **372 passing tests** (340 unit + 7 existing
+Verified: **612 reproducible checks**, **373 passing tests** (341 unit + 7 existing
 integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
-and a two-process aggregate fingerprint agreement (`8b67325e9175b32c`). This aggregate comparison does not establish the per-claim agreement required by G-001.
+and a two-process comparison of 46 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
 
 On this host the MSVC `link.exe` is absent, so the registered test command is
 `cargo test --target x86_64-pc-windows-gnu`. On a host with Visual Studio Build

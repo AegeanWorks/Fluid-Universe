@@ -98,4 +98,4 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 72 | FALSIFIED (direct SM conformal embedding) | All known hosts have c>12: SU(7)_1163≈47.71, SU(17)_1153≈283.82, SU(23)_1147≈517.62. Equal central charge is necessary, so direct embedding is impossible; the smallest host's remaining coset has c>=6964/195≈35.71. |
 | 73 | NUMERIC (chosen block current-algebra subsector) | SU(3)_1163 x SU(2)_1163 x U(1)^2 has c=8812057/679195; the coset has c=920175833/26488605. One of the three block-centralizer U(1) directions remains in the coset; hypercharge and dynamics are not established. |
 
-Claim audit: two Rust processes produced matching aggregate fingerprints for 612 checks (`8b67325e9175b32c`). This does not explicitly compare each claim result as G-001 requires; claim-by-claim comparison remains outstanding. The full suite has 372 passing tests.
+Claim audit: two Rust processes produced 46 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

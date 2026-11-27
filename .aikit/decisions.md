@@ -527,3 +527,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Report generation and selftest compare derivations in the same process while labelling their result G-001 two-process evidence. The separate verify command launches two processes but compares aggregate fingerprints.
 - **Decision**: Label report and selftest results as in-process determinism checks, retain existing audit fields and add mode=in_process. Do not treat those checks as G-001 evidence. Record that the separate verifier compares aggregate fingerprints, not explicit per-claim results.
 - **Consequences**: Regenerate reports, correct README, and retain an explicit follow-up to compare per-claim outputs in separate processes. Numerical computations are unchanged.
+
+### ADR-074: Compare audit records across separate processes
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The previous verifier compared aggregate hashes and the audit is not yet mapped to every accepted claim.
+- **Decision**: Run two bounded audit children, compare identified records exactly including value bits and verdict details, and reject empty, malformed, duplicate or differing output. Report the record count without claiming full ledger coverage.
+- **Consequences**: Verifier output changes; report provenance remains in-process. Complete G-001 evidence requires mapping and independently re-deriving every accepted ledger claim.

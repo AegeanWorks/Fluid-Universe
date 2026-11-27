@@ -1,88 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795740550.6996,
-    "completed_head": "fccf36eb29c30be42f35876ad1fe9f8f0193c7b4",
-    "completed_tree": "c4a929f0eafc025c1a96ebaa18180bc466eaa444",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795747704.43672,
+    "lease_until": 1795748010.20961,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-verification-provenance",
-    "updated_at": 1795740504.43672
+    "status": "in_progress",
+    "task_id": "fluid-per-record-verification",
+    "updated_at": 1795740810.20961
   },
   "checkpoints": [
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "checklists": "passed",
-      "description": "[2/2] Claim 70 complete: SU(7)_1163 minimal families 4/2/2 and current witnesses proven lexicographic minima; independent audit, 369 tests, 590 checks and G-001 fingerprint 200c4a753fd496e9 pass",
-      "files_affected": [
-        ".aikit/decisions.md",
-        ".aikit/task_ledger.json",
-        ".aikit/task_ledger_archive.jsonl",
-        "CHANGELOG.md",
-        "MIGRATION.md",
-        "README.md",
-        "SCORECARD.md",
-        "claims.md",
-        "results/rust_audit.json",
-        "results/rust_audit.md",
-        "results/rust_circulant.json",
-        "results/rust_circulant.md",
-        "results/rust_derrick.json",
-        "results/rust_derrick.md",
-        "results/rust_fluid.json",
-        "results/rust_fluid.md",
-        "results/rust_lorentz.json",
-        "results/rust_lorentz.md",
-        "results/rust_multi_radial_shell.json",
-        "results/rust_multi_radial_shell.md",
-        "results/rust_radial_shell.json",
-        "results/rust_radial_shell.md",
-        "results/rust_rotor.json",
-        "results/rust_rotor.md",
-        "results/rust_simulation.json",
-        "results/rust_simulation.md",
-        "results/rust_spectra.json",
-        "results/rust_spectra.md",
-        "results/rust_water.json",
-        "results/rust_water.md",
-        "src/audit.rs",
-        "src/single_model_test.rs",
-        "tests/single_model_search.rs"
-      ],
-      "phase": "phase 4",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-claim-70-canonical-witness-v1",
-      "timestamp": 1795549091.2566772,
-      "timestamp_str": "2026-11-24 22:38:11",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          "."
-        ]
-      },
-      "description": "Task 'fluid-claim-70-canonical-witness-v1' completed successfully.",
-      "head": "73d7e328a97610980a7851746ce0011dc090ad6b",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-claim-70-canonical-witness-v1",
-      "timestamp": 1795549522.4978716,
-      "timestamp_str": "2026-11-24 22:45:22"
-    },
     {
       "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
       "description": "[1/2] Compute and independently audit exact conformal weights and quantum dimensions for the canonical SU(7)_1163 witnesses",
@@ -482,6 +410,36 @@
       "task_id": "fluid-verification-provenance",
       "timestamp": 1795740550.6996,
       "timestamp_str": "2026-11-27 03:49:10"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Compare separate-process audit records directly and disclose incomplete claim coverage",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Detects individual audit record changes without hash collisions and avoids overstating completeness",
+        "mitigation": "Compare deterministic identified records exactly, reject empty duplicate and malformed output, bound child runtime, test mismatches and preserve explicit coverage limitation",
+        "risks": "contract: verifier output and exit behavior change; dependency: none; concurrency: separate child processes; state: CLI, tests, documentation",
+        "why": "G-001 needs per-claim agreement; current verify compares only aggregate fingerprints and audit coverage is not mapped to the full ledger"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "af1d95620b63936d261afd78b12e74edfa3a95725b84d395f63d9d63a3e27e10",
+      "status": "in_progress",
+      "task_id": "fluid-per-record-verification",
+      "timestamp": 1795740635.72623,
+      "timestamp_str": "2026-11-27 03:50:35"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Two bounded processes agree on 46 exact audit records; malformed and differing inputs rejected; all four gates pass; full ledger coverage remains open",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-per-record-verification",
+      "timestamp": 1795740810.20961,
+      "timestamp_str": "2026-11-27 03:53:30"
     }
   ],
   "version": 1

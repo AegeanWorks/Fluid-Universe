@@ -1,7 +1,9 @@
 //! CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
 //! about dependencies: the crate has none.
 
-use std::process::Command;
+use std::io::Read;
+use std::process::{Command, Stdio};
+use std::time::{Duration, Instant};
 
 use fluid_universe::{
     Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, cosmology_validation, exact_phase_labels, gj_relation, natural_phase_labels, single_model_test, threshold_unification, wzw_phase_origin, d3_chain, d3_neutrino, d3_only_synthesis, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, ew_from_planck, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, foot_geometry, null_model, peer_reviewed_37, phase_interpolation, sector_count,
@@ -43,18 +45,28 @@ fn print_json(checks: &[Check]) {
     println!("{}]}}", out);
 }
 
-fn spawn_fingerprint() -> Option<String> {
-    let exe = std::env::current_exe().ok()?;
-    let out = Command::new(exe).arg("fingerprint").output().ok()?;
-    if !out.status.success() {
-        return None;
-    }
-    let text = String::from_utf8(out.stdout).ok()?;
-    let token = text.trim();
-    if token.len() != 16 || !token.bytes().all(|b| b.is_ascii_hexdigit()) {
-        return None;
-    }
-    Some(token.to_string())
+fn spawn_audit_records() -> Result<String, String> {
+    let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let mut child = Command::new(exe).arg("audit-records").stdout(Stdio::piped())
+        .stderr(Stdio::null()).spawn().map_err(|e| e.to_string())?;
+    let mut stdout = child.stdout.take().ok_or("missing child stdout")?;
+    let reader = std::thread::spawn(move || {
+        let mut bytes = Vec::new();
+        stdout.read_to_end(&mut bytes).map(|_| bytes)
+    });
+    let deadline = Instant::now() + Duration::from_secs(440);
+    let status = loop {
+        match child.try_wait() {
+            Ok(Some(status)) => break Ok(status),
+            Ok(None) if Instant::now() < deadline => std::thread::sleep(Duration::from_millis(20)),
+            Ok(None) => { let _ = child.kill(); let _ = child.wait(); break Err("audit child timed out".to_string()); }
+            Err(error) => { let _ = child.kill(); let _ = child.wait(); break Err(error.to_string()); }
+        }
+    };
+    let bytes = reader.join().map_err(|_| "audit output reader panicked")?
+        .map_err(|e| e.to_string())?;
+    if !status?.success() { return Err("audit child failed".into()); }
+    String::from_utf8(bytes).map_err(|e| e.to_string())
 }
 
 fn main() {
@@ -185,18 +197,26 @@ fn main() {
         }
         "json" => print_json(&all_checks()),
         "fingerprint" => println!("{}", fingerprint(&all_checks())),
+        "audit-records" => {
+            for check in audit::checks() {
+                println!("{}\t{:016x}\t{}", check.id, check.value.to_bits(), json_escape(&check.detail));
+            }
+        }
         "verify" => {
-            let first = spawn_fingerprint();
-            let second = spawn_fingerprint();
+            let first = spawn_audit_records();
+            let second = spawn_audit_records();
             match (first, second) {
-                (Some(a), Some(b)) => {
-                    let result = verify::compare(&a, &b);
-                    println!("G-001 two-process verification: run1={a}, run2={b}, agreement={}",
-                             if result { "PASS" } else { "FAIL" });
-                    std::process::exit(if result { 0 } else { 1 });
+                (Ok(a), Ok(b)) => match verify::compare_audit_records(&a, &b) {
+                    Ok(count) => {
+                        println!("Two-process audit record comparison: {count} records, agreement=PASS; full ledger coverage not established");
+                    }
+                    Err(error) => {
+                        eprintln!("Why: {error}.\nFix: investigate the differing or incomplete audit records.");
+                        std::process::exit(1);
+                    }
                 }
                 _ => {
-                    eprintln!("Why: could not spawn two child processes for G-001.\nFix: rebuild with `cargo build --release` and run the binary, not a test harness.");
+                    eprintln!("Why: an audit child failed or timed out.\nFix: rebuild and run the binary, then inspect the audit command.");
                     std::process::exit(2);
                 }
             }

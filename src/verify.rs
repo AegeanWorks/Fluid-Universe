@@ -1,8 +1,7 @@
 //! Project rule G-001 requires per-claim agreement in two separate processes.
 //!
-//! The library offers a pure comparator; the binary's `verify` subcommand runs
-//! itself twice with `fingerprint`. It compares aggregate hashes, so it does
-//! not yet establish the required per-claim agreement.
+//! The binary compares identified audit records from two separate processes.
+//! Audit coverage of all accepted ledger claims has not yet been established.
 
 use crate::{Check, all_checks, fingerprint};
 
@@ -27,7 +26,7 @@ impl Verification {
 }
 
 /// Re-derive all checks twice in the same process. Useful as a cheap determinism
-/// smoke test; the binary's `verify` spawns two processes but compares hashes.
+/// smoke test; the binary's `verify` compares audit records from two processes.
 /// NOT valid G-001 evidence: both derivations share one process.
 /// The `verify` subcommand must spawn two child processes instead.
 pub fn verify_in_process() -> Verification {
@@ -42,6 +41,35 @@ pub fn verify_in_process() -> Verification {
 /// Compare two externally produced fingerprints. No hidden state, no mutation.
 pub fn compare(run1: &str, run2: &str) -> bool {
     run1 == run2
+}
+
+/// Compare complete, uniquely identified audit records without relying on hashes.
+pub fn compare_audit_records(first: &str, second: &str) -> Result<usize, String> {
+    fn validate(input: &str) -> Result<usize, String> {
+        let mut ids = std::collections::HashSet::new();
+        if input.is_empty() || !input.ends_with('\n') {
+            return Err("empty or incomplete audit output".into());
+        }
+        for line in input.lines() {
+            let mut fields = line.splitn(3, '\t');
+            let id = fields.next().unwrap_or("");
+            let bits = fields.next().unwrap_or("");
+            let detail = fields.next().unwrap_or("");
+            if !id.starts_with("audit.") || id.len() <= 6 || bits.len() != 16
+                || !bits.bytes().all(|b| b.is_ascii_hexdigit()) || detail.is_empty()
+                || !ids.insert(id)
+            {
+                return Err(format!("malformed or duplicate audit record: {id}"));
+            }
+        }
+        Ok(ids.len())
+    }
+    let count = validate(first)?;
+    validate(second)?;
+    if first != second {
+        return Err("audit records differ between processes".into());
+    }
+    Ok(count)
 }
 
 /// Run a caller-supplied derivation twice and report whether it is reproducible.
@@ -69,6 +97,18 @@ mod tests {
     #[test]
     fn different_runs_disagree() {
         assert!(!compare("abc", "abd"));
+    }
+
+    #[test]
+    fn audit_records_require_unique_complete_exact_matches() {
+        let first = "audit.a\t3ff0000000000000\tPROVEN | a\naudit.b\t4000000000000000\tNUMERIC | b\n";
+        assert_eq!(compare_audit_records(first, first), Ok(2));
+        assert!(compare_audit_records(first, &first.replace("NUMERIC", "UNVERIFIED")).is_err());
+        assert!(compare_audit_records(first, first.lines().next().unwrap()).is_err());
+        assert!(compare_audit_records("", "").is_err());
+        let duplicate = "audit.a\t3ff0000000000000\tx\naudit.a\t3ff0000000000000\tx\n";
+        assert!(compare_audit_records(duplicate, duplicate).is_err());
+        assert!(compare_audit_records("audit.a\tbad\tx\n", "audit.a\tbad\tx\n").is_err());
     }
 
     #[test]

@@ -1273,3 +1273,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Report generation and selftest compare results within one process. Their output now identifies that limit and no longer presents the comparison as G-001 evidence; JSON audit objects include `mode: in_process`.
 - The standalone verifier does launch two processes, but compares aggregate fingerprints rather than individual claim records. Explicit per-claim comparison remains outstanding under G-001.
+
+## 2026-11-27 - Compare individual audit records (ADR-074)
+
+- The verifier now compares identified audit records from two separate, time-bounded processes, including exact value bits and verdict detail; it rejects empty, malformed, duplicate or differing records.
+- Both runs agree on 46 records. The audit has not been mapped to every accepted ledger claim, so complete G-001 coverage remains outstanding.

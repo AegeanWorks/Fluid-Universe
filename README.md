@@ -29,10 +29,10 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```bash
   cargo run -- verify
   ```
-  The binary spawns itself twice with `fingerprint`, compares the two 64-bit fingerprints, and exits
-  non-zero on disagreement. This is an aggregate fingerprint comparison; it does not yet
-  compare individual claim results as project rule G-001 requires. One process deriving a
-  result twice is also not accepted as G-001 evidence.
+  The binary launches two audit processes and compares their identified records exactly,
+  including value bits and verdict details. It exits non-zero on disagreement, malformed
+  records, or a child failure. The current audit has 46 records and has not been mapped to
+  every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](MIGRATION.md).
@@ -255,7 +255,7 @@ fluid-universe/
 
 ## Conventions and Non-Negotiables
 
-- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and an in-process determinism check. Run `cargo run -- verify` separately for two-process evidence.
+- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and an in-process determinism check. Run `cargo run -- verify` separately to compare the available audit records in two processes.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
 - No production 3D simulation number is cited until `src/simulation.rs` passes its full baseline test set. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
