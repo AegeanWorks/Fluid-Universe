@@ -1292,3 +1292,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Separate-process comparison now rejects matching partial, missing or substituted records by requiring the fixed ordered audit ID manifest. A regression binds the manifest to the current audit registry.
 - This checks that all expected audit records were emitted; it does not establish coverage of all accepted claims.
+
+## 2026-11-27 - Measured pole-fit audit (ADR-078)
+
+- Independently re-derived the measured pole-mass fit's a, c and Q and propagated the frozen independent mass errors to obtain linearized sigma_Q = 5.080958197e-6. A finite-difference regression checks the dominant tau-mass derivative.
+- This is partial claim 3a evidence; the phase parameter, other uncertainties and original Monte Carlo remain to be reviewed. Two processes agree on 49 audit records.

@@ -825,6 +825,23 @@ struct Row {
     value: f64,
 }
 
+// Independent inverse DFT and first-order propagation for fixed positive masses.
+fn independent_pole_fit(masses: [f64; 3], errors: [f64; 3]) -> (f64, f64, f64, f64) {
+    let roots = masses.map(f64::sqrt);
+    let root_sum: f64 = roots.iter().sum();
+    let mass_sum: f64 = masses.iter().sum();
+    let a = root_sum / 3.0;
+    let re = (2.0 * roots[0] - roots[1] - roots[2]) / 6.0;
+    let im = 3.0_f64.sqrt() * (roots[1] - roots[2]) / 6.0;
+    let c = re.hypot(im);
+    let q = mass_sum / root_sum.powi(2);
+    let variance: f64 = (0..3).map(|i| {
+        let derivative = (root_sum - mass_sum / roots[i]) / root_sum.powi(3);
+        (derivative * errors[i]).powi(2)
+    }).sum();
+    (a, c, q, variance.sqrt())
+}
+
 // Construct and multiply the matrix directly, without the circulant module.
 fn independent_matrix_residuals(a: f64, c: f64, delta: f64, perturb: f64) -> (f64, f64, f64) {
     let first = [(a, 0.0), (c * delta.cos(), c * delta.sin()), (c * delta.cos(), -c * delta.sin())];
@@ -965,6 +982,21 @@ fn rows() -> Vec<Row> {
         verdict: "NUMERIC",
         detail: format!("m_tau = {tau:.6} MeV; Q(m_e,m_mu,m_tau) = {q_tau:.12}"),
         value: tau,
+    });
+
+    let (pole_a, pole_c, pole_q, pole_sigma) = independent_pole_fit(
+        [M_E, M_MU, M_TAU], [1.5e-10, 2.3e-6, 0.09],
+    );
+    let pole_ok = (pole_a - 17.71583847806219).abs() < 1e-11
+        && (pole_c - 12.52694812199972).abs() < 1e-11
+        && (pole_q - 0.6666644634145).abs() < 1e-13
+        && (pole_sigma - 5.0809581974e-6).abs() < 1e-14;
+    out.push(Row {
+        id: "audit.measured_pole_fit",
+        claim: "3a: measured pole fit and linearized Q uncertainty",
+        verdict: if pole_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("a={pole_a:.12}, c={pole_c:.12}, Q={pole_q:.12}, sigma_Q_linear={pole_sigma:.9e}; independent mass errors; delta and Monte Carlo not checked"),
+        value: pole_q,
     });
 
     // 4a: exact one-loop invariance of r is FALSIFIED (the 3/2 y_k^2 term is
@@ -1788,6 +1820,23 @@ mod tests {
         assert!(approx(q_from_ac(1.0, R_KOIDE), KOIDE, 1e-14));
         let (a, c, delta) = extract_ac(&[1.0, 2.0, 3.0].map(|v| v * v * v));
         assert!(a > 0.0 && c > 0.0 && (0.0..TAU).contains(&delta));
+    }
+
+    #[test]
+    fn measured_pole_fit_and_q_uncertainty_match_independent_references() {
+        let masses = [0.51099895, 105.6583755, 1776.93];
+        let errors = [1.5e-10, 2.3e-6, 0.09];
+        let (a, c, q, sigma) = independent_pole_fit(masses, errors);
+        assert!((a - 17.71583847806219).abs() < 1e-12);
+        assert!((c - 12.52694812199972).abs() < 1e-12);
+        assert!((q - 0.6666644634145).abs() < 1e-14);
+        assert!((sigma - 5.0809581974e-6).abs() < 1e-15);
+        let mut plus = masses;
+        let mut minus = masses;
+        plus[2] += 0.001;
+        minus[2] -= 0.001;
+        let finite_diff = (independent_pole_fit(plus, errors).2 - independent_pole_fit(minus, errors).2) / 0.002;
+        assert!((finite_diff.abs() * errors[2] - sigma).abs() < 1e-10);
     }
 
     #[test]

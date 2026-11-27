@@ -555,3 +555,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Two identical truncated audit outputs could pass exact comparison even when both omitted complete records.
 - **Decision**: Compare both outputs and require their ordered IDs to match a fixed manifest. A regression compares the manifest with the audit registry; additions or removals must update it.
 - **Consequences**: Missing, extra or substituted audit records fail verification. This checks the audit record set, not whether all accepted claims are covered.
+
+### ADR-078: Independently audit measured pole fit and linearized Q uncertainty
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The prior claim 3a audit tests a predicted tau mass rather than the fit to the measured pole masses.
+- **Decision**: Use the frozen 2024 masses and independent mass errors, calculate inverse DFT magnitudes and first-order Q propagation separately, and expose a numeric audit record. The linearized uncertainty is not the original Monte Carlo result.
+- **Consequences**: Add a finite-difference regression and update the audit manifest, reports and coverage inventory. The phase parameter, other parameter uncertainties and Monte Carlo remain unverified by this record.

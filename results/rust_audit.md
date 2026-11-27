@@ -9,6 +9,7 @@
 | `audit.z3_not_fixed` | `4.864864864864865e-1` | FALSIFIED \| five positive-root triples span Q in [0.333333, 0.819820] (spread 0.486486) |
 | `audit.sign_caveat` | `8.733333333333333e-1` | FALSIFIED \| a=1, c=0.9, delta=pi: signed Q=0.8733333333, physical Q=0.3714555766 |
 | `audit.tau_prediction` | `1.776969027083014e3` | NUMERIC \| m_tau = 1776.969027 MeV; Q(m_e,m_mu,m_tau) = 0.666666666667 |
+| `audit.measured_pole_fit` | `6.666644634145000e-1` | NUMERIC \| a=17.715838478062, c=12.526948122000, Q=0.666664463415, sigma_Q_linear=5.080958197e-6; independent mass errors; delta and Monte Carlo not checked |
 | `audit.r_invariance` | `3.057662803063188e-6` | FALSIFIED \| \|r(10^16 GeV) - r(M_Z)\| = 3.058e-6 (nonzero; generation-dependent RHS) |
 | `audit.neutrino_q_max` | `5.856120093687199e-1` | FALSIFIED \| Q_nu(NO,m0=0)=0.585612009369, Q_nu(IO,m0=0)=0.500006628767; max=0.585612009369 < 2/3 |
 | `audit.quark_q` | `8.875692313187327e-1` | FALSIFIED \| Huang-Zhou M_Z masses: Q_up=0.887569231319, Q_down=0.748065054803, both > 2/3 |
@@ -54,5 +55,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=c1f1b330cde6c159, run2=c1f1b330cde6c159, agreement=PASS.
-- config_sha256 (FNV-1a): `0e5a03fb4ebbf50a`.
+- In-process determinism fingerprint (not G-001 evidence): run1=2cd81345a106c87d, run2=2cd81345a106c87d, agreement=PASS.
+- config_sha256 (FNV-1a): `d875dd694d3bf305`.
