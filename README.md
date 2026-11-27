@@ -258,7 +258,7 @@ fluid-universe/
 
 ## Conventions and Non-Negotiables
 
-- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and an in-process determinism check. Run `cargo run -- verify` separately to compare the available audit records in two processes.
+- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a non-cryptographic fingerprint of the check results and an in-process determinism check. Run `cargo run -- verify` separately to compare the available audit records in two processes.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
 - No production 3D simulation number is cited until `src/simulation.rs` passes its full baseline test set. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.

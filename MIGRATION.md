@@ -22,10 +22,16 @@ audit records in two separate processes. Complete G-001 claim coverage remains o
 | `src/linalg.rs` | (new) | cyclic Jacobi symmetric eigensolver, Simpson quadrature, bisection, tolerance helper |
 | `src/simulation.rs` | `sims/core3d.py`, `sims/production.py`, `theory/hopf.py` | analytic H=1 field, central-difference E2/E4/V, Z3 order, Hopf linking, analytic force, relaxation and field metrics |
 | `src/audit.rs` | `verification/audit.py` | 49 independently re-derived audit records with frozen verdicts and a deterministic fingerprint |
-| `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and in-process provenance |
+| `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with check-results fingerprint and in-process provenance |
 | `src/verify.rs` | `verification/verify.py` | exact comparison of two process audit records; ledger coverage remains open |
 
 ## Commands
+
+Rust report JSON schema 2 replaces schema 1's misleading `config_sha256` field
+with `checks_fnv1a64`. Both hold the same 64-bit FNV-1a fingerprint of the family
+name and ordered rendered checks; neither is a SHA-256 digest or configuration hash.
+Consumers should branch on `schema` and migrate to the new field. Historical
+non-`rust_` result files retain their original formats.
 
 ```bash
 cargo test                      # unit + integration suite (no network, no Python)
@@ -68,7 +74,7 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **615 reproducible checks**, **376 passing tests** (344 unit + 7 existing
+Verified: **615 reproducible checks**, **377 passing tests** (345 unit + 7 existing
 integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
 and a two-process comparison of 49 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
 

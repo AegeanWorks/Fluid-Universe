@@ -2,7 +2,7 @@
 //!
 //! Port of the former `phenomenology/*_report.py` scripts, `run_all.py` and
 //! `verification/verify.py`. Every check family is rendered twice: as
-//! deterministic JSON (`schema: 1`, FNV-1a `config_sha256`, in-process provenance)
+//! deterministic JSON (`schema: 2`, FNV-1a check fingerprint, in-process provenance)
 //! and as a Markdown table. All JSON is hand-escaped; the crate has no
 //! dependencies.
 
@@ -54,7 +54,6 @@ fn family_checks(name: &str) -> Vec<crate::Check> {
 }
 
 /// FNV-1a over the bytes of `text`, rendered as 16 lowercase hex digits.
-/// (The field is historically called `config_sha256` even though it is FNV-1a.)
 fn fnv1a_16(text: &[u8]) -> String {
     let mut hash: u64 = 0xcbf2_9ce4_8422_2325;
     for &byte in text {
@@ -66,7 +65,7 @@ fn fnv1a_16(text: &[u8]) -> String {
 
 /// Stable hash of a family name plus its ordered checks, using the same
 /// canonical `id|value|detail` line format as `crate::fingerprint`.
-fn config_hash(name: &str, checks: &[crate::Check]) -> String {
+fn checks_fingerprint(name: &str, checks: &[crate::Check]) -> String {
     let mut text = String::new();
     let _ = writeln!(text, "{name}");
     for check in checks {
@@ -110,9 +109,9 @@ fn json_report(
     verification: &crate::verify::Verification,
 ) -> String {
     let mut out = String::new();
-    out.push_str("{\"schema\":1,\"generator\":\"fluid-universe-rust\"");
+    out.push_str("{\"schema\":2,\"generator\":\"fluid-universe-rust\"");
     let _ = write!(out, ",\"name\":\"{}\"", json_escape(name));
-    let _ = write!(out, ",\"config_sha256\":\"{}\"", json_escape(hash));
+    let _ = write!(out, ",\"checks_fnv1a64\":\"{}\"", json_escape(hash));
     out.push_str(",\"checks\":[");
     for (index, check) in checks.iter().enumerate() {
         if index > 0 {
@@ -170,7 +169,7 @@ fn markdown_report(
         verification.run2,
         if verification.agree { "PASS" } else { "FAIL" }
     );
-    let _ = writeln!(out, "- config_sha256 (FNV-1a): `{hash}`.");
+    let _ = writeln!(out, "- Check-results FNV-1a 64-bit fingerprint: `{hash}` (not a configuration hash or cryptographic digest).");
     out
 }
 
@@ -182,7 +181,7 @@ pub fn build_reports() -> Vec<GeneratedReport> {
         .iter()
         .map(|&name| {
             let checks = family_checks(name);
-            let hash = config_hash(name, &checks);
+            let hash = checks_fingerprint(name, &checks);
             GeneratedReport {
                 name: name.to_string(),
                 json: json_report(name, &checks, &hash, &verification),
@@ -225,8 +224,8 @@ pub fn checks() -> Vec<crate::Check> {
         if !checks.is_empty() && checks.iter().all(|check| check.id.starts_with(&prefix)) {
             prefix_ok += 1;
         }
-        let first = config_hash(name, &checks);
-        let second = config_hash(name, &family_checks(name));
+        let first = checks_fingerprint(name, &checks);
+        let second = checks_fingerprint(name, &family_checks(name));
         if first == second {
             hash_stable += 1;
         }
@@ -236,7 +235,7 @@ pub fn checks() -> Vec<crate::Check> {
         Check::new("reports.families", FAMILIES.len() as f64, "number of generated report families"),
         Check::new("reports.checks", total as f64, "total checks rendered across all families"),
         Check::new("reports.prefix_ok", prefix_ok as f64, "families whose check ids carry the family prefix"),
-        Check::new("reports.hash_stable", hash_stable as f64, "families whose config_sha256 is stable across rebuilds"),
+        Check::new("reports.hash_stable", hash_stable as f64, "families whose check-results FNV-1a fingerprint is stable across rebuilds"),
     ]
 }
 
@@ -298,11 +297,13 @@ mod tests {
     fn json_has_schema_generator_checks_and_audit() {
         for report in build_reports() {
             let json = &report.json;
+            assert!(json.contains("\"schema\":2"));
+            assert!(json.contains("\"checks_fnv1a64\":"));
+            assert!(!json.contains("\"config_sha256\":"));
             assert!(json.starts_with('{') && json.ends_with('}'));
-            assert!(json.contains("\"schema\":1"));
             assert!(json.contains("\"generator\":\"fluid-universe-rust\""));
             assert_eq!(quoted_field(json, "name"), report.name);
-            assert_eq!(quoted_field(json, "config_sha256").len(), 16);
+            assert_eq!(quoted_field(json, "checks_fnv1a64").len(), 16);
             assert!(json.contains("\"checks\":["));
             assert!(json.contains("\"audit\":{"));
             assert!(json.contains("\"mode\":\"in_process\""));
@@ -334,7 +335,7 @@ mod tests {
         assert_eq!(first.len(), second.len());
         for (a, b) in first.iter().zip(second.iter()) {
             assert_eq!(a.name, b.name);
-            assert_eq!(quoted_field(&a.json, "config_sha256"), quoted_field(&b.json, "config_sha256"));
+            assert_eq!(quoted_field(&a.json, "checks_fnv1a64"), quoted_field(&b.json, "checks_fnv1a64"));
             assert_eq!(a.json, b.json);
         }
     }
@@ -344,6 +345,14 @@ mod tests {
         let escaped = json_escape("a\"b\\c\nd\re\tf\u{01}g|h");
         assert_eq!(escaped, "a\\\"b\\\\c\\nd\\re\\tf\\u0001g|h");
         assert_eq!(md_cell("a|b\nc"), "a\\|b c");
+    }
+
+    #[test]
+    fn fnv1a_matches_known_vector_and_changes_with_check_results() {
+        assert_eq!(fnv1a_16(b"hello"), "a430d84680aabd0b");
+        let first = [crate::Check::new("sample", 1.0, "x")];
+        let changed = [crate::Check::new("sample", 2.0, "x")];
+        assert_ne!(checks_fingerprint("family", &first), checks_fingerprint("family", &changed));
     }
 
     #[test]

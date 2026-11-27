@@ -1297,3 +1297,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Independently re-derived the measured pole-mass fit's a, c and Q and propagated the frozen independent mass errors to obtain linearized sigma_Q = 5.080958197e-6. A finite-difference regression checks the dominant tau-mass derivative.
 - This is partial claim 3a evidence; the phase parameter, other uncertainties and original Monte Carlo remain to be reviewed. Two processes agree on 49 audit records.
+
+## 2026-11-27 - Correct Rust report fingerprint schema (ADR-079)
+
+- Rust report JSON schema 2 replaces `config_sha256` with `checks_fnv1a64`. The value is a 64-bit non-cryptographic FNV-1a fingerprint of the family name and rendered checks, not SHA-256 and not a configuration hash.
+- All 11 regenerated report fingerprints match their schema 1 predecessors; historical non-Rust reports retain their original format. Consumers of Rust reports must migrate by schema version.

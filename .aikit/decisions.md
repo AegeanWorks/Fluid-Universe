@@ -562,3 +562,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The prior claim 3a audit tests a predicted tau mass rather than the fit to the measured pole masses.
 - **Decision**: Use the frozen 2024 masses and independent mass errors, calculate inverse DFT magnitudes and first-order Q propagation separately, and expose a numeric audit record. The linearized uncertainty is not the original Monte Carlo result.
 - **Consequences**: Add a finite-difference regression and update the audit manifest, reports and coverage inventory. The phase parameter, other parameter uncertainties and Monte Carlo remain unverified by this record.
+
+### ADR-079: Correct Rust report check fingerprint schema
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Schema 1 names a 64-bit FNV-1a hash of family names and rendered check results config_sha256, implying both an incorrect algorithm and input.
+- **Decision**: Bump Rust report JSON to schema 2 and replace config_sha256 with checks_fnv1a64. Label Markdown provenance as a non-cryptographic check-results fingerprint. Preserve historical non-Rust reports in their original formats.
+- **Consequences**: Consumers must branch on schema and migrate the field name. The hash algorithm and bytes remain unchanged; this fingerprint is not a SHA-256 digest or a configuration hash.
