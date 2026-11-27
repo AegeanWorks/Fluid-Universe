@@ -520,3 +520,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: ADR-064 and claim 66 confused the SU(N) index N with rank N-1; ADR-065 also misstated the rank boundary. README omitted the minimality search bounds.
 - **Decision**: SU(7), SU(17), and SU(23) have ranks 6, 16, and 22. The N<=6 search covers ranks 1 through 5; N>6 is outside that search. The SU(7) minimality result applies within N<=7 and Dynkin entries<=20. Historical ADRs remain unchanged and are corrected by this record.
 - **Consequences**: Correct claim and audit wording, constrain the README summary, regenerate fingerprints and reports; the search domains and arithmetic are unchanged.
+
+### ADR-073: Correct in-process report verification provenance
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Report generation and selftest compare derivations in the same process while labelling their result G-001 two-process evidence. The separate verify command launches two processes but compares aggregate fingerprints.
+- **Decision**: Label report and selftest results as in-process determinism checks, retain existing audit fields and add mode=in_process. Do not treat those checks as G-001 evidence. Record that the separate verifier compares aggregate fingerprints, not explicit per-claim results.
+- **Consequences**: Regenerate reports, correct README, and retain an explicit follow-up to compare per-claim outputs in separate processes. Numerical computations are unchanged.

@@ -1,7 +1,8 @@
-//! Project rule G-001: every check must be re-derived in two SEPARATE processes.
+//! Project rule G-001 requires per-claim agreement in two separate processes.
 //!
 //! The library offers a pure comparator; the binary's `verify` subcommand runs
-//! itself twice with `fingerprint`, so the two results cannot share mutable state.
+//! itself twice with `fingerprint`. It compares aggregate hashes, so it does
+//! not yet establish the required per-claim agreement.
 
 use crate::{Check, all_checks, fingerprint};
 
@@ -16,7 +17,7 @@ pub struct Verification {
 impl Verification {
     pub fn line(&self) -> String {
         format!(
-            "G-001 two-process verification: {} checks, run1={}, run2={}, agreement={}",
+            "In-process determinism check (not G-001 evidence): {} checks, run1={}, run2={}, agreement={}",
             self.checks,
             self.run1,
             self.run2,
@@ -26,7 +27,7 @@ impl Verification {
 }
 
 /// Re-derive all checks twice in the same process. Useful as a cheap determinism
-/// smoke test; delivery uses `verify` in the binary, which spawns two processes.
+/// smoke test; the binary's `verify` spawns two processes but compares hashes.
 /// NOT valid G-001 evidence: both derivations share one process.
 /// The `verify` subcommand must spawn two child processes instead.
 pub fn verify_in_process() -> Verification {

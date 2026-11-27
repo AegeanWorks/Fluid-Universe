@@ -1268,3 +1268,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Corrected SU(7) to rank 6 in claim 66 and its audit output. The earlier SU(17) and SU(23) hosts have ranks 16 and 22; the N<=6 search covers ranks 1 through 5.
 - Clarified that the SU(7) minimality result is bounded to N<=7 and Dynkin entries<=20. Search inputs and numerical findings are unchanged.
 - Regenerated the two-process report fingerprint: `8b67325e9175b32c` (612 checks).
+
+## 2026-11-27 - Correct verification provenance (ADR-073)
+
+- Report generation and selftest compare results within one process. Their output now identifies that limit and no longer presents the comparison as G-001 evidence; JSON audit objects include `mode: in_process`.
+- The standalone verifier does launch two processes, but compares aggregate fingerprints rather than individual claim records. Explicit per-claim comparison remains outstanding under G-001.

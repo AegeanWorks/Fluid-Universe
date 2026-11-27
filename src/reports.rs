@@ -2,7 +2,7 @@
 //!
 //! Port of the former `phenomenology/*_report.py` scripts, `run_all.py` and
 //! `verification/verify.py`. Every check family is rendered twice: as
-//! deterministic JSON (`schema: 1`, FNV-1a `config_sha256`, G-001 provenance)
+//! deterministic JSON (`schema: 1`, FNV-1a `config_sha256`, in-process provenance)
 //! and as a Markdown table. All JSON is hand-escaped; the crate has no
 //! dependencies.
 
@@ -129,7 +129,7 @@ fn json_report(
     out.push(']');
     let _ = write!(
         out,
-        ",\"audit\":{{\"run1\":\"{}\",\"run2\":\"{}\",\"checks\":{},\"agree\":{},\"line\":\"{}\"}}",
+        ",\"audit\":{{\"mode\":\"in_process\",\"run1\":\"{}\",\"run2\":\"{}\",\"checks\":{},\"agree\":{},\"line\":\"{}\"}}",
         json_escape(&verification.run1),
         json_escape(&verification.run2),
         verification.checks,
@@ -165,7 +165,7 @@ fn markdown_report(
     out.push_str("- Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).\n");
     let _ = writeln!(
         out,
-        "- G-001 two-process fingerprint: run1={}, run2={}, agreement={}.",
+        "- In-process determinism fingerprint (not G-001 evidence): run1={}, run2={}, agreement={}.",
         verification.run1,
         verification.run2,
         if verification.agree { "PASS" } else { "FAIL" }
@@ -176,8 +176,7 @@ fn markdown_report(
 
 /// Build one JSON + Markdown report per check-family prefix.
 pub fn build_reports() -> Vec<GeneratedReport> {
-    // One in-process two-run derivation supplies the G-001 audit object for
-    // every report; it is deterministic and does not recurse into this module.
+    // These two derivations share a process and are not G-001 evidence.
     let verification = crate::verify::verify_in_process();
     FAMILIES
         .iter()
@@ -306,6 +305,8 @@ mod tests {
             assert_eq!(quoted_field(json, "config_sha256").len(), 16);
             assert!(json.contains("\"checks\":["));
             assert!(json.contains("\"audit\":{"));
+            assert!(json.contains("\"mode\":\"in_process\""));
+            assert!(!json.contains("G-001 two-process verification"));
             assert!(json.contains("\"run1\":"));
             assert!(json.contains("\"run2\":"));
             assert!(json.contains("\"agree\":true"));
@@ -321,7 +322,7 @@ mod tests {
             assert!(md.contains("| --- | --- | --- |"));
             assert!(md.contains("## Provenance"));
             assert!(md.contains("fluid-universe-rust"));
-            assert!(md.contains("G-001 two-process fingerprint"));
+            assert!(md.contains("In-process determinism fingerprint (not G-001 evidence)"));
             assert!(md.contains("PASS"));
         }
     }

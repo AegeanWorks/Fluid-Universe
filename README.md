@@ -25,12 +25,14 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   cargo run -- json           # machine-readable check list
   cargo run -- <module>       # one family: circulant|spectra|rotor|derrick|fluid|radial_shell|multi_radial_shell|water|lorentz
   ```
-- **Verify independently (two separate processes, project rule G-001)**:
+- **Check reproducibility in two separate processes**:
   ```bash
   cargo run -- verify
   ```
   The binary spawns itself twice with `fingerprint`, compares the two 64-bit fingerprints, and exits
-  non-zero on disagreement. One process deriving a result twice is explicitly not accepted.
+  non-zero on disagreement. This is an aggregate fingerprint comparison; it does not yet
+  compare individual claim results as project rule G-001 requires. One process deriving a
+  result twice is also not accepted as G-001 evidence.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](MIGRATION.md).
@@ -253,7 +255,7 @@ fluid-universe/
 
 ## Conventions and Non-Negotiables
 
-- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and the G-001 two-process fingerprint.
+- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a deterministic config hash and an in-process determinism check. Run `cargo run -- verify` separately for two-process evidence.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
 - No production 3D simulation number is cited until `src/simulation.rs` passes its full baseline test set. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.

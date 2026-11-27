@@ -29,7 +29,7 @@ fn check_ids_are_unique() {
 }
 
 #[test]
-fn two_derivations_agree_without_shared_state() {
+fn two_in_process_derivations_agree() {
     let result = verify::verify_in_process();
     assert!(result.agree, "{}", result.line());
     assert_eq!(result.checks, all_checks().len());
