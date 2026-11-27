@@ -1,28 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795741793.08608,
+    "completed_head": "150a6f67792cf7cbc91cfbcc3d94127ed1a377fc",
+    "completed_tree": "cd075657b7f47af1bf22b90303c285fc9a612ca2",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795748955.21141,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-pole-fit-audit",
     "updated_at": 1795741755.21141
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Corrected SU(N) rank and bounded scope; regression and four project gates pass; 612 checks agree in two processes",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su-rank-correction",
-      "timestamp": 1795740259.61652,
-      "timestamp_str": "2026-11-27 03:44:19"
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -316,6 +307,23 @@
       "task_id": "fluid-pole-fit-audit",
       "timestamp": 1795741755.21141,
       "timestamp_str": "2026-11-27 04:09:15"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-pole-fit-audit' completed successfully.",
+      "head": "150a6f67792cf7cbc91cfbcc3d94127ed1a377fc",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-pole-fit-audit",
+      "timestamp": 1795741793.08608,
+      "timestamp_str": "2026-11-27 04:09:53"
     }
   ],
   "version": 1
