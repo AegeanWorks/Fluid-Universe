@@ -1317,3 +1317,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Removed the absolute amplitude cutoff that incorrectly zeroed nondegenerate small-scale phases. Exactly equal roots now return zero amplitude and phase; near degeneracy the phase is ill-conditioned.
 - A regression verifies scaled fit reconstruction and the equal-root convention. Existing check fingerprints remain unchanged.
+
+## 2026-11-27 - Correct witness N labels (ADR-083)
+
+- The three `singlemodel.witness*_n` checks report the SU(N) parameter N, not rank; their descriptions now say so. The SU(7) search test name now correctly says rank six.
+- Numeric witness values and search results are unchanged; regenerated report fingerprints reflect the corrected descriptions.

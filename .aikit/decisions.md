@@ -590,3 +590,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: An absolute 1e-14 amplitude cutoff zeroed the phase for valid small-scale nondegenerate roots, producing incorrect fit reconstruction.
 - **Decision**: Return zero amplitude and phase for exactly equal roots; otherwise use the computed phase unless the computed amplitude is zero.
 - **Consequences**: Small nondegenerate fits retain their phase across scales. Near degeneracy phase is ill-conditioned and should not be interpreted as precisely determined.
+
+### ADR-083: Correct remaining witness N labels
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Three numeric checks named witnessN_n report N=17, 23 and 7 but described these values as group ranks; a test name also called SU(7) rank seven.
+- **Decision**: Keep check identifiers and numeric values as N, label them parameter N, and correct the test name to rank six.
+- **Consequences**: Check details and generated fingerprints change; the group representations and search arithmetic do not.

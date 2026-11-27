@@ -43,7 +43,7 @@ fn all_positive_levels_reproduce_the_inverse_negative() {
 }
 
 #[test]
-fn relaxed_label_inverse_search_finds_the_rank_seven_host() {
+fn relaxed_label_inverse_search_finds_the_rank_six_host() {
     let result = relaxed_inverse_search();
     assert_eq!(result.labels_tested, 125_888);
     assert_eq!(result.models_with_any_phase, 1_259);

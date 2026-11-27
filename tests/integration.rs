@@ -15,7 +15,13 @@ fn all_modules_publish_checks() {
     assert!(!simulation::checks().is_empty());
     assert!(!audit::checks().is_empty());
     assert!(!reports::checks().is_empty());
-    assert!(all_checks().len() >= 90);
+    let checks = all_checks();
+    assert!(checks.len() >= 90);
+    for (id, n) in [("singlemodel.witness0_n", 17.0), ("singlemodel.witness1_n", 23.0), ("singlemodel.witness2_n", 7.0)] {
+        let check = checks.iter().find(|check| check.id == id).unwrap();
+        assert_eq!(check.value, n);
+        assert!(check.detail.contains("parameter N"));
+    }
 }
 
 #[test]

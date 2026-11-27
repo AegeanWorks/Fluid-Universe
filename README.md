@@ -56,6 +56,7 @@ SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
 the remaining coset has central charge 920175833/26488605. The full block
 centralizer has three U(1) directions, and one remains in the coset. This
 calculation does not identify Standard Model hypercharge or matter dynamics.
+For SU(N), the group rank is N-1; witness checks ending in `_n` report N.
 
 | Item | Verdict | Where |
 |---|---|---|

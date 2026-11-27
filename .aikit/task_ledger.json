@@ -1,48 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795742868.35143,
-    "completed_head": "0fa4d1f8d8becbbca94fd7e0a2fe6bf9a73410bc",
-    "completed_tree": "6675a1bbd8a55b9e8c35cd5ed63ec0cb3f2fbcab",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795750022.91519,
+    "lease_until": 1795750346.73221,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-fit-scale-invariance",
-    "updated_at": 1795742822.91519
+    "status": "in_progress",
+    "task_id": "fluid-witness-rank-labels",
+    "updated_at": 1795743146.73221
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Independent matrix spot checks and perturbation regression pass; 48 audit records agree across two processes; four project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-circulant-audit",
-      "timestamp": 1795741316.93638,
-      "timestamp_str": "2026-11-27 04:01:56"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-circulant-audit' completed successfully.",
-      "head": "25cc2bcadbd6f053be485306efec6885eb1f49de",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-circulant-audit",
-      "timestamp": 1795741356.50097,
-      "timestamp_str": "2026-11-27 04:02:36"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Reject identical partial audit outputs using an explicit synchronized record manifest",
@@ -324,6 +292,36 @@
       "task_id": "fluid-fit-scale-invariance",
       "timestamp": 1795742868.35143,
       "timestamp_str": "2026-11-27 04:27:48"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Correct remaining SU(N) witness check labels and test name",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Prevents machine-readable results from misidentifying SU(N) rank",
+        "mitigation": "Keep existing N-valued check IDs and numbers, label them N, correct the test name, add regression and regenerate reports with project verification",
+        "risks": "contract: check details and fingerprints change; dependency: none; concurrency: none; state: source, tests, reports and docs",
+        "why": "Three emitted witness N values and a test name still call N the group rank after the ledger correction"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "5d711cad44e568cc045c2dfbf8040a2a2d412d9719e919f125b85fa85fcfaa43",
+      "status": "in_progress",
+      "task_id": "fluid-witness-rank-labels",
+      "timestamp": 1795743013.04567,
+      "timestamp_str": "2026-11-27 04:30:13"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Corrected emitted N descriptions and SU(7) test name; two-process audit and four project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-witness-rank-labels",
+      "timestamp": 1795743146.73221,
+      "timestamp_str": "2026-11-27 04:32:26"
     }
   ],
   "version": 1

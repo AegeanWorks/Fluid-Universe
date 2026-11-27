@@ -667,7 +667,7 @@ pub fn checks() -> Vec<Check> {
         Check::new(
             "singlemodel.witness0_n",
             WITNESSES[0].n as f64,
-            "first witness SU(17) rank",
+            "first witness SU(17) parameter N",
         ),
         Check::new(
             "singlemodel.witness0_k",
@@ -682,7 +682,7 @@ pub fn checks() -> Vec<Check> {
         Check::new(
             "singlemodel.witness1_n",
             WITNESSES[1].n as f64,
-            "second witness SU(23) rank",
+            "second witness SU(23) parameter N",
         ),
         Check::new(
             "singlemodel.witness1_k",
@@ -697,7 +697,7 @@ pub fn checks() -> Vec<Check> {
         Check::new(
             "singlemodel.witness2_n",
             WITNESSES[2].n as f64,
-            "third witness SU(7) rank",
+            "third witness SU(7) parameter N",
         ),
         Check::new(
             "singlemodel.witness2_k",
