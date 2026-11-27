@@ -1,34 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795742868.35143,
+    "completed_head": "0fa4d1f8d8becbbca94fd7e0a2fe6bf9a73410bc",
+    "completed_tree": "6675a1bbd8a55b9e8c35cd5ed63ec0cb3f2fbcab",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795750022.91519,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-fit-scale-invariance",
     "updated_at": 1795742822.91519
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Add independent matrix-level checks for circulant Hermiticity and DFT eigenvectors",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Adds independently constructed matrix residuals and a generic nonsymmetry control to the two-process audit",
-        "mitigation": "Use independent real-pair arithmetic over varied inputs, test perturbation sensitivity, label results numeric and retain the symbolic proof gap",
-        "risks": "contract: audit records and fingerprints change; dependency: none; concurrency: none; state: source, reports and documentation; physics: numerical samples do not prove universal symbolic claims",
-        "why": "Claims 2a and 2b lack mapped audit evidence; claim 1a audit does not check the matrix eigenvalue equation"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "fa4207d8afda98a5ad993f733755d6b186237db0f74d6859114b58b4ff3ff16d",
-      "status": "in_progress",
-      "task_id": "fluid-circulant-audit",
-      "timestamp": 1795741182.66438,
-      "timestamp_str": "2026-11-27 03:59:42"
-    },
     {
       "agent": "codex:fluid",
       "checklists": "passed",
@@ -322,6 +307,23 @@
       "task_id": "fluid-fit-scale-invariance",
       "timestamp": 1795742822.91519,
       "timestamp_str": "2026-11-27 04:27:02"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-fit-scale-invariance' completed successfully.",
+      "head": "0fa4d1f8d8becbbca94fd7e0a2fe6bf9a73410bc",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-fit-scale-invariance",
+      "timestamp": 1795742868.35143,
+      "timestamp_str": "2026-11-27 04:27:48"
     }
   ],
   "version": 1
