@@ -548,3 +548,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The signed-Q audit did not multiply the circulant matrix by DFT vectors, and claims 2a and 2b had not been assessed for audit coverage.
 - **Decision**: Construct the complex matrix independently with real-imaginary pairs, test Hermiticity, a generic nonsymmetry example, and the DFT eigenvalue equation across fixed parameters. Mark the resulting audit rows NUMERIC, not symbolic proof.
 - **Consequences**: Add a perturbation regression, two-process record comparison, regenerated reports and update the coverage inventory. Universal symbolic statements and full G-001 claim coverage remain open.
+
+### ADR-077: Require the expected audit record manifest
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Two identical truncated audit outputs could pass exact comparison even when both omitted complete records.
+- **Decision**: Compare both outputs and require their ordered IDs to match a fixed manifest. A regression compares the manifest with the audit registry; additions or removals must update it.
+- **Consequences**: Missing, extra or substituted audit records fail verification. This checks the audit record set, not whether all accepted claims are covered.

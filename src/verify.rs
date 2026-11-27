@@ -5,6 +5,30 @@
 
 use crate::{Check, all_checks, fingerprint};
 
+/// Expected audit identifiers in output order; update alongside audit rows.
+pub const AUDIT_RECORD_IDS: &[&str] = &[
+    "audit.circulant_matrix_structure", "audit.circulant_dft_eigenvectors",
+    "audit.q_identity", "audit.koide_ratio_condition", "audit.z3_not_fixed",
+    "audit.sign_caveat", "audit.tau_prediction", "audit.r_invariance",
+    "audit.neutrino_q_max", "audit.quark_q", "audit.rotor_degeneracy",
+    "audit.wall_tension", "audit.derrick_virial", "audit.equal_k_isotropy",
+    "audit.k123_anisotropy", "audit.delta_closed_form", "audit.hopf_preimage_charge",
+    "audit.z3_limits", "audit.vortex_blob_fraction", "audit.marcus_width",
+    "audit.radial_shell_scale", "audit.radial_shell_singular_slope", "audit.radial_shell_phase",
+    "audit.radial_shell_quantum_pressure", "audit.radial_shell_gates",
+    "audit.multi_radial_shell_nodes", "audit.multi_radial_shell_singular",
+    "audit.multi_radial_shell_phase", "audit.multi_radial_shell_quantum_pressure",
+    "audit.multi_radial_shell_gates", "audit.single_model_search_coverage",
+    "audit.single_model_known_labels", "audit.single_model_exists",
+    "audit.single_model_witness_su17", "audit.single_model_witness_su23",
+    "audit.single_model_inverse_search", "audit.single_model_witness_su7",
+    "audit.single_model_relaxed_inverse", "audit.lower_rank_inverse_search",
+    "audit.minimal_level_inverse_search", "audit.minimal_witness_search",
+    "audit.minimal_witness_canonical", "audit.su7_conformal_weights",
+    "audit.su7_quantum_dimensions", "audit.sm_conformal_embedding",
+    "audit.sm_coset_central_charge", "audit.all_hosts_sm_embedding", "audit.su7_block_sm_coset",
+];
+
 #[derive(Clone, Debug)]
 pub struct Verification {
     pub run1: String,
@@ -72,6 +96,16 @@ pub fn compare_audit_records(first: &str, second: &str) -> Result<usize, String>
     Ok(count)
 }
 
+/// Require both exact agreement and the complete expected ordered ID list.
+pub fn compare_expected_audit_records(first: &str, second: &str, expected: &[&str]) -> Result<usize, String> {
+    let count = compare_audit_records(first, second)?;
+    if expected.is_empty() || !first.lines().map(|line| line.split('\t').next().unwrap_or(""))
+        .eq(expected.iter().copied()) {
+        return Err("audit record IDs do not match the expected manifest".into());
+    }
+    Ok(count)
+}
+
 /// Run a caller-supplied derivation twice and report whether it is reproducible.
 pub fn verify_with(derive: impl Fn() -> Vec<Check>) -> Verification {
     let first = derive();
@@ -109,6 +143,17 @@ mod tests {
         let duplicate = "audit.a\t3ff0000000000000\tx\naudit.a\t3ff0000000000000\tx\n";
         assert!(compare_audit_records(duplicate, duplicate).is_err());
         assert!(compare_audit_records("audit.a\tbad\tx\n", "audit.a\tbad\tx\n").is_err());
+    }
+
+    #[test]
+    fn identical_partial_or_substituted_records_are_rejected() {
+        let expected = ["audit.a", "audit.b"];
+        let both = "audit.a\t3ff0000000000000\tx\naudit.b\t4000000000000000\ty\n";
+        assert_eq!(compare_expected_audit_records(both, both, &expected), Ok(2));
+        let partial = "audit.a\t3ff0000000000000\tx\n";
+        assert!(compare_expected_audit_records(partial, partial, &expected).is_err());
+        let substituted = both.replace("audit.b", "audit.c");
+        assert!(compare_expected_audit_records(&substituted, &substituted, &expected).is_err());
     }
 
     #[test]

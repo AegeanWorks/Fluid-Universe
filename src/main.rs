@@ -206,7 +206,7 @@ fn main() {
             let first = spawn_audit_records();
             let second = spawn_audit_records();
             match (first, second) {
-                (Ok(a), Ok(b)) => match verify::compare_audit_records(&a, &b) {
+                (Ok(a), Ok(b)) => match verify::compare_expected_audit_records(&a, &b, verify::AUDIT_RECORD_IDS) {
                     Ok(count) => {
                         println!("Two-process audit record comparison: {count} records, agreement=PASS; full ledger coverage not established");
                     }

@@ -1287,3 +1287,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Constructed the complex matrix independently and checked Hermiticity, generic nonsymmetry and the DFT eigenvalue equation at fixed parameter samples. A perturbation regression detects broken matrix structure.
 - Two processes agree on 48 audit records. The matrix checks are numeric spot checks; symbolic proof and complete G-001 coverage remain open.
+
+## 2026-11-27 - Require the complete audit record manifest (ADR-077)
+
+- Separate-process comparison now rejects matching partial, missing or substituted records by requiring the fixed ordered audit ID manifest. A regression binds the manifest to the current audit registry.
+- This checks that all expected audit records were emitted; it does not establish coverage of all accepted claims.

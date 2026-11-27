@@ -68,7 +68,7 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **614 reproducible checks**, **374 passing tests** (342 unit + 7 existing
+Verified: **614 reproducible checks**, **375 passing tests** (343 unit + 7 existing
 integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
 and a two-process comparison of 48 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
 

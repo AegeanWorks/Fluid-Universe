@@ -1804,6 +1804,7 @@ mod tests {
         let first = checks();
         let second = checks();
         assert_eq!(first.len(), second.len());
+        assert_eq!(first.iter().map(|check| check.id).collect::<Vec<_>>(), crate::verify::AUDIT_RECORD_IDS);
         let mut ids = std::collections::HashSet::new();
         for (a, b) in first.iter().zip(second.iter()) {
             assert_eq!(a.id, b.id);
