@@ -1,34 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795741569.58103,
+    "completed_head": "9ccaf614d35a4bd62e1c616e92e41ec40f1d76f8",
+    "completed_tree": "516a43ca2b414d6372ad83d6691e3fff6a3ad775",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795748738.69177,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-audit-manifest",
     "updated_at": 1795741538.69177
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[2/2] Claim 73 exact audit and generator regression pass; 372 tests, 612 two-process checks; AIKit hygiene, guidelines, secrets and test gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-claim-73-su7-block-sm-v1",
-      "timestamp": 1795740006.6624,
-      "timestamp_str": "2026-11-27 03:40:06",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -322,6 +307,23 @@
       "task_id": "fluid-audit-manifest",
       "timestamp": 1795741538.69177,
       "timestamp_str": "2026-11-27 04:05:38"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-audit-manifest' completed successfully.",
+      "head": "9ccaf614d35a4bd62e1c616e92e41ec40f1d76f8",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-audit-manifest",
+      "timestamp": 1795741569.58103,
+      "timestamp_str": "2026-11-27 04:06:09"
     }
   ],
   "version": 1
