@@ -36,6 +36,11 @@ fn hypothetical_su7_assignment_has_eight_su2_doublets() {
 }
 
 #[test]
+fn hypothetical_su7_assignment_has_zero_local_subgroup_anomalies() {
+    assert_eq!(fluid_universe::single_model_test::su7_subgroup_anomaly_coefficients(), [0; 5]);
+}
+
+#[test]
 fn known_singlet_labels_are_exact_rationals() {
     let lepton = braiding_fraction(3, 9, &[0, 0]);
     let down = braiding_fraction(2, 13, &[0]);

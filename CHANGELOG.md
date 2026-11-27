@@ -1346,3 +1346,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - The hypothetical `21 + 3 anti-7` assignment contains eight SU(2) Weyl doublets counting color multiplicity. An independent restriction gives the same result, while two anti-7s provide an odd seven-doublet control.
 - This addresses the original SU(2) doublet parity obstruction only; other global anomalies, physical matter and WZW realization remain open.
+
+## 2026-11-27 - Conditional local subgroup anomalies (claim 78, ADR-089)
+
+- Five specified SU(3), SU(2), U(1) and mixed gauge-gravitational coefficients vanish for the hypothetical Weyl assignment. An independent calculation checks the generation and vectorlike pair separately, with a nonzero unpaired control.
+- This does not establish complete global anomaly freedom, physical fermions or WZW dynamics.

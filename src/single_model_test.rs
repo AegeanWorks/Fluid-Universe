@@ -620,6 +620,28 @@ pub fn su7_weak_doublet_count() -> usize {
         .sum()
 }
 
+/// Integer-normalized local subgroup coefficients for the fixed Weyl assignment.
+/// Order: SU(3)^3, SU(3)^2 U(1), SU(2)^2 U(1), gravity^2 U(1), U(1)^3.
+/// Hypercharge uses q=6Y and fundamental nonabelian indices are normalized to 1.
+pub fn su7_subgroup_anomaly_coefficients() -> [i64; 5] {
+    subgroup_anomaly_coefficients(&su7_hypercharge_branching())
+}
+
+fn subgroup_anomaly_coefficients(multiplets: &[(i8, u8, i8, u8)]) -> [i64; 5] {
+    let mut sums = [0_i64; 5];
+    for &(color, weak, q, copies) in multiplets {
+        let (dim, weak, q, copies) = (i64::from(color.unsigned_abs()), i64::from(weak), i64::from(q), i64::from(copies));
+        if dim == 3 {
+            sums[0] += i64::from(color.signum()) * weak * copies;
+            sums[1] += q * weak * copies;
+        }
+        if weak == 2 { sums[2] += q * dim * copies; }
+        sums[3] += q * dim * weak * copies;
+        sums[4] += q.pow(3) * dim * weak * copies;
+    }
+    sums
+}
+
 /// Cubic Cartan weight tensor for one 21 and `antifundamentals` anti-7s.
 /// This is a hypothetical four-dimensional Weyl-matter consistency check.
 pub fn su7_cartan_cubic_anomaly(antifundamentals: u8) -> [i64; 216] {
@@ -882,6 +904,11 @@ pub fn checks() -> Vec<Check> {
             "SU(2) doublets with color multiplicity for hypothetical 21 plus three anti-7 Weyl fields",
         ),
         Check::new(
+            "singlemodel.su7_subgroup_anomaly_max",
+            su7_subgroup_anomaly_coefficients().iter().map(|value| value.abs()).max().unwrap_or(0) as f64,
+            "maximum integer-normalized local subgroup anomaly coefficient for hypothetical Weyl assignment",
+        ),
+        Check::new(
             "singlemodel.sm_charge_compatible",
             if sm_charge_compatible { 1.0 } else { 0.0 },
             "necessary central-charge compatibility for direct SM conformal embedding",
@@ -1012,5 +1039,10 @@ mod tests {
             assert_eq!(fractions[1].0 * 10, fractions[1].1);
             assert_eq!(fractions[2].0 * 39, 2 * fractions[2].1);
         }
+    }
+
+    #[test]
+    fn subgroup_anomaly_calculation_detects_unpaired_multiplet() {
+        assert_eq!(subgroup_anomaly_coefficients(&[(3, 2, 1, 1)]), [2, 2, 3, 6, 6]);
     }
 }

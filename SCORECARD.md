@@ -101,5 +101,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 75 | NUMERIC (representation branching) | Independent exterior-product and weight routes give `10 + anti-5 + 2(5 + anti-5) + 7 singlets`; physical realization and anomalies remain open. |
 | 76 | NUMERIC (conditional local cubic anomaly) | For hypothetical left-handed Weyl fields in `21 + 3 anti-7`, the local SU(7) cubic anomaly cancels; global anomalies and physical realization remain open. |
 | 77 | NUMERIC (conditional SU(2) doublet parity) | The same assignment contains eight SU(2) doublets, so the original doublet-parity obstruction is absent; other global questions remain open. |
+| 78 | NUMERIC (conditional local subgroup anomalies) | Five specified SU(3), SU(2), U(1) and mixed gauge-gravitational coefficients vanish with q=6Y; other global questions remain open. |
 
-Claim audit: two Rust processes produced 54 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+Claim audit: two Rust processes produced 55 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

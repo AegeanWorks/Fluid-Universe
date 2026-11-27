@@ -32,7 +32,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   The binary launches two audit processes and compares their identified records exactly,
   including value bits and verdict details. It requires the ordered record IDs to match a
   fixed manifest and exits non-zero on disagreement, missing or malformed records, or a
-  child failure. The current audit has 54 records and has not been mapped to
+  child failure. The current audit has 55 records and has not been mapped to
   every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
@@ -73,6 +73,8 @@ Under the same hypothetical assignment, the chosen SU(2) block has eight Weyl
 doublets counting color multiplicity, so the original odd-doublet obstruction is
 absent ([Witten, 1982](https://www.sciencedirect.com/science/article/pii/0370269382907286)).
 This parity check does not establish the absence of other global anomalies.
+The five specified local subgroup anomaly sums also vanish with `q=6Y`; this
+is conditional on the same Weyl assignment and does not establish its physical realization.
 
 | Item | Verdict | Where |
 |---|---|---|

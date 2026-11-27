@@ -56,9 +56,10 @@
 | `audit.su7_nonabelian_branching` | `4.200000000000000e1` | NUMERIC \| (color,weak,6Y,copies)=[(-3, 1, -4, 1), (-3, 1, 2, 3), (1, 1, 0, 7), (1, 1, 6, 1), (1, 2, -3, 3), (1, 2, 3, 2), (3, 1, -2, 2), (3, 2, 1, 1)]; dimension=42; SU(5) exterior-product route |
 | `audit.su7_local_cubic_anomaly` | `0.000000000000000e0` | NUMERIC \| nonzero cubic polynomial coefficients with 3 anti-7: 0; with 2 anti-7 control: 50; no global anomaly or physical spectrum claim |
 | `audit.su7_su2_doublet_parity` | `8.000000000000000e0` | NUMERIC \| doublets=8, singlets=26, dimension=42; two anti-7 control doublets=7; original SU(2) parity only |
+| `audit.su7_subgroup_local_anomalies` | `0.000000000000000e0` | NUMERIC \| generation=[0, 0, 0, 0, 0], vectorlike_pair=[0, 0, 0, 0, 0], unpaired_control=[2, 2, 3, 6, 6]; q=6Y; no global or physical spectrum claim |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=00ba849ebff85be4, run2=00ba849ebff85be4, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `1cc5dd6fae6698c6` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=ac7f7cd688b92c71, run2=ac7f7cd688b92c71, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `0f4d5081e7834e69` (not a configuration hash or cryptographic digest).

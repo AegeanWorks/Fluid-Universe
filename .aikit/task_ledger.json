@@ -1,49 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795809392.97575,
-    "completed_head": "1f3570ac751a108c61612312f0d07c8ce79f213e",
-    "completed_tree": "f0379a2924e3bf622d0b57811b35b5bff4b31b04",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795816540.01641,
+    "lease_until": 1795817053.28717,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su2-witten-parity",
-    "updated_at": 1795809340.01641
+    "status": "in_progress",
+    "task_id": "fluid-sm-local-anomalies",
+    "updated_at": 1795809853.28717
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Preserve inverse DFT phase for small finite scales and handle exactly degenerate roots",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Restores scale-invariant reconstruction while retaining a deterministic convention for equal roots",
-        "mitigation": "Treat exact equal roots as degenerate, otherwise retain the computed phase, test small-scale reconstruction and exact degeneracy, and run project gates",
-        "risks": "contract: phase behavior changes for small amplitudes and near degeneracy; dependency: none; concurrency: none; state: fit code, tests and documentation",
-        "why": "An absolute amplitude threshold sets a nonzero phase to zero for valid small-scale roots and produces incorrect fitted roots"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "5db38fe02ce8ac36e8b4ba8b2ab99c0905ccdd9c93b46655378459e851640e6c",
-      "status": "in_progress",
-      "task_id": "fluid-fit-scale-invariance",
-      "timestamp": 1795742709.84624,
-      "timestamp_str": "2026-11-27 04:25:09"
-    },
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Small-scale fit reconstruction and equal-root convention pass; existing fingerprint unchanged and all project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-fit-scale-invariance",
-      "timestamp": 1795742822.91519,
-      "timestamp_str": "2026-11-27 04:27:02"
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -318,6 +285,36 @@
       "task_id": "fluid-su2-witten-parity",
       "timestamp": 1795809392.97575,
       "timestamp_str": "2026-11-27 22:56:32"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Compute conditional local Standard Model subgroup anomaly coefficients",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Makes the anomaly accounting for the hypothetical subgroup representation concrete and independently checkable",
+        "mitigation": "Use exact integer 6Y normalizations and explicit color and weak multiplicities, independently separate a generation from vectorlike pairs, test a nonzero control and compare two processes",
+        "risks": "contract: new checks, audit records and fingerprints; dependency: none; concurrency: none; state: source, tests, reports and claims; physics: local coefficients do not establish all global anomalies, physical fermions or WZW dynamics",
+        "why": "The SU(7) cubic and SU(2) parity checks do not explicitly show the mixed hypercharge and gauge-gravity coefficients of the branched assignment"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "12e416311d4b24972f73ef35888fedf4179da59010df69748686ac016e765c63",
+      "status": "in_progress",
+      "task_id": "fluid-sm-local-anomalies",
+      "timestamp": 1795809482.61373,
+      "timestamp_str": "2026-11-27 22:58:02"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Five integer-normalized subgroup coefficients and unpaired control verified; two-process audit and all project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-sm-local-anomalies",
+      "timestamp": 1795809853.28717,
+      "timestamp_str": "2026-11-27 23:04:13"
     }
   ],
   "version": 1

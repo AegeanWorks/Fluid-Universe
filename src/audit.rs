@@ -1753,6 +1753,23 @@ fn rows() -> Vec<Row> {
         value: doublets as f64,
     });
 
+    // Independent arithmetic for one 10 + anti-5 generation and one 5 + anti-5 pair.
+    // Coefficients use q=6Y and nonabelian fundamental indices normalized to one.
+    let generation: [i64; 5] = [2 - 1 - 1, 2 - 4 + 2, 3 - 3,
+        6 - 12 + 6 + 6 - 6, 6 - 192 + 216 + 24 - 54];
+    let pair: [i64; 5] = [1 - 1, -2 + 2, 3 - 3,
+        -6 + 6 + 6 - 6, -24 + 54 + 24 - 54];
+    // An unpaired (3,2) with q=1 must not cancel.
+    let control: [i64; 5] = [2, 2, 3, 6, 6];
+    let subgroup_ok = generation == [0; 5] && pair == [0; 5] && control.iter().all(|x| *x != 0);
+    out.push(Row {
+        id: "audit.su7_subgroup_local_anomalies",
+        claim: "78: hypothetical subgroup local anomalies",
+        verdict: if subgroup_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("generation={generation:?}, vectorlike_pair={pair:?}, unpaired_control={control:?}; q=6Y; no global or physical spectrum claim"),
+        value: generation.iter().chain(pair.iter()).map(|x| x.abs()).max().unwrap_or(0) as f64,
+    });
+
     out
 }
 
@@ -1862,6 +1879,7 @@ mod tests {
         assert_eq!(verdict("75: SU(7) nonabelian multiplet branching"), "NUMERIC");
         assert_eq!(verdict("76: hypothetical SU(7) local cubic anomaly"), "NUMERIC");
         assert_eq!(verdict("77: hypothetical SU(2) doublet parity"), "NUMERIC");
+        assert_eq!(verdict("78: hypothetical subgroup local anomalies"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

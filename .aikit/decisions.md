@@ -632,3 +632,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Perturbative SU(7) cubic anomaly cancellation does not by itself check the original SU(2) global anomaly. Witten showed that an odd number of Weyl doublets is inconsistent: https://www.sciencedirect.com/science/article/pii/0370269382907286.
 - **Decision**: For the hypothetical left-handed 21 plus three anti-7 assignment, count SU(2) doublets with color multiplicity; independently use 7 = 2 + 5 singlets. Expect eight doublets and use two anti-7s as an odd seven-doublet control.
 - **Consequences**: The result concerns only the original SU(2) doublet parity obstruction under the stated assumptions. It does not establish absence of other global anomalies, a physical fermion spectrum or WZW realization.
+
+### ADR-089: Check local subgroup anomaly coefficients for hypothetical SU(7) matter
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The SU(7) cubic and SU(2) parity checks do not explicitly exhibit the subgroup mixed gauge and gauge-gravitational anomaly sums. General anomaly conventions are reviewed in https://arxiv.org/abs/0802.0634.
+- **Decision**: For left-handed Weyl fields in the chosen branching, calculate SU(3)^3, SU(3)^2 U(1), SU(2)^2 U(1), gravitational squared U(1), and U(1)^3 coefficients with integer charge 6Y and fundamental Dynkin indices normalized to one. Independently check the generation and vectorlike pair contributions and a nonzero unpaired control.
+- **Consequences**: This checks only these local subgroup coefficients for a hypothetical assignment. It does not establish complete global anomaly freedom, physical fermions, mass generation or WZW realization.
