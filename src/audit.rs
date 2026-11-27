@@ -825,6 +825,21 @@ struct Row {
     value: f64,
 }
 
+// Independent SU(5) route: wedge²(5 + s·1) = 10 + s·5 + C(s,2)·1;
+// anti-(5 + s·1) = anti-5 + s·1. SU(3) wedge²3 is anti-3 and
+// SU(2) wedge²2 is 1 via their invariant epsilon tensors.
+fn independent_su5_multiplets(singlets: u16, antifundamentals: u16) -> Vec<(i8, u8, i8, u16)> {
+    let mut terms = std::collections::BTreeMap::<(i8, u8, i8), u16>::new();
+    let mut add = |color, weak, charge, copies| {
+        if copies > 0 { *terms.entry((color, weak, charge)).or_default() += copies; }
+    };
+    add(-3, 1, -4, 1); add(3, 2, 1, 1); add(1, 1, 6, 1); // 10
+    add(3, 1, -2, singlets); add(1, 2, 3, singlets); // s copies of 5
+    add(-3, 1, 2, antifundamentals); add(1, 2, -3, antifundamentals); // anti-5
+    add(1, 1, 0, singlets * singlets.saturating_sub(1) / 2 + singlets * antifundamentals);
+    terms.into_iter().map(|((color, weak, charge), copies)| (color, weak, charge, copies)).collect()
+}
+
 // Independent inverse DFT and first-order propagation for fixed positive masses.
 fn independent_pole_fit(masses: [f64; 3], errors: [f64; 3]) -> (f64, f64, f64, f64) {
     let roots = masses.map(f64::sqrt);
@@ -1671,6 +1686,22 @@ fn rows() -> Vec<Row> {
         value: census.iter().sum::<i64>() as f64,
     });
 
+    let multiplets = independent_su5_multiplets(2, 3);
+    let expected_multiplets = vec![
+        (-3, 1, -4, 1), (-3, 1, 2, 3), (1, 1, 0, 7), (1, 1, 6, 1),
+        (1, 2, -3, 3), (1, 2, 3, 2), (3, 1, -2, 2), (3, 2, 1, 1),
+    ];
+    let multiplicity_ok = multiplets == expected_multiplets;
+    let total: u16 = multiplets.iter().map(|(color, weak, _, copies)|
+        color.unsigned_abs() as u16 * *weak as u16 * *copies).sum();
+    out.push(Row {
+        id: "audit.su7_nonabelian_branching",
+        claim: "75: SU(7) nonabelian multiplet branching",
+        verdict: if multiplicity_ok && total == 42 { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("(color,weak,6Y,copies)={multiplets:?}; dimension={total}; SU(5) exterior-product route"),
+        value: total as f64,
+    });
+
     out
 }
 
@@ -1777,6 +1808,7 @@ mod tests {
         assert_eq!(verdict("K=(1,2,3)"), "FALSIFIED");
         assert_eq!(verdict("73: SU(7)_1163 block"), "NUMERIC");
         assert_eq!(verdict("74: SU(7) hypercharge branching census"), "NUMERIC");
+        assert_eq!(verdict("75: SU(7) nonabelian multiplet branching"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
@@ -1881,6 +1913,16 @@ mod tests {
         assert!(approx(q_from_ac(1.0, R_KOIDE), KOIDE, 1e-14));
         let (a, c, delta) = extract_ac(&[1.0, 2.0, 3.0].map(|v| v * v * v));
         assert!(a > 0.0 && c > 0.0 && (0.0..TAU).contains(&delta));
+    }
+
+    #[test]
+    fn independent_su5_decomposition_tracks_extra_singlets() {
+        let base = independent_su5_multiplets(0, 1);
+        assert_eq!(base, vec![(-3, 1, -4, 1), (-3, 1, 2, 1), (1, 1, 6, 1), (1, 2, -3, 1), (3, 2, 1, 1)]);
+        let extended = independent_su5_multiplets(2, 3);
+        assert!(extended.contains(&(1, 1, 0, 7)));
+        assert!(extended.contains(&(3, 1, -2, 2)));
+        assert!(extended.contains(&(-3, 1, 2, 3)));
     }
 
     #[test]

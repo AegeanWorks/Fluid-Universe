@@ -32,7 +32,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   The binary launches two audit processes and compares their identified records exactly,
   including value bits and verdict details. It requires the ordered record IDs to match a
   fixed manifest and exits non-zero on disagreement, missing or malformed records, or a
-  child failure. The current audit has 51 records and has not been mapped to
+  child failure. The current audit has 52 records and has not been mapped to
   every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
@@ -61,8 +61,8 @@ For SU(N), the group rank is N-1; witness checks ending in `_n` report N.
 As a representation exercise, choosing `Y=diag(-2,-2,-2,3,3,0,0)/6` gives
 `21 + 3 anti-7` the SU(5)-block content `10 + anti-5 + 2(5 + anti-5) + 7 singlets`.
 This is charge bookkeeping, not a derived fermion spectrum, anomaly result, or
-connection between these representations and the phase witnesses. The independent
-audit checks the U(1) charge census; the nonabelian assignment needs further review.
+connection between these representations and the phase witnesses. An independent
+SU(5) exterior-product derivation checks the multiplets; the [PDG review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf) uses twice the hypercharge convention used here.
 
 | Item | Verdict | Where |
 |---|---|---|

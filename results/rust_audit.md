@@ -53,9 +53,10 @@
 | `audit.all_hosts_sm_embedding` | `4.771282051282051e1` | FALSIFIED \| c7=55824/1170, c17=332064/1170, c23=605616/1170; all >12=true |
 | `audit.su7_block_sm_coset` | `3.473855391780730e1` | NUMERIC \| two traceless orthogonal block generators=true; c_sub=17624114/1358390=8812057/679195; c_coset=9201758330/264886050=920175833/26488605; exact=true |
 | `audit.su7_hypercharge_census` | `4.200000000000000e1` | NUMERIC \| 6Y=-6..6 counts=[0, 0, 3, 6, 6, 0, 7, 6, 9, 4, 0, 0, 1]; traceless=true; total=42; group representation assignment requires separate assessment |
+| `audit.su7_nonabelian_branching` | `4.200000000000000e1` | NUMERIC \| (color,weak,6Y,copies)=[(-3, 1, -4, 1), (-3, 1, 2, 3), (1, 1, 0, 7), (1, 1, 6, 1), (1, 2, -3, 3), (1, 2, 3, 2), (3, 1, -2, 2), (3, 2, 1, 1)]; dimension=42; SU(5) exterior-product route |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=07ef6daf0fb02014, run2=07ef6daf0fb02014, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `2b9ee283625f06e0` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=5333c142f89a1afd, run2=5333c142f89a1afd, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `48d6a640a94430a6` (not a configuration hash or cryptographic digest).

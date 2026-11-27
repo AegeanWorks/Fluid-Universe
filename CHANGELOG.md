@@ -1331,3 +1331,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 ## 2026-11-27 - Independently audit the hypercharge census (claim 74)
 
 - Independent block combinatorics reproduces the 42-weight integer hypercharge census in two processes. Claim 74 covers that census only; the nonabelian assignment requires further independent assessment.
+
+## 2026-11-27 - Independently derive nonabelian branching (claim 75, ADR-086)
+
+- The SU(5) exterior-product decomposition independently reproduces the nonabelian multiplicities in two processes. The representation contains one `10 + anti-5`, two `5 + anti-5` pairs and seven singlets.
+- The result does not establish physical fermions, anomaly cancellation, dynamics, mass generation or WZW sector selection. The PDG GUT review uses twice the hypercharge convention used here.
