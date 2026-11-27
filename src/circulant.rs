@@ -49,9 +49,13 @@ pub fn q_from_ac(a: f64, c: f64) -> f64 {
 /// Since `sum_k x_k * exp(-i*2*pi*k/3) / 3 = c*exp(i*delta)`, the real and
 /// imaginary parts of that sum give `c` and `delta` directly. The returned
 /// phase is normalised to `[0, 2*pi)`; a vanishing `c` yields `delta = 0`.
+/// Non-finite roots or unrepresentable intermediate values return an error.
 pub fn extract_ac_delta(x: &[f64]) -> Result<(f64, f64, f64), String> {
     if x.len() != 3 {
         return Err("expected exactly three roots".to_string());
+    }
+    if x.iter().any(|value| !value.is_finite()) {
+        return Err("Why: roots must be finite. Fix: provide three finite roots.".to_string());
     }
     let a = x.iter().sum::<f64>() / 3.0;
 
@@ -66,6 +70,9 @@ pub fn extract_ac_delta(x: &[f64]) -> Result<(f64, f64, f64), String> {
     im /= 3.0;
 
     let c = re.hypot(im);
+    if !a.is_finite() || !c.is_finite() {
+        return Err("Why: inverse DFT overflowed. Fix: rescale the roots.".to_string());
+    }
     let mut delta = if c < 1e-14 {
         0.0
     } else {
@@ -91,24 +98,28 @@ pub struct Fit {
     pub all_roots_positive: bool,
 }
 
-/// Fit `(a, c, delta)` to three positive masses and report Q and residuals.
+/// Fit `(a, c, delta)` to three positive finite masses and report Q and residuals.
+/// Returns an error if the calculation cannot be represented by finite values.
 pub fn fit_masses(m: &[f64]) -> Result<Fit, String> {
     if m.len() != 3 {
         return Err("expected exactly three masses".to_string());
     }
-    if m.iter().any(|&value| value <= 0.0) {
-        return Err("masses must be positive".to_string());
+    if m.iter().any(|&value| !value.is_finite() || value <= 0.0) {
+        return Err("Why: masses must be finite and positive. Fix: provide three finite positive masses.".to_string());
     }
     let roots: Vec<f64> = m.iter().map(|&value| value.sqrt()).collect();
     let (a, c, delta) = extract_ac_delta(&roots)?;
     let fitted = eigenvalues(a, c, delta);
+    if fitted.iter().any(|value| !value.is_finite()) {
+        return Err("Why: fitted roots overflowed. Fix: rescale the masses.".to_string());
+    }
     let max_abs_residual = fitted
         .iter()
         .zip(roots.iter())
         .map(|(&f, &r)| (f - r).abs())
         .fold(0.0_f64, f64::max);
 
-    Ok(Fit {
+    let fit = Fit {
         a,
         c,
         delta,
@@ -117,7 +128,13 @@ pub fn fit_masses(m: &[f64]) -> Result<Fit, String> {
         q_from_ac: q_from_ac(a, c),
         max_abs_residual,
         all_roots_positive: fitted.iter().all(|&v| v >= 0.0),
-    })
+    };
+    if [fit.a, fit.c, fit.delta, fit.r, fit.q, fit.q_from_ac, fit.max_abs_residual]
+        .iter().any(|value| !value.is_finite())
+    {
+        return Err("Why: fit arithmetic overflowed or underflowed. Fix: rescale the masses.".to_string());
+    }
+    Ok(fit)
 }
 
 /// Solve `Q = 2/3` for `m_tau` given `m_e` and `m_mu` (MeV).
@@ -247,5 +264,11 @@ mod tests {
         assert!(fit_masses(&[1.0, 2.0]).is_err());
         assert!(fit_masses(&[1.0, -2.0, 3.0]).is_err());
         assert!(fit_masses(&[1.0, 0.0, 3.0]).is_err());
+        for value in [f64::NAN, f64::INFINITY, f64::NEG_INFINITY] {
+            assert!(extract_ac_delta(&[1.0, value, 3.0]).is_err());
+            assert!(fit_masses(&[1.0, value, 3.0]).is_err());
+        }
+        assert!(extract_ac_delta(&[f64::MAX; 3]).is_err());
+        assert!(fit_masses(&[f64::MAX; 3]).is_err());
     }
 }

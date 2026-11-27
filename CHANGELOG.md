@@ -1307,3 +1307,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Independently re-derived the measured-fit phase and ratio and propagated frozen independent mass errors to a, c, phase and ratio using an analytic Jacobian checked against finite differences.
 - The linearized uncertainties are not the original Monte Carlo estimates, which remain to be reviewed. Two processes agree on 50 audit records.
+
+## 2026-11-27 - Reject invalid circulant fit values (ADR-081)
+
+- The fallible inverse DFT rejects non-finite roots and unrepresentable intermediate values. The mass fit rejects non-finite or nonpositive inputs and non-finite computed results, with rescaling guidance for arithmetic overflow or underflow.
+- Existing finite reference fits remain unchanged; regressions cover NaN, infinities and extreme finite values.

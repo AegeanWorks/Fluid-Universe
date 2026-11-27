@@ -38,6 +38,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](MIGRATION.md).
 - **Audit coverage in progress**: [`AUDIT_COVERAGE.md`](AUDIT_COVERAGE.md) maps reviewed evidence and lists accepted claims still awaiting coverage review.
+- **Fit inputs**: the fallible circulant fit accepts three finite positive masses and returns an error if the calculation cannot be represented with finite values.
 
 ### AIKit Commands (run from the AIKit folder)
 

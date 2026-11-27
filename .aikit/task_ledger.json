@@ -1,54 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795742411.21542,
-    "completed_head": "adabc53368225c1b97f17091473282f79a010aa8",
-    "completed_tree": "fbff94ffb4675f967166eba2797c31316928381d",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795749560.83325,
+    "lease_until": 1795749805.23664,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-pole-fit-parameters",
-    "updated_at": 1795742360.83325
+    "status": "in_progress",
+    "task_id": "fluid-fit-finite-input",
+    "updated_at": 1795742605.23664
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-per-record-verification' completed successfully.",
-      "head": "ccd81633eda8382ca54f347c447bac93519f22da",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-per-record-verification",
-      "timestamp": 1795740853.86504,
-      "timestamp_str": "2026-11-27 03:54:13"
-    },
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Document conservative claim-to-audit evidence mapping and unreviewed accepted claims",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Makes specific partial checks and unreviewed claims actionable without overstating G-001 coverage",
-        "mitigation": "Map only examined audit rows as partial evidence, explicitly list all other accepted claim IDs as unreviewed, and avoid changing claim verdicts",
-        "risks": "contract: documentation might confuse evidence with proof; dependency: none; concurrency: none; state: coverage inventory and project docs",
-        "why": "Separate-process record agreement alone does not establish that accepted ledger claims are independently re-derived"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "b9460342f42a1f37df0fccc12bf5b7774c317d58d06943570fe8ab132e1b0a01",
-      "status": "in_progress",
-      "task_id": "fluid-audit-coverage-inventory",
-      "timestamp": 1795740945.1531,
-      "timestamp_str": "2026-11-27 03:55:45"
-    },
     {
       "agent": "codex:fluid",
       "checklists": "passed",
@@ -324,6 +286,36 @@
       "task_id": "fluid-pole-fit-parameters",
       "timestamp": 1795742411.21542,
       "timestamp_str": "2026-11-27 04:20:11"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Reject non-finite inputs and outputs in fallible circulant fitting APIs",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Prevents invalid numerical results from being presented as successful fits",
+        "mitigation": "Reject non-finite input and non-finite derived values with actionable errors, retain ordinary finite behavior, add failing-first regressions and run project gates",
+        "risks": "contract: invalid and overflow inputs now return errors; dependency: none; concurrency: none; state: fit API, tests and documentation",
+        "why": "NaN and infinity pass positivity checks, and extreme finite inputs can overflow and yield invalid successful fits"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "5d004a8d744943a02cb6cf1b6aeb7aa62fc53aa3e38b99766fe8df1d14f77e58",
+      "status": "in_progress",
+      "task_id": "fluid-fit-finite-input",
+      "timestamp": 1795742483.52991,
+      "timestamp_str": "2026-11-27 04:21:23"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Non-finite and overflowing fit inputs fail with errors; ordinary fits and four project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-fit-finite-input",
+      "timestamp": 1795742605.23664,
+      "timestamp_str": "2026-11-27 04:23:25"
     }
   ],
   "version": 1

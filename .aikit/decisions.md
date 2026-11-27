@@ -576,3 +576,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The measured pole-fit audit did not independently check the phase, ratio or uncertainties of the fitted parameters.
 - **Decision**: Re-derive the inverse DFT phase and ratio and propagate independent frozen mass errors through the analytic Jacobian for a, c, phase and ratio. Check every derivative against finite differences.
 - **Consequences**: Add a numeric audit row, update the record manifest and regenerate reports. Linearized uncertainties are not the original Monte Carlo; the latter remains to be reviewed.
+
+### ADR-081: Reject non-finite circulant fit results
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The fallible inverse DFT and mass-fit APIs accepted NaN and infinity, and extreme finite masses could overflow intermediate calculations while returning success.
+- **Decision**: Reject non-finite roots and nonpositive or non-finite masses, and return an actionable error when fit or inverse DFT arithmetic produces non-finite outputs.
+- **Consequences**: Ordinary finite fits remain unchanged. Previously accepted invalid or unrepresentable inputs now return errors; callers can rescale inputs.
