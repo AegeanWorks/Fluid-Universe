@@ -2,7 +2,7 @@
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
 On 2026-11-27, `claims.md` contained 57 numbered rows marked PROVEN, NUMERIC,
-or VERIFIED; `results/rust_audit.json` now contains 49 audit records. Their
+or VERIFIED; `results/rust_audit.json` now contains 50 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
 The two-process `verify` command compares audit records; it does not establish
@@ -18,7 +18,7 @@ claim satisfies G-001. Audit identifiers are in `src/audit.rs` and the generated
 | 1c | `audit.koide_ratio_condition` | Checks the ratio condition; assess the complete iff statement and assumptions. |
 | 2a | `audit.circulant_matrix_structure` | Checks sampled Hermiticity and one generic nonsymmetry example; a universal symbolic derivation remains to be assessed. |
 | 2b | `audit.circulant_dft_eigenvectors` | Checks the DFT equation on sampled inputs; parameter independence for all inputs remains to be established symbolically. |
-| 3a | `audit.measured_pole_fit` | Checks measured-mass a, c, Q and linearized Q uncertainty using independent errors; the phase parameter, other uncertainties and Monte Carlo remain to be assessed. The separate `audit.tau_prediction` checks a different proposition. |
+| 3a | `audit.measured_pole_fit`, `audit.measured_pole_parameters` | Check measured-mass a, c, phase, ratio, Q and linearized uncertainties using independent errors. The original Monte Carlo remains to be assessed. The separate `audit.tau_prediction` checks a different proposition. |
 | 6a | `audit.wall_tension` | Checks the integral at one parameter value; assess the general scaling statement. |
 | 7a | `audit.neutrino_q_max` | The audit tests an oppositely worded proposition and labels it FALSIFIED; verify the full scan and uncertainty corners before mapping its verdict to the ledger claim. |
 | 10 | `audit.equal_k_isotropy` | Checks equal-K isotropy; assess the full dispersion statement. |

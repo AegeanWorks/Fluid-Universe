@@ -1,54 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795742146.71966,
-    "completed_head": "26b73c046c2bc254a1250c1fc2b31b3d933b6953",
-    "completed_tree": "d465874891a5422c83c655e217bba4f7bd8c22a8",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795749308.32461,
+    "lease_until": 1795749560.83325,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-report-hash-label",
-    "updated_at": 1795742108.32461
+    "status": "in_progress",
+    "task_id": "fluid-pole-fit-parameters",
+    "updated_at": 1795742360.83325
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-verification-provenance' completed successfully.",
-      "head": "fccf36eb29c30be42f35876ad1fe9f8f0193c7b4",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-verification-provenance",
-      "timestamp": 1795740550.6996,
-      "timestamp_str": "2026-11-27 03:49:10"
-    },
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Compare separate-process audit records directly and disclose incomplete claim coverage",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Detects individual audit record changes without hash collisions and avoids overstating completeness",
-        "mitigation": "Compare deterministic identified records exactly, reject empty duplicate and malformed output, bound child runtime, test mismatches and preserve explicit coverage limitation",
-        "risks": "contract: verifier output and exit behavior change; dependency: none; concurrency: separate child processes; state: CLI, tests, documentation",
-        "why": "G-001 needs per-claim agreement; current verify compares only aggregate fingerprints and audit coverage is not mapped to the full ledger"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "af1d95620b63936d261afd78b12e74edfa3a95725b84d395f63d9d63a3e27e10",
-      "status": "in_progress",
-      "task_id": "fluid-per-record-verification",
-      "timestamp": 1795740635.72623,
-      "timestamp_str": "2026-11-27 03:50:35"
-    },
     {
       "agent": "codex:fluid",
       "checklists": "passed",
@@ -324,6 +286,36 @@
       "task_id": "fluid-report-hash-label",
       "timestamp": 1795742146.71966,
       "timestamp_str": "2026-11-27 04:15:46"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently check measured-fit phase, ratio and linearized parameter uncertainties",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Extends the measured-mass audit with independently differentiated inverse DFT parameters",
+        "mitigation": "Use frozen masses and errors, analytic Jacobian checked against finite differences, explicit tolerances, two-process comparison and conservative coverage language",
+        "risks": "contract: audit manifest and result fingerprints change; dependency: none; concurrency: none; state: source, reports and docs; science: linear error propagation is not the original Monte Carlo",
+        "why": "Claim 3a still lacks independent checks of the phase and a, c, phase and ratio uncertainties"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "dbdf5528a3b930a617177ca5965830abb13afac928024d60d3265c14a9f69ded",
+      "status": "in_progress",
+      "task_id": "fluid-pole-fit-parameters",
+      "timestamp": 1795742210.04489,
+      "timestamp_str": "2026-11-27 04:16:50"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Independent pole-fit parameters and linearized uncertainties pass finite-difference checks, two-process comparison and all project gates; Monte Carlo remains open",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-pole-fit-parameters",
+      "timestamp": 1795742360.83325,
+      "timestamp_str": "2026-11-27 04:19:20"
     }
   ],
   "version": 1

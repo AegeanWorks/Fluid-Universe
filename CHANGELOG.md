@@ -1302,3 +1302,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Rust report JSON schema 2 replaces `config_sha256` with `checks_fnv1a64`. The value is a 64-bit non-cryptographic FNV-1a fingerprint of the family name and rendered checks, not SHA-256 and not a configuration hash.
 - All 11 regenerated report fingerprints match their schema 1 predecessors; historical non-Rust reports retain their original format. Consumers of Rust reports must migrate by schema version.
+
+## 2026-11-27 - Pole-fit parameter uncertainty audit (ADR-080)
+
+- Independently re-derived the measured-fit phase and ratio and propagated frozen independent mass errors to a, c, phase and ratio using an analytic Jacobian checked against finite differences.
+- The linearized uncertainties are not the original Monte Carlo estimates, which remain to be reviewed. Two processes agree on 50 audit records.

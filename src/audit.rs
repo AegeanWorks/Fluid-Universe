@@ -842,6 +842,26 @@ fn independent_pole_fit(masses: [f64; 3], errors: [f64; 3]) -> (f64, f64, f64, f
     (a, c, q, variance.sqrt())
 }
 
+fn independent_pole_parameters(masses: [f64; 3], errors: [f64; 3]) -> ([f64; 4], [f64; 4]) {
+    let roots = masses.map(f64::sqrt);
+    let a = roots.iter().sum::<f64>() / 3.0;
+    let re = (2.0 * roots[0] - roots[1] - roots[2]) / 6.0;
+    let im = 3.0_f64.sqrt() * (roots[2] - roots[1]) / 6.0;
+    let c = re.hypot(im);
+    let values = [a, c, im.atan2(re).rem_euclid(TAU), c / a];
+    let mut variance = [0.0; 4];
+    for i in 0..3 {
+        let da = 1.0 / (6.0 * roots[i]);
+        let dr = [1.0 / 3.0, -1.0 / 6.0, -1.0 / 6.0][i] / (2.0 * roots[i]);
+        let di = [0.0, -3.0_f64.sqrt() / 6.0, 3.0_f64.sqrt() / 6.0][i] / (2.0 * roots[i]);
+        let dc = (re * dr + im * di) / c;
+        let dp = (re * di - im * dr) / (c * c);
+        let derivative = [da, dc, dp, dc / a - c * da / (a * a)];
+        for j in 0..4 { variance[j] += (derivative[j] * errors[i]).powi(2); }
+    }
+    (values, variance.map(f64::sqrt))
+}
+
 // Construct and multiply the matrix directly, without the circulant module.
 fn independent_matrix_residuals(a: f64, c: f64, delta: f64, perturb: f64) -> (f64, f64, f64) {
     let first = [(a, 0.0), (c * delta.cos(), c * delta.sin()), (c * delta.cos(), -c * delta.sin())];
@@ -997,6 +1017,21 @@ fn rows() -> Vec<Row> {
         verdict: if pole_ok { "NUMERIC" } else { "UNVERIFIED" },
         detail: format!("a={pole_a:.12}, c={pole_c:.12}, Q={pole_q:.12}, sigma_Q_linear={pole_sigma:.9e}; independent mass errors; delta and Monte Carlo not checked"),
         value: pole_q,
+    });
+
+    let (parameters, parameter_sigma) = independent_pole_parameters(
+        [M_E, M_MU, M_TAU], [1.5e-10, 2.3e-6, 0.09],
+    );
+    let expected_parameters = [17.71583847806219, 12.52694812199972, 2.316619864297221, 0.7071044442808646];
+    let expected_sigma = [0.0003558410947013, 0.0003470907916584, 6.260699948e-6, 5.389187805e-6];
+    let parameters_ok = parameters.iter().zip(expected_parameters).all(|(x, y)| (x - y).abs() < 1e-11)
+        && parameter_sigma.iter().zip(expected_sigma).all(|(x, y)| (x - y).abs() < 1e-14);
+    out.push(Row {
+        id: "audit.measured_pole_parameters",
+        claim: "3a: measured pole fit parameters and linear uncertainties",
+        verdict: if parameters_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("a,c,delta,r={parameters:?}; linear sigma={parameter_sigma:?}; independent mass errors; Monte Carlo not checked"),
+        value: parameters[2],
     });
 
     // 4a: exact one-loop invariance of r is FALSIFIED (the 3/2 y_k^2 term is
@@ -1837,6 +1872,29 @@ mod tests {
         minus[2] -= 0.001;
         let finite_diff = (independent_pole_fit(plus, errors).2 - independent_pole_fit(minus, errors).2) / 0.002;
         assert!((finite_diff.abs() * errors[2] - sigma).abs() < 1e-10);
+    }
+
+    #[test]
+    fn pole_parameter_uncertainties_match_finite_differences() {
+        let masses = [0.51099895, 105.6583755, 1776.93];
+        let (values, sigma) = independent_pole_parameters(masses, [1.5e-10, 2.3e-6, 0.09]);
+        assert!((values[2] - 2.316619864297221).abs() < 1e-13);
+        assert!((values[3] - 0.7071044442808646).abs() < 1e-13);
+        let expected = [0.0003558410947013, 0.0003470907916584, 6.260699948e-6, 5.389187805e-6];
+        for i in 0..4 { assert!((sigma[i] - expected[i]).abs() < 1e-14); }
+        for i in 0..3 {
+            let mut unit = [0.0; 3]; unit[i] = 1.0;
+            let (_, analytic) = independent_pole_parameters(masses, unit);
+            let step = masses[i] * 1e-5;
+            let mut plus = masses; plus[i] += step;
+            let mut minus = masses; minus[i] -= step;
+            let p = independent_pole_parameters(plus, unit).0;
+            let m = independent_pole_parameters(minus, unit).0;
+            for j in 0..4 {
+                let finite = ((p[j] - m[j]) / (2.0 * step)).abs();
+                assert!((analytic[j] - finite).abs() < 1e-8);
+            }
+        }
     }
 
     #[test]

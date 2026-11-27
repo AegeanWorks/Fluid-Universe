@@ -569,3 +569,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Schema 1 names a 64-bit FNV-1a hash of family names and rendered check results config_sha256, implying both an incorrect algorithm and input.
 - **Decision**: Bump Rust report JSON to schema 2 and replace config_sha256 with checks_fnv1a64. Label Markdown provenance as a non-cryptographic check-results fingerprint. Preserve historical non-Rust reports in their original formats.
 - **Consequences**: Consumers must branch on schema and migrate the field name. The hash algorithm and bytes remain unchanged; this fingerprint is not a SHA-256 digest or a configuration hash.
+
+### ADR-080: Audit pole-fit phase and linearized parameter uncertainties
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The measured pole-fit audit did not independently check the phase, ratio or uncertainties of the fitted parameters.
+- **Decision**: Re-derive the inverse DFT phase and ratio and propagate independent frozen mass errors through the analytic Jacobian for a, c, phase and ratio. Check every derivative against finite differences.
+- **Consequences**: Add a numeric audit row, update the record manifest and regenerate reports. Linearized uncertainties are not the original Monte Carlo; the latter remains to be reviewed.

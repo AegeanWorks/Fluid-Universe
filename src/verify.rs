@@ -9,7 +9,7 @@ use crate::{Check, all_checks, fingerprint};
 pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.circulant_matrix_structure", "audit.circulant_dft_eigenvectors",
     "audit.q_identity", "audit.koide_ratio_condition", "audit.z3_not_fixed",
-    "audit.sign_caveat", "audit.tau_prediction", "audit.measured_pole_fit", "audit.r_invariance",
+    "audit.sign_caveat", "audit.tau_prediction", "audit.measured_pole_fit", "audit.measured_pole_parameters", "audit.r_invariance",
     "audit.neutrino_q_max", "audit.quark_q", "audit.rotor_degeneracy",
     "audit.wall_tension", "audit.derrick_virial", "audit.equal_k_isotropy",
     "audit.k123_anisotropy", "audit.delta_closed_form", "audit.hopf_preimage_charge",
