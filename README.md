@@ -51,6 +51,14 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 ## What Is Actually Established
 
+The single-model searches below match Casimir weight-difference expressions,
+not established braiding channels. The nine recorded canonical witnesses
+have center charges incompatible with fusing two fundamentals or their
+conjugates; other external representations and phase conventions remain open.
+See claim 79 and ADR-090.
+The conserved SU(N) fusion-ring charge is discussed in
+[Naculich, Riggs and Schnitzer](https://arxiv.org/abs/hep-th/9205082).
+
 The SU(7)_1163 candidate also admits a chosen block current-algebra subsector
 SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
 the remaining coset has central charge 920175833/26488605. The full block
@@ -148,7 +156,7 @@ is conditional on the same Weyl assignment and does not establish its physical r
 | HO-2 finite-core radial shell | NUMERIC: monotone regular phase, vmax=10, Q=-49.875 with converged FD, zero m=0 circulation | `src/radial_shell.rs`; `results/rust_radial_shell.json` |
 | HO-3 finite-core double shell | NUMERIC: both 3s nodes keep regular product phase, finite velocity/Q and local FD convergence; zero m=0 circulation | `src/multi_radial_shell.rs`; `results/rust_multi_radial_shell.json` |
 | Small-domain single WZW model | FALSIFIED: 474 bounded models and 1,337,784 primaries, zero hits; N<=7 all-level inverse search also negative | `src/single_model_test.rs`; `tests/single_model_search.rs` |
-| Explicit single WZW model hosts | PROVEN: SU(7)_1163, SU(17)_1153 and SU(23)_1147 each host all three phases exactly; SU(7)_1163 is lowest-rank/minimal-level within the N<=7, Dynkin-labels<=20 search domain, and direct SM conformal embedding is excluded for every known host by central charge | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Exact Casimir-expression matches | PROVEN: SU(7)_1163, SU(17)_1153 and SU(23)_1147 each contain three integrable primaries matching the targets arithmetically; these witnesses are excluded as fundamental-pair channels by center charge (claim 79). SU(7)_1163 is lowest-rank/minimal-level within the N<=7, Dynkin-labels<=20 arithmetic search domain. | `src/single_model_test.rs`; `tests/single_model_search.rs` |
 | Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside
@@ -256,7 +264,7 @@ fluid-universe/
 │   ├── up_amplitude_gauge.rs <- up amplitude from the weak mixing angle
 │   ├── up_phase_resolution.rs <- up-quark tension with a d=3 phase
 │   ├── vortex_unification.rs <- pre-registered vortex-core unification test
-│   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-block phase derivation
+│   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-weight differences
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration

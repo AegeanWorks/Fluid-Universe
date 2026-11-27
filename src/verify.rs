@@ -22,6 +22,7 @@ pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.single_model_known_labels", "audit.single_model_exists",
     "audit.single_model_witness_su17", "audit.single_model_witness_su23",
     "audit.single_model_inverse_search", "audit.single_model_witness_su7",
+    "audit.fundamental_pair_center_selection",
     "audit.single_model_relaxed_inverse", "audit.lower_rank_inverse_search",
     "audit.minimal_level_inverse_search", "audit.minimal_witness_search",
     "audit.minimal_witness_canonical", "audit.su7_conformal_weights",

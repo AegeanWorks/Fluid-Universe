@@ -8,6 +8,22 @@ use fluid_universe::single_model_test::{
 };
 
 #[test]
+fn phase_witnesses_fail_fundamental_pair_center_selection() {
+    use fluid_universe::single_model_test::fundamental_pair_center_allowed;
+    for witness in WITNESSES {
+        for primary in witness.dynkin {
+            assert!(!fundamental_pair_center_allowed(witness.n, primary));
+        }
+    }
+    assert!(fundamental_pair_center_allowed(7, &[2, 0, 0, 0, 0, 0]));
+    assert!(fundamental_pair_center_allowed(7, &[0, 1, 0, 0, 0, 0]));
+    assert!(fundamental_pair_center_allowed(7, &[0, 0, 0, 0, 0, 0]));
+    assert!(fundamental_pair_center_allowed(7, &[1, 0, 0, 0, 0, 1]));
+    // Charge conservation is necessary, not sufficient: this is not a fusion test.
+    assert!(fundamental_pair_center_allowed(7, &[3, 0, 0, 0, 0, 1]));
+}
+
+#[test]
 fn su7_hypercharge_branching_has_one_generation_and_vectorlike_pairs() {
     // (signed SU(3) dimension, SU(2) dimension, 6Y, multiplicity).
     let expected = vec![

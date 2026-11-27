@@ -639,3 +639,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The SU(7) cubic and SU(2) parity checks do not explicitly exhibit the subgroup mixed gauge and gauge-gravitational anomaly sums. General anomaly conventions are reviewed in https://arxiv.org/abs/0802.0634.
 - **Decision**: For left-handed Weyl fields in the chosen branching, calculate SU(3)^3, SU(3)^2 U(1), SU(2)^2 U(1), gravitational squared U(1), and U(1)^3 coefficients with integer charge 6Y and fundamental Dynkin indices normalized to one. Independently check the generation and vectorlike pair contributions and a nonzero unpaired control.
 - **Consequences**: This checks only these local subgroup coefficients for a hypothetical assignment. It does not establish complete global anomaly freedom, physical fermions, mass generation or WZW realization.
+
+### ADR-090: Separate Casimir matches from fundamental-pair fusion channels
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Existing integrable phase witnesses have not been checked against fusion selection rules.
+- **Decision**: Check conserved SU(N) center charges for the nine canonical witnesses and describe prior results as Casimir matches rather than demonstrated braiding.
+- **Consequences**: Exact searches remain valid arithmetic evidence; physical channel assignments require additional fusion and braid analysis.

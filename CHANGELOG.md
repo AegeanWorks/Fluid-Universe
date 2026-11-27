@@ -1351,3 +1351,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Five specified SU(3), SU(2), U(1) and mixed gauge-gravitational coefficients vanish for the hypothetical Weyl assignment. An independent calculation checks the generation and vectorlike pair separately, with a nonzero unpaired control.
 - This does not establish complete global anomaly freedom, physical fermions or WZW dynamics.
+
+## 2026-11-27 ? Fundamental-pair fusion selection correction
+
+The single-model witnesses match Casimir expressions, but integrability does not establish a braiding channel. Conserved center charge excludes all nine canonical witnesses for pairs of fundamentals or antifundamentals. Claim 79 records the independently checked residues; claims 64?71 are scoped to arithmetic matching. Other external representations remain open. See ADR-090.

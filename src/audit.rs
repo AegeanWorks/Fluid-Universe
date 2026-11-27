@@ -1519,6 +1519,27 @@ fn rows() -> Vec<Row> {
         value: if su7_ok { 1.0 } else { 0.0 },
     });
 
+    // 79: independently sum Young-diagram row lengths, rather than Dynkin
+    // labels weighted by their indices, to obtain the conserved center charge.
+    let canonical_su7: [&[i64]; 3] = [
+        &[0, 0, 2, 11, 2, 1], &[0, 0, 3, 6, 0, 1], &[0, 0, 0, 6, 0, 0],
+    ];
+    let residues: Vec<Vec<i64>> = [(17_i64, &su17), (23, &su23), (7, &canonical_su7)]
+        .iter().map(|(n, group)| group.iter().map(|labels| {
+            let mut row = 0;
+            let mut boxes = 0;
+            for label in labels.iter().rev() { row += label; boxes += row; }
+            boxes % n
+        }).collect()).collect();
+    let excluded = residues == [vec![11, 11, 6], vec![18, 4, 5], vec![3, 4, 3]];
+    out.push(Row {
+        id: "audit.fundamental_pair_center_selection",
+        claim: "79: canonical Casimir witnesses fail fundamental-pair center selection",
+        verdict: if excluded { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("SU(17), SU(23), SU(7) charges={residues:?}; allowed pair charges are 0 and +/-2 modulo N"),
+        value: if excluded { 1.0 } else { 0.0 },
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {

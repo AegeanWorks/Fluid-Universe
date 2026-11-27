@@ -1,9 +1,9 @@
 //! Single-WZW-model existence and bounded non-existence evidence.
 //!
 //! Three explicit exact witnesses exist: SU(7)_1163, SU(17)_1153 and
-//! SU(23)_1147 each contain three integrable primaries whose braiding labels
-//! are 2/9, 1/10 and 2/39.  This proves existence and non-uniqueness, not
-//! physical naturalness or sector selection.
+//! SU(23)_1147 each contain three integrable primaries whose Casimir
+//! expressions match 2/9, 1/10 and 2/39. Integrability alone does not imply
+//! that a primary occurs as a fusion channel of the external fields.
 //!
 //! Five bounded searches supply scope evidence:
 //! * N=2..7, k=1..79, Dynkin labels 0..4: 474 models, 1,337,784 primaries,
@@ -68,6 +68,17 @@ pub const WITNESSES: [Witness; 3] = [
         dynkin: &[&[0, 0, 2, 11, 2, 1], &[0, 0, 3, 6, 0, 1], &[0, 0, 0, 6, 0, 0]],
     },
 ];
+
+/// Necessary center-charge condition for fusing two fundamentals or their
+/// conjugates. Passing this condition does not establish a nonzero fusion rule.
+pub fn fundamental_pair_center_allowed(n: i64, dynkin: &[i64]) -> bool {
+    assert!(n >= 2 && dynkin.len() == (n - 1) as usize);
+    assert!(dynkin.iter().all(|&label| label >= 0));
+    let charge = dynkin.iter().enumerate().fold(0_i64, |charge, (i, &label)| {
+        (charge + ((i as i64 + 1) % n) * (label % n)) % n
+    });
+    charge == 0 || charge == 2 % n || charge == (n - 2).rem_euclid(n)
+}
 
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SearchSummary {
@@ -142,7 +153,8 @@ fn braiding_numerator(n: i64, dynkin: &[i64]) -> i64 {
     braiding_numerator_unchecked(n, dynkin)
 }
 
-/// Exact unreduced numerator/denominator of the braiding label for one primary.
+/// Exact Casimir-expression fraction; a physical braiding channel additionally
+/// requires the appropriate external fields, fusion rule, and phase convention.
 ///
 /// `C2 = (N*A - boxes^2)/(2N)` with
 /// `A = sum_i lambda_i*(lambda_i+N+1-2i)`, so the label is

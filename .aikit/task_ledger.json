@@ -1,49 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795810011.18883,
-    "completed_head": "aa7cda6b38f444d619f998a00afb6d4622fe8124",
-    "completed_tree": "979259485270c4a562d0bce15e5072fb8d9966e9",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795817053.28717,
+    "lease_until": 1795818100.23355,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-sm-local-anomalies",
-    "updated_at": 1795809853.28717
+    "status": "in_progress",
+    "task_id": "phase-fusion-selection",
+    "updated_at": 1795810900.23355
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Correct remaining SU(N) witness check labels and test name",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Prevents machine-readable results from misidentifying SU(N) rank",
-        "mitigation": "Keep existing N-valued check IDs and numbers, label them N, correct the test name, add regression and regenerate reports with project verification",
-        "risks": "contract: check details and fingerprints change; dependency: none; concurrency: none; state: source, tests, reports and docs",
-        "why": "Three emitted witness N values and a test name still call N the group rank after the ledger correction"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "5d711cad44e568cc045c2dfbf8040a2a2d412d9719e919f125b85fa85fcfaa43",
-      "status": "in_progress",
-      "task_id": "fluid-witness-rank-labels",
-      "timestamp": 1795743013.04567,
-      "timestamp_str": "2026-11-27 04:30:13"
-    },
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Corrected emitted N descriptions and SU(7) test name; two-process audit and four project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-witness-rank-labels",
-      "timestamp": 1795743146.73221,
-      "timestamp_str": "2026-11-27 04:32:26"
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -318,6 +285,35 @@
       "task_id": "fluid-sm-local-anomalies",
       "timestamp": 1795810011.18883,
       "timestamp_str": "2026-11-27 23:06:51"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Verify center-charge selection and correct physical interpretation of Casimir matches",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Preserve arithmetic results while preventing unsupported physical claims",
+        "mitigation": "Add failing-first checks with independent audit, revise claims and regenerate evidence, then run project gates",
+        "risks": "contract: precise claim scope; dependency: no new dependencies; concurrency: isolated project; state: generated evidence and ledger consistency",
+        "why": "Integrability alone does not establish a fundamental-pair fusion channel"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "2dc0f1fac934e21c3fd1700997309e7d2b29ed81cf00daea6c95280fa55c1b92",
+      "status": "in_progress",
+      "task_id": "phase-fusion-selection",
+      "timestamp": 1795810547.4684,
+      "timestamp_str": "2026-11-27 23:15:47"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Center selection audited in two processes; project gates 4/4 passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "phase-fusion-selection",
+      "timestamp": 1795810900.23355,
+      "timestamp_str": "2026-11-27 23:21:40"
     }
   ],
   "version": 1

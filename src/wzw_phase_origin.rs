@@ -1,9 +1,11 @@
-//! Genuine first-principles phase derivation from SU(3)_3 conformal-block data.
+//! SU(3)_3 conformal-weight differences and candidate phase labels.
 //!
-//! Unlike the admitted post-hoc quadratic interpolation, these are exact WZW
-//! braiding labels. For SU(3)_3 the integrable primaries have conformal weights
-//! h = C2(p,q)/(k+3) with C2=(p^2+q^2+pq+3p+3q)/3. The braiding label of a
-//! four-□ conformal block in intermediate channel nu is |h_nu - 2 h_box|.
+//! For SU(3)_3 the integrable primaries have conformal weights
+//! h = C2(p,q)/(k+3) with C2=(p^2+q^2+pq+3p+3q)/3. The expression below
+//! is |h_nu - 2 h_box|. A braiding interpretation requires an admissible
+//! fusion channel and a specified braiding and phase convention.
+//! The anti-fundamental and symmetric primaries occur in fundamental squared;
+//! the adjoint instead occurs in fundamental times anti-fundamental.
 //! The distinct nonzero labels are:
 //!   nu = □bar (0,1):      |2/9 - 4/9| = 2/9
 //!   nu = Sym^2□ (2,0):    |5/9 - 4/9| = 1/9
@@ -17,11 +19,9 @@
 //!   down   ~1/10 vs label 1/9     +11% (the label is 0.1111)
 //!   up     ~2/39 vs label 1/18    +8%  (the label is 0.0556)
 //!
-//! HONEST CAVEAT: the labels are rigorously derived from SU(3)_3 modular data
-//! (no fitting), but they reproduce the quark phases only at the ~10% level,
-//! NOT to the precision of the d=3-only synthesis. The lepton match is exact.
-//! This is the closest genuine first-principles phase origin found; it does not
-//! eliminate the post-hoc elements for quarks.
+//! These exact weight differences reproduce the quark targets only at the
+//! ~10% level. They do not establish one common four-fundamental block or
+//! eliminate post-hoc elements for quarks.
 
 use crate::Check;
 
@@ -33,14 +33,14 @@ pub fn h(p: i32, q: i32) -> f64 {
     c2 / 6.0
 }
 
-/// Braiding label |h_nu - 2 h_box|.
+/// Conformal-weight difference |h_nu - 2 h_box|.
 pub fn label(p: i32, q: i32) -> f64 { (h(p,q) - 2.0*h_box()).abs() }
 
 pub fn checks() -> Vec<Check> {
     vec![
         Check::new("wzworig.h_lepton", label(0,1), "lepton label = 2/9 (exact)"),
-        Check::new("wzworig.h_down", label(2,0), "down braiding label = 1/9"),
-        Check::new("wzworig.h_up", label(1,1), "up braiding label = 1/18"),
+        Check::new("wzworig.h_down", label(2,0), "down candidate weight difference = 1/9"),
+        Check::new("wzworig.h_up", label(1,1), "up candidate weight difference = 1/18"),
         Check::new("wzworig.down_vs_required", label(2,0)/0.1 - 1.0,
                    "down label vs required phase (~+0.11)"),
         Check::new("wzworig.up_vs_required", label(1,1)/(2.0/39.0) - 1.0,
