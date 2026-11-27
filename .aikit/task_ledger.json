@@ -1,48 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795742648.29733,
-    "completed_head": "3d12f05d3b44fb5865785d163fef368afe972aa0",
-    "completed_tree": "3c57e442af4b186a629ac1bd3daa1c647d73544c",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795749805.23664,
+    "lease_until": 1795750022.91519,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-fit-finite-input",
-    "updated_at": 1795742605.23664
+    "status": "in_progress",
+    "task_id": "fluid-fit-scale-invariance",
+    "updated_at": 1795742822.91519
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Coverage inventory and README tree verified; all four project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-audit-coverage-inventory",
-      "timestamp": 1795741092.31503,
-      "timestamp_str": "2026-11-27 03:58:12"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-audit-coverage-inventory' completed successfully.",
-      "head": "d9b079324816f7e23c8c019540381d09a742636b",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-audit-coverage-inventory",
-      "timestamp": 1795741128.74565,
-      "timestamp_str": "2026-11-27 03:58:48"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Add independent matrix-level checks for circulant Hermiticity and DFT eigenvectors",
@@ -324,6 +292,36 @@
       "task_id": "fluid-fit-finite-input",
       "timestamp": 1795742648.29733,
       "timestamp_str": "2026-11-27 04:24:08"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Preserve inverse DFT phase for small finite scales and handle exactly degenerate roots",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Restores scale-invariant reconstruction while retaining a deterministic convention for equal roots",
+        "mitigation": "Treat exact equal roots as degenerate, otherwise retain the computed phase, test small-scale reconstruction and exact degeneracy, and run project gates",
+        "risks": "contract: phase behavior changes for small amplitudes and near degeneracy; dependency: none; concurrency: none; state: fit code, tests and documentation",
+        "why": "An absolute amplitude threshold sets a nonzero phase to zero for valid small-scale roots and produces incorrect fitted roots"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "5db38fe02ce8ac36e8b4ba8b2ab99c0905ccdd9c93b46655378459e851640e6c",
+      "status": "in_progress",
+      "task_id": "fluid-fit-scale-invariance",
+      "timestamp": 1795742709.84624,
+      "timestamp_str": "2026-11-27 04:25:09"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Small-scale fit reconstruction and equal-root convention pass; existing fingerprint unchanged and all project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-fit-scale-invariance",
+      "timestamp": 1795742822.91519,
+      "timestamp_str": "2026-11-27 04:27:02"
     }
   ],
   "version": 1

@@ -1312,3 +1312,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - The fallible inverse DFT rejects non-finite roots and unrepresentable intermediate values. The mass fit rejects non-finite or nonpositive inputs and non-finite computed results, with rescaling guidance for arithmetic overflow or underflow.
 - Existing finite reference fits remain unchanged; regressions cover NaN, infinities and extreme finite values.
+
+## 2026-11-27 - Preserve inverse DFT phase at small scales (ADR-082)
+
+- Removed the absolute amplitude cutoff that incorrectly zeroed nondegenerate small-scale phases. Exactly equal roots now return zero amplitude and phase; near degeneracy the phase is ill-conditioned.
+- A regression verifies scaled fit reconstruction and the equal-root convention. Existing check fingerprints remain unchanged.

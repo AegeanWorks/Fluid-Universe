@@ -49,6 +49,7 @@ pub fn q_from_ac(a: f64, c: f64) -> f64 {
 /// Since `sum_k x_k * exp(-i*2*pi*k/3) / 3 = c*exp(i*delta)`, the real and
 /// imaginary parts of that sum give `c` and `delta` directly. The returned
 /// phase is normalised to `[0, 2*pi)`; a vanishing `c` yields `delta = 0`.
+/// Near equal roots the phase is ill-conditioned even when it is nonzero.
 /// Non-finite roots or unrepresentable intermediate values return an error.
 pub fn extract_ac_delta(x: &[f64]) -> Result<(f64, f64, f64), String> {
     if x.len() != 3 {
@@ -58,6 +59,12 @@ pub fn extract_ac_delta(x: &[f64]) -> Result<(f64, f64, f64), String> {
         return Err("Why: roots must be finite. Fix: provide three finite roots.".to_string());
     }
     let a = x.iter().sum::<f64>() / 3.0;
+    if !a.is_finite() {
+        return Err("Why: inverse DFT overflowed. Fix: rescale the roots.".to_string());
+    }
+    if x[0] == x[1] && x[1] == x[2] {
+        return Ok((a, 0.0, 0.0));
+    }
 
     // conj(OMEGA)^k = cos(2*pi*k/3) - i*sin(2*pi*k/3).
     let (mut re, mut im) = (0.0, 0.0);
@@ -70,10 +77,10 @@ pub fn extract_ac_delta(x: &[f64]) -> Result<(f64, f64, f64), String> {
     im /= 3.0;
 
     let c = re.hypot(im);
-    if !a.is_finite() || !c.is_finite() {
+    if !c.is_finite() {
         return Err("Why: inverse DFT overflowed. Fix: rescale the roots.".to_string());
     }
-    let mut delta = if c < 1e-14 {
+    let mut delta = if c == 0.0 {
         0.0
     } else {
         let angle = im.atan2(re);
@@ -249,6 +256,19 @@ mod tests {
         assert!(approx(fit.q, 2.0 / 3.0, 1e-12));
         assert!(approx(fit.q_from_ac, fit.q, 1e-12));
         assert!(approx(fit.r, 1.0 / 2.0_f64.sqrt(), 1e-9));
+    }
+
+    #[test]
+    fn inverse_phase_and_fit_reconstruct_at_small_scales() {
+        let baseline = fit_masses(&[1.0, 4.0, 9.0]).unwrap();
+        let tiny = fit_masses(&[1e-40, 4e-40, 9e-40]).unwrap();
+        assert!((tiny.delta - baseline.delta).abs() < 1e-12);
+        assert!(tiny.max_abs_residual / 3e-20 < 1e-12);
+        for root in [1.0, 1e-20, 1e20] {
+            let (_, c, phase) = extract_ac_delta(&[root, root, root]).unwrap();
+            assert_eq!(c, 0.0);
+            assert_eq!(phase, 0.0);
+        }
     }
 
     #[test]

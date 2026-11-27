@@ -583,3 +583,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The fallible inverse DFT and mass-fit APIs accepted NaN and infinity, and extreme finite masses could overflow intermediate calculations while returning success.
 - **Decision**: Reject non-finite roots and nonpositive or non-finite masses, and return an actionable error when fit or inverse DFT arithmetic produces non-finite outputs.
 - **Consequences**: Ordinary finite fits remain unchanged. Previously accepted invalid or unrepresentable inputs now return errors; callers can rescale inputs.
+
+### ADR-082: Remove absolute inverse DFT phase cutoff
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: An absolute 1e-14 amplitude cutoff zeroed the phase for valid small-scale nondegenerate roots, producing incorrect fit reconstruction.
+- **Decision**: Return zero amplitude and phase for exactly equal roots; otherwise use the computed phase unless the computed amplitude is zero.
+- **Consequences**: Small nondegenerate fits retain their phase across scales. Near degeneracy phase is ill-conditioned and should not be interpreted as precisely determined.
