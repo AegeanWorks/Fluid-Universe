@@ -612,6 +612,32 @@ pub fn su7_hypercharge_branching() -> Vec<(i8, u8, i8, u8)> {
     }).collect()
 }
 
+/// Cubic Cartan weight tensor for one 21 and `antifundamentals` anti-7s.
+/// This is a hypothetical four-dimensional Weyl-matter consistency check.
+pub fn su7_cartan_cubic_anomaly(antifundamentals: u8) -> [i64; 216] {
+    let weight = |index: usize, generator: usize| -> i64 {
+        i64::from(index == generator) - i64::from(index == 6)
+    };
+    let mut tensor = [0_i64; 216];
+    for a in 0..6 {
+        for b in 0..6 {
+            for c in 0..6 {
+                let mut value = 0;
+                for i in 0..7 {
+                    for j in (i + 1)..7 {
+                        value += (weight(i, a) + weight(j, a))
+                            * (weight(i, b) + weight(j, b))
+                            * (weight(i, c) + weight(j, c));
+                    }
+                    value -= i64::from(antifundamentals) * weight(i, a) * weight(i, b) * weight(i, c);
+                }
+                tensor[(a * 6 + b) * 6 + c] = value;
+            }
+        }
+    }
+    tensor
+}
+
 pub fn canonical_conformal_weights() -> [f64; 3] {
     std::array::from_fn(|index| {
         conformal_weight(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
@@ -836,6 +862,11 @@ pub fn checks() -> Vec<Check> {
             su7_hypercharge_branching().iter().map(|(color, weak, _, copies)|
                 color.unsigned_abs() as usize * *weak as usize * *copies as usize).sum::<usize>() as f64,
             "dimension of 21 plus three anti-7 representations under the chosen hypercharge",
+        ),
+        Check::new(
+            "singlemodel.su7_cartan_cubic_max",
+            su7_cartan_cubic_anomaly(3).iter().map(|value| value.abs()).max().unwrap_or(0) as f64,
+            "maximum Cartan cubic coefficient for hypothetical 21 plus three anti-7 Weyl fields",
         ),
         Check::new(
             "singlemodel.sm_charge_compatible",

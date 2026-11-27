@@ -618,3 +618,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 74 checks only hypercharge counts, leaving the nonabelian multiplet assignment unassessed.
 - **Decision**: Use wedge squared of 5 plus two singlets to derive 21 = 10 + 2 times 5 + 1, and anti-7 = anti-5 + 2 singlets. Decompose 10 and anti-5 using SU(3) and SU(2) invariant epsilon tensors and compare exact multiplicities independently in two processes.
 - **Consequences**: The representation content is one 10 plus anti-5, two vectorlike 5 plus anti-5 pairs and seven singlets. This does not establish physical fermions, anomaly cancellation, dynamics, mass generation or WZW sector selection. The PDG GUT review uses hypercharge twice the Y convention here: https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf
+
+### ADR-087: Test perturbative SU(7) cubic anomaly for hypothetical Weyl matter
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The 21 plus three anti-7 branching has not been tested as hypothetical four-dimensional chiral matter. The antisymmetric plus N-4 antifundamental family is studied in https://arxiv.org/abs/2104.10171.
+- **Decision**: Compute the complete symmetric cubic tensor on a basis of the SU(7) Cartan subalgebra using exact weights; three antifundamentals should cancel the exterior-square contribution, while two should not. Independently use the traceless diagonal trace identity Tr_wedge2(H cubed) = (N-4) Tr_fund(H cubed).
+- **Consequences**: This addresses only the perturbative local SU(7) cubic gauge anomaly under the hypothetical Weyl assignment. It does not establish global anomaly freedom, physical fermions, dynamics, mass generation or a connection to the WZW phase witnesses.

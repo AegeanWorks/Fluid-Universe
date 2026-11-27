@@ -825,6 +825,28 @@ struct Row {
     value: f64,
 }
 
+// Expand the cubic trace as a polynomial in six independent diagonal entries.
+// This route groups monomials rather than building the production Cartan tensor.
+fn independent_su7_cubic_polynomial(antifundamentals: i64) -> std::collections::BTreeMap<[u8; 6], i64> {
+    let mut diagonal = [[0_i64; 6]; 7];
+    for i in 0..6 { diagonal[i][i] = 1; diagonal[6][i] = -1; }
+    let mut terms = std::collections::BTreeMap::<[u8; 6], i64>::new();
+    let mut add_cube = |v: [i64; 6], multiplier: i64| {
+        for a in 0..6 { for b in 0..6 { for c in 0..6 {
+            let mut powers = [0_u8; 6]; powers[a] += 1; powers[b] += 1; powers[c] += 1;
+            *terms.entry(powers).or_default() += multiplier * v[a] * v[b] * v[c];
+        } } }
+    };
+    for i in 0..7 {
+        for j in (i + 1)..7 {
+            add_cube(std::array::from_fn(|k| diagonal[i][k] + diagonal[j][k]), 1);
+        }
+        add_cube(diagonal[i], -antifundamentals);
+    }
+    terms.retain(|_, coefficient| *coefficient != 0);
+    terms
+}
+
 // Independent SU(5) route: wedge²(5 + s·1) = 10 + s·5 + C(s,2)·1;
 // anti-(5 + s·1) = anti-5 + s·1. SU(3) wedge²3 is anti-3 and
 // SU(2) wedge²2 is 1 via their invariant epsilon tensors.
@@ -1702,6 +1724,17 @@ fn rows() -> Vec<Row> {
         value: total as f64,
     });
 
+    let anomaly_polynomial = independent_su7_cubic_polynomial(3);
+    let anomaly_control = independent_su7_cubic_polynomial(2);
+    let anomaly_ok = anomaly_polynomial.is_empty() && !anomaly_control.is_empty();
+    out.push(Row {
+        id: "audit.su7_local_cubic_anomaly",
+        claim: "76: hypothetical SU(7) local cubic anomaly",
+        verdict: if anomaly_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("nonzero cubic polynomial coefficients with 3 anti-7: {}; with 2 anti-7 control: {}; no global anomaly or physical spectrum claim", anomaly_polynomial.len(), anomaly_control.len()),
+        value: anomaly_polynomial.len() as f64,
+    });
+
     out
 }
 
@@ -1809,6 +1842,7 @@ mod tests {
         assert_eq!(verdict("73: SU(7)_1163 block"), "NUMERIC");
         assert_eq!(verdict("74: SU(7) hypercharge branching census"), "NUMERIC");
         assert_eq!(verdict("75: SU(7) nonabelian multiplet branching"), "NUMERIC");
+        assert_eq!(verdict("76: hypothetical SU(7) local cubic anomaly"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
@@ -1923,6 +1957,13 @@ mod tests {
         assert!(extended.contains(&(1, 1, 0, 7)));
         assert!(extended.contains(&(3, 1, -2, 2)));
         assert!(extended.contains(&(-3, 1, 2, 3)));
+    }
+
+    #[test]
+    fn independent_su7_cubic_polynomial_has_nonzero_control() {
+        assert!(independent_su7_cubic_polynomial(3).is_empty());
+        let control = independent_su7_cubic_polynomial(2);
+        assert_eq!(control.get(&[2, 1, 0, 0, 0, 0]), Some(&-3));
     }
 
     #[test]

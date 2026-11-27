@@ -32,7 +32,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   The binary launches two audit processes and compares their identified records exactly,
   including value bits and verdict details. It requires the ordered record IDs to match a
   fixed manifest and exits non-zero on disagreement, missing or malformed records, or a
-  child failure. The current audit has 52 records and has not been mapped to
+  child failure. The current audit has 53 records and has not been mapped to
   every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
@@ -60,9 +60,15 @@ For SU(N), the group rank is N-1; witness checks ending in `_n` report N.
 
 As a representation exercise, choosing `Y=diag(-2,-2,-2,3,3,0,0)/6` gives
 `21 + 3 anti-7` the SU(5)-block content `10 + anti-5 + 2(5 + anti-5) + 7 singlets`.
-This is charge bookkeeping, not a derived fermion spectrum, anomaly result, or
-connection between these representations and the phase witnesses. An independent
+This is charge bookkeeping, not a derived fermion spectrum or a connection
+between these representations and the phase witnesses. An independent
 SU(5) exterior-product derivation checks the multiplets; the [PDG review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf) uses twice the hypercharge convention used here.
+
+If these representations are assigned to left-handed Weyl fields in four dimensions,
+the perturbative local SU(7) cubic gauge anomaly cancels: for traceless diagonal H,
+`Tr_21(H^3) = (7-4) Tr_7(H^3)` and conjugate fundamentals reverse the cubic trace.
+The full Cartan tensor and an independent polynomial expansion confirm the identity.
+This does not establish global anomaly freedom, a physical spectrum or WZW dynamics.
 
 | Item | Verdict | Where |
 |---|---|---|

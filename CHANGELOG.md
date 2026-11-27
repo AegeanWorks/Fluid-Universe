@@ -1336,3 +1336,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - The SU(5) exterior-product decomposition independently reproduces the nonabelian multiplicities in two processes. The representation contains one `10 + anti-5`, two `5 + anti-5` pairs and seven singlets.
 - The result does not establish physical fermions, anomaly cancellation, dynamics, mass generation or WZW sector selection. The PDG GUT review uses twice the hypercharge convention used here.
+
+## 2026-11-27 - Conditional SU(7) local cubic anomaly (claim 76, ADR-087)
+
+- For hypothetical left-handed Weyl fields in `21 + 3 anti-7`, all 216 Cartan cubic coefficients vanish; a two-antifundamental control is nonzero. An independent exact polynomial expansion agrees in two processes.
+- The result concerns the perturbative local SU(7) cubic gauge anomaly only; global anomalies, physical matter and WZW dynamics remain open.

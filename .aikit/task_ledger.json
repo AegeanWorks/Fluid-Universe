@@ -1,49 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795808745.68928,
-    "completed_head": "ab980e19e03551484e54d4bb5bbf67947192274c",
-    "completed_tree": "2eaa18fff021d3c2ef74cc7a21a38f9bce46bfde",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795815905.32933,
+    "lease_until": 1795816249.81458,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su7-nonabelian-branching",
-    "updated_at": 1795808705.32933
+    "status": "in_progress",
+    "task_id": "fluid-su7-perturbative-anomaly",
+    "updated_at": 1795809049.81458
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Independently check measured-fit phase, ratio and linearized parameter uncertainties",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Extends the measured-mass audit with independently differentiated inverse DFT parameters",
-        "mitigation": "Use frozen masses and errors, analytic Jacobian checked against finite differences, explicit tolerances, two-process comparison and conservative coverage language",
-        "risks": "contract: audit manifest and result fingerprints change; dependency: none; concurrency: none; state: source, reports and docs; science: linear error propagation is not the original Monte Carlo",
-        "why": "Claim 3a still lacks independent checks of the phase and a, c, phase and ratio uncertainties"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "dbdf5528a3b930a617177ca5965830abb13afac928024d60d3265c14a9f69ded",
-      "status": "in_progress",
-      "task_id": "fluid-pole-fit-parameters",
-      "timestamp": 1795742210.04489,
-      "timestamp_str": "2026-11-27 04:16:50"
-    },
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Independent pole-fit parameters and linearized uncertainties pass finite-difference checks, two-process comparison and all project gates; Monte Carlo remains open",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-pole-fit-parameters",
-      "timestamp": 1795742360.83325,
-      "timestamp_str": "2026-11-27 04:19:20"
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -318,6 +285,36 @@
       "task_id": "fluid-su7-nonabelian-branching",
       "timestamp": 1795808745.68928,
       "timestamp_str": "2026-11-27 22:45:45"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Check the perturbative SU(7) cubic anomaly of a hypothetical Weyl assignment",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Checks a necessary consistency condition for interpreting the representation content as four-dimensional chiral Weyl matter",
+        "mitigation": "Use exact integer Cartan cubic tensors with a non-cancelling control, independently derive the exterior-square trace identity, compare two processes and state all limitations",
+        "risks": "contract: new checks, audit records and fingerprints; dependency: none; concurrency: none; state: source, tests, reports and claims; physics: local cubic cancellation does not prove a physical spectrum, global anomaly freedom, dynamics or WZW realization",
+        "why": "The SU(7) branching exercise leaves perturbative gauge-anomaly cancellation untested"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "58381bda16e76beaae25fbaf44da59cff108d36f2498c891c3332d91e4f09140",
+      "status": "in_progress",
+      "task_id": "fluid-su7-perturbative-anomaly",
+      "timestamp": 1795808822.99357,
+      "timestamp_str": "2026-11-27 22:47:02"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Exact Cartan cubic tensor and independent polynomial agree; noncancelling control and two-process verification pass; all project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su7-perturbative-anomaly",
+      "timestamp": 1795809049.81458,
+      "timestamp_str": "2026-11-27 22:50:49"
     }
   ],
   "version": 1

@@ -117,6 +117,8 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 75 | Under the chosen SU(5) block, SU(7) `21 + 3 anti-7` branches to `10 + anti-5 + 2(5 + anti-5) + 7 singlets`. | exact representation-content calculation | **NUMERIC (independent exterior-product and weight routes agree)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | `wedge²(5 + 2 singlets) = 10 + 2(5) + 1` and `anti-7 = anti-5 + 2 singlets`. The SU(3) and SU(2) epsilon tensors identify `wedge²3 = anti-3` and `wedge²2 = 1`. This is representation content, not a derived physical spectrum, anomaly result, mass mechanism or link to the phase witnesses. |
 
+| 76 | If `21 + 3 anti-7` is assigned to left-handed Weyl fermions in four dimensions, its perturbative local SU(7) cubic gauge anomaly cancels. | exact cubic trace and Cartan tensor test | **NUMERIC (all 216 Cartan coefficients vanish; independent polynomial agrees)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | For traceless diagonal H with eigenvalues x_i, `sum_{i<j}(x_i+x_j)^3 = (7-4) sum_i x_i^3`; conjugate fundamentals contribute the negative trace, so three cancel the 21. Conjugation and polarization extend the cubic identity to the symmetric Lie-algebra trace. Two anti-7s provide a nonzero control. This does not establish global anomaly freedom, physical fermions, dynamics or WZW realization. |
+
 ## Status history
 
 - 2026-10-25: ledger created. 1a/1c/2a/2b proven symbolically; 1b/3b falsified by parameter counting and by the MS-bar value; 4a falsified as an exact statement, with 4b recorded as a numerical stability result; 4c retracted. No simulation claims.
@@ -280,3 +282,5 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 - 2026-11-27 (chosen hypercharge census, claim 74): block combinatorics independently reproduces the 42 integer-charge weights of `21 + 3 anti-7` in two processes. This verifies the U(1) census only; the nonabelian representation assignment and physical realization remain open. See ADR-084 and `results/rust_audit.{json,md}`.
 
 - 2026-11-27 (nonabelian branching, claim 75): an independent SU(5) exterior-product derivation agrees with the weight enumeration for `21 + 3 anti-7`. The representation contains one `10 + anti-5`, two `5 + anti-5` pairs and seven singlets. Physical realization and anomalies remain open; see ADR-086 and `results/rust_audit.{json,md}`.
+
+- 2026-11-27 (hypothetical SU(7) local cubic anomaly, claim 76): the 216 Cartan cubic coefficients vanish for one 21 and three anti-7 Weyl fields; an independent exact polynomial expansion agrees in two processes and two anti-7s give a nonzero control. Global anomalies and physical realization are not established; see ADR-087.

@@ -21,6 +21,15 @@ fn su7_hypercharge_branching_has_one_generation_and_vectorlike_pairs() {
 }
 
 #[test]
+fn hypothetical_su7_weyl_assignment_cancels_cartan_cubic_tensor() {
+    let cancelled = fluid_universe::single_model_test::su7_cartan_cubic_anomaly(3);
+    assert_eq!(cancelled.len(), 216);
+    assert!(cancelled.iter().all(|value| *value == 0));
+    let control = fluid_universe::single_model_test::su7_cartan_cubic_anomaly(2);
+    assert!(control.iter().any(|value| *value != 0));
+}
+
+#[test]
 fn known_singlet_labels_are_exact_rationals() {
     let lepton = braiding_fraction(3, 9, &[0, 0]);
     let down = braiding_fraction(2, 13, &[0]);
