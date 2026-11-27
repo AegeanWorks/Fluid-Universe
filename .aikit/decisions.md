@@ -534,3 +534,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The previous verifier compared aggregate hashes and the audit is not yet mapped to every accepted claim.
 - **Decision**: Run two bounded audit children, compare identified records exactly including value bits and verdict details, and reject empty, malformed, duplicate or differing output. Report the record count without claiming full ledger coverage.
 - **Consequences**: Verifier output changes; report provenance remains in-process. Complete G-001 evidence requires mapping and independently re-deriving every accepted ledger claim.
+
+### ADR-075: Inventory incomplete claim audit coverage conservatively
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The two-process verifier compares audit records but the records have not been mapped to all accepted ledger claims.
+- **Decision**: Maintain a human-reviewed inventory of related audit rows and separately list accepted claims whose audit coverage has not been reviewed. Related evidence is not equivalent to a full G-001 coverage finding.
+- **Consequences**: The inventory directs independent re-derivation and must be updated when the ledger or review changes. It does not change scientific verdicts.

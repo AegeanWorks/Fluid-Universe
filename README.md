@@ -36,6 +36,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
 - **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](MIGRATION.md).
+- **Audit coverage in progress**: [`AUDIT_COVERAGE.md`](AUDIT_COVERAGE.md) maps reviewed evidence and lists accepted claims still awaiting coverage review.
 
 ### AIKit Commands (run from the AIKit folder)
 
@@ -247,6 +248,7 @@ fluid-universe/
 │   ├── multi_radial_shell.rs <- HO-3 double-shell regression tests
 │   └── single_model_search.rs <- bounded SU(N)_k search regression
 ├── claims.md                 <- claim ledger with statuses and kill tests
+├── AUDIT_COVERAGE.md         <- independent-audit coverage inventory
 ├── CHANGELOG.md              <- append-only corrections and retractions
 ├── SCORECARD.md              <- one-line status per claim
 ├── paper/                    <- two LaTeX documents, separate scopes

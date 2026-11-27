@@ -1278,3 +1278,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - The verifier now compares identified audit records from two separate, time-bounded processes, including exact value bits and verdict detail; it rejects empty, malformed, duplicate or differing records.
 - Both runs agree on 46 records. The audit has not been mapped to every accepted ledger claim, so complete G-001 coverage remains outstanding.
+
+## 2026-11-27 - Audit coverage inventory
+
+- Added `AUDIT_COVERAGE.md` to link examined audit records to 14 accepted claims as related evidence and list 43 other accepted claims awaiting coverage review. No claim is marked fully covered by this inventory.
