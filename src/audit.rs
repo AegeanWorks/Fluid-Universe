@@ -1350,15 +1350,15 @@ fn rows() -> Vec<Row> {
         id: "audit.single_model_witness_su7",
         claim: "66: SU(7)_1163 exact all-phase witness",
         verdict: if su7_ok { "PROVEN" } else { "FALSIFIED" },
-        detail: "rank-7 host matches all three phases exactly with label sums 19/12/7 <=1163".to_string(),
+        detail: "rank-6 host matches all three phases exactly with label sums 19/12/7 <=1163".to_string(),
         value: if su7_ok { 1.0 } else { 0.0 },
     });
 
-    // 66/2: relaxed-label inverse search reproduces the rank-7 hit.
+    // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
         id: "audit.single_model_relaxed_inverse",
-        claim: "66: relaxed N<=7 inverse search finds rank-7 host",
+        claim: "66: relaxed N<=7 inverse search finds rank-6 host",
         verdict: if relaxed_hit { "NUMERIC" } else { "UNVERIFIED" },
         detail: format!("labels={relaxed_labels}, models_with_any_phase={relaxed_models}, SU(7)_1163_hit={relaxed_hit}"),
         value: relaxed_labels as f64,
@@ -1607,6 +1607,8 @@ mod tests {
     #[test]
     fn frozen_ledger_expected_verdicts() {
         let records = run_audit();
+        let su7 = records.iter().find(|r| r.claim == "66: SU(7)_1163 exact all-phase witness").unwrap();
+        assert!(su7.detail.contains("rank-6"));
         let verdict = |needle: &str| -> &'static str {
             records
                 .iter()

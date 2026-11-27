@@ -70,7 +70,7 @@ as a historical ledger.
 
 Verified: **612 reproducible checks**, **372 passing tests** (340 unit + 7 existing
 integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
-and a G-001 two-process fingerprint agreement (`427085f9c85ad8f3`).
+and a G-001 two-process fingerprint agreement (`8b67325e9175b32c`).
 
 On this host the MSVC `link.exe` is absent, so the registered test command is
 `cargo test --target x86_64-pc-windows-gnu`. On a host with Visual Studio Build

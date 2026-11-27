@@ -513,3 +513,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Claim 72 excludes direct conformal embedding but leaves subgroup and coset routes open. The standard SU(7) block decomposition 3+2+1+1 provides an explicit SU(3)xSU(2)xU(1)^2 subgroup with index one in each nonabelian factor.
 - **Decision**: At host level 1163, assign SU(3) and SU(2) levels 1163 and choose two U(1) directions with diagonal generators `(2,2,2,-3,-3,0,0)` and `(0,0,0,0,0,1,-1)`. These are traceless, orthogonal and commute with the nonabelian blocks; the full block centralizer has three U(1) directions, so the remaining one is included in the coset. The subsector central charge is `8*1163/(1163+3)+3*1163/(1163+2)+2 = 8812057/679195 = 12.9742665950132`. The coset central charge is `9304/195 - 8812057/679195 = 920175833/26488605 = 34.7385539178073`. Claim 73 is NUMERIC for this explicit non-conformal current-algebra subsector/coset split. U(1) charge normalization, global group identifications, SM gauge mixing, matter content and coset dynamics are not derived.
 - **Consequences**: Add block-subsector/coset functions and checks, integration regression and an independent exact-rational audit row; regenerate reports and update claim 73 documentation. Claims 60-72 remain unchanged.
+
+### ADR-072: Correct SU(N) rank labels and bounded minimality scope
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: ADR-064 and claim 66 confused the SU(N) index N with rank N-1; ADR-065 also misstated the rank boundary. README omitted the minimality search bounds.
+- **Decision**: SU(7), SU(17), and SU(23) have ranks 6, 16, and 22. The N<=6 search covers ranks 1 through 5; N>6 is outside that search. The SU(7) minimality result applies within N<=7 and Dynkin entries<=20. Historical ADRs remain unchanged and are corrected by this record.
+- **Consequences**: Correct claim and audit wording, constrain the README summary, regenerate fingerprints and reports; the search domains and arithmetic are unchanged.

@@ -1262,3 +1262,9 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Calculated the central charges of a chosen SU(3)_1163 x SU(2)_1163 x U(1)^2 current-algebra subsector and its coset as 8812057/679195 and 920175833/26488605, respectively.
 - Specified and checked two diagonal generators. The full block centralizer has three U(1) directions; the third remains in the coset. Hypercharge, global identifications, matter and dynamics are not established.
 - Added an exact-rational audit and a regression for its verdict. The full Rust suite passes 372 tests; two processes agree on 612 checks with fingerprint `427085f9c85ad8f3`.
+
+## 2026-11-27 - Correct SU(N) rank labels (ADR-072)
+
+- Corrected SU(7) to rank 6 in claim 66 and its audit output. The earlier SU(17) and SU(23) hosts have ranks 16 and 22; the N<=6 search covers ranks 1 through 5.
+- Clarified that the SU(7) minimality result is bounded to N<=7 and Dynkin entries<=20. Search inputs and numerical findings are unchanged.
+- Regenerated the two-process report fingerprint: `8b67325e9175b32c` (612 checks).
