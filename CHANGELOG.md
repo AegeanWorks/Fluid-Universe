@@ -1341,3 +1341,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - For hypothetical left-handed Weyl fields in `21 + 3 anti-7`, all 216 Cartan cubic coefficients vanish; a two-antifundamental control is nonzero. An independent exact polynomial expansion agrees in two processes.
 - The result concerns the perturbative local SU(7) cubic gauge anomaly only; global anomalies, physical matter and WZW dynamics remain open.
+
+## 2026-11-27 - Conditional SU(2) doublet parity (claim 77, ADR-088)
+
+- The hypothetical `21 + 3 anti-7` assignment contains eight SU(2) Weyl doublets counting color multiplicity. An independent restriction gives the same result, while two anti-7s provide an odd seven-doublet control.
+- This addresses the original SU(2) doublet parity obstruction only; other global anomalies, physical matter and WZW realization remain open.

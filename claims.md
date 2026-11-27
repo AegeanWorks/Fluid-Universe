@@ -119,6 +119,8 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 76 | If `21 + 3 anti-7` is assigned to left-handed Weyl fermions in four dimensions, its perturbative local SU(7) cubic gauge anomaly cancels. | exact cubic trace and Cartan tensor test | **NUMERIC (all 216 Cartan coefficients vanish; independent polynomial agrees)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | For traceless diagonal H with eigenvalues x_i, `sum_{i<j}(x_i+x_j)^3 = (7-4) sum_i x_i^3`; conjugate fundamentals contribute the negative trace, so three cancel the 21. Conjugation and polarization extend the cubic identity to the symmetric Lie-algebra trace. Two anti-7s provide a nonzero control. This does not establish global anomaly freedom, physical fermions, dynamics or WZW realization. |
 
+| 77 | If `21 + 3 anti-7` is assigned to left-handed Weyl fermions in four dimensions, restriction to the chosen SU(2) block has an even number of doublets and no higher SU(2) representations. | exact SU(2) restriction and parity test | **NUMERIC (eight doublets; odd seven-doublet control)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | `7 = 2 + 5 singlets`, so `21 = 5(2) + 11 singlets`; three anti-7s contribute three more doublets. The even count avoids the original SU(2) doublet parity obstruction for the stated assignment. It does not establish absence of other global anomalies, physical fermions or WZW realization. |
+
 ## Status history
 
 - 2026-10-25: ledger created. 1a/1c/2a/2b proven symbolically; 1b/3b falsified by parameter counting and by the MS-bar value; 4a falsified as an exact statement, with 4b recorded as a numerical stability result; 4c retracted. No simulation claims.
@@ -284,3 +286,5 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 - 2026-11-27 (nonabelian branching, claim 75): an independent SU(5) exterior-product derivation agrees with the weight enumeration for `21 + 3 anti-7`. The representation contains one `10 + anti-5`, two `5 + anti-5` pairs and seven singlets. Physical realization and anomalies remain open; see ADR-086 and `results/rust_audit.{json,md}`.
 
 - 2026-11-27 (hypothetical SU(7) local cubic anomaly, claim 76): the 216 Cartan cubic coefficients vanish for one 21 and three anti-7 Weyl fields; an independent exact polynomial expansion agrees in two processes and two anti-7s give a nonzero control. Global anomalies and physical realization are not established; see ADR-087.
+
+- 2026-11-27 (conditional SU(2) doublet parity, claim 77): the hypothetical `21 + 3 anti-7` assignment has eight SU(2) doublets, independently re-derived in two processes. Two anti-7s instead give the odd seven-doublet control. This addresses the original doublet parity obstruction only; other global questions remain open. See ADR-088.

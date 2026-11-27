@@ -612,6 +612,14 @@ pub fn su7_hypercharge_branching() -> Vec<(i8, u8, i8, u8)> {
     }).collect()
 }
 
+/// Number of SU(2) doublets, counting color multiplicity, in the fixed branching.
+pub fn su7_weak_doublet_count() -> usize {
+    su7_hypercharge_branching().iter()
+        .filter(|(_, weak, _, _)| *weak == 2)
+        .map(|(color, _, _, copies)| color.unsigned_abs() as usize * *copies as usize)
+        .sum()
+}
+
 /// Cubic Cartan weight tensor for one 21 and `antifundamentals` anti-7s.
 /// This is a hypothetical four-dimensional Weyl-matter consistency check.
 pub fn su7_cartan_cubic_anomaly(antifundamentals: u8) -> [i64; 216] {
@@ -867,6 +875,11 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.su7_cartan_cubic_max",
             su7_cartan_cubic_anomaly(3).iter().map(|value| value.abs()).max().unwrap_or(0) as f64,
             "maximum Cartan cubic coefficient for hypothetical 21 plus three anti-7 Weyl fields",
+        ),
+        Check::new(
+            "singlemodel.su7_weak_doublets",
+            su7_weak_doublet_count() as f64,
+            "SU(2) doublets with color multiplicity for hypothetical 21 plus three anti-7 Weyl fields",
         ),
         Check::new(
             "singlemodel.sm_charge_compatible",

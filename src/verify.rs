@@ -28,6 +28,7 @@ pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.su7_quantum_dimensions", "audit.sm_conformal_embedding",
     "audit.sm_coset_central_charge", "audit.all_hosts_sm_embedding", "audit.su7_block_sm_coset",
     "audit.su7_hypercharge_census", "audit.su7_nonabelian_branching", "audit.su7_local_cubic_anomaly",
+    "audit.su7_su2_doublet_parity",
 ];
 
 #[derive(Clone, Debug)]

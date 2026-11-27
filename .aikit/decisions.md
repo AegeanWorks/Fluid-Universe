@@ -625,3 +625,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The 21 plus three anti-7 branching has not been tested as hypothetical four-dimensional chiral matter. The antisymmetric plus N-4 antifundamental family is studied in https://arxiv.org/abs/2104.10171.
 - **Decision**: Compute the complete symmetric cubic tensor on a basis of the SU(7) Cartan subalgebra using exact weights; three antifundamentals should cancel the exterior-square contribution, while two should not. Independently use the traceless diagonal trace identity Tr_wedge2(H cubed) = (N-4) Tr_fund(H cubed).
 - **Consequences**: This addresses only the perturbative local SU(7) cubic gauge anomaly under the hypothetical Weyl assignment. It does not establish global anomaly freedom, physical fermions, dynamics, mass generation or a connection to the WZW phase witnesses.
+
+### ADR-088: Check original SU(2) global-anomaly parity condition
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Perturbative SU(7) cubic anomaly cancellation does not by itself check the original SU(2) global anomaly. Witten showed that an odd number of Weyl doublets is inconsistent: https://www.sciencedirect.com/science/article/pii/0370269382907286.
+- **Decision**: For the hypothetical left-handed 21 plus three anti-7 assignment, count SU(2) doublets with color multiplicity; independently use 7 = 2 + 5 singlets. Expect eight doublets and use two anti-7s as an odd seven-doublet control.
+- **Consequences**: The result concerns only the original SU(2) doublet parity obstruction under the stated assumptions. It does not establish absence of other global anomalies, a physical fermion spectrum or WZW realization.

@@ -30,6 +30,12 @@ fn hypothetical_su7_weyl_assignment_cancels_cartan_cubic_tensor() {
 }
 
 #[test]
+fn hypothetical_su7_assignment_has_eight_su2_doublets() {
+    assert_eq!(fluid_universe::single_model_test::su7_weak_doublet_count(), 8);
+    assert_eq!(fluid_universe::single_model_test::su7_weak_doublet_count() % 2, 0);
+}
+
+#[test]
 fn known_singlet_labels_are_exact_rationals() {
     let lepton = braiding_fraction(3, 9, &[0, 0]);
     let down = braiding_fraction(2, 13, &[0]);

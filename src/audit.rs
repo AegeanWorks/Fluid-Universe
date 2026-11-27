@@ -1735,6 +1735,24 @@ fn rows() -> Vec<Row> {
         value: anomaly_polynomial.len() as f64,
     });
 
+    // Restrict 7 to SU(2): 2 + five singlets. Its exterior square has
+    // five doublets and eleven singlets; each anti-7 adds one doublet.
+    let spectators = 7_i64 - 2;
+    let wedge_doublets = spectators;
+    let wedge_singlets = 1 + spectators * (spectators - 1) / 2;
+    let doublets = wedge_doublets + 3;
+    let singlets = wedge_singlets + 3 * spectators;
+    let control = wedge_doublets + 2;
+    let parity_ok = doublets == 8 && doublets % 2 == 0 && control == 7
+        && control % 2 == 1 && 2 * doublets + singlets == 42;
+    out.push(Row {
+        id: "audit.su7_su2_doublet_parity",
+        claim: "77: hypothetical SU(2) doublet parity",
+        verdict: if parity_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("doublets={doublets}, singlets={singlets}, dimension=42; two anti-7 control doublets={control}; original SU(2) parity only"),
+        value: doublets as f64,
+    });
+
     out
 }
 
@@ -1843,6 +1861,7 @@ mod tests {
         assert_eq!(verdict("74: SU(7) hypercharge branching census"), "NUMERIC");
         assert_eq!(verdict("75: SU(7) nonabelian multiplet branching"), "NUMERIC");
         assert_eq!(verdict("76: hypothetical SU(7) local cubic anomaly"), "NUMERIC");
+        assert_eq!(verdict("77: hypothetical SU(2) doublet parity"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
