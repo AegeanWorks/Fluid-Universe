@@ -3,44 +3,14 @@
     "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795815297.28823,
+    "lease_until": 1795815570.89914,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
     "status": "in_progress",
     "task_id": "fluid-su7-hypercharge-branching",
-    "updated_at": 1795808097.28823
+    "updated_at": 1795808370.89914
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Add independent measured pole-mass fit and linearized Q uncertainty audit",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Adds directly relevant independent evidence using frozen 2024 inputs and analytic uncertainty propagation",
-        "mitigation": "Use frozen dataset, analytic gradient, finite-difference regression, label evidence partial, compare both processes and run all project gates",
-        "risks": "contract: audit manifest and report fingerprints change; dependency: none; concurrency: none; state: source, generated reports and docs; science: linearized independent errors do not reproduce the full Monte Carlo or delta fit",
-        "why": "The current claim 3a audit tests a tau prediction instead of the measured-mass fit and its uncertainty"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "05f599198ecd1096f6be87551f0dbebd15941f64c520550f8a45ab67fb70a79b",
-      "status": "in_progress",
-      "task_id": "fluid-pole-fit-audit",
-      "timestamp": 1795741636.98461,
-      "timestamp_str": "2026-11-27 04:07:16"
-    },
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Independent pole fit and linearized Q error pass regression and 49-record two-process comparison; all project gates pass; remaining claim 3a details unverified",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-pole-fit-audit",
-      "timestamp": 1795741755.21141,
-      "timestamp_str": "2026-11-27 04:09:15"
-    },
     {
       "agent": "codex:fluid",
       "delivery": {
@@ -322,6 +292,29 @@
       "task_id": "fluid-su7-hypercharge-branching",
       "timestamp": 1795808097.28823,
       "timestamp_str": "2026-11-27 22:34:57"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[2/2] Independently audit SU(7) hypercharge branching and record scoped evidence",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 2,
+      "status": "in_progress",
+      "task_id": "fluid-su7-hypercharge-branching",
+      "timestamp": 1795808157.72204,
+      "timestamp_str": "2026-11-27 22:35:57"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[2/2] Independent block combinatorics matches 42-weight census in two processes; claim 74 is limited to U(1) counts; all project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su7-hypercharge-branching",
+      "timestamp": 1795808370.89914,
+      "timestamp_str": "2026-11-27 22:39:30"
     }
   ],
   "version": 1

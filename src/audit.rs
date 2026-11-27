@@ -1646,6 +1646,31 @@ fn rows() -> Vec<Row> {
         value: block_coset_num as f64 / block_coset_den as f64,
     });
 
+    // Independent block combinatorics: choose two indices for 21, then add
+    // three conjugate fundamentals. Indices are six times hypercharge plus six.
+    let blocks = [(3_i64, -2_i64), (2, 3), (2, 0)];
+    let mut census = [0_i64; 13];
+    for i in 0..blocks.len() {
+        for j in i..blocks.len() {
+            let (ni, qi) = blocks[i];
+            let (nj, qj) = blocks[j];
+            let multiplicity = if i == j { ni * (ni - 1) / 2 } else { ni * nj };
+            census[(qi + qj + 6) as usize] += multiplicity;
+        }
+        let (n, charge) = blocks[i];
+        census[(-charge + 6) as usize] += 3 * n;
+    }
+    let expected = [0, 0, 3, 6, 6, 0, 7, 6, 9, 4, 0, 0, 1];
+    let traceless = blocks.iter().map(|(n, q)| n * q).sum::<i64>() == 0;
+    let exact = traceless && census == expected && census.iter().sum::<i64>() == 42;
+    out.push(Row {
+        id: "audit.su7_hypercharge_census",
+        claim: "74: SU(7) hypercharge branching census",
+        verdict: if exact { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("6Y=-6..6 counts={census:?}; traceless={traceless}; total=42; group representation assignment requires separate assessment"),
+        value: census.iter().sum::<i64>() as f64,
+    });
+
     out
 }
 
@@ -1751,6 +1776,7 @@ mod tests {
         assert_eq!(verdict("equal-K isotropy"), "PROVEN");
         assert_eq!(verdict("K=(1,2,3)"), "FALSIFIED");
         assert_eq!(verdict("73: SU(7)_1163 block"), "NUMERIC");
+        assert_eq!(verdict("74: SU(7) hypercharge branching census"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

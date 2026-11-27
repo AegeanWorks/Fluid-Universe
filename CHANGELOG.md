@@ -1327,3 +1327,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - Enumerated integer hypercharges and block multiplicities for `21 + 3 anti-7` with `Y=diag(-2,-2,-2,3,3,0,0)/6`: one SU(5) `10 + anti-5`, two `5 + anti-5` pairs and seven singlets, totaling 42 states.
 - This is representation bookkeeping only; physical states, anomaly cancellation, dynamics and any link to the WZW phase witnesses remain open. Independent audit is a separate pending milestone.
+
+## 2026-11-27 - Independently audit the hypercharge census (claim 74)
+
+- Independent block combinatorics reproduces the 42-weight integer hypercharge census in two processes. Claim 74 covers that census only; the nonabelian assignment requires further independent assessment.

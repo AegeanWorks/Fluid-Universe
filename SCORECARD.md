@@ -97,5 +97,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 71 | NUMERIC (canonical SU(7)_1163 conformal data) | Exact weights 934/4095, 289/2730, 2/35; quantum dimensions 1.136e11, 4.072e8, 4.569e5 ordered lepton>down>up. No mass relation is asserted. |
 | 72 | FALSIFIED (direct SM conformal embedding) | All known hosts have c>12: SU(7)_1163≈47.71, SU(17)_1153≈283.82, SU(23)_1147≈517.62. Equal central charge is necessary, so direct embedding is impossible; the smallest host's remaining coset has c>=6964/195≈35.71. |
 | 73 | NUMERIC (chosen block current-algebra subsector) | SU(3)_1163 x SU(2)_1163 x U(1)^2 has c=8812057/679195; the coset has c=920175833/26488605. One of the three block-centralizer U(1) directions remains in the coset; hypercharge and dynamics are not established. |
+| 74 | NUMERIC (chosen hypercharge census) | The `21 + 3 anti-7` representation has 42 weights in the recorded 6Y bins. Nonabelian assignment and physical realization remain open. |
 
-Claim audit: two Rust processes produced 50 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+Claim audit: two Rust processes produced 51 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

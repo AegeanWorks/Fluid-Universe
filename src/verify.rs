@@ -27,6 +27,7 @@ pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.minimal_witness_canonical", "audit.su7_conformal_weights",
     "audit.su7_quantum_dimensions", "audit.sm_conformal_embedding",
     "audit.sm_coset_central_charge", "audit.all_hosts_sm_embedding", "audit.su7_block_sm_coset",
+    "audit.su7_hypercharge_census",
 ];
 
 #[derive(Clone, Debug)]

@@ -604,3 +604,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The block SU(7) subsector leaves hypercharge and matter content open. The SU(5) 10 plus anti-5 assignment is standard background (https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf).
 - **Decision**: Choose Y=diag(-2,-2,-2,3,3,0,0)/6 and enumerate the exterior square 21 plus three conjugate fundamentals as a representation-content exercise. Expected branching is one 10 plus anti-5, two 5 plus anti-5 vectorlike pairs, and seven singlets under the SU(5) block. Compute integer hypercharges and dimensions explicitly.
 - **Consequences**: This is algebraic branching only. It does not establish physical fermions, anomaly cancellation, dynamics, mass generation, WZW sector selection or connection to the phase witnesses.
+
+### ADR-085: Independently audit the SU(7) hypercharge census
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The branching exercise enumerates representation weights but needs an independent check before recording a result.
+- **Decision**: Use block sizes and integer hypercharges to count exterior-square pairs combinatorially and add conjugate fundamentals; compare the resulting U(1) census in separate processes.
+- **Consequences**: Claim 74 covers only the 42-weight charge census. The nonabelian multiplet identification, anomaly cancellation, physical spectrum and relation to WZW witnesses remain open.

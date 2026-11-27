@@ -1,8 +1,8 @@
 # Audit coverage inventory
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
-On 2026-11-27, `claims.md` contained 57 numbered rows marked PROVEN, NUMERIC,
-or VERIFIED; `results/rust_audit.json` now contains 50 audit records. Their
+On 2026-11-27, `claims.md` contained 58 numbered rows marked PROVEN, NUMERIC,
+or VERIFIED; `results/rust_audit.json` now contains 51 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
 The two-process `verify` command compares audit records; it does not establish
@@ -31,6 +31,7 @@ claim satisfies G-001. Audit identifiers are in `src/audit.rs` and the generated
 | 70 | `audit.minimal_witness_canonical` | Checks counts and canonical representatives; assess the full claim against the search domain. |
 | 71 | `audit.su7_conformal_weights`, `audit.su7_quantum_dimensions` | Check the quoted weights, dimensions and ordering; assess complete claim coverage. |
 | 73 | `audit.su7_block_sm_coset` | Checks chosen generator properties and central-charge arithmetic; the embedding index and coset construction need separate assessment. |
+| 74 | `audit.su7_hypercharge_census` | Independently checks the chosen generator's 42-weight charge census; the nonabelian multiplet assignment is a separate question. |
 
 The remaining accepted IDs have **not yet been reviewed for audit coverage**:
 4b, 5a, 5b, 6b, 12b, 14c, 20, 21, 22, 23, 25, 26, 27, 28,
