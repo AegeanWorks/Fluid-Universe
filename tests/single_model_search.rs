@@ -1,9 +1,10 @@
 use fluid_universe::single_model_test::{
     WITNESSES, all_witnesses_exact, braiding_fraction, canonical_conformal_weights,
     canonical_quantum_dimensions, central_charge, inverse_search, lower_rank_inverse_search,
-    minimal_level_inverse_search, minimal_witness_search, relaxed_inverse_search,
-    sm_charge_compatible, sm_gauge_central_charge_upper_bound, su7_minimal_coset_central_charge,
-    search, single_model_exists, witness_exact, witness_fractions,
+    minimal_level_inverse_search, minimal_witness_search, relaxed_inverse_search, search,
+    single_model_exists, sm_charge_compatible, sm_gauge_central_charge_upper_bound,
+    su7_block_coset_central_charge, su7_block_sm_central_charge, su7_minimal_coset_central_charge,
+    witness_exact, witness_fractions,
 };
 
 #[test]
@@ -31,8 +32,14 @@ fn all_positive_levels_reproduce_the_inverse_negative() {
     assert_eq!(result.models_with_any_phase, 694);
     assert!(result.hit_models.is_empty());
     assert_eq!(result.phase_masks.get(&(3, 9)).copied().unwrap_or(0) & 1, 1);
-    assert_eq!(result.phase_masks.get(&(2, 13)).copied().unwrap_or(0) & 2, 2);
-    assert_eq!(result.phase_masks.get(&(3, 49)).copied().unwrap_or(0) & 4, 4);
+    assert_eq!(
+        result.phase_masks.get(&(2, 13)).copied().unwrap_or(0) & 2,
+        2
+    );
+    assert_eq!(
+        result.phase_masks.get(&(3, 49)).copied().unwrap_or(0) & 4,
+        4
+    );
 }
 
 #[test]
@@ -74,7 +81,11 @@ fn canonical_su7_conformal_data_matches_pre_registration() {
     assert!((weights[1] - 289.0 / 2730.0).abs() <= 1e-15);
     assert!((weights[2] - 2.0 / 35.0).abs() <= 1e-15);
     let dimensions = canonical_quantum_dimensions();
-    let expected = [1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5];
+    let expected = [
+        1.136464998628996e11,
+        4.072382134390699e8,
+        4.568658409657278e5,
+    ];
     for (actual, target) in dimensions.iter().zip(expected) {
         assert!((actual - target).abs() / target <= 1e-12);
     }
@@ -91,6 +102,34 @@ fn su7_host_cannot_directly_embed_the_sm_gauge_algebra() {
     assert!((su7_minimal_coset_central_charge() - 6964.0 / 195.0).abs() <= 1e-14);
     assert!(central_charge(17, 1153) > 12.0);
     assert!(central_charge(23, 1147) > 12.0);
+}
+
+#[test]
+fn su7_block_sm_subsector_has_exact_coset_central_charge() {
+    // Two independent traceless, orthogonal diagonal generators commuting with
+    // the 3+2 blocks; the full block centralizer has a third U(1) direction.
+    let generators = [[2_i32, 2, 2, -3, -3, 0, 0], [0, 0, 0, 0, 0, 1, -1]];
+    for generator in generators {
+        assert_eq!(generator.iter().sum::<i32>(), 0);
+        assert_eq!(generator[0], generator[1]);
+        assert_eq!(generator[1], generator[2]);
+        assert_eq!(generator[3], generator[4]);
+        assert!(generator.iter().any(|entry| *entry != 0));
+    }
+    assert_eq!(
+        generators[0]
+            .iter()
+            .zip(generators[1])
+            .map(|(a, b)| a * b)
+            .sum::<i32>(),
+        0
+    );
+    let sub = su7_block_sm_central_charge();
+    let coset = su7_block_coset_central_charge();
+    assert!((sub - 8_812_057.0 / 679_195.0).abs() <= 1e-14);
+    assert!((coset - 920_175_833.0 / 26_488_605.0).abs() <= 1e-14);
+    assert!(sub < central_charge(7, 1163));
+    assert!(coset > 34.0);
 }
 
 #[test]

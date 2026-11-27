@@ -96,5 +96,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 70 | PROVEN (canonical minimal witnesses at SU(7)_1163) | Minimal-sum families contain 4/2/2 representatives; the current vectors are exactly the lexicographic minima. Witness choice is canonicalized; physical host selection remains open. |
 | 71 | NUMERIC (canonical SU(7)_1163 conformal data) | Exact weights 934/4095, 289/2730, 2/35; quantum dimensions 1.136e11, 4.072e8, 4.569e5 ordered lepton>down>up. No mass relation is asserted. |
 | 72 | FALSIFIED (direct SM conformal embedding) | All known hosts have c>12: SU(7)_1163≈47.71, SU(17)_1153≈283.82, SU(23)_1147≈517.62. Equal central charge is necessary, so direct embedding is impossible; the smallest host's remaining coset has c>=6964/195≈35.71. |
+| 73 | NUMERIC (chosen block current-algebra subsector) | SU(3)_1163 x SU(2)_1163 x U(1)^2 has c=8812057/679195; the coset has c=920175833/26488605. One of the three block-centralizer U(1) directions remains in the coset; hypercharge and dynamics are not established. |
 
-Claim audit: two separate Rust processes agree, 609/609 checks (`cargo run -- verify`, fingerprint `fa06647a67fd4b6d`). The full suite has 371 passing tests. Guideline G-001 requires two processes for claims; tests remain a single run.
+Claim audit: two separate Rust processes agree, 612/612 checks (fingerprint `427085f9c85ad8f3`). The full suite has 372 passing tests. Guideline G-001 requires two processes for claims; tests remain a single run.

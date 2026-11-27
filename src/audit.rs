@@ -1487,6 +1487,37 @@ fn rows() -> Vec<Row> {
         value: host_c_numerator as f64 / host_c_denominator as f64,
     });
 
+    // 73: two chosen U(1)s inside the rank-three block centralizer.
+    let abelian = [[2_i64, 2, 2, -3, -3, 0, 0], [0, 0, 0, 0, 0, 1, -1]];
+    let abelian_valid = abelian.iter().all(|v| {
+        v.iter().sum::<i64>() == 0
+            && v[0] == v[1] && v[1] == v[2] && v[3] == v[4]
+            && v.iter().any(|x| *x != 0)
+    }) && abelian[0].iter().zip(abelian[1]).map(|(a, b)| a * b).sum::<i64>() == 0;
+    let block_c3_num = 8_i64 * 1163;
+    let block_c3_den = 1163_i64 + 3;
+    let block_c2_num = 3_i64 * 1163;
+    let block_c2_den = 1163_i64 + 2;
+    let block_u1_count = 2_i64;
+    let block_common_den = block_c3_den * block_c2_den;
+    let block_sub_num = block_c3_num * block_c2_den
+        + block_c2_num * block_c3_den
+        + block_u1_count * block_common_den;
+    let host_for_coset_num = 9304_i64 * block_common_den;
+    let host_for_coset_den = 195_i64 * block_common_den;
+    let block_coset_num = host_for_coset_num - block_sub_num * 195_i64;
+    let block_coset_den = host_for_coset_den;
+    let block_exact = abelian_valid
+        && block_sub_num * 679_195 == 8_812_057 * block_common_den
+        && block_coset_num * 26_488_605 == 920_175_833 * block_coset_den;
+    out.push(Row {
+        id: "audit.su7_block_sm_coset",
+        claim: "73: SU(7)_1163 block SM subsector and coset central charges",
+        verdict: if block_exact { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("two traceless orthogonal block generators={abelian_valid}; c_sub={block_sub_num}/{block_common_den}=8812057/679195; c_coset={block_coset_num}/{block_coset_den}=920175833/26488605; exact={block_exact}"),
+        value: block_coset_num as f64 / block_coset_den as f64,
+    });
+
     out
 }
 
@@ -1589,6 +1620,7 @@ mod tests {
         assert_eq!(verdict("neutrino Q max"), "FALSIFIED");
         assert_eq!(verdict("equal-K isotropy"), "PROVEN");
         assert_eq!(verdict("K=(1,2,3)"), "FALSIFIED");
+        assert_eq!(verdict("73: SU(7)_1163 block"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

@@ -18,5 +18,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=fa06647a67fd4b6d, run2=fa06647a67fd4b6d, agreement=PASS.
+- G-001 two-process fingerprint: run1=427085f9c85ad8f3, run2=427085f9c85ad8f3, agreement=PASS.
 - config_sha256 (FNV-1a): `f914e97c9e716c02`.

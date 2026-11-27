@@ -47,9 +47,10 @@
 | `audit.sm_conformal_embedding` | `4.771282051282051e1` | FALSIFIED \| c_host=55824/1170=9304/195 > 12 >= c_SM_gauge; direct embedding excluded=true |
 | `audit.sm_coset_central_charge` | `3.571282051282051e1` | NUMERIC \| c_coset >= c_host-12 = 41784/1170=6964/195 |
 | `audit.all_hosts_sm_embedding` | `4.771282051282051e1` | FALSIFIED \| c7=55824/1170, c17=332064/1170, c23=605616/1170; all >12=true |
+| `audit.su7_block_sm_coset` | `3.473855391780730e1` | NUMERIC \| two traceless orthogonal block generators=true; c_sub=17624114/1358390=8812057/679195; c_coset=9201758330/264886050=920175833/26488605; exact=true |
 
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- G-001 two-process fingerprint: run1=fa06647a67fd4b6d, run2=fa06647a67fd4b6d, agreement=PASS.
-- config_sha256 (FNV-1a): `7c1b4e043ce9bdf4`.
+- G-001 two-process fingerprint: run1=427085f9c85ad8f3, run2=427085f9c85ad8f3, agreement=PASS.
+- config_sha256 (FNV-1a): `86a0211aaa03169d`.

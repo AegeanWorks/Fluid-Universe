@@ -577,6 +577,14 @@ pub fn su7_minimal_coset_central_charge() -> f64 {
     central_charge(7, 1163) - sm_gauge_central_charge_upper_bound()
 }
 
+pub fn su7_block_sm_central_charge() -> f64 {
+    central_charge(3, 1163) + central_charge(2, 1163) + 2.0
+}
+
+pub fn su7_block_coset_central_charge() -> f64 {
+    central_charge(7, 1163) - su7_block_sm_central_charge()
+}
+
 pub fn canonical_conformal_weights() -> [f64; 3] {
     std::array::from_fn(|index| {
         conformal_weight(WITNESSES[2].n, WITNESSES[2].k, WITNESSES[2].dynkin[index])
@@ -622,6 +630,8 @@ pub fn checks() -> Vec<Check> {
         .iter()
         .all(|charge| *charge >= sm_gauge_central_charge_upper_bound());
     let coset_central_charge_floor = su7_minimal_coset_central_charge();
+    let block_sm_central_charge = su7_block_sm_central_charge();
+    let block_coset_central_charge = su7_block_coset_central_charge();
     let sm_charge_compatible = sm_charge_compatible();
     vec![
         Check::new(
@@ -783,6 +793,16 @@ pub fn checks() -> Vec<Check> {
             "singlemodel.su7_coset_c_floor",
             coset_central_charge_floor,
             "minimum coset central charge after any SM gauge subsector, 6964/195",
+        ),
+        Check::new(
+            "singlemodel.su7_block_sm_c",
+            block_sm_central_charge,
+            "SU(3)_1163 x SU(2)_1163 x U(1)^2 subsector central charge 8812057/679195",
+        ),
+        Check::new(
+            "singlemodel.su7_block_coset_c",
+            block_coset_central_charge,
+            "SU(7)_1163 / block-SM coset central charge 920175833/26488605",
         ),
         Check::new(
             "singlemodel.sm_charge_compatible",

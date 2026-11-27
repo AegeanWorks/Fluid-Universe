@@ -1256,3 +1256,9 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 72 is FALSIFIED for direct conformal embedding only. Coset, subsector and non-conformal interpretations remain open, but any coset after removing an SM gauge subsector has c>=6964/195≈35.71.
 - Dev/test builds now use `opt-level=2`; the 85,766,121-primary exact search test dropped from tens of seconds to about 2.1 seconds without changing assertions or domains.
 - Full suite: 371 passing tests. G-001: two separate Rust processes agree on 609 checks, fingerprint `fa06647a67fd4b6d`.
+
+## 2026-11-27 - SU(7) block subsector (claim 73, ADR-071)
+
+- Calculated the central charges of a chosen SU(3)_1163 x SU(2)_1163 x U(1)^2 current-algebra subsector and its coset as 8812057/679195 and 920175833/26488605, respectively.
+- Specified and checked two diagonal generators. The full block centralizer has three U(1) directions; the third remains in the coset. Hypercharge, global identifications, matter and dynamics are not established.
+- Added an exact-rational audit and a regression for its verdict. The full Rust suite passes 372 tests; two processes agree on 612 checks with fingerprint `427085f9c85ad8f3`.

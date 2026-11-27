@@ -46,6 +46,12 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 ## What Is Actually Established
 
+The SU(7)_1163 candidate also admits a chosen block current-algebra subsector
+SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
+the remaining coset has central charge 920175833/26488605. The full block
+centralizer has three U(1) directions, and one remains in the coset. This
+calculation does not identify Standard Model hypercharge or matter dynamics.
+
 | Item | Verdict | Where |
 |---|---|---|
 | Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `src/circulant.rs`, `src/circulant.rs` |
