@@ -21,7 +21,7 @@ audit records in two separate processes. Complete G-001 claim coverage remains o
 | `src/lorentz.rs` | `theory/lorentz.py` | 2x2 elastic eigenvalues, residual anisotropy over deterministic unit directions, equal-K isotropy |
 | `src/linalg.rs` | (new) | cyclic Jacobi symmetric eigensolver, Simpson quadrature, bisection, tolerance helper |
 | `src/simulation.rs` | `sims/core3d.py`, `sims/production.py`, `theory/hopf.py` | analytic H=1 field, central-difference E2/E4/V, Z3 order, Hopf linking, analytic force, relaxation and field metrics |
-| `src/audit.rs` | `verification/audit.py` | 46 independently re-derived audit records with frozen verdicts and a deterministic fingerprint |
+| `src/audit.rs` | `verification/audit.py` | 48 independently re-derived audit records with frozen verdicts and a deterministic fingerprint |
 | `src/reports.rs` | `phenomenology/*_report.py`, `phenomenology/run_all.py` | deterministic `rust_*.json\|md` generation with config hash and in-process provenance |
 | `src/verify.rs` | `verification/verify.py` | exact comparison of two process audit records; ledger coverage remains open |
 
@@ -68,9 +68,9 @@ ledger with frozen verdicts. `src/reports.rs` regenerates results as
 `results/rust_<family>.json|md`; the old Python-generated result files are kept only
 as a historical ledger.
 
-Verified: **612 reproducible checks**, **373 passing tests** (341 unit + 7 existing
+Verified: **614 reproducible checks**, **374 passing tests** (342 unit + 7 existing
 integration + 6 single-shell + 7 double-shell + 12 single-WZW-search integration)
-and a two-process comparison of 46 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+and a two-process comparison of 48 matching audit records. The audit has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
 
 On this host the MSVC `link.exe` is absent, so the registered test command is
 `cargo test --target x86_64-pc-windows-gnu`. On a host with Visual Studio Build

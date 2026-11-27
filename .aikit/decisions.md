@@ -541,3 +541,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The two-process verifier compares audit records but the records have not been mapped to all accepted ledger claims.
 - **Decision**: Maintain a human-reviewed inventory of related audit rows and separately list accepted claims whose audit coverage has not been reviewed. Related evidence is not equivalent to a full G-001 coverage finding.
 - **Consequences**: The inventory directs independent re-derivation and must be updated when the ledger or review changes. It does not change scientific verdicts.
+
+### ADR-076: Add independent circulant matrix spot checks
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The signed-Q audit did not multiply the circulant matrix by DFT vectors, and claims 2a and 2b had not been assessed for audit coverage.
+- **Decision**: Construct the complex matrix independently with real-imaginary pairs, test Hermiticity, a generic nonsymmetry example, and the DFT eigenvalue equation across fixed parameters. Mark the resulting audit rows NUMERIC, not symbolic proof.
+- **Consequences**: Add a perturbation regression, two-process record comparison, regenerated reports and update the coverage inventory. Universal symbolic statements and full G-001 claim coverage remain open.

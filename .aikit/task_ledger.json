@@ -1,89 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795741128.74565,
-    "completed_head": "d9b079324816f7e23c8c019540381d09a742636b",
-    "completed_tree": "f1a97ec715f40a540bc837cc067e466b551dfe24",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795748292.31503,
+    "lease_until": 1795748516.93638,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-audit-coverage-inventory",
-    "updated_at": 1795741092.31503
+    "status": "in_progress",
+    "task_id": "fluid-circulant-audit",
+    "updated_at": 1795741316.93638
   },
   "checkpoints": [
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "checklists": "passed",
-      "description": "[2/2] Claim 72 complete: all explicit WZW hosts are SM charge-incompatible; coset floor 6964/195; dev/test opt-level=2 reduces the heavy exact test to ~2.1s; 371 tests, 609 checks and G-001 fingerprint fa06647a67fd4b6d pass",
-      "files_affected": [
-        ".aikit/decisions.md",
-        ".aikit/task_ledger.json",
-        ".aikit/task_ledger_archive.jsonl",
-        "CHANGELOG.md",
-        "Cargo.toml",
-        "MIGRATION.md",
-        "README.md",
-        "SCORECARD.md",
-        "claims.md",
-        "results/rust_audit.json",
-        "results/rust_audit.md",
-        "results/rust_circulant.json",
-        "results/rust_circulant.md",
-        "results/rust_derrick.json",
-        "results/rust_derrick.md",
-        "results/rust_fluid.json",
-        "results/rust_fluid.md",
-        "results/rust_lorentz.json",
-        "results/rust_lorentz.md",
-        "results/rust_multi_radial_shell.json",
-        "results/rust_multi_radial_shell.md",
-        "results/rust_radial_shell.json",
-        "results/rust_radial_shell.md",
-        "results/rust_rotor.json",
-        "results/rust_rotor.md",
-        "results/rust_simulation.json",
-        "results/rust_simulation.md",
-        "results/rust_spectra.json",
-        "results/rust_spectra.md",
-        "results/rust_water.json",
-        "results/rust_water.md",
-        "src/audit.rs",
-        "src/single_model_test.rs",
-        "tests/single_model_search.rs"
-      ],
-      "phase": "phase 4",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-claim-72-sm-embedding-v1",
-      "timestamp": 1795555345.4023886,
-      "timestamp_str": "2026-11-25 00:22:25",
-      "workspaces": [
-        {
-          "name": "fluid-universe",
-          "path": "projects/fluid-universe"
-        }
-      ]
-    },
-    {
-      "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          "."
-        ]
-      },
-      "description": "Task 'fluid-claim-72-sm-embedding-v1' completed successfully.",
-      "head": "0dc46e589e620ede7905aa3da49cb5df433240ec",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-claim-72-sm-embedding-v1",
-      "timestamp": 1795555604.859246,
-      "timestamp_str": "2026-11-25 00:26:44"
-    },
     {
       "agent": "opencode:ses_df1cb7435ffeEJ70D44kef8wDz",
       "description": "[1/2] Implement the SU(7)_1163 block SU(3)xSU(2)xU(1)^2 gauge subsector and exact coset central charge",
@@ -378,6 +305,36 @@
       "task_id": "fluid-audit-coverage-inventory",
       "timestamp": 1795741128.74565,
       "timestamp_str": "2026-11-27 03:58:48"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Add independent matrix-level checks for circulant Hermiticity and DFT eigenvectors",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Adds independently constructed matrix residuals and a generic nonsymmetry control to the two-process audit",
+        "mitigation": "Use independent real-pair arithmetic over varied inputs, test perturbation sensitivity, label results numeric and retain the symbolic proof gap",
+        "risks": "contract: audit records and fingerprints change; dependency: none; concurrency: none; state: source, reports and documentation; physics: numerical samples do not prove universal symbolic claims",
+        "why": "Claims 2a and 2b lack mapped audit evidence; claim 1a audit does not check the matrix eigenvalue equation"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "fa4207d8afda98a5ad993f733755d6b186237db0f74d6859114b58b4ff3ff16d",
+      "status": "in_progress",
+      "task_id": "fluid-circulant-audit",
+      "timestamp": 1795741182.66438,
+      "timestamp_str": "2026-11-27 03:59:42"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Independent matrix spot checks and perturbation regression pass; 48 audit records agree across two processes; four project gates pass",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-circulant-audit",
+      "timestamp": 1795741316.93638,
+      "timestamp_str": "2026-11-27 04:01:56"
     }
   ],
   "version": 1

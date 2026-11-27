@@ -825,8 +825,69 @@ struct Row {
     value: f64,
 }
 
+// Construct and multiply the matrix directly, without the circulant module.
+fn independent_matrix_residuals(a: f64, c: f64, delta: f64, perturb: f64) -> (f64, f64, f64) {
+    let first = [(a, 0.0), (c * delta.cos(), c * delta.sin()), (c * delta.cos(), -c * delta.sin())];
+    let mut matrix = [[(0.0, 0.0); 3]; 3];
+    for (row, entries) in matrix.iter_mut().enumerate() {
+        for (col, entry) in entries.iter_mut().enumerate() {
+            *entry = first[(col + 3 - row) % 3];
+        }
+    }
+    matrix[0][1].0 += perturb;
+    let (mut hermitian, mut asymmetric, mut eigen) = (0.0_f64, 0.0_f64, 0.0_f64);
+    for row in 0..3 {
+        for col in 0..3 {
+            let (re, im) = matrix[row][col];
+            let (tre, tim) = matrix[col][row];
+            hermitian = hermitian.max((re - tre).hypot(im + tim));
+            asymmetric = asymmetric.max((re - tre).hypot(im - tim));
+        }
+        for k in 0..3 {
+            let mut mv = (0.0, 0.0);
+            for col in 0..3 {
+                let theta = TAU * (k * col) as f64 / 3.0;
+                let (re, im) = matrix[row][col];
+                mv.0 += re * theta.cos() - im * theta.sin();
+                mv.1 += re * theta.sin() + im * theta.cos();
+            }
+            let theta = TAU * (k * row) as f64 / 3.0;
+            let lambda = a + 2.0 * c * (delta + TAU * k as f64 / 3.0).cos();
+            eigen = eigen.max((mv.0 - lambda * theta.cos()).hypot(mv.1 - lambda * theta.sin()));
+        }
+    }
+    (hermitian, asymmetric, eigen)
+}
+
 fn rows() -> Vec<Row> {
     let mut out = Vec::new();
+
+    let mut max_hermitian = 0.0_f64;
+    let mut max_eigen = 0.0_f64;
+    for a in [0.5, 2.0] {
+        for c in [0.2, 0.9] {
+            for delta in [0.0, 0.4, 1.7, PI] {
+                let (hermitian, _, eigen) = independent_matrix_residuals(a, c, delta, 0.0);
+                max_hermitian = max_hermitian.max(hermitian);
+                max_eigen = max_eigen.max(eigen);
+            }
+        }
+    }
+    let (_, generic_asymmetry, _) = independent_matrix_residuals(1.0, 0.7, 0.4, 0.0);
+    out.push(Row {
+        id: "audit.circulant_matrix_structure",
+        claim: "2a: circulant Hermiticity and generic nonsymmetry",
+        verdict: if max_hermitian < 1e-12 && generic_asymmetry > 0.1 { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("sampled Hermitian residual={max_hermitian:.3e}; generic transpose difference={generic_asymmetry:.3e}"),
+        value: max_hermitian,
+    });
+    out.push(Row {
+        id: "audit.circulant_dft_eigenvectors",
+        claim: "1a/2b: circulant DFT eigenvalue equation",
+        verdict: if max_eigen < 1e-12 { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("maximum matrix-times-DFT residual across sampled parameters={max_eigen:.3e}"),
+        value: max_eigen,
+    });
 
     // 1a/F2: signed-root Q identity, spot-checked on a deterministic grid.
     let (mut max_q, mut max_eig) = (0.0_f64, 0.0_f64);
@@ -1727,6 +1788,15 @@ mod tests {
         assert!(approx(q_from_ac(1.0, R_KOIDE), KOIDE, 1e-14));
         let (a, c, delta) = extract_ac(&[1.0, 2.0, 3.0].map(|v| v * v * v));
         assert!(a > 0.0 && c > 0.0 && (0.0..TAU).contains(&delta));
+    }
+
+    #[test]
+    fn matrix_audit_detects_broken_hermiticity_and_eigenvectors() {
+        let (hermitian, asymmetric, eigen) = independent_matrix_residuals(1.0, 0.7, 0.4, 0.0);
+        assert!(hermitian < 1e-12 && eigen < 1e-12);
+        assert!(asymmetric > 0.1);
+        let (broken_hermitian, _, broken_eigen) = independent_matrix_residuals(1.0, 0.7, 0.4, 0.1);
+        assert!(broken_hermitian > 0.09 && broken_eigen > 0.09);
     }
 
     #[test]

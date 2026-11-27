@@ -1282,3 +1282,8 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 ## 2026-11-27 - Audit coverage inventory
 
 - Added `AUDIT_COVERAGE.md` to link examined audit records to 14 accepted claims as related evidence and list 43 other accepted claims awaiting coverage review. No claim is marked fully covered by this inventory.
+
+## 2026-11-27 - Independent circulant matrix spot checks (ADR-076)
+
+- Constructed the complex matrix independently and checked Hermiticity, generic nonsymmetry and the DFT eigenvalue equation at fixed parameter samples. A perturbation regression detects broken matrix structure.
+- Two processes agree on 48 audit records. The matrix checks are numeric spot checks; symbolic proof and complete G-001 coverage remain open.

@@ -31,7 +31,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   ```
   The binary launches two audit processes and compares their identified records exactly,
   including value bits and verdict details. It exits non-zero on disagreement, malformed
-  records, or a child failure. The current audit has 46 records and has not been mapped to
+  records, or a child failure. The current audit has 48 records and has not been mapped to
   every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.

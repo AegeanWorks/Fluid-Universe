@@ -2,6 +2,8 @@
 
 | id | value | detail |
 | --- | --- | --- |
+| `audit.circulant_matrix_structure` | `0.000000000000000e0` | NUMERIC \| sampled Hermitian residual=0.000e0; generic transpose difference=5.452e-1 |
+| `audit.circulant_dft_eigenvectors` | `1.554312234475219e-15` | NUMERIC \| maximum matrix-times-DFT residual across sampled parameters=1.554e-15 |
 | `audit.q_identity` | `6.217248937900877e-15` | PROVEN \| max \|Q_signed - (1/3+2c^2/3a^2)\| = 6.217e-15; algebraic sum/sum-sq residual 7.105e-15 |
 | `audit.koide_ratio_condition` | `7.071067811865476e-1` | PROVEN \| q_from_ac(1, 1/sqrt2) = 0.666666666667; c^2 = a^2/2 solves 1/3+2c^2/3a^2 = 0.666666666667 |
 | `audit.z3_not_fixed` | `4.864864864864865e-1` | FALSIFIED \| five positive-root triples span Q in [0.333333, 0.819820] (spread 0.486486) |
@@ -52,5 +54,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=8b67325e9175b32c, run2=8b67325e9175b32c, agreement=PASS.
-- config_sha256 (FNV-1a): `a590360a74fd87c6`.
+- In-process determinism fingerprint (not G-001 evidence): run1=c1f1b330cde6c159, run2=c1f1b330cde6c159, agreement=PASS.
+- config_sha256 (FNV-1a): `0e5a03fb4ebbf50a`.
