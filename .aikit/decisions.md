@@ -695,3 +695,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Fundamental-pair targets are obstructed, but a search found SU(2)_2338 with external Dynkin label 558 and channels 1070, 1044, 688.
 - **Decision**: Verify integrable fusion multiplicity and reversed full-monodromy residues 2/9, 1/10, 2/39 using exact Dynkin-label arithmetic and an independent spin-based audit in two processes.
 - **Consequences**: This is an explicit mathematical witness under one common reversed orientation, selected post-hoc; it does not establish minimality, physical sector assignment, or a fundamental external field.
+
+### ADR-098: Test minimal SU(2) level for identical-field target monodromies
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The level-2338 higher-spin witness is explicit but post-hoc, and lower levels have not been excluded.
+- **Decision**: Use the necessary divisibility 1170 divides 4(k+2), exhaust the three lower candidate levels 583, 1168 and 1753 for all integrable external labels and fusion channels with independent target orientations, and independently audit by channel-first enumeration.
+- **Consequences**: If both enumerations agree with zero triple matches, 2338 is minimal only for identical SU(2) external fields and full-monodromy phases under the stated conventions.

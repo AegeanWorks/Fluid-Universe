@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795846856.10427,
-    "completed_head": "1fca81b6b13ca1c4d243c7775e83df7897748eb3",
-    "completed_tree": "a7352ceb0c43b49094ae5aa4a555101aaa3bd6c0",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795853966.16116,
+    "lease_until": 1795854386.79127,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su2-higher-spin",
-    "updated_at": 1795846766.16116
+    "status": "in_progress",
+    "task_id": "fluid-su2-minimal-level",
+    "updated_at": 1795847186.79127
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Mixed and four-fundamental dimensions verified; two-process audit and 4/4 project gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su3-four-point",
-      "timestamp": 1795844076.24157,
-      "timestamp_str": "2026-11-28 08:34:36"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su3-four-point' completed successfully.",
-      "head": "1983123e3f1ed3f1d084b1a94ec34ce975ed0c49",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su3-four-point",
-      "timestamp": 1795844163.64165,
-      "timestamp_str": "2026-11-28 08:36:03"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Correct phase-selection and correlated-observable descriptions",
@@ -317,6 +286,35 @@
       "task_id": "fluid-su2-higher-spin",
       "timestamp": 1795846856.10427,
       "timestamp_str": "2026-11-28 09:20:56"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Test minimal level of the identical-field SU(2) monodromy witness",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Distinguish an arbitrary high-level example from a minimal-level result within a precise fusion and orientation scope",
+        "mitigation": "Prove the denominator restriction, enumerate every external label and allowed channel at the three lower candidate levels, independently reverse loop order, compare two processes and run gates",
+        "risks": "contract: all-level divisibility and orientation assumptions; dependency: none; concurrency: isolated project; state: audit evidence and claim ledger",
+        "why": "The explicit higher-spin witness has not been checked against all lower SU(2) levels"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "e9c05783b02a507da459eaf86be43735eb493454ca6a96454fdd07dac497973c",
+      "status": "in_progress",
+      "task_id": "fluid-su2-minimal-level",
+      "timestamp": 1795846921.69266,
+      "timestamp_str": "2026-11-28 09:22:01"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] All lower candidate SU(2) levels independently enumerated; two-process audit and 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su2-minimal-level",
+      "timestamp": 1795847186.79127,
+      "timestamp_str": "2026-11-28 09:26:26"
     }
   ],
   "version": 1

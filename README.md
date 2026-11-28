@@ -78,7 +78,9 @@ Higher-spin external fields evade that obstruction. In SU(2)_2338, four
 identical fields with Dynkin label 558 admit pair channels 1070, 1044 and 688.
 One common reversed full-monodromy orientation yields 2/9, 1/10 and 2/39
 modulo one. The level and labels were selected post-hoc; no physical sector
-assignment or minimality is established. See claim 83 and ADR-097. The
+assignment is established. Exact enumeration excludes every lower SU(2) level
+for identical external fields, even allowing target orientations independently;
+thus 2338 is minimal within that scope. See claims 83–84 and ADR-097–098. The
 [SU(2) WZW fusion and weight formulas](https://arxiv.org/abs/hep-th/0209241)
 are standard inputs to this check.
 

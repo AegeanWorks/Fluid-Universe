@@ -46,6 +46,7 @@
 | `audit.fundamental_pair_target_no_go` | `1.000000000000000e0` | NUMERIC \| 13/3 noninteger=true; 10N=16 has no integer solution=true; exact exponent representatives |
 | `audit.fundamental_pair_monodromy_no_go` | `4.000000000000000e0` | NUMERIC \| four target/complement ratio cases excluded=[true, true, true, true]; full-monodromy exponent magnitudes lie in (0,1) |
 | `audit.su2_higher_spin_monodromy` | `1.000000000000000e0` | NUMERIC \| k=2338, external spin=279, allowed channel spins=[535, 522, 344], bound=558, reversed residues=[520, 234, 120]/2340; post-hoc |
+| `audit.su2_higher_spin_minimal_level` | `1.197787000000000e6` | NUMERIC \| channel-first levels, counts and masks=[(583, 85556, [390, 30, 80, 0, 68, 16, 0, 0]), (1168, 342225, [930, 71, 0, 0, 150, 18, 0, 0]), (1753, 770006, [1162, 23, 268, 0, 154, 147, 0, 0])]; denominator divisibility restricts lower levels to these three |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
@@ -66,5 +67,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=612116f1b6721315, run2=612116f1b6721315, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `be65cbeb3af5f267` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=d902d29ae7cdd8ec, run2=d902d29ae7cdd8ec, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `821fa453984f27f1` (not a configuration hash or cryptographic digest).

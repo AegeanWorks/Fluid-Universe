@@ -1383,3 +1383,7 @@ Extended the fundamental-pair no-go to both target phases modulo one and either 
 ## 2026-11-28 ? Higher-spin SU(2) monodromy witness
 
 Added exact SU(2) fusion and monodromy checks for a post-hoc level-2338 witness: external Dynkin label 558 and channels 1070, 1044 and 688 yield the three target phases under one common reversed orientation. An independent spin-based audit checks the construction; physical interpretation and minimality remain open. See claim 83 and ADR-097.
+
+## 2026-11-28 ? Minimal SU(2) level within identical-field scope
+
+A denominator argument reduces all lower levels to 583, 1168 and 1753. Exact external-label-first and independent channel-first enumerations exclude triple monodromy matches at all three, even with independently chosen orientations. The level-2338 witness is therefore minimal only in the stated SU(2) identical-field setting. See claim 84 and ADR-098.

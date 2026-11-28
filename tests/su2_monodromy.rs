@@ -13,3 +13,12 @@ fn higher_spin_witness_has_three_fusion_channels_and_common_orientation() {
     assert!(!fusion_allowed(level, level + 1, external, 0));
     assert!(reversed_monodromy_residue(level, external, 1071).is_none());
 }
+
+#[test]
+fn every_lower_candidate_level_lacks_a_triple_match() {
+    use fluid_universe::su2_monodromy::lower_level_search;
+    let rows = lower_level_search();
+    assert_eq!(rows[0], (583, 85_556, [390, 30, 80, 0, 68, 16, 0, 0]));
+    assert_eq!(rows[1], (1168, 342_225, [930, 71, 0, 0, 150, 18, 0, 0]));
+    assert_eq!(rows[2], (1753, 770_006, [1162, 23, 268, 0, 154, 147, 0, 0]));
+}

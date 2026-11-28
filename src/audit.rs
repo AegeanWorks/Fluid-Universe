@@ -1616,6 +1616,42 @@ fn rows() -> Vec<Row> {
         value: if valid { 1.0 } else { 0.0 },
     });
 
+    // 84: independently enumerate channels first, then all external labels
+    // whose SU(2) fusion interval contains that channel. Cross-multiplication
+    // tests both orientations without the production search's target division.
+    static LOWER_SU2: std::sync::OnceLock<[(u32, u64, [u32; 8]); 3]> = std::sync::OnceLock::new();
+    let lower_su2 = LOWER_SU2.get_or_init(|| [583_u32, 1168, 1753].map(|k| {
+        let mut masks = vec![0_u8; k as usize + 1];
+        let mut visited = 0_u64;
+        let den = i64::from(4 * (k + 2));
+        for c in (0..=k).step_by(2) {
+            for a in c / 2..=k - c / 2 {
+                visited += 1;
+                let (a64, c64) = (i64::from(a), i64::from(c));
+                let value = (c64 * (c64 + 2) - 2 * a64 * (a64 + 2)).rem_euclid(den);
+                for (bit, p, q) in [(1_u8, 2_i64, 9_i64), (2, 1, 10), (4, 2, 39)] {
+                    if q * value == p * den || q * value == (q - p) * den { masks[a as usize] |= bit; }
+                }
+            }
+        }
+        let mut counts = [0_u32; 8];
+        for mask in masks { counts[mask as usize] += 1; }
+        (k, visited, counts)
+    }));
+    let expected = [
+        (583, 85_556, [390, 30, 80, 0, 68, 16, 0, 0]),
+        (1168, 342_225, [930, 71, 0, 0, 150, 18, 0, 0]),
+        (1753, 770_006, [1162, 23, 268, 0, 154, 147, 0, 0]),
+    ];
+    let minimal = *lower_su2 == expected;
+    out.push(Row {
+        id: "audit.su2_higher_spin_minimal_level",
+        claim: "84: lower SU(2) levels lack identical-field triple monodromies",
+        verdict: if minimal { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("channel-first levels, counts and masks={lower_su2:?}; denominator divisibility restricts lower levels to these three"),
+        value: lower_su2.iter().map(|row| row.1).sum::<u64>() as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -1982,6 +2018,7 @@ mod tests {
         assert_eq!(verdict("81: fundamental-pair targets"), "NUMERIC");
         assert_eq!(verdict("82: fundamental-pair target monodromies"), "NUMERIC");
         assert_eq!(verdict("83: higher-spin SU(2)"), "NUMERIC");
+        assert_eq!(verdict("84: lower SU(2) levels"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
