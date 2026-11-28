@@ -1,34 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795847903.86699,
+    "completed_head": "e8b31fe411720efbe4deb8d7426ead0bca732aad",
+    "completed_tree": "86ca7f830957d6c713b9b018913126147e0dc9d1",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795855049.59235,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-su2-independent-spin",
     "updated_at": 1795847849.59235
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Correct SU(3) level-62 arithmetic and legacy phase channel descriptions",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Eliminate a wrong numerical API result and unsupported first-principles claims",
-        "mitigation": "Add failing-first exact arithmetic and Verlinde selection tests, preserve legacy level API and existing assertions, correct explanations and run gates",
-        "risks": "contract: returned value and report labels; dependency: none; concurrency: isolated project; state: regenerated evidence and documentation",
-        "why": "The level-62 adjoint expression is 1/195, not 2/39, and the cited fundamental is not in fundamental-pair fusion"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "7cb74590631b4d4baa3976f1d484f9b74d14f718a86d5fb697fb87ace8fc5c13",
-      "status": "in_progress",
-      "task_id": "fluid-legacy-phase",
-      "timestamp": 1795844834.06429,
-      "timestamp_str": "2026-11-28 08:47:14"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Exact level-62 arithmetic and SU(3) fusion regressions pass; 4/4 project gates passed; checklists: passed",
@@ -315,6 +300,23 @@
       "task_id": "fluid-su2-independent-spin",
       "timestamp": 1795847849.59235,
       "timestamp_str": "2026-11-28 09:37:29"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-su2-independent-spin' completed successfully.",
+      "head": "e8b31fe411720efbe4deb8d7426ead0bca732aad",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-su2-independent-spin",
+      "timestamp": 1795847903.86699,
+      "timestamp_str": "2026-11-28 09:38:23"
     }
   ],
   "version": 1
