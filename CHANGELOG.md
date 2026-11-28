@@ -1403,3 +1403,7 @@ The SU(2) phase hosts cannot directly conformally embed the full positive-level 
 ## 2026-11-28 ? SU(2) weight-one current capacity
 
 The unextended positive-level SU(2) affine vacuum has three weight-one currents; the full Standard Model gauge algebra requires twelve. This excludes even a nonconformal weight-one current embedding in the standalone host. Extensions and additional sectors remain open. See claim 88 and ADR-102.
+
+## 2026-11-28 ? Decoupled gauge-current extension
+
+Constructed SU(2)_2338 x SU(3)_1 x U(1) with vacuum added factors, preserving the SU(2) monodromies and giving central charge 2339/390. The witness transforms in a 559-dimensional weak representation; physical matter and dynamics remain unestablished. See claim 89 and ADR-103.

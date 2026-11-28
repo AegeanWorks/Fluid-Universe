@@ -102,6 +102,13 @@ currents, versus twelve required by the full gauge algebra. Thus even a
 nonconformal weight-one current subalgebra is excluded in that standalone
 chiral algebra. Extensions and added sectors remain open. See claims 87–88.
 
+One explicit decoupled extension is SU(2)_2338 x SU(3)_1 x U(1). Putting the
+added factors in their vacua preserves the three monodromies, and the product
+has central charge 2339/390. If its SU(2) factor is identified with weak
+isospin, the phase-carrying field is a color-singlet, U(1)-neutral 559-dimensional
+weak multiplet. This construction supplies current algebra only; it does not
+derive Standard Model matter or dynamics. See claim 89 and ADR-103.
+
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
 previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed

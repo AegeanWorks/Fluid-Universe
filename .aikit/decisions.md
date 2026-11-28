@@ -730,3 +730,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The previous central-charge test excluded only conformal embedding of the full Standard Model gauge algebra.
 - **Decision**: Compare the three weight-one states of the positive-level SU(2) affine vacuum with the twelve independent weight-one gauge currents required by SU(3) x SU(2) x U(1), and independently audit the current count.
 - **Consequences**: The unextended SU(2) chiral algebra cannot contain that gauge current algebra even as a nonconformal weight-one subalgebra; extensions, added sectors and other realizations remain open.
+
+### ADR-103: Test a decoupled gauge-current extension of the SU(2) phase witness
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The standalone SU(2) chiral algebra cannot contain the full Standard Model gauge current algebra, although additional sectors remain open.
+- **Decision**: Tensor SU(2)_2338 with SU(3)_1 and a positive U(1) current algebra, put the additional factors in their vacua, and verify central charge, unchanged monodromies and the 559-dimensional weak representation.
+- **Consequences**: This constructs a decoupled current-algebra example, not Standard Model matter, a sector-selection mechanism, or four-dimensional dynamics.

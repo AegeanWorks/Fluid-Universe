@@ -62,3 +62,15 @@ fn unextended_su2_has_too_few_weight_one_gauge_currents() {
     let deficit = checks.iter().find(|check| check.id == "su2_monodromy.sm_current_deficit").unwrap();
     assert_eq!(deficit.value, (8 + 3 + 1 - 3) as f64);
 }
+
+#[test]
+fn decoupled_gauge_extension_preserves_the_witness_and_exotic_weak_dimension() {
+    let checks = fluid_universe::su2_monodromy::checks();
+    let get = |id: &str| checks.iter().find(|check| check.id == id).unwrap().value;
+    assert!((get("su2_monodromy.product_central_charge") - 2339.0 / 390.0).abs() < 1e-14);
+    assert_eq!(get("su2_monodromy.product_weak_dimension"), 559.0);
+    for (channel, p, q) in [(1070, 2_i128, 9_i128), (1044, 1, 10), (688, 2, 39)] {
+        let (num, den) = reversed_monodromy_residue(2338, 558, channel).unwrap();
+        assert_eq!(num * q, den * p);
+    }
+}

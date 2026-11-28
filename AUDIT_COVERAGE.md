@@ -1,8 +1,8 @@
 # Audit coverage inventory
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
-On 2026-11-27, `claims.md` contained 70 numbered rows marked PROVEN, NUMERIC,
-or VERIFIED; `results/rust_audit.json` now contains 65 audit records. Their
+On 2026-11-27, `claims.md` contained 71 numbered rows marked PROVEN, NUMERIC,
+or VERIFIED; `results/rust_audit.json` now contains 66 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
 The two-process `verify` command compares audit records; it does not establish
@@ -55,3 +55,4 @@ processes before treating it as G-001 evidence.
 | 86 | `audit.su2_minimal_independent_orientation_spin` | Independently checks the mixed-orientation spin-90 witness and all smaller-label level-first cases; physical orientation assignment remains open. |
 | 87 | `audit.su2_sm_conformal_embedding` | Independently checks the central-charge inequalities and witness fractions; the proposition is FALSIFIED, with additional sectors outside scope. |
 | 88 | `audit.su2_sm_current_capacity` | Independently counts Cartan and root currents; the proposition is FALSIFIED for the unextended weight-one chiral algebra. |
+| 89 | `audit.su2_decoupled_gauge_extension` | Independently checks central charge, spin dimension and phase residues with added vacuum factors; matter and dynamics are outside scope. |

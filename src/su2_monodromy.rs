@@ -120,5 +120,10 @@ pub fn checks() -> Vec<Check> {
     let su2_currents = 2 * 2 - 1;
     out.push(Check::new("su2_monodromy.sm_current_deficit", (sm_currents - su2_currents) as f64,
                         "SM weight-one gauge currents minus unextended SU(2) current dimension"));
+    let c_product = c_host + crate::single_model_test::central_charge(3, 1) + 1.0;
+    out.push(Check::new("su2_monodromy.product_central_charge", c_product,
+                        "SU(2)_2338 x SU(3)_1 x U(1) central charge"));
+    out.push(Check::new("su2_monodromy.product_weak_dimension", f64::from(EXTERNAL + 1),
+                        "weak SU(2) representation dimension of the phase witness"));
     out
 }

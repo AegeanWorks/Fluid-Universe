@@ -18,5 +18,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=bc09cacfec9ae555, run2=bc09cacfec9ae555, agreement=PASS.
+- In-process determinism fingerprint (not G-001 evidence): run1=cec9e89ab7f7547b, run2=cec9e89ab7f7547b, agreement=PASS.
 - Check-results FNV-1a 64-bit fingerprint: `1b4ee30fb98208bf` (not a configuration hash or cryptographic digest).

@@ -121,4 +121,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 88 | FALSIFIED (standalone SU(2) weight-one gauge currents) | Three host currents cannot contain twelve gauge currents, even without conformal embedding; extensions remain open. |
 
-Claim audit: two Rust processes produced 65 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 89 | NUMERIC (decoupled gauge-current product) | SU(2)_2338 x SU(3)_1 x U(1) retains the phase witness, whose weak representation has dimension 559; physical matter is not derived. |
+
+Claim audit: two Rust processes produced 66 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

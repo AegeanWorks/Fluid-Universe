@@ -1748,6 +1748,26 @@ fn rows() -> Vec<Row> {
         value: deficit as f64,
     });
 
+    // 89: tensoring color and U(1) vacuum modules contributes zero to both
+    // conformal weights and preserves the fusion channels. Central charges
+    // add; the spin-j SU(2) representation has dimension 2j+1.
+    let (k, spin) = (2338_i64, 279_i64);
+    let total_num = 3 * k + 3 * (k + 2);
+    let total_den = k + 2;
+    let weak_dimension = 2 * spin + 1;
+    let product_residues: Vec<i64> = [535_i64, 522, 344].iter().map(|&j| {
+        (2 * spin * (spin + 1) - j * (j + 1)).rem_euclid(total_den)
+    }).collect();
+    let product_ok = total_num * 390 == 2339 * total_den && weak_dimension == 559
+        && product_residues == [520, 234, 120];
+    out.push(Row {
+        id: "audit.su2_decoupled_gauge_extension",
+        claim: "89: decoupled gauge-current product retains SU(2) phase witness",
+        verdict: if product_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("c_product={total_num}/{total_den}=2339/390; color and U(1) vacuum weights vanish; weak dimension={weak_dimension}; residues={product_residues:?}/{total_den}; no physical matter claim"),
+        value: total_num as f64 / total_den as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -2119,6 +2139,7 @@ mod tests {
         assert_eq!(verdict("86: SU(2) minimum external spin"), "NUMERIC");
         assert_eq!(verdict("87: SU(2) host"), "FALSIFIED");
         assert_eq!(verdict("88: unextended SU(2) host"), "FALSIFIED");
+        assert_eq!(verdict("89: decoupled gauge-current product"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
