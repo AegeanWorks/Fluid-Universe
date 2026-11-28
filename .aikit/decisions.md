@@ -646,3 +646,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Existing integrable phase witnesses have not been checked against fusion selection rules.
 - **Decision**: Check conserved SU(N) center charges for the nine canonical witnesses and describe prior results as Casimir matches rather than demonstrated braiding.
 - **Consequences**: Exact searches remain valid arithmetic evidence; physical channel assignments require additional fusion and braid analysis.
+
+### ADR-091: Correct the SU(3) four-point external representations
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The existing four-fundamental block violates total center charge despite correct pairwise Verlinde coefficients.
+- **Decision**: Compute sphere block dimensions from Verlinde coefficients and distinguish four fundamentals from two fundamentals and two conjugates; independently audit the 0 and 2 dimensions.
+- **Consequences**: The pairwise monodromy values remain available for the mixed block; their identification with particle phases remains a hypothesis.

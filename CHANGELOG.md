@@ -1355,3 +1355,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 ## 2026-11-27 ? Fundamental-pair fusion selection correction
 
 The single-model witnesses match Casimir expressions, but integrability does not establish a braiding channel. Conserved center charge excludes all nine canonical witnesses for pairs of fundamentals or antifundamentals. Claim 79 records the independently checked residues; claims 64?71 are scoped to arithmetic matching. Other external representations remain open. See ADR-090.
+
+## 2026-11-28 ? SU(3) four-point field correction
+
+Verlinde fusion gives no sphere block for four fundamentals, and two blocks for two fundamentals and two antifundamentals. The previously computed full-monodromy exponents apply to the latter mixed configuration. Claim 80 and ADR-091 record the corrected external fields and independent singlet count.

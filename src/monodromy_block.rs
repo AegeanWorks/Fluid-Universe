@@ -3,15 +3,18 @@
 //! We build the modular S-matrix from the Kac-Peterson Weyl sum over the 6
 //! elements of the A2 Weyl group, with the normalisation fixed by unitarity
 //! and S^2 = C (charge conjugation). Then the Verlinde formula gives the
-//! fusion □ x □ = (0,1) + (2,0), each with multiplicity 1. The monodromy
-//! (braiding) eigenvalue of the four-□ conformal block in channel nu is
+//! fusion □ x □ = (0,1) + (2,0), each with multiplicity 1. Four identical
+//! fundamentals have no sphere block: their total center charge is nonzero.
+//! The mixed □, □, □bar, □bar sphere block has two channels. The full
+//! monodromy of the first two fields in an admissible channel nu is
 //!   exp(2 pi i (h_nu - 2 h_box)),
-//! so the physical braiding label is |h_nu - 2 h_box|. At level k=3:
+//! and the exponent magnitudes below use the displayed weight representatives.
+//! A single exchange is not the same operation as this full monodromy. At k=3:
 //!   antisymmetric channel (0,1) = □bar:  label = |2/9 - 4/9| = 2/9 = delta_lepton
 //!   symmetric channel     (2,0) = Sym^2: label = |5/9 - 4/9| = 1/9.
 //!
 //! Thus the charged-lepton Brannen phase is the magnitude of a rigorously
-//! computed monodromy label of the SU(3)_3 four-point block, not merely a
+//! computed monodromy label of the mixed SU(3)_3 four-point block, not merely a
 //! guessed number. HONEST CAVEAT: identifying the mass-matrix phase with this
 //! monodromy label is still a structural hypothesis; the calculation proves
 //! the LABEL is 2/9, not that nature must use it.
@@ -107,7 +110,17 @@ pub fn fusion(lam: (i32,i32), mu: (i32,i32), nu: (i32,i32)) -> f64 {
     total
 }
 
-/// Braiding label magnitude for channel nu of the four-box block.
+/// Sphere four-point block dimension from pairwise Verlinde coefficients.
+/// The inputs must be integrable SU(3)_3 primary labels.
+pub fn sphere_four_point_dimension(
+    a: (i32, i32), b: (i32, i32), c: (i32, i32), d: (i32, i32),
+) -> f64 {
+    primaries().iter().map(|&nu| {
+        fusion(a, b, nu) * fusion(c, d, (nu.1, nu.0))
+    }).sum()
+}
+
+/// Magnitude of the full-monodromy exponent; admissibility must be checked.
 pub fn braiding_label(nu: (i32,i32)) -> f64 {
     (h_weight(nu) - 2.0*h_weight((1,0))).abs()
 }
@@ -122,16 +135,29 @@ pub fn checks() -> Vec<crate::Check> {
                           "Verlinde coefficient for box x box -> boxbar (=1)"),
         crate::Check::new("monodromy_block.fusion_box_sym", fusion((1,0),(1,0),(2,0)),
                           "Verlinde coefficient for box x box -> Sym^2 (=1)"),
+        crate::Check::new("monodromy_block.four_box_dimension", sphere_four_point_dimension((1,0),(1,0),(1,0),(1,0)),
+                          "four-fundamental sphere block dimension = 0"),
+        crate::Check::new("monodromy_block.mixed_dimension", sphere_four_point_dimension((1,0),(1,0),(0,1),(0,1)),
+                          "two-fundamental two-antifundamental sphere block dimension = 2"),
         crate::Check::new("monodromy_block.label_antisym", braiding_label((0,1)),
-                          "antisymmetric braiding label = 2/9 = delta_lepton"),
+                          "antisymmetric full-monodromy exponent magnitude = 2/9"),
         crate::Check::new("monodromy_block.label_sym", braiding_label((2,0)),
-                          "symmetric braiding label = 1/9"),
+                          "symmetric full-monodromy exponent magnitude = 1/9"),
     ]
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn sphere_four_point_dimensions_respect_external_charges() {
+        let f = (1, 0);
+        let fbar = (0, 1);
+        assert!(sphere_four_point_dimension(f, f, f, f).abs() < 1e-9);
+        assert!((sphere_four_point_dimension(f, f, fbar, fbar) - 2.0).abs() < 1e-9);
+        assert!((sphere_four_point_dimension(f, fbar, fbar, f) - 2.0).abs() < 1e-9);
+    }
 
     #[test]
     fn weyl_group_has_six_elements() {

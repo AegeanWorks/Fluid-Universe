@@ -125,7 +125,11 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 79 | Each of the nine canonical SU(17), SU(23), and SU(7) Casimir-match witnesses fails the necessary center-charge condition for fusion of two fundamentals or antifundamentals. | exact center-charge selection test | **NUMERIC (nine excluded; independent Young-row and Dynkin-label calculations)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | The charges are (11,11,6) mod 17, (18,4,5) mod 23, and (3,4,3) mod 7. A pair of fundamentals or antifundamentals has charge 0 or +/-2 mod N. This necessary condition does not establish fusion for charge-compatible representations, or exclude other external representations. The arithmetic matches of claims 65-71 do not by themselves establish physical braiding. |
 
+| 80 | On the sphere, the SU(3)_3 block of four fundamentals has dimension zero, while the block of two fundamentals and two antifundamentals has dimension two. | Verlinde fusion and independent tensor-product singlet count | **NUMERIC (dimensions 0 and 2; two-process independent audit)** | `src/monodromy_block.rs`; `src/audit.rs`; `results/rust_audit.json` | The fundamental pair decomposes as anti-3 + 6, and the conjugate pair as 3 + anti-6; these weights are below the level-3 truncation. The mixed block admits the two previously calculated full-monodromy-exponent magnitudes 2/9 and 1/9. This corrects the former four-fundamental wording; identifying either magnitude with a particle phase remains a hypothesis. |
+
 ## Status history
+
+- 2026-11-28 (SU(3) external-field correction, claim 80): four identical fundamentals have no sphere block; the two computed pair channels belong to a block with two fundamentals and two antifundamentals. See ADR-091.
 
 - 2026-11-27 (fusion selection correction, claim 79): earlier descriptions of the single-model Casimir matches as demonstrated braiding phases were too strong. Center-charge conservation excludes the nine canonical witnesses for every fundamental/antifundamental external pair. Claims 64-71 retain their arithmetic scope; the physical channel and braid conventions require independent analysis. See ADR-090.
 

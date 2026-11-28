@@ -59,6 +59,12 @@ See claim 79 and ADR-090.
 The conserved SU(N) fusion-ring charge is discussed in
 [Naculich, Riggs and Schnitzer](https://arxiv.org/abs/hep-th/9205082).
 
+For SU(3)_3, four fundamental insertions on the sphere have no conformal
+block. Two fundamentals and two antifundamentals have two blocks; the
+previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed
+configuration. Their identification with particle phases remains a hypothesis.
+See claim 80 and ADR-091.
+
 The SU(7)_1163 candidate also admits a chosen block current-algebra subsector
 SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
 the remaining coset has central charge 920175833/26488605. The full block
@@ -204,7 +210,7 @@ fluid-universe/
 │   ├── gauge_running.rs      <- gauge couplings: SM non-unification, RG stability
 │   ├── exceptional_scan.rs   <- E6_k quantum dimensions: no A^2/delta match
 │   ├── exceptional_nonsimply.rs <- F4/G2 with correct root-length normalization
-│   ├── monodromy_block.rs    <- explicit SU(3)_3 S-matrix, Verlinde fusion, braiding label 2/9
+│   ├── monodromy_block.rs    <- SU(3)_3 Verlinde fusion and mixed-block monodromy
 │   ├── so10_gut.rs          <- SO(10) mass test + MSSM gauge unification at 2e16 GeV
 │   ├── amplitude_seesaw.rs  <- rational amplitudes + GUT-scale seesaw test
 │   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)

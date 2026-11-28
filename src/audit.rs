@@ -1540,6 +1540,26 @@ fn rows() -> Vec<Row> {
         value: if excluded { 1.0 } else { 0.0 },
     });
 
+    // 80: independently pair the ordinary SU(3) tensor-product summands.
+    // Both highest weights have level at most two, so k=3 does not truncate
+    // these fundamental-pair products.
+    let ff = [(0, 1), (2, 0)];
+    let conjugates = [(1, 0), (0, 2)];
+    let singlets = |left: &[(i32, i32)], right: &[(i32, i32)]| -> usize {
+        left.iter().flat_map(|a| right.iter().map(move |b| (a, b)))
+            .filter(|(a, b)| a.0 == b.1 && a.1 == b.0).count()
+    };
+    let four_f = singlets(&ff, &ff);
+    let mixed = singlets(&ff, &conjugates);
+    let dimensions_ok = four_f == 0 && mixed == 2;
+    out.push(Row {
+        id: "audit.su3_four_point_dimensions",
+        claim: "80: SU(3)_3 four-fundamental and mixed sphere block dimensions",
+        verdict: if dimensions_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("four fundamentals={four_f}; two fundamentals and two antifundamentals={mixed}; tensor-product singlet count"),
+        value: mixed as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {

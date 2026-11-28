@@ -1,49 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795810962.82871,
-    "completed_head": "1b5c1856d0cd69285c9268585df7680a707015d5",
-    "completed_tree": "dc0d3822796132f41ee84409cc1e6087d64e270b",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795818100.23355,
+    "lease_until": 1795851276.24157,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "phase-fusion-selection",
-    "updated_at": 1795810900.23355
+    "status": "in_progress",
+    "task_id": "fluid-su3-four-point",
+    "updated_at": 1795844076.24157
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/2] Derive and test SU(7) 21 plus three anti-7 hypercharge branching",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Tests whether a concrete charge assignment can contain one Standard Model-like generation plus vectorlike extras without asserting physical realization",
-        "mitigation": "Choose the standard SU(5) hypercharge direction explicitly, enumerate exterior-square and conjugate weights with exact integer charges, cross-check multiplet dimensions independently, and document physical limitations",
-        "risks": "contract: new calculations and checks change fingerprints; dependency: none; concurrency: none; state: source, tests, reports and docs; physics: branching does not establish a chiral spectrum, anomaly-free dynamics or WZW sector selection",
-        "why": "The SU(7) block subsector has an unidentified hypercharge and no explicit matter representation content"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "a7b883f1412679a38ee68295ce9b6e49da23e24e523ec216e84ed26b9574dfa1",
-      "status": "in_progress",
-      "task_id": "fluid-su7-hypercharge-branching",
-      "timestamp": 1795743309.34061,
-      "timestamp_str": "2026-11-27 04:35:09"
-    },
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/2] Exact weight enumeration and branching regression pass; four project gates pass; independent audit remains the second milestone",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su7-hypercharge-branching",
-      "timestamp": 1795808097.28823,
-      "timestamp_str": "2026-11-27 22:34:57"
-    },
     {
       "agent": "codex:fluid",
       "description": "[2/2] Independently audit SU(7) hypercharge branching and record scoped evidence",
@@ -317,6 +284,35 @@
       "task_id": "phase-fusion-selection",
       "timestamp": 1795810962.82871,
       "timestamp_str": "2026-11-27 23:22:42"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Verify four-point fusion dimensions and correct SU(3) external fields",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Preserve valid monodromy calculation while specifying a nonzero conformal block",
+        "mitigation": "Failing-first Verlinde dimension tests, independent representation-theory audit, two-process verification and project gates",
+        "risks": "contract: external field and monodromy conventions; dependency: none; concurrency: isolated project; state: regenerated audit and reports",
+        "why": "Four identical SU(3) fundamentals cannot fuse to the vacuum"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "cec168aaa643b26482bc3a3c0d1a881ae8a65ad8e068f94aabeebdbef9c398a0",
+      "status": "in_progress",
+      "task_id": "fluid-su3-four-point",
+      "timestamp": 1795843786.34087,
+      "timestamp_str": "2026-11-28 08:29:46"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Mixed and four-fundamental dimensions verified; two-process audit and 4/4 project gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su3-four-point",
+      "timestamp": 1795844076.24157,
+      "timestamp_str": "2026-11-28 08:34:36"
     }
   ],
   "version": 1
