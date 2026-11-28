@@ -1363,3 +1363,7 @@ Verlinde fusion gives no sphere block for four fundamentals, and two blocks for 
 ## 2026-11-28 ? Phase and correlated-observable clarification
 
 Corrected legacy model descriptions: the Koide condition leaves the phase free, p=1/18 and the WZW identification are additional post-hoc choices, and the spacing ratio is a function of the two hierarchy ratios. Added a regression for the dependence and positive-root phase freedom. See ADR-092.
+
+## 2026-11-28 ? SU(23) audit residue correction
+
+The second SU(23) witness has 74 boxes, A=518, C2=3219/23 and center charge 5. The previous 73/509/3189/23 metadata and charge 4 were incorrect; its charge still excludes fundamental-pair channels. Added an audit-verdict regression because two matching UNVERIFIED records are not evidence of acceptance. See ADR-093.

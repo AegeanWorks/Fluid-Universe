@@ -60,6 +60,8 @@ The single-model searches below match Casimir weight-difference expressions,
 not established braiding channels. The nine recorded canonical witnesses
 have center charges incompatible with fusing two fundamentals or their
 conjugates; other external representations and phase conventions remain open.
+The SU(23) witness charges are 18, 5 and 5 modulo 23 (ADR-093 corrects an
+earlier recorded charge and Young-diagram count).
 See claim 79 and ADR-090.
 The conserved SU(N) fusion-ring charge is discussed in
 [Naculich, Riggs and Schnitzer](https://arxiv.org/abs/hep-th/9205082).

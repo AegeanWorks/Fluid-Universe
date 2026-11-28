@@ -660,3 +660,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Legacy descriptions claim the Koide ratio fixes the phase and a spacing ratio is independent of mass ratios; the existing shape-freedom calculation contradicts both.
 - **Decision**: Retain the numerical model and tests but state the additional phase assumptions and algebraic dependence; add explicit regression and correct report labels.
 - **Consequences**: The p=1/18 and WZW phase choices are conditional and post-hoc; the spacing comparison does not add an independent observable.
+
+### ADR-093: Correct SU(23) witness metadata and audit verdict
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: Two-process comparison passed while claim 79 audit was UNVERIFIED because the middle SU(23) witness has 74 boxes, not 73.
+- **Decision**: Correct its Young-diagram and Casimir metadata, expect center charge 5, and require the audit verdict in a regression test.
+- **Consequences**: The exclusion remains valid but is accepted only after the independent audit produces NUMERIC in both processes; reproducibility alone is not claim acceptance.

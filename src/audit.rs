@@ -1531,7 +1531,7 @@ fn rows() -> Vec<Row> {
             for label in labels.iter().rev() { row += label; boxes += row; }
             boxes % n
         }).collect()).collect();
-    let excluded = residues == [vec![11, 11, 6], vec![18, 4, 5], vec![3, 4, 3]];
+    let excluded = residues == [vec![11, 11, 6], vec![18, 5, 5], vec![3, 4, 3]];
     out.push(Row {
         id: "audit.fundamental_pair_center_selection",
         claim: "79: canonical Casimir witnesses fail fundamental-pair center selection",
@@ -1921,6 +1921,8 @@ mod tests {
         assert_eq!(verdict("76: hypothetical SU(7) local cubic anomaly"), "NUMERIC");
         assert_eq!(verdict("77: hypothetical SU(2) doublet parity"), "NUMERIC");
         assert_eq!(verdict("78: hypothetical subgroup local anomalies"), "NUMERIC");
+        assert_eq!(verdict("79: canonical Casimir witnesses"), "NUMERIC");
+        assert_eq!(verdict("80: SU(3)_3 four-fundamental"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

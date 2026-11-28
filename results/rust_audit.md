@@ -41,7 +41,7 @@
 | `audit.single_model_witness_su23` | `1.000000000000000e0` | PROVEN \| second distinct host matches all three phases exactly; existence is non-unique |
 | `audit.single_model_inverse_search` | `1.953000000000000e4` | FALSIFIED \| labels=19530, models_with_any_phase=694, all_phase_hit=false |
 | `audit.single_model_witness_su7` | `1.000000000000000e0` | PROVEN \| rank-6 host matches all three phases exactly with label sums 19/12/7 <=1163 |
-| `audit.fundamental_pair_center_selection` | `0.000000000000000e0` | UNVERIFIED \| SU(17), SU(23), SU(7) charges=[[11, 11, 6], [18, 5, 5], [3, 4, 3]]; allowed pair charges are 0 and +/-2 modulo N |
+| `audit.fundamental_pair_center_selection` | `1.000000000000000e0` | NUMERIC \| SU(17), SU(23), SU(7) charges=[[11, 11, 6], [18, 5, 5], [3, 4, 3]]; allowed pair charges are 0 and +/-2 modulo N |
 | `audit.su3_four_point_dimensions` | `2.000000000000000e0` | NUMERIC \| four fundamentals=0; two fundamentals and two antifundamentals=2; tensor-product singlet count |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
@@ -63,5 +63,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=c16b75c0a66ad128, run2=c16b75c0a66ad128, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `6395cec9f03e6482` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=18c643bcf3c3fc75, run2=18c643bcf3c3fc75, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `86d5c0f2ca74f681` (not a configuration hash or cryptographic digest).

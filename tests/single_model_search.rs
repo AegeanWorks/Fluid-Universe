@@ -24,6 +24,16 @@ fn phase_witnesses_fail_fundamental_pair_center_selection() {
 }
 
 #[test]
+fn su23_middle_witness_young_diagram_metadata() {
+    let labels = WITNESSES[1].dynkin[1];
+    let rows: Vec<i64> = (0..labels.len()).map(|i| labels[i..].iter().sum()).collect();
+    let boxes: i64 = rows.iter().sum();
+    let a: i64 = rows.iter().enumerate()
+        .map(|(i, &row)| row * (row + 23 - 2 * (i as i64 + 1) + 1)).sum();
+    assert_eq!((boxes, a, (23 * a - boxes * boxes) / 2), (74, 518, 3219));
+}
+
+#[test]
 fn su7_hypercharge_branching_has_one_generation_and_vectorlike_pairs() {
     // (signed SU(3) dimension, SU(2) dimension, 6Y, multiplicity).
     let expected = vec![
