@@ -1391,3 +1391,7 @@ A denominator argument reduces all lower levels to 583, 1168 and 1753. Exact ext
 ## 2026-11-28 ? Minimal SU(2) external spin with common orientation
 
 A level-7018, label-288 witness uses smaller spin than the minimal-level witness. A phase-derived level bound plus denominator divisibility makes the all-level search finite; independent traversals exclude every smaller external label under one common full-monodromy orientation. See claim 85 and ADR-099.
+
+## 2026-11-28 ? Independent-orientation SU(2) spin minimum
+
+If target orientations may be chosen separately, a level-2338 witness has spin 90 and exact all-level bounds exclude smaller spins. The common-orientation spin-144 result remains distinct. The lower-spin search return tuple now additionally reports the independent-orientation prefix counts; existing counts are preserved. See claim 86 and ADR-100.

@@ -30,5 +30,15 @@ fn smaller_spin_witness_and_all_lower_spin_search() {
         let (reverse, den) = reversed_monodromy_residue(7018, 288, channel).unwrap();
         assert_eq!(reverse * q, den * (q - p));
     }
-    assert_eq!(*lower_spin_search(), (30_656, 6_642_629, 0));
+    assert_eq!(*lower_spin_search(), (30_656, 6_642_629, 0, 7_458, 1_013_210, 0));
+}
+
+#[test]
+fn independent_orientation_witness_has_smaller_spin() {
+    for (channel, p, q) in [(128, 2_i128, 9_i128), (234, 1, 10)] {
+        let (reverse, den) = reversed_monodromy_residue(2338, 180, channel).unwrap();
+        assert_eq!(reverse * q, den * p);
+    }
+    let (reverse, den) = reversed_monodromy_residue(2338, 180, 168).unwrap();
+    assert_eq!(reverse * 39, den * 37);
 }

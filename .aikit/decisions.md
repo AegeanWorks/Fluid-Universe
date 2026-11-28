@@ -709,3 +709,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The minimal-level witness has external Dynkin label 558; a level-7018 candidate with label 288 matches all targets in one forward orientation.
 - **Decision**: Bound k+2 by 9a(a+2)/4 using the 2/9 phase and SU(2) fusion, combine it with 585 divisibility, exhaust every smaller positive label and candidate level, and independently audit with level-first enumeration.
 - **Consequences**: A zero-hit result proves label 288 is minimal only for identical SU(2) fields and one common full-monodromy orientation; the minimal-level witness and physical caveats remain.
+
+### ADR-100: Test minimum SU(2) spin with independent phase orientations
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: A spin-90 candidate at the minimal level has two target residues reversed and one forward, while the prior spin-144 minimum requires one common orientation.
+- **Decision**: Extend the bounded all-level search to count independently oriented matches below Dynkin label 180, verify the level-2338 witness and independently audit by level-first enumeration.
+- **Consequences**: A successful minimum applies only when orientations may be chosen separately per target; it does not replace the common-orientation result or establish a physical mechanism.

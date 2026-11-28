@@ -1,8 +1,8 @@
 # Audit coverage inventory
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
-On 2026-11-27, `claims.md` contained 69 numbered rows marked PROVEN, NUMERIC,
-or VERIFIED; `results/rust_audit.json` now contains 62 audit records. Their
+On 2026-11-27, `claims.md` contained 70 numbered rows marked PROVEN, NUMERIC,
+or VERIFIED; `results/rust_audit.json` now contains 63 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
 The two-process `verify` command compares audit records; it does not establish
@@ -52,3 +52,4 @@ processes before treating it as G-001 evidence.
 | 83 | `audit.su2_higher_spin_monodromy` | Independently checks spin fusion bounds and three reversed phase residues; physical realization and minimality are outside the claim. |
 | 84 | `audit.su2_higher_spin_minimal_level` | Independently enumerates channel-first all lower divisibility-compatible levels; different external fields and braid conventions remain open. |
 | 85 | `audit.su2_minimal_common_orientation_spin` | Independently enumerates levels first and checks the spin-144 witness; independently chosen orientations and other fields remain open. |
+| 86 | `audit.su2_minimal_independent_orientation_spin` | Independently checks the mixed-orientation spin-90 witness and all smaller-label level-first cases; physical orientation assignment remains open. |

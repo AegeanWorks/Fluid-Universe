@@ -1655,9 +1655,10 @@ fn rows() -> Vec<Row> {
     // 85: independently traverse candidate levels first, retaining only
     // external labels satisfying 4(k+2) <= 9a(a+2). Cross-multiply residues
     // and require all three matches in the same orientation.
-    static LOWER_SPIN: std::sync::OnceLock<(u64, u64, u64)> = std::sync::OnceLock::new();
+    static LOWER_SPIN: std::sync::OnceLock<(u64, u64, u64, u64, u64, u64)> = std::sync::OnceLock::new();
     let lower_spin = LOWER_SPIN.get_or_init(|| {
         let (mut pairs, mut channels, mut hits) = (0_u64, 0_u64, 0_u64);
+        let (mut small_pairs, mut small_channels, mut independent_hits) = (0_u64, 0_u64, 0_u64);
         let max_k_plus_two = 9_i64 * 287 * 289 / 4;
         for multiple in 1..=max_k_plus_two / 585 {
             let k = 585 * multiple - 2;
@@ -1665,9 +1666,11 @@ fn rows() -> Vec<Row> {
             for a in 1_i64..288 {
                 if a > k || den > 9 * a * (a + 2) { continue; }
                 pairs += 1;
+                if a < 180 { small_pairs += 1; }
                 let mut masks = [0_u8; 2];
                 for c in (0..=2 * a.min(k - a)).step_by(2) {
                     channels += 1;
+                    if a < 180 { small_channels += 1; }
                     let residue = (c * (c + 2) - 2 * a * (a + 2)).rem_euclid(den);
                     for (bit, p, q) in [(1_u8, 2_i64, 9_i64), (2, 1, 10), (4, 2, 39)] {
                         if q * residue == p * den { masks[0] |= bit; }
@@ -1675,24 +1678,43 @@ fn rows() -> Vec<Row> {
                     }
                 }
                 if masks.contains(&7) { hits += 1; }
+                if a < 180 && (masks[0] | masks[1]) == 7 { independent_hits += 1; }
             }
         }
-        (pairs, channels, hits)
+        (pairs, channels, hits, small_pairs, small_channels, independent_hits)
     });
     let (spin, level) = (144_i64, 7018_i64);
     let channels = [239_i64, 278, 0];
     let residues: Vec<i64> = channels.iter().map(|&j| {
         (j * (j + 1) - 2 * spin * (spin + 1)).rem_euclid(level + 2)
     }).collect();
-    let spin_ok = *lower_spin == (30_656, 6_642_629, 0)
+    let spin_ok = (lower_spin.0, lower_spin.1, lower_spin.2) == (30_656, 6_642_629, 0)
         && channels.iter().all(|&j| j <= 2 * spin && j <= level - 2 * spin)
         && residues == [1560, 702, 360];
     out.push(Row {
         id: "audit.su2_minimal_common_orientation_spin",
         claim: "85: SU(2) minimum external spin for common-orientation monodromies",
         verdict: if spin_ok { "NUMERIC" } else { "UNVERIFIED" },
-        detail: format!("level-first lower-spin pairs/channels/hits={lower_spin:?}; spin {spin} at k={level}, channel spins={channels:?}, forward residues={residues:?}/{}", level + 2),
+        detail: format!("level-first lower-spin pairs/channels/hits=({},{},{}); spin {spin} at k={level}, channel spins={channels:?}, forward residues={residues:?}/{}", lower_spin.0, lower_spin.1, lower_spin.2, level + 2),
         value: lower_spin.1 as f64,
+    });
+
+    // 86: the same level-first search tracks the smaller-label prefix while
+    // allowing either orientation separately for each target.
+    let (spin, level) = (90_i64, 2338_i64);
+    let channels = [64_i64, 117, 84];
+    let residues: Vec<i64> = channels.iter().map(|&j| {
+        (j * (j + 1) - 2 * spin * (spin + 1)).rem_euclid(level + 2)
+    }).collect();
+    let independent_ok = (lower_spin.3, lower_spin.4, lower_spin.5) == (7_458, 1_013_210, 0)
+        && channels.iter().all(|&j| j <= 2 * spin && j <= level - 2 * spin)
+        && residues == [1820, 2106, 120];
+    out.push(Row {
+        id: "audit.su2_minimal_independent_orientation_spin",
+        claim: "86: SU(2) minimum external spin with independent orientations",
+        verdict: if independent_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("lower-spin pairs/channels/hits=({},{},{}); spin {spin} at k={level}, channel spins={channels:?}, forward residues={residues:?}/{}; mixed orientations", lower_spin.3, lower_spin.4, lower_spin.5, level + 2),
+        value: lower_spin.4 as f64,
     });
 
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
@@ -2063,6 +2085,7 @@ mod tests {
         assert_eq!(verdict("83: higher-spin SU(2)"), "NUMERIC");
         assert_eq!(verdict("84: lower SU(2) levels"), "NUMERIC");
         assert_eq!(verdict("85: SU(2) minimum external spin"), "NUMERIC");
+        assert_eq!(verdict("86: SU(2) minimum external spin"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

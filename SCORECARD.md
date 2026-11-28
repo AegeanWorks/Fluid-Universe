@@ -115,4 +115,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 85 | NUMERIC (SU(2) common-orientation minimum spin) | A level-7018 witness has spin 144; an all-level bounded enumeration excludes smaller external spins in the stated identical-field scope. |
 
-Claim audit: two Rust processes produced 62 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 86 | NUMERIC (SU(2) independent-orientation minimum spin) | Spin 90 at level 2338 is minimal if each target may choose its own orientation; that physical assignment is not established. |
+
+Claim audit: two Rust processes produced 63 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

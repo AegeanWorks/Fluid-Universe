@@ -89,6 +89,10 @@ label 288 and channels 478, 556 and 0 realizes the same targets in one forward
 orientation. Exact bounds and enumeration exclude every smaller external label
 at every positive SU(2) level with one common orientation. This is a scoped
 mathematical minimum, not a physical selection rule; see claim 85 and ADR-099.
+If the orientation may instead differ by target, SU(2)_2338 admits external
+label 180 (spin 90), and all smaller labels are excluded across positive
+levels. This mixed-orientation construction requires an additional physical
+interpretation; see claim 86 and ADR-100.
 
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
