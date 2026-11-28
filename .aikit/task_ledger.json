@@ -1,33 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795810962.82871,
+    "completed_head": "1b5c1856d0cd69285c9268585df7680a707015d5",
+    "completed_tree": "dc0d3822796132f41ee84409cc1e6087d64e270b",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795818100.23355,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "phase-fusion-selection",
     "updated_at": 1795810900.23355
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-witness-rank-labels' completed successfully.",
-      "head": "16adb159328933e83a104e0cff6bc27f7370c4a2",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-witness-rank-labels",
-      "timestamp": 1795743183.45226,
-      "timestamp_str": "2026-11-27 04:33:03"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/2] Derive and test SU(7) 21 plus three anti-7 hypercharge branching",
@@ -314,6 +300,23 @@
       "task_id": "phase-fusion-selection",
       "timestamp": 1795810900.23355,
       "timestamp_str": "2026-11-27 23:21:40"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'phase-fusion-selection' completed successfully.",
+      "head": "1b5c1856d0cd69285c9268585df7680a707015d5",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "phase-fusion-selection",
+      "timestamp": 1795810962.82871,
+      "timestamp_str": "2026-11-27 23:22:42"
     }
   ],
   "version": 1
