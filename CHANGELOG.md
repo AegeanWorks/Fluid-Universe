@@ -1379,3 +1379,7 @@ The fundamental/antifundamental pair Casimir numerators yield a symbolic all-ran
 ## 2026-11-28 ? Modulo-one full-monodromy obstruction
 
 Extended the fundamental-pair no-go to both target phases modulo one and either orientation. All four target/complement ratios exclude integer N; exact orientation matching and an independent symbolic audit cover the result. Other representations and single-braid conventions remain open. See claim 82 and ADR-096.
+
+## 2026-11-28 ? Higher-spin SU(2) monodromy witness
+
+Added exact SU(2) fusion and monodromy checks for a post-hoc level-2338 witness: external Dynkin label 558 and channels 1070, 1044 and 688 yield the three target phases under one common reversed orientation. An independent spin-based audit checks the construction; physical interpretation and minimality remain open. See claim 83 and ADR-097.

@@ -1595,6 +1595,27 @@ fn rows() -> Vec<Row> {
         value: cases.iter().filter(|&&excluded| excluded).count() as f64,
     });
 
+    // 83: use integer spins directly, independently of the production Dynkin
+    // labels. SU(2) fusion permits 0 <= J <= min(2j,k-2j), in unit steps.
+    let (level, external_spin) = (2338_i64, 279_i64);
+    let spins = [535_i64, 522, 344];
+    let bound = (2 * external_spin).min(level - 2 * external_spin);
+    let denominator = level + 2;
+    let residues: Vec<i64> = spins.iter().map(|&spin| {
+        (2 * external_spin * (external_spin + 1) - spin * (spin + 1))
+            .rem_euclid(denominator)
+    }).collect();
+    let valid = 2 * external_spin <= level
+        && spins.iter().all(|&spin| spin >= 0 && spin <= bound)
+        && residues == [520, 234, 120];
+    out.push(Row {
+        id: "audit.su2_higher_spin_monodromy",
+        claim: "83: higher-spin SU(2) common reversed-monodromy witness",
+        verdict: if valid { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("k={level}, external spin={external_spin}, allowed channel spins={spins:?}, bound={bound}, reversed residues={residues:?}/{denominator}; post-hoc"),
+        value: if valid { 1.0 } else { 0.0 },
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -1960,6 +1981,7 @@ mod tests {
         assert_eq!(verdict("80: SU(3)_3 four-fundamental"), "NUMERIC");
         assert_eq!(verdict("81: fundamental-pair targets"), "NUMERIC");
         assert_eq!(verdict("82: fundamental-pair target monodromies"), "NUMERIC");
+        assert_eq!(verdict("83: higher-spin SU(2)"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

@@ -131,7 +131,11 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 82 | For every SU(N)_k with integer N>=2 and k>=1, fundamental/antifundamental pair channels cannot realize both full-monodromy phase targets 2/9 and 2/39 modulo one, even allowing either orientation independently. | all-rank exact modulo-one ratio obstruction | **NUMERIC (four exact target/complement cases independently audited)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | Each candidate magnitude lies in (0,1), so orientation and modulo-one equivalence give {2/9,7/9} and {2/39,37/39}. Their four larger/smaller ratios are 13/3, 111/26, 91/6 and 111/91; none is an integer, and equating any to (N+1)/(N-1) gives N=8/5, 137/85, 97/85 or 101/10. None is an integer. Level-one truncation only removes channels. Other external representations and single-braid conventions remain open. |
 
+| 83 | SU(2)_2338 with four identical external primaries of Dynkin label 558 has fusion channels 1070, 1044 and 688 whose full-monodromy exponents, with one common reversed orientation, equal 2/9, 1/10 and 2/39 modulo one. | exact higher-spin fusion and monodromy witness | **NUMERIC (three allowed channels; independently audited in two processes)** | `src/su2_monodromy.rs`; `src/audit.rs`; `tests/su2_monodromy.rs`; `results/rust_audit.json` | In spin notation j=279 and channel spins 535, 522, 344 lie in 0..558 and each has multiplicity one. With h_j=j(j+1)/(k+2), the reversed exponent residues are (520,234,120)/2340 = (2/9,1/10,2/39). The level, field and channels were selected after seeing the targets. No minimality, Standard Model assignment, matter dynamics or physical interpretation is established. This does not contradict the fundamental-pair obstruction in claims 81-82. |
+
 ## Status history
+
+- 2026-11-28 (higher-spin SU(2) witness, claim 83): one post-hoc level-2338 model has three allowed channels for the same external representation whose reversed full monodromies match all three targets. The fundamental-pair no-go remains intact. See ADR-097.
 
 - 2026-11-28 (modulo-one full-monodromy obstruction, claim 82): allowing either orientation adds the target complements, but all four exact ratio cases still exclude integer N. Other representations and single-braid conventions remain open. See ADR-096.
 

@@ -74,6 +74,14 @@ also holds for full-monodromy phases modulo one with either orientation: the
 four target/complement ratios give no integer N. Other external representations
 and single-braid conventions remain open. See claims 81–82 and ADR-095–096.
 
+Higher-spin external fields evade that obstruction. In SU(2)_2338, four
+identical fields with Dynkin label 558 admit pair channels 1070, 1044 and 688.
+One common reversed full-monodromy orientation yields 2/9, 1/10 and 2/39
+modulo one. The level and labels were selected post-hoc; no physical sector
+assignment or minimality is established. See claim 83 and ADR-097. The
+[SU(2) WZW fusion and weight formulas](https://arxiv.org/abs/hep-th/0209241)
+are standard inputs to this check.
+
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
 previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed
@@ -283,7 +291,8 @@ fluid-universe/
 │   ├── phase_interpolation.rs <- single d=3 phase-rule interpolation
 │   ├── scale_choice.rs       <- M_W versus M_Z scale-choice diagnostic
 │   ├── sector_count.rs       <- d=3 derivation of the sector count
-│   ├── single_model_test.rs  <- no single SU(N)_k hosts all phase labels
+│   ├── single_model_test.rs  <- bounded Casimir-match searches and fusion constraints
+│   ├── su2_monodromy.rs      <- exact higher-spin SU(2) fusion and monodromy
 │   ├── single_phase_rule.rs  <- up-quark amplitude-precision clarification
 │   ├── threshold_unification.rs <- one-threshold no-SUSY negative test
 │   ├── up_amplitude_gauge.rs <- up amplitude from the weak mixing angle
@@ -300,7 +309,8 @@ fluid-universe/
 │   ├── integration.rs        <- crate-level test suite
 │   ├── radial_shell.rs       <- HO-2 radial-shell regression tests
 │   ├── multi_radial_shell.rs <- HO-3 double-shell regression tests
-│   └── single_model_search.rs <- bounded SU(N)_k search regression
+│   ├── single_model_search.rs <- bounded SU(N)_k search regression
+│   └── su2_monodromy.rs      <- higher-spin fusion and monodromy witness
 ├── claims.md                 <- claim ledger with statuses and kill tests
 ├── AUDIT_COVERAGE.md         <- independent-audit coverage inventory
 ├── CHANGELOG.md              <- append-only corrections and retractions

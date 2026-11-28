@@ -109,4 +109,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 82 | NUMERIC (full-monodromy modulo-one obstruction) | Both target phases remain incompatible for fundamental pairs even allowing either orientation; other fields and single-braid conventions remain open. |
 
-Claim audit: two Rust processes produced 59 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 83 | NUMERIC (higher-spin SU(2) witness) | One post-hoc SU(2)_2338 external representation admits three channels with the target full-monodromy phases in a common reversed orientation; physical interpretation remains open. |
+
+Claim audit: two Rust processes produced 60 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

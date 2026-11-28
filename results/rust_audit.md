@@ -45,6 +45,7 @@
 | `audit.su3_four_point_dimensions` | `2.000000000000000e0` | NUMERIC \| four fundamentals=0; two fundamentals and two antifundamentals=2; tensor-product singlet count |
 | `audit.fundamental_pair_target_no_go` | `1.000000000000000e0` | NUMERIC \| 13/3 noninteger=true; 10N=16 has no integer solution=true; exact exponent representatives |
 | `audit.fundamental_pair_monodromy_no_go` | `4.000000000000000e0` | NUMERIC \| four target/complement ratio cases excluded=[true, true, true, true]; full-monodromy exponent magnitudes lie in (0,1) |
+| `audit.su2_higher_spin_monodromy` | `1.000000000000000e0` | NUMERIC \| k=2338, external spin=279, allowed channel spins=[535, 522, 344], bound=558, reversed residues=[520, 234, 120]/2340; post-hoc |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
@@ -65,5 +66,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=95960b7789977052, run2=95960b7789977052, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `6db4831ec08f473c` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=612116f1b6721315, run2=612116f1b6721315, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `be65cbeb3af5f267` (not a configuration hash or cryptographic digest).

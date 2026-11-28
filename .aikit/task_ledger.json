@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795846433.07684,
-    "completed_head": "d096a19a7b1f068b1ac1db8d0cfa34ff3f320996",
-    "completed_tree": "b5b87b1d0c3ce6667d3e0dc7d63214e193e03b75",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795853563.80983,
+    "lease_until": 1795853966.16116,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-monodromy-no-go",
-    "updated_at": 1795846363.80983
+    "status": "in_progress",
+    "task_id": "fluid-su2-higher-spin",
+    "updated_at": 1795846766.16116
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Center selection audited in two processes; project gates 4/4 passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "phase-fusion-selection",
-      "timestamp": 1795810900.23355,
-      "timestamp_str": "2026-11-27 23:21:40"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'phase-fusion-selection' completed successfully.",
-      "head": "1b5c1856d0cd69285c9268585df7680a707015d5",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "phase-fusion-selection",
-      "timestamp": 1795810962.82871,
-      "timestamp_str": "2026-11-27 23:22:42"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Verify four-point fusion dimensions and correct SU(3) external fields",
@@ -317,6 +286,35 @@
       "task_id": "fluid-monodromy-no-go",
       "timestamp": 1795846433.07684,
       "timestamp_str": "2026-11-28 09:13:53"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Verify explicit higher-spin SU(2) full-monodromy witness",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Test an actual common fusion channel construction rather than integrability alone",
+        "mitigation": "Use exact SU(2) fusion and integer monodromy arithmetic with invalid-channel controls, independently rederive using spins, compare two processes and run gates",
+        "risks": "contract: fusion and monodromy orientation conventions; dependency: none; concurrency: isolated project; state: claim ledger, audit and generated evidence",
+        "why": "The fundamental-pair obstruction leaves higher-spin external fields open and an exact post-hoc candidate was found"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "f894edc249e6a41b8aa35505c73355309e464df42f1b74a7c0c6b457de352fe7",
+      "status": "in_progress",
+      "task_id": "fluid-su2-higher-spin",
+      "timestamp": 1795846554.76591,
+      "timestamp_str": "2026-11-28 09:15:54"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Higher-spin fusion and common reversed monodromy verified; independent spin audit agrees in two processes; 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su2-higher-spin",
+      "timestamp": 1795846766.16116,
+      "timestamp_str": "2026-11-28 09:19:26"
     }
   ],
   "version": 1
