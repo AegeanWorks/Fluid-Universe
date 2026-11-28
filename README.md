@@ -10,32 +10,35 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 **Epistemic status (2026-10-25):** the algebra is verified and is likely known (Brannen 2006). The Z3/circulant structure by itself does **not** predict the Koide value; it has three parameters for three masses, and Koide is the extra condition \(|c|/a=1/\sqrt2\). The exact one-loop statement "\(|c|/a\) is RG-invariant" is false, although the numerical drift for charged leptons is only about \(3\times10^{-6}\) over 16 decades. The nematic-fluid UV track has **no** validated calculation yet and is kept in a separate, clearly speculative section.
 
-## 30-Second Cold-Start Quick Reference
+## 30-Second Cold-Start Quick Reference (Rust implementation)
 
-- **Runtime Prerequisites**: Python 3.10 or newer; `numpy`, `scipy`, `sympy`, `jax`; `pytest` and `hypothesis` for the test suite.
-- **Install**: `python -m pip install -e ".[dev]"`
+- **Runtime Prerequisites**: Rust 2024 (cargo/rustc 1.85+). No crates, no Python, no network.
+- **Test performance**: dev/test builds use `opt-level=2` so the exact bounded WZW searches remain practical; assertions and search domains are unchanged.
 - **Canonical Regression Shield Gate**:
   ```bash
-  python -m pytest -q
+  cargo test
   ```
-- **Regenerate every number**:
+  On a host without the MSVC `link.exe`, build with `cargo test --target x86_64-pc-windows-gnu`.
+- **Regenerate every reproducible number**:
   ```bash
-  python -m phenomenology.run_all
+  cargo run -- all            # human-readable check list
+  cargo run -- json           # machine-readable check list
+  cargo run -- <module>       # one family: circulant|spectra|rotor|derrick|fluid|radial_shell|multi_radial_shell|water|lorentz
   ```
-  This writes `results/pdg_fit.json`, `results/pdg_fit.md`, `results/rg_run.json`, `results/rg_run.md`, `results/rotor.json`, `results/rotor.md`, `results/neutrinos.json`, `results/neutrinos.md`, `results/quarks.json`, `results/quarks.md`, `results/pmns.json`, `results/pmns.md`, `results/delta_search.json`, `results/delta_search.md`, `results/frank_oseen.json`, `results/frank_oseen.md`, `results/derrick.json`, `results/derrick.md`, `results/topology.json`, `results/topology.md`, `results/reduction.json`, `results/reduction.md`, `results/predictions.json`, `results/predictions.md`, `results/lorentz.json`, `results/lorentz.md`, `results/sim_core.json`, `results/sim_core.md`, `results/hopf.json`, `results/hopf.md`, `results/hopfion.json`, `results/hopfion.md`, `results/hopfion3d.json`, `results/hopfion3d.md`, `results/hopf_resolution.json`, `results/hopf_resolution.md`, and `results/summary.md`, each with a config hash, package versions, and git commit (or `dirty`).
-- **Verify every claim independently (two runs)**:
+- **Check reproducibility in two separate processes**:
   ```bash
-  python -m verification.verify
-  # or, where make is installed:
-  make verify
-  # explicit steps, always two separate processes:
-  python -m verification.audit --tag run1
-  python -m verification.audit --tag run2
-  python -m verification.compare
+  cargo run -- verify
   ```
-  This regenerates the physics outputs, runs the audit in two separate processes, and compares the per-claim results. The audit re-derives every PROVEN, VERIFIED, or NUMERIC claim without importing the project modules. Project rule G-001: every claim is verified twice, in two separate processes, and the results must agree; a single run is not accepted. This applies to claims, not to the pytest suite. The combined result is `results/verification.{json,md}`; a bare `python -m verification.audit` writes `verification_single.*` and is marked NOT ACCEPTED.
-- **Claim audit status**: two separate runs agree per claim, 312/312 checks each (`python -m verification.verify`).
-- **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`theory/formulas.md`](theory/formulas.md).
+  The binary launches two audit processes and compares their identified records exactly,
+  including value bits and verdict details. It requires the ordered record IDs to match a
+  fixed manifest and exits non-zero on disagreement, missing or malformed records, or a
+  child failure. The current audit has 67 records and has not been mapped to
+  every accepted ledger claim, so a pass does not establish complete G-001 coverage.
+- **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
+  directories are kept as a reference ledger; the Rust crate is the canonical implementation.
+- **Read the ledger first**: [`claims.md`](claims.md), [`SCORECARD.md`](SCORECARD.md), [`CHANGELOG.md`](CHANGELOG.md), [`src/ (Rust core)`](MIGRATION.md).
+- **Audit coverage in progress**: [`AUDIT_COVERAGE.md`](AUDIT_COVERAGE.md) maps reviewed evidence and lists accepted claims still awaiting coverage review.
+- **Fit inputs**: the fallible circulant fit accepts three finite positive masses and returns an error if the calculation cannot be represented with finite values. Its phase is ill-conditioned near equal roots.
 
 ### AIKit Commands (run from the AIKit folder)
 
@@ -48,15 +51,135 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 ## What Is Actually Established
 
+The periodic grid homotopy guard certifies a sampled-field interpolation only
+when every space-time cell fits a common separating hemisphere. It passes for
+the N=32 analytic field and a 0.01-radian rotation; failure is inconclusive,
+and no historical production trajectory has been certified. A near-one Hopf
+estimate alone does not prove topology preservation. See claim 90 and ADR-104.
+Run `cargo run -- simulate topoguard` for a fixed 20-step N=32 relaxation with
+each completed sampled-map transition checked. This short diagnostic has a
+900-second watchdog; it does not certify an unsampled continuum trajectory.
+The [recorded probe](results/rust_topoguard_probe.csv) agrees with two
+independent local-energy finite-difference runs within predeclared tolerances.
+Run `cargo run -- simulate topoguard-verify` to repeat that separate-process
+comparison. It does not certify the historical run or an unsampled continuum path.
+The [200-step continuation](results/rust_topoguard_extended.csv) has its first
+inconclusive transition at step 156, with 45 inconclusive transitions in total.
+Run `cargo run -- simulate topoguard-extended-verify` to compare two independent
+calculations. An inconclusive guard does not establish a topology change.
+A cell-mean separating direction certifies all 200 sampled transitions with
+minimum margin 0.622477036916. Run `cargo run -- simulate topoguard-mean-verify`
+to compare two independent calculations; this certifies only the constructed
+sampled-map interpolation, not historical or continuum dynamics. In a 600-step
+continuation, the mean guard first becomes inconclusive at transition 596;
+`cargo run -- simulate topoguard-mean-limit-verify` checks two independent
+reconstructions. An inconclusive transition does not establish topology change.
+Older production
+JSON reports retain their original interpretation notes; those notes claiming
+topology preservation are superseded by claim 15 and ADR-104.
+
+The Koide condition does not fix the circulant phase. Choosing a root product
+of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an
+additional, post-hoc assumption. The spacing ratio is determined by the same
+two hierarchy ratios and is not an independent test. See claim 9 and ADR-092.
+
+The single-model searches below match Casimir weight-difference expressions,
+not established braiding channels. The nine recorded canonical witnesses
+have center charges incompatible with fusing two fundamentals or their
+conjugates; other external representations and phase conventions remain open.
+The SU(23) witness charges are 18, 5 and 5 modulo 23 (ADR-093 corrects an
+earlier recorded charge and Young-diagram count).
+See claim 79 and ADR-090.
+The conserved SU(N) fusion-ring charge is discussed in
+[Naculich, Riggs and Schnitzer](https://arxiv.org/abs/hep-th/9205082).
+
+For any SU(N) rank and positive level, the standard exponent magnitudes from
+fundamental/antifundamental pair channels cannot contain both 2/9 and 2/39.
+Their required ratio is 13/3; the four candidate Casimir numerators admit only
+integer ratios except (N+1)/(N-1), which would require N=8/5. The obstruction
+also holds for full-monodromy phases modulo one with either orientation: the
+four target/complement ratios give no integer N. Other external representations
+and single-braid conventions remain open. See claims 81–82 and ADR-095–096.
+
+Higher-spin external fields evade that obstruction. In SU(2)_2338, four
+identical fields with Dynkin label 558 admit pair channels 1070, 1044 and 688.
+One common reversed full-monodromy orientation yields 2/9, 1/10 and 2/39
+modulo one. The level and labels were selected post-hoc; no physical sector
+assignment is established. Exact enumeration excludes every lower SU(2) level
+for identical external fields, even allowing target orientations independently;
+thus 2338 is minimal within that scope. See claims 83–84 and ADR-097–098. The
+[SU(2) WZW fusion and weight formulas](https://arxiv.org/abs/hep-th/0209241)
+are standard inputs to this check.
+
+There is a level/representation tradeoff: SU(2)_7018 with external Dynkin
+label 288 and channels 478, 556 and 0 realizes the same targets in one forward
+orientation. Exact bounds and enumeration exclude every smaller external label
+at every positive SU(2) level with one common orientation. This is a scoped
+mathematical minimum, not a physical selection rule; see claim 85 and ADR-099.
+If the orientation may instead differ by target, SU(2)_2338 admits external
+label 180 (spin 90), and all smaller labels are excluded across positive
+levels. This mixed-orientation construction requires an additional physical
+interpretation; see claim 86 and ADR-100.
+
+The SU(2) phase hosts cannot themselves be a direct conformal embedding of
+the full Standard Model gauge current algebra: every SU(2)_k has central charge
+below 3, while the positive-level gauge algebra has central charge at least 4.
+More generally, the unextended SU(2) affine vacuum has only three weight-one
+currents, versus twelve required by the full gauge algebra. Thus even a
+nonconformal weight-one current subalgebra is excluded in that standalone
+chiral algebra. Extensions and added sectors remain open. See claims 87–88.
+
+One explicit decoupled extension is SU(2)_2338 x SU(3)_1 x U(1). Putting the
+added factors in their vacua preserves the three monodromies, and the product
+has central charge 2339/390. If its SU(2) factor is identified with weak
+isospin, the phase-carrying field is a color-singlet, U(1)-neutral 559-dimensional
+weak multiplet. This construction supplies current algebra only; it does not
+derive Standard Model matter or dynamics. See claim 89 and ADR-103.
+
+For SU(3)_3, four fundamental insertions on the sphere have no conformal
+block. Two fundamentals and two antifundamentals have two blocks; the
+previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed
+configuration. Their identification with particle phases remains a hypothesis.
+See claim 80 and ADR-091.
+
+An older SU(3)_62 adjoint calculation was incorrect: its Casimir weight
+difference is 1/195, not 2/39. The separate SU(3)_49 singlet expression equals
+2/39, but its model and sector assignments are post-hoc. See ADR-094.
+
+The SU(7)_1163 candidate also admits a chosen block current-algebra subsector
+SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
+the remaining coset has central charge 920175833/26488605. The full block
+centralizer has three U(1) directions, and one remains in the coset. This
+calculation does not identify Standard Model hypercharge or matter dynamics.
+For SU(N), the group rank is N-1; witness checks ending in `_n` report N.
+
+As a representation exercise, choosing `Y=diag(-2,-2,-2,3,3,0,0)/6` gives
+`21 + 3 anti-7` the SU(5)-block content `10 + anti-5 + 2(5 + anti-5) + 7 singlets`.
+This is charge bookkeeping, not a derived fermion spectrum or a connection
+between these representations and the phase witnesses. An independent
+SU(5) exterior-product derivation checks the multiplets; the [PDG review](https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf) uses twice the hypercharge convention used here.
+
+If these representations are assigned to left-handed Weyl fields in four dimensions,
+the perturbative local SU(7) cubic gauge anomaly cancels: for traceless diagonal H,
+`Tr_21(H^3) = (7-4) Tr_7(H^3)` and conjugate fundamentals reverse the cubic trace.
+The full Cartan tensor and an independent polynomial expansion confirm the identity.
+This does not establish global anomaly freedom, a physical spectrum or WZW dynamics.
+Under the same hypothetical assignment, the chosen SU(2) block has eight Weyl
+doublets counting color multiplicity, so the original odd-doublet obstruction is
+absent ([Witten, 1982](https://www.sciencedirect.com/science/article/pii/0370269382907286)).
+This parity check does not establish the absence of other global anomalies.
+The five specified local subgroup anomaly sums also vanish with `q=6Y`; this
+is conditional on the same Weyl assignment and does not establish its physical realization.
+
 | Item | Verdict | Where |
 |---|---|---|
-| Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `theory/circulant.py`, `tests/test_circulant.py` |
-| \(Q=\sum m/(\sum\sqrt m)^2=1/3+2c^2/(3a^2)\) for the signed eigenvalues | PROVEN, with a positivity condition; likely known | `theory/formulas.md` F1-F3 |
+| Hermitian circulant \(M=\mathrm{circ}(a,ce^{i\delta},ce^{-i\delta})\) has eigenvalues \(a+2c\cos(\delta+2\pi k/3)\) and DFT eigenvectors independent of \(\delta\) | PROVEN; likely known | `src/circulant.rs`, `src/circulant.rs` |
+| \(Q=\sum m/(\sum\sqrt m)^2=1/3+2c^2/(3a^2)\) for the signed eigenvalues | PROVEN, with a positivity condition; likely known | `src/ (Rust core)` F1-F3 |
 | \(Q=2/3\) iff \(\lvert c\rvert/a=1/\sqrt2\) | PROVEN algebra; NOT a prediction of Z3 alone | `claims.md` 1a/1b |
-| Pole-mass fit and uncertainty propagation | NUMERIC | `phenomenology/fit.py`, `results/pdg_fit.json` |
+| Pole-mass fit and uncertainty propagation | NUMERIC | `src/circulant.rs`, `results/pdg_fit.json` |
 | \(Q=2/3\) for MS-bar masses at \(M_Z\) | FALSIFIED: \(Q(M_Z)\approx0.6678\) | `results/rg_run.json` |
-| \(\lvert c\rvert/a\) exactly RG-invariant at one loop | FALSIFIED; drift is numerically tiny | `phenomenology/rg.py`, `results/rg_run.json` |
-| Rotor spectrum and free-rotor limit | PROVEN numerically | `theory/rotor.py`, `results/rotor.json` |
+| \(\lvert c\rvert/a\) exactly RG-invariant at one loop | FALSIFIED; drift is numerically tiny | `src/reports.rs`, `results/rg_run.json` |
+| Rotor spectrum and free-rotor limit | PROVEN numerically | `src/rotor.rs`, `results/rotor.json` |
 | Rotor \(\to\) three distinct masses | FALSIFIED: sectors 1 and 2 are exactly degenerate | `results/rotor.json` |
 | Domain-wall tension \((8/3)\sqrt\mu\) | PROVEN | `results/rotor.json` |
 | Closed form for \(\delta\) | UNVERIFIED (null): 2/9 at 0.407\(\sigma\), look-elsewhere \(p=7.9\times10^{-4}\), not promoted | `results/delta_search.json` |
@@ -108,14 +231,20 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 | 3D E2+E4+Z3 pilot | UNVERIFIED: N=32 not converged/resolution-limited; H/Z3 vary with steps; no conclusion | `results/hopfion3d.json` |
 | N=64 3D diagnostic | Targeted, not part of `make results`: `make n64`; H falls below 0.8 as Z3 exceeds 0.6; no coexistence; not converged | `results/hopfion3d_n64.json` |
 | N=64 candidate Hessian | Targeted, not part of `make results`: `make stability`; dense-validated tangent operator; min \(-5.799863\), 8 negative modes; saddle | `results/hopfion_stability.json` |
-| 3D Hopfion + Z3 order | UNVERIFIED: N=64 production scan (`make production`, <15 min G-003) gives native H=0.7880, 2x upsampled H=0.9892, Z3=0.6074, max bond 1.480, min pre-norm 1.000000; native H drop is an estimator artifact; not converged/under-resolved | `results/hopfion3d_production.json` |
+| 3D Hopfion + Z3 order | UNVERIFIED: N=64 production scan (`make production`, <15 min G-003) gives native H=0.7880, 2x upsampled H=0.9892, Z3=0.6074, max bond 1.480, min pre-norm 1.000000; the estimators differ substantially and do not prove topology preservation; not converged/under-resolved | `results/hopfion3d_production.json` |
 | N=96 resolution check | UNVERIFIED: at the same physical time (3000 steps), native H=0.99994 and upsampled H=1.00000, but Z3=0.17207 and force RMS 0.01495; the N=64 Z3 order is not spatially converged, so no coexistence is demonstrated | `results/hopfion3d_convergence.json` |
 | N=64 dt check | PASS: 3000 steps at dt=5e-4 versus 6000 at dt=2.5e-4, both at t=1.5, give ΔH=-1.07e-4 and ΔZ3=-4.6e-6; the N=96 Z3 gap is not a timestep artifact | `results/hopfion3d_temporal.json` |
 | N=96 checkpointed extension | UNVERIFIED: four 3000-step chunks to t=6.0; Z3 rises 0.172→0.599 and crosses 0.5, but native H falls to 0.97262, max bond rises to 0.857 and force RMS is 0.01075; H, force and resolution criteria fail | `results/hopfion3d_extension.json` |
 | Neutrino \(Q_\nu\) for both orderings | NUMERIC negative: max \(0.585612\), never \(2/3\) | `results/neutrinos.json` |
 | Minimal circulant PMNS branches | FALSIFIED: both no-mixing and trimaximal branches excluded | `results/pmns.json` |
 | Direct quark Koide extension | FALSIFIED: \(Q_U\approx0.888\), \(Q_D\approx0.748\) at \(M_Z\) | `results/quarks.json` |
-| Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `sims/README.md` |
+| HO-1 finite-core node | NUMERIC: complex-shift core keeps finite velocity/Q and N-converged winding at eps0=0.1a0 | `src/fluid.rs`; `results/rust_fluid.json` |
+| Regularized 2p vortex | FALSIFIED: blob loops miss 2pi and density-floor velocity diverges with resolution | `src/fluid.rs`; `results/rust_fluid.json` |
+| HO-2 finite-core radial shell | NUMERIC: monotone regular phase, vmax=10, Q=-49.875 with converged FD, zero m=0 circulation | `src/radial_shell.rs`; `results/rust_radial_shell.json` |
+| HO-3 finite-core double shell | NUMERIC: both 3s nodes keep regular product phase, finite velocity/Q and local FD convergence; zero m=0 circulation | `src/multi_radial_shell.rs`; `results/rust_multi_radial_shell.json` |
+| Small-domain single WZW model | FALSIFIED: 474 bounded models and 1,337,784 primaries, zero hits; N<=7 all-level inverse search also negative | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Exact Casimir-expression matches | PROVEN: SU(7)_1163, SU(17)_1153 and SU(23)_1147 each contain three integrable primaries matching the targets arithmetically; these witnesses are excluded as fundamental-pair channels by center charge (claim 79). SU(7)_1163 is lowest-rank/minimal-level within the N<=7, Dynkin-labels<=20 arithmetic search domain. | `src/single_model_test.rs`; `tests/single_model_search.rs` |
+| Nematic-fluid UV picture | SPECULATION; structural F-O/Derrick checks only | `src/ (Rust core)` |
 
 ## What's Inside
 
@@ -130,25 +259,128 @@ fluid-universe/
 ├── ASSETS.md                 <- Asset/data manifest: what the license covers
 ├── assets/                   <- brand artwork and social preview
 ├── README.md
-├── Makefile                  <- test, results, and two-run verification targets
-├── pyproject.toml            <- dependencies and pytest configuration
+├── .gitattributes            <- LF line endings
+├── Cargo.toml                <- dependency-free Rust crate
+├── Cargo.lock                <- locked crate metadata
+├── MIGRATION.md              <- Python-to-Rust migration map
+├── src/                      <- Rust implementation and CLI
+│   ├── circulant.rs          <- Koide/circulant algebra
+│   ├── spectra.rs            <- neutrino, quark and PMNS checks
+│   ├── rotor.rs              <- rotor sectors and wall tension
+│   ├── derrick.rs            <- scaling and virial
+│   ├── confinement.rs        <- Cornell-potential radial spectrum and Koide Q
+│   ├── froggatt.rs           <- FN integer-charge mass ansatz and hierarchy test
+│   ├── fn_scan.rs            <- joint FN charge scan over both hierarchy ratios
+│   ├── modular.rs            <- theta-series singular moduli at Z3 CM points
+│   ├── geometry.rs           <- exact Q=2/3 <=> 45-degree angle to (1,1,1)
+│   ├── anomaly.rs            <- anomaly-free generation-charge no-go
+│   ├── unified_model.rs      <- single Z3-circulant model with held-out prediction
+│   ├── shape_freedom.rs      <- proof that p is free under the symmetry
+│   ├── flux_quantization.rs  <- discrete-flux candidate to fix p (fails)
+│   ├── wzw.rs                <- conditional SU(3)_3 conformal-weight phase
+│   ├── wzw_crosscheck.rs     <- independent neutrino/quark sector cross-check
+│   ├── quark_phases.rs       <- literature quark phases fail the hierarchies
+│   ├── circulant_inverse.rs  <- exact no-go: quark hierarchies imply wrong Q
+│   ├── phase_arithmetic.rs   <- delta rational-in-radians vs pi-multiple angles
+│   ├── conformal_block.rs    <- conditional SU(N)_N weight comparisons
+│   ├── monodromy.rs          <- cube identity arg(z^3)=Q; N=3 over-determination
+│   ├── rep_scan.rs           <- exhaustive SU(3)_k rep scan: only leptons fit
+│   ├── jordan_spectrum.rs    <- non-circulant J3(O) spectrum: B,C fit, D,T fail
+│   ├── mass_convention.rs    <- CORRECTION: mixed-mass no-go was an artifact
+│   ├── fibonacci_phase.rs    <- post-hoc delta=A^2/F^2 pattern + uncertainty correction
+│   ├── gauge_running.rs      <- gauge couplings: SM non-unification, RG stability
+│   ├── exceptional_scan.rs   <- E6_k quantum dimensions: no A^2/delta match
+│   ├── exceptional_nonsimply.rs <- F4/G2 with correct root-length normalization
+│   ├── monodromy_block.rs    <- SU(3)_3 Verlinde fusion and mixed-block monodromy
+│   ├── so10_gut.rs          <- SO(10) mass test + MSSM gauge unification at 2e16 GeV
+│   ├── amplitude_seesaw.rs  <- rational amplitudes + GUT-scale seesaw test
+│   ├── su3.rs                <- SU(3) representation-dimension scan (candidate numerology)
+│   ├── fluid.rs              <- fluid, vortex and Marcus closed forms
+│   ├── radial_shell.rs       <- HO-2 finite-core radial-shell probe
+│   ├── multi_radial_shell.rs <- HO-3 double-radial-shell probe
+│   ├── water.rs              <- shallow-water analogue
+│   ├── lorentz.rs            <- director anisotropy
+│   ├── linalg.rs             <- Jacobi eigensolver and quadrature
+│   ├── fft.rs                <- dependency-free radix-2 3D FFT
+│   ├── unification.rs        <- parameter-free Koide condition and bridge gap
+│   ├── mass_spectrum.rs      <- Z3 rotor with symmetry breaking and mass-ratio scan
+│   ├── potential_family.rs   <- generalised (1-cos3phi)^p wall
+│   ├── flux_sector.rs        <- flux-threaded rotor and level splitting
+│   ├── spinodal.rs           <- tilted Z3 potential spinodal and curvature masses
+│   ├── rg_sector.rs          <- one-loop RG flow of the Koide phase and ratio
+│   ├── two_component.rs      <- coupled topological and Z3-ordered layers
+│   ├── potts_sector.rs       <- Z3 centre/Potts transfer matrix and Koide ratio
+│   ├── xy_z3.rs              <- 2D XY+Z3 model and topological winding
+│   ├── quark_rg.rs           <- down-quark RG and the Koide ratio
+│   ├── water_mechanics.rs    <- gravity-capillary dispersion and analogue horizon
+│   ├── water_unification.rs  <- independent h=2 l_c fixation from wave-speed matching
+│   ├── puddle.rs             <- exact depth condition and puddle-height exclusion
+│   ├── variation.rs          <- exact Q=(1+CV^2)/3 identity and distribution scan
+│   ├── poisson.rs            <- exponential population vs sample CV test
+│   ├── orthogonal.rs         <- exact Q=2/3 from Laguerre L_3^(-1) zeros
+│   ├── classical_scan.rs     <- remaining classical WZW families
+│   ├── compact_identity.rs   <- compact algebraic identity and SU(Fib) test
+│   ├── cosmology_validation.rs <- d=3 cosmological prediction checks
+│   ├── d3_chain.rs           <- non-post-hoc d=3 and electric-charge derivation
+│   ├── d3_neutrino.rs        <- d=3 neutrino prediction validation
+│   ├── d3_only_synthesis.rs  <- complete measured-input-free d=3 parameter set
+│   ├── d3_running.rs         <- RG test of the d=3 fixed point
+│   ├── d3_spectrum.rs        <- independent d=3 spectral-axiom checks
+│   ├── d3_validation.rs      <- independent d=3 prediction validation
+│   ├── dynamical_flow.rs     <- RG-flow test of compact-index targets
+│   ├── ew_from_planck.rs     <- electroweak scale from the Planck scale
+│   ├── exact_phase_labels.rs <- conditional WZW differences and corrected level-62 value
+│   ├── fib_significance.rs   <- significance of the Fibonacci-phase pattern
+│   ├── foot_geometry.rs      <- peer-reviewed geometric Koide check
+│   ├── gauge_flavor.rs       <- weak-angle and flavor-amplitude relation
+│   ├── gj_relation.rs        <- d=3 Georgi-Jarlskog b-tau test
+│   ├── gravity_relation.rs   <- numerical gauge-gravity relation
+│   ├── index_framework.rs    <- compact one-index sector framework
+│   ├── index_uncertainty.rs  <- uncertainty-aware index-framework verdict
+│   ├── informational_geometry.rs <- external d=3 constant identities
+│   ├── natural_phase_labels.rs <- singlet braiding labels at natural levels
+│   ├── nosusy_unification.rs <- no-SUSY gauge-gravity boundary test
+│   ├── null_model.rs         <- rational-amplitude statistical null model
+│   ├── peer_reviewed_37.rs   <- external support for the 3/13 relation
+│   ├── phase_interpolation.rs <- single d=3 phase-rule interpolation
+│   ├── scale_choice.rs       <- M_W versus M_Z scale-choice diagnostic
+│   ├── sector_count.rs       <- d=3 derivation of the sector count
+│   ├── single_model_test.rs  <- bounded Casimir-match searches and fusion constraints
+│   ├── su2_monodromy.rs      <- exact higher-spin SU(2) fusion and monodromy
+│   ├── single_phase_rule.rs  <- up-quark amplitude-precision clarification
+│   ├── threshold_unification.rs <- one-threshold no-SUSY negative test
+│   ├── up_amplitude_gauge.rs <- up amplitude from the weak mixing angle
+│   ├── up_phase_resolution.rs <- up-quark tension with a d=3 phase
+│   ├── vortex_unification.rs <- pre-registered vortex-core unification test
+│   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-weight differences
+│   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
+│   ├── topology_guard.rs     <- sufficient sampled-grid homotopy certificate
+│   ├── topoguard_independent.rs <- local-energy finite-difference re-derivation
+│   ├── audit.rs              <- independent per-claim audit
+│   ├── reports.rs            <- deterministic result regeneration
+│   ├── verify.rs             <- G-001 two-process comparison
+│   ├── lib.rs                <- crate root and check registry
+│   └── main.rs               <- CLI
+├── tests/                    <- Rust integration tests
+│   ├── integration.rs        <- crate-level test suite
+│   ├── radial_shell.rs       <- HO-2 radial-shell regression tests
+│   ├── multi_radial_shell.rs <- HO-3 double-shell regression tests
+│   ├── single_model_search.rs <- bounded SU(N)_k search regression
+│   ├── su2_monodromy.rs      <- higher-spin fusion and monodromy witness
+│   └── topology_guard.rs     <- periodic homotopy certificate controls
 ├── claims.md                 <- claim ledger with statuses and kill tests
+├── AUDIT_COVERAGE.md         <- independent-audit coverage inventory
 ├── CHANGELOG.md              <- append-only corrections and retractions
 ├── SCORECARD.md              <- one-line status per claim
-├── theory/                   <- symbolic algebra, formula registry, literature notes
-├── phenomenology/            <- PDG data, circulant fit, one-loop SM RGE
-├── tests/                    <- pytest identities, limits, regression numbers
-├── verification/             <- independent re-derivation of verified claims
-├── sims/                     <- validated 1D core and bounded 3D diagnostics
 ├── paper/                    <- two LaTeX documents, separate scopes
-└── results/                  <- machine-generated outputs only
+└── results/                  <- rust_*.json|md regenerated by the Rust binary
 ```
 
 ## Conventions and Non-Negotiables
 
-- Every number in prose must regenerate from `python -m phenomenology.run_all`; the JSON records seed, config hash, package versions, and git commit.
+- Every number in prose must regenerate from `cargo run -- regenerate`; the JSON records a non-cryptographic fingerprint of the check results and an in-process determinism check. Run `cargo run -- verify` separately to compare the available audit records in two processes.
 - Labels: **derived**, **assumed**, **analogy**, **speculation**. A numerical fit is not a derivation.
-- No production 3D simulation number is cited until `sims/core.py` passes the full baseline set in `sims/README.md`. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
+- No production 3D simulation number is cited until `src/simulation.rs` passes its full baseline test set. Earlier lost-run numbers (\(|H|\sim0.16\), \(Z_3\sim0.72\), \(N=36\)) are **not** used.
 - Negative results are kept. Corrections go to `CHANGELOG.md`; they are not silently edited.
 - The Z3/Koide/RG paper must stand without any fluid-universe material.
 

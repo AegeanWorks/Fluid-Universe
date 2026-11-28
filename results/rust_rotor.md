@@ -1,0 +1,17 @@
+# rotor
+
+| id | value | detail |
+| --- | --- | --- |
+| `rotor.sector0_ground` | `8.911861597406876e-1` | I=1, mu=1, n_cutoff=160 |
+| `rotor.sector1_ground` | `1.317034514041741e0` | I=1, mu=1, n_cutoff=160 |
+| `rotor.sector2_ground` | `1.317034514041741e0` | I=1, mu=1, n_cutoff=160 |
+| `rotor.degeneracy_gap` | `2.220446049250313e-16` | \|E1 - E2\|, exact by parity |
+| `rotor.free_level_0` | `0.000000000000000e0` | mu=0, I=1, n=0 |
+| `rotor.domain_wall_tension` | `2.666666666666667e0` | (8/3) sqrt(mu), mu=1 |
+| `rotor.domain_wall_tension_quadrature` | `2.666666666667977e0` | Simpson integral, mu=1 |
+
+## Provenance
+
+- Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
+- In-process determinism fingerprint (not G-001 evidence): run1=64cfc091591c23d2, run2=64cfc091591c23d2, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `886c9a4bae732a06` (not a configuration hash or cryptographic digest).

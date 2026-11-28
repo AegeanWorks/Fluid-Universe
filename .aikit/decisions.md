@@ -309,7 +309,7 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Status**: Accepted
 - **Context**: Span 49 selected the width in a 1D irrotational trial class but could not test irrotationality selection itself. The G-M content beyond width is that fixed endpoint densities select gradient v. The 2D Ritz trial with drift v = c*(-y, x) puts a rotational sector inside one fixed G-M action and asks where the stationary point sits.
 - **Decision**: Adopt the saddle test with zero parameters: pre-register gates location (0.5, 0) abs 1e-9 (analytic + Newton-refined conditional slice), mixed curvature (-4.0 s-leg, +1.0 c-leg, 1e-9, sign split, zero mixed partial), Yasui 2D no-extremum (max derivative -1.0625 < -1e-3 with monotone J), and the nu/omega scaling law at omega = 2 (0.25, curvatures (-32.0, +0.5)). The joint box argmax is recorded as a saddle fingerprint (boundary, above saddle value), never gated — S1 caught the naive joint-argmax gate as invalid for saddles and the plan was corrected to conditional slices with derivation. The 1D-vs-2D curvature firewall (-2.0 vs -4.0 = degrees of freedom) is pinned with a 2x slice cross-check. c varies trial drifts inside one fixed action; the Loffredo-Morato mu varies the principle itself and stays excluded.
-- **Consequences**: New `theory/variational_saddle.py`, `phenomenology/variational_saddle_report.py`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`, `make variationalsaddle` (plus `clean` whitelist), formulas F34, and five audit checks (257 to 262). Claims 20-26 and 43-49 untouched. Morato-Ugolini 1994 corroborates the unique ground-state fixed point with irrotational center manifold (no Ritz numbers there — absences recorded); transient increasing vorticity is consistent with min-in-c relaxation, never contrary. The full infinite-dimensional variation stays untested (next span). Claims 20-26 and 43-48 untouched. The full infinite-dimensional variation stays untested (next span); the sigma-form curvature and Ermakov-argmin coincidence are consistency records, not gates. Claims 20-26 and 43-47 untouched; OU/free-packet claim-21 numbers untouched (no MC in this span). L6 explicit negative: the vacuity statement appears unrecorded. Claims 20-26 and 43-46 untouched. L5 shell-split doctrine (inner/outer no-crossing) is labelled analogical/inferred from verified 1-D barrier + verified 2s repulsion + verified general non-entry — never cited as a sourced theorem; Guerra-Morato adds no separate shell doctrine. L6 recorded an explicit negative: no radial-minimum trajectory data found; Kocsis/double-slit avoidance is geometrically distinct evidence.
+- **Consequences**: New `theory/variational_saddle.py`, `phenomenology/variational_saddle_report.py`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`, `make variationalsaddle` (plus `clean` whitelist), formulas F34, and five audit checks (257 to 262). Claims 20-26 and 43-49 untouched. Morato-Ugolini 1994 corroborates the unique ground-state fixed point with irrotational center manifold (no Ritz numbers there — absences recorded); transient increasing vorticity is consistent with min-in-c relaxation, never contrary. The full infinite-dimensional variation stays untested (next span). Claims 20-26 and 43-49 untouched. The full infinite-dimensional variation stays untested (next span); the sigma-form curvature and Ermakov-argmin coincidence are consistency records, not gates. Claims 20-26 and 43-49 untouched; OU/free-packet claim-21 numbers untouched (no MC in this span). L6 explicit negative: the vacuity statement appears unrecorded. Claims 20-26 and 43-46 untouched. L5 shell-split doctrine (inner/outer no-crossing) is labelled analogical/inferred from verified 1-D barrier + verified 2s repulsion + verified general non-entry — never cited as a sourced theorem; Guerra-Morato adds no separate shell doctrine. L6 recorded an explicit negative: no radial-minimum trajectory data found; Kocsis/double-slit avoidance is geometrically distinct evidence.
 
 ### ADR-043: Variational dynamics reproduces Ermakov (claim 51)
 - **Status**: Accepted
@@ -364,8 +364,8 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Date**: 2026-11-06
 - **Status**: Accepted
 - **Context**: Spans 48-57 never varied outside the Gaussian trial. The 1D fixed-endpoint-density G-M problem was expected (continuous (rho,m) convexity) to re-select the Gaussian bridge; the span tests exactly that with adversarial starts at two tiers.
-- **Decision**: Adopt the rho-only exact-flux-elimination discretization (vacuum mask at 1e-12 documented: tail-cell flux noise versus true vacuum; excluded true mass ~1e-10, far below gates) with per-slice mass normalization and exp-parameterization (null space pinned). Gate escape-below at either tier (FALSIFIED), path attribution (FALSIFIED), converged-only classical match, tier-persistent confirmation; coarse-only deviations and non-convergence stay UNVERIFIED. A converged below-bank value was not required: descent 8x below the bank, still going, from the bridge-warm start itself refutes re-selection as surely as a converged lower point.
-- **Consequences**: New theory/field_variation.py, phenomenology/field_variation_report.py, tests/test_field_variation.py, results/field_variation.{json,md}, make fieldvariation (plus clean whitelist), formulas F42, and six audit checks (308 to 314). During implementation three real bugs were caught and fixed (Yasue-sign osmotic term, rho<->phi conversion pin convention, floating-point vacuum amplification); the swarm record already contained the diagnostic numbers. Claims 20-57 stand unchanged (stationarity <> minimality); the trial-class program loses its optimality premise, not its equations. The defect-core span remains queued and is untouched by this result either way.
+- **Decision**: Adopt the rho-only exact-flux-elimination discretization (vacuum mask at 1e-12 documented: tail-cell flux noise versus true vacuum; excluded true mass ~1e-10, far below gates) with per-slice mass normalization and exp-parameterization (null space pinned). Gate escape-below at either tier (FALSIFIED), path attribution (FALSIFIED), converged-only classical match, tier-persistent confirmation; coarse-only deviations and non-convergence stay UNVERIFIED. A converged below-bank value was not required: descent to -1.55 (about 4x below the bank), still going, from the bridge-warm start itself refutes re-selection as surely as a converged lower point.
+- **Consequences**: New theory/field_variation.py, phenomenology/field_variation_report.py, tests/test_field_variation.py, results/field_variation.{json,md}, make fieldvariation (plus clean whitelist), formulas F42, and four audit checks (308 to 312). During implementation three real bugs were caught and fixed (Yasue-sign osmotic term, rho<->phi conversion pin convention, floating-point vacuum amplification); the swarm record already contained the diagnostic numbers. Claims 20-57 stand unchanged (stationarity <> minimality); the trial-class program loses its optimality premise, not its equations. The defect-core span remains queued and is untouched by this result either way.
 
 ### ADR-051: Ritz-widened trial program (claim 59)
 - **Date**: 2026-11-06
@@ -408,3 +408,374 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Stage-2 cut the far-loop-only plan (r=2 never sees the core: confirm-only) to core-threading loops r=delta0/2delta0/2; some-delta selection rejected as look-elsewhere; absolute velocity caps replaced by constructional rules (blob umax=Gamma/4pidelta finite; floor vmax=1/r_min diverges); N-ladder kept only where it bites (floor vmax); density-weight objection pre-answered (Wallstrom is phase-only; regularized core removes the rho=0 exclusion).
 - **Decision**: Blob u_th=G/2pi*r/(r^2+d^2) with pre-registered delta0=0.1*a0 (transferred claim-60 via local linearity psi_1~x, R_21~r; never scanned); floor keeps exact phase; gates 2pi+-1e-6 rel on all three loops for regularized models plus singular far-loop control; FALSIFIED on blob fraction miss or floor divergence at delta0, NUMERIC only if all loops hold with finite caps, else UNVERIFIED. 2s shell queued.
 - **Consequences**: New theory/vortex_loop.py, phenomenology/vortex_loop_report.py, tests/test_vortex_loop.py, results/vortex_loop.{json,md}, make vortexloop, formulas F45, five audit checks (322 to 327). Swarm: 7 literature record notes on file (Wallstrom/Takabayasi/circulation/Fetter/reconnection/Landau/Holland) plus 3 fixed compute batches (fractions, caps, far-field) verified by sampling (2pi, vphi=0.5, fractions 0.5/0.8/0.99750623, vmax N/10, norm 1.0); the healing-length note returned chat-only with no artifact file and is void (zero gate impact: analogy-only background).
+
+### ADR-057: Rust main is the sole canonical implementation
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The restored repository has a clean Rust `main` branch with research commits beyond the Python `master`, while README and migration documentation already identify Rust as canonical. The user requested one Rust main implementation, so the delivery branch must not imply two supported runtimes.
+- **Decision**: `main` is the sole canonical implementation and local delivery branch. The dependency-free Rust crate, its Cargo test command and its two-process verifier are authoritative; the former Python packages remain only in git history and are not maintained as a parallel runtime. This decision does not push branches or change the remote default.
+- **Consequences**: New physics work lands on `main` in Rust; README, MIGRATION.md and `.aikit/project.json` must continue to agree. The Phase 4 delivery repair removes the remaining source BOM, synchronizes the README tree and refreshes the codebase-map coverage count without changing any physics result.
+
+### ADR-058: HO-2 radial-shell finite-core probe (claim 62)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 61 queues the hydrogen-2s radial shell. Claim 47 verifies only a two-branch representation and explicitly claims no dynamics or circulation. The unresolved local question is whether the claim-60 complex-shift construction transfers to the simple radial zero at r0=2a0 with finite radial velocity and quantum pressure while the singular control and m=0 zero-circulation fact remain intact.
+- **Decision**: Implement R_eps proportional to (r-r0+i*eps)*exp(-r/(2a0)) in Rust with pre-registered eps0=0.1*a0 in atomic units, transferred from claim 60 by local linearity and never scanned. Use u=r*R_eps, so u''/u equals the full s-wave radial Laplacian ratio. Use physical radial grids N=250/500/1000/2000 on [0,20] containing r0, plus cell-centred singular controls. Hard gates: singular phase-gradient slope -1+-0.01; regular phase equals atan2(eps,r-r0), is monotone, stays strictly between 0 and pi, and its finite-domain deficit obeys 2*eps/r0+eps/(L-r0); vmax=1/eps=10 finite; Q0=-0.5*(1/eps^2-1/r0^2)=-49.875 finite with fine-vs-analytic and fine-vs-coarse FD errors <=5%; m=0 circulation exactly zero. Soft gate: raw radial norm equals 2*a0^3*(4*a0^2+eps^2) within 1e-8 relative. FALSIFIED on a hard phase/Q/circulation failure with the singular control intact; NUMERIC only when every hard and soft gate passes; otherwise UNVERIFIED. No exact finite-domain pi winding, energy spectrum or full-field dynamics is claimed.
+- **Consequences**: New src/radial_shell.rs and tests/radial_shell.rs; wire the module into the crate registry, CLI, report family and all_checks; add five independent audit rows; module-documented F46 equations; claim 62 row, scorecard, changelog and README tree. Claims 20-26 and 43-61 remain unchanged; higher radial nodes remain untested.
+
+### ADR-059: HO-3 double-radial-shell finite-core probe (claim 63)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 62 verifies one simple radial zero. Hydrogen 3s has two irrational radial nodes from `L_2^1(x)=x^2/2-3x+3`, so it tests whether a single-valued product-phase regularization remains regular at multiple shells and whether local convergence is node-specific rather than a grid accident.
+- **Decision**: Use `R_eps ∝ ((r-r1)+i*eps)*((r-r2)+i*eps)*exp(-r/(3*a0))` with `r1=(9-3*sqrt(3))*a0/2`, `r2=(9+3*sqrt(3))*a0/2`, pre-registered `eps0=0.1*a0`, and `u=r*R_eps`. Use the full domain [0,20] for the product phase and separate node-centred local grids N=250/500/1000/2000 on x=r-rj in [-1,1] for each singular/FD probe. Hard gates: both singular phase-gradient slopes -1+-0.01; product phase monotone with total slip below 2pi and deficit bounded by the sum of the two single-node bounds; actual radial velocity finite at both nodes (expected magnitude 10.003702332469); Q at both nodes finite with fine-vs-analytic and fine-vs-coarse FD errors <=5%; m=0 circulation exactly zero. Soft gate: raw radial norm equals `27*eps^4/4+729*eps^2/4+19683/16` within 1e-8 relative. Pre-registered references: phase slip 6.203291923081966, deficit 0.079893384097620 <= 0.146609564596717; Q1=-49.843277943472785, Q2=-49.971578003292700. FALSIFIED on a hard phase/velocity/Q/circulation failure with both singular controls intact; NUMERIC only when every hard and soft gate passes; otherwise UNVERIFIED. No exact finite-domain 2pi winding, energy spectrum or full-field dynamics is claimed.
+- **Consequences**: New src/multi_radial_shell.rs and tests/multi_radial_shell.rs; wire the module into the crate registry, CLI, report family and all_checks; add five independent audit rows; module-documented F47 equations; claim 63 row, scorecard, changelog and README tree. Claims 20-26 and 43-62 remain unchanged; still higher radial nodes remain untested.
+
+### ADR-060: Reproducible bounded single-WZW-model search (claim 64)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The latest unification negative says no single SU(N)_k model hosts all three phases, but the Rust implementation returns a hardcoded false. A central model-selection claim must be generated by a reproducible search, not asserted by a constant.
+- **Decision**: Enumerate N=2..7, k=1..79 and every integrable primary with Dynkin labels 0..4 and label sum <=k. For row lengths lambda_i derived from the Dynkin labels, use the exact standard Casimir `C2=(N*A-boxes^2)/(2N)`, `A=sum_i lambda_i*(lambda_i+N+1-2i)`, and compare `|C2-2*C2(box)|/(k+N)` to 2/9, 1/10 and 2/39 by integer cross-multiplication. Record model count, primary count and any hit model. An independent Python pre-registration run found 474 models, 1,337,784 primaries and zero hits; the Rust search must reproduce those counts and the negative. The result remains bounded to this domain and does not exclude larger N, k or Dynkin labels.
+- **Consequences**: Replace the constant in `src/single_model_test.rs` with a cached exact-integer search and regression tests for known singlet labels and coverage counts; add independent audit rows; regenerate reports and update claim 64, scorecard, changelog, README and migration counts. No physics verdict outside the stated search domain changes.
+
+### ADR-061: All-positive-level inverse single-WZW search (claim 65)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 64 caps k at 79. The exact label equation can be inverted for each primary, so the same N=2..7 and Dynkin-label 0..4 domain can be tested at every positive integer level without scanning levels.
+- **Decision**: Enumerate all 19,530 Dynkin vectors in the domain. For each primary and target p/q, solve `k = |N*A-boxes^2-2*(N^2-1)|*q/(2*N*p) - N` exactly; admit the candidate only when k is a positive integer and the Dynkin-label sum is <=k. Merge phase masks by (N,k). The independent Python pre-registration found 694 models hosting at least one phase and zero models hosting all three. The three natural singlet models must be present with their expected phase bits. The result removes the k ceiling but remains limited to N<=7 and Dynkin labels 0..4.
+- **Consequences**: Add a cached inverse search and three checks to `src/single_model_test.rs`, integration regressions in `tests/single_model_search.rs`, independent audit rows, regenerated reports and claim 65 documentation. Claim 64's bounded level scan remains unchanged; claim 65 strengthens only the stated N/Dynkin domain.
+
+### ADR-062: Explicit SU(17)_1153 single-model witnesses (claim 65, supersedes the ADR-061 verdict plan)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The ADR-061 inverse-search implementation was pre-registered as an N<=7 all-level negative, but a larger independent search over N<=20, total Dynkin-label sum<=9 and labels 0..6 found one host before implementation: SU(17)_1153. Direct exact arithmetic confirms all three labels and integrability.
+- **Decision**: Claim 65 is an explicit existence proof for SU(17)_1153. Freeze three integrable primaries: for 2/9, Dynkin labels (0,0,0,0,0,0,0,0,1,2,2,1,0,0,0,1), boxes=79, A=921, C2=4708/17; for 1/10, (0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,1), boxes=45, A=387, C2=2277/17; for 2/39, (0,0,0,0,0,0,0,0,0,0,0,2,0,0,0,1), boxes=40, A=248, C2=1308/17. Each label is checked by exact integer cross-multiplication against |C2-2*C2(box)|/(k+N), and each label sum is <=1153. Retain the ADR-061 N<=7 all-level inverse search as supporting evidence: 19,530 primaries, 694 models with any phase, zero all-phase hits. The witness proves existence only; SU(17)_1153 is not derived as physically selected, no sector-assignment rule or dynamics is supplied, and this is not itself a unified field theory.
+- **Consequences**: Add exact witness constants/functions and witness checks to `src/single_model_test.rs`; add integration and independent audit rows for the witness and the retained small-domain inverse search; regenerate reports; record claim 65 as PROVEN for existence with explicit naturalness/selection caveats. Claims 60-64 remain unchanged.
+
+### ADR-063: Second exact host and non-uniqueness (claim 65 supplement)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The wider inverse search N<=24, total Dynkin-label sum<=8 and labels 0..6 found a second all-phase host at the lower level SU(23)_1147, alongside SU(17)_1153. Exact direct arithmetic verifies all three labels and integrability.
+- **Decision**: Encode a second witness alongside SU(17)_1153. For SU(23)_1147: 2/9 uses Dynkin labels (0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,1,0,2,0,0,0), boxes=87, A=895, C2=6508/23; 1/10 uses (0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,1,1), boxes=73, A=509, C2=3189/23; 2/39 uses (0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2), boxes=51, A=279, C2=1908/23. Each label is checked exactly and each label sum is <=1147. Two distinct hosts prove existence and non-uniqueness; neither is physically selected by the framework.
+- **Consequences**: Claim 65 records at least two explicit single-model hosts. The next unification problem is selection/naturalness, not existence. No dynamics, sector assignment or unified field theory is claimed.
+
+### ADR-064: Lowest-rank SU(7)_1163 host (claim 66)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: The ADR-063 hosts have ranks 17 and 23. An all-level inverse search with N<=7, Dynkin labels 0..6 and total label sum <=24 found a rank-7 host, SU(7)_1163, after 125,888 primaries and 1,259 any-phase models.
+- **Decision**: Add SU(7)_1163 as the third explicit witness. For 2/9 use Dynkin labels (0,0,4,4,6,5), boxes=88, A=1640, C2=1868/7; for 1/10 use (0,0,1,3,4,4), boxes=59, A=745, C2=867/7; for 2/39 use (0,0,0,4,2,1), boxes=32, A=280, C2=468/7. Label sums 19/12/7 are <=1163 and exact cross-multiplication matches all targets. Claim 66 is PROVEN for this explicit host and for lowest rank within the stated search domain only. Level 1163 and labels up to 6 remain post-hoc; no physical selection or dynamics is claimed.
+- **Consequences**: Extend the witness registry and checks, add the relaxed-label inverse search and integration/audit rows, regenerate reports and update claim 66 documentation. Claims 60-65 remain unchanged.
+
+### ADR-065: No lower-rank host in the N<=6, Dynkin<=20 domain (claim 67)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 66 establishes SU(7)_1163 as the lowest-rank host with labels<=6. To test lower ranks more broadly, an all-positive-level inverse search over N<=6 and Dynkin labels 0..20 found no all-phase host.
+- **Decision**: Enumerate every Dynkin vector for N=2..6 with entries 0..20, solve each target's required positive integer level exactly and enforce label-sum integrability. The independent Python pre-registration count is 4,288,305 primaries, 5,499 models with at least one phase and zero all-phase hits. Claim 67 is FALSIFIED for lower-rank existence only inside this domain; labels above 20 and ranks above 6 are not addressed. SU(7)_1163 remains an explicit host, not a physically selected theory.
+- **Consequences**: Add a cached lower-rank inverse search, check rows, integration regression and independent audit; regenerate reports and update claim 67 documentation. Claims 60-66 remain unchanged.
+
+### ADR-066: SU(7)_1163 is the minimal-level host in the widened domain (claim 68)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 67 excludes lower ranks with Dynkin labels<=20, and claim 66 proves SU(7)_1163 exists. A standalone optimized exact search over SU(7) primaries with labels 0..20 found no all-phase host below level 1163.
+- **Decision**: Enumerate all 21^6=85,766,121 SU(7) Dynkin vectors, solve each target's required positive integer level exactly and retain only k<1163 with label-sum integrability. The pre-registered result is 244 models with at least one phase below 1163 and zero all-phase hits. Claim 68 is PROVEN for minimal level within N=7 and labels<=20; combined with claim 67 it is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain. Labels above 20 and other ranks remain outside this minimality statement, and no physical selection is derived.
+- **Consequences**: Add a cached minimal-level search, checks, integration regression and independent audit; regenerate reports and update claim 68 documentation. Claims 60-67 remain unchanged.
+
+### ADR-067: Minimal label-sum witnesses at SU(7)_1163 (claim 69)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 68 fixes SU(7)_1163 as the minimal host in the widened domain. Its initial witnesses have Dynkin-label sums 19/12/7; a fixed-level exact search over labels 0..20 found lower sums 16/10/6.
+- **Decision**: Replace the SU(7)_1163 witnesses with (0,0,2,11,2,1) for 2/9 (boxes=66, A=1156, C2=1868/7), (0,0,3,6,0,1) for 1/10 (boxes=39, A=465, C2=867/7), and (0,0,0,6,0,0) for 2/39 (boxes=24, A=216, C2=468/7). The fixed-level search examines 85,766,121 vectors and proves no smaller label sum for any phase within labels<=20. Claim 69 is PROVEN for witness-complexity minimality at this host only; it does not establish physical naturalness or model selection.
+- **Consequences**: Update the witness registry, add a fixed-level minimal-witness search/checks, integration regression and independent audit; regenerate reports and update claim 69 documentation. Claims 60-68 remain unchanged.
+
+### ADR-068: Canonical minimal witnesses at SU(7)_1163 (claim 70)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 69 fixes the minimum label sums but leaves multiple representatives: standalone exact enumeration finds family sizes 4, 2 and 2 for the three phases. Downstream calculations need a deterministic witness choice.
+- **Decision**: Among all minimum-sum representatives in the labels<=20 domain, choose the lexicographically smallest Dynkin vector for each phase. The pre-registered canonical vectors are (0,0,2,11,2,1), (0,0,3,6,0,1), (0,0,0,6,0,0), exactly the current SU(7)_1163 witnesses. Claim 70 is PROVEN for representative counts 4/2/2 and lexicographic canonicity. This is a bookkeeping rule for witnesses only; it does not select the host physically or supply sector dynamics.
+- **Consequences**: Extend the combined minimal-domain summary with representative counts and canonical vectors, add checks and integration/audit assertions, regenerate reports and update claim 70 documentation. Claims 60-69 remain unchanged.
+
+### ADR-069: Conformal data of the canonical SU(7)_1163 witnesses (claim 71)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claims 66-70 determine a canonical host and canonical representatives, but their physical WZW invariants are not yet recorded. These invariants are prerequisites for any future sector-dynamics construction.
+- **Decision**: Compute each canonical SU(7)_1163 conformal weight as h=C2/(k+N) using exact integer Casimir arithmetic, and each quantum dimension from the Weyl product over positive roots `sin(pi*(lambda+rho,alpha)/(k+N))/sin(pi*(rho,alpha)/(k+N))`. Pre-registered weights are 934/4095, 289/2730 and 2/35; pre-registered quantum dimensions are 1.136464998628996e11, 4.072382134390699e8 and 4.568658409657278e5, ordered lepton>down>up. Claim 71 is NUMERIC for these invariants. No equality or scaling with particle masses is asserted.
+- **Consequences**: Add conformal-weight/quantum-dimension functions and checks, integration regression, independent audit rows, regenerated reports and claim 71 documentation. Claims 60-70 remain unchanged.
+
+### ADR-070: No explicit WZW host can directly conformally embed the SM gauge algebra (claim 72)
+- **Date**: 2026-11-24
+- **Status**: Accepted
+- **Context**: Claim 71 gives the canonical host's WZW data. A direct conformal embedding of the Standard Model gauge WZW algebra would require equal central charges.
+- **Decision**: Use `c_SU(N)_k=k*(N^2-1)/(k+N)`. The explicit host central charges are SU(7)_1163: 9304/195=47.7128205128205, SU(17)_1153: 18448/65=283.815384615385, and SU(23)_1147: 100936/195=517.620512820513. The SM gauge algebra SU(3)_k3 x SU(2)_k2 x U(1) has `c=8*k3/(k3+3)+3*k2/(k2+2)+1<8+3+1=12` for all positive levels. Since every host exceeds 12, direct conformal embedding is impossible for all known hosts. Claim 72 is FALSIFIED for that compatibility hypothesis only. Coset, subsector or non-conformal interpretations are not excluded, and the phase WZW construction is not asserted to be the SM gauge algebra. Even the smallest host leaves a coset central charge of at least 6964/195≈35.71 after removal of an SM gauge subsector.
+- **Consequences**: Add central-charge functions/checks, integration regression and an independent exact-inequality audit row; regenerate reports and update claim 72 documentation. Claims 60-71 remain unchanged.
+
+### ADR-071: SU(7)_1163 block SM gauge subsector and coset (claim 73)
+- **Date**: 2026-11-25
+- **Status**: Accepted
+- **Context**: Claim 72 excludes direct conformal embedding but leaves subgroup and coset routes open. The standard SU(7) block decomposition 3+2+1+1 provides an explicit SU(3)xSU(2)xU(1)^2 subgroup with index one in each nonabelian factor.
+- **Decision**: At host level 1163, assign SU(3) and SU(2) levels 1163 and choose two U(1) directions with diagonal generators `(2,2,2,-3,-3,0,0)` and `(0,0,0,0,0,1,-1)`. These are traceless, orthogonal and commute with the nonabelian blocks; the full block centralizer has three U(1) directions, so the remaining one is included in the coset. The subsector central charge is `8*1163/(1163+3)+3*1163/(1163+2)+2 = 8812057/679195 = 12.9742665950132`. The coset central charge is `9304/195 - 8812057/679195 = 920175833/26488605 = 34.7385539178073`. Claim 73 is NUMERIC for this explicit non-conformal current-algebra subsector/coset split. U(1) charge normalization, global group identifications, SM gauge mixing, matter content and coset dynamics are not derived.
+- **Consequences**: Add block-subsector/coset functions and checks, integration regression and an independent exact-rational audit row; regenerate reports and update claim 73 documentation. Claims 60-72 remain unchanged.
+
+### ADR-072: Correct SU(N) rank labels and bounded minimality scope
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: ADR-064 and claim 66 confused the SU(N) index N with rank N-1; ADR-065 also misstated the rank boundary. README omitted the minimality search bounds.
+- **Decision**: SU(7), SU(17), and SU(23) have ranks 6, 16, and 22. The N<=6 search covers ranks 1 through 5; N>6 is outside that search. The SU(7) minimality result applies within N<=7 and Dynkin entries<=20. Historical ADRs remain unchanged and are corrected by this record.
+- **Consequences**: Correct claim and audit wording, constrain the README summary, regenerate fingerprints and reports; the search domains and arithmetic are unchanged.
+
+### ADR-073: Correct in-process report verification provenance
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Report generation and selftest compare derivations in the same process while labelling their result G-001 two-process evidence. The separate verify command launches two processes but compares aggregate fingerprints.
+- **Decision**: Label report and selftest results as in-process determinism checks, retain existing audit fields and add mode=in_process. Do not treat those checks as G-001 evidence. Record that the separate verifier compares aggregate fingerprints, not explicit per-claim results.
+- **Consequences**: Regenerate reports, correct README, and retain an explicit follow-up to compare per-claim outputs in separate processes. Numerical computations are unchanged.
+
+### ADR-074: Compare audit records across separate processes
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The previous verifier compared aggregate hashes and the audit is not yet mapped to every accepted claim.
+- **Decision**: Run two bounded audit children, compare identified records exactly including value bits and verdict details, and reject empty, malformed, duplicate or differing output. Report the record count without claiming full ledger coverage.
+- **Consequences**: Verifier output changes; report provenance remains in-process. Complete G-001 evidence requires mapping and independently re-deriving every accepted ledger claim.
+
+### ADR-075: Inventory incomplete claim audit coverage conservatively
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The two-process verifier compares audit records but the records have not been mapped to all accepted ledger claims.
+- **Decision**: Maintain a human-reviewed inventory of related audit rows and separately list accepted claims whose audit coverage has not been reviewed. Related evidence is not equivalent to a full G-001 coverage finding.
+- **Consequences**: The inventory directs independent re-derivation and must be updated when the ledger or review changes. It does not change scientific verdicts.
+
+### ADR-076: Add independent circulant matrix spot checks
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The signed-Q audit did not multiply the circulant matrix by DFT vectors, and claims 2a and 2b had not been assessed for audit coverage.
+- **Decision**: Construct the complex matrix independently with real-imaginary pairs, test Hermiticity, a generic nonsymmetry example, and the DFT eigenvalue equation across fixed parameters. Mark the resulting audit rows NUMERIC, not symbolic proof.
+- **Consequences**: Add a perturbation regression, two-process record comparison, regenerated reports and update the coverage inventory. Universal symbolic statements and full G-001 claim coverage remain open.
+
+### ADR-077: Require the expected audit record manifest
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Two identical truncated audit outputs could pass exact comparison even when both omitted complete records.
+- **Decision**: Compare both outputs and require their ordered IDs to match a fixed manifest. A regression compares the manifest with the audit registry; additions or removals must update it.
+- **Consequences**: Missing, extra or substituted audit records fail verification. This checks the audit record set, not whether all accepted claims are covered.
+
+### ADR-078: Independently audit measured pole fit and linearized Q uncertainty
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The prior claim 3a audit tests a predicted tau mass rather than the fit to the measured pole masses.
+- **Decision**: Use the frozen 2024 masses and independent mass errors, calculate inverse DFT magnitudes and first-order Q propagation separately, and expose a numeric audit record. The linearized uncertainty is not the original Monte Carlo result.
+- **Consequences**: Add a finite-difference regression and update the audit manifest, reports and coverage inventory. The phase parameter, other parameter uncertainties and Monte Carlo remain unverified by this record.
+
+### ADR-079: Correct Rust report check fingerprint schema
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Schema 1 names a 64-bit FNV-1a hash of family names and rendered check results config_sha256, implying both an incorrect algorithm and input.
+- **Decision**: Bump Rust report JSON to schema 2 and replace config_sha256 with checks_fnv1a64. Label Markdown provenance as a non-cryptographic check-results fingerprint. Preserve historical non-Rust reports in their original formats.
+- **Consequences**: Consumers must branch on schema and migrate the field name. The hash algorithm and bytes remain unchanged; this fingerprint is not a SHA-256 digest or a configuration hash.
+
+### ADR-080: Audit pole-fit phase and linearized parameter uncertainties
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The measured pole-fit audit did not independently check the phase, ratio or uncertainties of the fitted parameters.
+- **Decision**: Re-derive the inverse DFT phase and ratio and propagate independent frozen mass errors through the analytic Jacobian for a, c, phase and ratio. Check every derivative against finite differences.
+- **Consequences**: Add a numeric audit row, update the record manifest and regenerate reports. Linearized uncertainties are not the original Monte Carlo; the latter remains to be reviewed.
+
+### ADR-081: Reject non-finite circulant fit results
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The fallible inverse DFT and mass-fit APIs accepted NaN and infinity, and extreme finite masses could overflow intermediate calculations while returning success.
+- **Decision**: Reject non-finite roots and nonpositive or non-finite masses, and return an actionable error when fit or inverse DFT arithmetic produces non-finite outputs.
+- **Consequences**: Ordinary finite fits remain unchanged. Previously accepted invalid or unrepresentable inputs now return errors; callers can rescale inputs.
+
+### ADR-082: Remove absolute inverse DFT phase cutoff
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: An absolute 1e-14 amplitude cutoff zeroed the phase for valid small-scale nondegenerate roots, producing incorrect fit reconstruction.
+- **Decision**: Return zero amplitude and phase for exactly equal roots; otherwise use the computed phase unless the computed amplitude is zero.
+- **Consequences**: Small nondegenerate fits retain their phase across scales. Near degeneracy phase is ill-conditioned and should not be interpreted as precisely determined.
+
+### ADR-083: Correct remaining witness N labels
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Three numeric checks named witnessN_n report N=17, 23 and 7 but described these values as group ranks; a test name also called SU(7) rank seven.
+- **Decision**: Keep check identifiers and numeric values as N, label them parameter N, and correct the test name to rank six.
+- **Consequences**: Check details and generated fingerprints change; the group representations and search arithmetic do not.
+
+### ADR-084: Explore SU(7) hypercharge branching of 21 plus three anti-fundamentals
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The block SU(7) subsector leaves hypercharge and matter content open. The SU(5) 10 plus anti-5 assignment is standard background (https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf).
+- **Decision**: Choose Y=diag(-2,-2,-2,3,3,0,0)/6 and enumerate the exterior square 21 plus three conjugate fundamentals as a representation-content exercise. Expected branching is one 10 plus anti-5, two 5 plus anti-5 vectorlike pairs, and seven singlets under the SU(5) block. Compute integer hypercharges and dimensions explicitly.
+- **Consequences**: This is algebraic branching only. It does not establish physical fermions, anomaly cancellation, dynamics, mass generation, WZW sector selection or connection to the phase witnesses.
+
+### ADR-085: Independently audit the SU(7) hypercharge census
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The branching exercise enumerates representation weights but needs an independent check before recording a result.
+- **Decision**: Use block sizes and integer hypercharges to count exterior-square pairs combinatorially and add conjugate fundamentals; compare the resulting U(1) census in separate processes.
+- **Consequences**: Claim 74 covers only the 42-weight charge census. The nonabelian multiplet identification, anomaly cancellation, physical spectrum and relation to WZW witnesses remain open.
+
+### ADR-086: Independently derive SU(7) nonabelian branching via SU(5)
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Claim 74 checks only hypercharge counts, leaving the nonabelian multiplet assignment unassessed.
+- **Decision**: Use wedge squared of 5 plus two singlets to derive 21 = 10 + 2 times 5 + 1, and anti-7 = anti-5 + 2 singlets. Decompose 10 and anti-5 using SU(3) and SU(2) invariant epsilon tensors and compare exact multiplicities independently in two processes.
+- **Consequences**: The representation content is one 10 plus anti-5, two vectorlike 5 plus anti-5 pairs and seven singlets. This does not establish physical fermions, anomaly cancellation, dynamics, mass generation or WZW sector selection. The PDG GUT review uses hypercharge twice the Y convention here: https://pdg.lbl.gov/2024/reviews/rpp2024-rev-guts.pdf
+
+### ADR-087: Test perturbative SU(7) cubic anomaly for hypothetical Weyl matter
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The 21 plus three anti-7 branching has not been tested as hypothetical four-dimensional chiral matter. The antisymmetric plus N-4 antifundamental family is studied in https://arxiv.org/abs/2104.10171.
+- **Decision**: Compute the complete symmetric cubic tensor on a basis of the SU(7) Cartan subalgebra using exact weights; three antifundamentals should cancel the exterior-square contribution, while two should not. Independently use the traceless diagonal trace identity Tr_wedge2(H cubed) = (N-4) Tr_fund(H cubed).
+- **Consequences**: This addresses only the perturbative local SU(7) cubic gauge anomaly under the hypothetical Weyl assignment. It does not establish global anomaly freedom, physical fermions, dynamics, mass generation or a connection to the WZW phase witnesses.
+
+### ADR-088: Check original SU(2) global-anomaly parity condition
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Perturbative SU(7) cubic anomaly cancellation does not by itself check the original SU(2) global anomaly. Witten showed that an odd number of Weyl doublets is inconsistent: https://www.sciencedirect.com/science/article/pii/0370269382907286.
+- **Decision**: For the hypothetical left-handed 21 plus three anti-7 assignment, count SU(2) doublets with color multiplicity; independently use 7 = 2 + 5 singlets. Expect eight doublets and use two anti-7s as an odd seven-doublet control.
+- **Consequences**: The result concerns only the original SU(2) doublet parity obstruction under the stated assumptions. It does not establish absence of other global anomalies, a physical fermion spectrum or WZW realization.
+
+### ADR-089: Check local subgroup anomaly coefficients for hypothetical SU(7) matter
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: The SU(7) cubic and SU(2) parity checks do not explicitly exhibit the subgroup mixed gauge and gauge-gravitational anomaly sums. General anomaly conventions are reviewed in https://arxiv.org/abs/0802.0634.
+- **Decision**: For left-handed Weyl fields in the chosen branching, calculate SU(3)^3, SU(3)^2 U(1), SU(2)^2 U(1), gravitational squared U(1), and U(1)^3 coefficients with integer charge 6Y and fundamental Dynkin indices normalized to one. Independently check the generation and vectorlike pair contributions and a nonzero unpaired control.
+- **Consequences**: This checks only these local subgroup coefficients for a hypothetical assignment. It does not establish complete global anomaly freedom, physical fermions, mass generation or WZW realization.
+
+### ADR-090: Separate Casimir matches from fundamental-pair fusion channels
+- **Date**: 2026-11-27
+- **Status**: Accepted
+- **Context**: Existing integrable phase witnesses have not been checked against fusion selection rules.
+- **Decision**: Check conserved SU(N) center charges for the nine canonical witnesses and describe prior results as Casimir matches rather than demonstrated braiding.
+- **Consequences**: Exact searches remain valid arithmetic evidence; physical channel assignments require additional fusion and braid analysis.
+
+### ADR-091: Correct the SU(3) four-point external representations
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The existing four-fundamental block violates total center charge despite correct pairwise Verlinde coefficients.
+- **Decision**: Compute sphere block dimensions from Verlinde coefficients and distinguish four fundamentals from two fundamentals and two conjugates; independently audit the 0 and 2 dimensions.
+- **Consequences**: The pairwise monodromy values remain available for the mixed block; their identification with particle phases remains a hypothesis.
+
+### ADR-092: Correct phase selection and correlated shape evidence
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: Legacy descriptions claim the Koide ratio fixes the phase and a spacing ratio is independent of mass ratios; the existing shape-freedom calculation contradicts both.
+- **Decision**: Retain the numerical model and tests but state the additional phase assumptions and algebraic dependence; add explicit regression and correct report labels.
+- **Consequences**: The p=1/18 and WZW phase choices are conditional and post-hoc; the spacing comparison does not add an independent observable.
+
+### ADR-093: Correct SU(23) witness metadata and audit verdict
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: Two-process comparison passed while claim 79 audit was UNVERIFIED because the middle SU(23) witness has 74 boxes, not 73.
+- **Decision**: Correct its Young-diagram and Casimir metadata, expect center charge 5, and require the audit verdict in a regression test.
+- **Consequences**: The exclusion remains valid but is accepted only after the independent audit produces NUMERIC in both processes; reproducibility alone is not claim acceptance.
+
+### ADR-094: Correct legacy SU(3) phase arithmetic and channel
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The legacy SU(3)_62 adjoint function returns 2/195 while claiming 2/39; the Casimir formula gives 1/195, and SU(3)_3 fundamental squared excludes the fundamental.
+- **Decision**: Return the Casimir expression 1/195, retain level 62 as a historical input, use the allowed antifundamental channel for the 2/9 comparison, and qualify natural-level assignments as post-hoc.
+- **Consequences**: The legacy level-62 numerical claim is retracted; separate SU(3)_49 singlet arithmetic remains valid under its stated mixed-channel assumptions.
+
+### ADR-095: Test the all-rank fundamental-pair target obstruction
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The known witnesses fail fundamental-pair fusion selection; the full pair-channel candidate set may imply a stronger all-rank result.
+- **Decision**: Use SU(N) fundamental pair channels with Casimir numerator set {1,N-1,N+1,N^2-1}; test exact unreduced exponent magnitudes 2/9 and 2/39 using their ratio 13/3 and audit all symbolic ratio cases independently.
+- **Consequences**: The conclusion is restricted to fundamental and antifundamental external pairs and the stated exponent representatives; it does not exclude other representations or phase conventions.
+
+### ADR-096: Extend the pair-channel obstruction to full-monodromy phases
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The prior exact-magnitude no-go does not address exponent equivalence modulo one or reversed orientation.
+- **Decision**: Use 0<x<1 for the pair-channel magnitudes, enumerate target complements 2/9 or 7/9 and 2/39 or 37/39, and independently check all four rational-ratio cases.
+- **Consequences**: A successful obstruction covers either full-monodromy orientation modulo one for fundamental pairs; other external representations and single-braid conventions remain open.
+
+### ADR-097: Check a post-hoc higher-spin SU(2) monodromy witness
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: Fundamental-pair targets are obstructed, but a search found SU(2)_2338 with external Dynkin label 558 and channels 1070, 1044, 688.
+- **Decision**: Verify integrable fusion multiplicity and reversed full-monodromy residues 2/9, 1/10, 2/39 using exact Dynkin-label arithmetic and an independent spin-based audit in two processes.
+- **Consequences**: This is an explicit mathematical witness under one common reversed orientation, selected post-hoc; it does not establish minimality, physical sector assignment, or a fundamental external field.
+
+### ADR-098: Test minimal SU(2) level for identical-field target monodromies
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The level-2338 higher-spin witness is explicit but post-hoc, and lower levels have not been excluded.
+- **Decision**: Use the necessary divisibility 1170 divides 4(k+2), exhaust the three lower candidate levels 583, 1168 and 1753 for all integrable external labels and fusion channels with independent target orientations, and independently audit by channel-first enumeration.
+- **Consequences**: If both enumerations agree with zero triple matches, 2338 is minimal only for identical SU(2) external fields and full-monodromy phases under the stated conventions.
+
+### ADR-099: Test minimal external spin with a common SU(2) monodromy orientation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The minimal-level witness has external Dynkin label 558; a level-7018 candidate with label 288 matches all targets in one forward orientation.
+- **Decision**: Bound k+2 by 9a(a+2)/4 using the 2/9 phase and SU(2) fusion, combine it with 585 divisibility, exhaust every smaller positive label and candidate level, and independently audit with level-first enumeration.
+- **Consequences**: A zero-hit result proves label 288 is minimal only for identical SU(2) fields and one common full-monodromy orientation; the minimal-level witness and physical caveats remain.
+
+### ADR-100: Test minimum SU(2) spin with independent phase orientations
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: A spin-90 candidate at the minimal level has two target residues reversed and one forward, while the prior spin-144 minimum requires one common orientation.
+- **Decision**: Extend the bounded all-level search to count independently oriented matches below Dynkin label 180, verify the level-2338 witness and independently audit by level-first enumeration.
+- **Consequences**: A successful minimum applies only when orientations may be chosen separately per target; it does not replace the common-orientation result or establish a physical mechanism.
+
+### ADR-101: Test SU(2) host compatibility with Standard Model conformal embedding
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The higher-spin SU(2) phase witnesses are exact but their relation to the Standard Model gauge currents is unestablished.
+- **Decision**: Compare c(SU(2)_k)=3k/(k+2)<3 with c(SU(3)_l x SU(2)_m x U(1))>=4 for positive integer l and m, and independently audit the rational inequalities and both witness levels.
+- **Consequences**: A mismatch rules out direct conformal embedding of the full stated gauge algebra, not additional sectors, nonconformal embeddings or physical interpretations beyond this test.
+
+### ADR-102: Test gauge-current capacity of the unextended SU(2) host
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The previous central-charge test excluded only conformal embedding of the full Standard Model gauge algebra.
+- **Decision**: Compare the three weight-one states of the positive-level SU(2) affine vacuum with the twelve independent weight-one gauge currents required by SU(3) x SU(2) x U(1), and independently audit the current count.
+- **Consequences**: The unextended SU(2) chiral algebra cannot contain that gauge current algebra even as a nonconformal weight-one subalgebra; extensions, added sectors and other realizations remain open.
+
+### ADR-103: Test a decoupled gauge-current extension of the SU(2) phase witness
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The standalone SU(2) chiral algebra cannot contain the full Standard Model gauge current algebra, although additional sectors remain open.
+- **Decision**: Tensor SU(2)_2338 with SU(3)_1 and a positive U(1) current algebra, put the additional factors in their vacua, and verify central charge, unchanged monodromies and the 559-dimensional weak representation.
+- **Consequences**: This constructs a decoupled current-algebra example, not Standard Model matter, a sector-selection mechanism, or four-dimensional dynamics.
+
+### ADR-104: Certify grid-field homotopy with a conservative hemisphere condition
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An upsampled Hopf estimate near one cannot alone prove topology preservation between discrete field snapshots.
+- **Decision**: For each periodic cell require one initial corner to have positive dot product with all sixteen normalized space-time corner vectors; report the minimum margin with a conservative tolerance, reject invalid grids, and independently audit a rotated analytic field.
+- **Consequences**: Passing certifies a nonvanishing multilinear interpolation and hence a homotopy of the sampled maps; failing is inconclusive and no recorded production trajectory is certified without its snapshots.
+
+### ADR-105: Monitor sampled-map homotopy across short relaxation runs
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The hemisphere guard certifies snapshot interpolation, but the historical production fields are unavailable and no actual relaxation has used it.
+- **Decision**: Run the existing relaxation one step at a time, apply the guard to each completed transition, and expose a fixed short N=32 diagnostic without claiming a historical or continuum topology result.
+- **Consequences**: All passing transitions certify a piecewise interpolated sequence of sampled maps; failed margins are inconclusive, and the force discretization and long-run physical interpretation remain open.
+
+### ADR-106: Independently rederive the short topology-guarded relaxation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The N=32 monitored trajectory was recorded by one analytic-force implementation and remains unverified.
+- **Decision**: Reconstruct the field and local energy independently, approximate every force component by centered local-energy differences at epsilon 1e-5, and compare twenty transitions in two separate processes using predeclared absolute tolerances 1e-6 for margin and 1e-4 for start and end energy.
+- **Consequences**: Promotion requires both independent runs to agree with the production probe and pass all guard transitions; this remains a short discrete-path result and does not certify the historical production run or continuum dynamics.
+
+### ADR-107: Measure the conservative certificate limit in a longer relaxation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An exploratory N=32 continuation became inconclusive at step 156; a negative sufficient-condition margin does not establish topology change.
+- **Decision**: Record a fixed 200-step trajectory with the first inconclusive transition and compare against two independent local-energy finite-difference processes using epsilon 1e-5, margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: Passing checks identifies the certified prefix of this sampled path only; the first inconclusive step is not a topological failure and no historical or continuum trajectory is certified.
+
+### ADR-108: Certify sampled transitions using mean corner directions
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The initial-corner guard becomes inconclusive for 45 of 200 transitions, while an exploratory cell-mean separator remains positive.
+- **Decision**: Add a separate conservative cell-mean hemisphere guard and independently reproduce the fixed 200-step trajectory in two processes, with margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: A positive margin certifies only normalized interpolation of sampled maps; zero mean or a nonpositive margin remains inconclusive, with no historical or continuum claim.
+
+### ADR-109: Measure the mean-direction certificate limit
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An exploratory 2000-step continuation first produced an inconclusive mean-direction margin at transition 596.
+- **Decision**: Record a fixed 600-step trajectory and compare production against two independent finite-difference processes using margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: Any first inconclusive transition is a limit of this sufficient condition, not a topology failure; only constructed sampled-map interpolations are addressed.

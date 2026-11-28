@@ -1,0 +1,1006 @@
+//! CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
+//! about dependencies: the crate has none.
+
+use std::io::Read;
+use std::process::{Command, Stdio};
+use std::time::{Duration, Instant};
+
+use fluid_universe::{
+    Check, all_checks, amplitude_seesaw, anomaly, audit, circulant, circulant_inverse, classical_scan, compact_identity, conformal_block, confinement, cosmology_validation, exact_phase_labels, gj_relation, natural_phase_labels, single_model_test, threshold_unification, wzw_phase_origin, d3_chain, d3_neutrino, d3_only_synthesis, d3_running, d3_spectrum, d3_validation, derrick, dynamical_flow, ew_from_planck, exceptional_nonsimply, exceptional_scan, fib_significance, fingerprint, fluid, foot_geometry, null_model, peer_reviewed_37, phase_interpolation, sector_count,
+    flux_quantization, flux_sector,
+    fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, nosusy_unification, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
+    potts_sector, puddle,
+    quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, topology_guard, topoguard_independent, two_component,
+    unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification, multi_radial_shell,
+    quark_phases, wzw, wzw_crosscheck, xy_z3,
+};
+
+fn json_escape(text: &str) -> String {
+    let mut out = String::new();
+    for ch in text.chars() {
+        match ch {
+            '"' => out.push_str("\\\""),
+            '\\' => out.push_str("\\\\"),
+            '\n' => out.push_str("\\n"),
+            '\r' => out.push_str("\\r"),
+            '\t' => out.push_str("\\t"),
+            c if c.is_control() => out.push_str(&format!("\\u{:04x}", c as u32)),
+            c => out.push(c),
+        }
+    }
+    out
+}
+
+fn print_json(checks: &[Check]) {
+    let mut out = String::from("{\"checks\":[");
+    for (i, c) in checks.iter().enumerate() {
+        if i > 0 {
+            out.push(',');
+        }
+        out.push_str(&format!(
+            "{{\"id\":\"{}\",\"value\":{:.15e},\"detail\":\"{}\"}}",
+            json_escape(c.id), c.value, json_escape(&c.detail)
+        ));
+    }
+    println!("{}]}}", out);
+}
+
+fn spawn_audit_records() -> Result<String, String> {
+    let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let mut child = Command::new(exe).arg("audit-records").stdout(Stdio::piped())
+        .stderr(Stdio::null()).spawn().map_err(|e| e.to_string())?;
+    let mut stdout = child.stdout.take().ok_or("missing child stdout")?;
+    let reader = std::thread::spawn(move || {
+        let mut bytes = Vec::new();
+        stdout.read_to_end(&mut bytes).map(|_| bytes)
+    });
+    let deadline = Instant::now() + Duration::from_secs(440);
+    let status = loop {
+        match child.try_wait() {
+            Ok(Some(status)) => break Ok(status),
+            Ok(None) if Instant::now() < deadline => std::thread::sleep(Duration::from_millis(20)),
+            Ok(None) => { let _ = child.kill(); let _ = child.wait(); break Err("audit child timed out".to_string()); }
+            Err(error) => { let _ = child.kill(); let _ = child.wait(); break Err(error.to_string()); }
+        }
+    };
+    let bytes = reader.join().map_err(|_| "audit output reader panicked")?
+        .map_err(|e| e.to_string())?;
+    if !status?.success() { return Err("audit child failed".into()); }
+    String::from_utf8(bytes).map_err(|e| e.to_string())
+}
+
+fn spawn_topoguard_probe(mode: &str) -> Result<String, String> {
+    let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let mut child = Command::new(exe).args(["simulate", mode]).stdout(Stdio::piped())
+        .stderr(Stdio::null()).spawn().map_err(|e| e.to_string())?;
+    let mut stdout = child.stdout.take().ok_or("missing child stdout")?;
+    let reader = std::thread::spawn(move || {
+        let mut bytes = Vec::new();
+        stdout.read_to_end(&mut bytes).map(|_| bytes)
+    });
+    let deadline = Instant::now() + Duration::from_secs(290);
+    let status = loop {
+        match child.try_wait() {
+            Ok(Some(status)) => break Ok(status),
+            Ok(None) if Instant::now() < deadline => std::thread::sleep(Duration::from_millis(20)),
+            Ok(None) => { let _ = child.kill(); let _ = child.wait(); break Err("topology child timed out".to_string()); }
+            Err(error) => { let _ = child.kill(); let _ = child.wait(); break Err(error.to_string()); }
+        }
+    };
+    let bytes = reader.join().map_err(|_| "topology output reader panicked")?
+        .map_err(|e| e.to_string())?;
+    if !status?.success() { return Err("topology child failed".into()); }
+    String::from_utf8(bytes).map_err(|e| e.to_string())
+}
+
+fn parse_topoguard_probe(text: &str) -> Result<(f64, f64, f64), String> {
+    let mut lines = text.lines();
+    if lines.next() != Some("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy") {
+        return Err("unexpected topology probe header".into());
+    }
+    let columns: Vec<_> = lines.next().ok_or("missing topology probe row")?.split(',').collect();
+    if lines.next().is_some() || columns.len() != 7 || columns[0] != "32" || columns[1] != "20"
+        || columns[2] != "20" || columns[4] != "0" {
+        return Err("topology probe did not certify exactly 20 transitions".into());
+    }
+    let parse = |i: usize| columns[i].parse::<f64>().map_err(|_| "invalid topology probe number".to_string());
+    let (margin, start, end) = (parse(3)?, parse(5)?, parse(6)?);
+    if ![margin, start, end].iter().all(|value| value.is_finite()) || margin <= topology_guard::MARGIN_TOLERANCE {
+        return Err("invalid or inconclusive topology probe values".into());
+    }
+    Ok((margin, start, end))
+}
+
+fn compare_topoguard_probes(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent processes disagree".into()); }
+    let a = parse_topoguard_probe(production)?;
+    let b = parse_topoguard_probe(first)?;
+    if (a.0-b.0).abs() > 1e-6 || (a.1-b.1).abs() > 1e-4 || (a.2-b.2).abs() > 1e-4 {
+        return Err("topology probe differs beyond the predeclared tolerances".into());
+    }
+    Ok(())
+}
+
+fn parse_extended_topoguard(text: &str) -> Result<(f64, usize, usize, f64, f64), String> {
+    let mut lines = text.lines();
+    if lines.next() != Some("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy") {
+        return Err("unexpected extended topology probe header".into());
+    }
+    let c: Vec<_> = lines.next().ok_or("missing extended topology row")?.split(',').collect();
+    if lines.next().is_some() || c.len() != 8 || c[0] != "32" || c[1] != "200" || c[2] != "200" {
+        return Err("extended topology probe did not complete 200 steps".into());
+    }
+    let parse_float = |i: usize| c[i].parse::<f64>().map_err(|_| "invalid extended topology number".to_string());
+    let parse_count = |i: usize| c[i].parse::<usize>().map_err(|_| "invalid extended topology count".to_string());
+    let (margin, count, first, start, end) = (parse_float(3)?, parse_count(4)?, parse_count(5)?, parse_float(6)?, parse_float(7)?);
+    if ![margin, start, end].iter().all(|v| v.is_finite()) || count != 45 || first != 156 {
+        return Err("extended topology probe differs from the recorded inconclusive prefix".into());
+    }
+    Ok((margin, count, first, start, end))
+}
+
+fn compare_extended_topoguard(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent extended processes disagree".into()); }
+    let a = parse_extended_topoguard(production)?;
+    let b = parse_extended_topoguard(first)?;
+    if (a.0-b.0).abs() > 1e-6 || (a.3-b.3).abs() > 1e-4 || (a.4-b.4).abs() > 1e-4 {
+        return Err("extended topology probe differs beyond the predeclared tolerances".into());
+    }
+    Ok(())
+}
+
+fn compare_mean_topoguard(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent mean-guard processes disagree".into()); }
+    let parse = |text: &str| -> Result<[f64; 3], String> {
+        let mut lines = text.lines();
+        if lines.next() != Some("n,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy") {
+            return Err("unexpected mean-guard header".into());
+        }
+        let c: Vec<_> = lines.next().ok_or("missing mean-guard row")?.split(',').collect();
+        if lines.next().is_some() || c.len() != 6 || c[0] != "32" || c[1] != "200" || c[3] != "0" {
+            return Err("mean-guard run incomplete or inconclusive".into());
+        }
+        let number = |i: usize| c[i].parse::<f64>().map_err(|_| "invalid mean-guard number".to_string());
+        let values = [number(2)?, number(4)?, number(5)?];
+        if !values.iter().all(|x| x.is_finite()) || values[0] <= 1e-12 { return Err("mean-guard margin not positive or value non-finite".into()); }
+        Ok(values)
+    };
+    let a = parse(production)?; let b = parse(first)?;
+    if (a[0]-b[0]).abs() > 1e-6 || (a[1]-b[1]).abs() > 1e-4 || (a[2]-b[2]).abs() > 1e-4 {
+        return Err("mean-guard results exceed predeclared tolerances".into());
+    }
+    Ok(())
+}
+
+fn compare_mean_limit(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent mean-limit processes disagree".into()); }
+    let parse = |text: &str| -> Result<[f64; 3], String> {
+        let mut lines = text.lines();
+        if lines.next() != Some("n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy") { return Err("unexpected mean-limit header".into()); }
+        let c: Vec<_> = lines.next().ok_or("missing mean-limit row")?.split(',').collect();
+        if lines.next().is_some() || c.len() != 7 || c[0] != "32" || c[1] != "600" || c[3] != "5" || c[4] != "596" { return Err("mean-limit count or prefix differs from exploratory result".into()); }
+        let number = |i: usize| c[i].parse::<f64>().map_err(|_| "invalid mean-limit number".to_string());
+        let values = [number(2)?, number(5)?, number(6)?];
+        if !values.iter().all(|x| x.is_finite()) || values[0] > 1e-12 { return Err("mean-limit margin or number invalid".into()); }
+        Ok(values)
+    };
+    let a = parse(production)?; let b = parse(first)?;
+    if (a[0]-b[0]).abs() > 1e-6 || (a[1]-b[1]).abs() > 1e-4 || (a[2]-b[2]).abs() > 1e-4 { return Err("mean-limit results exceed predeclared tolerances".into()); }
+    Ok(())
+}
+
+fn main() {
+    let args: Vec<String> = std::env::args().skip(1).collect();
+    let command = args.first().map(String::as_str).unwrap_or("all");
+    match command {
+        "all" => {
+            let checks = all_checks();
+            for c in &checks {
+                println!("{c}");
+            }
+            println!("{} check(s), fingerprint {}", checks.len(), fingerprint(&checks));
+        }
+        "circulant" | "spectra" | "rotor" | "derrick" | "fluid" | "radial_shell" | "multi_radial_shell" | "water" | "lorentz"
+        | "simulation" | "audit" | "reports" | "unification" | "mass_spectrum"
+        | "potential_family" | "flux_sector" | "spinodal" | "rg_sector" | "two_component"
+        | "potts_sector" | "xy_z3" | "quark_rg" | "water_mechanics" | "water_unification"
+        | "puddle" | "vortex_unification" | "variation" | "poisson" | "orthogonal"
+        | "confinement" | "froggatt" | "fn_scan" | "modular" | "su3" | "geometry" | "anomaly"
+        | "unified_model" | "shape_freedom" | "flux_quantization" | "wzw" | "wzw_crosscheck"
+        | "quark_phases" | "circulant_inverse" | "phase_arithmetic" | "conformal_block"
+        | "monodromy" | "rep_scan" | "jordan_spectrum" | "mass_convention" | "fibonacci_phase"
+        | "gauge_running" | "exceptional_scan" | "exceptional_nonsimply" | "monodromy_block"
+        | "so10_gut" | "amplitude_seesaw" | "index_framework" | "index_uncertainty"
+        | "gravity_relation" | "compact_identity" | "classical_scan" | "dynamical_flow"
+        | "null_model" | "fib_significance" | "gauge_flavor" | "scale_choice"
+        | "informational_geometry" | "d3_validation" | "d3_chain" | "d3_spectrum"
+        | "d3_neutrino" | "peer_reviewed_37" | "up_phase_resolution" | "single_phase_rule"
+        | "up_amplitude_gauge" | "d3_running" | "foot_geometry" | "nosusy_unification"
+        | "sector_count" | "ew_from_planck" | "d3_only_synthesis" | "phase_interpolation"
+        | "cosmology_validation" | "wzw_phase_origin" | "exact_phase_labels"
+        | "natural_phase_labels" | "gj_relation" | "threshold_unification" | "single_model_test" => {
+            let checks: Vec<Check> = match command {
+                "circulant" => circulant::checks(),
+                "spectra" => spectra::checks(),
+                "rotor" => rotor::checks(),
+                "derrick" => derrick::checks(),
+                "fluid" => fluid::checks(),
+                "radial_shell" => radial_shell::checks(),
+                "multi_radial_shell" => multi_radial_shell::checks(),
+                "water" => water::checks(),
+                "lorentz" => lorentz::checks(),
+                "simulation" => simulation::checks(),
+                "audit" => audit::checks(),
+                "reports" => reports::checks(),
+                "unification" => unification::checks(),
+                "mass_spectrum" => mass_spectrum::checks(),
+                "potential_family" => potential_family::checks(),
+                "flux_sector" => flux_sector::checks(),
+                "spinodal" => spinodal::checks(),
+                "rg_sector" => rg_sector::checks(),
+                "two_component" => two_component::checks(),
+                "potts_sector" => potts_sector::checks(),
+                "xy_z3" => xy_z3::checks(),
+                "quark_rg" => quark_rg::checks(),
+                "water_mechanics" => water_mechanics::checks(),
+                "water_unification" => water_unification::checks(),
+                "puddle" => puddle::checks(),
+                "vortex_unification" => vortex_unification::checks(),
+                "variation" => variation::checks(),
+                "poisson" => poisson::checks(),
+                "orthogonal" => orthogonal::checks(),
+                "confinement" => confinement::checks(),
+                "froggatt" => froggatt::checks(),
+                "fn_scan" => fn_scan::checks(),
+                "modular" => modular::checks(),
+                "su3" => su3::checks(),
+                "geometry" => geometry::checks(),
+                "anomaly" => anomaly::checks(),
+                "unified_model" => unified_model::checks(),
+                "shape_freedom" => shape_freedom::checks(),
+                "flux_quantization" => flux_quantization::checks(),
+                "wzw" => wzw::checks(),
+                "wzw_crosscheck" => wzw_crosscheck::checks(),
+                "quark_phases" => quark_phases::checks(),
+                "circulant_inverse" => circulant_inverse::checks(),
+                "phase_arithmetic" => phase_arithmetic::checks(),
+                "conformal_block" => conformal_block::checks(),
+                "monodromy" => monodromy::checks(),
+                "rep_scan" => rep_scan::checks(),
+                "jordan_spectrum" => jordan_spectrum::checks(),
+                "mass_convention" => mass_convention::checks(),
+                "fibonacci_phase" => fibonacci_phase::checks(),
+                "gauge_running" => gauge_running::checks(),
+                "exceptional_scan" => exceptional_scan::checks(),
+                "exceptional_nonsimply" => exceptional_nonsimply::checks(),
+                "monodromy_block" => monodromy_block::checks(),
+                "so10_gut" => so10_gut::checks(),
+                "amplitude_seesaw" => amplitude_seesaw::checks(),
+                "index_framework" => index_framework::checks(),
+                "index_uncertainty" => index_uncertainty::checks(),
+                "gravity_relation" => gravity_relation::checks(),
+                "compact_identity" => compact_identity::checks(),
+                "classical_scan" => classical_scan::checks(),
+                "dynamical_flow" => dynamical_flow::checks(),
+                "null_model" => null_model::checks(),
+                "fib_significance" => fib_significance::checks(),
+                "gauge_flavor" => gauge_flavor::checks(),
+                "scale_choice" => scale_choice::checks(),
+                "informational_geometry" => informational_geometry::checks(),
+                "d3_validation" => d3_validation::checks(),
+                "d3_chain" => d3_chain::checks(),
+                "d3_spectrum" => d3_spectrum::checks(),
+                "d3_neutrino" => d3_neutrino::checks(),
+                "peer_reviewed_37" => peer_reviewed_37::checks(),
+                "up_phase_resolution" => up_phase_resolution::checks(),
+                "single_phase_rule" => single_phase_rule::checks(),
+                "up_amplitude_gauge" => up_amplitude_gauge::checks(),
+                "d3_running" => d3_running::checks(),
+                "foot_geometry" => foot_geometry::checks(),
+                "nosusy_unification" => nosusy_unification::checks(),
+                "sector_count" => sector_count::checks(),
+                "ew_from_planck" => ew_from_planck::checks(),
+                "d3_only_synthesis" => d3_only_synthesis::checks(),
+                "phase_interpolation" => phase_interpolation::checks(),
+                "cosmology_validation" => cosmology_validation::checks(),
+                "wzw_phase_origin" => wzw_phase_origin::checks(),
+                "exact_phase_labels" => exact_phase_labels::checks(),
+                "natural_phase_labels" => natural_phase_labels::checks(),
+                "gj_relation" => gj_relation::checks(),
+                "threshold_unification" => threshold_unification::checks(),
+                "single_model_test" => single_model_test::checks(),
+                _ => unreachable!(),
+            };
+            for c in &checks {
+                println!("{c}");
+            }
+        }
+        "json" => print_json(&all_checks()),
+        "fingerprint" => println!("{}", fingerprint(&all_checks())),
+        "audit-records" => {
+            for check in audit::checks() {
+                println!("{}\t{:016x}\t{}", check.id, check.value.to_bits(), json_escape(&check.detail));
+            }
+        }
+        "verify" => {
+            let first = spawn_audit_records();
+            let second = spawn_audit_records();
+            match (first, second) {
+                (Ok(a), Ok(b)) => match verify::compare_expected_audit_records(&a, &b, verify::AUDIT_RECORD_IDS) {
+                    Ok(count) => {
+                        println!("Two-process audit record comparison: {count} records, agreement=PASS; full ledger coverage not established");
+                    }
+                    Err(error) => {
+                        eprintln!("Why: {error}.\nFix: investigate the differing or incomplete audit records.");
+                        std::process::exit(1);
+                    }
+                }
+                _ => {
+                    eprintln!("Why: an audit child failed or timed out.\nFix: rebuild and run the binary, then inspect the audit command.");
+                    std::process::exit(2);
+                }
+            }
+        }
+        "simulate" => {
+            match args.get(1).map(String::as_str).unwrap_or("") {
+                "topoguard-mean-limit-verify" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-limit verification exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard-mean-limit")?;
+                        let first = spawn_topoguard_probe("topoguard-mean-limit-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-mean-limit-independent")?;
+                        compare_mean_limit(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() { eprintln!("Why: {error}.\nFix: inspect the calculations and rerun."); std::process::exit(1); }
+                    println!("Mean guard: first inconclusive transition 596; independent processes agree. Inconclusive does not establish topology change.");
+                }
+                "topoguard-mean-limit" | "topoguard-mean-limit-independent" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-limit diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    println!("n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                    if args[1] == "topoguard-mean-limit-independent" {
+                        let r = topoguard_independent::run_independent_probe(600);
+                        println!("32,{},{:.12},{},{},{:.12},{:.12}", r.steps, r.mean_minimum_margin, r.mean_inconclusive_steps, r.mean_first_inconclusive_step.unwrap_or(0), r.start_energy, r.end_energy);
+                    } else {
+                        let field = simulation::analytic_field(32, 8.0, false);
+                        match topology_guard::monitored_relaxation(&field, 20.0, 0.05, 600, 1.0, 1.0) {
+                            Ok(r) => println!("32,{},{:.12},{},{},{:.12},{:.12}", r.completed_steps, r.mean_minimum_margin.unwrap_or(0.0), r.mean_inconclusive_steps, r.mean_first_inconclusive_step.unwrap_or(0), r.start_energy, r.end_energy),
+                            Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                        }
+                    }
+                }
+                "topoguard-mean-verify" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-guard verification exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard-mean")?;
+                        let first = spawn_topoguard_probe("topoguard-mean-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-mean-independent")?;
+                        compare_mean_topoguard(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() { eprintln!("Why: {error}.\nFix: inspect both guard calculations and rerun."); std::process::exit(1); }
+                    println!("Mean-direction guard: all 200 sampled transitions certified; two independent processes agree.");
+                }
+                "topoguard-mean" | "topoguard-mean-independent" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-guard diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    println!("n,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
+                    if args[1] == "topoguard-mean-independent" {
+                        let r = topoguard_independent::run_independent_probe(200);
+                        println!("32,{},{:.12},{},{:.12},{:.12}", r.steps, r.mean_minimum_margin, r.mean_inconclusive_steps, r.start_energy, r.end_energy);
+                    } else {
+                        let field = simulation::analytic_field(32, 8.0, false);
+                        match topology_guard::monitored_relaxation(&field, 20.0, 0.05, 200, 1.0, 1.0) {
+                            Ok(r) => println!("32,{},{:.12},{},{:.12},{:.12}", r.completed_steps, r.mean_minimum_margin.unwrap_or(0.0), r.mean_inconclusive_steps, r.start_energy, r.end_energy),
+                            Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                        }
+                    }
+                }
+                "topoguard-extended-verify" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: extended topology verification exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard-extended")?;
+                        let first = spawn_topoguard_probe("topoguard-extended-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-extended-independent")?;
+                        compare_extended_topoguard(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() {
+                        eprintln!("Why: {error}.\nFix: inspect both topology implementations and rerun the diagnostic.");
+                        std::process::exit(1);
+                    }
+                    println!("Extended topology probe: production and two independent processes agree; first inconclusive transition is 156, not a topology-failure verdict.");
+                }
+                "topoguard-extended-independent" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the independent extended topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let result = topoguard_independent::run_independent_probe(200);
+                    let first = result.first_inconclusive_step.map_or_else(|| "none".to_string(), |n| n.to_string());
+                    println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                    println!("32,200,{},{:.12},{},{},{:.12},{:.12}", result.steps, result.minimum_margin,
+                             result.inconclusive_steps, first, result.start_energy, result.end_energy);
+                }
+                "topoguard-extended" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the extended topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let initial = simulation::analytic_field(32, 8.0, false);
+                    match topology_guard::monitored_relaxation(&initial, 20.0, 0.05, 200, 1.0, 1.0) {
+                        Ok(result) => {
+                            let margin = result.minimum_margin.map_or_else(|| "none".to_string(), |v| format!("{v:.12}"));
+                            let first = result.first_inconclusive_step.map_or_else(|| "none".to_string(), |n| n.to_string());
+                            println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                            println!("32,200,{},{},{},{},{:.12},{:.12}", result.completed_steps, margin,
+                                     result.inconclusive_steps, first, result.start_energy, result.end_energy);
+                        }
+                        Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                    }
+                }
+                "topoguard-verify" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: topology verification exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard")?;
+                        let first = spawn_topoguard_probe("topoguard-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-independent")?;
+                        compare_topoguard_probes(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() {
+                        eprintln!("Why: {error}.\nFix: inspect both topology implementations and rerun the diagnostic.");
+                        std::process::exit(1);
+                    }
+                    println!("Topology probe: production and two independent processes agree within the predeclared tolerances; 20 sampled transitions certified.");
+                }
+                "topoguard-independent" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the independent topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let result = topoguard_independent::run_independent_probe(20);
+                    println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
+                    println!("32,20,{},{:.12},{},{:.12},{:.12}", result.steps, result.minimum_margin,
+                             result.inconclusive_steps, result.start_energy, result.end_energy);
+                }
+                "topoguard" => {
+                    // Hard wall-clock limit for this fixed-size diagnostic (G-003).
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let initial = simulation::analytic_field(32, 8.0, false);
+                    match topology_guard::monitored_relaxation(&initial, 20.0, 0.05, 20, 1.0, 1.0) {
+                        Ok(result) => {
+                            println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
+                            let margin = result.minimum_margin.map_or_else(|| "none".to_string(), |v| format!("{v:.12}"));
+                            println!("32,20,{},{},{},{:.12},{:.12}", result.completed_steps, margin,
+                                     result.inconclusive_steps, result.start_energy, result.end_energy);
+                        }
+                        Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                    }
+                }
+                "muscan" => {
+                    let n: usize = 10;
+                    let length = 8.0;
+                    let steps = 200usize;
+                    let dt = 0.05;
+                    println!("mu,n,steps,dt,e2,e4,potential,energy,z3,force_rms,max_bond,mean_bond,energy_drop");
+                    for index in 0..=20usize {
+                        let mu = index as f64; // 0..20
+                        let field = simulation::analytic_field(n, length, false);
+                        let (_, history, m) = simulation::relax(&field, mu, dt, steps, 1.0, 1.0);
+                        let drop = history.first().copied().unwrap_or(0.0)
+                            - history.last().copied().unwrap_or(0.0);
+                        println!("{:.1},{},{},{:.3},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 mu, n, steps, dt, m.e2, m.e4, m.potential, m.energy,
+                                 m.z3, m.force_rms, m.max_bond, m.mean_bond, drop);
+                    }
+                }
+                "search" => {
+                    let n = 16usize;
+                    let steps = 120usize;
+                    let baseline = simulation::hopf_charge_spectral(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("mu,K,kappa,init,hopf_baseline,hopf_ratio,z3,",
+                                     "force_rms,max_bond"));
+                    for mu in [1.0_f64, 2.0, 5.0, 10.0] {
+                        for k in [0.5_f64, 1.0, 2.0] {
+                            for kappa in [0.25_f64, 0.5, 1.0, 2.0] {
+                                for init in ["analytic", "perturbed"] {
+                                    let seed = if init == "analytic" {
+                                        simulation::analytic_field(n, 8.0, false)
+                                    } else {
+                                        simulation::perturbed_field(n, 8.0, 20261122, 0.05)
+                                    };
+                                    let (relaxed, _, m) =
+                                        simulation::relax(&seed, mu, 0.05, steps, k, kappa);
+                                    let h = simulation::hopf_charge_spectral(&relaxed);
+                                    let (z3, force_rms, max_bond) = (m.z3, m.force_rms, m.max_bond);
+                                    println!(concat!("{:.1},{:.1},{:.2},{},{:.9},{:.9},",
+                                                     "{:.9},{:.9},{:.9}"),
+                                             mu, k, kappa, init, baseline, h / baseline,
+                                             z3, force_rms, max_bond);
+                                }
+                            }
+                        }
+                    }
+                }
+                "watercheck" => {
+                    let lc = water_mechanics::capillary_length();
+                    for d in [1.0_f64, 1.5, 2.0, 2.007084679301, 2.5, 3.0] {
+                        let h = d * lc;
+                        let k = water_mechanics::minimum_wave_number(h);
+                        let klc = k * lc;
+                        println!("h_over_lc={d:.9},k_lc={klc:.12},ratio={:.12}", klc * klc);
+                    }
+                }
+                "fnscan" => {
+                    println!("charges,eps,heavy,light,joint_error");
+                    for a in fn_scan::scan(14).iter().take(12) {
+                        println!("{}-{}-{}, {:.9},{:.9},{:.9},{:.9}",
+                                 a.charges[0], a.charges[1], a.charges[2],
+                                 a.eps, a.heavy, a.light, a.error);
+                    }
+                }
+                "confinescan" => {
+                    println!("lambda,E1,E2,E3,Q");
+                    for index in 0..=40 {
+                        let lambda = index as f64 * 0.1;
+                        let v = confinement::levels(lambda, 50, 24.0);
+                        println!("{lambda:.1},{:.9},{:.9},{:.9},{:.9}",
+                                 v[0], v[1], v[2], confinement::q_of_levels(&v));
+                    }
+                }
+                "water" => {
+                    let lc = water_mechanics::capillary_length();
+                    println!("depth_over_lc,ratio_at_minimum,phase_speed_squared");
+                    for index in 0..=60 {
+                        let d = 0.1_f64.powf(-2.0 + index as f64 / 20.0);
+                        let h = d * lc;
+                        let k = water_mechanics::minimum_wave_number(h);
+                        println!("{d:.6},{:.9},{:.9}",
+                                 water_mechanics::energy_ratio_at_minimum(h),
+                                 water_mechanics::phase_speed_squared(k, h));
+                    }
+                }
+                "bridge" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(16);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(10.0);
+                    let steps: usize = args.get(4).and_then(|v| v.parse().ok()).unwrap_or(240);
+                    let mut field = simulation::analytic_field(n, 8.0, false);
+                    let baseline = simulation::hopf_charge_spectral(&field);
+                    let target = 2.0_f64.powf(-0.5);
+                    let mut previous: Option<(f64, f64)> = None;
+                    println!("crossing_search,n={n},mu={mu},target_Z3={target:.9}");
+                    for step in 0..=steps {
+                        let z3 = simulation::z3_order(&field);
+                        let h = simulation::hopf_charge_spectral(&field) / baseline;
+                        if z3 >= target {
+                            if let Some((z0, h0)) = previous {
+                                let weight = if (z3 - z0).abs() > 1e-12 {
+                                    (target - z0) / (z3 - z0)
+                                } else { 0.0 };
+                                let h_at = h0 + weight * (h - h0);
+                                let deviation = h_at - 2.0 / 3.0;
+                                println!(concat!("step={},Z3_before={:.9},",
+                                                 "Z3_after={:.9},H_at_target={:.9},",
+                                                 "deviation_from_2_3={:.9}"),
+                                         step, z0, z3, h_at, deviation);
+                            }
+                            break;
+                        }
+                        previous = Some((z3, h));
+                        if step < steps {
+                            let (next, _, _) =
+                                simulation::relax(&field, mu, 0.05, 1, 1.0, 1.0);
+                            field = next;
+                        }
+                    }
+                }
+                "xyinit" => {
+                    let n = 16usize;
+                    let twist: Vec<f64> = (0..n * n)
+                        .map(|i| std::f64::consts::TAU * (i % n) as f64 / n as f64)
+                        .collect();
+                    println!("twist winding: {}", xy_z3::winding_number(&twist, n));
+                    let theta = xy_z3::seeded_vortex(n);
+                    println!("vortex winding: {}", xy_z3::winding_number(&theta, n));
+                }
+                "xyscan" => {
+                    println!("start,h,J,temperature,z3,winding,energy");
+                    for start in ["smooth", "vortex"] {
+                        for index in 0..=20 {
+                            let h = index as f64 * 0.2;
+                            let initial = if start == "vortex" {
+                                xy_z3::seeded_vortex(16)
+                            } else {
+                                let mut smooth = Vec::with_capacity(16 * 16);
+                                for y in 0..16 {
+                                    for x in 0..16 {
+                                        smooth.push(0.1 * ((x + y) as f64 - 16.0));
+                                    }
+                                }
+                                smooth
+                            };
+                            let theta = xy_z3::relax_from(
+                                &initial, 16, 1.0, h, 0.5, 60, 20261122);
+                            println!("{start},{h:.1},1.0,0.5,{:.9},{:.9},{:.9}",
+                                     xy_z3::z3_order(&theta),
+                                     xy_z3::winding_density(&theta, 16),
+                                     xy_z3::energy(&theta, 16, 1.0, h));
+                        }
+                    }
+                }
+                "potts" => {
+                    println!("K,ratio,Q,delta_check");
+                    for index in 0..=80 {
+                        let k = index as f64 * 0.025;
+                        let ratio = potts_sector::transfer_ratio(k);
+                        let q = potts_sector::q_signed(&potts_sector::eigenvalues(k, 0.0));
+                        println!("{k:.3},{ratio:.9},{:.9},{}",
+                                 q.unwrap_or(f64::NAN),
+                                 if q.is_some() { "positive" } else { "negative" });
+                    }
+                }
+                "twocomp" => {
+                    let n = 16usize;
+                    let topo = simulation::analytic_field(n, 8.0, false);
+                    let ordered = two_component::z3_layer(n, 8.0, 0.0);
+                    let h0 = simulation::hopf_charge_spectral(&topo);
+                    let z1 = simulation::z3_order(&ordered);
+                    println!("eta,overlap,H_ratio,Z3_ratio,product");
+                    for index in 0..=20 {
+                        let eta = index as f64 * 0.05;
+                        let mixed = two_component::blended(&topo, &ordered, eta);
+                        let hr = simulation::hopf_charge_spectral(&mixed) / h0;
+                        let zr = simulation::z3_order(&mixed) / z1;
+                        println!("{eta:.2},{:.9},{:.9},{:.9},{:.9}",
+                                 two_component::mean_overlap(&topo, &ordered),
+                                 hr, zr, hr * zr);
+                    }
+                }
+                "rgscan" => {
+                    println!("delta0,delta_mz,drift,ratio_mz");
+                    for index in 0..=40 {
+                        let delta0 = index as f64 * 0.025;
+                        let state = rg_sector::run_high_to_mz(
+                            delta0, 2.0_f64.powf(-0.5));
+                        println!("{delta0:.3},{:.9},{:+.3e},{:.9}",
+                                 rg_sector::phase(&state),
+                                 rg_sector::phase(&state) - delta0,
+                                 rg_sector::effective_ratio(&state));
+                    }
+                }
+                "spinodal" => {
+                    println!("h,n_minima,curvature_1,curvature_2,curvature_3,Q");
+                    for index in 0..=90 {
+                        let h = index as f64 * 0.1;
+                        let values: Vec<f64> = spinodal::minima(h)
+                            .iter().map(|(_, c)| *c).collect();
+                        let (a, b, c) = (values.first().copied().unwrap_or(0.0),
+                                         values.get(1).copied().unwrap_or(0.0),
+                                         values.get(2).copied().unwrap_or(0.0));
+                        println!("{h:.1},{},{:.9},{:.9},{:.9},{:.9}",
+                                 values.len(), a, b, c,
+                                 spinodal::q_from_curvatures(&values));
+                    }
+                }
+                "fluxscan" => {
+                    println!("alpha,e0,e1,e2,split,Q,deviation_from_2_3");
+                    for index in 0..=100 {
+                        let alpha = index as f64 * 0.01;
+                        let v = flux_sector::flux_levels(alpha, 1.0, 50);
+                        let q = flux_sector::q_levels(&[v[0], v[1], v[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 alpha, v[0], v[1], v[2], v[2] - v[1], q, q - 2.0 / 3.0);
+                    }
+                }
+                "potentialfamily" => {
+                    println!("p,e0,e1,e2,Q,deviation_from_2_3");
+                    for index in 0..=40 {
+                        let p = 0.25 + index as f64 * 0.05;
+                        let v = potential_family::levels(p, 1.0, 50);
+                        let q = potential_family::q_levels(&[v[0], v[1], v[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 p, v[0], v[1], v[2], q, q - 2.0 / 3.0);
+                    }
+                }
+                "tune" => {
+                    println!("mu,I,h_crossing,eight_thirds,relative_gap");
+                    for mu in [0.25_f64, 0.5, 1.0, 1.5, 2.0, 3.0, 4.0] {
+                        for inertia in [0.5_f64, 1.0, 2.0] {
+                            let q = |h: f64| {
+                                let levels = mass_spectrum::rotor_levels(
+                                    inertia, mu, h, 60, 3);
+                                mass_spectrum::koide_from_levels(
+                                    &[levels[0], levels[1], levels[2]])
+                            };
+                            let (mut lo, mut hi) = (0.5_f64, 8.0_f64);
+                            if q(lo) >= 2.0 / 3.0 || q(hi) <= 2.0 / 3.0 {
+                                println!("{mu:.2},{inertia:.1},NONE,{:.9},NONE", 8.0 / 3.0);
+                                continue;
+                            }
+                            for _ in 0..70 {
+                                let mid = 0.5 * (lo + hi);
+                                if q(mid) < 2.0 / 3.0 { lo = mid; } else { hi = mid; }
+                            }
+                            let crossing = 0.5 * (lo + hi);
+                            let target = 8.0 / 3.0;
+                            let gap = (crossing - target).abs() / target;
+                            println!("{mu:.2},{inertia:.1},{crossing:.9},{target:.9},{gap:.6}");
+                        }
+                    }
+                }
+                "solveh" => {
+                    let solve = |use_spacings: bool| -> f64 {
+                        let q = |h: f64| {
+                            let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, 80, 3);
+                            let triple = [levels[0], levels[1], levels[2]];
+                            if use_spacings {
+                                mass_spectrum::koide_from_spacings(&triple)
+                            } else {
+                                mass_spectrum::koide_from_levels(&triple)
+                            }
+                        };
+                        let mut lo = 2.0f64;
+                        let mut hi = 3.2f64;
+                        for _ in 0..80 {
+                            let mid = 0.5 * (lo + hi);
+                            if q(mid) < 2.0 / 3.0 { lo = mid; } else { hi = mid; }
+                        }
+                        0.5 * (lo + hi)
+                    };
+                    let h_levels = solve(false);
+                    let h_spacings = solve(true);
+                    let levels = mass_spectrum::rotor_levels(1.0, 1.0, 8.0 / 3.0, 80, 3);
+                    println!("h_crossing_levels={h_levels:.9}");
+                    println!("h_crossing_spacings={h_spacings:.9}");
+                    println!("eight_thirds={:.9}", 8.0 / 3.0);
+                    println!("Q_at_eight_thirds_levels={:.9}",
+                             mass_spectrum::koide_from_levels(&[levels[0], levels[1], levels[2]]));
+                    println!("Q_at_eight_thirds_spacings={:.9}",
+                             mass_spectrum::koide_from_spacings(&[levels[0], levels[1], levels[2]]));
+                }
+                "predict" => {
+                    // Parameter-free candidate: the proven Z3 wall tension T=(8/3)sqrt(mu)
+                    // supplies the symmetry-breaking field h = T/sqrt(mu) = 8/3.
+                    let h = 8.0 / 3.0;
+                    println!("cutoff,h,e0,e1,e2,Q,deviation_from_2_3");
+                    for cutoff in [20usize, 40, 60, 80, 120, 160] {
+                        let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, cutoff, 3);
+                        let q = mass_spectrum::koide_from_levels(&[
+                            levels[0], levels[1], levels[2]]);
+                        println!("{},{:.12},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 cutoff, h, levels[0], levels[1], levels[2], q,
+                                 q - 2.0 / 3.0);
+                    }
+                }
+                "rotorh" => {
+                    println!("h,e0,e1,e2,split,Q,deviation_from_2_3");
+                    for index in 0..=120 {
+                        let h = index as f64 * 0.05;
+                        let levels = mass_spectrum::rotor_levels(1.0, 1.0, h, 60, 3);
+                        let q = mass_spectrum::koide_from_levels(&[
+                            levels[0], levels[1], levels[2]]);
+                        println!("{:.2},{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}",
+                                 h, levels[0], levels[1], levels[2],
+                                 levels[2] - levels[1], q, q - 2.0 / 3.0);
+                    }
+                }
+                "phaseattr" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(32);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(5.0);
+                    let steps = 160usize;
+                    let baseline = simulation::hopf_charge_spectral(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("n,mu,initial_theta,initial_phase,final_phase,",
+                                     "phase_deg,z3,hopf_ratio,force_rms"));
+                    for index in 0..12 {
+                        let theta = std::f64::consts::PI * index as f64 / 6.0;
+                        let seed = simulation::phase_rotated_field(n, 8.0, theta);
+                        let initial_phase = simulation::z3_phase(&seed);
+                        let (relaxed, _, m) =
+                            simulation::relax(&seed, mu, 0.05, steps, 1.0, 1.0);
+                        let final_phase = simulation::z3_phase(&relaxed);
+                        let h = simulation::hopf_charge_spectral(&relaxed);
+                        let (z3, force_rms) = (m.z3, m.force_rms);
+                        println!(concat!("{},{:.1},{:.6},{:.9},{:.9},{:.3},",
+                                         "{:.9},{:.9},{:.9}"),
+                                 n, mu, theta, initial_phase, final_phase,
+                                 final_phase.to_degrees(), z3, h / baseline, force_rms);
+                    }
+                }
+                "evolve" => {
+                    let n: usize = args.get(2).and_then(|v| v.parse().ok()).unwrap_or(12);
+                    let mu: f64 = args.get(3).and_then(|v| v.parse().ok()).unwrap_or(20.0);
+                    let kappa: f64 = args.get(4).and_then(|v| v.parse().ok()).unwrap_or(1.0);
+                    let steps: usize = args.get(5).and_then(|v| v.parse().ok()).unwrap_or(400);
+                    let dt: f64 = args.get(6).and_then(|v| v.parse().ok()).unwrap_or(0.05);
+                    let baseline = simulation::hopf_charge_grid(
+                        &simulation::analytic_field(n, 8.0, false));
+                    let mut field = simulation::analytic_field(n, 8.0, false);
+                    println!("n,mu,kappa,step,hopf_baseline,hopf_grid,hopf_ratio,z3,energy,force_rms");
+                    for step in 0..=steps {
+                        if step % 10 == 0 || step == steps {
+                            let h = simulation::hopf_charge_grid(&field);
+                            let m = simulation::metrics(&field, mu);
+                            let ratio = h / baseline;
+                            println!(concat!("{},{:.1},{:.1},{},{:.9},{:.9},{:.9},",
+                                             "{:.9},{:.9},{:.9}"),
+                                     n, mu, kappa, step, baseline, h, ratio, m.z3,
+                                     m.energy, m.force_rms);
+                        }
+                        if step < steps {
+                            let (next, _, _) = simulation::relax(&field, mu, dt, 1, 1.0, kappa);
+                            field = next;
+                        }
+                    }
+                }
+                "phase" => {
+                    let n = 12usize;
+                    let steps = 100usize;
+                    let baseline = simulation::hopf_charge_grid(
+                        &simulation::analytic_field(n, 8.0, false));
+                    println!(concat!("mu,kappa,n,hopf_baseline,hopf_grid,hopf_ratio,z3,",
+                                     "e2,e4,potential,force_rms,max_bond,energy_drop"));
+                    for mu in [0.0_f64, 1.0, 2.0, 5.0, 10.0, 15.0, 20.0] {
+                        for kappa in [0.5_f64, 1.0, 2.0] {
+                            let field = simulation::analytic_field(n, 8.0, false);
+                            let (relaxed, history, m) =
+                                simulation::relax(&field, mu, 0.05, steps, 1.0, kappa);
+                            let h = simulation::hopf_charge_grid(&relaxed);
+                            let ratio = if baseline.abs() > 1e-12 { h / baseline } else { 0.0 };
+                            let drop = history.first().copied().unwrap_or(0.0)
+                                - history.last().copied().unwrap_or(0.0);
+                            let (z3, e2, e4, potential, force_rms, max_bond) =
+                                (m.z3, m.e2, m.e4, m.potential, m.force_rms, m.max_bond);
+                            println!(concat!("{:.1},{:.1},{},{:.9},{:.9},{:.9},{:.9},",
+                                             "{:.9},{:.9},{:.9},{:.9},{:.9},{:.9}"),
+                                     mu, kappa, n, baseline, h, ratio, z3, e2, e4,
+                                     potential, force_rms, max_bond, drop);
+                        }
+                    }
+                }
+                "hopfcheck" => {
+                    println!("n,hopf_jacobi,hopf_spectral,hopf_preimage,z3");
+                    for n in [8usize, 16, 32, 64, 128] {
+                        let field = simulation::analytic_field(n, 8.0, false);
+                        println!("{},{:.9},{:.9},{:.9},{:.9}", n,
+                                 simulation::hopf_charge_grid(&field),
+                                 simulation::hopf_charge_spectral(&field),
+                                 simulation::hopf_charge_preimage(200),
+                                 simulation::z3_order(&field));
+                    }
+                }
+                "history" => {
+                    println!("mu,step,energy");
+                    for mu in [0.0_f64, 5.0, 20.0] {
+                        let field = simulation::analytic_field(10, 8.0, false);
+                        let (_, history, _) = simulation::relax(&field, mu, 0.05, 200, 1.0, 1.0);
+                        for (step, energy) in history.iter().enumerate() {
+                            println!("{mu:.1},{step},{energy:.9}");
+                        }
+                    }
+                }
+                other => {
+                    eprintln!("Why: unknown simulation {other:?}.\nFix: choose a simulation mode such as `topoguard`, `muscan` or `history`.");
+                    std::process::exit(2);
+                }
+            }
+        }
+        "scan" => {
+            match args.get(1).map(String::as_str).unwrap_or("") {
+                "neutrino" => {
+                    println!("ordering,m_light_eV,Q");
+                    for step in 0..=2000usize {
+                        let m0 = 0.2 * step as f64 / 2000.0;
+                        for inverted in [false, true] {
+                            let masses = spectra::neutrino_masses(m0, 7.41e-5, 2.507e-3, inverted);
+                            println!("{},{:.8},{:.12}",
+                                     if inverted { "IO" } else { "NO" }, m0,
+                                     spectra::q_from_masses(&masses));
+                        }
+                    }
+                }
+                other => {
+                    eprintln!("Why: unknown scan {other:?}.\nFix: choose `neutrino`.");
+                    std::process::exit(2);
+                }
+            }
+        }
+        "claims" => {
+            for record in audit::run_audit() {
+                println!("{:<7} {:<44} {:<12.6e} {}", record.verdict, record.claim,
+                         record.value, record.detail);
+            }
+        }
+        "regenerate" => {
+            let dir = args.get(1).map(std::path::PathBuf::from)
+                .unwrap_or_else(|| std::path::PathBuf::from("results"));
+            match reports::write_reports(&dir) {
+                Ok(paths) => {
+                    println!("wrote {} Rust result file(s) to {}", paths.len(), dir.display());
+                    for path in &paths {
+                        println!("  {}", path.display());
+                    }
+                }
+                Err(error) => {
+                    eprintln!("Why: result regeneration failed: {error}.\nFix: check the output directory is writable.");
+                    std::process::exit(1);
+                }
+            }
+        }
+        "selftest" => {
+            let result = verify::verify_in_process();
+            println!("{}", result.line());
+            std::process::exit(if result.agree { 0 } else { 1 });
+        }
+        other => {
+            eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|scan|simulate|regenerate|json|fingerprint|verify|selftest.");
+            std::process::exit(2);
+        }
+    }
+}
+
+#[cfg(test)]
+mod topology_probe_tests {
+    use super::{compare_extended_topoguard, compare_mean_limit, compare_mean_topoguard, compare_topoguard_probes};
+
+    #[test]
+    fn mean_limit_comparison_checks_counts_and_independent_results() {
+        let good = "n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy\n32,600,-0.01,5,596,3136.0,2000.0\n";
+        assert!(compare_mean_limit(good, good, good).is_ok());
+        for invalid in [good.replace("5,596", "4,596"), good.replace("5,596", "5,595"), good.replace("-0.01", "NaN"), good.replace("-0.01", "0.01")] { assert!(compare_mean_limit(&invalid, good, good).is_err()); }
+        let divergent = good.replace("-0.01", "-0.02");
+        assert!(compare_mean_limit(good, &divergent, &divergent).is_err());
+        assert!(compare_mean_limit(good, good, &divergent).is_err());
+    }
+
+    #[test]
+    fn mean_comparison_rejects_incomplete_and_divergent_results() {
+        let good = "n,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy\n32,200,0.62,0,3136.0,2644.0\n";
+        assert!(compare_mean_topoguard(good, good, good).is_ok());
+        for invalid in [good.replace("32,200", "32,199"), good.replace("0.62,0", "0.62,1"), good.replace("0.62", "NaN"), good.replace("0.62", "-0.62")] {
+            assert!(compare_mean_topoguard(&invalid, good, good).is_err());
+        }
+        let divergent = good.replace("0.62", "0.63");
+        assert!(compare_mean_topoguard(good, &divergent, &divergent).is_err());
+        assert!(compare_mean_topoguard(good, good, &divergent).is_err());
+    }
+
+    #[test]
+    fn extended_comparison_checks_reproducibility_and_recorded_prefix() {
+        let good = "n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy\n32,200,200,-0.038,45,156,3136.0,2644.0\n";
+        assert!(compare_extended_topoguard(good, good, good).is_ok());
+        assert!(compare_extended_topoguard(good, good, &good.replace("2644.0", "2643.0")).is_err());
+        let divergent = good.replace("-0.038", "-0.039");
+        assert!(compare_extended_topoguard(good, &divergent, &divergent).is_err());
+        for invalid in [good.replace("45,156", "44,156"), good.replace("45,156", "45,155"), good.replace("-0.038", "NaN")] {
+            assert!(compare_extended_topoguard(&invalid, good, good).is_err());
+        }
+    }
+
+    #[test]
+    fn comparison_rejects_incomplete_inconclusive_and_divergent_runs() {
+        let good = "n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy\n32,20,20,0.008,0,3136.0,3086.0\n";
+        assert!(compare_topoguard_probes(good, good, good).is_ok());
+        assert!(compare_topoguard_probes(good, good, &good.replace("3086.0", "3085.0")).is_err());
+        let divergent = good.replace("0.008", "0.009");
+        assert!(compare_topoguard_probes(good, &divergent, &divergent).is_err());
+        let incomplete = good.replace("32,20,20", "32,20,19");
+        assert!(compare_topoguard_probes(&incomplete, good, good).is_err());
+        let inconclusive = good.replace("0.008,0", "0.008,1");
+        assert!(compare_topoguard_probes(&inconclusive, good, good).is_err());
+        let nonfinite = good.replace("0.008", "NaN");
+        assert!(compare_topoguard_probes(&nonfinite, good, good).is_err());
+    }
+}

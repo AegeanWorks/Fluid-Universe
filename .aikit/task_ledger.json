@@ -1,262 +1,329 @@
 {
-  "version": 1,
   "active_task": {
-    "task_id": "fluid-audit-waves-0-30-v1",
-    "last_phase": "in_progress",
     "active_phase": 5,
-    "status": "completed",
-    "updated_at": 1793722743.8105874,
-    "owner": "kilo:audit",
-    "started_by": "kilo:audit",
+    "completed_at": 1795868593.53543,
+    "completed_head": "c7a09e046683a2bb7f184731e34500040963a07f",
+    "completed_tree": "d5ce797e13a724290c00d0f80d9086754480051b",
     "continuations": [],
-    "completed_at": 1793722789.5241463
+    "last_phase": "in_progress",
+    "lease_until": 1795875754.36975,
+    "owner": "codex:fluid",
+    "started_by": "codex:fluid",
+    "status": "completed",
+    "task_id": "fluid-mean-limit",
+    "updated_at": 1795868554.36975
   },
   "checkpoints": [
     {
-      "task_id": "water-reorganization-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-029 and add failing tests for the water reorganization relation; predict lambda(Rcap)=1.383104 eV, VDE-optical difference 1.57 eV (12% residual), required R=2.517841 A, pressure-balanced lambda=0.994862 eV",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392198.3013866,
-      "timestamp_str": "2026-10-30 23:29:58",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The static well models conflate the VDE and the optical gap. Water's static and optical dielectric constants differ strongly; the reorganization energy is the natural link between the 3.27 eV VDE and the 1.7 eV absorption.",
-        "benefits": "A water-property relation that avoids fitting a deeper well; it explains the VDE-optical difference as solvent reorganization and identifies the capillary radius as the relevant scale.",
-        "risks": "contract: new claim 38; dependency: math only; concurrency: none; state: one result file; data: VDE 3.27 +/- 0.10, optical 1.7; model: phenomenological reorganization relation, not a full two-state calculation",
-        "mitigation": "Use the standard reorganization formula with water's epsilon_s and epsilon_infinity, pre-register the capillary and pressure-balanced values, report the 12% residual and the 1.9-sigma VDE tension, and state that a two-state Marcus calculation is the next test"
-      }
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Water reorganization: lambda(Rcap)=1.383104 eV vs observed difference 1.57 eV (11.9% residual, 1.87 sigma); required R=2.517841 A (0.881x cap); pressure R=3.973423 A gives lambda=0.994862 eV (0.634x), inconsistent; claim 38 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392534.2281487,
-      "timestamp_str": "2026-10-30 23:35:34",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 226/226 accepted (2 new claim-38 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392537.1025605,
-      "timestamp_str": "2026-10-30 23:35:37",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-reorganization-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-reorganization-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793392537.2375045,
-      "timestamp_str": "2026-10-30 23:35:37",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-030 and add failing tests for the self-consistent Born cavity; predict R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p, lambda=1.617133, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x equilibrium)",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793392920.7853246,
-      "timestamp_str": "2026-10-30 23:42:00",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The reorganization relation points to R=2.518 A, close to the finite-well Born equilibrium R=2.444 A. The cavity radius should be set by the R-dependent Born solvation, not a fixed well depth.",
-        "benefits": "A positive synthesis: the fluid/Born cavity radius and water's dielectric reorganization jointly explain the 1.7 eV optical feature and the 3.27 eV VDE without a deeper well or a bound 1p.",
-        "risks": "contract: new claim 39; dependency: scipy/math; concurrency: none; state: one result file; model: Born depth V0=Born(R), no separate image term; data: VDE 3.27 +/- 0.10, optical 1.7",
-        "mitigation": "Minimize the finite-well energy at V0=Born(R) plus surface energy, check the minimum, verify no bound 1p, compute lambda at R_eq, compare the predicted VDE and required radius, and state that the Marcus relation is phenomenological"
-      }
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Born cavity: R=2.444456 A, V0=2.907799 eV, E1s=-0.436572, no 1p; lambda=1.617133 eV, predicted VDE=3.317133 (0.47 sigma), required R=2.517841 (1.030x); claim 39 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793393269.1727834,
-      "timestamp_str": "2026-10-30 23:47:49",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 228/228 accepted (2 new claim-39 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793393272.3890867,
-      "timestamp_str": "2026-10-30 23:47:52",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-born-cavity-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-born-cavity-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793393272.5401375,
-      "timestamp_str": "2026-10-30 23:47:52",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-marcus-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-031 and add failing tests for the Marcus band width; predict FWHM=0.680915 eV at 300 K, 0.555964 at 200 K, 0.735472 at 350 K, reference 0.706-0.773 eV",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793393747.8158255,
-      "timestamp_str": "2026-10-30 23:55:47",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "Claim 39 used the water reorganization energy to predict the VDE. The same lambda should predict the absorption width; the reference bulk spectrum has FWHM around 0.7 eV.",
-        "benefits": "A no-parameter band-width test of the solvent-reorganization interpretation, plus a temperature-scaling prediction.",
-        "risks": "contract: new claim 40; dependency: math only; concurrency: none; state: one result file; data: reference FWHM 0.706-0.773 eV from Turi et al. 2024; model: classical Gaussian Marcus line shape",
-        "mitigation": "Use the same lambda=1.617132544 eV, compute the classical Gaussian FWHM, compare with the reference range, and report the sqrt(T) prediction; state that the experimental band is asymmetric and the classical model is approximate"
-      }
-    },
-    {
-      "task_id": "water-marcus-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Marcus width: lambda=1.617132544 eV gives FWHM 0.680915 eV at 300 K (0.964468x classical 0.706, 0.880873x quantized 0.773); 200 K 0.555964, 350 K 0.735472; claim 40 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793394216.4033206,
-      "timestamp_str": "2026-10-31 00:03:36",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-marcus-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 230/230 accepted (2 new claim-40 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793394219.5928273,
-      "timestamp_str": "2026-10-31 00:03:39",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-marcus-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-marcus-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793394219.7311573,
-      "timestamp_str": "2026-10-31 00:03:39",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-temperature-v1",
-      "phase": "planning",
-      "phase_num": 2,
-      "description": "[1/4] Pre-register ADR-032 and add failing tests for the temperature-dependent Born cavity; predict lambda(0)=1.637567 eV, lambda(25)=1.612092, lambda(45)=1.589506, slope -1.068 meV/K, FWHM 0.653822 to 0.695194 eV, 38-45% of the observed 2.4-2.8 meV/K shift",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793394493.4971182,
-      "timestamp_str": "2026-10-31 00:08:13",
-      "agent": "opencode",
-      "impact_assessment": {
-        "why": "The hydrated-electron peak red-shifts by 2.4-2.8 meV/K. A cavity model with water's epsilon_s(T) and gamma(T) must predict how much of that shift follows from the dielectric and surface-tension changes.",
-        "benefits": "A water-property temperature test that confronts the 'traditional cavity models have almost no temperature dependence' critique, plus a width prediction.",
-        "risks": "contract: new claim 41; dependency: scipy/math; concurrency: none; state: one result file; data: observed 2.4-2.8 meV/K peak shift; model: Born cavity with temperature-dependent water properties, no non-cavity structure",
-        "mitigation": "Use standard water epsilon_s(T) and gamma(T), compute the self-consistent Born cavity at 0-45 C, compare the lambda/VDE slope and Marcus width with the observed peak shift, and report the residual fraction"
-      }
-    },
-    {
-      "task_id": "water-temperature-v1",
-      "phase": "implementation",
-      "phase_num": 3,
-      "description": "[3/4] Temperature: Born cavity R 2.419922 to 2.481377 A, lambda 1.637567 to 1.589506 eV over 0-45 C, slope -1.068036 meV/K (38-45% of observed 2.4-2.8); FWHM 0.653822 to 0.695194 eV; claim 41 NUMERIC",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793395075.3367307,
-      "timestamp_str": "2026-10-31 00:17:55",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-temperature-v1",
-      "phase": "verification",
-      "phase_num": 4,
-      "description": "[4/4] Two-run verification 232/232 accepted (2 new claim-41 checks); project gates 4/4; checklists: passed. Uncommitted pending delivery.",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793395078.5462196,
-      "timestamp_str": "2026-10-31 00:17:58",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "water-temperature-v1",
-      "phase": "completed",
-      "phase_num": 5,
-      "description": "Task 'water-temperature-v1' completed successfully.",
-      "status": "completed",
-      "timestamp": 1793395078.7310984,
-      "timestamp_str": "2026-10-31 00:17:58",
-      "agent": "opencode"
-    },
-    {
-      "task_id": "fluid-audit-waves-0-30-v1",
-      "phase": "in_progress",
-      "phase_num": 2,
-      "description": "[1/3] Audit waves 0,10,20,30 first-30 scope: survey 00-29 plus boundary 30, verify gates, analyze run_all docstring staleness",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793722469.7551148,
-      "timestamp_str": "2026-11-03 19:14:29",
-      "agent": "kilo:audit",
-      "impact_assessment": {
-        "why": "Wave-ordered audit of first 30 of 64 commits needs a minimal failing-first fix that stays inside fluid-universe and keeps provenance intact",
-        "benefits": "Confirms wave 0-30 falsification core and baselines still reproduce; fixes stale run_all docs without touching other projects",
-        "risks": "contract: docs only, no result change; dependency: none; concurrency: none; state: one docstring plus one regression test",
-        "mitigation": "Failing-first regression test for docstring coverage; full pytest plus aikit check before commit; explicit staging inside project repo only; no push"
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
       },
-      "plan_digest": "757587cb78de97f19baf088d6d1fe0e1fdcec08654bd22d3ec5330ede43bd9cf"
-    },
-    {
-      "task_id": "fluid-audit-waves-0-30-v1",
-      "phase": "in_progress",
-      "phase_num": 3,
-      "description": "[2/3] Fix stale run_all docstring plus regression test test_run_all_docs.py; failing-first confirmed 12 missing stems then green",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793722518.3701108,
-      "timestamp_str": "2026-11-03 19:15:18",
-      "agent": "kilo:audit"
-    },
-    {
-      "task_id": "fluid-audit-waves-0-30-v1",
-      "phase": "in_progress",
-      "phase_num": 4,
-      "description": "[3/3] Two-run logic N/A for docs; full pytest 276 passed, project gates 4/4, README gate chars 19377; checklists: passed",
-      "files_affected": [],
-      "status": "in_progress",
-      "timestamp": 1793722743.8105874,
-      "timestamp_str": "2026-11-03 19:19:03",
-      "agent": "kilo:audit"
-    },
-    {
-      "task_id": "fluid-audit-waves-0-30-v1",
+      "description": "Task 'fluid-su2-product-extension' completed successfully.",
+      "head": "f9c354a02d741a79a5fc6d4c641b9f7a8bc7b747",
       "phase": "completed",
       "phase_num": 5,
-      "description": "Task 'fluid-audit-waves-0-30-v1' completed successfully.",
       "status": "completed",
-      "timestamp": 1793722789.5241482,
-      "timestamp_str": "2026-11-03 19:19:49",
-      "agent": "kilo:audit"
+      "task_id": "fluid-su2-product-extension",
+      "timestamp": 1795865593.64425,
+      "timestamp_str": "2026-11-28 14:33:13"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Add a conservative space-time interpolation homotopy certificate",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Provide an explicit sufficient nonzero-interpolation condition and correct the overstatement in claim 15",
+        "mitigation": "Validate finite nonzero samples and matching grids, use a conservative positive margin, test certified and inconclusive controls, independently audit the analytic-field example in two processes and run gates",
+        "risks": "contract: periodic grid assumptions and false-certification near zero; dependency: none; concurrency: isolated project; state: numerical evidence and claim ledger",
+        "why": "A near-one upsampled Hopf estimator alone does not prove topology preservation between grid fields"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "34d063515062d80ab5082617364d54986dd36ee46f6c7e8da9c92698a62ad73e",
+      "status": "in_progress",
+      "task_id": "fluid-grid-homotopy",
+      "timestamp": 1795865955.42581,
+      "timestamp_str": "2026-11-28 14:39:15"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Periodic homotopy guard controls and independent analytic-field audit pass; two-process agreement and 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-grid-homotopy",
+      "timestamp": 1795866159.41607,
+      "timestamp_str": "2026-11-28 14:42:39"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-grid-homotopy' completed successfully.",
+      "head": "16282d41f847e3a7e781a96a772bd4195a7b4d34",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-grid-homotopy",
+      "timestamp": 1795866238.61743,
+      "timestamp_str": "2026-11-28 14:43:58"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Monitor successive relaxation steps with the sampled-grid homotopy guard",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Provide a reproducible short dynamics diagnostic that distinguishes certified steps from inconclusive ones",
+        "mitigation": "Reuse one-step relaxation, compare its final field with the existing multi-step path, count only completed steps, report conservative margins and avoid promoting unverified production claims",
+        "risks": "contract: relaxation trajectory equivalence and guard interpretation; dependency: none; concurrency: isolated project; state: diagnostic output and documentation",
+        "why": "The new certificate has not yet been applied to an actual numerical relaxation and historical snapshots are unavailable"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "d4f078667539f0118036fa815bdd4b97b91c0c7c5945c9bb9a3e65759723bece",
+      "status": "in_progress",
+      "task_id": "fluid-monitored-relax",
+      "timestamp": 1795866317.35509,
+      "timestamp_str": "2026-11-28 14:45:17"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] One-step equivalence and conservative controls pass; N=32 probe recorded as unverified; 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-monitored-relax",
+      "timestamp": 1795866630.03855,
+      "timestamp_str": "2026-11-28 14:50:30"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-monitored-relax' completed successfully.",
+      "head": "1f2cd47f6efcc3479311fe0b774488295d5f08aa",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-monitored-relax",
+      "timestamp": 1795866697.86361,
+      "timestamp_str": "2026-11-28 14:51:37"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently rederive the short guarded relaxation with local finite differences",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Cross-check the actual finite-difference dynamics and homotopy margins with an independent numerical route",
+        "mitigation": "Freeze epsilon 1e-5, margin tolerance 1e-6 and energy tolerance 1e-4; validate locality on a small grid, run two separate audit processes with 900-second limits, and do not promote on disagreement",
+        "risks": "contract: finite-difference cancellation and numerical tolerance; dependency: none; concurrency: isolated project; state: preliminary result and independent audit evidence",
+        "why": "Claim 91 remains unverified because the recorded trajectory uses only the production force implementation"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "ca1b0338af5cc869effac81d6277cb8966312c13330cbbf4f942d037cb56c15f",
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-independent",
+      "timestamp": 1795866770.04636,
+      "timestamp_str": "2026-11-28 14:52:50"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Independent local-energy gradients and two separate probe processes match frozen tolerances; 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-independent",
+      "timestamp": 1795867170.15538,
+      "timestamp_str": "2026-11-28 14:59:30"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-topoguard-independent' completed successfully.",
+      "head": "cc34b10a47f41b6353034f66f32cb5ddd19e30bf",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-topoguard-independent",
+      "timestamp": 1795867240.54442,
+      "timestamp_str": "2026-11-28 15:00:40"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Measure the certificate limit in a 200-step relaxation",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Expose the certified prefix and distinguish loss of sufficient evidence from topology change",
+        "mitigation": "Preserve existing 20-step outputs, verify all callers, record first inconclusive transition, independently rederive twice with frozen tolerances and retain the continuum and historical-run caveats",
+        "risks": "contract: extending monitor and independent-probe result fields; dependency: none; concurrency: isolated project; state: new diagnostic evidence",
+        "why": "An exploratory continuation found that the conservative guard eventually becomes inconclusive"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "f5a30589ec75f852eb940b4751163e4596255a9891ac0b5e2a6ea8f31837cc95",
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-long",
+      "timestamp": 1795867362.71915,
+      "timestamp_str": "2026-11-28 15:02:42"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify the 200-step sampled trajectory; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-long",
+      "timestamp": 1795867684.69631,
+      "timestamp_str": "2026-11-28 15:08:04"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-topoguard-long' completed successfully.",
+      "head": "3bc20f6ed14a28c38cbad5eccd3d6f4bcb2ee30f",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-topoguard-long",
+      "timestamp": 1795867730.59383,
+      "timestamp_str": "2026-11-28 15:08:50"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently verify mean-direction hemisphere certificates across the 200-step sampled trajectory",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Strengthen a conservative sampled-map certificate without inferring topology change",
+        "mitigation": "Keep the original guard and evidence, test antipodal and invalid inputs, independently reconstruct the mean-direction calculation twice with frozen tolerances, and limit claims to the sampled path",
+        "risks": "contract: stricter claims require separate independent derivations; dependency: no new dependencies; concurrency: independent processes must agree; state: preserve existing recorded results",
+        "why": "The original corner anchor becomes inconclusive although an exploratory averaged direction passes"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "d307ae6a6569e605ce5664b9ce49ae293dbdaef66c10dfc5d9e72cbfe0df5894",
+      "status": "in_progress",
+      "task_id": "fluid-mean-guard",
+      "timestamp": 1795867800.76153,
+      "timestamp_str": "2026-11-28 15:10:00"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify mean-direction sampled certificates; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-mean-guard",
+      "timestamp": 1795868036.27372,
+      "timestamp_str": "2026-11-28 15:13:56"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-mean-guard' completed successfully.",
+      "head": "cdad903a21e8c8f640e8052e6fc6715856dbebf1",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-mean-guard",
+      "timestamp": 1795868067.40284,
+      "timestamp_str": "2026-11-28 15:14:27"
+    },
+    {
+      "agent": "codex:fluid",
+      "chore": true,
+      "description": "Correct unsupported historical topology assertions in project summaries and label archived report text",
+      "phase": "chore",
+      "phase_num": 1,
+      "status": "completed",
+      "task_id": "chore-1795868118",
+      "timestamp": 1795868118.51948,
+      "timestamp_str": "2026-11-28 15:15:18"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently verify the first mean-certificate limit over 600 sampled transitions",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Measure the certified prefix with independently reproduced numerical evidence",
+        "mitigation": "Compare production with two finite-difference processes using fixed tolerances and counts; retain explicit sampled-map scope and a 900-second watchdog",
+        "risks": "contract: a negative margin is inconclusive rather than topology failure; dependency: no new dependencies; concurrency: independent processes may diverge; state: retain existing 200-step evidence",
+        "why": "A 2000-step exploratory run first loses the mean-direction sufficient certificate at transition 596"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "f430a289d4dc9022368a33b1279149095f5c2e19344a8f945ad565320d57f945",
+      "status": "in_progress",
+      "task_id": "fluid-mean-limit",
+      "timestamp": 1795868250.46844,
+      "timestamp_str": "2026-11-28 15:17:30"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify the 600-step mean-guard limit; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-mean-limit",
+      "timestamp": 1795868554.36975,
+      "timestamp_str": "2026-11-28 15:22:34"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-mean-limit' completed successfully.",
+      "head": "c7a09e046683a2bb7f184731e34500040963a07f",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-mean-limit",
+      "timestamp": 1795868593.53543,
+      "timestamp_str": "2026-11-28 15:23:13"
     }
-  ]
+  ],
+  "version": 1
 }

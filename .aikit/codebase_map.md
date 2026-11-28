@@ -1,3087 +1,420 @@
 # Codebase Map & Symbol Catalog 🗺️
 
-> **AUTO-GENERATED & VERIFIED BY `scripts/update_knowledge_base.py`**
-> This document provides an automated, up-to-date registry of all modules, classes, and exported functions across this repository.
+> **AUTO-GENERATED & VERIFIED BY `aikit update-kb`**
+> This document catalogues source modules, types, and exported functions. See Map Coverage for any stack it does not index.
 
 ---
 
 ## 📊 Codebase Metrics
-- **Total Python Modules**: `210`
-- **Total Classes**: `8`
-- **Total Top-Level Functions**: `1149`
-- **Total Class Methods**: `19`
-- **Total Source Lines**: `32106`
-
----
-
-## 📦 Modules & Exported Symbols
-
-### [`phenomenology/__init__.py`](phenomenology/__init__.py)
-> *Phenomenology: PDG input, circulant fit, and one-loop SM running.*
-
-**Size**: `1` lines (`72` bytes)
-
----
-
-### [`phenomenology/coherent_fluid_report.py`](phenomenology/coherent_fluid_report.py)
-> *Moving-center Gaussian reduction report (claim 23, ADR-014).*
-
-**Size**: `157` lines (`5262` bytes)
-
-**Functions:**
-- `def _energy_drift(result)`
-- `def _zero_crossings(times, values)`
-- `def run_coherent_fluid_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/convergence_report.py`](phenomenology/convergence_report.py)
-> *Resolution report for claim 15: N=64 versus N=96 at the same physical time.*
-
-**Size**: `166` lines (`5655` bytes)
-
-**Functions:**
-- `def _run(n, deadline)`
-- `def run_convergence_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/delta_search.py`](phenomenology/delta_search.py)
-> *Search for a closed form of the circulant phase delta, with a stated prior.*
-
-**Size**: `185` lines (`6508` bytes)
-
-**Functions:**
-- `def rational_candidates()`
-- `def pi_candidates()`
-- `def simple_candidates()`
-- `def all_candidates()`
-- `def search(delta, sigma)`
-- `def run_delta_search(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/excited_fluid_report.py`](phenomenology/excited_fluid_report.py)
-> *First-excited-state node report (claim 24, ADR-015).*
-
-**Size**: `146` lines (`4771` bytes)
-
-**Functions:**
-- `def run_excited_fluid_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/extension_report.py`](phenomenology/extension_report.py)
-> *Checkpointed N=96 extension for claim 15 (ADR-004).*
-
-**Size**: `223` lines (`7402` bytes)
-
-**Functions:**
-- `def _checkpoint(chunk)`
-- `def _write_npy_atomic(path, array)`
-- `def _load_state()`
-- `def _save_state(state)`
-- `def run_next_chunk(write)`
-- `def render_markdown(state)`
-- `def _format_projection(steps, time_value)`
-- `def main(argv)`
-
----
-
-### [`phenomenology/field_variation_report.py`](phenomenology/field_variation_report.py)
-> *Unstructured 1D fixed-endpoint-density G-M field variation (claim 58, ADR-050).*
-
-**Size**: `390` lines (`14207` bytes)
-
-**Functions:**
-- `def _analytic_bridge_rho(problem)`
-- `def _field_action_on_rho(problem, rho)`
-- `def run_field_variation_check(write)`
-- `def _classical_transport_action(s0, sT, horizon_T, omega, mass)` - *Closed-form nu = 0 Gaussian transport action.*
-- `def _verdict_note(status)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/fit.py`](phenomenology/fit.py)
-> *PDG pole-mass fit of the Hermitian circulant parametrisation.*
-
-**Size**: `228` lines (`8091` bytes)
-
-**Classes:**
-- `class PoleMass`
-
-**Functions:**
-- `def load_pole_masses(path)`
-- `def _summary(values)`
-- `def _circular_mean(angles)`
-- `def fit_point(masses_MeV)`
-- `def run_fit(n_mc, seed, write)`
-- `def render_markdown(payload)`
-- `def main()`
-
----
-
-### [`phenomenology/gaussian_bridge_report.py`](phenomenology/gaussian_bridge_report.py)
-> *Fixed-endpoint Gaussian bridge check (claim 54, ADR-046).*
-
-**Size**: `175` lines (`6471` bytes)
-
-**Functions:**
-- `def run_gaussian_bridge_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/gaussian_fluid_report.py`](phenomenology/gaussian_fluid_report.py)
-> *Gaussian Madelung reduction report (claim 22, ADR-013).*
-
-**Size**: `155` lines (`5293` bytes)
-
-**Functions:**
-- `def _period(result, width)`
-- `def run_gaussian_fluid_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopf_report.py`](phenomenology/hopf_report.py)
-> *Hopf estimator validation result payload.*
-
-**Size**: `66` lines (`2420` bytes)
-
-**Functions:**
-- `def run_hopf_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopf_resolution_report.py`](phenomenology/hopf_resolution_report.py)
-> *Hopf estimator resolution report.*
-
-**Size**: `47` lines (`1509` bytes)
-
-**Functions:**
-- `def run_hopf_resolution_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopfion3d_n64_report.py`](phenomenology/hopfion3d_n64_report.py)
-> *Targeted N=64 diagnostic for the 3D E2+E4+Z3 pilot.*
-
-**Size**: `104` lines (`3726` bytes)
-
-**Functions:**
-- `def run_n64_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopfion3d_report.py`](phenomenology/hopfion3d_report.py)
-> *3D pilot report for the E2+E4+Z3 model.*
-
-**Size**: `83` lines (`3099` bytes)
-
-**Functions:**
-- `def run_hopfion3d_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopfion_report.py`](phenomenology/hopfion_report.py)
-> *Static finite-energy H=1 configuration report.*
-
-**Size**: `61` lines (`2215` bytes)
-
-**Functions:**
-- `def run_hopfion_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hopfion_scale_report.py`](phenomenology/hopfion_scale_report.py)
-> *Report for the damped scale-iteration candidate.*
-
-**Size**: `71` lines (`2442` bytes)
-
-**Functions:**
-- `def run_scale_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hydrogen_fluid_report.py`](phenomenology/hydrogen_fluid_report.py)
-> *Hydrogen 1s Madelung reduction report (claim 25, ADR-016).*
-
-**Size**: `128` lines (`4504` bytes)
-
-**Functions:**
-- `def run_hydrogen_fluid_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/hydrogen_vortex_report.py`](phenomenology/hydrogen_vortex_report.py)
-> *Hydrogen 2p vortex identification report (claim 26, ADR-017).*
-
-**Size**: `123` lines (`4305` bytes)
-
-**Functions:**
-- `def run_hydrogen_vortex_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/length_scan_report.py`](phenomenology/length_scan_report.py)
-> *Box-length scan of the pure-FN N=64 candidate (ADR-007, claim 14b).*
-
-**Size**: `183` lines (`6446` bytes)
-
-**Functions:**
-- `def run_length_scan(write)`
-- `def render_markdown(result)`
-
----
-
-### [`phenomenology/lv_bounds.py`](phenomenology/lv_bounds.py)
-> *Residual anisotropy and Lorentz-violation bounds (claims 11-12).*
-
-**Size**: `105` lines (`3912` bytes)
-
-**Functions:**
-- `def run_lorentz_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/madelung_report.py`](phenomenology/madelung_report.py)
-> *Madelung fluid dictionary report (claim 20, ADR-011).*
-
-**Size**: `160` lines (`5069` bytes)
-
-**Functions:**
-- `def _grid()`
-- `def run_madelung_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/nelson_closure_report.py`](phenomenology/nelson_closure_report.py)
-> *Osmotic-closure no-go check (claim 48, ADR-040).*
-
-**Size**: `155` lines (`5680` bytes)
-
-**Functions:**
-- `def run_nelson_closure_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/nelson_report.py`](phenomenology/nelson_report.py)
-> *Nelson stochastic kinematics report (claim 21, ADR-012).*
-
-**Size**: `136` lines (`4391` bytes)
-
-**Functions:**
-- `def run_nelson_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/neutrinos.py`](phenomenology/neutrinos.py)
-> *Neutrino Koide ratio scan.*
-
-**Size**: `242` lines (`8651` bytes)
-
-**Classes:**
-- `class NuFitParameters`
-
-**Functions:**
-- `def load_parameters(path)`
-- `def masses_normal(m_light, dm21_sq, dm31_sq_no)` - *Return (m1, m2, m3) for normal ordering, m_light = m1.*
-- `def masses_inverted(m_light, dm21_sq, dm31_sq_io)` - *Return (m1, m2, m3) for inverted ordering, m_light = m3.*
-- `def q_nu(masses)`
-- `def scan_ordering(ordering, params, m_light_max, points)`
-- `def corner_max(ordering, params)` - *Maximum Q at m_light = 0 over the 3-sigma corners of the splittings.*
-- `def run_neutrino_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/node_defect_report.py`](phenomenology/node_defect_report.py)
-> *Two-branch defect representation check (claim 46, ADR-038).*
-
-**Size**: `146` lines (`5225` bytes)
-
-**Functions:**
-- `def run_node_defect_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/pmns.py`](phenomenology/pmns.py)
-> *What a minimal circulant lepton sector predicts for PMNS mixing.*
-
-**Size**: `143` lines (`5592` bytes)
-
-**Functions:**
-- `def dft_matrix()`
-- `def angles_from_pmns(U)` - *Standard three-neutrino angles in degrees from |U|.*
-- `def run_pmns_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/predictions.py`](phenomenology/predictions.py)
-> *Search for a genuinely new prediction beyond Q=2/3 (claim 16).*
-
-**Size**: `112` lines (`3965` bytes)
-
-**Functions:**
-- `def run_prediction_audit(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/production_report.py`](phenomenology/production_report.py)
-> *Production claim-15 report: resolved Hopf charge and Z3 order.*
-
-**Size**: `218` lines (`7903` bytes)
-
-**Functions:**
-- `def run_production_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/provenance.py`](phenomenology/provenance.py)
-> *Small reproducibility helpers: git state, versions, config hashes.*
-
-**Size**: `80` lines (`2510` bytes)
-
-**Functions:**
-- `def git_state()`
-- `def package_versions()`
-- `def config_hash(payload)`
-- `def metadata(config)`
-- `def write_text_atomic(path, text)` - *Write a generated file atomically (temp file + fsync + replace).*
-- `def write_json(path, payload)`
-
----
-
-### [`phenomenology/purefn_stability_report.py`](phenomenology/purefn_stability_report.py)
-> *Pure-Faddeev-Niemi N=64 candidate Hessian (ADR-005, claims 14b/14d).*
-
-**Size**: `156` lines (`5252` bytes)
-
-**Functions:**
-- `def run_purefn_check(write)`
-- `def render_markdown(result)`
-
----
-
-### [`phenomenology/quarks.py`](phenomenology/quarks.py)
-> *Quark Koide ratios from the full-SM MS-bar masses of Huang & Zhou (2021).*
-
-**Size**: `154` lines (`5293` bytes)
-
-**Classes:**
-- `class QuarkRow`
-
-**Functions:**
-- `def load_rows(path)`
-- `def q_up(row)`
-- `def q_down(row)`
-- `def run_quark_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/radial_node_report.py`](phenomenology/radial_node_report.py)
-> *Hydrogen-2s radial-node representation check (claim 47, ADR-039).*
-
-**Size**: `167` lines (`5856` bytes)
-
-**Functions:**
-- `def run_radial_node_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/rg.py`](phenomenology/rg.py)
-> *One-loop Standard-Model running of charged-lepton Yukawa couplings.*
-
-**Size**: `495` lines (`17563` bytes)
-
-**Classes:**
-- `class InitialState`
-  - Method `.vector()`
-
-**Functions:**
-- `def yukawa_from_mass(mass_GeV, v_GeV)`
-- `def initial_state(masses_GeV, m_top_GeV, m_bottom_GeV)`
-- `def _split(state)` - *Return y_e, y_mu, y_tau, y_t, y_b, g1, g2, g3 from log-state.*
-- `def rhs(_t, state)` - *One-loop SM RHS for log(yukawas) and log(gauge couplings).*
-- `def _rhs_ratio_only(_t, state)` - *RHS with only the generation-dependent (3/2) y_k^2 term.*
-- `def run_system(initial, scale_max, rtol, atol)`
-- `def run_ratio_only(initial, scale_max)`
-- `def observables_from_yukawas(y)` - *Q, r, delta and masses from the three positive Yukawa eigenvalues.*
-- `def convert_pole_to_msbar_explicit(m_pole_GeV, mu_GeV, alpha_mu)` - *Published one-pass QED conversion used by Xing & Zhang (2006).*
-- `def convert_pole_to_msbar(m_pole_GeV, mu_GeV, alpha_mu)` - *Self-consistent one-loop QED pole-to-MSbar conversion by fixed point.*
-- `def _literature_check(sol)`
-- `def run_rg(write)`
-- `def render_markdown(payload)`
-- `def main()`
-
----
-
-### [`phenomenology/rotor_potential_report.py`](phenomenology/rotor_potential_report.py)
-> *Real Z3 rotor potential scan report (claim 19, ADR-010).*
-
-**Size**: `77` lines (`2516` bytes)
-
-**Functions:**
-- `def run_rotor_potential_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/run_all.py`](phenomenology/run_all.py)
-> *Regenerate every result file from scratch.*
-
-**Size**: `555` lines (`26505` bytes)
-
-**Functions:**
-- `def rotor_payload()`
-- `def render_rotor_markdown(payload)`
-- `def extra_summary(delta, fo, derrick)`
-- `def negatives_summary(topology, reduction, predictions)`
-- `def lorentz_summary(lorentz)`
-- `def sim_summary(sim)`
-- `def hopf_summary(hopf)`
-- `def hopfion_summary(payload)`
-- `def hopfion3d_summary(payload)`
-- `def hopf_resolution_summary(payload)`
-- `def build_summary(fit, rg, rotor, neutrino, quarks, pmns)`
-- `def main()`
-
----
-
-### [`phenomenology/saddle_escape_report.py`](phenomenology/saddle_escape_report.py)
-> *Saddle-escape search from the pure-FN N=64 candidate (ADR-006, claim 14b).*
-
-**Size**: `205` lines (`7056` bytes)
-
-**Functions:**
-- `def _relax(field, steps, deadline)`
-- `def run_escape_check(write)`
-- `def render_markdown(result)`
-
----
-
-### [`phenomenology/sim_report.py`](phenomenology/sim_report.py)
-> *Result payload for the 1D simulation baseline.*
-
-**Size**: `162` lines (`6286` bytes)
-
-**Functions:**
-- `def run_1d_baseline(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/stability_report.py`](phenomenology/stability_report.py)
-> *Report for the validated tangent-space Hessian of the scale candidate.*
-
-**Size**: `87` lines (`3358` bytes)
-
-**Functions:**
-- `def run_stability_report(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/temporal_report.py`](phenomenology/temporal_report.py)
-> *Temporal-check report for claim 15: N=64 at two timesteps, same physical time.*
-
-**Size**: `159` lines (`5349` bytes)
-
-**Functions:**
-- `def _run(steps, dt, deadline)`
-- `def run_temporal_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/two_state_report.py`](phenomenology/two_state_report.py)
-> *Shared-lambda two-state Marcus assignment (claim 44, ADR-036).*
-
-**Size**: `164` lines (`6546` bytes)
-
-**Functions:**
-- `def run_two_state_comparison(temperature_k, write)` - *Compare the shared-lambda equal-width prediction vs the observed ratio.*
-- `def run_two_state_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/uv_checks.py`](phenomenology/uv_checks.py)
-> *Reproducible UV-track checks: Frank-Oseen modes and Derrick scaling.*
-
-**Size**: `187` lines (`7228` bytes)
-
-**Functions:**
-- `def run_frank_oseen_check(write)`
-- `def render_frank_oseen(payload)`
-- `def run_derrick_check(write)`
-- `def render_derrick(payload)`
-
----
-
-### [`phenomenology/uv_negatives.py`](phenomenology/uv_negatives.py)
-> *Result payloads for the topology, reduction, and prediction negatives.*
-
-**Size**: `63` lines (`2201` bytes)
-
-**Functions:**
-- `def run_topology_check(write)`
-- `def run_reduction_check(write)`
-
----
-
-### [`phenomenology/variational_center_report.py`](phenomenology/variational_center_report.py)
-> *Co-emergence of Newtonian center and Ermakov width (claim 53, ADR-045).*
-
-**Size**: `161` lines (`5856` bytes)
-
-**Functions:**
-- `def run_variational_center_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/variational_dynamics_report.py`](phenomenology/variational_dynamics_report.py)
-> *Variational dynamics reproduces Ermakov (claim 51, ADR-043).*
-
-**Size**: `145` lines (`5262` bytes)
-
-**Functions:**
-- `def run_variational_dynamics_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/variational_saddle_report.py`](phenomenology/variational_saddle_report.py)
-> *2D Ritz saddle check (claim 50, ADR-042).*
-
-**Size**: `157` lines (`5713` bytes)
-
-**Functions:**
-- `def run_variational_saddle_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/variational_width_report.py`](phenomenology/variational_width_report.py)
-> *Gaussian Ritz width-selection check (claim 49, ADR-041).*
-
-**Size**: `147` lines (`5345` bytes)
-
-**Functions:**
-- `def run_variational_width_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/vortex_cascade_report.py`](phenomenology/vortex_cascade_report.py)
-> *One-parameter vortex hierarchy report (claim 18, ADR-009).*
-
-**Size**: `88` lines (`3170` bytes)
-
-**Functions:**
-- `def load_lepton_masses()`
-- `def run_cascade_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/vortex_core_report.py`](phenomenology/vortex_core_report.py)
-> *HO-1 finite-core node probe (claim 60, ADR-054).*
-
-**Size**: `172` lines (`5988` bytes)
-
-**Functions:**
-- `def run_vortex_core_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/vortex_loop_report.py`](phenomenology/vortex_loop_report.py)
-> *2p core-threading loop probe (claim 61, ADR-056).*
-
-**Size**: `154` lines (`5676` bytes)
-
-**Functions:**
-- `def run_vortex_loop_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/vortex_spectrum_report.py`](phenomenology/vortex_spectrum_report.py)
-> *Vortex-knot mass spectrum report (claim 17, ADR-008).*
-
-**Size**: `110` lines (`3790` bytes)
-
-**Functions:**
-- `def load_lepton_masses()`
-- `def run_vortex_spectrum(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_absorption_report.py`](phenomenology/water_absorption_report.py)
-> *Bound-free absorption in the finite spherical well (claim 34, ADR-025).*
-
-**Size**: `138` lines (`5758` bytes)
-
-**Functions:**
-- `def run_water_absorption_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_analogue_report.py`](phenomenology/water_analogue_report.py)
-> *Shallow-water acoustic horizon report (claim 27, ADR-018).*
-
-**Size**: `109` lines (`3749` bytes)
-
-**Functions:**
-- `def run_water_analogue_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_born_cavity_report.py`](phenomenology/water_born_cavity_report.py)
-> *Self-consistent Born cavity synthesis (claim 39, ADR-030).*
-
-**Size**: `141` lines (`5992` bytes)
-
-**Functions:**
-- `def run_water_born_cavity_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_dispersive_report.py`](phenomenology/water_dispersive_report.py)
-> *Dispersive shallow-water horizon report (claim 29, ADR-020).*
-
-**Size**: `108` lines (`3597` bytes)
-
-**Functions:**
-- `def run_water_dispersive_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_electron_report.py`](phenomenology/water_electron_report.py)
-> *Hydrated-electron cavity scale report (claim 32, ADR-023).*
-
-**Size**: `103` lines (`4036` bytes)
-
-**Functions:**
-- `def run_water_electron_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_lineshape_report.py`](phenomenology/water_lineshape_report.py)
-> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43, ADR-034).*
-
-**Size**: `260` lines (`11242` bytes)
-
-**Functions:**
-- `def run_water_lineshape_comparison(write)` - *Compare the fixed-lambda prediction against citable observed shape.*
-- `def run_water_lineshape_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_marcus_report.py`](phenomenology/water_marcus_report.py)
-> *Marcus band width from the water reorganization energy (claim 40, ADR-031).*
-
-**Size**: `123` lines (`4785` bytes)
-
-**Functions:**
-- `def run_water_marcus_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_pressure_report.py`](phenomenology/water_pressure_report.py)
-> *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
-
-**Size**: `139` lines (`5682` bytes)
-
-**Functions:**
-- `def run_water_pressure_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_rays_report.py`](phenomenology/water_rays_report.py)
-> *Radial ray report at the shallow-water horizon (claim 30, ADR-021).*
-
-**Size**: `159` lines (`5144` bytes)
-
-**Functions:**
-- `def run_water_rays_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_reorganization_report.py`](phenomenology/water_reorganization_report.py)
-> *Water reorganization and the VDE-optical difference (claim 38, ADR-029).*
-
-**Size**: `140` lines (`5810` bytes)
-
-**Functions:**
-- `def run_water_reorganization_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_scattering_report.py`](phenomenology/water_scattering_report.py)
-> *1D water-wave scattering report (claim 31, ADR-022).*
-
-**Size**: `116` lines (`3701` bytes)
-
-**Functions:**
-- `def run_water_scattering_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_softwall_report.py`](phenomenology/water_softwall_report.py)
-> *Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027).*
-
-**Size**: `155` lines (`6513` bytes)
-
-**Functions:**
-- `def run_water_softwall_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_temperature_report.py`](phenomenology/water_temperature_report.py)
-> *Temperature-dependent Born cavity (claim 41, ADR-032).*
-
-**Size**: `186` lines (`8197` bytes)
-
-**Functions:**
-- `def run_water_temperature_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_twocomponent_report.py`](phenomenology/water_twocomponent_report.py)
-> *Two-component band-model comparison (claim 45, ADR-037).*
-
-**Size**: `116` lines (`4182` bytes)
-
-**Functions:**
-- `def run_water_twocomponent_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_validity_report.py`](phenomenology/water_validity_report.py)
-> *Capillary validity report for the shallow-water horizon (claim 28, ADR-019).*
-
-**Size**: `116` lines (`4314` bytes)
-
-**Functions:**
-- `def _row(flow_rate)`
-- `def run_water_validity_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_vde_report.py`](phenomenology/water_vde_report.py)
-> *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
-
-**Size**: `150` lines (`6386` bytes)
-
-**Functions:**
-- `def run_water_vde_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/water_well_report.py`](phenomenology/water_well_report.py)
-> *Finite spherical well for the hydrated electron (claim 33, ADR-024).*
-
-**Size**: `169` lines (`7064` bytes)
-
-**Functions:**
-- `def run_water_well_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/widened_ritz_report.py`](phenomenology/widened_ritz_report.py)
-> *Ritz-widened squared-Hermite trial BVP (claim 59, ADR-051).*
-
-**Size**: `360` lines (`12612` bytes)
-
-**Functions:**
-- `def _analytic_bridge_J(problem)`
-- `def run_widened_ritz_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/yasue_action_report.py`](phenomenology/yasue_action_report.py)
-> *Pinned-endpoint Yasue-bridge action stationarity (claim 57, ADR-049).*
-
-**Size**: `298` lines (`10973` bytes)
-
-**Functions:**
-- `def run_yasue_action_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/yasue_bridge_report.py`](phenomenology/yasue_bridge_report.py)
-> *Pinned-endpoint Yasue bridge: the c<0 Pinney analytic family (claim 56, ADR-048).*
-
-**Size**: `322` lines (`11670` bytes)
-
-**Functions:**
-- `def _load_arc_profile()`
-- `def run_yasue_bridge_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/yasue_center_report.py`](phenomenology/yasue_center_report.py)
-> *Yasue center-width discriminator (claim 55, ADR-047).*
-
-**Size**: `233` lines (`8557` bytes)
-
-**Functions:**
-- `def run_yasue_center_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`phenomenology/yasue_dynamics_report.py`](phenomenology/yasue_dynamics_report.py)
-> *Yasui dynamical discriminator check (claim 52, ADR-044).*
-
-**Size**: `167` lines (`6053` bytes)
-
-**Functions:**
-- `def run_yasue_dynamics_check(write)`
-- `def render_markdown(payload)`
-
----
-
-### [`sims/__init__.py`](sims/__init__.py)
-> *Simulation package: validated 1D core and bounded 3D diagnostics.*
-
-**Size**: `1` lines (`72` bytes)
-
----
-
-### [`sims/convergence.py`](sims/convergence.py)
-> *Resolution comparison for the claim-15 production scan (ADR-002).*
-
-**Size**: `218` lines (`8429` bytes)
-
-**Functions:**
-- `def _require_same_problem(low, high)`
-- `def compare_scans(low, high)` - *Compare a coarse and a fine production payload at the same physical time.*
-- `def compare_temporal(coarse, fine)` - *Compare two N=64 payloads at the same physical time but different dt.*
-- `def summarize_trend(rows, z3_target, force_tol)` - *Summarise a multi-chunk trend and project the two claim-15 thresholds.*
-
----
-
-### [`sims/core.py`](sims/core.py)
-> *Validated 1D core for the Z3 sine-Gordon sector.*
-
-**Size**: `210` lines (`6823` bytes)
-
-**Functions:**
-- `def grid(length, n)`
-- `def potential(phi, mu)`
-- `def potential_prime(phi, mu)`
-- `def potential_second(phi, mu)`
-- `def analytic_kink(x, mu, x0)`
-- `def kink_tension(mu)`
-- `def energy(phi, dx, mu)`
-- `def force(phi, dx, mu)` - *- (1/dx) dE/dphi on interior nodes; boundaries are fixed.*
-- `def gradient_error(phi, dx, mu, eps)` - *Max relative error between the analytic force and a central difference.*
-- `def gradient_flow(phi, dx, mu, dt, steps)` - *Explicit Euler flow dphi/dt = force; boundaries fixed.*
-- `def relax_kink(phi, dx, mu, tolerance)` - *Minimise the discrete energy on interior nodes (L-BFGS-B).*
-- `def hessian(phi, dx, mu)` - *Hessian of E/dx on interior nodes (Dirichlet boundaries).*
-- `def kink_convergence(mu, length, sizes)`
-- `def rotor_crosscheck()`
-
----
-
-### [`sims/core3d.py`](sims/core3d.py)
-> *3D JAX pilot: E2 + Skyrme E4 + a Z3 azimuthal potential.*
-
-**Size**: `221` lines (`7762` bytes)
-
-**Functions:**
-- `def normalize(field)`
-- `def energy_terms(field, dx, mu, K, kappa)`
-- `def energy(field, dx, K, kappa, mu)`
-- `def z3_order(field)`
-- `def relax(field, dx, mu, steps, dt, K, kappa, fix_boundary)`
-- `def gradient_check(n, length, mu, eps)`
-- `def convergence_scan(n, length, mu, steps_values, dt)` - *Show that the N=32 pilot is not converged in step count.*
-- `def pilot_scan(n, length, mu_values, steps, dt)`
-
----
-
-### [`sims/production.py`](sims/production.py)
-> *Production scan for claim 15: E2 + Skyrme E4 + Z3 potential.*
-
-**Size**: `299` lines (`11517` bytes)
-
-**Functions:**
-- `def spectral_upsample(field, factor)` - *Band-limited upsampling of a periodic real field by an integer factor.*
-- `def field_metrics(field, dx, mu, upsample_factor)` - *Energy, topology and smoothness of one field.*
-- `def run_stage(field, dx, mu, steps, dt, deadline)` - *Relax for ``steps`` steps and record the smallest pre-normalization norm.*
-- `def run_production(n, length, mu, steps, dt, seed, perturbation, upsample_factor, chunk, max_wall_seconds, initial_field, return_field)` - *Run one deterministic production scan and apply the acceptance criteria.*
-
----
-
-### [`sims/scale_iteration.py`](sims/scale_iteration.py)
-> *Damped scale iteration toward a stationary Faddeev-Niemi Hopfion.*
-
-**Size**: `95` lines (`3482` bytes)
-
-**Functions:**
-- `def rescale_field(field, dx, length, scale)`
-- `def run_scale_iteration(n, length, iterations, steps, dt)`
-
----
-
-### [`sims/stability.py`](sims/stability.py)
-> *Tangent-space Hessian of the 3D Faddeev-Niemi + Z3 energy.*
-
-**Size**: `381` lines (`13687` bytes)
-
-**Functions:**
-- `def tangent_basis(field)` - *Return two orthonormal tangent vectors at every interior site.*
-- `def build_candidate(n, length, iterations, steps, dt)` - *Damped scale iteration, returning the snapshot with the smallest |virial|.*
-- `def _dense_tangent_hessian(field, dx, e1, e2)` - *Dense Hessian of the energy restricted to the tangent basis (N<=8 only).*
-- `def tangent_operator(field, dx, e1, e2)` - *Matrix-free Hessian on the two-dimensional tangent space of each site.*
-- `def validate_operator(n, length, steps, dt, k)` - *Compare the matrix-free operator with the dense tangent Hessian.*
-- `def hessian_spectrum(field, dx, k, e1, e2)` - *Low-lying eigenvalues of the tangent-space Hessian.*
-- `def classify_escape(attempts, note)` - *Summarise a saddle-escape search without promoting beyond one grid.*
-- `def hessian_modes(field, dx, k, e1, e2)` - *Lowest tangent eigenpairs, with each eigenvector mapped back to a field.*
-- `def normalize_mode(mode)` - *Scale a tangent mode to unit RMS over the interior.*
-- `def perturb_along_mode(field, mode, amplitude)` - *Add a normalized tangent mode and renormalize every site.*
-- `def classify_candidate(validation, spectrum)` - *Classify one candidate's Hessian without overstating the result.*
-- `def run_stability_check(n, length, iterations, steps, dt, k, validate_n)` - *Build the scale-stationary candidate and compute its tangent Hessian.*
-
----
-
-### [`sims/water_scattering.py`](sims/water_scattering.py)
-> *1D shallow-water wave scattering at an acoustic horizon (claim 31, ADR-022).*
-
-**Size**: `146` lines (`4959` bytes)
-
-**Functions:**
-- `def horizon_flow(x, c, length)`
-- `def uniform_flow(x, c, fraction)`
-- `def initial_packet(x, center, width, c, depth)`
-- `def sponge_profile(x, length, fraction)`
-- `def energy_density(eta, u, depth, gravity)`
-- `def simulate(flow, n, length, depth, center, width, t_max, dt, sponge_fraction, sponge_strength, gravity)`
-
----
-
-### [`tests/__init__.py`](tests/__init__.py)
-**Size**: `0` lines (`0` bytes)
-
----
-
-### [`tests/test_circulant.py`](tests/test_circulant.py)
-> *Tests for claims 1-2: circulant eigenvalues, Q identity, Hermiticity, DFT vectors.*
-
-**Size**: `163` lines (`5124` bytes)
-
-**Functions:**
-- `def test_symbolic_eigenvalues()`
-- `def test_hermitian_not_symmetric()`
-- `def test_dft_eigenvectors()`
-- `def test_q_identity_symbolic()`
-- `def test_q_identity_numeric()`
-- `def test_extract_roundtrip()`
-- `def test_koide_condition()`
-- `def test_sign_caveat()`
-- `def test_bound_half_is_false()`
-- `def test_fit_masses_exact()`
-- `def test_koide_tau_prediction()`
-- `def test_property_q_identity(a, c, delta)`
-- `def test_property_fit(m1, m2, m3)`
-
----
-
-### [`tests/test_coherent_fluid.py`](tests/test_coherent_fluid.py)
-> *Moving-center Gaussian reduction tests (claim 23).*
-
-**Size**: `64` lines (`1887` bytes)
-
-**Functions:**
-- `def test_center_follows_the_classical_oscillator()`
-- `def test_width_stays_at_the_fixed_point()`
-- `def test_displaced_width_oscillates_with_energy_conservation()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_convergence.py`](tests/test_convergence.py)
-> *Resolution-comparison tests for claim 15 (ADR-002).*
-
-**Size**: `216` lines (`6911` bytes)
-
-**Functions:**
-- `def _scan(n, *, h, h_up, z3, force, bond)`
-- `def test_compare_scans_accepts_a_converging_pair()`
-- `def test_compare_scans_flags_a_native_H_regression()`
-- `def test_compare_scans_flags_force_or_bond_regression()`
-- `def test_compare_scans_requires_the_same_physical_problem()`
-- `def test_compare_scans_never_promotes_the_claim()`
-- `def _temporal(n, steps, dt, *, h, h_up, z3, force, bond)`
-- `def test_compare_temporal_accepts_a_converged_pair()`
-- `def test_compare_temporal_flags_a_Z3_difference()`
-- `def test_compare_temporal_requires_the_same_physical_time()`
-- `def test_compare_temporal_requires_the_same_resolution()`
-- `def test_compare_temporal_never_promotes_the_claim()`
-- `def _trend_row(steps, t, z3, force)`
-- `def test_summarize_trend_projects_the_thresholds()`
-- `def test_summarize_trend_handles_saturation_and_no_projection()`
-- `def test_summarize_trend_requires_two_rows()`
-
----
-
-### [`tests/test_delta_search.py`](tests/test_delta_search.py)
-> *Tests for the delta closed-form search (claim 9).*
-
-**Size**: `31` lines (`1000` bytes)
-
-**Functions:**
-- `def test_two_ninths_is_in_the_prior()`
-- `def test_all_candidates_are_in_range_and_unique()`
-- `def test_search_finds_two_ninths_and_does_not_promote()`
-
----
-
-### [`tests/test_derrick.py`](tests/test_derrick.py)
-> *Derrick scaling tests for claim 14.*
-
-**Size**: `86` lines (`2596` bytes)
-
-**Functions:**
-- `def test_exponents_in_three_dimensions()`
-- `def test_virial_relation()`
-- `def test_scaling_energy_derivative_matches_virial()`
-- `def test_zero_potential_minimizer()`
-- `def test_positive_potential_minimizer_is_stable()`
-- `def test_no_skyrme_means_no_scaling_minimum()`
-- `def test_negative_skyrme_is_unbounded()`
-- `def test_positive_skyrme_region_and_no_existence_claim()`
-- `def test_symbolic_virial_identity()`
-
----
-
-### [`tests/test_excited_fluid.py`](tests/test_excited_fluid.py)
-> *First-excited-state node tests (claim 24).*
-
-**Size**: `69` lines (`1834` bytes)
-
-**Functions:**
-- `def _grid(n, length)`
-- `def test_density_is_normalized()`
-- `def test_regular_quantum_pressure()`
-- `def test_phase_slip_and_gradient()`
-- `def test_phase_gradient_scales_as_inverse_dx()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_field_variation.py`](tests/test_field_variation.py)
-> *Unstructured field variation tests (claim 58).*
-
-**Size**: `101` lines (`3145` bytes)
-
-**Functions:**
-- `def test_gradient_matches_finite_differences()`
-- `def test_quantum_and_classical_banks_are_frozen()`
-- `def test_classical_closed_form_matches_quadrature()`
-- `def test_field_action_on_bridge_matches_bank()`
-- `def test_mass_conserved_and_positive()`
-- `def test_field_verdict_holds()`
-
----
-
-### [`tests/test_fit.py`](tests/test_fit.py)
-> *Regression tests for the PDG pole-mass fit.*
-
-**Size**: `59` lines (`2198` bytes)
-
-**Functions:**
-- `def test_pdg_input_values()`
-- `def test_fit_regression_numbers()`
-- `def test_fit_is_exact_by_construction()`
-- `def test_monte_carlo_is_reproducible()`
-- `def test_two_thirds_is_inside_one_sigma_of_pole_fit()`
-- `def test_tau_prediction_consistency()`
-
----
-
-### [`tests/test_frank_oseen.py`](tests/test_frank_oseen.py)
-> *Frank-Oseen mode and dispersion checks (claim 10).*
-
-**Size**: `62` lines (`1945` bytes)
-
-**Functions:**
-- `def test_symbolic_hessian_matches_numeric_matrix()`
-- `def test_one_constant_is_isotropic()`
-- `def test_axis_dispersions_for_unequal_constants()`
-- `def test_anisotropy_zero_for_equal_constants_positive_for_unequal()`
-- `def test_mode_count_and_no_photon()`
-- `def test_equal_constant_dispersion_formula()`
-
----
-
-### [`tests/test_gaussian_bridge.py`](tests/test_gaussian_bridge.py)
-> *Fixed-endpoint Gaussian bridge tests (claim 54).*
-
-**Size**: `97` lines (`2947` bytes)
-
-**Functions:**
-- `def test_pinney_coefficients_match_quadratic()`
-- `def test_newton_finds_only_pinney_branches()`
-- `def test_both_branches_are_attained()`
-- `def test_jacobi_primary_has_no_conjugate_point()`
-- `def test_action_matches_analytic_quadrature()`
-- `def test_scaling_preserves_two_branches()`
-- `def test_bridge_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_gaussian_fluid.py`](tests/test_gaussian_fluid.py)
-> *Gaussian Madelung reduction tests (claim 22).*
-
-**Size**: `73` lines (`2054` bytes)
-
-**Functions:**
-- `def test_fixed_point_is_the_quantum_width()`
-- `def test_effective_potential_has_a_minimum_at_the_quantum_width()`
-- `def test_ermakov_oscillates_around_the_fixed_point()`
-- `def test_energy_is_conserved()`
-- `def test_width_scaling()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_hopf.py`](tests/test_hopf.py)
-> *Hopf-charge estimator tests (claim 15, baseline 4).*
-
-**Size**: `56` lines (`1968` bytes)
-
-**Functions:**
-- `def test_hopf_map_is_unit_and_boundary_condition()`
-- `def test_preimage_linking_converges_to_one()`
-- `def test_reflection_flips_sign_and_rotation_shear_preserve()`
-- `def test_grid_integral_matches_known_answer()`
-
----
-
-### [`tests/test_hopf_resolution.py`](tests/test_hopf_resolution.py)
-> *Hopf grid-resolution tests.*
-
-**Size**: `21` lines (`861` bytes)
-
-**Functions:**
-- `def test_resolution_converges_and_flags_coarse_grids()`
-
----
-
-### [`tests/test_hopfion.py`](tests/test_hopfion.py)
-> *Static finite-energy H=1 configuration tests (claim 14b).*
-
-**Size**: `41` lines (`1453` bytes)
-
-**Functions:**
-- `def test_energy_is_positive_and_h1()`
-- `def test_scaling_virial_and_minimum()`
-- `def test_convergence_and_no_stability_claim()`
-
----
-
-### [`tests/test_hopfion3d.py`](tests/test_hopfion3d.py)
-> *3D E2+E4+Z3 pilot tests (claim 15).*
-
-**Size**: `48` lines (`1428` bytes)
-
-**Functions:**
-- `def test_gradient_matches_finite_difference()`
-- `def test_z3_order_limits()`
-- `def test_energy_terms_are_positive()`
-- `def test_small_pilot_no_coexistence()`
-
----
-
-### [`tests/test_hydrogen_fluid.py`](tests/test_hydrogen_fluid.py)
-> *Hydrogen 1s Madelung reduction tests (claim 25).*
-
-**Size**: `56` lines (`1467` bytes)
-
-**Functions:**
-- `def test_bohr_radius_atomic_units()`
-- `def test_density_is_normalized()`
-- `def test_force_balance_vanishes_at_the_bohr_radius()`
-- `def test_force_balance_is_nonzero_at_the_wrong_radius()`
-- `def test_si_values()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_hydrogen_vortex.py`](tests/test_hydrogen_vortex.py)
-> *Hydrogen 2p vortex tests (claim 26).*
-
-**Size**: `48` lines (`1367` bytes)
-
-**Functions:**
-- `def test_radial_probability_is_normalized()`
-- `def test_most_probable_radius_is_four_bohr_radii()`
-- `def test_circulation_is_quantized()`
-- `def test_azimuthal_velocity_and_angular_momentum()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_lorentz.py`](tests/test_lorentz.py)
-> *Residual anisotropy and LV-bound tests (claims 11-12).*
-
-**Size**: `57` lines (`1999` bytes)
-
-**Functions:**
-- `def test_equal_K_is_isotropic()`
-- `def test_unequal_K_has_order_one_anisotropy()`
-- `def test_bounds_are_marked_not_directly_applicable()`
-- `def test_conditional_bound_excludes_order_one_anisotropy()`
-- `def test_verdict_downgrades_claims_11_and_12()`
-
----
-
-### [`tests/test_madelung.py`](tests/test_madelung.py)
-> *Madelung fluid dictionary tests (claim 20).*
-
-**Size**: `95` lines (`2779` bytes)
-
-**Functions:**
-- `def _grid(n, length)`
-- `def test_free_gaussian_density_matches_exact()`
-- `def test_coherent_state_density_matches_exact()`
-- `def test_quantum_potential_of_a_gaussian()`
-- `def test_exact_gaussian_satisfies_the_euler_equation()`
-- `def test_fluid_residuals_are_small()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_nelson.py`](tests/test_nelson.py)
-> *Nelson stochastic kinematics tests (claim 21).*
-
-**Size**: `61` lines (`1770` bytes)
-
-**Functions:**
-- `def test_ground_state_width()`
-- `def test_ou_stationary_variance()`
-- `def test_ou_histogram_matches_ground_state()`
-- `def test_free_packet_drift_at_zero()`
-- `def test_free_packet_histogram_matches_exact()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_nelson_closure.py`](tests/test_nelson_closure.py)
-> *Osmotic-closure no-go tests (claim 48).*
-
-**Size**: `75` lines (`2073` bytes)
-
-**Functions:**
-- `def test_residual_scales_as_dx_squared()`
-- `def test_residual_decreases_monotonically()`
-- `def test_sigma_map_is_identity()`
-- `def test_sigma_map_error_is_flat_not_contracting()`
-- `def test_closure_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_neutrinos.py`](tests/test_neutrinos.py)
-> *Neutrino Q_nu scan tests (claim 7a).*
-
-**Size**: `65` lines (`2049` bytes)
-
-**Functions:**
-- `def test_normal_ordering_mass_formula()`
-- `def test_inverted_ordering_mass_formula()`
-- `def test_q_nu_regression_values()`
-- `def test_scan_never_reaches_two_thirds()`
-- `def test_three_sigma_corners_stay_below_two_thirds()`
-- `def test_q_nu_matches_generic_mass_ratio()`
-
----
-
-### [`tests/test_node_defect.py`](tests/test_node_defect.py)
-> *Two-branch defect representation tests (claim 46).*
-
-**Size**: `68` lines (`1944` bytes)
-
-**Functions:**
-- `def test_branch_identities_are_exact()`
-- `def test_node_scaling_meets_kill_gate()`
-- `def test_vortex_gate_is_quantized()`
-- `def test_representation_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_pmns.py`](tests/test_pmns.py)
-> *Minimal circulant PMNS branches (claim 7b).*
-
-**Size**: `32` lines (`1168` bytes)
-
-**Functions:**
-- `def test_identity_has_no_mixing()`
-- `def test_dft_is_trimaximal()`
-- `def test_both_branches_excluded_and_claim_ill_posed()`
-
----
-
-### [`tests/test_predictions.py`](tests/test_predictions.py)
-> *New-prediction audit tests (claim 16).*
-
-**Size**: `20` lines (`680` bytes)
-
-**Functions:**
-- `def test_candidate_table_is_complete()`
-- `def test_no_new_prediction_is_found()`
-
----
-
-### [`tests/test_production.py`](tests/test_production.py)
-> *Production-scan smoke tests (claim 15).*
-
-**Size**: `107` lines (`3173` bytes)
-
-**Functions:**
-- `def test_spectral_upsample_preserves_analytic_charge()`
-- `def test_run_stage_matches_relax()`
-- `def test_production_verdict_shape()`
-- `def test_production_enforces_wall_clock_limit()`
-- `def test_run_production_resumes_from_a_field_exactly()`
-- `def test_run_production_validates_initial_field_and_hides_it_by_default()`
-
----
-
-### [`tests/test_purefn_stability.py`](tests/test_purefn_stability.py)
-> *Pure-FN candidate Hessian classification tests (claims 14b/14d).*
-
-**Size**: `36` lines (`1199` bytes)
-
-**Functions:**
-- `def test_classify_candidate_accepts_a_local_minimum()`
-- `def test_classify_candidate_rejects_a_saddle()`
-- `def test_classify_candidate_requires_a_validated_operator()`
-
----
-
-### [`tests/test_quarks.py`](tests/test_quarks.py)
-> *Quark Koide ratios from full-SM MS-bar masses (claim 8).*
-
-**Size**: `38` lines (`1174` bytes)
-
-**Functions:**
-- `def test_data_has_six_scales()`
-- `def test_mz_regression_values()`
-- `def test_direct_extension_falsified()`
-- `def test_ranges_are_scale_dependent()`
-
----
-
-### [`tests/test_radial_node.py`](tests/test_radial_node.py)
-> *Hydrogen-2s radial-node representation tests (claim 47).*
-
-**Size**: `77` lines (`2173` bytes)
-
-**Functions:**
-- `def test_branch_identities_are_exact()`
-- `def test_norm_overlap_and_peaks()`
-- `def test_radius_comes_from_derived_bohr_radius()`
-- `def test_preserved_1s_2p_numbers_hold()`
-- `def test_representation_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_reduction.py`](tests/test_reduction.py)
-> *Dimensional-reduction and moment-of-inertia tests (claim 6b).*
-
-**Size**: `52` lines (`1635` bytes)
-
-**Functions:**
-- `def test_wall_tension_and_bound()`
-- `def test_moment_convergence_criterion()`
-- `def test_numeric_moment_log_and_power()`
-- `def test_verdict_downgrades_exact_reduction()`
-
----
-
-### [`tests/test_rg.py`](tests/test_rg.py)
-> *Regression tests and cross-checks for the one-loop SM lepton running.*
-
-**Size**: `127` lines (`4749` bytes)
-
-**Functions:**
-- `def payload()`
-- `def test_rhs_returns_log_derivatives()`
-- `def test_initial_state_sanity()`
-- `def test_published_conversion_reproduced()`
-- `def test_q_of_converted_pole_masses_matches_literature(payload)`
-- `def test_msbar_q_at_mz_is_not_two_thirds(payload)`
-- `def test_exact_invariance_is_false(payload)`
-- `def test_drift_is_small(payload)`
-- `def test_shape_only_approximation_is_close_but_not_exact(payload)`
-- `def test_high_scale_literature_agreement(payload)`
-- `def test_observables_use_sqrt_masses()`
-
----
-
-### [`tests/test_rotor.py`](tests/test_rotor.py)
-> *Rotor, sector-degeneracy, and domain-wall tests (claim 5).*
-
-**Size**: `117` lines (`4427` bytes)
-
-**Functions:**
-- `def test_hamiltonian_is_symmetric_and_banded()`
-- `def test_sector_degeneracy_is_exact()`
-- `def test_free_rotor_limit()`
-- `def test_truncation_convergence()`
-- `def test_fourier_and_grid_agree_in_continuum()`
-- `def test_both_map_signs_give_two_distinct_roots()`
-- `def test_naive_map_cannot_give_three_distinct_masses()`
-- `def test_domain_wall_tension_analytic_and_quadrature()`
-- `def test_energy_scales_with_mu()`
-
----
-
-### [`tests/test_rotor_potential.py`](tests/test_rotor_potential.py)
-> *Real Z3 rotor potential tests (claim 19).*
-
-**Size**: `46` lines (`1389` bytes)
-
-**Functions:**
-- `def test_zero_flux_real_potential_is_degenerate()`
-- `def test_fractional_flux_splits_the_sectors()`
-- `def test_scan_is_falsified()`
-- `def test_invalid_inputs_are_rejected()`
-- `def test_second_harmonic_does_not_force_a_large_spread()`
-
----
-
-### [`tests/test_rotor_sector.py`](tests/test_rotor_sector.py)
-> *Sector validation: only 0, 1, 2 select distinct Fourier sectors.*
-
-**Size**: `20` lines (`801` bytes)
-
-**Functions:**
-- `def test_rotor_sector_out_of_range_raises()`
-- `def test_rotor_potential_sector_out_of_range_raises()`
-
----
-
-### [`tests/test_run_all_docs.py`](tests/test_run_all_docs.py)
-> *Regression: run_all docstring must list every result file it writes.*
-
-**Size**: `40` lines (`1034` bytes)
-
-**Functions:**
-- `def test_run_all_docstring_lists_every_result()`
-
----
-
-### [`tests/test_saddle_escape.py`](tests/test_saddle_escape.py)
-> *Saddle-escape mode tests (claim 14b/ADR-006).*
-
-**Size**: `69` lines (`2263` bytes)
-
-**Functions:**
-- `def test_hessian_modes_returns_a_tangent_field()`
-- `def test_perturb_along_mode_preserves_norm_and_boundary()`
-- `def test_perturb_along_mode_rejects_invalid_inputs()`
-- `def test_classify_escape_finds_a_local_minimum()`
-- `def test_classify_escape_keeps_the_claim_unverified()`
-
----
-
-### [`tests/test_scale_iteration.py`](tests/test_scale_iteration.py)
-> *Scale-iteration candidate tests.*
-
-**Size**: `31` lines (`1143` bytes)
-
-**Functions:**
-- `def test_rescale_preserves_unit_norm_and_boundary()`
-- `def test_smoke_scale_iteration()`
-
----
-
-### [`tests/test_sim_core.py`](tests/test_sim_core.py)
-> *1D simulation-core baselines (claim 15, validation only).*
-
-**Size**: `87` lines (`2704` bytes)
-
-**Functions:**
-- `def test_analytic_kink_limits_and_tension()`
-- `def test_kink_energy_converges_quadratically()`
-- `def test_gradient_matches_finite_difference()`
-- `def test_gradient_flow_decreases_energy()`
-- `def test_relaxed_hessian_is_symmetric_and_stable()`
-- `def test_rotor_fourier_and_grid_agree()`
-- `def test_report_makes_no_production_claim()`
-
----
-
-### [`tests/test_stability.py`](tests/test_stability.py)
-> *Tangent-space Hessian tests (claim 14d).*
-
-**Size**: `46` lines (`1579` bytes)
-
-**Functions:**
-- `def test_tangent_basis_is_orthonormal()`
-- `def test_dense_validation_passes()`
-- `def test_spectrum_uses_tangent_dimension()`
-
----
-
-### [`tests/test_topology.py`](tests/test_topology.py)
-> *Nematic topology tests (claim 13).*
-
-**Size**: `33` lines (`1148` bytes)
-
-**Functions:**
-- `def test_homotopy_groups_are_recorded()`
-- `def test_no_z3_factor_in_rp2()`
-- `def test_standard_extensions_do_not_derive_z3()`
-- `def test_verdict_and_json_shape()`
-
----
-
-### [`tests/test_two_state.py`](tests/test_two_state.py)
-> *Shared-lambda two-state Marcus assignment (claim 44).*
-
-**Size**: `92` lines (`2974` bytes)
-
-**Functions:**
-- `def test_shared_lambda_gives_identical_widths()`
-- `def test_ratio_prediction_is_t_independent()`
-- `def test_observed_component_ratio()`
-- `def test_kill_threshold_is_frozen()`
-- `def test_comparison_falsifies_shared_lambda_assignment()`
-- `def test_two_state_scales_use_frozen_lambda()`
-
----
-
-### [`tests/test_variational_center.py`](tests/test_variational_center.py)
-> *Center+width co-emergence tests (claim 53).*
-
-**Size**: `94` lines (`2576` bytes)
-
-**Functions:**
-- `def test_joint_extremum_is_constant_path()`
-- `def test_mixed_start_converges_to_rest()`
-- `def test_center_period_is_two_pi()`
-- `def test_width_period_is_pi()`
-- `def test_term_match_is_exact()`
-- `def test_scaling_gives_pi_and_half_pi()`
-- `def test_coemergence_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_variational_dynamics.py`](tests/test_variational_dynamics.py)
-> *Variational dynamics tests (claim 51).*
-
-**Size**: `96` lines (`2707` bytes)
-
-**Functions:**
-- `def test_discrete_extremum_is_constant_path()`
-- `def test_el_residual_at_constant_path()`
-- `def test_release_period_is_pi()`
-- `def test_term_match_is_exact()`
-- `def test_scaling_period_is_pi_over_two()`
-- `def test_dynamics_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_variational_saddle.py`](tests/test_variational_saddle.py)
-> *2D Ritz saddle tests (claim 50).*
-
-**Size**: `107` lines (`3292` bytes)
-
-**Functions:**
-- `def test_saddle_location_is_half_zero()`
-- `def test_conditional_extremum_agrees_and_refines()`
-- `def test_box_maximum_sits_above_the_saddle()`
-- `def test_curvature_splits_max_min()`
-- `def test_slice_is_twice_the_1d_action()`
-- `def test_yasui_selects_rotation_not_width()`
-- `def test_scaling_point_holds()`
-- `def test_saddle_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_variational_width.py`](tests/test_variational_width.py)
-> *Gaussian Ritz width-selection tests (claim 49).*
-
-**Size**: `91` lines (`2697` bytes)
-
-**Functions:**
-- `def test_gm_extremum_is_half()`
-- `def test_gm_grid_agrees_with_analytic()`
-- `def test_gm_curvature_is_maximum()`
-- `def test_yasui_has_no_finite_extremum()`
-- `def test_scaling_law_holds()`
-- `def test_ritz_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_verify_compare.py`](tests/test_verify_compare.py)
-> *G-001: two-run verification must use two distinct tags.*
-
-**Size**: `10` lines (`260` bytes)
-
-**Functions:**
-- `def test_compare_rejects_identical_tags()`
-
----
-
-### [`tests/test_vortex_cascade.py`](tests/test_vortex_cascade.py)
-> *One-parameter vortex hierarchy tests (claim 18).*
-
-**Size**: `62` lines (`1845` bytes)
-
-**Functions:**
-- `def test_power_law_koide_root()`
-- `def test_geometric_cascade_is_falsified()`
-- `def test_power_law_muon_fit_is_falsified()`
-- `def test_all_one_parameter_hierarchies_fail()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_vortex_core.py`](tests/test_vortex_core.py)
-> *Finite-core node probe tests (claim 60).*
-
-**Size**: `44` lines (`1144` bytes)
-
-**Functions:**
-- `def test_eps0_is_predicted()`
-- `def test_core_velocity_capped()`
-- `def test_core_q_zero_closed_form()`
-- `def test_core_winding_and_q_converge()`
-
----
-
-### [`tests/test_vortex_loop.py`](tests/test_vortex_loop.py)
-> *2p core-threading loop probe tests (claim 61).*
-
-**Size**: `40` lines (`1215` bytes)
-
-**Functions:**
-- `def test_delta0_is_predicted()`
-- `def test_blob_fractions_match_frozen_values()`
-- `def test_floor_vmax_diverges_by_rule()`
-- `def test_loop_verdict_follows_gates()`
-
----
-
-### [`tests/test_vortex_particles.py`](tests/test_vortex_particles.py)
-> *Vortex-knot mass hypothesis tests (claim 17).*
-
-**Size**: `50` lines (`1417` bytes)
-
-**Functions:**
-- `def test_torus_knot_shapes_and_closure()`
-- `def test_koide_q_known_values()`
-- `def test_simple_vortex_spectrum_is_falsified()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_absorption.py`](tests/test_water_absorption.py)
-> *Bound-free absorption in the finite spherical well (claim 34).*
-
-**Size**: `73` lines (`2402` bytes)
-
-**Functions:**
-- `def test_bound_state_normalization()`
-- `def test_oscillator_strength_sum_rule()`
-- `def test_born_depth_continuum_peak()`
-- `def test_peak_moves_up_with_depth()`
-- `def test_required_extra_depth_for_1p7()`
-- `def test_oscillator_strength_below_threshold_is_zero()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_analogue.py`](tests/test_water_analogue.py)
-> *Shallow-water acoustic horizon tests (claim 27).*
-
-**Size**: `66` lines (`1852` bytes)
-
-**Functions:**
-- `def test_sound_speed()`
-- `def test_horizon_satisfies_v_equals_c()`
-- `def test_metric_sign_changes_across_the_horizon()`
-- `def test_surface_gravity_and_temperature()`
-- `def test_lab_scales()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_born_cavity.py`](tests/test_water_born_cavity.py)
-> *Self-consistent Born cavity synthesis (claim 39).*
-
-**Size**: `66` lines (`2302` bytes)
-
-**Functions:**
-- `def test_equilibrium_values()`
-- `def test_equilibrium_is_a_minimum()`
-- `def test_reorganization_synthesis()`
-- `def test_no_bound_1p()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_dispersive.py`](tests/test_water_dispersive.py)
-> *Dispersive shallow-water horizon tests (claim 29).*
-
-**Size**: `57` lines (`1517` bytes)
-
-**Functions:**
-- `def test_low_k_dispersion_and_group_velocity()`
-- `def test_low_frequency_horizon_approaches_the_long_wavelength_value()`
-- `def test_high_frequency_horizon_is_shifted_outward()`
-- `def test_capillary_frequency()`
-- `def test_horizon_wavenumber_solves_the_dispersion_condition()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_electron.py`](tests/test_water_electron.py)
-> *Hydrated-electron cavity scale tests (claim 32).*
-
-**Size**: `48` lines (`1426` bytes)
-
-**Functions:**
-- `def test_screened_hydrogen_scales()`
-- `def test_capillary_cavity_minimum()`
-- `def test_infinite_well_scales()`
-- `def test_hydrated_scale_summary()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_lineshape.py`](tests/test_water_lineshape.py)
-> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43).*
-
-**Size**: `133` lines (`4499` bytes)
-
-**Functions:**
-- `def test_gaussian_symmetry_is_exact()`
-- `def test_predicted_widths_match_temperature_scan()`
-- `def test_ratio_follows_sqrt_lambda_t()`
-- `def test_kill_thresholds_are_data()`
-- `def test_lineshape_scales_use_fixed_lambda()`
-- `def test_observed_width_slope_is_citable_value()`
-- `def test_observed_shape_needs_two_gaussians_plus_tail()`
-- `def test_comparison_kills_gaussian_shape_not_ratio()`
-- `def test_observed_scales_payload_shape()`
-
----
-
-### [`tests/test_water_marcus.py`](tests/test_water_marcus.py)
-> *Marcus band width from the water reorganization energy (claim 40).*
-
-**Size**: `58` lines (`1947` bytes)
-
-**Functions:**
-- `def test_width_at_300_k()`
-- `def test_width_scaling()`
-- `def test_gaussian_line_shape()`
-- `def test_marcus_scales()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_pressure.py`](tests/test_water_pressure.py)
-> *Self-consistent finite-well pressure balance (claim 37).*
-
-**Size**: `67` lines (`2161` bytes)
-
-**Functions:**
-- `def test_surface_energy_scale()`
-- `def test_equilibrium_at_born_depth()`
-- `def test_pressure_minimum_is_a_minimum()`
-- `def test_vde_matched_depth()`
-- `def test_capillary_radius_is_not_the_pressure_minimum()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_rays.py`](tests/test_water_rays.py)
-> *Radial ray tests at the water horizon (claim 30).*
-
-**Size**: `69` lines (`2022` bytes)
-
-**Functions:**
-- `def test_outgoing_speed_changes_sign_at_the_horizon()`
-- `def test_analytic_ray_time()`
-- `def test_numerical_ray_time_matches_analytic()`
-- `def test_peeling_rate_is_the_surface_gravity()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_reorganization.py`](tests/test_water_reorganization.py)
-> *Water reorganization and the VDE-optical difference (claim 38).*
-
-**Size**: `60` lines (`2172` bytes)
-
-**Functions:**
-- `def test_reorganization_at_capillary_radius()`
-- `def test_required_radius_for_the_observed_difference()`
-- `def test_reorganization_scales()`
-- `def test_pressure_balanced_radius_is_inconsistent()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_scattering.py`](tests/test_water_scattering.py)
-> *1D water-wave scattering tests (claim 31).*
-
-**Size**: `64` lines (`1551` bytes)
-
-**Functions:**
-- `def test_uniform_flow_transmits_the_packet()`
-- `def test_horizon_blocks_the_packet()`
-- `def test_initial_packet_and_sponge_shapes()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_softwall.py`](tests/test_water_softwall.py)
-> *Soft-wall cavity and the hard VDE depth bound (claim 36).*
-
-**Size**: `67` lines (`2314` bytes)
-
-**Functions:**
-- `def test_square_limit_matches_claim_35()`
-- `def test_born_depth_cannot_bind_the_vde()`
-- `def test_soft_wall_solution_at_one_angstrom()`
-- `def test_softness_trades_radius_for_depth()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_temperature.py`](tests/test_water_temperature.py)
-> *Temperature-dependent Born cavity (claim 41).*
-
-**Size**: `105` lines (`3982` bytes)
-
-**Functions:**
-- `def test_water_properties()`
-- `def test_born_cavity_at_temperature()`
-- `def test_temperature_scales()`
-- `def test_no_bound_1p_at_any_temperature()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_twocomponent.py`](tests/test_water_twocomponent.py)
-> *Two-component band model vs observed side widths (claim 45).*
-
-**Size**: `74` lines (`2633` bytes)
-
-**Functions:**
-- `def test_side_widths_match_jou_freeman_fits()`
-- `def test_twocomponent_prediction_uses_fixed_inputs_only()`
-- `def test_comparison_kills_both_legs()`
-- `def test_thresholds_are_frozen()`
-
----
-
-### [`tests/test_water_validity.py`](tests/test_water_validity.py)
-> *Capillary validity tests for the shallow-water horizon (claim 28).*
-
-**Size**: `46` lines (`1296` bytes)
-
-**Functions:**
-- `def test_capillary_length_of_water()`
-- `def test_lab_example_is_capillary_dominated()`
-- `def test_larger_flow_reaches_the_long_wavelength_regime()`
-- `def test_minimum_flow_for_ten_capillary_lengths()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_vde.py`](tests/test_water_vde.py)
-> *VDE and 1.7 eV absorption constrain the finite well (claim 35).*
-
-**Size**: `67` lines (`2457` bytes)
-
-**Functions:**
-- `def test_depth_for_binding_at_required_radius()`
-- `def test_cavity_satisfies_both_observables()`
-- `def test_vde_uncertainty_band()`
-- `def test_minimal_cavity_is_outside_the_band()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_water_well.py`](tests/test_water_well.py)
-> *Finite spherical well for the hydrated electron (claim 33).*
-
-**Size**: `110` lines (`3628` bytes)
-
-**Functions:**
-- `def test_born_depth_at_the_capillary_radius()`
-- `def test_born_well_has_only_a_1s_state()`
-- `def test_deeper_well_binds_the_1p_state()`
-- `def test_threshold_depth_and_born_maximum_gap()`
-- `def test_infinite_well_transition_scale()`
-- `def test_born_depth_cannot_reach_1p7_ev()`
-- `def test_required_depth_at_three_point_two_angstrom()`
-- `def test_minimum_required_depth()`
-- `def test_invalid_inputs_are_rejected()`
-
----
-
-### [`tests/test_widened_ritz.py`](tests/test_widened_ritz.py)
-> *Ritz-widened trial class tests (claim 59).*
-
-**Size**: `105` lines (`3147` bytes)
-
-**Functions:**
-- `def test_hermite_basis_orthonormal()`
-- `def test_gradient_matches_finite_differences()`
-- `def test_k0_reproduces_trial_action()`
-- `def test_widened_verdict_holds()`
-- `def test_inputs_are_frozen()`
-- `def test_nu0_k0_matches_closed_form()`
-- `def test_reversal_needs_shape_modes()`
-
----
-
-### [`tests/test_yasue_action.py`](tests/test_yasue_action.py)
-> *Yasue-bridge action stationarity tests (claim 57).*
-
-**Size**: `134` lines (`4230` bytes)
-
-**Functions:**
-- `def test_action_densities_match_on_recorded_arc()`
-- `def test_classical_closed_form_value()`
-- `def test_nu0_action_matches_closed_form()`
-- `def test_probe_slopes_flat_two_shapes()`
-- `def test_scaling_action_pair_matches()`
-- `def test_b2_form_admits_no_action()`
-- `def test_action_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_yasue_bridge.py`](tests/test_yasue_bridge.py)
-> *Yasue-bridge analytic family tests (claim 56).*
-
-**Size**: `125` lines (`4213` bytes)
-
-**Functions:**
-- `def test_branch_coefficients_match_endpoint_algebra()`
-- `def test_b1_admissible_b2_killed_sibling()`
-- `def test_ode_identity_holds_term_by_term()`
-- `def test_fresh_newton_attains_and_matches_family()`
-- `def test_jacobi_zero_free_with_yasue_sign()`
-- `def test_scaling_preserves_branch_structure()`
-- `def test_nu_zero_limit_is_oscillator_bridge()`
-- `def test_bridge_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_yasue_center.py`](tests/test_yasue_center.py)
-> *Yasue center-width discriminator tests (claim 55).*
-
-**Size**: `129` lines (`3906` bytes)
-
-**Functions:**
-- `def test_yasue_static_residual_is_order_one()`
-- `def test_yasue_arc_attained_single_attractor()`
-- `def test_yasue_center_tracks_width_collapses()`
-- `def test_gm_twin_controls_the_apparatus()`
-- `def test_yasue_accel_negative_everywhere()`
-- `def test_quadrature_matches_verlet_at_mild_point()`
-- `def test_scaling_bounds_collapse()`
-- `def test_discriminator_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`tests/test_yasue_dynamics.py`](tests/test_yasue_dynamics.py)
-> *Yasui dynamical discriminator tests (claim 52).*
-
-**Size**: `85` lines (`2438` bytes)
-
-**Functions:**
-- `def test_yasui_collapses_with_no_return()`
-- `def test_gm_twin_controls_the_apparatus()`
-- `def test_yasui_accel_negative_everywhere()`
-- `def test_quadrature_matches_verlet_at_mild_point()`
-- `def test_scaling_bounds_collapse()`
-- `def test_discriminator_verdict_holds()`
-- `def test_inputs_are_frozen()`
-
----
-
-### [`theory/__init__.py`](theory/__init__.py)
-> *Exact theory utilities for the Z3/Koide core.*
-
-**Size**: `1` lines (`52` bytes)
-
----
-
-### [`theory/circulant.py`](theory/circulant.py)
-> *Exact algebra of the Hermitian 3x3 circulant mass matrix.*
-
-**Size**: `172` lines (`5563` bytes)
-
-**Functions:**
-- `def circulant_matrix(a, c, delta)` - *Return the Hermitian circulant M = circ(a, c e^{i delta}, c e^{-i delta}).*
-- `def eigenvalues(a, c, delta)` - *Signed eigenvalues of the Hermitian circulant, in the k = 0,1,2 order.*
-- `def dft_vectors()` - *Columns are the three DFT eigenvectors v_k, each normalised to unit norm.*
-- `def q_signed(x)` - *Q for signed square roots: sum(x^2) / (sum(x))^2.*
-- `def q_masses(m)` - *Physical Koide Q for positive masses.*
-- `def q_physical_from_roots(x)` - *Physical Q when x are signed square roots: sum(x^2) / (sum(|x|))^2.*
-- `def q_from_ac(a, c)` - *The algebraic identity Q = 1/3 + 2 c^2 / (3 a^2).*
-- `def extract_ac_delta(x)` - *Inverse DFT: return (a, c, delta) from three signed roots x_k.*
-- `def fit_masses(m)` - *Fit (a, c, delta) to positive masses and return Q, r, delta, residuals.*
-- `def koide_tau_prediction(m_e, m_mu)` - *Solve Q=2/3 for m_tau given m_e and m_mu.*
-- `def _sympy_symbols()`
-- `def circulant_symbolic()` - *Return (M, a, c, delta) as sympy objects.*
-- `def eigenvalues_symbolic()`
-- `def q_identity_symbolic()` - *Return the expression Q_signed - (1/3 + 2c^2/(3a^2)); simplifies to 0.*
-
----
-
-### [`theory/derrick.py`](theory/derrick.py)
-> *Derrick scaling for the exact Frank-Oseen + Skyrme + Z3 energy.*
-
-**Size**: `128` lines (`4684` bytes)
-
-**Functions:**
-- `def exponents(d)`
-- `def scaling_energy(lambda_, e2, e4, potential, d)`
-- `def virial(e2, e4, potential, d)`
-- `def second_derivative(e2, e4, potential, d)`
-- `def stationary_scale_squared(e2, e4, potential, d)` - *Return lambda^2 at the stationary point for d=3, or None if none exists.*
-- `def scaling_minimum(e2, e4, potential)`
-- `def stable_region(k, kappa, mu)` - *Necessary conditions for a stable scaling soliton in d=3.*
-- `def symbolic_virial()` - *Verify d/dlambda E(lambda) at lambda=1 equals the virial expression.*
-
----
-
-### [`theory/excited_fluid.py`](theory/excited_fluid.py)
-> *First excited state in the Madelung fluid (claim 24, ADR-015).*
-
-**Size**: `79` lines (`2609` bytes)
-
-**Functions:**
-- `def _sigma(omega, hbar, mass)`
-- `def excited_density(x, omega, hbar, mass)`
-- `def excited_wavefunction(x, omega, hbar, mass)`
-- `def excited_quantum_pressure_regular(x, omega, hbar, mass)` - *Regular part of Q away from the node; at x=0 the limit is returned.*
-- `def phase_slip(psi)`
-- `def phase_gradient_max(psi, dx)`
-- `def scaling_slope(dx_values, maxima)`
-
----
-
-### [`theory/field_variation.py`](theory/field_variation.py)
-> *Unstructured 1D fixed-endpoint-density G-M field variation (claim 58, ADR-050).*
-
-**Size**: `273` lines (`9949` bytes)
-
-**Classes:**
-- `class FieldProblem` - *Discrete G-M field action with exact flux elimination.*
-  - Method `.__init__(nx, nt, nu, omega, mass, x_lim, s0_factor)`
-  - Method `.unpack(phi)`
-  - Method `.action_and_gradient(phi)`
-  - Method `._dT(g_dr, dx)` - *Exact transpose of the central/one-sided difference operator.*
-  - Method `.optimize(start, maxiter)`
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def endpoint_densities(s0, sT, xc)`
-- `def bridge_widths(t, s0, omega)` - *Analytic G-M primary-branch widths for the (s0 -> sigma_q) ends.*
-- `def start_fields(kind, nt_interior, xc, dx, rho0, rhoT, sq)` - *Initial interior densities (mass-1 normalized slices).*
-
----
-
-### [`theory/frank_oseen.py`](theory/frank_oseen.py)
-> *Linearised Frank-Oseen director modes.*
-
-**Size**: `143` lines (`4577` bytes)
-
-**Functions:**
-- `def elastic_matrix(kx, ky, kz, k1, k2, k3)` - *2x2 elastic matrix for the two transverse director components.*
-- `def dispersion(kx, ky, kz, k1, k2, k3, rho)` - *omega^2 for the two transverse modes; rho is the effective inertia.*
-- `def equal_constant_dispersion(k, K, rho)` - *omega for K1=K2=K3=K: omega = sqrt(K/rho) |k|.*
-- `def anisotropy(direction, k1, k2, k3, rho)` - *Fractional split of the two omega^2 values at unit |k|.*
-- `def modes()` - *Mode counting and the photon question.*
-- `def symbolic_elastic_matrix()` - *Sympy Hessian of the quadratic form; equals the numeric matrix.*
-- `def symbolic_matches_numeric()`
-
----
-
-### [`theory/gaussian_bridge.py`](theory/gaussian_bridge.py)
-> *Fixed-endpoint Gaussian transport bridge (claim 54, ADR-046).*
-
-**Size**: `365` lines (`12616` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def pinney_coeffs(s0, sT, horizon_T, omega, hbar, mass)` - *Solve A (pinned start), then the quadratic for B, then C.*
-- `def pinney_path(coeffs, t_values, omega)`
-- `def jacobi_first_zero(sigma_of_t, omega, hbar, mass, t_end, n)` - *First conjugate zero of u'' + Q(t) u = 0 along a bridge path.*
-- `def newton_bridge(start_kind, omega, hbar, mass, n, steps)` - *Discrete-EL Newton solve with pinned endpoint densities.*
-- `def _discrete_residual(interior, omega, hbar, mass, dt, s0, sT)`
-- `def analytic_action(coeffs, omega, hbar, mass, n)` - *High-accuracy quadrature of the continuous action on a Pinney path.*
-- `def discrete_action(full_path, omega, hbar, mass, dt)` - *Same midpoint discrete action the Newton solver extremizes.*
-- `def match_to_branches(newton_interior, grid, branches, omega)` - *Max-abs deviation of a Newton result from each analytic branch.*
-- `def bridge_scales()` - *Collect the fixed-endpoint bridge bundle (no verdict).*
-- `def scaling_bundle()` - *omega = 2 mirror of the base bundle (same gates, rescaled horizon).*
-
----
-
-### [`theory/gaussian_fluid.py`](theory/gaussian_fluid.py)
-> *Gaussian reduction of the Madelung fluid (claim 22, ADR-013).*
-
-**Size**: `204` lines (`5881` bytes)
-
-**Functions:**
-- `def quantum_width(omega, hbar, mass)`
-- `def effective_potential(sigma, omega, hbar, mass)`
-- `def energy(sigma, sigma_dot, omega, hbar, mass)`
-- `def ermakov_rhs(sigma, sigma_dot, omega, hbar, mass)`
-- `def simulate(sigma0, sigma_dot0, omega, duration, hbar, mass, dt)`
-- `def coherent_rhs(state, omega, hbar, mass)` - *RHS for (x0, v0, sigma, sigma_dot) of the displaced Gaussian.*
-- `def coherent_energy(state, omega, hbar, mass)`
-- `def simulate_coherent(x0, v0, sigma0, sigma_dot0, omega, duration, hbar, mass, dt)`
-
----
-
-### [`theory/hopf.py`](theory/hopf.py)
-> *Hopf-charge estimators for the analytic H=1 map.*
-
-**Size**: `287` lines (`10923` bytes)
-
-**Functions:**
-- `def hopf_map(x, y, z)`
-- `def _target_of_quaternion(q)`
-- `def _jacobian(q)`
-- `def fiber_curve(base, samples, dphi)` - *Trace one fiber on S^3 by integrating the null space of dn, then stereographically project.*
-- `def linking_number(curve_a, curve_b)` - *Gauss linking integral for two closed curves.*
-- `def _bases()`
-- `def preimage_charge(samples)`
-- `def target_pair_charge(samples)`
-- `def reflection_charge(samples)`
-- `def rotation_charge(samples)`
-- `def shear_charge(samples)`
-- `def compactified_field(n, length, reflect)` - *Analytic map with a smooth vacuum window at the box boundary.*
-- `def spectral_derivatives(field, dx)` - *Return [d_x field, d_y field, d_z field] with spectral derivatives.*
-- `def chern_simons_charge(field, dx)` - *Normalized Chern-Simons charge for a compactified unit-vector field.*
-- `def grid_charge(n, length, reflect)` - *Normalized grid Chern-Simons integral for the analytic H=1 map.*
-- `def resolution_study(sizes, length)` - *Grid Chern-Simons charge vs resolution for the analytic H=1 map.*
-- `def validate()`
-
----
-
-### [`theory/hopfion.py`](theory/hopfion.py)
-> *Finite-energy H=1 configuration for the Faddeev-Niemi energy.*
-
-**Size**: `79` lines (`2916` bytes)
-
-**Functions:**
-- `def energies(n, length, K, kappa)`
-- `def scaling_study(sizes, length)`
-
----
-
-### [`theory/hydrogen_fluid.py`](theory/hydrogen_fluid.py)
-> *Hydrogen 1s Madelung reduction (claim 25, ADR-016).*
-
-**Size**: `95` lines (`2630` bytes)
-
-**Functions:**
-- `def bohr_radius(hbar, mass, coupling)`
-- `def ground_energy(radius, hbar, mass)`
-- `def hydrogen_density(r, radius)`
-- `def quantum_pressure(r, radius, hbar, mass)`
-- `def coulomb_potential(r, coupling)`
-- `def force_balance(r, radius, hbar, mass, coupling)` - *V + Q - mu; zero when radius is the Bohr radius.*
-- `def si_values()`
-
----
-
-### [`theory/hydrogen_radial_nodes.py`](theory/hydrogen_radial_nodes.py)
-> *Hydrogen-2s radial-node two-branch representation (claim 47, ADR-039).*
-
-**Size**: `151` lines (`5071` bytes)
-
-**Functions:**
-- `def radial_10(r, radius)` - *Hydrogen 1s radial function, normalized as int r^2 R^2 dr = 1.*
-- `def radial_20(r, radius)` - *Hydrogen 2s radial function, normalized as int r^2 R^2 dr = 1.*
-- `def radial_probability_20(r, radius)`
-- `def branch_split_20(r, radius)` - *Exact two-branch split of R_20; residual is zero by construction.*
-- `def node_position(radius)` - *Analytic nodal-shell radius (zero of the 2 - r/a0 factor).*
-- `def phase_slip_20(r, radius)` - *Phase jump across the shell from the sign of R_20 (0 or pi).*
-- `def overlap_10_20(radius)` - *1s-2s radial overlap integral (analytic: 0 for n != n').*
-- `def norm_20(radius)`
-- `def peak_radii_20(radius)` - *Analytic probability-peak radii (3 +- sqrt(5)) * a0.*
-- `def balance_preserved()` - *Frozen 1s/2p numbers recomputed through the shared modules.*
-- `def representation_scales()` - *Collect the representation correspondence bundle (no verdict).*
-
----
-
-### [`theory/hydrogen_vortex.py`](theory/hydrogen_vortex.py)
-> *Hydrogen 2p vortex identification (claim 26, ADR-017).*
-
-**Size**: `79` lines (`2246` bytes)
-
-**Functions:**
-- `def radial_2p(r, radius)` - *Hydrogen 2p radial function R_21(r), normalized as int r^2 R^2 dr = 1.*
-- `def radial_probability(r, radius)`
-- `def most_probable_radius(radius)`
-- `def azimuthal_velocity(r, theta, m, hbar, mass)`
-- `def circulation(m, hbar, mass)`
-- `def loop_circulation(r, theta, m, hbar, mass, samples)`
-- `def angular_momentum(m, hbar)`
-
----
-
-### [`theory/lorentz.py`](theory/lorentz.py)
-> *Linearised director dispersion and the emergent-metric question (claims 11-12).*
-
-**Size**: `185` lines (`6318` bytes)
-
-**Functions:**
-- `def elastic_matrix(k, k1, k2, k3)`
-- `def speeds(direction, k1, k2, k3, rho)`
-- `def residual_anisotropy(k1, k2, k3, rho, n_samples, seed)` - *Sample directions on the sphere and return the max fractional speed split.*
-- `def axis_speeds(k1, k2, k3, rho)`
-- `def verdict(k1, k2, k3)`
-- `def conditional_bound(k1, k2, k3)`
-
----
-
-### [`theory/madelung.py`](theory/madelung.py)
-> *Madelung fluid dictionary for the Schrodinger equation (claim 20, ADR-011).*
-
-**Size**: `194` lines (`6131` bytes)
-
-**Functions:**
-- `def _wave_numbers(n, dx)`
-- `def _derivative(values, k)`
-- `def split_step(psi, potential, dt, steps, dx, hbar, mass)` - *Strang split-step integration of the equivalent Schrodinger equation.*
-- `def fluid_fields(psi, dx, hbar, mass)` - *Return density, velocity and quantum pressure of a wavefunction.*
-- `def free_gaussian_density(x, t, sigma, hbar, mass)`
-- `def coherent_state_density(x, t, x0, omega, hbar, mass)`
-- `def continuity_residual(psi0, psi1, dt, dx, hbar, mass)`
-- `def free_gaussian_fields(x, t, sigma, hbar, mass)` - *Exact density, velocity and quantum pressure of a free Gaussian.*
-- `def euler_residual_fields(rho0, v0, q0, rho1, v1, q1, dt, dx, potential, mass, density_floor)` - *Relative Euler residual on the core where the density is resolved.*
-
----
-
-### [`theory/nelson.py`](theory/nelson.py)
-> *Nelson stochastic kinematics for the quantum fluid (claim 21, ADR-012).*
-
-**Size**: `122` lines (`4032` bytes)
-
-**Functions:**
-- `def ground_state_width(omega, hbar, mass)`
-- `def ground_state_density(x, omega, hbar, mass)`
-- `def osmotic_velocity(rho, dx, hbar, mass)`
-- `def simulate_ou(particles, omega, hbar, mass, dt, steps, seed)` - *Euler-Maruyama for dX = -omega X dt + sqrt(hbar/m) dW.*
-- `def free_packet_drift(x, t, sigma, hbar, mass)` - *Forward drift b_+ = v + D d_x ln(rho) for the free Gaussian.*
-- `def simulate_free_packet(particles, t, sigma, hbar, mass, steps, seed)`
-- `def histogram_density(samples, bins, span)`
-- `def l1_error(density, exact, width)`
-
----
-
-### [`theory/nelson_closure.py`](theory/nelson_closure.py)
-> *Osmotic-closure no-go at PDE level (claim 48, ADR-040).*
-
-**Size**: `196` lines (`6947` bytes)
-
-**Functions:**
-- `def trial_gaussian(x, sigma_sq)`
-- `def trial_bimodal(x)`
-- `def fp_residual(rho, dx, diffusion)` - *Stationary FP residual for self-consistent osmotic drift.*
-- `def interior_mask(x, length)`
-- `def residual_scaling()` - *Max-abs residual vs dx for Gaussian probes and one bimodal probe.*
-- `def frozen_drift_sigma_map()` - *One frozen-drift reconstruction step per trial width.*
-- `def ou_free_packet_instances()` - *OU ground state and free packet satisfy the identity trivially.*
-- `def closure_scales()` - *Collect the no-go correspondence bundle (no verdict).*
-
----
-
-### [`theory/node_defect.py`](theory/node_defect.py)
-> *Two-branch defect representation of nodal states (claim 46, ADR-038).*
-
-**Size**: `152` lines (`5157` bytes)
-
-**Functions:**
-- `def branch_split(x, omega, hbar, mass)` - *Exact two-branch split of the first-excited state.*
-- `def branch_regular_pressure_match(x, omega, hbar, mass)` - *Regular quantum pressure evaluated branch-wise away from node.*
-- `def node_scaling()` - *Phase-gradient maximum scaling over the frozen grid set.*
-- `def vortex_gate()` - *Frozen 2p vortex numbers, recomputed from the existing module.*
-- `def representation_scales()` - *Collect the representation correspondence bundle (no verdict).*
-
----
-
-### [`theory/reduction.py`](theory/reduction.py)
-> *Dimensional reduction and the effective moment of inertia (claim 6b).*
-
-**Size**: `118` lines (`4335` bytes)
-
-**Functions:**
-- `def wall_tension(mu)`
-- `def wall_lower_bound_2d(mu, length_y)`
-- `def moment_power(alpha)` - *Power of r in the 2D moment integrand for rho ~ r^-alpha.*
-- `def moment_finite(alpha)`
-- `def moment_log_divergent(alpha)`
-- `def moment_numeric(alpha, r_min, r_max)` - *2*pi int rho r^3 dr for rho = r^-alpha on [r_min, r_max].*
-- `def moment_profile(profile, r_max, points)` - *Numerical 2*pi int_0^rmax profile(r) r^3 dr; profile must be regular at 0.*
-- `def verdict(stated_alpha)`
-- `def render_markdown(payload)`
-
----
-
-### [`theory/rotor.py`](theory/rotor.py)
-> *Quantum rotor H = L^2/(2I) + mu (1 - cos 3 phi) and its spectra.*
-
-**Size**: `177` lines (`6143` bytes)
-
-**Classes:**
-- `class RotorSpectrum`
-  - Method `.lowest(sector, count)`
-
-**Functions:**
-- `def sector_matrix(I, mu, sector, n_cutoff)` - *Dense Hamiltonian in the truncated sector n = sector + 3j, |n| <= n_cutoff.*
-- `def spectrum(I, mu, n_cutoff)` - *Low-lying levels in each of the three Fourier sectors.*
-- `def convergence(I, mu, cutoffs)`
-- `def free_rotor_levels(sector, count, I)` - *Exact mu=0 levels n^2/(2I) in sector n = sector + 3j.*
-- `def grid_spectrum(I, mu, n_grid, count)` - *Finite-difference cross-check on a periodic grid phi_j = 2 pi j / N.*
-- `def mode_map(sector_energies)` - *The prompt's naive map a=(l0+2 l1)/3, c=(l1-l0)/3.*
-- `def implied_roots(sector_energies)` - *Roots generated by the circulant map from three sector levels.*
-- `def parity_obstruction()` - *State the exact degeneracy argument and return it as data.*
-- `def domain_wall_tension(mu)` - *Analytic tension T = (8/3) sqrt(mu) of the 1-cos(3 phi) wall.*
-- `def domain_wall_tension_quad(mu)` - *Numerical quadrature of int_0^{2pi/3} sqrt(2 mu (1-cos 3 phi)) dphi.*
-
----
-
-### [`theory/rotor_potential.py`](theory/rotor_potential.py)
-> *Real Z3 rotor potential scan (claim 19, ADR-010).*
-
-**Size**: `122` lines (`4107` bytes)
-
-**Functions:**
-- `def sector_matrix(mu, nu, flux, sector, n_cutoff, inertia)`
-- `def sector_energies(mu, nu, flux, n_cutoff, inertia)`
-- `def scan(mu, nus, fluxes, n_cutoff)`
-
----
-
-### [`theory/topology.py`](theory/topology.py)
-> *Topology of a nematic director and the Z3 question.*
-
-**Size**: `113` lines (`4186` bytes)
-
-**Functions:**
-- `def has_z3_factor()` - *True only if one of the listed homotopy groups has a Z3 factor.*
-- `def direct_result()`
-- `def extensions()`
-- `def verdict()`
-- `def render_markdown(payload)`
-
----
-
-### [`theory/two_state_marcus.py`](theory/two_state_marcus.py)
-> *Shared-lambda two-state Marcus assignment (claim 44, ADR-036).*
-
-**Size**: `94` lines (`3592` bytes)
-
-**Functions:**
-- `def shared_lambda_widths(temperature_k)` - *Predicted component widths for two Marcus states sharing lambda.*
-- `def component_ratio()` - *Observed Jou-Freeman component widths and their ratio.*
-- `def kill_thresholds()` - *Frozen kill threshold inherited from ADR-034 (never tuned here).*
-- `def two_state_scales(temperature_k)` - *Collect the shared-lambda prediction and the observed ratio.*
-
----
-
-### [`theory/variational_center.py`](theory/variational_center.py)
-> *Co-emergence of Newtonian center and Ermakov width (claim 53, ADR-045).*
-
-**Size**: `260` lines (`8507` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def width_fixed_point(omega, hbar, mass)`
-- `def mu_acceleration(mu, omega)`
-- `def sigma_acceleration(s, omega, hbar, mass)`
-- `def discrete_el_system(interior, omega, hbar, mass, dt, mu_end, s_end)` - *Discrete Euler-Lagrange residuals for the (mu, sigma) pair.*
-- `def newton_pair(mu0, s0_factor, omega, hbar, mass, n, steps)` - *Joint Newton solve on the discrete EL system from a constant start.*
-- `def _period_from_crossings(times)`
-- `def release_pair(mu0, s0_factor, omega, hbar, mass, dt, t_end)` - *Joint Verlet release; per-leg zero crossings give both periods.*
-- `def term_match()` - *Sigma-leg term match vs ermakov_rhs; mu-leg analytic identity.*
-- `def dynamics_scales()` - *Collect the co-emergence bundle (no verdict).*
-
----
-
-### [`theory/variational_dynamics.py`](theory/variational_dynamics.py)
-> *Variational dynamics reproduces Ermakov (claim 51, ADR-043).*
-
-**Size**: `271` lines (`8894` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def grid(n, omega)`
-- `def acceleration(s, omega, hbar, mass)` - *Ermakov acceleration nu^2/s^3 - omega^2*s (V1 re-derives).*
-- `def repulsion_term(s, omega, hbar, mass)`
-- `def confining_term(s, omega, hbar, mass)`
-- `def discrete_el_residual(interior, omega, hbar, mass, dt, endpoint)` - *Discrete Euler-Lagrange residuals (midpoint Lagrangian).*
-- `def newton_extremum(start_factor, omega, hbar, mass, n, steps)` - *Newton on the discrete EL system from a constant-path start.*
-- `def release_period(factor, omega, hbar, mass)` - *Verlet release from width*factor; interpolated zero-crossing period.*
-- `def term_match()` - *Variational acceleration vs Ermakov RHS, whole and per-term.*
-- `def dynamics_scales()` - *Collect the dynamics correspondence bundle (no verdict).*
-
----
-
-### [`theory/variational_saddle.py`](theory/variational_saddle.py)
-> *Ritz saddle: G-M stationary point in (s, c) (claim 50, ADR-042).*
-
-**Size**: `263` lines (`8550` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def action_gm_2d(s, c, omega, hbar, mass)`
-- `def action_yasui_2d(s, c, omega, hbar, mass)`
-- `def grad_gm_2d(s, c, omega, hbar, mass)`
-- `def hess_gm_2d(s, c, omega, hbar, mass)`
-- `def extremum_sc(omega, hbar, mass)` - *Analytic stationary point (s*, c*) = (nu/omega, 0).*
-- `def newton_refine_s(s0, c_fixed, omega, hbar, mass, steps)` - *1D Newton on dJ/ds = 0 at fixed c (definite: maximum in s).*
-- `def newton_refine_c(c0, s_fixed, omega, hbar, mass, steps)` - *1D Newton on dJ/dc = 0 at fixed s (definite: minimum in c).*
-- `def conditional_extremum(s_values, c_values, omega, hbar, mass)` - *Saddle signature on the grid: max over s at c = 0, min over c.*
-- `def yasui_scan(s_values, omega, hbar, mass)` - *Yasui derivative sign over the frozen grid (must stay negative).*
-- `def saddle_scales()` - *Collect the saddle correspondence bundle (no verdict).*
-
----
-
-### [`theory/variational_width.py`](theory/variational_width.py)
-> *Gaussian Ritz width-selection: G-M vs Yasui (claim 49, ADR-041).*
-
-**Size**: `209` lines (`7457` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def action_gm(s2, omega, hbar, mass)`
-- `def action_yasui(s2, omega, hbar, mass)`
-- `def d_action_gm(s2, omega, hbar, mass)`
-- `def d_action_yasui(s2, omega, hbar, mass)`
-- `def d2_action_gm_s2(s2, omega, hbar, mass)` - *Curvature with respect to s2 (gate variable): -m*nu^2/s2^3.*
-- `def d2_action_gm_sigma(sigma, omega, hbar, mass)` - *Curvature with respect to sigma (record only): -3m*nu^2/s^4-m*w^2.*
-- `def extremum_s2(omega, hbar, mass)` - *Analytic G-M maximizer s2 = nu/omega with nu = hbar/(2*mass).*
-- `def newton_refine(start, omega, hbar, mass, steps)` - *Newton iterations on dJ_G/d(s2) = 0 from a grid argmax start.*
-- `def grid_maximum(s2_values, omega, hbar, mass)` - *Grid argmax of J_G plus Newton refinement (not single parabola).*
-- `def yasui_monotone(s2_values, omega, hbar, mass)` - *Yasui derivative sign over the frozen grid (must stay negative).*
-- `def ermakov_cross_check()` - *Independent argmin of V(sigma) vs analytic G-M maximizer.*
-- `def selection_scales()` - *Collect the Ritz correspondence bundle (no verdict).*
-
----
-
-### [`theory/vortex_cascade.py`](theory/vortex_cascade.py)
-> *One-parameter vortex/eddy hierarchy test (claim 18, ADR-009).*
-
-**Size**: `126` lines (`4406` bytes)
-
-**Functions:**
-- `def geometric_spectrum(ratio, generations)`
-- `def power_law_spectrum(exponent, generations)`
-- `def solve_power_for_koide(target, lower, upper)` - *Bisection for the power p with Koide Q = target.*
-- `def _summary(name, observed, predicted, parameter)`
-- `def run_hypotheses(observed)`
-
----
-
-### [`theory/vortex_core.py`](theory/vortex_core.py)
-> *HO-1 finite-core node probe (claim 60, ADR-054).*
-
-**Size**: `95` lines (`3567` bytes)
-
-**Functions:**
-- `def core_radius()` - *Pre-registered core radius eps0 = 0.1 * a0 (predicted, not fit).*
-- `def ho_sigma(omega, hbar, mass)`
-- `def core_norm(eps, sigma)` - *Exact L2 norm squared of (x+i*eps)*exp(-x^2/2s^2): s*sqrt(pi)*(s^2/2+eps^2).*
-- `def core_density(x, eps, sigma)`
-- `def core_phase(x, eps)` - *Phase arg(x + i*eps); singular arg(x) at eps = 0.*
-- `def core_velocity(x, eps, hbar, mass)` - *v = (hbar/m) dS/dx with S = arg(x+i*eps): v = -(hbar/m)*eps/(x^2+eps^2).*
-- `def core_q_zero(eps, sigma, hbar, mass)` - *Analytic Q at x=0: -hbar^2/2m * (1/eps^2 - 1/sigma^2). eps > 0 required.*
-- `def fd_q_zero(eps, n, length, sigma)` - *Second-order central FD Q at x=0 from sqrt(rho); N-convergence probe.*
-
----
-
-### [`theory/vortex_loop.py`](theory/vortex_loop.py)
-> *2p core-threading loop probe (claim 61, ADR-056).*
-
-**Size**: `84` lines (`3234` bytes)
-
-**Functions:**
-- `def core_scale()` - *Pre-registered core scale delta0 = 0.1 * a0 (predicted, never scanned).*
-- `def blob_fraction(r, delta)` - *Analytic loop fraction r^2/(r^2+delta^2) for the blob kernel.*
-- `def blob_loop(r, delta, gamma)` - *Circulation on loop radius r for blob-capped velocity.*
-- `def blob_umax(delta, gamma)` - *Finite cap: max of r/(r^2+delta^2) is 1/2delta at r=delta.*
-- `def floor_vmax(n, length)` - *Constructional divergence: vmax = 1/r_min, r_min = dx/2, hbar=m=1.*
-- `def numeric_blob_loop(r, delta, samples, gamma)` - *Own trapezoid quadrature of the blob field (no project imports).*
-
----
-
-### [`theory/vortex_particles.py`](theory/vortex_particles.py)
-> *Thin-filament vortex-knot mass hypothesis (claim 17, ADR-008).*
-
-**Size**: `136` lines (`5174` bytes)
-
-**Functions:**
-- `def torus_knot(n, radius, tube, samples)` - *Closed T(2,n) curve and its chord vectors.*
-- `def knot_length(points)`
-- `def biot_savart_energy(points, core)` - *Regularized thin-filament energy proxy at a fixed core radius.*
-- `def koide_q(values)`
-- `def mass_hypothesis(observed, knots, core, relative_tolerance, koide_tolerance)` - *Test m proportional to the knot energy against the observed masses.*
-
----
-
-### [`theory/water_absorption.py`](theory/water_absorption.py)
-> *Bound-free absorption in the finite spherical well (claim 34, ADR-025).*
-
-**Size**: `346` lines (`11746` bytes)
-
-**Functions:**
-- `def _j1(x)`
-- `def _y1(x)`
-- `def _j1_prime(x)`
-- `def _y1_prime(x)`
-- `def bound_state(radius_m, depth_ev, grid)` - *Return the normalized 1s state of the finite well.*
-- `def _dipole_from_state(state, photon_ev, grid)`
-- `def dipole_integral(radius_m, depth_ev, photon_ev, points)` - *Radial dipole integral for the 1s -> p continuum, in atomic units.*
-- `def _oscillator_from_state(state, photon_ev, grid)`
-- `def oscillator_strength(radius_m, depth_ev, photon_ev, points)` - *Oscillator strength at a photon energy, in atomic units.*
-- `def oscillator_sum_rule(radius_m, depth_ev, grid, points, max_ev)` - *Integrate the continuum oscillator strength from threshold to max_ev.*
-- `def peak_absorption(radius_m, depth_ev, grid, points)` - *Locate the continuum absorption peak for one well.*
-- `def required_extra_depth(radius_m, target_ev, grid, points)` - *Depth beyond Born needed to put the continuum peak at target_ev.*
-- `def absorption_scales()` - *Collect the bound-free scales used by the report and the tests.*
-
----
-
-### [`theory/water_analogue.py`](theory/water_analogue.py)
-> *Shallow-water acoustic horizon (claim 27, ADR-018).*
-
-**Size**: `145` lines (`4294` bytes)
-
-**Functions:**
-- `def sound_speed(depth, gravity)`
-- `def flow_velocity(r, flow_rate, depth, gravity)`
-- `def horizon_radius(flow_rate, depth, gravity)`
-- `def surface_gravity(flow_rate, depth, gravity)`
-- `def hawking_temperature(kappa)`
-- `def acoustic_metric(r, flow_rate, depth, gravity)`
-- `def lab_scales(depth, flow_rate, gravity)`
-- `def capillary_length(gamma, density, gravity)`
-- `def capillary_ratio(horizon_radius_value, length)`
-- `def long_wavelength_min_flow(depth, gravity, gamma, density, ratio)`
-- `def validity(depth, flow_rate, gamma, density, gravity, ratio)`
-
----
-
-### [`theory/water_born_cavity.py`](theory/water_born_cavity.py)
-> *Self-consistent Born cavity synthesis (claim 39, ADR-030).*
-
-**Size**: `112` lines (`3867` bytes)
-
-**Functions:**
-- `def born_cavity_energy(radius_m)` - *E_1s(R, Born(R)) plus the surface energy, or None if unbound.*
-- `def born_cavity_equilibrium(lower_m, upper_m)` - *Minimize the Born cavity energy over the radius.*
-- `def born_cavity_scales()` - *Collect the Born cavity and the water reorganization synthesis.*
-
----
-
-### [`theory/water_dispersive.py`](theory/water_dispersive.py)
-> *Dispersive shallow-water horizon (claim 29, ADR-020).*
-
-**Size**: `118` lines (`3466` bytes)
-
-**Functions:**
-- `def dispersion(k, depth, gamma, density, gravity)`
-- `def group_velocity(k, depth, gamma, density, gravity)`
-- `def horizon_wavenumber(omega, depth, gamma, density, gravity, maximum)`
-- `def dispersive_horizon(omega, flow_rate, depth, gamma, density, gravity)`
-- `def capillary_frequency(depth, gamma, density, gravity)`
-
----
-
-### [`theory/water_electron.py`](theory/water_electron.py)
-> *Hydrated-electron cavity scale from water properties (claim 32, ADR-023).*
-
-**Size**: `95` lines (`3077` bytes)
-
-**Functions:**
-- `def screened_bohr_radius(epsilon_r)`
-- `def screened_energy_ev(epsilon_r)`
-- `def capillary_cavity_radius(gamma, mass, hbar)`
-- `def capillary_cavity_energy_ev(gamma, mass, hbar)`
-- `def infinite_well_gap_ev(radius, mass, hbar)` - *Ground-state energy of an infinite spherical well, not the s->p gap.*
-- `def well_radius_for_gap(energy_ev, mass, hbar)` - *Radius where the infinite-well ground-state energy equals energy_ev.*
-- `def hydrated_scales()`
-
----
-
-### [`theory/water_lineshape.py`](theory/water_lineshape.py)
-> *Fixed-lambda cavity-Marcus line-shape prediction (claim 43, ADR-034).*
-
-**Size**: `92` lines (`3244` bytes)
-
-**Functions:**
-- `def gaussian_moments()` - *Exact symmetry facts for a Gaussian band (no inputs, no fit).*
-- `def predicted_widths()` - *Absolute Marcus widths at 0 C and 45 C from fixed inputs only.*
-- `def kill_thresholds()` - *Pre-registered kill thresholds for a future comparator (data only).*
-- `def lineshape_scales()` - *Collect the fixed-lambda prediction and its kill thresholds.*
-
----
-
-### [`theory/water_marcus.py`](theory/water_marcus.py)
-> *Marcus band width from the water reorganization energy (claim 40, ADR-031).*
-
-**Size**: `63` lines (`2212` bytes)
-
-**Functions:**
-- `def marcus_width_ev(lambda_ev, temperature_k)` - *Classical Marcus Gaussian FWHM in eV.*
-- `def gaussian_line_shape(energy_ev, center_ev, fwhm_ev)` - *Normalized Gaussian value at energy_ev.*
-- `def marcus_scales()` - *Collect the Marcus widths and the reference comparison.*
-
----
-
-### [`theory/water_observed_shape.py`](theory/water_observed_shape.py)
-> *Observed hydrated-electron band-shape comparator data (claim 43, ADR-035).*
-
-**Size**: `160` lines (`6873` bytes)
-
-**Functions:**
-- `def observed_width_change_ev(span_k)` - *Observed half-width change over a temperature span.*
-- `def shape_evidence()` - *Observed shape facts that a single symmetric Gaussian must meet.*
-- `def observed_scales()` - *Collect the observed comparator numbers in one payload.*
-- `def jou_freeman_side_widths(temperature_k)` - *Observed red/blue side half-widths from the Jou-Freeman fits.*
-
----
-
-### [`theory/water_pressure.py`](theory/water_pressure.py)
-> *Self-consistent finite-well pressure balance (claim 37, ADR-028).*
-
-**Size**: `123` lines (`4111` bytes)
-
-**Functions:**
-- `def surface_energy_ev(radius_m)` - *Surface energy 4 pi gamma R^2, in eV.*
-- `def total_energy_ev(radius_m, depth_ev)` - *Finite-well 1s plus surface energy, or None if the well is unbound.*
-- `def equilibrium_radius(depth_ev, lower_m, upper_m)` - *Radius minimizing the finite-well plus surface energy.*
-- `def vde_matched_depth(binding_ev)` - *Depth whose pressure-balanced cavity has the requested 1s binding.*
-- `def pressure_scales()` - *Collect the pressure-balanced scan and the VDE-matched point.*
-
----
-
-### [`theory/water_rays.py`](theory/water_rays.py)
-> *Radial rays at the shallow-water acoustic horizon (claim 30, ADR-021).*
-
-**Size**: `82` lines (`2545` bytes)
-
-**Functions:**
-- `def outgoing_speed(r, flow_rate, depth, gravity)`
-- `def ingoing_speed(r, flow_rate, depth, gravity)`
-- `def peeling_rate(flow_rate, depth, gravity)`
-- `def analytic_outgoing_time(r, r0, horizon, speed)`
-- `def integrate_outgoing(r0, r_end, flow_rate, depth, gravity, dt)`
-
----
-
-### [`theory/water_reorganization.py`](theory/water_reorganization.py)
-> *Water reorganization and the VDE-optical difference (claim 38, ADR-029).*
-
-**Size**: `112` lines (`4033` bytes)
-
-**Functions:**
-- `def _dielectric_contrast(epsilon_s, epsilon_opt)`
-- `def reorganization_energy_ev(radius_m, epsilon_s, epsilon_opt)` - *Solvent reorganization energy for a cavity of radius R, in eV.*
-- `def radius_for_difference(difference_ev, epsilon_s, epsilon_opt)` - *Radius whose reorganization energy equals difference_ev.*
-- `def reorganization_scales()` - *Collect the capillary, required and pressure-balanced comparisons.*
-
----
-
-### [`theory/water_softwall.py`](theory/water_softwall.py)
-> *Soft-wall cavity and the hard VDE depth bound (claim 36, ADR-027).*
-
-**Size**: `212` lines (`6819` bytes)
-
-**Functions:**
-- `def woods_saxon_level(radius_m, depth_ev, diffuseness_m, angular_momentum, grid, r_max_m)` - *Lowest bound radial eigenvalue of the Woods-Saxon well, in eV.*
-- `def depth_for_binding(radius_m, diffuseness_m, binding_ev, grid)` - *Well depth giving a 1s binding of binding_ev for a soft wall.*
-- `def cavity_for_observables(diffuseness_m, binding_ev, gap_ev, grid)` - *Woods-Saxon cavity satisfying the VDE and the 1.7 eV gap.*
-- `def softwall_scales()` - *Collect the hard depth bound and the Woods-Saxon scan.*
-
----
-
-### [`theory/water_temperature.py`](theory/water_temperature.py)
-> *Temperature-dependent Born cavity (claim 41, ADR-032).*
-
-**Size**: `162` lines (`6033` bytes)
-
-**Functions:**
-- `def water_dielectric_constant(temperature_c)` - *Static dielectric constant of water, 0-100 C.*
-- `def water_surface_tension(temperature_c)` - *Surface tension of water in N/m, 0-100 C.*
-- `def _born_depth_ev(radius_m, epsilon_s)`
-- `def _surface_energy_ev(radius_m, gamma)`
-- `def _reorganization_ev(radius_m, epsilon_s)`
-- `def born_cavity_at_temperature(temperature_c)` - *Self-consistent Born cavity at a water temperature.*
-- `def temperature_scales()` - *Collect the 0-45 C scan and the observed-shift comparison.*
-
----
-
-### [`theory/water_twocomponent.py`](theory/water_twocomponent.py)
-> *Zero-free-parameter two-component band model (claim 45, ADR-037).*
-
-**Size**: `92` lines (`3559` bytes)
-
-**Functions:**
-- `def twocomponent_scales(temperature_k)` - *Fixed-input two-component prediction plus observed side widths.*
-
----
-
-### [`theory/water_vde.py`](theory/water_vde.py)
-> *VDE and 1.7 eV absorption constrain the finite well (claim 35, ADR-026).*
-
-**Size**: `141` lines (`4828` bytes)
-
-**Functions:**
-- `def depth_for_binding(radius_m, binding_ev)` - *Well depth that gives a 1s binding energy of binding_ev.*
-- `def _gap_at_radius(radius_m, binding_ev)`
-- `def cavity_for_observables(binding_ev, gap_ev)` - *Finite well satisfying the VDE and the 1.7 eV 1s->1p gap.*
-- `def vde_scales()` - *Collect the two-observable inversion and the capillary comparison.*
-
----
-
-### [`theory/water_well.py`](theory/water_well.py)
-> *Finite spherical well for the hydrated electron (claim 33, ADR-024).*
-
-**Size**: `325` lines (`10935` bytes)
-
-**Functions:**
-- `def born_depth_ev(radius_m, epsilon_r)` - *Born solvation depth of a spherical cavity, in eV.*
-- `def threshold_depth_ev(radius_m)` - *Well depth at which the 1p state reaches the continuum (kappa = pi).*
-- `def infinite_well_transition_ev(radius_m)` - *Infinite-well 1s -> 1p level spacing, in eV.*
-- `def _dimensionless_depth(radius_m, depth_ev)`
-- `def _state_energy_ev(u, radius_m, depth_ev)`
-- `def _f0(u, kappa)`
-- `def _f1(u, kappa)`
-- `def _bisect(function, lower, upper, kappa)`
-- `def _well_1s_root(kappa)`
-- `def _well_1p_root(kappa)`
-- `def well_roots(radius_m, depth_ev)` - *Return the 1s/1p roots and energies for a finite spherical well.*
-- `def _threshold_radius_m()` - *Radius where the Born depth equals the 1p threshold depth.*
-- `def _threshold_gap_ev(radius_m)`
-- `def _max_born_gap_ev()`
-- `def _infinite_radius_for_transition(energy_ev)`
-- `def required_depth_ev(radius_m, target_ev)` - *Depth needed for an s->p gap of target_ev, or None if unreachable.*
-- `def minimum_required_depth(target_ev)` - *Minimum depth over radii that yields an s->p gap of target_ev.*
-- `def well_scales()` - *Collect the finite-well scales used by the report and the tests.*
-
----
-
-### [`theory/widened_ritz.py`](theory/widened_ritz.py)
-> *Ritz-widened squared-Hermite trial BVP (claim 59, ADR-051).*
-
-**Size**: `375` lines (`14107` bytes)
-
-**Classes:**
-- `class WidenedProblem` - *Squared-Hermite Ritz BVP with exact mass normalization.*
-  - Method `.__init__(k_max, nx, nt, nu, omega, mass, x_lim, s0_factor)`
-  - Method `.n_vars()`
-  - Method `.unpack(params)`
-  - Method `.build_rho(fields)`
-  - Method `.action_and_gradient(params)`
-  - Method `.start_vector(kind)`
-  - Method `.solve(kind, maxiter)`
-  - Method `.refine(x0, maxiter)`
-  - Method `.newton_polish(x0, h, steps, tol)` - *Dense Newton with finite-difference Hessian (R4 pattern).*
-  - Method `._finish(x, res)`
-
-**Functions:**
-- `def _dT_adj(g, dx)` - *Exact transpose of the central/one-sided difference operator.*
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def hermite_basis(y, k_max)` - *Probabilists' Hermite He_0..He_k via recurrence.*
-- `def bridge_widths(t_values, s0, omega)` - *Analytic G-M primary-branch widths for the (s0 -> sigma_q) ends.*
-
----
-
-### [`theory/yasue_action.py`](theory/yasue_action.py)
-> *Pinned-endpoint Yasue-bridge action stationarity (claim 57, ADR-049).*
-
-**Size**: `135` lines (`3935` bytes)
-
-**Functions:**
-- `def yasue_discrete_action(full_path, omega, hbar, mass, nu, dt)` - *Midpoint discrete Yasue action (own density: +m*nu^2/2mid^2).*
-- `def yasue_analytic_action(coeffs, omega, hbar, mass, nu, horizon_T, n)` - *High-accuracy quadrature of the continuous Yasue action on a branch.*
-- `def classical_bridge_action(a, omega, mass)` - *Closed-form nu = 0 fixed-endpoint action J = -m*w*a^2*alpha.*
-- `def variation_probe(base_path, horizon_T, bump_kind)` - *Discrete Yasue J along base + lam*amp*bump (own bump family).*
-- `def probe_slope(base_path, bump, omega, hbar, mass, nu, dt, lam, amp)`
-
----
-
-### [`theory/yasue_bridge.py`](theory/yasue_bridge.py)
-> *Pinned-endpoint Yasue bridge: the c<0 Pinney analytic family (claim 56, ADR-048).*
-
-**Size**: `298` lines (`9453` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def pinney_coeffs_yasue(s0, sT, horizon_T, omega, hbar, mass, nu)` - *Solve the c<0 endpoint algebra. Returns (branches, disc_norm).*
-- `def pinney_path(coeffs, t_values, omega)`
-- `def fd_ode_residual(coeffs, omega, hbar, mass, horizon_T, nu, n)` - *8th-order finite-difference check of s_ddot + nu^2/s^3 + w^2 s = 0.*
-- `def _discrete_residual_width(interior, omega, hbar, mass, nu, dt, s0, sT)`
-- `def newton_width(s0, sT, horizon_T, omega, hbar, mass, nu, n, steps, starts)` - *Width-only BVP Newton solves from the given starts (Yasue sign).*
-- `def attribution_diff(analytic, recorded)`
-- `def jacobi_first_zero_yasue(t_values, s_values, omega, nu, n)` - *First conjugate zero of u'' + Q u = 0 with Yasue Q = -3nu^2/s^4 + w^2.*
-- `def nu_limit_bridge(alpha_T)` - *Closed-form nu=0 fixed-endpoint bridge (classical bank).*
-
----
-
-### [`theory/yasue_center.py`](theory/yasue_center.py)
-> *Yasue center-width discriminator: collapse under Yasue, co-emergence under G-M (claim 55, ADR-047).*
-
-**Size**: `452` lines (`15916` bytes)
-
-**Functions:**
-- `def diffusivity(hbar, mass)`
-- `def horizon(omega)`
-- `def width_fixed_point(omega, hbar, mass)`
-- `def mu_acceleration(mu, omega)`
-- `def sigma_acceleration_gm(s, omega, hbar, mass)`
-- `def yasue_acceleration(s, omega, hbar, mass)` - *Yasue width acceleration: -nu^2/s^3 - omega^2*s < 0 for all s > 0.*
-- `def sigma_acceleration_yasue(s, omega, hbar, mass)`
-- `def discrete_el_system_yasue(interior, omega, hbar, mass, dt, mu_end, s_end)` - *Discrete Euler-Lagrange residuals for the (mu, sigma) pair under Yasue.*
-- `def static_residuals(omega, hbar, mass, n)` - *Discrete Yasue EL residual at the G-M stationary path (0, sigma_q).*
-- `def newton_attempt_yasue(mu0, s0_factor, omega, hbar, mass, n, steps)` - *Bounded Newton solve on the Yasue discrete EL system.*
-- `def _period_from_crossings(times)`
-- `def release_pair_yasue(mu0, s0_factor, omega, hbar, mass, dt, t_end, floor)` - *Joint Verlet release under Yasue: classical center, collapsing width.*
-- `def term_match()` - *Width-leg sign split + shared center leg, term by term.*
-- `def yasue_scales()` - *Collect the discriminator bundle (no verdict).*
-
----
-
-### [`theory/yasue_dynamics.py`](theory/yasue_dynamics.py)
-> *Yasui dynamical discriminator: collapse vs G-M oscillation (claim 52, ADR-044).*
-
-**Size**: `174` lines (`5929` bytes)
-
-**Functions:**
-- `def yasue_acceleration(s, omega, hbar, mass)`
-- `def yasue_release(factor, omega, hbar, mass, floor, dt, t_end)` - *Velocity-Verlet release from rest; stops at the floor.*
-- `def quadrature_mild_crossing(factor, omega, hbar, mass)` - *Energy-integral time from release to sigma = 0.5.*
-- `def yasue_scales()` - *Collect the discriminator correspondence bundle (no verdict).*
-
----
-
-### [`verification/__init__.py`](verification/__init__.py)
-> *Independent verification package. See audit.py.*
-
-**Size**: `1` lines (`54` bytes)
-
----
-
-### [`verification/audit.py`](verification/audit.py)
-> *Independent verification of every claim marked PROVEN, VERIFIED, or NUMERIC.*
-
-**Size**: `4292` lines (`170759` bytes)
-
-**Classes:**
-- `class Audit`
-  - Method `.record(claim, passed, detail, expected, observed)`
-  - Property `.failed`
-
-**Functions:**
-- `def circulant(a, c, delta)`
-- `def roots_from_ac(a, c, delta)`
-- `def q_from_roots(x)`
-- `def q_from_masses(m)`
-- `def q_from_ac(a, c)`
-- `def fit_linear(x)` - *Independent least-squares/inverse of x_k = a + 2u cos(theta_k) - 2v sin(theta_k).*
-- `def load_results(name)`
-- `def provenance()` - *Minimal, independent provenance block (no project imports).*
-- `def write_atomic(path, text)`
-- `def audit_algebra(audit)`
-- `def audit_fit(audit)`
-- `def y0_vector()`
-- `def independent_rhs(_t, s)`
-- `def independent_solution(method)`
-- `def q_from_yukawas(y)`
-- `def audit_rg(audit)`
-- `def rotor_levels(I, mu, sector, n_max)`
-- `def audit_rotor(audit)`
-- `def audit_neutrinos_quarks(audit)`
-- `def audit_delta_modes_derrick(audit)`
-- `def audit_negatives(audit)`
-- `def audit_lorentz(audit)`
-- `def audit_hopf(audit)`
-- `def audit_hopfion3d(audit)`
-- `def audit_hopf_resolution(audit)`
-- `def audit_n64(audit)`
-- `def audit_scale(audit)`
-- `def audit_stability(audit)`
-- `def audit_purefn(audit)`
-- `def audit_escape(audit)`
-- `def audit_lengthscan(audit)`
-- `def audit_vortex(audit)`
-- `def audit_cascade(audit)`
-- `def audit_rotor_potential(audit)`
-- `def audit_madelung(audit)`
-- `def audit_nelson(audit)`
-- `def audit_gaussian_fluid(audit)`
-- `def audit_coherent_fluid(audit)`
-- `def audit_excited_fluid(audit)`
-- `def audit_hydrogen_fluid(audit)`
-- `def audit_hydrogen_vortex(audit)`
-- `def audit_water_analogue(audit)`
-- `def audit_water_validity(audit)`
-- `def audit_water_dispersive(audit)`
-- `def audit_water_rays(audit)`
-- `def audit_water_scattering(audit)`
-- `def audit_water_electron(audit)`
-- `def audit_water_well(audit)`
-- `def audit_water_absorption(audit)`
-- `def audit_water_vde(audit)`
-- `def audit_water_softwall(audit)`
-- `def audit_water_pressure(audit)`
-- `def audit_water_reorganization(audit)`
-- `def audit_water_born_cavity(audit)`
-- `def audit_water_marcus(audit)`
-- `def audit_water_temperature(audit)`
-- `def audit_water_temperature_residual(audit)`
-- `def audit_water_lineshape(audit)`
-- `def audit_two_state(audit)`
-- `def audit_water_twocomponent(audit)`
-- `def audit_node_defect(audit)`
-- `def audit_radial_node(audit)`
-- `def audit_nelson_closure(audit)`
-- `def audit_variational_width(audit)`
-- `def audit_variational_saddle(audit)`
-- `def audit_variational_dynamics(audit)`
-- `def audit_yasue_dynamics(audit)`
-- `def audit_variational_center(audit)`
-- `def audit_gaussian_bridge(audit)`
-- `def audit_yasue_center(audit)`
-- `def audit_yasue_bridge(audit)`
-- `def audit_yasue_action(audit)`
-- `def audit_field_variation(audit)`
-- `def audit_widened_ritz(audit)`
-- `def audit_vortex_core(audit)`
-- `def audit_vortex_loop(audit)`
-- `def audit_production(audit)`
-- `def audit_convergence(audit)`
-- `def audit_temporal(audit)`
-- `def audit_extension(audit)`
-- `def audit_docs(audit)`
-- `def run(write, tag)`
-- `def render(payload)`
-- `def main()`
-
----
-
-### [`verification/compare.py`](verification/compare.py)
-> *Compare two independent verification runs.*
-
-**Size**: `224` lines (`8307` bytes)
-
-**Functions:**
-- `def _load(tag)`
-- `def _digest(payload)`
-- `def compare(tags)`
-- `def _write(name, text)`
-- `def render(payload)`
-- `def main()`
-
----
-
-### [`verification/fingerprint.py`](verification/fingerprint.py)
-> *Stable fingerprints for the two-run claim audit.*
-
-**Size**: `215` lines (`5595` bytes)
-
-**Functions:**
-- `def _source_files()`
-- `def _digest(files)`
-- `def source_fingerprint()`
-- `def results_fingerprint()`
-- `def fingerprints()`
-
----
-
-### [`verification/verify.py`](verification/verify.py)
-> *Run the full claim-verification workflow in separate processes.*
-
-**Size**: `70` lines (`2385` bytes)
-
-**Functions:**
-- `def _run(module, *args)`
-- `def main()`
-
----
+- **Total Rust Modules**: `97`
+- **Total Public Types**: `20`
+- **Total Public Functions**: `604`
+- **Total Source Lines**: `16504`
+
+## 🧭 Map Coverage
+- **Indexed**: rust (`97` module(s))
+- **Not indexed by this map**: none
+
+## 🦀 Rust Modules
+
+### `src/amplitude_seesaw.rs` (85 lines)
+> Two structural tests: rational amplitudes and a seesaw link to the GUT scale.
+- **Functions**: `a2_lepton`, `a2_down`, `a2_up`, `a2_nu`, `rational_a2`, `inverse_a2`, `seesaw_mnu_ev`, `mu_gut`, `observed_mnu_ev`, `checks`
+
+### `src/anomaly.rs` (86 lines)
+> Gauge-anomaly sector: can an anomaly-free generation charge supply the mass pattern?
+- **Functions**: `anomaly1`, `anomaly3`, `identity_residual`, `cubic_from_pair`, `checks`
+
+### `src/audit.rs` (2379 lines)
+> Independent, falsification-first audit of the frozen claim ledger.
+- **Types**: `AuditRecord`
+- **Functions**: `run_audit`, `audit_fingerprint`, `checks`
+
+### `src/circulant.rs` (294 lines)
+> Exact algebra of the Hermitian 3x3 circulant mass matrix.
+- **Types**: `Fit`
+- **Functions**: `eigenvalues`, `q_signed`, `q_masses`, `q_physical_from_roots`, `q_from_ac`, `extract_ac_delta`, `fit_masses`, `koide_tau_prediction`, `checks`
+
+### `src/circulant_inverse.rs` (83 lines)
+> Exact inversion of the circulant mass triplet from its two hierarchy ratios.
+- **Functions**: `roots_from_ratios`, `implied_q`, `up_ratios`, `down_ratios`, `checks`
+
+### `src/classical_scan.rs` (94 lines)
+> B_n = SO(2n+1) and C_n = Sp(2n) WZW scan -- the last classical families.
+- **Functions**: `b2_qdim`, `c2_qdim`, `b3_qdim`, `checks`
+
+### `src/compact_identity.rs` (86 lines)
+> Compact algebraic identity and a new SU(Fib) structural test.
+- **Functions**: `fib`, `q_compact`, `c2_box`, `required_level`, `d_box`, `checks`
+
+### `src/confinement.rs` (84 lines)
+> Cornell-potential sector: three lowest s-wave levels of V(r) = -A/r + sigma*r.
+- **Functions**: `hamiltonian`, `levels`, `q_of_levels`, `checks`
+
+### `src/conformal_block.rs` (92 lines)
+> Conditional SU(N)_N conformal weights and phase comparisons.
+- **Functions**: `casimir_box`, `casimir_lambda2`, `h_box`, `braiding_ratio`, `solve_n_for_h`, `checks`
+
+### `src/cosmology_validation.rs` (69 lines)
+> Test of the d=3 framework's cosmological predictions against observations.
+- **Functions**: `ratio_pred`, `ratio_obs`, `geom_obs`, `checks`
+
+### `src/d3_chain.rs` (137 lines)
+> Non-post-hoc derivation chain from d=3 + electric charge.
+- **Functions**: `dimension`, `fib`, `index_from_three_q`, `fib_label`, `amplitude_squared`, `delta`, `q`, `ratios`, `checks`
+
+### `src/d3_neutrino.rs` (74 lines)
+> Experimental validation of the d=3 framework's neutrino predictions.
+- **Functions**: `d`, `fib9`, `beta`, `m3_mev`, `observed_m3_mev`, `nu_ratio_pred`, `nu_ratio_obs`, `sum_nu_pred_mev`, `sum_nu_obs_mev`, `sin2_theta_h`, `checks`
+
+### `src/d3_only_synthesis.rs` (107 lines)
+> Complete d=3-ONLY parameter set for all three sectors (no measured inputs).
+- **Functions**: `d`, `beta`, `sin2tw`, `a2`, `fib`, `delta`, `q`, `ratios`, `checks`
+
+### `src/d3_running.rs` (72 lines)
+> Test of the proposed derivation: run the d=3 fixed point 3/13 to M_Z.
+- **Functions**: `sin2_at`, `fixed_point_scale`, `checks`
+
+### `src/d3_spectrum.rs` (92 lines)
+> Independent verification of the d=3 framework's spectral (SUSY-QM) axioms.
+- **Functions**: `beta`, `s_from_beta`, `w`, `potential`, `alpha_star`, `u_max`, `log_derivative_psi_s`, `checks`
+
+### `src/d3_validation.rs` (60 lines)
+> Independent numeric validation of the d=3 framework's OTHER predictions.
+- **Functions**: `predictions`, `checks`
+
+### `src/derrick.rs` (196 lines)
+> Derrick scaling for the Frank-Oseen + Skyrme + Z3 energy.
+- **Types**: `ScalingMinimum`
+- **Functions**: `exponents`, `scaling_energy`, `virial`, `second_derivative`, `stationary_scale_squared`, `scaling_minimum`, `checks`
+
+### `src/dynamical_flow.rs` (69 lines)
+> Dynamical (RG-flow) test of the compact index framework's target values.
+- **Functions**: `q_up_range`, `q_down_range`, `q_lepton_range`, `target_up`, `target_down`, `target_lepton`, `checks`
+
+### `src/ew_from_planck.rs` (64 lines)
+> The d=3 framework's weakest-scale prediction: electroweak scale from M_Pl.
+- **Functions**: `d`, `beta`, `alpha_star`, `exponent`, `v_from_planck`, `m_higgs`, `checks`
+
+### `src/exact_phase_labels.rs` (88 lines)
+> Conditional WZW weight differences for selected phase targets.
+- **Functions**: `delta_lepton_label`, `delta_down_label`, `delta_up_composite`, `up_braiding_level_su3`, `up_braiding_label_from_level`, `checks`
+
+### `src/exceptional_nonsimply.rs` (112 lines)
+> F4 and G2 WZW quantum dimensions with CORRECT non-simply-laced normalization.
+- **Functions**: `g2_lengths`, `f4_lengths`, `g2_hvee`, `f4_hvee`, `g2_qdim`, `f4_qdim`, `checks`
+
+### `src/exceptional_scan.rs` (99 lines)
+> E6_k quantum dimensions: an extended-group test beyond SU(3)_k.
+- **Functions**: `h_vee_e6`, `e6_qdim`, `e6_fund_qdim`, `required_a2`, `checks`
+
+### `src/fft.rs` (153 lines)
+> Minimal radix-2 FFT for power-of-two 3D grids. No external crates.
+- **Functions**: `fft1d`, `fft3d`, `signed_k`
+
+### `src/fib_significance.rs` (59 lines)
+> Statistical significance of the A^2/delta ~ {3^2, 5^2, 8^2} pattern.
+- **Functions**: `observed_a2_over_delta`, `observed_square_roots`, `null_rate_within_half_percent`, `null_rate_within_two_percent`, `null_median_error`, `joint_p_two_independent`, `checks`
+
+### `src/fibonacci_phase.rs` (149 lines)
+> New hypothesis: the Brannen phase is the amplitude divided by a squared
+- **Functions**: `lepton_masses`, `fib_label`, `sector_masses`, `amplitude_squared`, `required_delta`, `predicted_delta`, `ratios`, `checks`
+
+### `src/fluid.rs` (269 lines)
+> Closed-form fluid / vortex / Marcus checks.
+- **Functions**: `ermakov_fixed_point`, `gm_action`, `pinney_branch_b`, `pinney_det`, `vortex_core_velocity`, `vortex_core_q_zero`, `blob_loop_fraction`, `marcus_fwhm`, `koide`, `checks`
+
+### `src/flux_quantization.rs` (72 lines)
+> Candidate external physics to fix the Z3-circulant shape parameter p.
+- **Functions**: `product_from_wilson`, `pdg_product`, `required_flux_quantum`, `checks`
+
+### `src/flux_sector.rs` (74 lines)
+> Flux-threaded Z3 rotor: H = (n-alpha)^2/(2I) + mu(1-cos 3phi).
+- **Functions**: `flux_levels`, `q_levels`, `checks`
+
+### `src/fn_scan.rs` (95 lines)
+> Joint Froggatt-Nielsen charge scan: both hierarchy ratios at once.
+- **Types**: `Assignment`
+- **Functions**: `q_of`, `eps_for`, `scan`, `checks`
+
+### `src/foot_geometry.rs` (85 lines)
+> Peer-reviewed geometric validation of Koide's beta = 2/3 (Foot).
+- **Functions**: `theta`, `foot_rhs`, `cos2`, `framework_theta_deg`, `checks`
+
+### `src/froggatt.rs` (78 lines)
+> Froggatt-Nielsen charge sector: masses m_i = eps^(2 q_i) for integer charges.
+- **Functions**: `q_of_masses`, `eps_for_koide`, `ratios`, `checks`
+
+### `src/gauge_flavor.rs` (126 lines)
+> Gauge–flavor connection: the weak mixing angle fixes the amplitude scale.
+- **Functions**: `g1_mz`, `g2_mz`, `sin2_theta_w`, `cot2_theta_w`, `a2_from_gauge`, `observed_a2`, `fib_label`, `delta_from_gauge`, `observed_delta`, `checks`
+
+### `src/gauge_running.rs` (77 lines)
+> Gauge-coupling running: a previously unaddressed sector.
+- **Functions**: `couplings_mz`, `crossing_scales`, `q_start`, `q_end`, `delta_start`, `delta_end`, `d_box_su3_3`, `checks`
+
+### `src/geometry.rs` (77 lines)
+> Geometric characterization: Koide Q=2/3 means 45 degrees to (1,1,1).
+- **Functions**: `q`, `cos2_theta`, `required_ratio`, `checks`
+
+### `src/gj_relation.rs` (49 lines)
+> Georgi-Jarlskog b-tau relation from the d=3 framework: m_b/m_tau = d*eta_QCD = 2.35.
+- **Functions**: `d`, `predicted_ratio`, `eta_from_prediction`, `observed_ratio_mb_scale`, `observed_ratio_mz`, `checks`
+
+### `src/gravity_relation.rs` (74 lines)
+> Gauge-gravity numerical relation discovered in this session.
+- **Functions**: `planck_mass_gev`, `reduced_planck_mass_gev`, `mu_gut`, `alpha_g`, `predicted_planck`, `relative_error`, `alpha_g_required`, `checks`
+
+### `src/index_framework.rs` (136 lines)
+> A compact single structure with one sector index n = 1, 2, 3:
+- **Functions**: `fib`, `amplitude_squared`, `label`, `predicted_delta`, `predicted_q`, `predict_ratios`, `checks`
+
+### `src/index_uncertainty.rs` (59 lines)
+> Uncertainty-aware verdict for the single-index framework (index_framework.rs).
+- **Functions**: `z_down_r1`, `z_up_r1`, `z_up_q`, `rel_sigma_up_r1`, `checks`
+
+### `src/informational_geometry.rs` (80 lines)
+> External candidate derivation: the d=3 identities that fix our constants.
+- **Functions**: `dimension`, `beta`, `theta_h`, `cot_theta_h`, `phase_from_beta`, `sin2_theta_w`, `three_cot2_theta_w`, `checks`
+
+### `src/jordan_spectrum.rs` (187 lines)
+> First genuinely NON-CIRCULANT candidate: the exceptional Jordan spectrum.
+- **Functions**: `jordan_delta`, `ratio_d`, `ratio_b`, `ratio_c`, `ratio_t`, `pdg_up`, `pdg_down`, `arithmetic_q`, `min_positive_q`, `nu_q_max`, `nu_target_ratios`, `nu_best_fit`, `checks`
+
+### `src/lib.rs` (237 lines)
+> fluid-universe: falsification-first research core, rewritten in Rust.
+- **Types**: `Check`
+- **Functions**: `new`, `all_checks`, `fingerprint`
+
+### `src/linalg.rs` (123 lines)
+> Small numerical kernels used by the physics modules. No external crates.
+- **Functions**: `symmetric_eigenvalues`, `simpson`, `bisect`, `approx`
+
+### `src/lorentz.rs` (225 lines)
+> Linearised director dispersion and the emergent-metric question (claims
+- **Functions**: `elastic_eigenvalues`, `residual_anisotropy`, `checks`
+
+### `src/main.rs` (1006 lines)
+> CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
+
+### `src/mass_convention.rs` (121 lines)
+> CORRECTION: the earlier "exact circulant no-go" was a mass-convention artifact.
+- **Functions**: `up_masses_mz`, `down_masses_mz`, `q_from_masses`, `sqrt_ratios`, `implied_q`, `amplitude`, `required_delta`, `checks`
+
+### `src/mass_spectrum.rs` (109 lines)
+> Mass-spectrum sector: a Z3 rotor with a symmetry-breaking field.
+- **Functions**: `rotor_levels`, `koide_from_spacings`, `koide_from_levels`, `checks`
+
+### `src/modular.rs` (78 lines)
+> Modular sector: singular moduli at Z3 CM points via theta series.
+- **Functions**: `lambda`, `koide`, `checks`
+
+### `src/monodromy.rs` (173 lines)
+> WZW monodromy: the cube identity and the N=3 over-determination of Q.
+- **Functions**: `h_box`, `quantum_dimension`, `quantum_dimension_nn`, `wzw_number`, `cube`, `cube_argument`, `q_from_fusion`, `overdetermination_gap`, `unique_n`, `amplitude_from_q`, `ratios`, `checks`
+
+### `src/monodromy_block.rs` (199 lines)
+> Rigorous SU(3)_3 conformal-block monodromy calculation.
+- **Types**: `Complex`
+- **Functions**: `primaries`, `s_matrix_element`, `h_weight`, `fusion`, `sphere_four_point_dimension`, `braiding_label`, `checks`
+
+### `src/multi_radial_shell.rs` (318 lines)
+> HO-3 double-radial-shell finite-core probe (claim 63, ADR-059).
+- **Types**: `Report`
+- **Functions**: `nodes`, `phase`, `phase_slip`, `phase_slip_margin`, `velocity`, `velocity_max`, `q_at_node`, `fd_q_at_node`, `singular_gradient_max`, `raw_norm_closed_form`, `raw_norm_numeric`, `verdict`, `run`, `checks`
+
+### `src/natural_phase_labels.rs` (62 lines)
+> Singlet-channel weight differences at three post-hoc selected levels.
+- **Functions**: `d`, `singlet_label`, `levels`, `checks`
+
+### `src/nosusy_unification.rs` (70 lines)
+> No-SUSY unification test using the d=3 gravity relation as boundary.
+- **Functions**: `inv_alpha_at`, `spread`, `min_spread_scale`, `alpha_grav`, `checks`
+
+### `src/null_model.rs` (65 lines)
+> Statistical null model for the "rational amplitude" regularity.
+- **Functions**: `observed_rational_errors`, `null_hit_fraction`, `null_median_error`, `joint_chance_probability`, `checks`
+
+### `src/orthogonal.rs` (83 lines)
+> Orthogonal-polynomial sector: exact Koide point from Laguerre zeros.
+- **Functions**: `e1_squared_over_e2`, `laguerre_minus_one_zeros`, `q_of`, `nonzero_ratio`, `checks`
+
+### `src/peer_reviewed_37.rs` (75 lines)
+> Peer-reviewed external support for the d=3 framework's key 3/13 relation.
+- **Functions**: `m_w_gev`, `sin2_mz_loginov`, `observed_sin2_mz`, `checks`
+
+### `src/phase_arithmetic.rs` (93 lines)
+> Why the WZW identification has the right arithmetic form and G2 geometry does not.
+- **Functions**: `delta_rational`, `delta_radians`, `is_rational_multiple_of_pi`, `wzw_h_rational_form`, `checks`
+
+### `src/phase_interpolation.rs` (56 lines)
+> A single d=3 phase rule eliminating the Fibonacci/gauge branch split.
+- **Functions**: `d`, `delta`, `checks`
+
+### `src/poisson.rs` (86 lines)
+> Poisson/exponential statistics as a candidate for unit CV.
+- **Functions**: `exponential_population_cv`, `q_from_population_cv`, `expected_q_three_exponentials`, `sample_statistics`, `checks`
+
+### `src/potential_family.rs` (99 lines)
+> Generalized Z3 potential family V_p(phi) = (1 - cos(3phi))^p.
+- **Functions**: `levels`, `q_levels`, `checks`
+
+### `src/potts_sector.rs` (97 lines)
+> Z3 center sector: the 3-state clock/Potts transfer matrix.
+- **Functions**: `transfer_ratio`, `critical_coupling`, `eigenvalues`, `q_signed`, `koide_coupling`, `checks`
+
+### `src/puddle.rs` (83 lines)
+> Puddle and film geometry: can it fix the depth required by the Koide ratio?
+- **Functions**: `root_y`, `required_depth_over_lc`, `max_puddle_height_over_lc`, `checks`
+
+### `src/quark_phases.rs` (84 lines)
+> Independent quark-sector test of the SU(3)_3 / Brannen framework.
+- **Functions**: `amplitude_from_q`, `ratios`, `up_target`, `down_target`, `joint_error`, `checks`
+
+### `src/quark_rg.rs` (98 lines)
+> Down-quark RG channel: does Q_D reach 2/3 at the unification scale?
+- **Functions**: `koide`, `run`, `checks`
+
+### `src/radial_shell.rs` (272 lines)
+> HO-2 radial-shell finite-core probe (claim 62, ADR-058).
+- **Types**: `Report`
+- **Functions**: `core_radius`, `node_position`, `phase`, `phase_slip`, `phase_slip_margin`, `velocity`, `velocity_max`, `q_zero`, `fd_q_zero`, `singular_gradient_max`, `raw_norm_closed_form`, `raw_norm_numeric`, `verdict`, `run`, `checks`
+
+### `src/rep_scan.rs` (150 lines)
+> Systematic scan of SU(3)_k representations against every fermion sector.
+- **Types**: `BestRep`
+- **Functions**: `dimq`, `casimir`, `conformal_h`, `a2_from_q`, `closest_rep`, `ratios`, `checks`
+
+### `src/reports.rs` (396 lines)
+> Result regeneration for the Rust rewrite.
+- **Types**: `GeneratedReport`
+- **Functions**: `build_reports`, `write_reports`, `checks`
+
+### `src/rg_sector.rs` (135 lines)
+> One-loop SM renormalization-group sector for the circulant phase and ratio.
+- **Functions**: `run_high_to_mz`, `phase`, `effective_ratio`, `checks`
+
+### `src/rotor.rs` (230 lines)
+> Quantum rotor H = L^2/(2I) + mu (1 - cos 3 phi) and its spectra.
+- **Functions**: `sector_matrix`, `lowest_levels`, `free_levels`, `domain_wall_tension`, `domain_wall_tension_quadrature`, `checks`
+
+### `src/scale_choice.rs` (67 lines)
+> The gauge–flavor offset is a scale-choice artifact: use M_W, not M_Z.
+- **Functions**: `a1`, `b1`, `a2`, `b2`, `three_cot2_at`, `checks`
+
+### `src/sector_count.rs` (62 lines)
+> Derivation of the number of sectors from d=3 (no measured input).
+- **Functions**: `q`, `admissible`, `lower_bound`, `upper_bound`, `nu`, `checks`
+
+### `src/shape_freedom.rs` (100 lines)
+> Structural proof: the Z3-circulant symmetry CANNOT fix the root product p.
+- **Functions**: `p_degenerate`, `q_of_p`, `pdg_spacing_ratio`, `pdg_root_product`, `checks`
+
+### `src/simulation.rs` (955 lines)
+> 3D field core: Hopf map, finite-difference energy/forces and relaxation.
+- **Types**: `Field3`, `Energy`, `Metrics`
+- **Functions**: `hopf_map`, `analytic_field`, `normalize_field`, `energy_terms`, `z3_order`, `hopf_charge_preimage`, `force_field`, `relax`, `z3_complex`, `z3_phase`, `phase_rotated_field`, `perturbed_field`, `hopf_charge_grid`, `hopf_charge_spectral`, `metrics`, `checks`
+
+### `src/single_model_test.rs` (1098 lines)
+> Single-WZW-model existence and bounded non-existence evidence.
+- **Types**: `Witness`, `SearchSummary`, `InverseSearchSummary`, `MinimalDomainSummary`
+- **Functions**: `fundamental_pair_center_allowed`, `fundamental_pair_weight_differences`, `fundamental_pair_monodromy_target_mask`, `phases`, `models`, `braiding_fraction`, `search`, `inverse_search`, `relaxed_inverse_search`, `lower_rank_inverse_search`, `minimal_level_inverse_search`, `minimal_witness_search`, `witness_fractions`, `witness_exact`, `all_witnesses_exact`, `conformal_weight`, `quantum_dimension`, `central_charge`, `sm_gauge_central_charge_upper_bound`, `sm_charge_compatible`, `su7_minimal_coset_central_charge`, `su7_block_sm_central_charge`, `su7_block_coset_central_charge`, `su7_hypercharge_branching`, `su7_weak_doublet_count`, `su7_subgroup_anomaly_coefficients`, `su7_cartan_cubic_anomaly`, `canonical_conformal_weights`, `canonical_quantum_dimensions`, `single_model_exists`, `checks`
+
+### `src/single_phase_rule.rs` (80 lines)
+> Clarification of the up-quark tension: it is an AMPLITUDE precision issue,
+- **Functions**: `f_up`, `a2_framework`, `a2_measured`, `a2_best_fit`, `ratios`, `checks`
+
+### `src/so10_gut.rs` (110 lines)
+> SO(10) = D5 GUT test: mass parameters AND gauge unification.
+- **Functions**: `h_vee_d5`, `so10_qdim`, `so10_casimir`, `mssm_unification_scale`, `mssm_alpha_g`, `checks`
+
+### `src/spectra.rs` (217 lines)
+> Mass-spectra Koide checks: neutrinos, quarks and PMNS angles.
+- **Functions**: `q_from_masses`, `neutrino_masses`, `neutrino_q_max`, `pmns_angles_degrees`, `checks`
+
+### `src/spinodal.rs` (125 lines)
+> Tilted Z3 potential spinodal sector.
+- **Functions**: `stationary`, `minima`, `q_from_curvatures`, `checks`
+
+### `src/su2_monodromy.rs` (129 lines)
+> Exact SU(2) fusion and full-monodromy witness with higher-spin fields.
+- **Functions**: `fusion_allowed`, `reversed_monodromy_residue`, `lower_level_search`, `lower_spin_search`, `checks`
+
+### `src/su3.rs` (84 lines)
+> SU(3) representation sector: do representation dimensions reproduce Q=2/3?
+- **Functions**: `dim`, `koide`, `closest`, `checks`
+
+### `src/threshold_unification.rs` (48 lines)
+> No-SUSY unification with one intermediate threshold: honest negative.
+- **Functions**: `sm_spread_min`, `threshold_spread`, `threshold_mu_g`, `threshold_mu_i`, `checks`
+
+### `src/topoguard_independent.rs` (181 lines)
+> Independent local-energy finite-difference check of the guarded probe.
+- **Types**: `IndependentProbe`
+- **Functions**: `run_independent_probe`
+
+### `src/topology_guard.rs` (165 lines)
+> Conservative homotopy certificate for periodic sampled unit-vector fields.
+- **Types**: `MonitoredRelaxation`
+- **Functions**: `homotopy_hemisphere_margin`, `homotopy_mean_margin`, `monitored_relaxation`, `checks`
+
+### `src/two_component.rs` (136 lines)
+> Two-component ansatz: a topological H=1 layer and a Z3-ordered layer.
+- **Functions**: `z3_layer`, `mean_overlap`, `blended`, `checks`
+
+### `src/unification.rs` (101 lines)
+> The parameter-free condition a unified Z3/circulant model would have to satisfy.
+- **Functions**: `required_r`, `r_for_q`, `delta_independence`, `bridge_gap`, `checks`
+
+### `src/unified_model.rs` (237 lines)
+> ONE falsifiable model: Z3-circulant charged-lepton mass matrix.
+- **Functions**: `r_koide`, `root_product`, `delta_star`, `roots`, `q_signed`, `q_physical`, `symmetric`, `hierarchy_ratios`, `fit_p_to_ratio`, `ratios_of_cubic`, `held_out_tau_over_mu`, `held_out_spacing_from_mu_e`, `checks`
+
+### `src/up_amplitude_gauge.rs` (77 lines)
+> Up amplitude derived from the measured weak mixing angle to 0.016%.
+- **Functions**: `a2_up_from_gauge`, `a2_up_from_q`, `ratios`, `checks`
+
+### `src/up_phase_resolution.rs` (83 lines)
+> Resolution of the persistent up-quark ratio tension using a d=3 phase.
+- **Functions**: `d`, `beta`, `delta_lep`, `sin2_theta_w`, `delta_up_gauge`, `delta_up_chain`, `a2_up`, `ratios`, `z_chain`, `z_gauge`, `checks`
+
+### `src/variation.rs` (127 lines)
+> Exact reformulation: Q = 2/3 means CV = 1 for the three signed roots.
+- **Functions**: `q`, `cv`, `q_from_cv`, `mean_cv_exponential`, `mean_cv_lognormal`, `checks`
+
+### `src/verify.rs` (179 lines)
+> Project rule G-001 requires per-claim agreement in two separate processes.
+- **Types**: `Verification`
+- **Functions**: `line`, `verify_in_process`, `compare`, `compare_audit_records`, `compare_expected_audit_records`, `verify_with`
+
+### `src/vortex_unification.rs` (82 lines)
+> Vortex-core and loop sector: does a pre-registered radius supply 1/sqrt(2)?
+- **Functions**: `blob_fraction`, `radius_for_fraction`, `koide_radius_over_delta`, `velocity_ratio`, `checks`
+
+### `src/water.rs` (183 lines)
+> Shallow-water acoustic-horizon closed forms (claim 27, ADR-018).
+- **Functions**: `sound_speed`, `horizon_radius`, `surface_gravity`, `hawking_temperature`, `capillary_length`, `capillary_ratio`, `checks`
+
+### `src/water_mechanics.rs` (127 lines)
+> Water mechanics: gravity-capillary dispersion and the shallow-water horizon.
+- **Functions**: `capillary_length`, `phase_speed_squared`, `minimum_wave_number`, `energy_ratio_at_minimum`, `depth_for_ratio`, `horizon`, `checks`
+
+### `src/water_unification.rs` (79 lines)
+> Independent water fixation of h = 2 l_c.
+- **Functions**: `min_phase_speed_squared`, `shallow_speed_squared`, `matching_depth`, `ratio_at_matching_depth`, `checks`
+
+### `src/wzw.rs` (90 lines)
+> Physics beyond the Z3-circulant symmetry: SU(3)_3 WZW conformal dimension.
+- **Functions**: `casimir_su3`, `dual_coxeter_su3`, `level`, `h_fundamental`, `derived_delta`, `checks`
+
+### `src/wzw_crosscheck.rs` (74 lines)
+> Independent cross-check of the SU(3)_3 WZW framework against other sectors.
+- **Functions**: `quantum_dimension_fundamental`, `q_from_quantum_dimension`, `amplitude_squared_from_q`, `checks`
+
+### `src/wzw_phase_origin.rs` (72 lines)
+> SU(3)_3 conformal-weight differences and candidate phase labels.
+- **Functions**: `h_box`, `h`, `label`, `checks`
+
+### `src/xy_z3.rs` (192 lines)
+> 2D XY + Z3 centre model: a new topological class (plaquette winding).
+- **Functions**: `energy`, `z3_order`, `winding_number`, `winding_density`, `seeded_vortex`, `relax_from`, `relax`, `checks`

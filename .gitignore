@@ -16,3 +16,7 @@ node_modules/
 *.egg-info/
 # AIKit transient state
 .aikit/*.log
+.aikit/reforge.testcache.json
+# Rust build output and local run logs
+target/
+*.log

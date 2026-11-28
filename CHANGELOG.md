@@ -315,7 +315,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - N=64, 3600 steps, fixed vacuum faces, \(\mu=20\), \(dt=5\times10^{-4}\) (completed in ~185 s): native \(H=0.787999784\), 2x spectrally upsampled (\(N=128\)) \(H=0.989238052\), \(Z_3=0.607430\), force RMS \(3.716\times10^{-2}\), max bond difference \(1.480\), minimum pre-normalization norm \(1.000000\).
 - `dt` check at N=48 (\(5\times10^{-4}\) vs \(2.5\times10^{-4}\) at physical time 0.15): \(\Delta H = 1.660\times10^{-6}\), \(\Delta Z_3 = 4.076\times10^{-6}\).
-- The smooth topology is preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
+- Historical interpretation, superseded by ADR-104: the smooth topology was claimed preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
 
 - Verification after the production scan: two separate runs, 168/168 checks each.
 
@@ -937,7 +937,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- `theory/variational_saddle.py` (2D G-M/Yasui actions in (s, c), decoupled 1D Newton polish, conditional-slice extremum + box record, 1D-vs-2D firewall with 2x cross-check); `phenomenology/variational_saddle_report.py`, `make variationalsaddle`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`; three new independent audit checks in `verification/audit.py` (location, conditional slices + box record, curvature split, Yasui contrast, scaling law — five checks, no project imports); formulas F34.
+- `theory/variational_saddle.py` (2D G-M/Yasui actions in (s, c), decoupled 1D Newton polish, conditional-slice extremum + box record, 1D-vs-2D firewall with 2x cross-check); `phenomenology/variational_saddle_report.py`, `make variationalsaddle`, `tests/test_variational_saddle.py`, `results/variational_saddle.{json,md}`; five new independent audit checks in `verification/audit.py` (location, conditional slices + box record, curvature split, Yasui contrast, scaling law — five checks, no project imports); formulas F34.
 
 **Results**
 
@@ -965,7 +965,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Results**
 
-- Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.5e-14 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
+- Monotone collapse to 0.05 floor (0.793/0.773/1.151, all < pi), zero upward crossings; G-M twin from identical code oscillates at pi (err <= 6.6e-7); analytic Yasui accel negative everywhere; quadrature-vs-Verlet mild match 3.49e-08 (gate 1e-3); scaling omega = 2 gives floor-hit 0.396 (< pi/4) with twin period pi/2 (err 1.0e-6) — NUMERIC with zero parameters. L1 explicit negative: the dynamical discriminator appears unasked (static equivalence well documented). Shares no full-field claims; does not touch claims 20-26 physics; claims 20-26 and 43-51 numbers are unchanged.
 
 - Verification after the Yasui discriminator: two separate runs, 281/281 checks each.
 
@@ -997,12 +997,12 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- theory/yasue_center.py (shared center EL plus Yasue width accel, discrete Yasue EL, joint Verlet with analytic-cos center tracking and floor stop, bounded Newton arc solve, quadrature composition, omega=2 scaling bundle); phenomenology/yasue_center_report.py, make yasuecenter, tests/test_yasue_center.py, results/yasue_center.{json,md}; five new independent audit checks in verification/audit.py (static residual, single arc, center track, width collapse, twin control, scaling law - G-001 two-run); formulas F39.
+- theory/yasue_center.py (shared center EL plus Yasue width accel, discrete Yasue EL, joint Verlet with analytic-cos center tracking and floor stop, bounded Newton arc solve, quadrature composition, omega=2 scaling bundle); phenomenology/yasue_center_report.py, make yasuecenter, tests/test_yasue_center.py, results/yasue_center.{json,md}; six new independent audit checks in verification/audit.py (static residual, single arc, center track, width collapse, twin control, scaling law - G-001 two-run); formulas F39.
 - Swan waves: 4 literature clusters (classical limit, stochastic-variational prior art, Ermakov/variational-Gaussian, nodes/Wallstrom - one paper per subagent, figure-and-equation level) plus 3 fixed-seed compute batches (analytic split, discrete EL twin, S1-style joint probe); artifacts verified by sampling (R1 split exact to 0.0; joint probe re-run bit-identical).
 
 **Results**
 
-- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.395 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC with zero parameters. The joint run ends at floor-hit before a full center period, so no full-period Yasue-center gate exists (2pi is analytic inference, flagged as such).
+- Center tracks mu0*cos(omega*t) over the collapse window (max dev 2.3e-09/0.0/9.9e-09 vs 1e-4 gate); width collapses on all releases (hits 0.783/0.793/0.962 < pi, monotone, zero upward crossings); G-M twin co-oscillates (2pi err 2.6e-7, pi err 5.5e-7); quadrature mild match exact; scaling omega = 2 gives track plus floor-hit 0.396 (< pi/4) with twin pi/pi/2; floor 0.02 sensitivity holds - NUMERIC with zero parameters. The joint run ends at floor-hit before a full center period, so no full-period Yasue-center gate exists (2pi is analytic inference, flagged as such).
 - The constant path is not stationary under Yasue (residual min 1.414214) but the BVP admits a single non-constant arc (min 0.7081204372, max 0.8072253635, residual <= 8.5e-11, identical across 5 starts) - recorded, not claimed; the Stage-2 no-root hypothesis was falsified by the solver and retired plainly. No analytic arc family or Jacobi exists (future work).
 - Claim 55 is NUMERIC (discriminator demonstrated); it shares the Ermakov fixed point and period with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-54 numbers are unchanged.
 
@@ -1012,12 +1012,12 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Added**
 
-- theory/yasue_bridge.py (c<0 endpoint algebra, FD ODE identity, width-only Newton BVP, Yasue-Q Jacobi, nu-series, attribution); phenomenology/yasue_bridge_report.py, make yasuebridge, tests/test_yasue_bridge.py, results/yasue_bridge.{json,md}; five new independent audit checks in verification/audit.py (B-quadratic, ODE identity, attribution, killed sibling, Jacobi, nu-limit/scaling - G-001 two-run); formulas F40.
+- theory/yasue_bridge.py (c<0 endpoint algebra, FD ODE identity, width-only Newton BVP, Yasue-Q Jacobi, nu-series, attribution); phenomenology/yasue_bridge_report.py, make yasuebridge, tests/test_yasue_bridge.py, results/yasue_bridge.{json,md}; six new independent audit checks in verification/audit.py (B-quadratic, ODE identity, attribution, killed sibling, Jacobi, nu-limit/scaling - G-001 two-run); formulas F40.
 - Swarm waves: 4 literature clusters (negative-c Pinney absence - provisional, Lewis sign, Jacobi/dis Dave disconjugacy, oscillator BVP - closed form verified) plus 3 fixed-seed compute batches (ODE identity, branch map, Jacobi) with config hashes; artifacts verified by sampling (independent re-run: disc=3.0, B values exact, attribution 6.26e-08, nu=0 bridge to 10 digits; websearch quota exhausted so the c<0 absence stays provisional and carries no evidentiary weight).
 
 **Results**
 
-- Endpoint pinning gives disc=3: B_1=0.3660254038 (admissible, attains the recorded claim-55 arc to 6.3e-08 vs 1e-4 gate, ODE FD identity 7.7e-09 vs 1e-6 gate, constraint exact) and B_2=-1.3660254038 (inadmissible, min s^2=-0.0658, reported as killed sibling); Jacobi with Yasue Q uniformly negative (Q in [-2.0,-0.77] at omega=1, [-8.0,-3.07] at omega=2) is zero-free; scaling omega=2 preserves the structure (same B values, attribution, Jacobi none); nu->0 with fixed endpoints is the oscillator bridge (peak 1.0823922003*a matched to 1e-9) - NUMERIC with zero parameters.
+- Endpoint pinning gives disc=3: B_1=0.3660254038 (admissible, attains the recorded claim-55 arc to 6.3e-08 vs 1e-4 gate, ODE FD identity 5.503e-09 vs 1e-6 gate, constraint exact) and B_2=-1.3660254038 (inadmissible, min s^2=-0.0658, reported as killed sibling); Jacobi with Yasue Q uniformly negative (Q in [-2.0,-0.77] at omega=1, [-8.0,-3.07] at omega=2) is zero-free; scaling omega=2 preserves the structure (same B values, attribution, Jacobi none); nu->0 with fixed endpoints is the oscillator bridge (peak 1.0823922003*a matched to 1e-9) - NUMERIC with zero parameters.
 - A Stage-3 implementation sign error in the endpoint elimination (qc +nu^2vT^2 instead of -nu^2vT^2, disc=1 garbage) was caught by the B_1/B_2 hand check and fixed before wiring; nothing downstream was affected.
 - Claim 56 is NUMERIC (family demonstrated); it shares the Ermakov fixed point with claims 21/22/48/49/51 and is not independent evidence of full-field dynamics; claims 20-26 and 43-55 numbers are unchanged.
 
@@ -1047,7 +1047,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 **Results**
 
-- Every tier escapes far below the claim-54 bank (-0.3906340559): coarse gauss_linear -3.26 (still descending, grad 347), bump/wide to -1e10, bimodal stuck at +6.27; fine bridge-warm start -1.59 (still descending, grad 128); scaling runs escape too; attribution 16.6. The bridge Hessian has negative directions (51 on a tiny grid); the escape exploits near-vacuum cells (min rho 1e-16..1e-27, high-frequency content 31 percent). The nu = 0 control approaches the classical transport value (-0.23844 vs -0.23852813742385703, grad 4.2e-5), validating code and banks; the failure is specific to nu = 0.5 - FALSIFIED (no re-selection; trial-class global minimality dead).
+- Every tier escapes far below the claim-54 bank (-0.3906340559): coarse gauss_linear -3.35 (still descending, grad 181), bump/wide to -1e10, bimodal escaped to J=-1.41e10 from +6.27; fine bridge-warm start -1.55 (still descending, grad 62.5); scaling runs escape too; attribution 16.6. The bridge Hessian has negative directions (51 on a tiny grid); the escape exploits near-vacuum cells (min rho 1e-16..1e-27, high-frequency content 31 percent). The nu = 0 control approaches the classical transport value (-0.23844 vs -0.23852813742385703, grad 4.2e-5), validating code and banks; the failure is specific to nu = 0.5 - FALSIFIED (no re-selection; trial-class global minimality dead).
 - Three Stage-3 implementation bugs were caught and fixed before wiring (Yasue-sign osmotic term, phi gauge conversion corrupting the tail cell, floating-point vacuum amplification of the flux residue); the classical bank was corrected from the equal-endpoint value to the transport value -0.23852813742385703. The K1 convergence letter was superseded with stated reason (descent 8x below bank without stopping refutes re-selection as surely as a converged lower point).
 - Claim 58 is FALSIFIED as a re-selection claim; claims 20-26 and 43-57 stand unchanged (stationarity needs no minimum); the defect-core span is untouched either way.
 
@@ -1094,3 +1094,340 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 - Claim 61 is FALSIFIED (single-valued regularized 2p vortex insufficient: capping and exact quantization incompatible inside the core); singular-phase and multi-component routes open; claims 20-26 and 43-60 numbers unchanged (HO-1 core stands; representations plus stationarity stand); 2s shell queued.
 
 - Verification after the span: two separate runs, 327/327 checks each.
+
+## 2026-11-24 - HO-2 radial-shell finite-core probe NUMERIC (claim 62, ADR-058)
+
+**Added**
+
+- `src/radial_shell.rs`: dependency-free Rust implementation of the complex-shift hydrogen-2s radial shell, the reduced radial amplitude `u=r*R_eps`, physical grids N=250/500/1000/2000, analytic phase/velocity/Q/norm gates and a deterministic verdict.
+- `tests/radial_shell.rs`: six failing-first integration tests for predicted scales, phase monotonicity and deficit bound, singular `dx^-1` control, finite/N-converged quantum pressure, raw norm and gate consistency.
+- Five independent claim-62 rows in `src/audit.rs`; module wiring in `src/lib.rs`, `src/main.rs` and `src/reports.rs`; `results/rust_radial_shell.{json,md}` and regenerated Rust reports.
+
+**Results**
+
+- Singular slope -1.000000000000; regular phase slip 3.086078759467, deficit 0.055513894123 <= 0.105555555556; vmax 10.0; Q0=-49.875, FD fine=-49.749996890480, fine error 0.002506328 and step error 0.007446371; m=0 circulation 0; raw-norm relative error 2.678e-12.
+- Claim 62 is NUMERIC for the local radial-shell core only. It does not claim exact finite-domain pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-61 are unchanged.
+- Full suite: 349 passing tests. G-001: two separate Rust processes agree on 524 checks, fingerprint `e390d30df6a4d0a3`.
+
+## 2026-11-24 - HO-3 double-radial-shell finite-core probe NUMERIC (claim 63, ADR-059)
+
+**Added**
+
+- `src/multi_radial_shell.rs`: dependency-free Rust implementation of the hydrogen-3s double complex-shift core, exact associated-Laguerre node positions, full-domain product phase, node-local singular/FD grids, analytic velocity/Q/norm gates and a deterministic verdict.
+- `tests/multi_radial_shell.rs`: seven failing-first integration tests for both predicted nodes, product-phase monotonicity and deficit bound, both singular controls, actual velocity, node-local quantum-pressure convergence, raw norm and gate consistency.
+- Five independent claim-63 rows in `src/audit.rs`; module wiring in `src/lib.rs`, `src/main.rs` and `src/reports.rs`; `results/rust_multi_radial_shell.{json,md}` and regenerated Rust reports.
+
+**Results**
+
+- Nodes 1.901923788647/7.098076211353; both singular slopes -1.000000000000; product-phase slip 6.203291923082, deficit 0.079893384098 <= 0.146609564597; vmax 10.003702332469 at both nodes.
+- Q1=-49.843277943473 and Q2=-49.971578003293; local FD fine errors 2.523e-5/2.504e-5 and step errors 7.570e-5/7.512e-5; m=0 circulation 0; raw-norm relative error 2.071e-10.
+- Claim 63 is NUMERIC for the local double-shell core only. It does not claim exact finite-domain 2pi winding, an energy spectrum, vortex quantization or full-field dynamics. Claims 20-26 and 43-62 are unchanged.
+- Full suite: 358 passing tests. G-001: two separate Rust processes agree on 545 checks, fingerprint `688c44f88c23ffb7`.
+
+## 2026-11-24 - Single-WZW-model existence FALSIFIED in the bounded domain (claim 64, ADR-060)
+
+**Added**
+
+- Replaced the hardcoded `single_model_exists() -> false` with a cached exact-integer Rust enumeration over N=2..7, k=1..79 and integrable primaries with Dynkin labels 0..4.
+- `tests/single_model_search.rs`: integration coverage for exact known singlet labels, 474 models, 1,337,784 primaries and zero hit models.
+- Three independent audit rows re-derive coverage, known labels and the bounded existence verdict without importing the search module.
+
+**Results**
+
+- The exact Casimir/label arithmetic reproduces the independent Python pre-registration count: 474 models, 1,337,784 primaries, zero hits.
+- Claim 64 is FALSIFIED only inside the stated domain. The natural phase assignments require SU(3)_9, SU(2)_13 and SU(3)_49; larger N, k or Dynkin labels remain open.
+- Full suite: 361 passing tests. G-001: two separate Rust processes agree on 550 checks, fingerprint `ab7ba301c6e2f200`.
+
+## 2026-11-24 - Explicit single-WZW-model hosts PROVEN (claim 65, ADR-062/ADR-063)
+
+**Added**
+
+- Exact SU(17)_1153 and SU(23)_1147 witness constants, integer label checks and integrability gates in `src/single_model_test.rs`.
+- All-positive-level inverse search for N<=7 and Dynkin labels 0..4, covering 19,530 primaries and 694 models with any phase.
+- Integration regressions for both witnesses, the retained bounded negative and the all-level small-domain negative; three independent audit rows.
+
+**Results**
+
+- SU(17)_1153 and SU(23)_1147 each host all three phases exactly with three integrable primaries. Claim 65 is PROVEN for existence and non-uniqueness.
+- The N<=7 all-level inverse search has no all-phase host; claim 64's smaller bounded negative remains unchanged.
+- No rule physically selects either large host, no sector-assignment dynamics is supplied, and this is not itself a unified field theory. The next bottleneck is model selection/naturalness.
+- Full suite: 364 passing tests. G-001: two separate Rust processes agree on 564 checks, fingerprint `9b29f0d753327252`.
+
+## 2026-11-24 - Lowest-rank SU(7)_1163 host PROVEN (claim 66, ADR-064)
+
+**Added**
+
+- Third exact witness registry entry for SU(7)_1163 and regression assertions for all three labels and integrability.
+- Relaxed all-level inverse search over N<=7, Dynkin labels 0..6 and total label sum <=24.
+- Independent SU(7) witness and relaxed-search audit rows.
+
+**Results**
+
+- SU(7)_1163 matches all three phases exactly with label sums 19/12/7 <=1163.
+- The relaxed search examines 125,888 primaries and 1,259 any-phase models, finding only SU(7)_1163 as an all-phase host.
+- Claim 66 is PROVEN for the lowest rank in this domain. Level 1163 and labels up to 6 remain post-hoc; no physical model selection, sector dynamics or unified field theory is claimed.
+- Full suite: 365 passing tests. G-001: two separate Rust processes agree on 572 checks, fingerprint `acc3d2ad4e447832`.
+
+## 2026-11-24 - Lower-rank single-WZW existence FALSIFIED in the widened domain (claim 67, ADR-065)
+
+**Added**
+
+- Cached all-level inverse search for N<=6 and Dynkin labels 0..20.
+- Integration regression for 4,288,305 primaries, 5,499 any-phase models and zero all-phase hits.
+- Independent lower-rank audit row.
+
+**Results**
+
+- No rank<=6 host exists in the stated label domain at any positive level.
+- Claim 67 is FALSIFIED only inside that domain. Labels above 20 remain open, and SU(7)_1163 remains an explicit host rather than a physically selected theory.
+- Full suite: 366 passing tests. G-001: two separate Rust processes agree on 576 checks, fingerprint `22e571695a54bbdc`.
+
+## 2026-11-24 - SU(7)_1163 minimal-level host PROVEN in the widened domain (claim 68, ADR-066)
+
+**Added**
+
+- Cached SU(7) inverse search with Dynkin labels 0..20 and strict level cap k<1163.
+- Integration regression for 85,766,121 primaries, 244 any-phase models and zero all-phase hits.
+- Independent minimal-level audit row.
+
+**Results**
+
+- No SU(7) all-phase host exists below level 1163 in the stated label domain.
+- Combined with claim 67, SU(7)_1163 is the lowest-rank/minimal-level host in the N<=7, labels<=20 domain.
+- Claim 68 is PROVEN only inside that domain. Labels above 20, other ranks and physical model selection remain open; no unified field theory is claimed.
+- Full suite: 367 passing tests. G-001: two separate Rust processes agree on 580 checks, fingerprint `be11880226be1f59`.
+
+## 2026-11-24 - Minimal SU(7)_1163 witnesses PROVEN (claim 69, ADR-067)
+
+**Added**
+
+- Simpler SU(7)_1163 witnesses with Dynkin-label sums 16/10/6.
+- Combined fixed-level minimal-witness and below-level search, sharing one 85,766,121-primary enumeration.
+- Integration regression and independent audit for the minimum sums.
+
+**Results**
+
+- The fixed-level search proves minimum sums 16/10/6 for the three phases within labels<=20.
+- Claim 69 is PROVEN for witness-complexity minimality at SU(7)_1163 only. This does not establish physical naturalness, sector dynamics or model selection.
+- Full suite: 368 passing tests. G-001: two separate Rust processes agree on 585 checks, fingerprint `feeb1181129560d7`.
+
+## 2026-11-24 - Canonical SU(7)_1163 witnesses PROVEN (claim 70, ADR-068)
+
+**Added**
+
+- Representative counts and lexicographic canonical vectors in the existing combined SU(7) minimal-domain search.
+- Integration regression for family sizes 4/2/2 and exact registry equality.
+- Independent canonical-witness audit row.
+
+**Results**
+
+- The three minimal-sum families contain 4, 2 and 2 representatives.
+- The current SU(7)_1163 witnesses are exactly the lexicographically smallest minimum-sum vectors for each phase.
+- Claim 70 is PROVEN for witness canonicalization only. It does not select the host physically or provide sector dynamics.
+- Full suite: 369 passing tests. G-001: two separate Rust processes agree on 590 checks, fingerprint `200c4a753fd496e9`.
+
+## 2026-11-24 - Canonical SU(7)_1163 conformal data NUMERIC (claim 71, ADR-069)
+
+**Added**
+
+- Exact conformal-weight and Weyl-product quantum-dimension functions for WZW primaries.
+- Checks and integration regression for the three canonical SU(7)_1163 phase primaries.
+- Independent exact-weight and numeric quantum-dimension audit rows.
+
+**Results**
+
+- Exact weights: 934/4095, 289/2730, 2/35.
+- Quantum dimensions: 1.136464998628996e11, 4.072382134390699e8, 4.568658409657278e5, ordered lepton>down>up.
+- Claim 71 is NUMERIC. No mass relation, sector dynamics or physical host selection is asserted.
+- Full suite: 370 passing tests. G-001: two separate Rust processes agree on 599 checks, fingerprint `cb077d3bfe1b69dd`.
+
+## 2026-11-24 - Direct SM conformal embedding FALSIFIED (claim 72, ADR-070)
+
+**Added**
+
+- Exact WZW central-charge functions and the strict SM gauge central-charge bound.
+- Integration regression showing SU(7)_1163 is charge-incompatible with direct SM conformal embedding.
+- Independent exact-inequality audit row.
+
+**Results**
+
+- Host central charges are SU(7)_1163: 9304/195≈47.7128, SU(17)_1153: 18448/65≈283.8154, SU(23)_1147: 100936/195≈517.6205.
+- The SM gauge WZW algebra has c<8+3+1=12 at all positive levels.
+- Claim 72 is FALSIFIED for direct conformal embedding only. Coset, subsector and non-conformal interpretations remain open, but any coset after removing an SM gauge subsector has c>=6964/195≈35.71.
+- Dev/test builds now use `opt-level=2`; the 85,766,121-primary exact search test dropped from tens of seconds to about 2.1 seconds without changing assertions or domains.
+- Full suite: 371 passing tests. G-001: two separate Rust processes agree on 609 checks, fingerprint `fa06647a67fd4b6d`.
+
+## 2026-11-27 - SU(7) block subsector (claim 73, ADR-071)
+
+- Calculated the central charges of a chosen SU(3)_1163 x SU(2)_1163 x U(1)^2 current-algebra subsector and its coset as 8812057/679195 and 920175833/26488605, respectively.
+- Specified and checked two diagonal generators. The full block centralizer has three U(1) directions; the third remains in the coset. Hypercharge, global identifications, matter and dynamics are not established.
+- Added an exact-rational audit and a regression for its verdict. The full Rust suite passes 372 tests; two processes agree on 612 checks with fingerprint `427085f9c85ad8f3`.
+
+## 2026-11-27 - Correct SU(N) rank labels (ADR-072)
+
+- Corrected SU(7) to rank 6 in claim 66 and its audit output. The earlier SU(17) and SU(23) hosts have ranks 16 and 22; the N<=6 search covers ranks 1 through 5.
+- Clarified that the SU(7) minimality result is bounded to N<=7 and Dynkin entries<=20. Search inputs and numerical findings are unchanged.
+- Regenerated the two-process report fingerprint: `8b67325e9175b32c` (612 checks).
+
+## 2026-11-27 - Correct verification provenance (ADR-073)
+
+- Report generation and selftest compare results within one process. Their output now identifies that limit and no longer presents the comparison as G-001 evidence; JSON audit objects include `mode: in_process`.
+- The standalone verifier does launch two processes, but compares aggregate fingerprints rather than individual claim records. Explicit per-claim comparison remains outstanding under G-001.
+
+## 2026-11-27 - Compare individual audit records (ADR-074)
+
+- The verifier now compares identified audit records from two separate, time-bounded processes, including exact value bits and verdict detail; it rejects empty, malformed, duplicate or differing records.
+- Both runs agree on 46 records. The audit has not been mapped to every accepted ledger claim, so complete G-001 coverage remains outstanding.
+
+## 2026-11-27 - Audit coverage inventory
+
+- Added `AUDIT_COVERAGE.md` to link examined audit records to 14 accepted claims as related evidence and list 43 other accepted claims awaiting coverage review. No claim is marked fully covered by this inventory.
+
+## 2026-11-27 - Independent circulant matrix spot checks (ADR-076)
+
+- Constructed the complex matrix independently and checked Hermiticity, generic nonsymmetry and the DFT eigenvalue equation at fixed parameter samples. A perturbation regression detects broken matrix structure.
+- Two processes agree on 48 audit records. The matrix checks are numeric spot checks; symbolic proof and complete G-001 coverage remain open.
+
+## 2026-11-27 - Require the complete audit record manifest (ADR-077)
+
+- Separate-process comparison now rejects matching partial, missing or substituted records by requiring the fixed ordered audit ID manifest. A regression binds the manifest to the current audit registry.
+- This checks that all expected audit records were emitted; it does not establish coverage of all accepted claims.
+
+## 2026-11-27 - Measured pole-fit audit (ADR-078)
+
+- Independently re-derived the measured pole-mass fit's a, c and Q and propagated the frozen independent mass errors to obtain linearized sigma_Q = 5.080958197e-6. A finite-difference regression checks the dominant tau-mass derivative.
+- This is partial claim 3a evidence; the phase parameter, other uncertainties and original Monte Carlo remain to be reviewed. Two processes agree on 49 audit records.
+
+## 2026-11-27 - Correct Rust report fingerprint schema (ADR-079)
+
+- Rust report JSON schema 2 replaces `config_sha256` with `checks_fnv1a64`. The value is a 64-bit non-cryptographic FNV-1a fingerprint of the family name and rendered checks, not SHA-256 and not a configuration hash.
+- All 11 regenerated report fingerprints match their schema 1 predecessors; historical non-Rust reports retain their original format. Consumers of Rust reports must migrate by schema version.
+
+## 2026-11-27 - Pole-fit parameter uncertainty audit (ADR-080)
+
+- Independently re-derived the measured-fit phase and ratio and propagated frozen independent mass errors to a, c, phase and ratio using an analytic Jacobian checked against finite differences.
+- The linearized uncertainties are not the original Monte Carlo estimates, which remain to be reviewed. Two processes agree on 50 audit records.
+
+## 2026-11-27 - Reject invalid circulant fit values (ADR-081)
+
+- The fallible inverse DFT rejects non-finite roots and unrepresentable intermediate values. The mass fit rejects non-finite or nonpositive inputs and non-finite computed results, with rescaling guidance for arithmetic overflow or underflow.
+- Existing finite reference fits remain unchanged; regressions cover NaN, infinities and extreme finite values.
+
+## 2026-11-27 - Preserve inverse DFT phase at small scales (ADR-082)
+
+- Removed the absolute amplitude cutoff that incorrectly zeroed nondegenerate small-scale phases. Exactly equal roots now return zero amplitude and phase; near degeneracy the phase is ill-conditioned.
+- A regression verifies scaled fit reconstruction and the equal-root convention. Existing check fingerprints remain unchanged.
+
+## 2026-11-27 - Correct witness N labels (ADR-083)
+
+- The three `singlemodel.witness*_n` checks report the SU(N) parameter N, not rank; their descriptions now say so. The SU(7) search test name now correctly says rank six.
+- Numeric witness values and search results are unchanged; regenerated report fingerprints reflect the corrected descriptions.
+
+## 2026-11-27 - SU(7) hypercharge branching exercise (ADR-084)
+
+- Enumerated integer hypercharges and block multiplicities for `21 + 3 anti-7` with `Y=diag(-2,-2,-2,3,3,0,0)/6`: one SU(5) `10 + anti-5`, two `5 + anti-5` pairs and seven singlets, totaling 42 states.
+- This is representation bookkeeping only; physical states, anomaly cancellation, dynamics and any link to the WZW phase witnesses remain open. Independent audit is a separate pending milestone.
+
+## 2026-11-27 - Independently audit the hypercharge census (claim 74)
+
+- Independent block combinatorics reproduces the 42-weight integer hypercharge census in two processes. Claim 74 covers that census only; the nonabelian assignment requires further independent assessment.
+
+## 2026-11-27 - Independently derive nonabelian branching (claim 75, ADR-086)
+
+- The SU(5) exterior-product decomposition independently reproduces the nonabelian multiplicities in two processes. The representation contains one `10 + anti-5`, two `5 + anti-5` pairs and seven singlets.
+- The result does not establish physical fermions, anomaly cancellation, dynamics, mass generation or WZW sector selection. The PDG GUT review uses twice the hypercharge convention used here.
+
+## 2026-11-27 - Conditional SU(7) local cubic anomaly (claim 76, ADR-087)
+
+- For hypothetical left-handed Weyl fields in `21 + 3 anti-7`, all 216 Cartan cubic coefficients vanish; a two-antifundamental control is nonzero. An independent exact polynomial expansion agrees in two processes.
+- The result concerns the perturbative local SU(7) cubic gauge anomaly only; global anomalies, physical matter and WZW dynamics remain open.
+
+## 2026-11-27 - Conditional SU(2) doublet parity (claim 77, ADR-088)
+
+- The hypothetical `21 + 3 anti-7` assignment contains eight SU(2) Weyl doublets counting color multiplicity. An independent restriction gives the same result, while two anti-7s provide an odd seven-doublet control.
+- This addresses the original SU(2) doublet parity obstruction only; other global anomalies, physical matter and WZW realization remain open.
+
+## 2026-11-27 - Conditional local subgroup anomalies (claim 78, ADR-089)
+
+- Five specified SU(3), SU(2), U(1) and mixed gauge-gravitational coefficients vanish for the hypothetical Weyl assignment. An independent calculation checks the generation and vectorlike pair separately, with a nonzero unpaired control.
+- This does not establish complete global anomaly freedom, physical fermions or WZW dynamics.
+
+## 2026-11-27 ? Fundamental-pair fusion selection correction
+
+The single-model witnesses match Casimir expressions, but integrability does not establish a braiding channel. Conserved center charge excludes all nine canonical witnesses for pairs of fundamentals or antifundamentals. Claim 79 records the independently checked residues; claims 64?71 are scoped to arithmetic matching. Other external representations remain open. See ADR-090.
+
+## 2026-11-28 ? SU(3) four-point field correction
+
+Verlinde fusion gives no sphere block for four fundamentals, and two blocks for two fundamentals and two antifundamentals. The previously computed full-monodromy exponents apply to the latter mixed configuration. Claim 80 and ADR-091 record the corrected external fields and independent singlet count.
+
+## 2026-11-28 ? Phase and correlated-observable clarification
+
+Corrected legacy model descriptions: the Koide condition leaves the phase free, p=1/18 and the WZW identification are additional post-hoc choices, and the spacing ratio is a function of the two hierarchy ratios. Added a regression for the dependence and positive-root phase freedom. See ADR-092.
+
+## 2026-11-28 ? SU(23) audit residue correction
+
+The second SU(23) witness has 74 boxes, A=518, C2=3219/23 and center charge 5. The previous 73/509/3189/23 metadata and charge 4 were incorrect; its charge still excludes fundamental-pair channels. Added an audit-verdict regression because two matching UNVERIFIED records are not evidence of acceptance. See ADR-093.
+
+## 2026-11-28 ? Legacy level-62 arithmetic correction
+
+Corrected the SU(3)_62 adjoint weight difference to 1/195; the prior helper returned 2/195 while claiming 2/39. Corrected the SU(3)_3 pair channel to the antifundamental and qualified the three-model singlet assignments. Exact-arithmetic and Verlinde regressions cover the corrections. See ADR-094.
+
+## 2026-11-28 ? All-rank fundamental-pair target obstruction
+
+The fundamental/antifundamental pair Casimir numerators yield a symbolic all-rank obstruction to simultaneously matching 2/9 and 2/39 as the specified exponent magnitudes. Added exact Casimir cross-checks and an independent ratio-case audit; other representations and phase conventions remain open. See claim 81 and ADR-095.
+
+## 2026-11-28 ? Modulo-one full-monodromy obstruction
+
+Extended the fundamental-pair no-go to both target phases modulo one and either orientation. All four target/complement ratios exclude integer N; exact orientation matching and an independent symbolic audit cover the result. Other representations and single-braid conventions remain open. See claim 82 and ADR-096.
+
+## 2026-11-28 ? Higher-spin SU(2) monodromy witness
+
+Added exact SU(2) fusion and monodromy checks for a post-hoc level-2338 witness: external Dynkin label 558 and channels 1070, 1044 and 688 yield the three target phases under one common reversed orientation. An independent spin-based audit checks the construction; physical interpretation and minimality remain open. See claim 83 and ADR-097.
+
+## 2026-11-28 ? Minimal SU(2) level within identical-field scope
+
+A denominator argument reduces all lower levels to 583, 1168 and 1753. Exact external-label-first and independent channel-first enumerations exclude triple monodromy matches at all three, even with independently chosen orientations. The level-2338 witness is therefore minimal only in the stated SU(2) identical-field setting. See claim 84 and ADR-098.
+
+## 2026-11-28 ? Minimal SU(2) external spin with common orientation
+
+A level-7018, label-288 witness uses smaller spin than the minimal-level witness. A phase-derived level bound plus denominator divisibility makes the all-level search finite; independent traversals exclude every smaller external label under one common full-monodromy orientation. See claim 85 and ADR-099.
+
+## 2026-11-28 ? Independent-orientation SU(2) spin minimum
+
+If target orientations may be chosen separately, a level-2338 witness has spin 90 and exact all-level bounds exclude smaller spins. The common-orientation spin-144 result remains distinct. The lower-spin search return tuple now additionally reports the independent-orientation prefix counts; existing counts are preserved. See claim 86 and ADR-100.
+
+## 2026-11-28 ? SU(2) host gauge central-charge limit
+
+The SU(2) phase hosts cannot directly conformally embed the full positive-level Standard Model gauge current algebra: c_SU2<3 while c_SM>=4. Added exact witness charges and an independent inequality audit. Additional sectors and nonconformal interpretations remain open. See claim 87 and ADR-101.
+
+## 2026-11-28 ? SU(2) weight-one current capacity
+
+The unextended positive-level SU(2) affine vacuum has three weight-one currents; the full Standard Model gauge algebra requires twelve. This excludes even a nonconformal weight-one current embedding in the standalone host. Extensions and additional sectors remain open. See claim 88 and ADR-102.
+
+## 2026-11-28 ? Decoupled gauge-current extension
+
+Constructed SU(2)_2338 x SU(3)_1 x U(1) with vacuum added factors, preserving the SU(2) monodromies and giving central charge 2339/390. The witness transforms in a 559-dimensional weak representation; physical matter and dynamics remain unestablished. See claim 89 and ADR-103.
+
+## 2026-11-28 ? Conservative sampled-grid homotopy guard
+
+Added a periodic space-time hemisphere certificate for pairs of sampled vector fields, with invalid-input and inconclusive controls. The analytic N=32 field and a small rotation pass; no historical production trajectory was certified. Corrected claim 15 so a near-one upsampled estimator is evidence rather than proof of topology preservation. See claim 90 and ADR-104.
+
+## 2026-11-28 ? Monitored short relaxation diagnostic
+
+Added a guarded one-step relaxation monitor and the fixed `simulate topoguard` command with a 900-second watchdog. A recorded N=32, 20-step probe reports positive margins for all completed sampled-map transitions. The run is preliminary and is not an independent re-derivation, a continuum guarantee, or a certification of historical production. See claim 91 and ADR-105.
+
+## 2026-11-28 ? Independent short-trajectory audit
+
+Added an independent local-energy finite-difference reconstruction and a verifier that runs it twice in separate processes against the production probe. The predeclared margin and energy tolerances pass; claim 91 is NUMERIC for this short sampled path only. Historical production and continuum dynamics remain unverified. See ADR-106.
+
+## 2026-11-28 - Longer guarded relaxation
+
+A 200-step sampled trajectory passes the sufficient guard for its first 155 transitions and has 45 inconclusive transitions beginning at step 156. Two independent local-energy finite-difference processes agree within the predeclared tolerances. Inconclusive does not mean topology changed; historical and continuum trajectories remain unverified. See claim 92 and ADR-107.
+
+## 2026-11-28 - Mean-direction sampled homotopy certificate
+
+A cell-mean separating direction certifies all 200 sampled transitions, including those inconclusive under the initial-corner guard. Two independent processes reproduce the positive minimum margin within frozen tolerances. The certificate concerns the constructed sampled interpolation, not the historical run or continuum dynamics. See claim 93 and ADR-108.
+
+## 2026-11-28 - Mean-direction certificate limit
+
+A fixed 600-step sampled trajectory first becomes inconclusive under the mean-direction guard at transition 596, with five inconclusive transitions. Two independent finite-difference processes reproduce the result. This is a limitation of the sufficient test, not a finding of topology change. See claim 94 and ADR-109.
