@@ -72,6 +72,10 @@ previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mi
 configuration. Their identification with particle phases remains a hypothesis.
 See claim 80 and ADR-091.
 
+An older SU(3)_62 adjoint calculation was incorrect: its Casimir weight
+difference is 1/195, not 2/39. The separate SU(3)_49 singlet expression equals
+2/39, but its model and sector assignments are post-hoc. See ADR-094.
+
 The SU(7)_1163 candidate also admits a chosen block current-algebra subsector
 SU(3)_1163 x SU(2)_1163 x U(1)^2. Its central charge is 8812057/679195;
 the remaining coset has central charge 920175833/26488605. The full block
@@ -255,7 +259,7 @@ fluid-universe/
 │   ├── d3_validation.rs      <- independent d=3 prediction validation
 │   ├── dynamical_flow.rs     <- RG-flow test of compact-index targets
 │   ├── ew_from_planck.rs     <- electroweak scale from the Planck scale
-│   ├── exact_phase_labels.rs <- exact WZW labels for two required phases
+│   ├── exact_phase_labels.rs <- conditional WZW differences and corrected level-62 value
 │   ├── fib_significance.rs   <- significance of the Fibonacci-phase pattern
 │   ├── foot_geometry.rs      <- peer-reviewed geometric Koide check
 │   ├── gauge_flavor.rs       <- weak-angle and flavor-amplitude relation

@@ -667,3 +667,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: Two-process comparison passed while claim 79 audit was UNVERIFIED because the middle SU(23) witness has 74 boxes, not 73.
 - **Decision**: Correct its Young-diagram and Casimir metadata, expect center charge 5, and require the audit verdict in a regression test.
 - **Consequences**: The exclusion remains valid but is accepted only after the independent audit produces NUMERIC in both processes; reproducibility alone is not claim acceptance.
+
+### ADR-094: Correct legacy SU(3) phase arithmetic and channel
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The legacy SU(3)_62 adjoint function returns 2/195 while claiming 2/39; the Casimir formula gives 1/195, and SU(3)_3 fundamental squared excludes the fundamental.
+- **Decision**: Return the Casimir expression 1/195, retain level 62 as a historical input, use the allowed antifundamental channel for the 2/9 comparison, and qualify natural-level assignments as post-hoc.
+- **Consequences**: The legacy level-62 numerical claim is retracted; separate SU(3)_49 singlet arithmetic remains valid under its stated mixed-channel assumptions.

@@ -1,48 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795844790.0984,
-    "completed_head": "942240a70a7f5fd14180ce777eb9080112366171",
-    "completed_tree": "0f381d4a407ae77f6bf4ea85679449797f08af87",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795851943.76599,
+    "lease_until": 1795852266.34197,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-audit-residue",
-    "updated_at": 1795844743.76599
+    "status": "in_progress",
+    "task_id": "fluid-legacy-phase",
+    "updated_at": 1795845066.34197
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Exact Cartan cubic tensor and independent polynomial agree; noncancelling control and two-process verification pass; all project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su7-perturbative-anomaly",
-      "timestamp": 1795809049.81458,
-      "timestamp_str": "2026-11-27 22:50:49"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su7-perturbative-anomaly' completed successfully.",
-      "head": "808c9363725727366ce170fadfca0ceeabb2f31c",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su7-perturbative-anomaly",
-      "timestamp": 1795809089.61422,
-      "timestamp_str": "2026-11-27 22:51:29"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Check conditional SU(2) doublet parity in the SU(7) branching",
@@ -320,6 +288,35 @@
       "task_id": "fluid-audit-residue",
       "timestamp": 1795844790.0984,
       "timestamp_str": "2026-11-28 08:46:30"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Correct SU(3) level-62 arithmetic and legacy phase channel descriptions",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Eliminate a wrong numerical API result and unsupported first-principles claims",
+        "mitigation": "Add failing-first exact arithmetic and Verlinde selection tests, preserve legacy level API and existing assertions, correct explanations and run gates",
+        "risks": "contract: returned value and report labels; dependency: none; concurrency: isolated project; state: regenerated evidence and documentation",
+        "why": "The level-62 adjoint expression is 1/195, not 2/39, and the cited fundamental is not in fundamental-pair fusion"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "7cb74590631b4d4baa3976f1d484f9b74d14f718a86d5fb697fb87ace8fc5c13",
+      "status": "in_progress",
+      "task_id": "fluid-legacy-phase",
+      "timestamp": 1795844834.06429,
+      "timestamp_str": "2026-11-28 08:47:14"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Exact level-62 arithmetic and SU(3) fusion regressions pass; 4/4 project gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-legacy-phase",
+      "timestamp": 1795845066.34197,
+      "timestamp_str": "2026-11-28 08:51:06"
     }
   ],
   "version": 1

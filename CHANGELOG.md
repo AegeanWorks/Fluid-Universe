@@ -1367,3 +1367,7 @@ Corrected legacy model descriptions: the Koide condition leaves the phase free, 
 ## 2026-11-28 ? SU(23) audit residue correction
 
 The second SU(23) witness has 74 boxes, A=518, C2=3219/23 and center charge 5. The previous 73/509/3189/23 metadata and charge 4 were incorrect; its charge still excludes fundamental-pair channels. Added an audit-verdict regression because two matching UNVERIFIED records are not evidence of acceptance. See ADR-093.
+
+## 2026-11-28 ? Legacy level-62 arithmetic correction
+
+Corrected the SU(3)_62 adjoint weight difference to 1/195; the prior helper returned 2/195 while claiming 2/39. Corrected the SU(3)_3 pair channel to the antifundamental and qualified the three-model singlet assignments. Exact-arithmetic and Verlinde regressions cover the corrections. See ADR-094.

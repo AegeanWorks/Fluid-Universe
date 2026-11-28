@@ -1,4 +1,4 @@
-//! All three phases as singlet-channel braiding labels at d=3-natural levels.
+//! Singlet-channel weight differences at three post-hoc selected levels.
 //!
 //! The singlet-channel braiding label of SU(N)_k is 2 h_box = (N^2-1)/(N(k+N)).
 //! For the three sectors the required phases are obtained EXACTLY at levels
@@ -7,22 +7,22 @@
 //!   down    1/10 = SU(2)_{d^2+d+1=13}:  3/(2*15)  = 1/10
 //!   up      2/39 = SU(3)_{(2d+1)^2=49}: 8/(3*52)  = 2/39
 //!
-//! These replace the earlier unnatural SU(3)_62 derivation of 2/39: the level
-//! 49 = (2d+1)^2 is d=3-natural, making ALL three phase origins structurally
-//! comparable. This is a genuine first-principles derivation (exact braiding
-//! labels, no fitting) of all three phases from d=3.
+//! The earlier SU(3)_62 adjoint claim was incorrect: its weight difference is
+//! 1/195. For a singlet channel, the external pair is fundamental and its
+//! conjugate. The magnitude shown is a full-monodromy exponent, not a proof
+//! that any physical sector uses this WZW model or phase.
 //!
 //! HONEST CAVEAT: the choice of SU(2) for down vs SU(3) for lepton/up, and the
 //! specific level functions (d^2, d^2+d+1, (2d+1)^2), were recognized after
 //! the phases were known. The labels are exact; the assignment rule is still
 //! post-hoc in the sense that other d=3 expressions could be tried. What is
-//! new is that all three now sit at d=3-natural levels with ONE channel type.
+//! numerically exact identities use one channel type in three separate models.
 
 use crate::Check;
 
 pub fn d() -> i64 { 3 }
 
-/// Singlet-channel braiding label 2 h_box = (N^2-1)/(N(k+N)).
+/// Singlet-channel full-monodromy exponent magnitude 2 h_box.
 pub fn singlet_label(n: i64, k: i64) -> f64 {
     (n*n - 1) as f64 / (n as f64 * (k + n) as f64)
 }

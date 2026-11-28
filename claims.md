@@ -129,6 +129,8 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 ## Status history
 
+- 2026-11-28 (legacy level-62 correction): the SU(3)_62 adjoint Casimir difference is 1/195, not 2/39; the former helper returned 2/195. The SU(3)_3 lepton example uses the antifundamental pair channel, not the fundamental. The separate SU(3)_49 singlet identity remains arithmetic evidence with post-hoc model assignment. See ADR-094.
+
 - 2026-11-28 (SU(23) audit correction): the second SU(23) witness has boxes/A/C2 = (74,518,3219/23), not the previously recorded (73,509,3189/23); its center charge is 5, not 4. The earlier audit was UNVERIFIED even though the two-process comparison agreed. The corrected audit and verdict regression are recorded in ADR-093.
 
 - 2026-11-28 (phase and observable clarification): Q=2/3 leaves the positive-root phase free. The p=1/18 and SU(3)_3 phase assignments are additional post-hoc assumptions; the spacing ratio is algebraically determined by the two hierarchy ratios and is not an independent test. See ADR-092 and `src/shape_freedom.rs`.
