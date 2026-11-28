@@ -765,3 +765,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: An exploratory N=32 continuation became inconclusive at step 156; a negative sufficient-condition margin does not establish topology change.
 - **Decision**: Record a fixed 200-step trajectory with the first inconclusive transition and compare against two independent local-energy finite-difference processes using epsilon 1e-5, margin tolerance 1e-6 and energy tolerance 1e-4.
 - **Consequences**: Passing checks identifies the certified prefix of this sampled path only; the first inconclusive step is not a topological failure and no historical or continuum trajectory is certified.
+
+### ADR-108: Certify sampled transitions using mean corner directions
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The initial-corner guard becomes inconclusive for 45 of 200 transitions, while an exploratory cell-mean separator remains positive.
+- **Decision**: Add a separate conservative cell-mean hemisphere guard and independently reproduce the fixed 200-step trajectory in two processes, with margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: A positive margin certifies only normalized interpolation of sampled maps; zero mean or a nonpositive margin remains inconclusive, with no historical or continuum claim.

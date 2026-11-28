@@ -1423,3 +1423,7 @@ Added an independent local-energy finite-difference reconstruction and a verifie
 ## 2026-11-28 - Longer guarded relaxation
 
 A 200-step sampled trajectory passes the sufficient guard for its first 155 transitions and has 45 inconclusive transitions beginning at step 156. Two independent local-energy finite-difference processes agree within the predeclared tolerances. Inconclusive does not mean topology changed; historical and continuum trajectories remain unverified. See claim 92 and ADR-107.
+
+## 2026-11-28 - Mean-direction sampled homotopy certificate
+
+A cell-mean separating direction certifies all 200 sampled transitions, including those inconclusive under the initial-corner guard. Two independent processes reproduce the positive minimum margin within frozen tolerances. The certificate concerns the constructed sampled interpolation, not the historical run or continuum dynamics. See claim 93 and ADR-108.

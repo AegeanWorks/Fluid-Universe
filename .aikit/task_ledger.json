@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795867730.59383,
-    "completed_head": "3bc20f6ed14a28c38cbad5eccd3d6f4bcb2ee30f",
-    "completed_tree": "7fe5dfa33433a237574fdb6a95f732c197d9ed32",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795874884.69631,
+    "lease_until": 1795875236.27372,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-topoguard-long",
-    "updated_at": 1795867684.69631
+    "status": "in_progress",
+    "task_id": "fluid-mean-guard",
+    "updated_at": 1795868036.27372
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Central-charge inequalities and exact witness values independently audited; two-process agreement and 4/4 gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su2-sm-charge",
-      "timestamp": 1795848158.78296,
-      "timestamp_str": "2026-11-28 09:42:38"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su2-sm-charge' completed successfully.",
-      "head": "4fc4fd2b0b5fd9ff702ddb85a636b1e743ab10f2",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su2-sm-charge",
-      "timestamp": 1795848223.53584,
-      "timestamp_str": "2026-11-28 09:43:43"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Test weight-one gauge-current capacity of unextended SU(2) WZW hosts",
@@ -322,6 +291,36 @@
       "task_id": "fluid-topoguard-long",
       "timestamp": 1795867730.59383,
       "timestamp_str": "2026-11-28 15:08:50"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently verify mean-direction hemisphere certificates across the 200-step sampled trajectory",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Strengthen a conservative sampled-map certificate without inferring topology change",
+        "mitigation": "Keep the original guard and evidence, test antipodal and invalid inputs, independently reconstruct the mean-direction calculation twice with frozen tolerances, and limit claims to the sampled path",
+        "risks": "contract: stricter claims require separate independent derivations; dependency: no new dependencies; concurrency: independent processes must agree; state: preserve existing recorded results",
+        "why": "The original corner anchor becomes inconclusive although an exploratory averaged direction passes"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "d307ae6a6569e605ce5664b9ce49ae293dbdaef66c10dfc5d9e72cbfe0df5894",
+      "status": "in_progress",
+      "task_id": "fluid-mean-guard",
+      "timestamp": 1795867800.76153,
+      "timestamp_str": "2026-11-28 15:10:00"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify mean-direction sampled certificates; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-mean-guard",
+      "timestamp": 1795868036.27372,
+      "timestamp_str": "2026-11-28 15:13:56"
     }
   ],
   "version": 1

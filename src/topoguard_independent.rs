@@ -6,6 +6,8 @@
 pub struct IndependentProbe {
     pub steps: usize,
     pub minimum_margin: f64,
+    pub mean_minimum_margin: f64,
+    pub mean_inconclusive_steps: usize,
     pub inconclusive_steps: usize,
     pub first_inconclusive_step: Option<usize>,
     pub start_energy: f64,
@@ -95,6 +97,27 @@ fn distance_margin(n: usize, first: &[[f64; 3]], second: &[[f64; 3]]) -> f64 {
     minimum
 }
 
+// Compute projections from distances to the normalized sample centroid.
+fn centroid_distance_margin(n: usize, first: &[[f64; 3]], second: &[[f64; 3]]) -> f64 {
+    let mut minimum = 1.0_f64;
+    for x in 0..n { for y in 0..n { for z in 0..n {
+        let mut corners = Vec::with_capacity(16);
+        for dx in 0..=1 { for dy in 0..=1 { for dz in 0..=1 {
+            let i = (((x+dx)%n)*n + (y+dy)%n)*n + (z+dz)%n;
+            corners.push(first[i]); corners.push(second[i]);
+        }}}
+        let sum = [0,1,2].map(|axis| corners.iter().map(|v| v[axis]).sum::<f64>());
+        let length = sum.iter().map(|v| v*v).sum::<f64>().sqrt();
+        if length <= 1e-12 { return 0.0; }
+        let direction = sum.map(|v| v / length);
+        for v in corners {
+            let distance2 = (0..3).map(|i| (direction[i]-v[i]).powi(2)).sum::<f64>();
+            minimum = minimum.min(1.0 - distance2/2.0);
+        }
+    }}}
+    minimum
+}
+
 /// Independently rederive an N=32 probe using epsilon=1e-5, for 1..=200 steps.
 pub fn run_independent_probe(steps: usize) -> IndependentProbe {
     assert!((1..=200).contains(&steps), "independent probe needs 1..=200 steps");
@@ -103,6 +126,8 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
     let energy = |f: &[[f64; 3]]| (0..f.len()).map(|p| cell_energy(n, f, p)).sum::<f64>();
     let start_energy = energy(&field);
     let mut minimum_margin = 1.0_f64;
+    let mut mean_minimum_margin = 1.0_f64;
+    let mut mean_inconclusive_steps = 0;
     let mut inconclusive_steps = 0;
     let mut first_inconclusive_step = None;
     for step in 1..=steps {
@@ -116,6 +141,9 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
             for c in v { *c /= len; }
         }
         let margin = distance_margin(n, &field, &next);
+        let mean = centroid_distance_margin(n, &field, &next);
+        mean_minimum_margin = mean_minimum_margin.min(mean);
+        if mean <= 1e-12 { mean_inconclusive_steps += 1; }
         minimum_margin = minimum_margin.min(margin);
         if margin <= 1e-12 {
             inconclusive_steps += 1;
@@ -123,7 +151,7 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
         }
         field = next;
     }
-    IndependentProbe { steps, minimum_margin, inconclusive_steps, first_inconclusive_step, start_energy, end_energy: energy(&field) }
+    IndependentProbe { steps, minimum_margin, mean_minimum_margin, mean_inconclusive_steps, inconclusive_steps, first_inconclusive_step, start_energy, end_energy: energy(&field) }
 }
 
 #[cfg(test)]

@@ -67,6 +67,10 @@ The [200-step continuation](results/rust_topoguard_extended.csv) has its first
 inconclusive transition at step 156, with 45 inconclusive transitions in total.
 Run `cargo run -- simulate topoguard-extended-verify` to compare two independent
 calculations. An inconclusive guard does not establish a topology change.
+A cell-mean separating direction certifies all 200 sampled transitions with
+minimum margin 0.622477036916. Run `cargo run -- simulate topoguard-mean-verify`
+to compare two independent calculations; this certifies only the constructed
+sampled-map interpolation, not historical or continuum dynamics.
 
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an

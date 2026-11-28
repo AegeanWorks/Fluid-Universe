@@ -6,6 +6,16 @@ fn uniform(v: [f64; 3]) -> Field3 {
 }
 
 #[test]
+fn mean_direction_guard_certifies_wide_rotation_and_rejects_degenerate_input() {
+    use fluid_universe::topology_guard::homotopy_mean_margin;
+    let a = uniform([1.0, 0.0, 0.0]);
+    let b = uniform([-0.5, 3.0_f64.sqrt() / 2.0, 0.0]);
+    assert!((homotopy_mean_margin(&a, &b).unwrap() - 0.5).abs() < 1e-12);
+    assert!(homotopy_mean_margin(&a, &uniform([-1.0, 0.0, 0.0])).unwrap() <= 0.0);
+    assert!(homotopy_mean_margin(&a, &uniform([0.0; 3])).is_err());
+}
+
+#[test]
 fn hemisphere_guard_certifies_and_remains_conservative() {
     let a = uniform([1.0, 0.0, 0.0]);
     let close = uniform([0.5, 3.0_f64.sqrt() / 2.0, 0.0]);

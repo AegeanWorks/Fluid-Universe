@@ -19,6 +19,8 @@ pub struct MonitoredRelaxation {
     pub inconclusive_steps: usize,
     pub first_inconclusive_step: Option<usize>,
     pub minimum_margin: Option<f64>,
+    pub mean_minimum_margin: Option<f64>,
+    pub mean_inconclusive_steps: usize,
     pub start_energy: f64,
     pub end_energy: f64,
 }
@@ -71,6 +73,34 @@ pub fn homotopy_hemisphere_margin(initial: &Field3, final_field: &Field3) -> Res
     Ok(margin)
 }
 
+/// Use the normalized sum of each cell's sixteen endpoint samples as a
+/// separating direction. A zero sum yields an inconclusive zero margin.
+pub fn homotopy_mean_margin(initial: &Field3, final_field: &Field3) -> Result<f64, String> {
+    // Reuse the established grid and sample validation.
+    homotopy_hemisphere_margin(initial, final_field)?;
+    let n = initial.n;
+    let count = n * n * n;
+    let a = normalized_samples(initial, count)?;
+    let b = normalized_samples(final_field, count)?;
+    let mut margin = 1.0_f64;
+    for x in 0..n { for y in 0..n { for z in 0..n {
+        let mut samples = [[0.0; 3]; 16];
+        let mut next = 0;
+        for dx in 0..=1 { for dy in 0..=1 { for dz in 0..=1 {
+            let i = (((x + dx) % n) * n + (y + dy) % n) * n + (z + dz) % n;
+            samples[next] = a[i]; samples[next + 1] = b[i]; next += 2;
+        }}}
+        let mut sum = [0.0; 3];
+        for v in samples { for k in 0..3 { sum[k] += v[k]; } }
+        let length = sum[0].hypot(sum[1]).hypot(sum[2]);
+        if length <= MARGIN_TOLERANCE { return Ok(0.0); }
+        for v in samples {
+            margin = margin.min((sum[0]*v[0] + sum[1]*v[1] + sum[2]*v[2]) / length);
+        }
+    }}}
+    Ok(margin)
+}
+
 /// Run the existing relaxation one step at a time and test each completed
 /// sampled-map transition. A nonpositive margin is inconclusive; even when
 /// all transitions pass, the certificate concerns the piecewise interpolated
@@ -88,7 +118,7 @@ pub fn monitored_relaxation(
     }
     let mut result = MonitoredRelaxation {
         field: initial.clone(), completed_steps: 0, inconclusive_steps: 0, first_inconclusive_step: None,
-        minimum_margin: None, start_energy, end_energy: start_energy,
+        minimum_margin: None, mean_minimum_margin: None, mean_inconclusive_steps: 0, start_energy, end_energy: start_energy,
     };
     for _ in 0..steps {
         let (next, history, _) = crate::simulation::relax(&result.field, mu, dt, 1, k, kappa);
@@ -97,6 +127,9 @@ pub fn monitored_relaxation(
         }
         if history.len() < 2 { break; }
         let margin = homotopy_hemisphere_margin(&result.field, &next)?;
+        let mean = homotopy_mean_margin(&result.field, &next)?;
+        result.mean_minimum_margin = Some(result.mean_minimum_margin.map_or(mean, |old| old.min(mean)));
+        if mean <= MARGIN_TOLERANCE { result.mean_inconclusive_steps += 1; }
         result.minimum_margin = Some(result.minimum_margin.map_or(margin, |old| old.min(margin)));
         if margin <= MARGIN_TOLERANCE {
             result.inconclusive_steps += 1;
