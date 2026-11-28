@@ -7,9 +7,9 @@
 
 ## 📊 Codebase Metrics
 - **Total Rust Modules**: `96`
-- **Total Public Types**: `18`
-- **Total Public Functions**: `601`
-- **Total Source Lines**: `15915`
+- **Total Public Types**: `19`
+- **Total Public Functions**: `602`
+- **Total Source Lines**: `15978`
 
 ## 🧭 Map Coverage
 - **Indexed**: rust (`96` module(s))
@@ -194,7 +194,7 @@
 > Linearised director dispersion and the emergent-metric question (claims
 - **Functions**: `elastic_eigenvalues`, `residual_anisotropy`, `checks`
 
-### `src/main.rs` (687 lines)
+### `src/main.rs` (705 lines)
 > CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
 
 ### `src/mass_convention.rs` (121 lines)
@@ -348,9 +348,10 @@
 > No-SUSY unification with one intermediate threshold: honest negative.
 - **Functions**: `sm_spread_min`, `threshold_spread`, `threshold_mu_g`, `threshold_mu_i`, `checks`
 
-### `src/topology_guard.rs` (77 lines)
+### `src/topology_guard.rs` (122 lines)
 > Conservative homotopy certificate for periodic sampled unit-vector fields.
-- **Functions**: `homotopy_hemisphere_margin`, `checks`
+- **Types**: `MonitoredRelaxation`
+- **Functions**: `homotopy_hemisphere_margin`, `monitored_relaxation`, `checks`
 
 ### `src/two_component.rs` (136 lines)
 > Two-component ansatz: a topological H=1 layer and a Z3-ordered layer.

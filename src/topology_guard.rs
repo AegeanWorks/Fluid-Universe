@@ -12,6 +12,16 @@ use crate::{Check, simulation::{Field3, analytic_field}};
 /// Minimum projection required to report a numerical certificate.
 pub const MARGIN_TOLERANCE: f64 = 1e-12;
 
+#[derive(Clone, Debug)]
+pub struct MonitoredRelaxation {
+    pub field: Field3,
+    pub completed_steps: usize,
+    pub inconclusive_steps: usize,
+    pub minimum_margin: Option<f64>,
+    pub start_energy: f64,
+    pub end_energy: f64,
+}
+
 fn normalized_samples(field: &Field3, count: usize) -> Result<Vec<[f64; 3]>, String> {
     if field.data.len() != count {
         return Err("Why: the grid shape and sample count differ. Fix: provide exactly n^3 samples.".into());
@@ -58,6 +68,41 @@ pub fn homotopy_hemisphere_margin(initial: &Field3, final_field: &Field3) -> Res
         }
     }
     Ok(margin)
+}
+
+/// Run the existing relaxation one step at a time and test each completed
+/// sampled-map transition. A nonpositive margin is inconclusive; even when
+/// all transitions pass, the certificate concerns the piecewise interpolated
+/// sampled maps, not an unsampled continuum trajectory.
+pub fn monitored_relaxation(
+    initial: &Field3, mu: f64, dt: f64, steps: usize, k: f64, kappa: f64,
+) -> Result<MonitoredRelaxation, String> {
+    if ![mu, dt, k, kappa].iter().all(|value| value.is_finite()) || dt <= 0.0 {
+        return Err("Why: relaxation parameters are non-finite or dt is not positive. Fix: use finite parameters and dt>0.".into());
+    }
+    homotopy_hemisphere_margin(initial, initial)?;
+    let start_energy = crate::simulation::energy_terms(initial, mu, k, kappa).total;
+    if !start_energy.is_finite() {
+        return Err("Why: the initial energy is non-finite. Fix: rescale the field or parameters.".into());
+    }
+    let mut result = MonitoredRelaxation {
+        field: initial.clone(), completed_steps: 0, inconclusive_steps: 0,
+        minimum_margin: None, start_energy, end_energy: start_energy,
+    };
+    for _ in 0..steps {
+        let (next, history, _) = crate::simulation::relax(&result.field, mu, dt, 1, k, kappa);
+        if history.iter().any(|value| !value.is_finite()) {
+            return Err("Why: relaxation produced non-finite energy. Fix: reduce the step or rescale parameters.".into());
+        }
+        if history.len() < 2 { break; }
+        let margin = homotopy_hemisphere_margin(&result.field, &next)?;
+        result.minimum_margin = Some(result.minimum_margin.map_or(margin, |old| old.min(margin)));
+        if margin <= MARGIN_TOLERANCE { result.inconclusive_steps += 1; }
+        result.completed_steps += 1;
+        result.end_energy = *history.last().unwrap();
+        result.field = next;
+    }
+    Ok(result)
 }
 
 pub fn checks() -> Vec<Check> {

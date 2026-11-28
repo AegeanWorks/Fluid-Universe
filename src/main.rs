@@ -10,7 +10,7 @@ use fluid_universe::{
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, nosusy_unification, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
-    quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, two_component,
+    quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, topology_guard, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification, multi_radial_shell,
     quark_phases, wzw, wzw_crosscheck, xy_z3,
 };
@@ -223,6 +223,24 @@ fn main() {
         }
         "simulate" => {
             match args.get(1).map(String::as_str).unwrap_or("") {
+                "topoguard" => {
+                    // Hard wall-clock limit for this fixed-size diagnostic (G-003).
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let initial = simulation::analytic_field(32, 8.0, false);
+                    match topology_guard::monitored_relaxation(&initial, 20.0, 0.05, 20, 1.0, 1.0) {
+                        Ok(result) => {
+                            println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
+                            let margin = result.minimum_margin.map_or_else(|| "none".to_string(), |v| format!("{v:.12}"));
+                            println!("32,20,{},{},{},{:.12},{:.12}", result.completed_steps, margin,
+                                     result.inconclusive_steps, result.start_energy, result.end_energy);
+                        }
+                        Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                    }
+                }
                 "muscan" => {
                     let n: usize = 10;
                     let length = 8.0;
@@ -627,7 +645,7 @@ fn main() {
                     }
                 }
                 other => {
-                    eprintln!("Why: unknown simulation {other:?}.\nFix: choose `muscan|history`.");
+                    eprintln!("Why: unknown simulation {other:?}.\nFix: choose a simulation mode such as `topoguard`, `muscan` or `history`.");
                     std::process::exit(2);
                 }
             }

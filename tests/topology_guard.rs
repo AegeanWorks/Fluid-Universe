@@ -42,3 +42,26 @@ fn analytic_grid_and_small_rotation_have_positive_margin_at_32() {
     let margin = homotopy_hemisphere_margin(&field, &rotated).unwrap();
     assert!((margin - 0.00892819001238837).abs() < 1e-12);
 }
+
+#[test]
+fn monitored_steps_match_existing_relaxation_and_report_inconclusive_cells() {
+    use fluid_universe::topology_guard::monitored_relaxation;
+    let initial = analytic_field(8, 8.0, false);
+    let monitored = monitored_relaxation(&initial, 0.0, 0.05, 3, 1.0, 1.0).unwrap();
+    let (direct, history, _) = fluid_universe::simulation::relax(&initial, 0.0, 0.05, 3, 1.0, 1.0);
+    assert_eq!(monitored.completed_steps, history.len() - 1);
+    for (a, b) in monitored.field.data.iter().zip(&direct.data) {
+        for i in 0..3 { assert!((a[i] - b[i]).abs() < 1e-14); }
+    }
+    assert!(monitored.inconclusive_steps > 0);
+    assert!(monitored.minimum_margin.unwrap() <= 0.0);
+    assert!(monitored_relaxation(&initial, 0.0, f64::NAN, 1, 1.0, 1.0).is_err());
+}
+
+#[test]
+fn monitored_stationary_field_does_not_claim_a_certified_step() {
+    use fluid_universe::topology_guard::monitored_relaxation;
+    let result = monitored_relaxation(&uniform([0.0, 0.0, 1.0]), 0.0, 0.05, 3, 1.0, 1.0).unwrap();
+    assert_eq!(result.completed_steps, 0);
+    assert_eq!(result.minimum_margin, None);
+}

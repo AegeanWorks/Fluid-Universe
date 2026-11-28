@@ -32,7 +32,7 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
   The binary launches two audit processes and compares their identified records exactly,
   including value bits and verdict details. It requires the ordered record IDs to match a
   fixed manifest and exits non-zero on disagreement, missing or malformed records, or a
-  child failure. The current audit has 55 records and has not been mapped to
+  child failure. The current audit has 67 records and has not been mapped to
   every accepted ledger claim, so a pass does not establish complete G-001 coverage.
 - **Migration map and port status**: [`MIGRATION.md`](MIGRATION.md). The former Python package
   directories are kept as a reference ledger; the Rust crate is the canonical implementation.
@@ -56,6 +56,11 @@ when every space-time cell fits a common separating hemisphere. It passes for
 the N=32 analytic field and a 0.01-radian rotation; failure is inconclusive,
 and no historical production trajectory has been certified. A near-one Hopf
 estimate alone does not prove topology preservation. See claim 90 and ADR-104.
+Run `cargo run -- simulate topoguard` for a fixed 20-step N=32 relaxation with
+each completed sampled-map transition checked. This short diagnostic has a
+900-second watchdog; it does not certify an unsampled continuum trajectory.
+The [recorded probe](results/rust_topoguard_probe.csv) is preliminary and has
+not been independently re-derived; it does not certify the historical run.
 
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an

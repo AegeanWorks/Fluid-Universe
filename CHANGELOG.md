@@ -1411,3 +1411,7 @@ Constructed SU(2)_2338 x SU(3)_1 x U(1) with vacuum added factors, preserving th
 ## 2026-11-28 ? Conservative sampled-grid homotopy guard
 
 Added a periodic space-time hemisphere certificate for pairs of sampled vector fields, with invalid-input and inconclusive controls. The analytic N=32 field and a small rotation pass; no historical production trajectory was certified. Corrected claim 15 so a near-one upsampled estimator is evidence rather than proof of topology preservation. See claim 90 and ADR-104.
+
+## 2026-11-28 ? Monitored short relaxation diagnostic
+
+Added a guarded one-step relaxation monitor and the fixed `simulate topoguard` command with a 900-second watchdog. A recorded N=32, 20-step probe reports positive margins for all completed sampled-map transitions. The run is preliminary and is not an independent re-derivation, a continuum guarantee, or a certification of historical production. See claim 91 and ADR-105.

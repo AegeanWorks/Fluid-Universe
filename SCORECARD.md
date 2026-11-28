@@ -125,4 +125,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 90 | NUMERIC (sampled-grid homotopy certificate) | The N=32 analytic field and a small rotation pass a sufficient hemisphere test; historical production topology is not certified. |
 
+| 91 | UNVERIFIED (short monitored relaxation) | N=32 finite-difference probe records 20 passing sampled-map transitions; independent dynamical re-derivation and long-run evidence remain open. |
+
 Claim audit: two Rust processes produced 67 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

@@ -744,3 +744,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: An upsampled Hopf estimate near one cannot alone prove topology preservation between discrete field snapshots.
 - **Decision**: For each periodic cell require one initial corner to have positive dot product with all sixteen normalized space-time corner vectors; report the minimum margin with a conservative tolerance, reject invalid grids, and independently audit a rotated analytic field.
 - **Consequences**: Passing certifies a nonvanishing multilinear interpolation and hence a homotopy of the sampled maps; failing is inconclusive and no recorded production trajectory is certified without its snapshots.
+
+### ADR-105: Monitor sampled-map homotopy across short relaxation runs
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The hemisphere guard certifies snapshot interpolation, but the historical production fields are unavailable and no actual relaxation has used it.
+- **Decision**: Run the existing relaxation one step at a time, apply the guard to each completed transition, and expose a fixed short N=32 diagnostic without claiming a historical or continuum topology result.
+- **Consequences**: All passing transitions certify a piecewise interpolated sequence of sampled maps; failed margins are inconclusive, and the force discretization and long-run physical interpretation remain open.

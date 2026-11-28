@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795866238.61743,
-    "completed_head": "16282d41f847e3a7e781a96a772bd4195a7b4d34",
-    "completed_tree": "9eed7ad8293522a2b60dc79ab2b7e4dfbdf2f691",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795873359.41607,
+    "lease_until": 1795873830.03855,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-grid-homotopy",
-    "updated_at": 1795866159.41607
+    "status": "in_progress",
+    "task_id": "fluid-monitored-relax",
+    "updated_at": 1795866630.03855
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] All lower candidate SU(2) levels independently enumerated; two-process audit and 4/4 gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su2-minimal-level",
-      "timestamp": 1795847186.79127,
-      "timestamp_str": "2026-11-28 09:26:26"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su2-minimal-level' completed successfully.",
-      "head": "baa65f56b78cb35858b5b545f202da7dcbab79bd",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su2-minimal-level",
-      "timestamp": 1795847308.44515,
-      "timestamp_str": "2026-11-28 09:28:28"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Test global minimum external spin for common-orientation SU(2) target phases",
@@ -319,6 +288,36 @@
       "task_id": "fluid-grid-homotopy",
       "timestamp": 1795866238.61743,
       "timestamp_str": "2026-11-28 14:43:58"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Monitor successive relaxation steps with the sampled-grid homotopy guard",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Provide a reproducible short dynamics diagnostic that distinguishes certified steps from inconclusive ones",
+        "mitigation": "Reuse one-step relaxation, compare its final field with the existing multi-step path, count only completed steps, report conservative margins and avoid promoting unverified production claims",
+        "risks": "contract: relaxation trajectory equivalence and guard interpretation; dependency: none; concurrency: isolated project; state: diagnostic output and documentation",
+        "why": "The new certificate has not yet been applied to an actual numerical relaxation and historical snapshots are unavailable"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "d4f078667539f0118036fa815bdd4b97b91c0c7c5945c9bb9a3e65759723bece",
+      "status": "in_progress",
+      "task_id": "fluid-monitored-relax",
+      "timestamp": 1795866317.35509,
+      "timestamp_str": "2026-11-28 14:45:17"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] One-step equivalence and conservative controls pass; N=32 probe recorded as unverified; 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-monitored-relax",
+      "timestamp": 1795866630.03855,
+      "timestamp_str": "2026-11-28 14:50:30"
     }
   ],
   "version": 1
