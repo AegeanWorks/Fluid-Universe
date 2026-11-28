@@ -7,6 +7,7 @@ pub struct IndependentProbe {
     pub steps: usize,
     pub minimum_margin: f64,
     pub inconclusive_steps: usize,
+    pub first_inconclusive_step: Option<usize>,
     pub start_energy: f64,
     pub end_energy: f64,
 }
@@ -94,15 +95,17 @@ fn distance_margin(n: usize, first: &[[f64; 3]], second: &[[f64; 3]]) -> f64 {
     minimum
 }
 
-/// Independently rederive the fixed N=32, 20-step probe using epsilon=1e-5.
-pub fn run_independent_probe() -> IndependentProbe {
-    let (n, steps, epsilon, dt) = (32_usize, 20_usize, 1e-5_f64, 0.05_f64);
+/// Independently rederive an N=32 probe using epsilon=1e-5, for 1..=200 steps.
+pub fn run_independent_probe(steps: usize) -> IndependentProbe {
+    assert!((1..=200).contains(&steps), "independent probe needs 1..=200 steps");
+    let (n, epsilon, dt) = (32_usize, 1e-5_f64, 0.05_f64);
     let mut field = initial_samples(n);
     let energy = |f: &[[f64; 3]]| (0..f.len()).map(|p| cell_energy(n, f, p)).sum::<f64>();
     let start_energy = energy(&field);
     let mut minimum_margin = 1.0_f64;
     let mut inconclusive_steps = 0;
-    for _ in 0..steps {
+    let mut first_inconclusive_step = None;
+    for step in 1..=steps {
         let gradient = finite_difference_gradient(n, &mut field, epsilon);
         let norm = gradient.iter().flat_map(|v| v.iter()).map(|v| v*v).sum::<f64>().sqrt();
         assert!(norm.is_finite() && norm > 1e-14, "independent gradient must be finite and nonzero");
@@ -114,10 +117,13 @@ pub fn run_independent_probe() -> IndependentProbe {
         }
         let margin = distance_margin(n, &field, &next);
         minimum_margin = minimum_margin.min(margin);
-        if margin <= 1e-12 { inconclusive_steps += 1; }
+        if margin <= 1e-12 {
+            inconclusive_steps += 1;
+            if first_inconclusive_step.is_none() { first_inconclusive_step = Some(step); }
+        }
         field = next;
     }
-    IndependentProbe { steps, minimum_margin, inconclusive_steps, start_energy, end_energy: energy(&field) }
+    IndependentProbe { steps, minimum_margin, inconclusive_steps, first_inconclusive_step, start_energy, end_energy: energy(&field) }
 }
 
 #[cfg(test)]

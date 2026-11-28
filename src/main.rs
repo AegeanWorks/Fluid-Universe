@@ -121,6 +121,34 @@ fn compare_topoguard_probes(production: &str, first: &str, second: &str) -> Resu
     Ok(())
 }
 
+fn parse_extended_topoguard(text: &str) -> Result<(f64, usize, usize, f64, f64), String> {
+    let mut lines = text.lines();
+    if lines.next() != Some("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy") {
+        return Err("unexpected extended topology probe header".into());
+    }
+    let c: Vec<_> = lines.next().ok_or("missing extended topology row")?.split(',').collect();
+    if lines.next().is_some() || c.len() != 8 || c[0] != "32" || c[1] != "200" || c[2] != "200" {
+        return Err("extended topology probe did not complete 200 steps".into());
+    }
+    let parse_float = |i: usize| c[i].parse::<f64>().map_err(|_| "invalid extended topology number".to_string());
+    let parse_count = |i: usize| c[i].parse::<usize>().map_err(|_| "invalid extended topology count".to_string());
+    let (margin, count, first, start, end) = (parse_float(3)?, parse_count(4)?, parse_count(5)?, parse_float(6)?, parse_float(7)?);
+    if ![margin, start, end].iter().all(|v| v.is_finite()) || count != 45 || first != 156 {
+        return Err("extended topology probe differs from the recorded inconclusive prefix".into());
+    }
+    Ok((margin, count, first, start, end))
+}
+
+fn compare_extended_topoguard(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent extended processes disagree".into()); }
+    let a = parse_extended_topoguard(production)?;
+    let b = parse_extended_topoguard(first)?;
+    if (a.0-b.0).abs() > 1e-6 || (a.3-b.3).abs() > 1e-4 || (a.4-b.4).abs() > 1e-4 {
+        return Err("extended topology probe differs beyond the predeclared tolerances".into());
+    }
+    Ok(())
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let command = args.first().map(String::as_str).unwrap_or("all");
@@ -275,6 +303,54 @@ fn main() {
         }
         "simulate" => {
             match args.get(1).map(String::as_str).unwrap_or("") {
+                "topoguard-extended-verify" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: extended topology verification exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard-extended")?;
+                        let first = spawn_topoguard_probe("topoguard-extended-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-extended-independent")?;
+                        compare_extended_topoguard(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() {
+                        eprintln!("Why: {error}.\nFix: inspect both topology implementations and rerun the diagnostic.");
+                        std::process::exit(1);
+                    }
+                    println!("Extended topology probe: production and two independent processes agree; first inconclusive transition is 156, not a topology-failure verdict.");
+                }
+                "topoguard-extended-independent" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the independent extended topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let result = topoguard_independent::run_independent_probe(200);
+                    let first = result.first_inconclusive_step.map_or_else(|| "none".to_string(), |n| n.to_string());
+                    println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                    println!("32,200,{},{:.12},{},{},{:.12},{:.12}", result.steps, result.minimum_margin,
+                             result.inconclusive_steps, first, result.start_energy, result.end_energy);
+                }
+                "topoguard-extended" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the extended topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let initial = simulation::analytic_field(32, 8.0, false);
+                    match topology_guard::monitored_relaxation(&initial, 20.0, 0.05, 200, 1.0, 1.0) {
+                        Ok(result) => {
+                            let margin = result.minimum_margin.map_or_else(|| "none".to_string(), |v| format!("{v:.12}"));
+                            let first = result.first_inconclusive_step.map_or_else(|| "none".to_string(), |n| n.to_string());
+                            println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                            println!("32,200,{},{},{},{},{:.12},{:.12}", result.completed_steps, margin,
+                                     result.inconclusive_steps, first, result.start_energy, result.end_energy);
+                        }
+                        Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                    }
+                }
                 "topoguard-verify" => {
                     std::thread::spawn(|| {
                         std::thread::sleep(Duration::from_secs(900));
@@ -299,7 +375,7 @@ fn main() {
                         eprintln!("Why: the independent topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
                         std::process::exit(1);
                     });
-                    let result = topoguard_independent::run_independent_probe();
+                    let result = topoguard_independent::run_independent_probe(20);
                     println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
                     println!("32,20,{},{:.12},{},{:.12},{:.12}", result.steps, result.minimum_margin,
                              result.inconclusive_steps, result.start_energy, result.end_energy);
@@ -787,7 +863,19 @@ fn main() {
 
 #[cfg(test)]
 mod topology_probe_tests {
-    use super::compare_topoguard_probes;
+    use super::{compare_extended_topoguard, compare_topoguard_probes};
+
+    #[test]
+    fn extended_comparison_checks_reproducibility_and_recorded_prefix() {
+        let good = "n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy\n32,200,200,-0.038,45,156,3136.0,2644.0\n";
+        assert!(compare_extended_topoguard(good, good, good).is_ok());
+        assert!(compare_extended_topoguard(good, good, &good.replace("2644.0", "2643.0")).is_err());
+        let divergent = good.replace("-0.038", "-0.039");
+        assert!(compare_extended_topoguard(good, &divergent, &divergent).is_err());
+        for invalid in [good.replace("45,156", "44,156"), good.replace("45,156", "45,155"), good.replace("-0.038", "NaN")] {
+            assert!(compare_extended_topoguard(&invalid, good, good).is_err());
+        }
+    }
 
     #[test]
     fn comparison_rejects_incomplete_inconclusive_and_divergent_runs() {

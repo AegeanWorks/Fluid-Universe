@@ -758,3 +758,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The N=32 monitored trajectory was recorded by one analytic-force implementation and remains unverified.
 - **Decision**: Reconstruct the field and local energy independently, approximate every force component by centered local-energy differences at epsilon 1e-5, and compare twenty transitions in two separate processes using predeclared absolute tolerances 1e-6 for margin and 1e-4 for start and end energy.
 - **Consequences**: Promotion requires both independent runs to agree with the production probe and pass all guard transitions; this remains a short discrete-path result and does not certify the historical production run or continuum dynamics.
+
+### ADR-107: Measure the conservative certificate limit in a longer relaxation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An exploratory N=32 continuation became inconclusive at step 156; a negative sufficient-condition margin does not establish topology change.
+- **Decision**: Record a fixed 200-step trajectory with the first inconclusive transition and compare against two independent local-energy finite-difference processes using epsilon 1e-5, margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: Passing checks identifies the certified prefix of this sampled path only; the first inconclusive step is not a topological failure and no historical or continuum trajectory is certified.

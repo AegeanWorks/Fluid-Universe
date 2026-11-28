@@ -125,6 +125,7 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 90 | NUMERIC (sampled-grid homotopy certificate) | The N=32 analytic field and a small rotation pass a sufficient hemisphere test; historical production topology is not certified. |
 
+| 92 | NUMERIC (200-step sampled trajectory) | Two independent processes reproduce 45 inconclusive transitions, first at 156; this is not evidence of topology change. |
 | 91 | NUMERIC (short monitored relaxation) | Two independent finite-difference processes agree with the 20-step sampled-path probe within frozen tolerances; long-run and continuum evidence remain open. |
 
 Claim audit: two Rust processes produced 67 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

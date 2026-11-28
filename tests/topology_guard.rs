@@ -55,6 +55,7 @@ fn monitored_steps_match_existing_relaxation_and_report_inconclusive_cells() {
     }
     assert!(monitored.inconclusive_steps > 0);
     assert!(monitored.minimum_margin.unwrap() <= 0.0);
+    assert_eq!(monitored.first_inconclusive_step, Some(1));
     assert!(monitored_relaxation(&initial, 0.0, f64::NAN, 1, 1.0, 1.0).is_err());
 }
 
@@ -64,4 +65,5 @@ fn monitored_stationary_field_does_not_claim_a_certified_step() {
     let result = monitored_relaxation(&uniform([0.0, 0.0, 1.0]), 0.0, 0.05, 3, 1.0, 1.0).unwrap();
     assert_eq!(result.completed_steps, 0);
     assert_eq!(result.minimum_margin, None);
+    assert_eq!(result.first_inconclusive_step, None);
 }

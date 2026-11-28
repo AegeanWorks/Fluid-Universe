@@ -1,7 +1,7 @@
 # Audit coverage inventory
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
-On 2026-11-28, `claims.md` contained 75 numbered rows marked PROVEN, NUMERIC,
+On 2026-11-28, `claims.md` contained 76 numbered rows marked PROVEN, NUMERIC,
 or VERIFIED; `results/rust_audit.json` now contains 67 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
@@ -57,4 +57,5 @@ processes before treating it as G-001 evidence.
 | 88 | `audit.su2_sm_current_capacity` | Independently counts Cartan and root currents; the proposition is FALSIFIED for the unextended weight-one chiral algebra. |
 | 89 | `audit.su2_decoupled_gauge_extension` | Independently checks central charge, spin dimension and phase residues with added vacuum factors; matter and dynamics are outside scope. |
 | 90 | `audit.grid_homotopy_hemisphere` | Independently reconstructs the sampled field and projection via squared distances; no historical production snapshots are tested. |
+| 92 | `results/rust_topoguard_extended_independent.csv`, `results/rust_topoguard_extended_comparison.json` | Separate verifier compares two independent finite-difference processes with the 200-step production summary; the general audit manifest does not cover this claim. |
 | 91 | `results/rust_topoguard_independent.csv`, `results/rust_topoguard_comparison.json` | Separate verifier compares two local-energy finite-difference processes with production summary values; the general audit-record manifest does not cover this claim. |

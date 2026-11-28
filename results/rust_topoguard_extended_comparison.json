@@ -1,0 +1,13 @@
+{
+  "independent_processes": 2,
+  "independent_outputs_identical": true,
+  "finite_difference_epsilon": 1e-05,
+  "margin_tolerance": 1e-06,
+  "energy_tolerance": 0.0001,
+  "absolute_differences": {
+    "minimum_margin": 3.629999981158427e-10,
+    "start_energy": 4.092726157978177e-12,
+    "end_energy": 1.3994031178299338e-07
+  },
+  "verdict": "PASS"
+}

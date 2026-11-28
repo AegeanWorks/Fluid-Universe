@@ -17,6 +17,7 @@ pub struct MonitoredRelaxation {
     pub field: Field3,
     pub completed_steps: usize,
     pub inconclusive_steps: usize,
+    pub first_inconclusive_step: Option<usize>,
     pub minimum_margin: Option<f64>,
     pub start_energy: f64,
     pub end_energy: f64,
@@ -86,7 +87,7 @@ pub fn monitored_relaxation(
         return Err("Why: the initial energy is non-finite. Fix: rescale the field or parameters.".into());
     }
     let mut result = MonitoredRelaxation {
-        field: initial.clone(), completed_steps: 0, inconclusive_steps: 0,
+        field: initial.clone(), completed_steps: 0, inconclusive_steps: 0, first_inconclusive_step: None,
         minimum_margin: None, start_energy, end_energy: start_energy,
     };
     for _ in 0..steps {
@@ -97,7 +98,12 @@ pub fn monitored_relaxation(
         if history.len() < 2 { break; }
         let margin = homotopy_hemisphere_margin(&result.field, &next)?;
         result.minimum_margin = Some(result.minimum_margin.map_or(margin, |old| old.min(margin)));
-        if margin <= MARGIN_TOLERANCE { result.inconclusive_steps += 1; }
+        if margin <= MARGIN_TOLERANCE {
+            result.inconclusive_steps += 1;
+            if result.first_inconclusive_step.is_none() {
+                result.first_inconclusive_step = Some(result.completed_steps + 1);
+            }
+        }
         result.completed_steps += 1;
         result.end_energy = *history.last().unwrap();
         result.field = next;

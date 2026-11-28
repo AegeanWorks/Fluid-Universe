@@ -63,6 +63,10 @@ The [recorded probe](results/rust_topoguard_probe.csv) agrees with two
 independent local-energy finite-difference runs within predeclared tolerances.
 Run `cargo run -- simulate topoguard-verify` to repeat that separate-process
 comparison. It does not certify the historical run or an unsampled continuum path.
+The [200-step continuation](results/rust_topoguard_extended.csv) has its first
+inconclusive transition at step 156, with 45 inconclusive transitions in total.
+Run `cargo run -- simulate topoguard-extended-verify` to compare two independent
+calculations. An inconclusive guard does not establish a topology change.
 
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an

@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795867240.54442,
-    "completed_head": "cc34b10a47f41b6353034f66f32cb5ddd19e30bf",
-    "completed_tree": "9388ec243daa93ee03413068a3f3241e0e40a34b",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795874370.15538,
+    "lease_until": 1795874884.69631,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-topoguard-independent",
-    "updated_at": 1795867170.15538
+    "status": "in_progress",
+    "task_id": "fluid-topoguard-long",
+    "updated_at": 1795867684.69631
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Independent-orientation witness and all lower spins independently audited; two-process agreement and 4/4 gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su2-independent-spin",
-      "timestamp": 1795847849.59235,
-      "timestamp_str": "2026-11-28 09:37:29"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su2-independent-spin' completed successfully.",
-      "head": "e8b31fe411720efbe4deb8d7426ead0bca732aad",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su2-independent-spin",
-      "timestamp": 1795847903.86699,
-      "timestamp_str": "2026-11-28 09:38:23"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Test Standard Model conformal embedding in the SU(2) phase hosts",
@@ -321,6 +290,36 @@
       "task_id": "fluid-topoguard-independent",
       "timestamp": 1795867240.54442,
       "timestamp_str": "2026-11-28 15:00:40"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Measure the certificate limit in a 200-step relaxation",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Expose the certified prefix and distinguish loss of sufficient evidence from topology change",
+        "mitigation": "Preserve existing 20-step outputs, verify all callers, record first inconclusive transition, independently rederive twice with frozen tolerances and retain the continuum and historical-run caveats",
+        "risks": "contract: extending monitor and independent-probe result fields; dependency: none; concurrency: isolated project; state: new diagnostic evidence",
+        "why": "An exploratory continuation found that the conservative guard eventually becomes inconclusive"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "f5a30589ec75f852eb940b4751163e4596255a9891ac0b5e2a6ea8f31837cc95",
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-long",
+      "timestamp": 1795867362.71915,
+      "timestamp_str": "2026-11-28 15:02:42"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify the 200-step sampled trajectory; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-topoguard-long",
+      "timestamp": 1795867684.69631,
+      "timestamp_str": "2026-11-28 15:08:04"
     }
   ],
   "version": 1

@@ -1419,3 +1419,7 @@ Added a guarded one-step relaxation monitor and the fixed `simulate topoguard` c
 ## 2026-11-28 ? Independent short-trajectory audit
 
 Added an independent local-energy finite-difference reconstruction and a verifier that runs it twice in separate processes against the production probe. The predeclared margin and energy tolerances pass; claim 91 is NUMERIC for this short sampled path only. Historical production and continuum dynamics remain unverified. See ADR-106.
+
+## 2026-11-28 - Longer guarded relaxation
+
+A 200-step sampled trajectory passes the sufficient guard for its first 155 transitions and has 45 inconclusive transitions beginning at step 156. Two independent local-energy finite-difference processes agree within the predeclared tolerances. Inconclusive does not mean topology changed; historical and continuum trajectories remain unverified. See claim 92 and ADR-107.

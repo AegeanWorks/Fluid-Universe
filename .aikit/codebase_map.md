@@ -9,7 +9,7 @@
 - **Total Rust Modules**: `97`
 - **Total Public Types**: `20`
 - **Total Public Functions**: `603`
-- **Total Source Lines**: `16225`
+- **Total Source Lines**: `16325`
 
 ## 🧭 Map Coverage
 - **Indexed**: rust (`97` module(s))
@@ -194,7 +194,7 @@
 > Linearised director dispersion and the emergent-metric question (claims
 - **Functions**: `elastic_eigenvalues`, `residual_anisotropy`, `checks`
 
-### `src/main.rs` (806 lines)
+### `src/main.rs` (894 lines)
 > CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
 
 ### `src/mass_convention.rs` (121 lines)
@@ -348,12 +348,12 @@
 > No-SUSY unification with one intermediate threshold: honest negative.
 - **Functions**: `sm_spread_min`, `threshold_spread`, `threshold_mu_g`, `threshold_mu_i`, `checks`
 
-### `src/topoguard_independent.rs` (145 lines)
+### `src/topoguard_independent.rs` (151 lines)
 > Independent local-energy finite-difference check of the guarded probe.
 - **Types**: `IndependentProbe`
 - **Functions**: `run_independent_probe`
 
-### `src/topology_guard.rs` (122 lines)
+### `src/topology_guard.rs` (128 lines)
 > Conservative homotopy certificate for periodic sampled unit-vector fields.
 - **Types**: `MonitoredRelaxation`
 - **Functions**: `homotopy_hemisphere_margin`, `monitored_relaxation`, `checks`
