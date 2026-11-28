@@ -1,34 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795847308.44515,
+    "completed_head": "baa65f56b78cb35858b5b545f202da7dcbab79bd",
+    "completed_tree": "8bc9833223912882fa4d543dfc76866fc9e0c886",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795854386.79127,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-su2-minimal-level",
     "updated_at": 1795847186.79127
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Correct phase-selection and correlated-observable descriptions",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Align executable reports and documentation with the recorded limits of the model",
-        "mitigation": "Preserve numerical assertions, add direct algebraic regression, update interpretation and regenerate evidence; run project gates",
-        "risks": "contract: descriptions and report fingerprints; dependency: none; concurrency: isolated project; state: generated results and audit inventory",
-        "why": "Legacy model documentation contradicts the established free phase and treats derived observables as independent evidence"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "74bca8eb1fdb6a44b704be503b85877151fb1c67296a3291898201fd1690bc4d",
-      "status": "in_progress",
-      "task_id": "fluid-shape-claims",
-      "timestamp": 1795844235.43465,
-      "timestamp_str": "2026-11-28 08:37:15"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Phase freedom and correlated spacing regression passed; all 4 project gates passed; checklists: passed",
@@ -315,6 +300,23 @@
       "task_id": "fluid-su2-minimal-level",
       "timestamp": 1795847186.79127,
       "timestamp_str": "2026-11-28 09:26:26"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-su2-minimal-level' completed successfully.",
+      "head": "baa65f56b78cb35858b5b545f202da7dcbab79bd",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-su2-minimal-level",
+      "timestamp": 1795847308.44515,
+      "timestamp_str": "2026-11-28 09:28:28"
     }
   ],
   "version": 1
