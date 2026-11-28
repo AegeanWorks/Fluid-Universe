@@ -1415,3 +1415,7 @@ Added a periodic space-time hemisphere certificate for pairs of sampled vector f
 ## 2026-11-28 ? Monitored short relaxation diagnostic
 
 Added a guarded one-step relaxation monitor and the fixed `simulate topoguard` command with a 900-second watchdog. A recorded N=32, 20-step probe reports positive margins for all completed sampled-map transitions. The run is preliminary and is not an independent re-derivation, a continuum guarantee, or a certification of historical production. See claim 91 and ADR-105.
+
+## 2026-11-28 ? Independent short-trajectory audit
+
+Added an independent local-energy finite-difference reconstruction and a verifier that runs it twice in separate processes against the production probe. The predeclared margin and energy tolerances pass; claim 91 is NUMERIC for this short sampled path only. Historical production and continuum dynamics remain unverified. See ADR-106.

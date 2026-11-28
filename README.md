@@ -59,8 +59,10 @@ estimate alone does not prove topology preservation. See claim 90 and ADR-104.
 Run `cargo run -- simulate topoguard` for a fixed 20-step N=32 relaxation with
 each completed sampled-map transition checked. This short diagnostic has a
 900-second watchdog; it does not certify an unsampled continuum trajectory.
-The [recorded probe](results/rust_topoguard_probe.csv) is preliminary and has
-not been independently re-derived; it does not certify the historical run.
+The [recorded probe](results/rust_topoguard_probe.csv) agrees with two
+independent local-energy finite-difference runs within predeclared tolerances.
+Run `cargo run -- simulate topoguard-verify` to repeat that separate-process
+comparison. It does not certify the historical run or an unsampled continuum path.
 
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an
@@ -339,6 +341,7 @@ fluid-universe/
 │   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-weight differences
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
 │   ├── topology_guard.rs     <- sufficient sampled-grid homotopy certificate
+│   ├── topoguard_independent.rs <- local-energy finite-difference re-derivation
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration
 │   ├── verify.rs             <- G-001 two-process comparison

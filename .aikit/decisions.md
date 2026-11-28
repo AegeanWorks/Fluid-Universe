@@ -751,3 +751,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The hemisphere guard certifies snapshot interpolation, but the historical production fields are unavailable and no actual relaxation has used it.
 - **Decision**: Run the existing relaxation one step at a time, apply the guard to each completed transition, and expose a fixed short N=32 diagnostic without claiming a historical or continuum topology result.
 - **Consequences**: All passing transitions certify a piecewise interpolated sequence of sampled maps; failed margins are inconclusive, and the force discretization and long-run physical interpretation remain open.
+
+### ADR-106: Independently rederive the short topology-guarded relaxation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The N=32 monitored trajectory was recorded by one analytic-force implementation and remains unverified.
+- **Decision**: Reconstruct the field and local energy independently, approximate every force component by centered local-energy differences at epsilon 1e-5, and compare twenty transitions in two separate processes using predeclared absolute tolerances 1e-6 for margin and 1e-4 for start and end energy.
+- **Consequences**: Promotion requires both independent runs to agree with the production probe and pass all guard transitions; this remains a short discrete-path result and does not certify the historical production run or continuum dynamics.

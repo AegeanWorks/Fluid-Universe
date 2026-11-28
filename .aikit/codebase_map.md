@@ -6,13 +6,13 @@
 ---
 
 ## 📊 Codebase Metrics
-- **Total Rust Modules**: `96`
-- **Total Public Types**: `19`
-- **Total Public Functions**: `602`
-- **Total Source Lines**: `15978`
+- **Total Rust Modules**: `97`
+- **Total Public Types**: `20`
+- **Total Public Functions**: `603`
+- **Total Source Lines**: `16225`
 
 ## 🧭 Map Coverage
-- **Indexed**: rust (`96` module(s))
+- **Indexed**: rust (`97` module(s))
 - **Not indexed by this map**: none
 
 ## 🦀 Rust Modules
@@ -181,7 +181,7 @@
 > First genuinely NON-CIRCULANT candidate: the exceptional Jordan spectrum.
 - **Functions**: `jordan_delta`, `ratio_d`, `ratio_b`, `ratio_c`, `ratio_t`, `pdg_up`, `pdg_down`, `arithmetic_q`, `min_positive_q`, `nu_q_max`, `nu_target_ratios`, `nu_best_fit`, `checks`
 
-### `src/lib.rs` (236 lines)
+### `src/lib.rs` (237 lines)
 > fluid-universe: falsification-first research core, rewritten in Rust.
 - **Types**: `Check`
 - **Functions**: `new`, `all_checks`, `fingerprint`
@@ -194,7 +194,7 @@
 > Linearised director dispersion and the emergent-metric question (claims
 - **Functions**: `elastic_eigenvalues`, `residual_anisotropy`, `checks`
 
-### `src/main.rs` (705 lines)
+### `src/main.rs` (806 lines)
 > CLI for the Rust fluid-universe core. Every subcommand is bounded and silent
 
 ### `src/mass_convention.rs` (121 lines)
@@ -347,6 +347,11 @@
 ### `src/threshold_unification.rs` (48 lines)
 > No-SUSY unification with one intermediate threshold: honest negative.
 - **Functions**: `sm_spread_min`, `threshold_spread`, `threshold_mu_g`, `threshold_mu_i`, `checks`
+
+### `src/topoguard_independent.rs` (145 lines)
+> Independent local-energy finite-difference check of the guarded probe.
+- **Types**: `IndependentProbe`
+- **Functions**: `run_independent_probe`
 
 ### `src/topology_guard.rs` (122 lines)
 > Conservative homotopy certificate for periodic sampled unit-vector fields.

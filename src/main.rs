@@ -10,7 +10,7 @@ use fluid_universe::{
     flux_quantization, flux_sector,
     fibonacci_phase, fn_scan, froggatt, gauge_flavor, gauge_running, geometry, gravity_relation, index_framework, index_uncertainty, informational_geometry, jordan_spectrum, lorentz, mass_convention, mass_spectrum, modular, monodromy, monodromy_block, nosusy_unification, orthogonal, phase_arithmetic, poisson, potential_family, scale_choice, single_phase_rule, up_amplitude_gauge, up_phase_resolution,
     potts_sector, puddle,
-    quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, topology_guard, two_component,
+    quark_rg, radial_shell, reports, rep_scan, rg_sector, rotor, shape_freedom, simulation, so10_gut, spectra, spinodal, su3, topology_guard, topoguard_independent, two_component,
     unified_model, unification, variation, verify, vortex_unification, water, water_mechanics, water_unification, multi_radial_shell,
     quark_phases, wzw, wzw_crosscheck, xy_z3,
 };
@@ -67,6 +67,58 @@ fn spawn_audit_records() -> Result<String, String> {
         .map_err(|e| e.to_string())?;
     if !status?.success() { return Err("audit child failed".into()); }
     String::from_utf8(bytes).map_err(|e| e.to_string())
+}
+
+fn spawn_topoguard_probe(mode: &str) -> Result<String, String> {
+    let exe = std::env::current_exe().map_err(|e| e.to_string())?;
+    let mut child = Command::new(exe).args(["simulate", mode]).stdout(Stdio::piped())
+        .stderr(Stdio::null()).spawn().map_err(|e| e.to_string())?;
+    let mut stdout = child.stdout.take().ok_or("missing child stdout")?;
+    let reader = std::thread::spawn(move || {
+        let mut bytes = Vec::new();
+        stdout.read_to_end(&mut bytes).map(|_| bytes)
+    });
+    let deadline = Instant::now() + Duration::from_secs(290);
+    let status = loop {
+        match child.try_wait() {
+            Ok(Some(status)) => break Ok(status),
+            Ok(None) if Instant::now() < deadline => std::thread::sleep(Duration::from_millis(20)),
+            Ok(None) => { let _ = child.kill(); let _ = child.wait(); break Err("topology child timed out".to_string()); }
+            Err(error) => { let _ = child.kill(); let _ = child.wait(); break Err(error.to_string()); }
+        }
+    };
+    let bytes = reader.join().map_err(|_| "topology output reader panicked")?
+        .map_err(|e| e.to_string())?;
+    if !status?.success() { return Err("topology child failed".into()); }
+    String::from_utf8(bytes).map_err(|e| e.to_string())
+}
+
+fn parse_topoguard_probe(text: &str) -> Result<(f64, f64, f64), String> {
+    let mut lines = text.lines();
+    if lines.next() != Some("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy") {
+        return Err("unexpected topology probe header".into());
+    }
+    let columns: Vec<_> = lines.next().ok_or("missing topology probe row")?.split(',').collect();
+    if lines.next().is_some() || columns.len() != 7 || columns[0] != "32" || columns[1] != "20"
+        || columns[2] != "20" || columns[4] != "0" {
+        return Err("topology probe did not certify exactly 20 transitions".into());
+    }
+    let parse = |i: usize| columns[i].parse::<f64>().map_err(|_| "invalid topology probe number".to_string());
+    let (margin, start, end) = (parse(3)?, parse(5)?, parse(6)?);
+    if ![margin, start, end].iter().all(|value| value.is_finite()) || margin <= topology_guard::MARGIN_TOLERANCE {
+        return Err("invalid or inconclusive topology probe values".into());
+    }
+    Ok((margin, start, end))
+}
+
+fn compare_topoguard_probes(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent processes disagree".into()); }
+    let a = parse_topoguard_probe(production)?;
+    let b = parse_topoguard_probe(first)?;
+    if (a.0-b.0).abs() > 1e-6 || (a.1-b.1).abs() > 1e-4 || (a.2-b.2).abs() > 1e-4 {
+        return Err("topology probe differs beyond the predeclared tolerances".into());
+    }
+    Ok(())
 }
 
 fn main() {
@@ -223,6 +275,35 @@ fn main() {
         }
         "simulate" => {
             match args.get(1).map(String::as_str).unwrap_or("") {
+                "topoguard-verify" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: topology verification exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard")?;
+                        let first = spawn_topoguard_probe("topoguard-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-independent")?;
+                        compare_topoguard_probes(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() {
+                        eprintln!("Why: {error}.\nFix: inspect both topology implementations and rerun the diagnostic.");
+                        std::process::exit(1);
+                    }
+                    println!("Topology probe: production and two independent processes agree within the predeclared tolerances; 20 sampled transitions certified.");
+                }
+                "topoguard-independent" => {
+                    std::thread::spawn(|| {
+                        std::thread::sleep(Duration::from_secs(900));
+                        eprintln!("Why: the independent topology diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine.");
+                        std::process::exit(1);
+                    });
+                    let result = topoguard_independent::run_independent_probe();
+                    println!("n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy");
+                    println!("32,20,{},{:.12},{},{:.12},{:.12}", result.steps, result.minimum_margin,
+                             result.inconclusive_steps, result.start_energy, result.end_energy);
+                }
                 "topoguard" => {
                     // Hard wall-clock limit for this fixed-size diagnostic (G-003).
                     std::thread::spawn(|| {
@@ -701,5 +782,25 @@ fn main() {
             eprintln!("Why: unknown subcommand {other:?}.\nFix: choose all|circulant|spectra|rotor|derrick|fluid|water|lorentz|simulation|audit|reports|claims|scan|simulate|regenerate|json|fingerprint|verify|selftest.");
             std::process::exit(2);
         }
+    }
+}
+
+#[cfg(test)]
+mod topology_probe_tests {
+    use super::compare_topoguard_probes;
+
+    #[test]
+    fn comparison_rejects_incomplete_inconclusive_and_divergent_runs() {
+        let good = "n,requested_steps,completed_steps,minimum_margin,inconclusive_steps,start_energy,end_energy\n32,20,20,0.008,0,3136.0,3086.0\n";
+        assert!(compare_topoguard_probes(good, good, good).is_ok());
+        assert!(compare_topoguard_probes(good, good, &good.replace("3086.0", "3085.0")).is_err());
+        let divergent = good.replace("0.008", "0.009");
+        assert!(compare_topoguard_probes(good, &divergent, &divergent).is_err());
+        let incomplete = good.replace("32,20,20", "32,20,19");
+        assert!(compare_topoguard_probes(&incomplete, good, good).is_err());
+        let inconclusive = good.replace("0.008,0", "0.008,1");
+        assert!(compare_topoguard_probes(&inconclusive, good, good).is_err());
+        let nonfinite = good.replace("0.008", "NaN");
+        assert!(compare_topoguard_probes(&nonfinite, good, good).is_err());
     }
 }

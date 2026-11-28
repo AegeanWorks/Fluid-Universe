@@ -84,6 +84,7 @@ pub mod so10_gut;
 pub mod spinodal;
 pub mod threshold_unification;
 pub mod topology_guard;
+pub mod topoguard_independent;
 pub mod two_component;
 pub mod unified_model;
 pub mod up_phase_resolution;
