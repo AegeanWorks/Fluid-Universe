@@ -24,7 +24,7 @@ Final native H: 0.787999784; upsampled H: 0.989238052; Z3: 0.607430; force RMS: 
 
 **Verdict:** coexistence: **False**; converged: **False**; resolved: **False**; topology preserved: **True**; claim 15: **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
 
-A failed scan cannot prove that no 3D simulation can achieve coexistence. The Hopf charge is conserved by the normalized flow when the pre-normalization norm stays positive and the boundary is fixed; a native estimator below 1 at grid scale is an estimator-resolution issue, not a topological transition.
+A failed scan cannot prove that no 3D simulation can achieve coexistence. Positive norms at sampled updates and a fixed boundary alone do not certify a nonvanishing space-time interpolation; the native and upsampled estimates indicate resolution sensitivity but do not establish whether topology was preserved. The original interpretation is retained in the archived JSON and superseded by claim 15 and ADR-104.
 
 ## dt check (N=48, same physical time)
 

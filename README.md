@@ -70,7 +70,9 @@ calculations. An inconclusive guard does not establish a topology change.
 A cell-mean separating direction certifies all 200 sampled transitions with
 minimum margin 0.622477036916. Run `cargo run -- simulate topoguard-mean-verify`
 to compare two independent calculations; this certifies only the constructed
-sampled-map interpolation, not historical or continuum dynamics.
+sampled-map interpolation, not historical or continuum dynamics. Older production
+JSON reports retain their original interpretation notes; those notes claiming
+topology preservation are superseded by claim 15 and ADR-104.
 
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an
@@ -225,7 +227,7 @@ is conditional on the same Weyl assignment and does not establish its physical r
 | 3D E2+E4+Z3 pilot | UNVERIFIED: N=32 not converged/resolution-limited; H/Z3 vary with steps; no conclusion | `results/hopfion3d.json` |
 | N=64 3D diagnostic | Targeted, not part of `make results`: `make n64`; H falls below 0.8 as Z3 exceeds 0.6; no coexistence; not converged | `results/hopfion3d_n64.json` |
 | N=64 candidate Hessian | Targeted, not part of `make results`: `make stability`; dense-validated tangent operator; min \(-5.799863\), 8 negative modes; saddle | `results/hopfion_stability.json` |
-| 3D Hopfion + Z3 order | UNVERIFIED: N=64 production scan (`make production`, <15 min G-003) gives native H=0.7880, 2x upsampled H=0.9892, Z3=0.6074, max bond 1.480, min pre-norm 1.000000; native H drop is an estimator artifact; not converged/under-resolved | `results/hopfion3d_production.json` |
+| 3D Hopfion + Z3 order | UNVERIFIED: N=64 production scan (`make production`, <15 min G-003) gives native H=0.7880, 2x upsampled H=0.9892, Z3=0.6074, max bond 1.480, min pre-norm 1.000000; the estimators differ substantially and do not prove topology preservation; not converged/under-resolved | `results/hopfion3d_production.json` |
 | N=96 resolution check | UNVERIFIED: at the same physical time (3000 steps), native H=0.99994 and upsampled H=1.00000, but Z3=0.17207 and force RMS 0.01495; the N=64 Z3 order is not spatially converged, so no coexistence is demonstrated | `results/hopfion3d_convergence.json` |
 | N=64 dt check | PASS: 3000 steps at dt=5e-4 versus 6000 at dt=2.5e-4, both at t=1.5, give ΔH=-1.07e-4 and ΔZ3=-4.6e-6; the N=96 Z3 gap is not a timestep artifact | `results/hopfion3d_temporal.json` |
 | N=96 checkpointed extension | UNVERIFIED: four 3000-step chunks to t=6.0; Z3 rises 0.172→0.599 and crosses 0.5, but native H falls to 0.97262, max bond rises to 0.857 and force RMS is 0.01075; H, force and resolution criteria fail | `results/hopfion3d_extension.json` |

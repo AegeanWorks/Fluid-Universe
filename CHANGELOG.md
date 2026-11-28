@@ -315,7 +315,7 @@ The 14d FALSIFIED result and the `hopfion_stability` artifacts are retracted. Th
 
 - N=64, 3600 steps, fixed vacuum faces, \(\mu=20\), \(dt=5\times10^{-4}\) (completed in ~185 s): native \(H=0.787999784\), 2x spectrally upsampled (\(N=128\)) \(H=0.989238052\), \(Z_3=0.607430\), force RMS \(3.716\times10^{-2}\), max bond difference \(1.480\), minimum pre-normalization norm \(1.000000\).
 - `dt` check at N=48 (\(5\times10^{-4}\) vs \(2.5\times10^{-4}\) at physical time 0.15): \(\Delta H = 1.660\times10^{-6}\), \(\Delta Z_3 = 4.076\times10^{-6}\).
-- The smooth topology is preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
+- Historical interpretation, superseded by ADR-104: the smooth topology was claimed preserved (minimum pre-norm 1.000000; upsampled \(H\approx0.9892\)), showing that the native \(H\) drop to 0.788 is a grid-scale estimator artifact rather than a topological transition. Because the field develops grid-scale gradients (max bond 1.480 > 0.50) and the force RMS is above \(10^{-2}\), claim 15 remains **UNVERIFIED (H estimator not converged; not converged; field under-resolved)**.
 
 - Verification after the production scan: two separate runs, 168/168 checks each.
 

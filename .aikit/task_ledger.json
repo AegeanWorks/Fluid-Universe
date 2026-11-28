@@ -16,17 +16,6 @@
   "checkpoints": [
     {
       "agent": "codex:fluid",
-      "description": "[1/1] Affine vacuum current capacity independently audited; two-process agreement and all 4 gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su2-current-rank",
-      "timestamp": 1795848440.52905,
-      "timestamp_str": "2026-11-28 09:47:20"
-    },
-    {
-      "agent": "codex:fluid",
       "delivery": {
         "forced": false,
         "roots": [
@@ -323,6 +312,17 @@
       "task_id": "fluid-mean-guard",
       "timestamp": 1795868067.40284,
       "timestamp_str": "2026-11-28 15:14:27"
+    },
+    {
+      "agent": "codex:fluid",
+      "chore": true,
+      "description": "Correct unsupported historical topology assertions in project summaries and label archived report text",
+      "phase": "chore",
+      "phase_num": 1,
+      "status": "completed",
+      "task_id": "chore-1795868118",
+      "timestamp": 1795868118.51948,
+      "timestamp_str": "2026-11-28 15:15:18"
     }
   ],
   "version": 1
