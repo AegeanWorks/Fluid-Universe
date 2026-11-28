@@ -653,3 +653,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The existing four-fundamental block violates total center charge despite correct pairwise Verlinde coefficients.
 - **Decision**: Compute sphere block dimensions from Verlinde coefficients and distinguish four fundamentals from two fundamentals and two conjugates; independently audit the 0 and 2 dimensions.
 - **Consequences**: The pairwise monodromy values remain available for the mixed block; their identification with particle phases remains a hypothesis.
+
+### ADR-092: Correct phase selection and correlated shape evidence
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: Legacy descriptions claim the Koide ratio fixes the phase and a spacing ratio is independent of mass ratios; the existing shape-freedom calculation contradicts both.
+- **Decision**: Retain the numerical model and tests but state the additional phase assumptions and algebraic dependence; add explicit regression and correct report labels.
+- **Consequences**: The p=1/18 and WZW phase choices are conditional and post-hoc; the spacing comparison does not add an independent observable.

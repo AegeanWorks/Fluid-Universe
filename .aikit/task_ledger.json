@@ -1,48 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795844163.64165,
-    "completed_head": "1983123e3f1ed3f1d084b1a94ec34ce975ed0c49",
-    "completed_tree": "2bcb13a93fa7b656c68e3aca34d08bc3cfe173aa",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795851276.24157,
+    "lease_until": 1795851686.81843,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su3-four-point",
-    "updated_at": 1795844076.24157
+    "status": "in_progress",
+    "task_id": "fluid-shape-claims",
+    "updated_at": 1795844486.81843
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[2/2] Independent block combinatorics matches 42-weight census in two processes; claim 74 is limited to U(1) counts; all project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su7-hypercharge-branching",
-      "timestamp": 1795808370.89914,
-      "timestamp_str": "2026-11-27 22:39:30"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su7-hypercharge-branching' completed successfully.",
-      "head": "b8016ca2983ba4e95cce71fbf7111e0c6496c3e3",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su7-hypercharge-branching",
-      "timestamp": 1795808420.67189,
-      "timestamp_str": "2026-11-27 22:40:20"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Independently derive nonabelian multiplets in the SU(7) branching exercise",
@@ -322,6 +290,35 @@
       "task_id": "fluid-su3-four-point",
       "timestamp": 1795844163.64165,
       "timestamp_str": "2026-11-28 08:36:03"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Correct phase-selection and correlated-observable descriptions",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Align executable reports and documentation with the recorded limits of the model",
+        "mitigation": "Preserve numerical assertions, add direct algebraic regression, update interpretation and regenerate evidence; run project gates",
+        "risks": "contract: descriptions and report fingerprints; dependency: none; concurrency: isolated project; state: generated results and audit inventory",
+        "why": "Legacy model documentation contradicts the established free phase and treats derived observables as independent evidence"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "74bca8eb1fdb6a44b704be503b85877151fb1c67296a3291898201fd1690bc4d",
+      "status": "in_progress",
+      "task_id": "fluid-shape-claims",
+      "timestamp": 1795844235.43465,
+      "timestamp_str": "2026-11-28 08:37:15"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Phase freedom and correlated spacing regression passed; all 4 project gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-shape-claims",
+      "timestamp": 1795844486.81843,
+      "timestamp_str": "2026-11-28 08:41:26"
     }
   ],
   "version": 1

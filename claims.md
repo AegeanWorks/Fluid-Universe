@@ -129,6 +129,8 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 ## Status history
 
+- 2026-11-28 (phase and observable clarification): Q=2/3 leaves the positive-root phase free. The p=1/18 and SU(3)_3 phase assignments are additional post-hoc assumptions; the spacing ratio is algebraically determined by the two hierarchy ratios and is not an independent test. See ADR-092 and `src/shape_freedom.rs`.
+
 - 2026-11-28 (SU(3) external-field correction, claim 80): four identical fundamentals have no sphere block; the two computed pair channels belong to a block with two fundamentals and two antifundamentals. See ADR-091.
 
 - 2026-11-27 (fusion selection correction, claim 79): earlier descriptions of the single-model Casimir matches as demonstrated braiding phases were too strong. Center-charge conservation excludes the nine canonical witnesses for every fundamental/antifundamental external pair. Claims 64-71 retain their arithmetic scope; the physical channel and braid conventions require independent analysis. See ADR-090.

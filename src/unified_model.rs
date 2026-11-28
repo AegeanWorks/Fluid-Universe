@@ -4,22 +4,21 @@
 //! circulant mass matrix M = circ(a, c e^{i delta}, c e^{-i delta}). No charges
 //! are fitted; the model has one scale a and two shape parameters r=c/a, delta.
 //!
-//! Derivation chain (all exact):
+//! Conditional model and algebra:
 //!   1. Eigenvalues of M: lambda_k = a[1 + 2 r cos(delta + 2 pi k/3)].
 //!   2. For ANY delta, sum(lambda)=3a and sum_{i<j}=3a^2(1-r^2) -> with r=1/sqrt2
 //!      these are 3a and (3/2)a^2 (verified numerically). The signed Koide
 //!      identity Q_signed = 1/3 + 2r^2/3 then gives Q=2/3 for r=1/sqrt2.
 //!   3. Equivalently Q=2/3 <=> CV=1 <=> the sqrt-mass vector lies at 45 deg to (1,1,1).
-//!   4. The SECOND parameter delta is fixed by requiring the physical (absolute-value)
-//!      Koide Q of the three masses lambda_k^2 to equal 2/3. This is a condition
-//!      on the model, not a fit to the observed hierarchy: it fixes delta = 2/9.
-//!   5. With r=1/sqrt2 and delta=2/9 the model PREDICTS the two hierarchy ratios
-//!      sqrt(m_mu/m_e) ~ 14.38 and sqrt(m_tau/m_mu) ~ 4.10, with no free parameters.
-//!   6. HELD-OUT test: the same shape (r,delta) predicts the product of the three
-//!      normalized roots = det/sum^3, a different observable from the two ratios.
+//!   4. Physical Q=2/3 holds over a range of phases with positive roots. It does
+//!      not select delta. Choosing the root product p=1/18 is an additional,
+//!      post-hoc assumption; delta_star is not exactly 2/9.
+//!   5. With that choice, the model gives two hierarchy ratios. Fitting p to
+//!      one ratio permits a conditional check of the other under Q=2/3.
+//!   6. The level-spacing ratio is a function of those same two ratios, not a
+//!      further independent observable.
 //!
-//! Verdict is reported honestly by tests; the model is falsifiable and the
-//! held-out prediction is checked against the recorded results file if present.
+//! The numerical comparisons are conditional on the stated assumptions.
 
 use crate::Check;
 
@@ -31,8 +30,7 @@ pub fn root_product(r: f64, delta: f64) -> f64 {
     symmetric(&roots(r, delta)).2
 }
 
-/// The single parameter-free condition: root product = 1/18 (a rational fixed
-/// by the Z3 cubic, not fitted to the lepton masses). Solving
+/// Conditional choice of root product = 1/18, not fixed by the Z3 cubic. Solving
 /// -1/2 + cos(3 delta)/sqrt(2) = 1/18 gives delta ~ 2/9.
 pub fn delta_star() -> f64 {
     let target = 1.0 / 18.0;
@@ -81,7 +79,7 @@ pub fn hierarchy_ratios(r: f64, delta: f64) -> (f64, f64) {
 ///
 /// At r=1/sqrt2 the three roots are the roots of x^3 - 3x^2 + (3/2)x - p = 0,
 /// so the SHAPE has exactly one free parameter p. Fitting p to one ratio and
-/// then predicting the other is a genuine held-out test of the symmetry.
+/// then checking the other tests the additional Q=2/3 shape condition.
 pub fn fit_p_to_ratio(target_mu_e: f64) -> Option<f64> {
     let ratio = |p: f64| -> Option<f64> {
         let (lo, _) = ratios_of_cubic(p);
@@ -124,14 +122,14 @@ pub fn ratios_of_cubic(p: f64) -> (f64, f64) {
     (found[1] / found[0], found[2] / found[1])
 }
 
-/// Genuine held-out prediction: fit p to mu/e, return the PREDICTED tau/mu.
+/// Conditional held-out comparison: fit p to mu/e and return tau/mu.
 pub fn held_out_tau_over_mu(observed_mu_e: f64) -> Option<f64> {
     let p = fit_p_to_ratio(observed_mu_e)?;
     Some(ratios_of_cubic(p).1)
 }
 
-/// Second held-out: the level-spacing ratio (x2-x1)/(x3-x2), a different
-/// observable from either hierarchy ratio, predicted from p fitted to mu/e.
+/// Level-spacing ratio (x2-x1)/(x3-x2) for p fitted to mu/e. This is an
+/// algebraic function of the two hierarchy ratios, not independent evidence.
 pub fn held_out_spacing_from_mu_e(observed_mu_e: f64) -> Option<f64> {
     let p = fit_p_to_ratio(observed_mu_e)?;
     let (lo, hi) = ratios_of_cubic(p);
@@ -163,7 +161,7 @@ pub fn checks() -> Vec<Check> {
                    "held-out tau/mu predicted from fitting p to mu/e only"),
         Check::new("unified_model.held_out_spacing",
                    held_out_spacing_from_mu_e(14.377).unwrap_or(f64::NAN),
-                   "second held-out: level-spacing ratio predicted from p fitted to mu/e"),
+                   "correlated level-spacing ratio from p fitted to mu/e"),
     ]
 }
 
@@ -189,15 +187,15 @@ mod tests {
     }
 
     #[test]
-    fn physical_koide_condition_fixes_delta() {
-        // At delta=2/9 all roots are positive, so physical Q equals signed Q.
+    fn physical_koide_depends_on_root_signs() {
+        // At the chosen delta_star all roots are positive, so physical Q equals signed Q.
         assert!(q_physical(r_koide(), delta_star()) > 0.6);
         // For larger delta a root goes negative and physical Q leaves 2/3.
         assert!((q_physical(r_koide(), 0.5) - 2.0 / 3.0).abs() > 0.05);
     }
 
     #[test]
-    fn zero_free_parameters_predict_both_ratios() {
+    fn assumed_root_product_gives_both_ratios() {
         let (lo, hi) = hierarchy_ratios(r_koide(), delta_star());
         assert!((lo - 14.377).abs() / 14.377 < 0.01, "mu/e ratio = {lo}");
         assert!((hi - 4.098).abs() / 4.098 < 0.01, "tau/mu ratio = {hi}");
@@ -216,12 +214,24 @@ mod tests {
     }
 
     #[test]
-    fn second_held_out_spacing_ratio() {
-        // An observable independent of both hierarchy ratios, predicted from
-        // the same single fitted p, compared with the value computed from PDG.
+    fn correlated_spacing_ratio() {
+        // A correlated transformation of the two ratios, compared with PDG.
         let predicted = held_out_spacing_from_mu_e(14.377).unwrap();
         let pdg = crate::shape_freedom::pdg_spacing_ratio();
         assert!((predicted - pdg).abs() / pdg < 0.01,
                 "predicted spacing = {predicted}, PDG = {pdg}");
+    }
+
+    #[test]
+    fn spacing_is_fixed_by_the_two_hierarchy_ratios() {
+        for p in [0.02, 0.05, 0.12] {
+            let (lo, hi) = ratios_of_cubic(p);
+            let x = [1.0, lo, lo * hi];
+            let spacing = (x[1] - x[0]) / (x[2] - x[1]);
+            assert!(approx(spacing, (lo - 1.0) / (lo * (hi - 1.0)), 1e-12));
+        }
+        for delta in [0.1, 0.2] {
+            assert!(approx(q_physical(r_koide(), delta), 2.0 / 3.0, 1e-12));
+        }
     }
 }

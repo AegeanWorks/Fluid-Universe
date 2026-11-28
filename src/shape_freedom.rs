@@ -6,8 +6,9 @@
 //! the symmetry + Q=2/3, but the product p is free. Q of the masses is 2/3 for
 //! EVERY admissible p, so no condition inside this symmetry can select p.
 //! Deriving p therefore requires physics OUTSIDE the stated symmetry. This
-//! module proves the freedom and records a second held-out observable (the
-//! level-spacing ratio) computed from PDG for future model tests.
+//! module proves the freedom and records the level-spacing ratio computed from
+//! PDG masses. That ratio is determined by the two hierarchy ratios and is not
+//! independent evidence.
 
 use crate::Check;
 use crate::unified_model::ratios_of_cubic;

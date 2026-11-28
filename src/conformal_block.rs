@@ -1,4 +1,4 @@
-//! Rigorous derivation of delta = h_□ = 2/9 from SU(N)_N conformal-block data.
+//! Conditional SU(N)_N conformal weights and phase comparisons.
 //!
 //! For SU(N) at level k=N (three generations fix N=k=3):
 //!   C2(□)      = (N^2 - 1)/(2N)
@@ -7,12 +7,13 @@
 //!   C2(Λ^2□)   = (N-2)(N+1)/N
 //!   braiding   = |h(Λ^2□) - 2 h(□)| / h(□) = 2/(N-1)
 //!
-//! Three INDEPENDENT conditions single out N=3:
+//! The following algebraic comparisons hold for the assumed family SU(N)_N:
 //!   1. h_□ = 2/9  =>  (N^2-1)/(4N^2) = 2/9  =>  N^2 = 9  =>  N=3 (unique >0)
 //!   2. braiding ratio = 1  =>  2/(N-1) = 1  =>  N=3 (unique)
-//!   3. the observed phase delta is 2/9 (PDG, verified to 3.7e-6).
-//! The identification delta = h_□ is still a hypothesis, but the VALUE 2/9 is
-//! now derived from two independent conformal constraints, not fitted.
+//!   3. a phase extracted from charged-lepton masses is close to 2/9; the
+//!      closed-form identification remains unverified and post-hoc (claim 9).
+//! These algebraic conditions do not independently measure the phase or select
+//! the WZW family. The identification delta = h_□ remains a hypothesis.
 
 use crate::Check;
 

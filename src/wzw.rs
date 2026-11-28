@@ -1,17 +1,14 @@
 //! Physics beyond the Z3-circulant symmetry: SU(3)_3 WZW conformal dimension.
 //!
-//! The circulant phase delta is empirically 2/9 with no derivation inside the
-//! symmetry (shape_freedom proves the symmetry leaves p free). We derive it
-//! from SU(3) WZW data:
+//! A phase extracted from the charged-lepton masses is close to 2/9, but its
+//! exact value is not established (claim 9). SU(3)_3 WZW data give:
 //!   * quadratic Casimir of the fundamental:  C2(1,0) = (1+1+0+3+0)/3 = 4/3
-//!   * dual Coxeter number h^v(SU(3)) = 3; level k = 3 (three generations,
-//!     Sumino mechanism: integrating out 3 lepton families gives k_eff = 3)
+//!   * dual Coxeter number h^v(SU(3)) = 3; the level k = 3 is assumed
 //!   * conformal dimension h_□ = C2 / (k + h^v) = (4/3)/6 = 2/9 EXACTLY.
 //!
-//! Identifying the Brannen phase with h_□ gives delta = 2/9 with NO fit to
-//! lepton masses. We then predict BOTH hierarchy ratios and the level-spacing
-//! observable from Q=2/3 + this delta, and verify against the two recorded
-//! held-out targets (tau/mu ratio, spacing ratio).
+//! Identifying the Brannen phase with h_□ is an additional hypothesis.
+//! The choice was motivated by the masses, so the comparisons are post-hoc;
+//! the spacing ratio is algebraically dependent on the two hierarchy ratios.
 
 use crate::Check;
 use crate::unified_model::{hierarchy_ratios, q_physical, r_koide, roots, symmetric};
@@ -24,7 +21,7 @@ pub fn casimir_su3(p: i32, q: i32) -> f64 {
 /// Dual Coxeter number of SU(3).
 pub fn dual_coxeter_su3() -> i32 { 3 }
 
-/// WZW level: the number of charged-lepton generations (Sumino k_eff = 3).
+/// Assumed WZW level for this conditional calculation.
 pub fn level() -> i32 { 3 }
 
 /// Conformal dimension of the fundamental primary: C2 / (k + h^v).
@@ -32,7 +29,7 @@ pub fn h_fundamental() -> f64 {
     casimir_su3(1, 0) / (level() + dual_coxeter_su3()) as f64
 }
 
-/// The Brannen phase is identified with h_fundamental (the derived delta).
+/// Conditional identification of the Brannen phase with h_fundamental.
 pub fn derived_delta() -> f64 { h_fundamental() }
 
 pub fn checks() -> Vec<Check> {
@@ -42,11 +39,11 @@ pub fn checks() -> Vec<Check> {
     vec![
         Check::new("wzw.casimir_fund", casimir_su3(1, 0), "C2(1,0) = 4/3"),
         Check::new("wzw.h_fundamental", h_fundamental(), "C2/(k+h^v) = 2/9"),
-        Check::new("wzw.derived_delta", delta, "Brannen phase from WZW (no fit)"),
-        Check::new("wzw.physical_q", q_physical(r_koide(), delta), "Koide Q with derived phase"),
+        Check::new("wzw.derived_delta", delta, "phase conditional on identifying it with WZW weight"),
+        Check::new("wzw.physical_q", q_physical(r_koide(), delta), "Koide Q with assumed WZW phase"),
         Check::new("wzw.sum_roots", sym.0, "root sum = 3"),
-        Check::new("wzw.predict_mu_e", lo, "PREDICTED sqrt(m_mu/m_e), zero fits"),
-        Check::new("wzw.predict_tau_mu", hi, "PREDICTED sqrt(m_tau/m_mu), zero fits"),
+        Check::new("wzw.predict_mu_e", lo, "conditional sqrt(m_mu/m_e) from assumed phase"),
+        Check::new("wzw.predict_tau_mu", hi, "conditional sqrt(m_tau/m_mu) from assumed phase"),
     ]
 }
 
@@ -76,16 +73,15 @@ mod tests {
     }
 
     #[test]
-    fn zero_free_parameters_predict_both_ratios() {
+    fn assumed_wzw_phase_gives_both_ratios() {
         let (lo, hi) = hierarchy_ratios(r_koide(), derived_delta());
         assert!((lo - 14.377).abs() / 14.377 < 0.01, "mu/e = {lo}");
         assert!((hi - 4.098).abs() / 4.098 < 0.01, "tau/mu = {hi}");
     }
 
     #[test]
-    fn held_out_targets_are_reproduced_without_fitting() {
-        // The two recorded held-out observables were previously obtained by
-        // fitting p to mu/e. Now with delta derived from WZW they are predictions.
+    fn fitted_shape_reproduces_correlated_targets() {
+        // These helpers fit p to mu/e; the two outputs are correlated.
         let predicted_tau_mu = held_out_tau_over_mu(14.377).unwrap();
         let predicted_spacing = held_out_spacing_from_mu_e(14.377).unwrap();
         assert!((predicted_tau_mu - 4.098).abs() / 4.098 < 0.01);

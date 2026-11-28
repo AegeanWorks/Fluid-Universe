@@ -1359,3 +1359,7 @@ The single-model witnesses match Casimir expressions, but integrability does not
 ## 2026-11-28 ? SU(3) four-point field correction
 
 Verlinde fusion gives no sphere block for four fundamentals, and two blocks for two fundamentals and two antifundamentals. The previously computed full-monodromy exponents apply to the latter mixed configuration. Claim 80 and ADR-091 record the corrected external fields and independent singlet count.
+
+## 2026-11-28 ? Phase and correlated-observable clarification
+
+Corrected legacy model descriptions: the Koide condition leaves the phase free, p=1/18 and the WZW identification are additional post-hoc choices, and the spacing ratio is a function of the two hierarchy ratios. Added a regression for the dependence and positive-root phase freedom. See ADR-092.

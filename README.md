@@ -51,6 +51,11 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 ## What Is Actually Established
 
+The Koide condition does not fix the circulant phase. Choosing a root product
+of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an
+additional, post-hoc assumption. The spacing ratio is determined by the same
+two hierarchy ratios and is not an independent test. See claim 9 and ADR-092.
+
 The single-model searches below match Casimir weight-difference expressions,
 not established braiding channels. The nine recorded canonical witnesses
 have center charges incompatible with fusing two fundamentals or their
@@ -196,12 +201,12 @@ fluid-universe/
 │   ├── unified_model.rs      <- single Z3-circulant model with held-out prediction
 │   ├── shape_freedom.rs      <- proof that p is free under the symmetry
 │   ├── flux_quantization.rs  <- discrete-flux candidate to fix p (fails)
-│   ├── wzw.rs                <- SU(3)_3 conformal dimension derives delta=2/9
+│   ├── wzw.rs                <- conditional SU(3)_3 conformal-weight phase
 │   ├── wzw_crosscheck.rs     <- independent neutrino/quark sector cross-check
 │   ├── quark_phases.rs       <- literature quark phases fail the hierarchies
 │   ├── circulant_inverse.rs  <- exact no-go: quark hierarchies imply wrong Q
 │   ├── phase_arithmetic.rs   <- delta rational-in-radians vs pi-multiple angles
-│   ├── conformal_block.rs    <- N=3 uniqueness from h_box and braiding data
+│   ├── conformal_block.rs    <- conditional SU(N)_N weight comparisons
 │   ├── monodromy.rs          <- cube identity arg(z^3)=Q; N=3 over-determination
 │   ├── rep_scan.rs           <- exhaustive SU(3)_k rep scan: only leptons fit
 │   ├── jordan_spectrum.rs    <- non-circulant J3(O) spectrum: B,C fit, D,T fail
