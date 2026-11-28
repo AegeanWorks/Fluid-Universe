@@ -172,6 +172,23 @@ fn compare_mean_topoguard(production: &str, first: &str, second: &str) -> Result
     Ok(())
 }
 
+fn compare_mean_limit(production: &str, first: &str, second: &str) -> Result<(), String> {
+    if first != second { return Err("independent mean-limit processes disagree".into()); }
+    let parse = |text: &str| -> Result<[f64; 3], String> {
+        let mut lines = text.lines();
+        if lines.next() != Some("n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy") { return Err("unexpected mean-limit header".into()); }
+        let c: Vec<_> = lines.next().ok_or("missing mean-limit row")?.split(',').collect();
+        if lines.next().is_some() || c.len() != 7 || c[0] != "32" || c[1] != "600" || c[3] != "5" || c[4] != "596" { return Err("mean-limit count or prefix differs from exploratory result".into()); }
+        let number = |i: usize| c[i].parse::<f64>().map_err(|_| "invalid mean-limit number".to_string());
+        let values = [number(2)?, number(5)?, number(6)?];
+        if !values.iter().all(|x| x.is_finite()) || values[0] > 1e-12 { return Err("mean-limit margin or number invalid".into()); }
+        Ok(values)
+    };
+    let a = parse(production)?; let b = parse(first)?;
+    if (a[0]-b[0]).abs() > 1e-6 || (a[1]-b[1]).abs() > 1e-4 || (a[2]-b[2]).abs() > 1e-4 { return Err("mean-limit results exceed predeclared tolerances".into()); }
+    Ok(())
+}
+
 fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let command = args.first().map(String::as_str).unwrap_or("all");
@@ -326,6 +343,31 @@ fn main() {
         }
         "simulate" => {
             match args.get(1).map(String::as_str).unwrap_or("") {
+                "topoguard-mean-limit-verify" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-limit verification exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    let verify = || -> Result<(), String> {
+                        let production = spawn_topoguard_probe("topoguard-mean-limit")?;
+                        let first = spawn_topoguard_probe("topoguard-mean-limit-independent")?;
+                        let second = spawn_topoguard_probe("topoguard-mean-limit-independent")?;
+                        compare_mean_limit(&production, &first, &second)
+                    };
+                    if let Err(error) = verify() { eprintln!("Why: {error}.\nFix: inspect the calculations and rerun."); std::process::exit(1); }
+                    println!("Mean guard: first inconclusive transition 596; independent processes agree. Inconclusive does not establish topology change.");
+                }
+                "topoguard-mean-limit" | "topoguard-mean-limit-independent" => {
+                    std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-limit diagnostic exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
+                    println!("n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy");
+                    if args[1] == "topoguard-mean-limit-independent" {
+                        let r = topoguard_independent::run_independent_probe(600);
+                        println!("32,{},{:.12},{},{},{:.12},{:.12}", r.steps, r.mean_minimum_margin, r.mean_inconclusive_steps, r.mean_first_inconclusive_step.unwrap_or(0), r.start_energy, r.end_energy);
+                    } else {
+                        let field = simulation::analytic_field(32, 8.0, false);
+                        match topology_guard::monitored_relaxation(&field, 20.0, 0.05, 600, 1.0, 1.0) {
+                            Ok(r) => println!("32,{},{:.12},{},{},{:.12},{:.12}", r.completed_steps, r.mean_minimum_margin.unwrap_or(0.0), r.mean_inconclusive_steps, r.mean_first_inconclusive_step.unwrap_or(0), r.start_energy, r.end_energy),
+                            Err(error) => { eprintln!("{error}"); std::process::exit(1); }
+                        }
+                    }
+                }
                 "topoguard-mean-verify" => {
                     std::thread::spawn(|| { std::thread::sleep(Duration::from_secs(900)); eprintln!("Why: mean-guard verification exceeded 900 seconds.\nFix: run it on a less loaded machine."); std::process::exit(1); });
                     let verify = || -> Result<(), String> {
@@ -911,7 +953,17 @@ fn main() {
 
 #[cfg(test)]
 mod topology_probe_tests {
-    use super::{compare_extended_topoguard, compare_mean_topoguard, compare_topoguard_probes};
+    use super::{compare_extended_topoguard, compare_mean_limit, compare_mean_topoguard, compare_topoguard_probes};
+
+    #[test]
+    fn mean_limit_comparison_checks_counts_and_independent_results() {
+        let good = "n,completed_steps,minimum_margin,inconclusive_steps,first_inconclusive_step,start_energy,end_energy\n32,600,-0.01,5,596,3136.0,2000.0\n";
+        assert!(compare_mean_limit(good, good, good).is_ok());
+        for invalid in [good.replace("5,596", "4,596"), good.replace("5,596", "5,595"), good.replace("-0.01", "NaN"), good.replace("-0.01", "0.01")] { assert!(compare_mean_limit(&invalid, good, good).is_err()); }
+        let divergent = good.replace("-0.01", "-0.02");
+        assert!(compare_mean_limit(good, &divergent, &divergent).is_err());
+        assert!(compare_mean_limit(good, good, &divergent).is_err());
+    }
 
     #[test]
     fn mean_comparison_rejects_incomplete_and_divergent_results() {

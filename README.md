@@ -70,7 +70,11 @@ calculations. An inconclusive guard does not establish a topology change.
 A cell-mean separating direction certifies all 200 sampled transitions with
 minimum margin 0.622477036916. Run `cargo run -- simulate topoguard-mean-verify`
 to compare two independent calculations; this certifies only the constructed
-sampled-map interpolation, not historical or continuum dynamics. Older production
+sampled-map interpolation, not historical or continuum dynamics. In a 600-step
+continuation, the mean guard first becomes inconclusive at transition 596;
+`cargo run -- simulate topoguard-mean-limit-verify` checks two independent
+reconstructions. An inconclusive transition does not establish topology change.
+Older production
 JSON reports retain their original interpretation notes; those notes claiming
 topology preservation are superseded by claim 15 and ADR-104.
 

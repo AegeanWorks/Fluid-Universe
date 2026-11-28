@@ -21,6 +21,7 @@ pub struct MonitoredRelaxation {
     pub minimum_margin: Option<f64>,
     pub mean_minimum_margin: Option<f64>,
     pub mean_inconclusive_steps: usize,
+    pub mean_first_inconclusive_step: Option<usize>,
     pub start_energy: f64,
     pub end_energy: f64,
 }
@@ -118,7 +119,7 @@ pub fn monitored_relaxation(
     }
     let mut result = MonitoredRelaxation {
         field: initial.clone(), completed_steps: 0, inconclusive_steps: 0, first_inconclusive_step: None,
-        minimum_margin: None, mean_minimum_margin: None, mean_inconclusive_steps: 0, start_energy, end_energy: start_energy,
+        minimum_margin: None, mean_minimum_margin: None, mean_inconclusive_steps: 0, mean_first_inconclusive_step: None, start_energy, end_energy: start_energy,
     };
     for _ in 0..steps {
         let (next, history, _) = crate::simulation::relax(&result.field, mu, dt, 1, k, kappa);
@@ -129,7 +130,10 @@ pub fn monitored_relaxation(
         let margin = homotopy_hemisphere_margin(&result.field, &next)?;
         let mean = homotopy_mean_margin(&result.field, &next)?;
         result.mean_minimum_margin = Some(result.mean_minimum_margin.map_or(mean, |old| old.min(mean)));
-        if mean <= MARGIN_TOLERANCE { result.mean_inconclusive_steps += 1; }
+        if mean <= MARGIN_TOLERANCE {
+            result.mean_inconclusive_steps += 1;
+            if result.mean_first_inconclusive_step.is_none() { result.mean_first_inconclusive_step = Some(result.completed_steps + 1); }
+        }
         result.minimum_margin = Some(result.minimum_margin.map_or(margin, |old| old.min(margin)));
         if margin <= MARGIN_TOLERANCE {
             result.inconclusive_steps += 1;

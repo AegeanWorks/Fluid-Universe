@@ -1,54 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795868067.40284,
-    "completed_head": "cdad903a21e8c8f640e8052e6fc6715856dbebf1",
-    "completed_tree": "4345c45e2b5aac0366354b86f02e4250b206b5d3",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795875236.27372,
+    "lease_until": 1795875754.36975,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-mean-guard",
-    "updated_at": 1795868036.27372
+    "status": "in_progress",
+    "task_id": "fluid-mean-limit",
+    "updated_at": 1795868554.36975
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su2-current-rank' completed successfully.",
-      "head": "06138659658acd33097ce7e80b8d5dd847b78524",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su2-current-rank",
-      "timestamp": 1795865006.86073,
-      "timestamp_str": "2026-11-28 14:23:26"
-    },
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Test a decoupled Standard Model current-algebra extension of the SU(2) phase witness",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Construct a precise algebraic extension and expose the representation and physical limitations",
-        "mitigation": "Use the vacuum in added SU(3)_1 and U(1) factors, calculate exact total central charge and weak representation, independently audit and run two-process verification and gates",
-        "risks": "contract: tensor-product fusion and U(1) normalization; dependency: none; concurrency: isolated project; state: claim ledger and audit evidence",
-        "why": "The standalone SU(2) host lacks the full gauge currents, while tensoring additional sectors may preserve its monodromies"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "0eedbab5aac5984883838a5c171593bad12c3c0331738f86faa2ac88224624fa",
-      "status": "in_progress",
-      "task_id": "fluid-su2-product-extension",
-      "timestamp": 1795865114.82662,
-      "timestamp_str": "2026-11-28 14:25:14"
-    },
     {
       "agent": "codex:fluid",
       "checklists": "passed",
@@ -323,6 +285,36 @@
       "task_id": "chore-1795868118",
       "timestamp": 1795868118.51948,
       "timestamp_str": "2026-11-28 15:15:18"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Independently verify the first mean-certificate limit over 600 sampled transitions",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Measure the certified prefix with independently reproduced numerical evidence",
+        "mitigation": "Compare production with two finite-difference processes using fixed tolerances and counts; retain explicit sampled-map scope and a 900-second watchdog",
+        "risks": "contract: a negative margin is inconclusive rather than topology failure; dependency: no new dependencies; concurrency: independent processes may diverge; state: retain existing 200-step evidence",
+        "why": "A 2000-step exploratory run first loses the mean-direction sufficient certificate at transition 596"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "f430a289d4dc9022368a33b1279149095f5c2e19344a8f945ad565320d57f945",
+      "status": "in_progress",
+      "task_id": "fluid-mean-limit",
+      "timestamp": 1795868250.46844,
+      "timestamp_str": "2026-11-28 15:17:30"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Verify the 600-step mean-guard limit; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-mean-limit",
+      "timestamp": 1795868554.36975,
+      "timestamp_str": "2026-11-28 15:22:34"
     }
   ],
   "version": 1

@@ -1427,3 +1427,7 @@ A 200-step sampled trajectory passes the sufficient guard for its first 155 tran
 ## 2026-11-28 - Mean-direction sampled homotopy certificate
 
 A cell-mean separating direction certifies all 200 sampled transitions, including those inconclusive under the initial-corner guard. Two independent processes reproduce the positive minimum margin within frozen tolerances. The certificate concerns the constructed sampled interpolation, not the historical run or continuum dynamics. See claim 93 and ADR-108.
+
+## 2026-11-28 - Mean-direction certificate limit
+
+A fixed 600-step sampled trajectory first becomes inconclusive under the mean-direction guard at transition 596, with five inconclusive transitions. Two independent finite-difference processes reproduce the result. This is a limitation of the sufficient test, not a finding of topology change. See claim 94 and ADR-109.

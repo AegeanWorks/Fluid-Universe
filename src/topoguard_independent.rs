@@ -8,6 +8,7 @@ pub struct IndependentProbe {
     pub minimum_margin: f64,
     pub mean_minimum_margin: f64,
     pub mean_inconclusive_steps: usize,
+    pub mean_first_inconclusive_step: Option<usize>,
     pub inconclusive_steps: usize,
     pub first_inconclusive_step: Option<usize>,
     pub start_energy: f64,
@@ -118,9 +119,9 @@ fn centroid_distance_margin(n: usize, first: &[[f64; 3]], second: &[[f64; 3]]) -
     minimum
 }
 
-/// Independently rederive an N=32 probe using epsilon=1e-5, for 1..=200 steps.
+/// Independently rederive an N=32 probe using epsilon=1e-5, for 1..=600 steps.
 pub fn run_independent_probe(steps: usize) -> IndependentProbe {
-    assert!((1..=200).contains(&steps), "independent probe needs 1..=200 steps");
+    assert!((1..=600).contains(&steps), "independent probe needs 1..=600 steps");
     let (n, epsilon, dt) = (32_usize, 1e-5_f64, 0.05_f64);
     let mut field = initial_samples(n);
     let energy = |f: &[[f64; 3]]| (0..f.len()).map(|p| cell_energy(n, f, p)).sum::<f64>();
@@ -128,6 +129,7 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
     let mut minimum_margin = 1.0_f64;
     let mut mean_minimum_margin = 1.0_f64;
     let mut mean_inconclusive_steps = 0;
+    let mut mean_first_inconclusive_step = None;
     let mut inconclusive_steps = 0;
     let mut first_inconclusive_step = None;
     for step in 1..=steps {
@@ -143,7 +145,7 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
         let margin = distance_margin(n, &field, &next);
         let mean = centroid_distance_margin(n, &field, &next);
         mean_minimum_margin = mean_minimum_margin.min(mean);
-        if mean <= 1e-12 { mean_inconclusive_steps += 1; }
+        if mean <= 1e-12 { mean_inconclusive_steps += 1; if mean_first_inconclusive_step.is_none() { mean_first_inconclusive_step = Some(step); } }
         minimum_margin = minimum_margin.min(margin);
         if margin <= 1e-12 {
             inconclusive_steps += 1;
@@ -151,7 +153,7 @@ pub fn run_independent_probe(steps: usize) -> IndependentProbe {
         }
         field = next;
     }
-    IndependentProbe { steps, minimum_margin, mean_minimum_margin, mean_inconclusive_steps, inconclusive_steps, first_inconclusive_step, start_energy, end_energy: energy(&field) }
+    IndependentProbe { steps, minimum_margin, mean_minimum_margin, mean_inconclusive_steps, mean_first_inconclusive_step, inconclusive_steps, first_inconclusive_step, start_energy, end_energy: energy(&field) }
 }
 
 #[cfg(test)]

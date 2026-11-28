@@ -772,3 +772,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The initial-corner guard becomes inconclusive for 45 of 200 transitions, while an exploratory cell-mean separator remains positive.
 - **Decision**: Add a separate conservative cell-mean hemisphere guard and independently reproduce the fixed 200-step trajectory in two processes, with margin tolerance 1e-6 and energy tolerance 1e-4.
 - **Consequences**: A positive margin certifies only normalized interpolation of sampled maps; zero mean or a nonpositive margin remains inconclusive, with no historical or continuum claim.
+
+### ADR-109: Measure the mean-direction certificate limit
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An exploratory 2000-step continuation first produced an inconclusive mean-direction margin at transition 596.
+- **Decision**: Record a fixed 600-step trajectory and compare production against two independent finite-difference processes using margin tolerance 1e-6 and energy tolerance 1e-4.
+- **Consequences**: Any first inconclusive transition is a limit of this sufficient condition, not a topology failure; only constructed sampled-map interpolations are addressed.
