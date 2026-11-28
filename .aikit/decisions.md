@@ -723,3 +723,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The higher-spin SU(2) phase witnesses are exact but their relation to the Standard Model gauge currents is unestablished.
 - **Decision**: Compare c(SU(2)_k)=3k/(k+2)<3 with c(SU(3)_l x SU(2)_m x U(1))>=4 for positive integer l and m, and independently audit the rational inequalities and both witness levels.
 - **Consequences**: A mismatch rules out direct conformal embedding of the full stated gauge algebra, not additional sectors, nonconformal embeddings or physical interpretations beyond this test.
+
+### ADR-102: Test gauge-current capacity of the unextended SU(2) host
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The previous central-charge test excluded only conformal embedding of the full Standard Model gauge algebra.
+- **Decision**: Compare the three weight-one states of the positive-level SU(2) affine vacuum with the twelve independent weight-one gauge currents required by SU(3) x SU(2) x U(1), and independently audit the current count.
+- **Consequences**: The unextended SU(2) chiral algebra cannot contain that gauge current algebra even as a nonconformal weight-one subalgebra; extensions, added sectors and other realizations remain open.

@@ -55,3 +55,10 @@ fn su2_witnesses_have_less_central_charge_than_the_sm_gauge_minimum() {
     assert!((gap.value - (minimum - central_charge(2, 2338))).abs() < 1e-14);
     assert!(gap.value > 1.0);
 }
+
+#[test]
+fn unextended_su2_has_too_few_weight_one_gauge_currents() {
+    let checks = fluid_universe::su2_monodromy::checks();
+    let deficit = checks.iter().find(|check| check.id == "su2_monodromy.sm_current_deficit").unwrap();
+    assert_eq!(deficit.value, (8 + 3 + 1 - 3) as f64);
+}

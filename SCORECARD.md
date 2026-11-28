@@ -119,4 +119,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 87 | FALSIFIED (SU(2) direct SM conformal embedding) | Every SU(2) host has c<3 while the positive-level SM gauge algebra has c>=4; additional sectors remain open. |
 
-Claim audit: two Rust processes produced 64 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 88 | FALSIFIED (standalone SU(2) weight-one gauge currents) | Three host currents cannot contain twelve gauge currents, even without conformal embedding; extensions remain open. |
+
+Claim audit: two Rust processes produced 65 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

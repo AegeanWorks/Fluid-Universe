@@ -141,7 +141,11 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 87 | An SU(2)_k phase host can directly contain the full SU(3)_l x SU(2)_m x U(1) gauge current algebra as a conformal embedding, with positive integer levels l,m. | exact central-charge compatibility test | **FALSIFIED (c_SU2<3 while c_SM_gauge>=4)** | `src/su2_monodromy.rs`; `src/audit.rs`; `tests/su2_monodromy.rs`; `results/rust_audit.json` | c(SU(2)_k)=3k/(k+2)<3. At positive integer l,m, c(SU(3)_l)=8l/(l+3)>=2 and c(SU(2)_m)=3m/(m+2)>=1; a nontrivial U(1) contributes 1. The gauge algebra therefore has c>=4, so equality required for direct conformal embedding is impossible. The witness central charges are 1169/390 at k=2338 and 3509/1170 at k=7018. Additional sectors, nonconformal interpretations and physical assignments are not ruled out. |
 
+| 88 | The unextended positive-level SU(2) WZW chiral algebra contains the full SU(3) x SU(2) x U(1) gauge algebra as weight-one currents, without requiring a conformal embedding. | exact affine-vacuum current-capacity test | **FALSIFIED (three host weight-one currents versus twelve required)** | `src/su2_monodromy.rs`; `src/audit.rs`; `tests/su2_monodromy.rs`; `results/rust_audit.json` | Grade one of the unextended SU(2) affine vacuum is spanned by the three currents J^a_-1 acting on the vacuum; positive level makes their norms nonzero. The full gauge algebra requires 8+3+1=12 independent weight-one currents. Three dimensions cannot contain twelve, independently of central-charge equality. This excludes only the standalone unextended chiral algebra with gauge currents at weight one; extensions, added sectors and other realizations remain open. |
+
 ## Status history
+
+- 2026-11-28 (SU(2) weight-one current capacity, claim 88): the standalone unextended chiral host has three currents, fewer than the twelve required by the full gauge algebra. This excludes a weight-one current embedding without assuming conformal embedding; extensions and additional sectors remain open. See ADR-102.
 
 - 2026-11-28 (SU(2) host gauge compatibility, claim 87): every SU(2) WZW host has central charge below 3, while the full positive-level Standard Model gauge current algebra has at least 4. Direct conformal embedding is excluded; additional sectors remain open. See ADR-101.
 

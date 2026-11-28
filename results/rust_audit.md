@@ -50,6 +50,7 @@
 | `audit.su2_minimal_common_orientation_spin` | `6.642629000000000e6` | NUMERIC \| level-first lower-spin pairs/channels/hits=(30656,6642629,0); spin 144 at k=7018, channel spins=[239, 278, 0], forward residues=[1560, 702, 360]/7020 |
 | `audit.su2_minimal_independent_orientation_spin` | `1.013210000000000e6` | NUMERIC \| lower-spin pairs/channels/hits=(7458,1013210,0); spin 90 at k=2338, channel spins=[64, 117, 84], forward residues=[1820, 2106, 120]/2340; mixed orientations |
 | `audit.su2_sm_conformal_embedding` | `2.997435897435897e0` | FALSIFIED \| c(SU(2)_k)<3; positive-level SM gauge c>=4; k=2338: 1169/390, k=7018: 3509/1170 |
+| `audit.su2_sm_current_capacity` | `9.000000000000000e0` | FALSIFIED \| positive-level SU(2) vacuum weight-one dimension=3; gauge currents=12; deficit=9; unextended chiral algebra only |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
@@ -70,5 +71,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=de3a8bd4b7496240, run2=de3a8bd4b7496240, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `ee35a842217eb1ce` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=bc09cacfec9ae555, run2=bc09cacfec9ae555, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `c0fdb8ca805a02de` (not a configuration hash or cryptographic digest).

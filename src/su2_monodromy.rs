@@ -116,5 +116,9 @@ pub fn checks() -> Vec<Check> {
         + crate::single_model_test::central_charge(2, 1) + 1.0;
     out.push(Check::new("su2_monodromy.sm_minimum_gap", c_sm_min - c_host,
                         "SM gauge central-charge minimum minus SU(2)_2338 central charge"));
+    let sm_currents = (3 * 3 - 1) + (2 * 2 - 1) + 1;
+    let su2_currents = 2 * 2 - 1;
+    out.push(Check::new("su2_monodromy.sm_current_deficit", (sm_currents - su2_currents) as f64,
+                        "SM weight-one gauge currents minus unextended SU(2) current dimension"));
     out
 }

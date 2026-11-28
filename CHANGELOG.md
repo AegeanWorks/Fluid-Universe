@@ -1399,3 +1399,7 @@ If target orientations may be chosen separately, a level-2338 witness has spin 9
 ## 2026-11-28 ? SU(2) host gauge central-charge limit
 
 The SU(2) phase hosts cannot directly conformally embed the full positive-level Standard Model gauge current algebra: c_SU2<3 while c_SM>=4. Added exact witness charges and an independent inequality audit. Additional sectors and nonconformal interpretations remain open. See claim 87 and ADR-101.
+
+## 2026-11-28 ? SU(2) weight-one current capacity
+
+The unextended positive-level SU(2) affine vacuum has three weight-one currents; the full Standard Model gauge algebra requires twelve. This excludes even a nonconformal weight-one current embedding in the standalone host. Extensions and additional sectors remain open. See claim 88 and ADR-102.

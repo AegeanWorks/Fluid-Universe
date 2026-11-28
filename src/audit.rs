@@ -1731,6 +1731,23 @@ fn rows() -> Vec<Row> {
         value: 1169.0 / 390.0,
     });
 
+    // 88: grade one of the unextended positive-level SU(2) affine vacuum is
+    // spanned by its Cartan current and two root currents; positive level makes
+    // their norms nonzero. The SM current algebra requires all its independent
+    // Cartan, root, and U(1) currents at the same conformal weight.
+    let host_currents = 1 + 2;
+    let color_currents = 2 + 6;
+    let weak_currents = 1 + 2;
+    let gauge_currents = color_currents + weak_currents + 1;
+    let deficit = gauge_currents - host_currents;
+    out.push(Row {
+        id: "audit.su2_sm_current_capacity",
+        claim: "88: unextended SU(2) host contains SM weight-one gauge currents",
+        verdict: if deficit > 0 { "FALSIFIED" } else { "UNVERIFIED" },
+        detail: format!("positive-level SU(2) vacuum weight-one dimension={host_currents}; gauge currents={gauge_currents}; deficit={deficit}; unextended chiral algebra only"),
+        value: deficit as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -2101,6 +2118,7 @@ mod tests {
         assert_eq!(verdict("85: SU(2) minimum external spin"), "NUMERIC");
         assert_eq!(verdict("86: SU(2) minimum external spin"), "NUMERIC");
         assert_eq!(verdict("87: SU(2) host"), "FALSIFIED");
+        assert_eq!(verdict("88: unextended SU(2) host"), "FALSIFIED");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

@@ -31,6 +31,7 @@ pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.su2_minimal_common_orientation_spin",
     "audit.su2_minimal_independent_orientation_spin",
     "audit.su2_sm_conformal_embedding",
+    "audit.su2_sm_current_capacity",
     "audit.single_model_relaxed_inverse", "audit.lower_rank_inverse_search",
     "audit.minimal_level_inverse_search", "audit.minimal_witness_search",
     "audit.minimal_witness_canonical", "audit.su7_conformal_weights",

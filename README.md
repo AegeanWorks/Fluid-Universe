@@ -97,7 +97,10 @@ interpretation; see claim 86 and ADR-100.
 The SU(2) phase hosts cannot themselves be a direct conformal embedding of
 the full Standard Model gauge current algebra: every SU(2)_k has central charge
 below 3, while the positive-level gauge algebra has central charge at least 4.
-Additional sectors and other interpretations are not ruled out. See claim 87.
+More generally, the unextended SU(2) affine vacuum has only three weight-one
+currents, versus twelve required by the full gauge algebra. Thus even a
+nonconformal weight-one current subalgebra is excluded in that standalone
+chiral algebra. Extensions and added sectors remain open. See claims 87–88.
 
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
