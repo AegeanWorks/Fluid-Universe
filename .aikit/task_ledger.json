@@ -1,34 +1,19 @@
 {
   "active_task": {
-    "active_phase": 4,
+    "active_phase": 5,
+    "completed_at": 1795846433.07684,
+    "completed_head": "d096a19a7b1f068b1ac1db8d0cfa34ff3f320996",
+    "completed_tree": "b5b87b1d0c3ce6667d3e0dc7d63214e193e03b75",
     "continuations": [],
     "last_phase": "in_progress",
     "lease_until": 1795853563.80983,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "in_progress",
+    "status": "completed",
     "task_id": "fluid-monodromy-no-go",
     "updated_at": 1795846363.80983
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Verify center-charge selection and correct physical interpretation of Casimir matches",
-      "files_affected": [],
-      "impact_assessment": {
-        "benefits": "Preserve arithmetic results while preventing unsupported physical claims",
-        "mitigation": "Add failing-first checks with independent audit, revise claims and regenerate evidence, then run project gates",
-        "risks": "contract: precise claim scope; dependency: no new dependencies; concurrency: isolated project; state: generated evidence and ledger consistency",
-        "why": "Integrability alone does not establish a fundamental-pair fusion channel"
-      },
-      "phase": "in_progress",
-      "phase_num": 2,
-      "plan_digest": "2dc0f1fac934e21c3fd1700997309e7d2b29ed81cf00daea6c95280fa55c1b92",
-      "status": "in_progress",
-      "task_id": "phase-fusion-selection",
-      "timestamp": 1795810547.4684,
-      "timestamp_str": "2026-11-27 23:15:47"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Center selection audited in two processes; project gates 4/4 passed; checklists: passed",
@@ -315,6 +300,23 @@
       "task_id": "fluid-monodromy-no-go",
       "timestamp": 1795846363.80983,
       "timestamp_str": "2026-11-28 09:12:43"
+    },
+    {
+      "agent": "codex:fluid",
+      "delivery": {
+        "forced": false,
+        "roots": [
+          ""
+        ]
+      },
+      "description": "Task 'fluid-monodromy-no-go' completed successfully.",
+      "head": "d096a19a7b1f068b1ac1db8d0cfa34ff3f320996",
+      "phase": "completed",
+      "phase_num": 5,
+      "status": "completed",
+      "task_id": "fluid-monodromy-no-go",
+      "timestamp": 1795846433.07684,
+      "timestamp_str": "2026-11-28 09:13:53"
     }
   ],
   "version": 1
