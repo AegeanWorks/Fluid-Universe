@@ -94,6 +94,11 @@ label 180 (spin 90), and all smaller labels are excluded across positive
 levels. This mixed-orientation construction requires an additional physical
 interpretation; see claim 86 and ADR-100.
 
+The SU(2) phase hosts cannot themselves be a direct conformal embedding of
+the full Standard Model gauge current algebra: every SU(2)_k has central charge
+below 3, while the positive-level gauge algebra has central charge at least 4.
+Additional sectors and other interpretations are not ruled out. See claim 87.
+
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
 previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed

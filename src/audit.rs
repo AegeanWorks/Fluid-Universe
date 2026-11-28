@@ -1717,6 +1717,20 @@ fn rows() -> Vec<Row> {
         value: lower_spin.4 as f64,
     });
 
+    // 87: for positive levels l,m, 8l/(l+3)>=2 and 3m/(m+2)>=1,
+    // since the respective numerator differences are 6(l-1), 2(m-1).
+    // A U(1) current contributes 1, while 3k/(k+2)<3 by the gap 6/(k+2).
+    let c2338_exact = 3_i64 * 2338 * 390 == 1169 * 2340;
+    let c7018_exact = 3_i64 * 7018 * 1170 == 3509 * 7020;
+    let excluded = c2338_exact && c7018_exact && 6_i64 > 0;
+    out.push(Row {
+        id: "audit.su2_sm_conformal_embedding",
+        claim: "87: SU(2) host admits direct SM gauge conformal embedding",
+        verdict: if excluded { "FALSIFIED" } else { "UNVERIFIED" },
+        detail: "c(SU(2)_k)<3; positive-level SM gauge c>=4; k=2338: 1169/390, k=7018: 3509/1170".to_string(),
+        value: 1169.0 / 390.0,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -2086,6 +2100,7 @@ mod tests {
         assert_eq!(verdict("84: lower SU(2) levels"), "NUMERIC");
         assert_eq!(verdict("85: SU(2) minimum external spin"), "NUMERIC");
         assert_eq!(verdict("86: SU(2) minimum external spin"), "NUMERIC");
+        assert_eq!(verdict("87: SU(2) host"), "FALSIFIED");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

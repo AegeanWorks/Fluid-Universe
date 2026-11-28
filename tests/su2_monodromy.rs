@@ -42,3 +42,16 @@ fn independent_orientation_witness_has_smaller_spin() {
     let (reverse, den) = reversed_monodromy_residue(2338, 180, 168).unwrap();
     assert_eq!(reverse * 39, den * 37);
 }
+
+#[test]
+fn su2_witnesses_have_less_central_charge_than_the_sm_gauge_minimum() {
+    use fluid_universe::single_model_test::central_charge;
+    let checks = fluid_universe::su2_monodromy::checks();
+    let gap = checks.iter().find(|check| check.id == "su2_monodromy.sm_minimum_gap").unwrap();
+    let minimum = central_charge(3, 1) + central_charge(2, 1) + 1.0;
+    assert_eq!(minimum, 4.0);
+    assert!((central_charge(2, 2338) - 1169.0 / 390.0).abs() < 1e-14);
+    assert!((central_charge(2, 7018) - 3509.0 / 1170.0).abs() < 1e-14);
+    assert!((gap.value - (minimum - central_charge(2, 2338))).abs() < 1e-14);
+    assert!(gap.value > 1.0);
+}

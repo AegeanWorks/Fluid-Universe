@@ -111,5 +111,10 @@ pub fn checks() -> Vec<Check> {
                         "lower-spin common-orientation triple matches"));
     out.push(Check::new("su2_monodromy.lower_independent_spin_hits", smaller.5 as f64,
                         "triple matches below label 180 allowing independent orientations"));
+    let c_host = crate::single_model_test::central_charge(2, i64::from(LEVEL));
+    let c_sm_min = crate::single_model_test::central_charge(3, 1)
+        + crate::single_model_test::central_charge(2, 1) + 1.0;
+    out.push(Check::new("su2_monodromy.sm_minimum_gap", c_sm_min - c_host,
+                        "SM gauge central-charge minimum minus SU(2)_2338 central charge"));
     out
 }

@@ -1395,3 +1395,7 @@ A level-7018, label-288 witness uses smaller spin than the minimal-level witness
 ## 2026-11-28 ? Independent-orientation SU(2) spin minimum
 
 If target orientations may be chosen separately, a level-2338 witness has spin 90 and exact all-level bounds exclude smaller spins. The common-orientation spin-144 result remains distinct. The lower-spin search return tuple now additionally reports the independent-orientation prefix counts; existing counts are preserved. See claim 86 and ADR-100.
+
+## 2026-11-28 ? SU(2) host gauge central-charge limit
+
+The SU(2) phase hosts cannot directly conformally embed the full positive-level Standard Model gauge current algebra: c_SU2<3 while c_SM>=4. Added exact witness charges and an independent inequality audit. Additional sectors and nonconformal interpretations remain open. See claim 87 and ADR-101.

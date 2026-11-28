@@ -117,4 +117,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 
 | 86 | NUMERIC (SU(2) independent-orientation minimum spin) | Spin 90 at level 2338 is minimal if each target may choose its own orientation; that physical assignment is not established. |
 
-Claim audit: two Rust processes produced 63 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 87 | FALSIFIED (SU(2) direct SM conformal embedding) | Every SU(2) host has c<3 while the positive-level SM gauge algebra has c>=4; additional sectors remain open. |
+
+Claim audit: two Rust processes produced 64 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

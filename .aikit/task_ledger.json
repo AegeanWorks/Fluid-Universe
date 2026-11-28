@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795847903.86699,
-    "completed_head": "e8b31fe411720efbe4deb8d7426ead0bca732aad",
-    "completed_tree": "86ca7f830957d6c713b9b018913126147e0dc9d1",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795855049.59235,
+    "lease_until": 1795855358.78296,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su2-independent-spin",
-    "updated_at": 1795847849.59235
+    "status": "in_progress",
+    "task_id": "fluid-su2-sm-charge",
+    "updated_at": 1795848158.78296
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Exact level-62 arithmetic and SU(3) fusion regressions pass; 4/4 project gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-legacy-phase",
-      "timestamp": 1795845066.34197,
-      "timestamp_str": "2026-11-28 08:51:06"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-legacy-phase' completed successfully.",
-      "head": "f5387a75eb2768d9a8e018febf978e49bf075780",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-legacy-phase",
-      "timestamp": 1795845144.13529,
-      "timestamp_str": "2026-11-28 08:52:24"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Derive and audit all-rank fundamental-pair phase no-go",
@@ -317,6 +286,35 @@
       "task_id": "fluid-su2-independent-spin",
       "timestamp": 1795847903.86699,
       "timestamp_str": "2026-11-28 09:38:23"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Test Standard Model conformal embedding in the SU(2) phase hosts",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "State a decisive central-charge limitation of the new SU(2) witnesses",
+        "mitigation": "Compare exact SU(2) central charges with the positive-level Standard Model lower bound, independently audit the inequalities, compare two processes and run gates",
+        "risks": "contract: conformal embedding scope and current-level assumptions; dependency: none; concurrency: isolated project; state: claim ledger and audit output",
+        "why": "Exact phase matching alone does not establish compatibility with the full gauge current algebra"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "60e7d6f1bda474007f2bd038da1224e1633f699b0ab46bf2383524fa6e29368b",
+      "status": "in_progress",
+      "task_id": "fluid-su2-sm-charge",
+      "timestamp": 1795847951.91431,
+      "timestamp_str": "2026-11-28 09:39:11"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Central-charge inequalities and exact witness values independently audited; two-process agreement and 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-su2-sm-charge",
+      "timestamp": 1795848158.78296,
+      "timestamp_str": "2026-11-28 09:42:38"
     }
   ],
   "version": 1

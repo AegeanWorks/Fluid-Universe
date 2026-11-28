@@ -716,3 +716,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: A spin-90 candidate at the minimal level has two target residues reversed and one forward, while the prior spin-144 minimum requires one common orientation.
 - **Decision**: Extend the bounded all-level search to count independently oriented matches below Dynkin label 180, verify the level-2338 witness and independently audit by level-first enumeration.
 - **Consequences**: A successful minimum applies only when orientations may be chosen separately per target; it does not replace the common-orientation result or establish a physical mechanism.
+
+### ADR-101: Test SU(2) host compatibility with Standard Model conformal embedding
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The higher-spin SU(2) phase witnesses are exact but their relation to the Standard Model gauge currents is unestablished.
+- **Decision**: Compare c(SU(2)_k)=3k/(k+2)<3 with c(SU(3)_l x SU(2)_m x U(1))>=4 for positive integer l and m, and independently audit the rational inequalities and both witness levels.
+- **Consequences**: A mismatch rules out direct conformal embedding of the full stated gauge algebra, not additional sectors, nonconformal embeddings or physical interpretations beyond this test.
