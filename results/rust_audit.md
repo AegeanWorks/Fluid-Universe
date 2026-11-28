@@ -52,6 +52,7 @@
 | `audit.su2_sm_conformal_embedding` | `2.997435897435897e0` | FALSIFIED \| c(SU(2)_k)<3; positive-level SM gauge c>=4; k=2338: 1169/390, k=7018: 3509/1170 |
 | `audit.su2_sm_current_capacity` | `9.000000000000000e0` | FALSIFIED \| positive-level SU(2) vacuum weight-one dimension=3; gauge currents=12; deficit=9; unextended chiral algebra only |
 | `audit.su2_decoupled_gauge_extension` | `5.997435897435897e0` | NUMERIC \| c_product=14034/2340=2339/390; color and U(1) vacuum weights vanish; weak dimension=559; residues=[520, 234, 120]/2340; no physical matter claim |
+| `audit.grid_homotopy_hemisphere` | `8.928190012388426e-3` | NUMERIC \| N=16 self margin=-0.884444444444; N=32 rotation margin=0.008928190012; nonpositive is inconclusive; no production snapshots tested |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
@@ -72,5 +73,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=cec9e89ab7f7547b, run2=cec9e89ab7f7547b, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `2a1bc5b9c8bafeab` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=64cfc091591c23d2, run2=64cfc091591c23d2, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `f44d63298bee74ee` (not a configuration hash or cryptographic digest).

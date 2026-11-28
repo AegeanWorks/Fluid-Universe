@@ -83,6 +83,7 @@ pub mod su2_monodromy;
 pub mod so10_gut;
 pub mod spinodal;
 pub mod threshold_unification;
+pub mod topology_guard;
 pub mod two_component;
 pub mod unified_model;
 pub mod up_phase_resolution;
@@ -185,6 +186,7 @@ pub fn all_checks() -> Vec<Check> {
     out.extend(threshold_unification::checks());
     out.extend(single_model_test::checks());
     out.extend(su2_monodromy::checks());
+    out.extend(topology_guard::checks());
     out.extend(peer_reviewed_37::checks());
     out.extend(up_phase_resolution::checks());
     out.extend(single_phase_rule::checks());

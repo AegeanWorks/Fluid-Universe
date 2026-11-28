@@ -51,6 +51,12 @@ Falsification-first research codebase testing a Z3 circulant origin of the Koide
 
 ## What Is Actually Established
 
+The periodic grid homotopy guard certifies a sampled-field interpolation only
+when every space-time cell fits a common separating hemisphere. It passes for
+the N=32 analytic field and a 0.01-radian rotation; failure is inconclusive,
+and no historical production trajectory has been certified. A near-one Hopf
+estimate alone does not prove topology preservation. See claim 90 and ADR-104.
+
 The Koide condition does not fix the circulant phase. Choosing a root product
 of 1/18 or identifying the phase with the SU(3)_3 conformal weight is an
 additional, post-hoc assumption. The spacing ratio is determined by the same
@@ -327,6 +333,7 @@ fluid-universe/
 │   ├── vortex_unification.rs <- pre-registered vortex-core unification test
 │   ├── wzw_phase_origin.rs   <- SU(3)_3 conformal-weight differences
 │   ├── simulation.rs         <- 3D field core, Hopf/Z3 estimators, relaxation
+│   ├── topology_guard.rs     <- sufficient sampled-grid homotopy certificate
 │   ├── audit.rs              <- independent per-claim audit
 │   ├── reports.rs            <- deterministic result regeneration
 │   ├── verify.rs             <- G-001 two-process comparison
@@ -337,7 +344,8 @@ fluid-universe/
 │   ├── radial_shell.rs       <- HO-2 radial-shell regression tests
 │   ├── multi_radial_shell.rs <- HO-3 double-shell regression tests
 │   ├── single_model_search.rs <- bounded SU(N)_k search regression
-│   └── su2_monodromy.rs      <- higher-spin fusion and monodromy witness
+│   ├── su2_monodromy.rs      <- higher-spin fusion and monodromy witness
+│   └── topology_guard.rs     <- periodic homotopy certificate controls
 ├── claims.md                 <- claim ledger with statuses and kill tests
 ├── AUDIT_COVERAGE.md         <- independent-audit coverage inventory
 ├── CHANGELOG.md              <- append-only corrections and retractions

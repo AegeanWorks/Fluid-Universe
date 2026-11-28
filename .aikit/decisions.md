@@ -737,3 +737,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The standalone SU(2) chiral algebra cannot contain the full Standard Model gauge current algebra, although additional sectors remain open.
 - **Decision**: Tensor SU(2)_2338 with SU(3)_1 and a positive U(1) current algebra, put the additional factors in their vacua, and verify central charge, unchanged monodromies and the 559-dimensional weak representation.
 - **Consequences**: This constructs a decoupled current-algebra example, not Standard Model matter, a sector-selection mechanism, or four-dimensional dynamics.
+
+### ADR-104: Certify grid-field homotopy with a conservative hemisphere condition
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: An upsampled Hopf estimate near one cannot alone prove topology preservation between discrete field snapshots.
+- **Decision**: For each periodic cell require one initial corner to have positive dot product with all sixteen normalized space-time corner vectors; report the minimum margin with a conservative tolerance, reject invalid grids, and independently audit a rotated analytic field.
+- **Consequences**: Passing certifies a nonvanishing multilinear interpolation and hence a homotopy of the sampled maps; failing is inconclusive and no recorded production trajectory is certified without its snapshots.

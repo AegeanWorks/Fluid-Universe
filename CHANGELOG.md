@@ -1407,3 +1407,7 @@ The unextended positive-level SU(2) affine vacuum has three weight-one currents;
 ## 2026-11-28 ? Decoupled gauge-current extension
 
 Constructed SU(2)_2338 x SU(3)_1 x U(1) with vacuum added factors, preserving the SU(2) monodromies and giving central charge 2339/390. The witness transforms in a 559-dimensional weak representation; physical matter and dynamics remain unestablished. See claim 89 and ADR-103.
+
+## 2026-11-28 ? Conservative sampled-grid homotopy guard
+
+Added a periodic space-time hemisphere certificate for pairs of sampled vector fields, with invalid-input and inconclusive controls. The analytic N=32 field and a small rotation pass; no historical production trajectory was certified. Corrected claim 15 so a near-one upsampled estimator is evidence rather than proof of topology preservation. See claim 90 and ADR-104.

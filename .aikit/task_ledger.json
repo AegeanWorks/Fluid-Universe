@@ -1,47 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795865593.64425,
-    "completed_head": "f9c354a02d741a79a5fc6d4c641b9f7a8bc7b747",
-    "completed_tree": "938f7bea6f1836acf7ee412828e5c85073337e32",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795872668.98068,
+    "lease_until": 1795873359.41607,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-su2-product-extension",
-    "updated_at": 1795865468.98068
+    "status": "in_progress",
+    "task_id": "fluid-grid-homotopy",
+    "updated_at": 1795866159.41607
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "description": "[1/1] Higher-spin fusion and common reversed monodromy verified; independent spin audit agrees in two processes; 4/4 gates passed; checklists: passed",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-su2-higher-spin",
-      "timestamp": 1795846766.16116,
-      "timestamp_str": "2026-11-28 09:19:26"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-su2-higher-spin' completed successfully.",
-      "head": "1fca81b6b13ca1c4d243c7775e83df7897748eb3",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-su2-higher-spin",
-      "timestamp": 1795846856.10427,
-      "timestamp_str": "2026-11-28 09:20:56"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Test minimal level of the identical-field SU(2) monodromy witness",
@@ -318,6 +287,36 @@
       "task_id": "fluid-su2-product-extension",
       "timestamp": 1795865593.64425,
       "timestamp_str": "2026-11-28 14:33:13"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Add a conservative space-time interpolation homotopy certificate",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Provide an explicit sufficient nonzero-interpolation condition and correct the overstatement in claim 15",
+        "mitigation": "Validate finite nonzero samples and matching grids, use a conservative positive margin, test certified and inconclusive controls, independently audit the analytic-field example in two processes and run gates",
+        "risks": "contract: periodic grid assumptions and false-certification near zero; dependency: none; concurrency: isolated project; state: numerical evidence and claim ledger",
+        "why": "A near-one upsampled Hopf estimator alone does not prove topology preservation between grid fields"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "34d063515062d80ab5082617364d54986dd36ee46f6c7e8da9c92698a62ad73e",
+      "status": "in_progress",
+      "task_id": "fluid-grid-homotopy",
+      "timestamp": 1795865955.42581,
+      "timestamp_str": "2026-11-28 14:39:15"
+    },
+    {
+      "agent": "codex:fluid",
+      "checklists": "passed",
+      "description": "[1/1] Periodic homotopy guard controls and independent analytic-field audit pass; two-process agreement and 4/4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-grid-homotopy",
+      "timestamp": 1795866159.41607,
+      "timestamp_str": "2026-11-28 14:42:39"
     }
   ],
   "version": 1

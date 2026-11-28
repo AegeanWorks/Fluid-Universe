@@ -1768,6 +1768,54 @@ fn rows() -> Vec<Row> {
         value: total_num as f64 / total_den as f64,
     });
 
+    // 90: re-create the analytic Hopf samples independently and use
+    // dot(a,b)=1-|a-b|^2/2 for unit vectors, rather than production dot
+    // products. The N=16 same-field control need not pass the sufficient test.
+    static GRID_MARGINS: std::sync::OnceLock<(f64, f64)> = std::sync::OnceLock::new();
+    let margins = GRID_MARGINS.get_or_init(|| {
+        let calculate = |n: usize, angle: f64| {
+            let mut samples = Vec::with_capacity(n * n * n);
+            for x in 0..n { for y in 0..n { for z in 0..n {
+                let (x, y, z) = (x as f64 * 8.0 / n as f64 - 4.0,
+                    y as f64 * 8.0 / n as f64 - 4.0, z as f64 * 8.0 / n as f64 - 4.0);
+                let r2 = x*x + y*y + z*z;
+                let d = 1.0 + r2;
+                let (q0, q1, q2, q3) = ((r2 - 1.0)/d, 2.0*x/d, 2.0*y/d, 2.0*z/d);
+                let t = ((4.0 - r2.sqrt()) / 0.6).clamp(0.0, 1.0);
+                let w = t*t*(3.0 - 2.0*t);
+                let mut v = [2.0*w*(q0*q2 + q1*q3), 2.0*w*(q1*q2 - q0*q3),
+                             w*(q0*q0 + q1*q1 - q2*q2 - q3*q3) + 1.0 - w];
+                let length = (v[0]*v[0] + v[1]*v[1] + v[2]*v[2]).sqrt();
+                for component in &mut v { *component /= length; }
+                samples.push(v);
+            }}}
+            let index = |x: usize, y: usize, z: usize| (x*n + y)*n + z;
+            let (sin, cos) = angle.sin_cos();
+            let mut minimum = 1.0_f64;
+            for x in 0..n { for y in 0..n { for z in 0..n {
+                let a = samples[index(x,y,z)];
+                for dx in 0..=1 { for dy in 0..=1 { for dz in 0..=1 {
+                    let b = samples[index((x+dx)%n,(y+dy)%n,(z+dz)%n)];
+                    let rotated = [cos*b[0] - sin*b[1], sin*b[0] + cos*b[1], b[2]];
+                    for v in [b, rotated] {
+                        let distance2: f64 = (0..3).map(|i| (a[i]-v[i]).powi(2)).sum();
+                        minimum = minimum.min(1.0 - distance2/2.0);
+                    }
+                }}}
+            }}}
+            minimum
+        };
+        (calculate(16, 0.0), calculate(32, 0.01))
+    });
+    let certified = margins.0 < 0.0 && (margins.1 - 0.00892819001238837).abs() < 1e-12;
+    out.push(Row {
+        id: "audit.grid_homotopy_hemisphere",
+        claim: "90: analytic sampled-field rotation passes conservative homotopy condition",
+        verdict: if certified { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("N=16 self margin={:.12}; N=32 rotation margin={:.12}; nonpositive is inconclusive; no production snapshots tested", margins.0, margins.1),
+        value: margins.1,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -2140,6 +2188,7 @@ mod tests {
         assert_eq!(verdict("87: SU(2) host"), "FALSIFIED");
         assert_eq!(verdict("88: unextended SU(2) host"), "FALSIFIED");
         assert_eq!(verdict("89: decoupled gauge-current product"), "NUMERIC");
+        assert_eq!(verdict("90: analytic sampled-field rotation"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");
