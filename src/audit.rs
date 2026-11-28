@@ -1652,6 +1652,49 @@ fn rows() -> Vec<Row> {
         value: lower_su2.iter().map(|row| row.1).sum::<u64>() as f64,
     });
 
+    // 85: independently traverse candidate levels first, retaining only
+    // external labels satisfying 4(k+2) <= 9a(a+2). Cross-multiply residues
+    // and require all three matches in the same orientation.
+    static LOWER_SPIN: std::sync::OnceLock<(u64, u64, u64)> = std::sync::OnceLock::new();
+    let lower_spin = LOWER_SPIN.get_or_init(|| {
+        let (mut pairs, mut channels, mut hits) = (0_u64, 0_u64, 0_u64);
+        let max_k_plus_two = 9_i64 * 287 * 289 / 4;
+        for multiple in 1..=max_k_plus_two / 585 {
+            let k = 585 * multiple - 2;
+            let den = 4 * (k + 2);
+            for a in 1_i64..288 {
+                if a > k || den > 9 * a * (a + 2) { continue; }
+                pairs += 1;
+                let mut masks = [0_u8; 2];
+                for c in (0..=2 * a.min(k - a)).step_by(2) {
+                    channels += 1;
+                    let residue = (c * (c + 2) - 2 * a * (a + 2)).rem_euclid(den);
+                    for (bit, p, q) in [(1_u8, 2_i64, 9_i64), (2, 1, 10), (4, 2, 39)] {
+                        if q * residue == p * den { masks[0] |= bit; }
+                        if q * residue == (q - p) * den { masks[1] |= bit; }
+                    }
+                }
+                if masks.contains(&7) { hits += 1; }
+            }
+        }
+        (pairs, channels, hits)
+    });
+    let (spin, level) = (144_i64, 7018_i64);
+    let channels = [239_i64, 278, 0];
+    let residues: Vec<i64> = channels.iter().map(|&j| {
+        (j * (j + 1) - 2 * spin * (spin + 1)).rem_euclid(level + 2)
+    }).collect();
+    let spin_ok = *lower_spin == (30_656, 6_642_629, 0)
+        && channels.iter().all(|&j| j <= 2 * spin && j <= level - 2 * spin)
+        && residues == [1560, 702, 360];
+    out.push(Row {
+        id: "audit.su2_minimal_common_orientation_spin",
+        claim: "85: SU(2) minimum external spin for common-orientation monodromies",
+        verdict: if spin_ok { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("level-first lower-spin pairs/channels/hits={lower_spin:?}; spin {spin} at k={level}, channel spins={channels:?}, forward residues={residues:?}/{}", level + 2),
+        value: lower_spin.1 as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -2019,6 +2062,7 @@ mod tests {
         assert_eq!(verdict("82: fundamental-pair target monodromies"), "NUMERIC");
         assert_eq!(verdict("83: higher-spin SU(2)"), "NUMERIC");
         assert_eq!(verdict("84: lower SU(2) levels"), "NUMERIC");
+        assert_eq!(verdict("85: SU(2) minimum external spin"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

@@ -53,6 +53,38 @@ pub fn lower_level_search() -> &'static [(u32, u64, [u32; 8]); 3] {
     }))
 }
 
+/// Exhaust all levels for external Dynkin labels 1..287 with one common
+/// orientation. The 2/9 phase requires k+2 <= 9a(a+2)/4: fusion gives
+/// |c(c+2)-2a(a+2)| <= 2a(a+2), and the nearest 2/9 residue is 2/9 of
+/// 4(k+2). All three targets also require 585 | (k+2).
+/// Returns (external/level pairs, fusion channels, common-orientation hits).
+pub fn lower_spin_search() -> &'static (u64, u64, u64) {
+    static RESULT: std::sync::OnceLock<(u64, u64, u64)> = std::sync::OnceLock::new();
+    RESULT.get_or_init(|| {
+        let (mut pairs, mut channels, mut hits) = (0_u64, 0_u64, 0_u64);
+        for a in 1_i64..288 {
+            let max_multiple = (9 * a * (a + 2) / 4) / 585;
+            for multiple in 1..=max_multiple {
+                let k = 585 * multiple - 2;
+                if a > k { continue; }
+                pairs += 1;
+                let den = 4 * (k + 2);
+                let mut masks = [0_u8; 2];
+                for c in (0..=2 * a.min(k - a)).step_by(2) {
+                    channels += 1;
+                    let residue = (c * (c + 2) - 2 * a * (a + 2)).rem_euclid(den);
+                    for (bit, p, q) in [(1_u8, 2_i64, 9_i64), (2, 1, 10), (4, 2, 39)] {
+                        if residue == den * p / q { masks[0] |= bit; }
+                        if residue == den * (q - p) / q { masks[1] |= bit; }
+                    }
+                }
+                if masks.contains(&7) { hits += 1; }
+            }
+        }
+        (pairs, channels, hits)
+    })
+}
+
 pub fn checks() -> Vec<Check> {
     let mut out: Vec<Check> = CHANNELS.iter().enumerate().map(|(index, &channel)| {
         let (num, den) = reversed_monodromy_residue(LEVEL, EXTERNAL, channel).unwrap();
@@ -67,5 +99,10 @@ pub fn checks() -> Vec<Check> {
                         "fusion channels scanned at all three lower candidate levels"));
     out.push(Check::new("su2_monodromy.lower_level_triple_matches", rows.iter().map(|row| row.2[7]).sum::<u32>() as f64,
                         "lower-level external labels matching all three target phases"));
+    let smaller = lower_spin_search();
+    out.push(Check::new("su2_monodromy.lower_spin_pairs", smaller.0 as f64,
+                        "external/level pairs scanned below Dynkin label 288"));
+    out.push(Check::new("su2_monodromy.lower_spin_hits", smaller.2 as f64,
+                        "lower-spin common-orientation triple matches"));
     out
 }

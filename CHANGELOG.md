@@ -1387,3 +1387,7 @@ Added exact SU(2) fusion and monodromy checks for a post-hoc level-2338 witness:
 ## 2026-11-28 ? Minimal SU(2) level within identical-field scope
 
 A denominator argument reduces all lower levels to 583, 1168 and 1753. Exact external-label-first and independent channel-first enumerations exclude triple monodromy matches at all three, even with independently chosen orientations. The level-2338 witness is therefore minimal only in the stated SU(2) identical-field setting. See claim 84 and ADR-098.
+
+## 2026-11-28 ? Minimal SU(2) external spin with common orientation
+
+A level-7018, label-288 witness uses smaller spin than the minimal-level witness. A phase-derived level bound plus denominator divisibility makes the all-level search finite; independent traversals exclude every smaller external label under one common full-monodromy orientation. See claim 85 and ADR-099.

@@ -22,3 +22,13 @@ fn every_lower_candidate_level_lacks_a_triple_match() {
     assert_eq!(rows[1], (1168, 342_225, [930, 71, 0, 0, 150, 18, 0, 0]));
     assert_eq!(rows[2], (1753, 770_006, [1162, 23, 268, 0, 154, 147, 0, 0]));
 }
+
+#[test]
+fn smaller_spin_witness_and_all_lower_spin_search() {
+    use fluid_universe::su2_monodromy::lower_spin_search;
+    for (channel, p, q) in [(478, 2_i128, 9_i128), (556, 1, 10), (0, 2, 39)] {
+        let (reverse, den) = reversed_monodromy_residue(7018, 288, channel).unwrap();
+        assert_eq!(reverse * q, den * (q - p));
+    }
+    assert_eq!(*lower_spin_search(), (30_656, 6_642_629, 0));
+}

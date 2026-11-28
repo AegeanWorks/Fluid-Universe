@@ -702,3 +702,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The level-2338 higher-spin witness is explicit but post-hoc, and lower levels have not been excluded.
 - **Decision**: Use the necessary divisibility 1170 divides 4(k+2), exhaust the three lower candidate levels 583, 1168 and 1753 for all integrable external labels and fusion channels with independent target orientations, and independently audit by channel-first enumeration.
 - **Consequences**: If both enumerations agree with zero triple matches, 2338 is minimal only for identical SU(2) external fields and full-monodromy phases under the stated conventions.
+
+### ADR-099: Test minimal external spin with a common SU(2) monodromy orientation
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The minimal-level witness has external Dynkin label 558; a level-7018 candidate with label 288 matches all targets in one forward orientation.
+- **Decision**: Bound k+2 by 9a(a+2)/4 using the 2/9 phase and SU(2) fusion, combine it with 585 divisibility, exhaust every smaller positive label and candidate level, and independently audit with level-first enumeration.
+- **Consequences**: A zero-hit result proves label 288 is minimal only for identical SU(2) fields and one common full-monodromy orientation; the minimal-level witness and physical caveats remain.

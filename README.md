@@ -84,6 +84,12 @@ thus 2338 is minimal within that scope. See claims 83–84 and ADR-097–098. Th
 [SU(2) WZW fusion and weight formulas](https://arxiv.org/abs/hep-th/0209241)
 are standard inputs to this check.
 
+There is a level/representation tradeoff: SU(2)_7018 with external Dynkin
+label 288 and channels 478, 556 and 0 realizes the same targets in one forward
+orientation. Exact bounds and enumeration exclude every smaller external label
+at every positive SU(2) level with one common orientation. This is a scoped
+mathematical minimum, not a physical selection rule; see claim 85 and ADR-099.
+
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the
 previously calculated 2/9 and 1/9 monodromy-exponent magnitudes refer to that mixed
