@@ -681,3 +681,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The known witnesses fail fundamental-pair fusion selection; the full pair-channel candidate set may imply a stronger all-rank result.
 - **Decision**: Use SU(N) fundamental pair channels with Casimir numerator set {1,N-1,N+1,N^2-1}; test exact unreduced exponent magnitudes 2/9 and 2/39 using their ratio 13/3 and audit all symbolic ratio cases independently.
 - **Consequences**: The conclusion is restricted to fundamental and antifundamental external pairs and the stated exponent representatives; it does not exclude other representations or phase conventions.
+
+### ADR-096: Extend the pair-channel obstruction to full-monodromy phases
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The prior exact-magnitude no-go does not address exponent equivalence modulo one or reversed orientation.
+- **Decision**: Use 0<x<1 for the pair-channel magnitudes, enumerate target complements 2/9 or 7/9 and 2/39 or 37/39, and independently check all four rational-ratio cases.
+- **Consequences**: A successful obstruction covers either full-monodromy orientation modulo one for fundamental pairs; other external representations and single-braid conventions remain open.

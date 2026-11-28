@@ -1575,6 +1575,26 @@ fn rows() -> Vec<Row> {
         value: if pair_no_go { 1.0 } else { 0.0 },
     });
 
+    // 82: all candidates lie strictly between 0 and 1, because the largest
+    // numerator is N^2-1 < N(N+k). Either orientation therefore gives exactly
+    // the target or its complement. Independently cross-multiply all four.
+    let mut cases = Vec::new();
+    for (p, q) in [(2_i64, 9_i64), (7, 9)] {
+        for (r, s) in [(2_i64, 39_i64), (37, 39)] {
+            let (a, b) = (p * s, r * q);
+            let (high, low) = (a.max(b), a.min(b));
+            cases.push(high % low != 0 && (high + low) % (high - low) != 0);
+        }
+    }
+    let modulo_no_go = cases.iter().all(|&excluded| excluded);
+    out.push(Row {
+        id: "audit.fundamental_pair_monodromy_no_go",
+        claim: "82: fundamental-pair target monodromies cannot coexist modulo one",
+        verdict: if modulo_no_go { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("four target/complement ratio cases excluded={cases:?}; full-monodromy exponent magnitudes lie in (0,1)"),
+        value: cases.iter().filter(|&&excluded| excluded).count() as f64,
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -1939,6 +1959,7 @@ mod tests {
         assert_eq!(verdict("79: canonical Casimir witnesses"), "NUMERIC");
         assert_eq!(verdict("80: SU(3)_3 four-fundamental"), "NUMERIC");
         assert_eq!(verdict("81: fundamental-pair targets"), "NUMERIC");
+        assert_eq!(verdict("82: fundamental-pair target monodromies"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

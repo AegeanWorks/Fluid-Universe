@@ -1,48 +1,16 @@
 {
   "active_task": {
-    "active_phase": 5,
-    "completed_at": 1795845864.53157,
-    "completed_head": "e53c9fb0a723c8b2ffe474a275320df799d53ab7",
-    "completed_tree": "6c123043ccaebd88824933f01dd0ed254e3c7d97",
+    "active_phase": 4,
     "continuations": [],
     "last_phase": "in_progress",
-    "lease_until": 1795853001.55136,
+    "lease_until": 1795853563.80983,
     "owner": "codex:fluid",
     "started_by": "codex:fluid",
-    "status": "completed",
-    "task_id": "fluid-fundamental-no-go",
-    "updated_at": 1795845801.55136
+    "status": "in_progress",
+    "task_id": "fluid-monodromy-no-go",
+    "updated_at": 1795846363.80983
   },
   "checkpoints": [
-    {
-      "agent": "codex:fluid",
-      "checklists": "passed",
-      "description": "[1/1] Five integer-normalized subgroup coefficients and unpaired control verified; two-process audit and all project gates pass",
-      "files_affected": [],
-      "phase": "in_progress",
-      "phase_num": 4,
-      "status": "in_progress",
-      "task_id": "fluid-sm-local-anomalies",
-      "timestamp": 1795809853.28717,
-      "timestamp_str": "2026-11-27 23:04:13"
-    },
-    {
-      "agent": "codex:fluid",
-      "delivery": {
-        "forced": false,
-        "roots": [
-          ""
-        ]
-      },
-      "description": "Task 'fluid-sm-local-anomalies' completed successfully.",
-      "head": "aa7cda6b38f444d619f998a00afb6d4622fe8124",
-      "phase": "completed",
-      "phase_num": 5,
-      "status": "completed",
-      "task_id": "fluid-sm-local-anomalies",
-      "timestamp": 1795810011.18883,
-      "timestamp_str": "2026-11-27 23:06:51"
-    },
     {
       "agent": "codex:fluid",
       "description": "[1/1] Verify center-charge selection and correct physical interpretation of Casimir matches",
@@ -318,6 +286,35 @@
       "task_id": "fluid-fundamental-no-go",
       "timestamp": 1795845864.53157,
       "timestamp_str": "2026-11-28 09:04:24"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Test modulo-one fundamental-pair monodromy target obstruction",
+      "files_affected": [],
+      "impact_assessment": {
+        "benefits": "Determine whether the obstruction survives physically equivalent full-monodromy phases",
+        "mitigation": "Bound each pair-channel magnitude below one, exhaust all four target complement cases with exact divisibility, add failing-first tests, independent audit and two-process verification",
+        "risks": "contract: signed phase and orientation conventions; dependency: none; concurrency: isolated project; state: claim ledger and audit reports",
+        "why": "The preceding result leaves phase reductions and either orientation open"
+      },
+      "phase": "in_progress",
+      "phase_num": 2,
+      "plan_digest": "dcf0a02095f5278c7ce144f67bb8909782613b2d56cc72af1880e87a6765a9d2",
+      "status": "in_progress",
+      "task_id": "fluid-monodromy-no-go",
+      "timestamp": 1795845955.17866,
+      "timestamp_str": "2026-11-28 09:05:55"
+    },
+    {
+      "agent": "codex:fluid",
+      "description": "[1/1] Four modulo-one cases independently audited in two processes; exact orientation tests and all 4 gates passed; checklists: passed",
+      "files_affected": [],
+      "phase": "in_progress",
+      "phase_num": 4,
+      "status": "in_progress",
+      "task_id": "fluid-monodromy-no-go",
+      "timestamp": 1795846363.80983,
+      "timestamp_str": "2026-11-28 09:12:43"
     }
   ],
   "version": 1

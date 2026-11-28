@@ -25,6 +25,7 @@ pub const AUDIT_RECORD_IDS: &[&str] = &[
     "audit.fundamental_pair_center_selection",
     "audit.su3_four_point_dimensions",
     "audit.fundamental_pair_target_no_go",
+    "audit.fundamental_pair_monodromy_no_go",
     "audit.single_model_relaxed_inverse", "audit.lower_rank_inverse_search",
     "audit.minimal_level_inverse_search", "audit.minimal_witness_search",
     "audit.minimal_witness_canonical", "audit.su7_conformal_weights",

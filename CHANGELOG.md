@@ -1375,3 +1375,7 @@ Corrected the SU(3)_62 adjoint weight difference to 1/195; the prior helper retu
 ## 2026-11-28 ? All-rank fundamental-pair target obstruction
 
 The fundamental/antifundamental pair Casimir numerators yield a symbolic all-rank obstruction to simultaneously matching 2/9 and 2/39 as the specified exponent magnitudes. Added exact Casimir cross-checks and an independent ratio-case audit; other representations and phase conventions remain open. See claim 81 and ADR-095.
+
+## 2026-11-28 ? Modulo-one full-monodromy obstruction
+
+Extended the fundamental-pair no-go to both target phases modulo one and either orientation. All four target/complement ratios exclude integer N; exact orientation matching and an independent symbolic audit cover the result. Other representations and single-braid conventions remain open. See claim 82 and ADR-096.

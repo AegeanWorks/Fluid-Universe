@@ -69,9 +69,10 @@ The conserved SU(N) fusion-ring charge is discussed in
 For any SU(N) rank and positive level, the standard exponent magnitudes from
 fundamental/antifundamental pair channels cannot contain both 2/9 and 2/39.
 Their required ratio is 13/3; the four candidate Casimir numerators admit only
-integer ratios except (N+1)/(N-1), which would require N=8/5. This statement
-uses the specified exponent representatives, without reducing phases modulo 1;
-other external representations remain open. See claim 81 and ADR-095.
+integer ratios except (N+1)/(N-1), which would require N=8/5. The obstruction
+also holds for full-monodromy phases modulo one with either orientation: the
+four target/complement ratios give no integer N. Other external representations
+and single-braid conventions remain open. See claims 81–82 and ADR-095–096.
 
 For SU(3)_3, four fundamental insertions on the sphere have no conformal
 block. Two fundamentals and two antifundamentals have two blocks; the

@@ -107,4 +107,6 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 80 | NUMERIC (SU(3)_3 sphere blocks) | Four fundamentals give dimension 0; two fundamentals and two antifundamentals give dimension 2. |
 | 81 | NUMERIC (all-rank fundamental-pair obstruction) | No SU(N) level admits both 2/9 and 2/39 among the specified pair-channel exponent magnitudes; other representations and phase conventions remain open. |
 
-Claim audit: two Rust processes produced 58 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 82 | NUMERIC (full-monodromy modulo-one obstruction) | Both target phases remain incompatible for fundamental pairs even allowing either orientation; other fields and single-braid conventions remain open. |
+
+Claim audit: two Rust processes produced 59 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

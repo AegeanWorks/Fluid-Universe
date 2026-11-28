@@ -92,6 +92,25 @@ pub fn fundamental_pair_weight_differences(n: i64, k: i64) -> [(i128, i128); 4] 
     [1, n - 1, n + 1, n * n - 1].map(|num| (num, denominator))
 }
 
+/// Bits 0 and 1 indicate full-monodromy matches to 2/9 and 2/39, allowing
+/// either orientation modulo one. The candidate set may include truncated
+/// level-one channels, so a set bit is not by itself a fusion proof.
+pub fn fundamental_pair_monodromy_target_mask(n: i64, k: i64) -> u8 {
+    let mut mask = 0;
+    for (num, den) in fundamental_pair_weight_differences(n, k) {
+        for (bit, q, p) in [(1, 9_i128, 2_i128), (2, 39, 2)] {
+            if exponent_matches_either_orientation(num, den, p, q) {
+                mask |= bit;
+            }
+        }
+    }
+    mask
+}
+
+fn exponent_matches_either_orientation(num: i128, den: i128, p: i128, q: i128) -> bool {
+    den % q == 0 && (num == (den / q) * p || num == (den / q) * (q - p))
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SearchSummary {
     pub models_tested: u64,
@@ -1028,6 +1047,13 @@ pub fn checks() -> Vec<Check> {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn orientation_matching_accepts_complements() {
+        assert!(exponent_matches_either_orientation(7, 9, 2, 9));
+        assert!(exponent_matches_either_orientation(37, 39, 2, 39));
+        assert!(!exponent_matches_either_orientation(1, 9, 2, 9));
+    }
 
     #[test]
     fn distinct_models_required() {

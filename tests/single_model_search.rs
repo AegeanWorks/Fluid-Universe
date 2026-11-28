@@ -25,6 +25,19 @@ fn fundamental_pair_weight_differences_match_exact_casimirs() {
 }
 
 #[test]
+fn fundamental_pair_monodromy_targets_include_orientation() {
+    use fluid_universe::single_model_test::fundamental_pair_monodromy_target_mask;
+    assert_ne!(fundamental_pair_monodromy_target_mask(3, 9) & 1, 0);
+    assert_ne!(fundamental_pair_monodromy_target_mask(3, 49) & 2, 0);
+    for n in 2..=40 {
+        for k in 1..=40 {
+            assert_ne!(fundamental_pair_monodromy_target_mask(n, k), 3);
+        }
+    }
+    let _ = fundamental_pair_monodromy_target_mask(i64::MAX, i64::MAX);
+}
+
+#[test]
 fn phase_witnesses_fail_fundamental_pair_center_selection() {
     use fluid_universe::single_model_test::fundamental_pair_center_allowed;
     for witness in WITNESSES {
