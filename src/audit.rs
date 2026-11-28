@@ -1560,6 +1560,21 @@ fn rows() -> Vec<Row> {
         value: mixed as f64,
     });
 
+    // 81: after cancelling N(k+N), the ratio of the two targets is 13/3.
+    // Among {1,N-1,N+1,(N-1)(N+1)}, every larger/smaller pair ratio is an
+    // integer except possibly (N+1)/(N-1). The latter would need 10N=16.
+    // This proof is independent of the production candidate generator.
+    let integer_case_excluded = 13 % 3 != 0;
+    let neighboring_case_excluded = 16 % 10 != 0;
+    let pair_no_go = integer_case_excluded && neighboring_case_excluded;
+    out.push(Row {
+        id: "audit.fundamental_pair_target_no_go",
+        claim: "81: fundamental-pair targets 2/9 and 2/39 cannot coexist",
+        verdict: if pair_no_go { "NUMERIC" } else { "UNVERIFIED" },
+        detail: format!("13/3 noninteger={integer_case_excluded}; 10N=16 has no integer solution={neighboring_case_excluded}; exact exponent representatives"),
+        value: if pair_no_go { 1.0 } else { 0.0 },
+    });
+
     // 66/2: relaxed-label inverse search reproduces the rank-6 hit.
     let (relaxed_labels, relaxed_models, relaxed_hit) = *independent_relaxed_inverse_search();
     out.push(Row {
@@ -1923,6 +1938,7 @@ mod tests {
         assert_eq!(verdict("78: hypothetical subgroup local anomalies"), "NUMERIC");
         assert_eq!(verdict("79: canonical Casimir witnesses"), "NUMERIC");
         assert_eq!(verdict("80: SU(3)_3 four-fundamental"), "NUMERIC");
+        assert_eq!(verdict("81: fundamental-pair targets"), "NUMERIC");
         // Additional frozen-ledger verdicts.
         assert_eq!(verdict("Q identity"), "PROVEN");
         assert_eq!(verdict("signed vs physical"), "FALSIFIED");

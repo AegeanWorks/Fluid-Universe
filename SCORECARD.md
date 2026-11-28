@@ -103,4 +103,8 @@ One line per claim. See `claims.md` for the full statement, evidence, and kill t
 | 77 | NUMERIC (conditional SU(2) doublet parity) | The same assignment contains eight SU(2) doublets, so the original doublet-parity obstruction is absent; other global questions remain open. |
 | 78 | NUMERIC (conditional local subgroup anomalies) | Five specified SU(3), SU(2), U(1) and mixed gauge-gravitational coefficients vanish with q=6Y; other global questions remain open. |
 
-Claim audit: two Rust processes produced 55 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.
+| 79 | NUMERIC (canonical witness center-charge exclusion) | All nine witnesses fail the necessary center-charge condition for fundamental/antifundamental pairs. |
+| 80 | NUMERIC (SU(3)_3 sphere blocks) | Four fundamentals give dimension 0; two fundamentals and two antifundamentals give dimension 2. |
+| 81 | NUMERIC (all-rank fundamental-pair obstruction) | No SU(N) level admits both 2/9 and 2/39 among the specified pair-channel exponent magnitudes; other representations and phase conventions remain open. |
+
+Claim audit: two Rust processes produced 58 matching audit records. Their coverage has not been mapped to every accepted claim, so complete G-001 coverage remains outstanding.

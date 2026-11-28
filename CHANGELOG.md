@@ -1371,3 +1371,7 @@ The second SU(23) witness has 74 boxes, A=518, C2=3219/23 and center charge 5. T
 ## 2026-11-28 ? Legacy level-62 arithmetic correction
 
 Corrected the SU(3)_62 adjoint weight difference to 1/195; the prior helper returned 2/195 while claiming 2/39. Corrected the SU(3)_3 pair channel to the antifundamental and qualified the three-model singlet assignments. Exact-arithmetic and Verlinde regressions cover the corrections. See ADR-094.
+
+## 2026-11-28 ? All-rank fundamental-pair target obstruction
+
+The fundamental/antifundamental pair Casimir numerators yield a symbolic all-rank obstruction to simultaneously matching 2/9 and 2/39 as the specified exponent magnitudes. Added exact Casimir cross-checks and an independent ratio-case audit; other representations and phase conventions remain open. See claim 81 and ADR-095.

@@ -43,6 +43,7 @@
 | `audit.single_model_witness_su7` | `1.000000000000000e0` | PROVEN \| rank-6 host matches all three phases exactly with label sums 19/12/7 <=1163 |
 | `audit.fundamental_pair_center_selection` | `1.000000000000000e0` | NUMERIC \| SU(17), SU(23), SU(7) charges=[[11, 11, 6], [18, 5, 5], [3, 4, 3]]; allowed pair charges are 0 and +/-2 modulo N |
 | `audit.su3_four_point_dimensions` | `2.000000000000000e0` | NUMERIC \| four fundamentals=0; two fundamentals and two antifundamentals=2; tensor-product singlet count |
+| `audit.fundamental_pair_target_no_go` | `1.000000000000000e0` | NUMERIC \| 13/3 noninteger=true; 10N=16 has no integer solution=true; exact exponent representatives |
 | `audit.single_model_relaxed_inverse` | `1.258880000000000e5` | NUMERIC \| labels=125888, models_with_any_phase=1259, SU(7)_1163_hit=true |
 | `audit.lower_rank_inverse_search` | `4.288305000000000e6` | FALSIFIED \| labels=4288305, models_with_any_phase=5499, all_phase_hit=false |
 | `audit.minimal_level_inverse_search` | `8.576612100000000e7` | FALSIFIED \| labels=85766121, models_with_any_phase=244, all_phase_hit=false |
@@ -63,5 +64,5 @@
 ## Provenance
 
 - Generator: `fluid-universe-rust` (Rust edition 2024, no external crates).
-- In-process determinism fingerprint (not G-001 evidence): run1=97c10d30067d2c78, run2=97c10d30067d2c78, agreement=PASS.
-- Check-results FNV-1a 64-bit fingerprint: `86d5c0f2ca74f681` (not a configuration hash or cryptographic digest).
+- In-process determinism fingerprint (not G-001 evidence): run1=51cada8bd5d8bb5d, run2=51cada8bd5d8bb5d, agreement=PASS.
+- Check-results FNV-1a 64-bit fingerprint: `3728f335d97eac6e` (not a configuration hash or cryptographic digest).

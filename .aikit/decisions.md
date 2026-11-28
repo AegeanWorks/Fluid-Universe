@@ -674,3 +674,10 @@ contract, a dependency, a data format or the architecture; IDs are consecutive a
 - **Context**: The legacy SU(3)_62 adjoint function returns 2/195 while claiming 2/39; the Casimir formula gives 1/195, and SU(3)_3 fundamental squared excludes the fundamental.
 - **Decision**: Return the Casimir expression 1/195, retain level 62 as a historical input, use the allowed antifundamental channel for the 2/9 comparison, and qualify natural-level assignments as post-hoc.
 - **Consequences**: The legacy level-62 numerical claim is retracted; separate SU(3)_49 singlet arithmetic remains valid under its stated mixed-channel assumptions.
+
+### ADR-095: Test the all-rank fundamental-pair target obstruction
+- **Date**: 2026-11-28
+- **Status**: Accepted
+- **Context**: The known witnesses fail fundamental-pair fusion selection; the full pair-channel candidate set may imply a stronger all-rank result.
+- **Decision**: Use SU(N) fundamental pair channels with Casimir numerator set {1,N-1,N+1,N^2-1}; test exact unreduced exponent magnitudes 2/9 and 2/39 using their ratio 13/3 and audit all symbolic ratio cases independently.
+- **Consequences**: The conclusion is restricted to fundamental and antifundamental external pairs and the stated exponent representatives; it does not exclude other representations or phase conventions.

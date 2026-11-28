@@ -80,6 +80,18 @@ pub fn fundamental_pair_center_allowed(n: i64, dynkin: &[i64]) -> bool {
     charge == 0 || charge == 2 % n || charge == (n - 2).rem_euclid(n)
 }
 
+/// Unreduced |h_nu - 2 h_f| candidates for adjoint, symmetric,
+/// antisymmetric, and singlet channels, in that order. At level one some
+/// channels are truncated, so this is a superset of allowed channels.
+/// Their Casimirs are N, (N-1)(N+2)/N, (N+1)(N-2)/N, and 0;
+/// C2(f)=(N^2-1)/(2N). All share denominator N(k+N).
+pub fn fundamental_pair_weight_differences(n: i64, k: i64) -> [(i128, i128); 4] {
+    assert!(n >= 2 && k >= 1);
+    let n = i128::from(n);
+    let denominator = n * (i128::from(k) + n);
+    [1, n - 1, n + 1, n * n - 1].map(|num| (num, denominator))
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct SearchSummary {
     pub models_tested: u64,

@@ -127,7 +127,11 @@ Every entry names the test most likely to kill it. A claim without an evidence p
 
 | 80 | On the sphere, the SU(3)_3 block of four fundamentals has dimension zero, while the block of two fundamentals and two antifundamentals has dimension two. | Verlinde fusion and independent tensor-product singlet count | **NUMERIC (dimensions 0 and 2; two-process independent audit)** | `src/monodromy_block.rs`; `src/audit.rs`; `results/rust_audit.json` | The fundamental pair decomposes as anti-3 + 6, and the conjugate pair as 3 + anti-6; these weights are below the level-3 truncation. The mixed block admits the two previously calculated full-monodromy-exponent magnitudes 2/9 and 1/9. This corrects the former four-fundamental wording; identifying either magnitude with a particle phase remains a hypothesis. |
 
+| 81 | For every SU(N)_k with integer N>=2 and k>=1, no pair of channels obtained from fundamental or antifundamental external pairs has both exact magnitudes abs(h_nu-2h_f) = 2/9 and 2/39. | all-rank exact pair-channel ratio obstruction | **NUMERIC (exact Casimir reduction and independent symbolic ratio audit)** | `src/single_model_test.rs`; `src/audit.rs`; `tests/single_model_search.rs`; `results/rust_audit.json` | The only candidate numerators over N(k+N) are {1,N-1,N+1,N^2-1}; level-1 truncation only removes candidates. The target ratio 13/3 is not an integer, while the only potentially noninteger larger/smaller ratio (N+1)/(N-1) would require 10N=16. Thus no integer N works, regardless of k. This concerns these exact unreduced exponent magnitudes; other external representations, phase reductions modulo 1, and different conventions remain open. |
+
 ## Status history
+
+- 2026-11-28 (fundamental-pair all-rank obstruction, claim 81): the two extreme target magnitudes cannot coexist in the specified fundamental/antifundamental channels for any SU(N) or positive level. The Casimir numerator ratio proof is independent of the earlier bounded searches. See ADR-095.
 
 - 2026-11-28 (legacy level-62 correction): the SU(3)_62 adjoint Casimir difference is 1/195, not 2/39; the former helper returned 2/195. The SU(3)_3 lepton example uses the antifundamental pair channel, not the fundamental. The separate SU(3)_49 singlet identity remains arithmetic evidence with post-hoc model assignment. See ADR-094.
 

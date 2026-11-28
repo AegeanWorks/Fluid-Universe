@@ -8,6 +8,23 @@ use fluid_universe::single_model_test::{
 };
 
 #[test]
+fn fundamental_pair_weight_differences_match_exact_casimirs() {
+    use fluid_universe::single_model_test::fundamental_pair_weight_differences;
+    for (n, k, reps) in [
+        (3, 3, vec![vec![1, 1], vec![2, 0], vec![0, 1], vec![0, 0]]),
+        (5, 7, vec![vec![1, 0, 0, 1], vec![2, 0, 0, 0], vec![0, 1, 0, 0], vec![0, 0, 0, 0]]),
+    ] {
+        for ((num, den), labels) in fundamental_pair_weight_differences(n, k).iter().zip(reps) {
+            let (casimir_num, casimir_den) = braiding_fraction(n, k, &labels);
+            assert_eq!(num * i128::from(casimir_den), den * i128::from(casimir_num));
+        }
+    }
+    let su2 = fundamental_pair_weight_differences(2, 2);
+    assert_eq!(su2[0], su2[1]);
+    assert_eq!(su2[2], su2[3]);
+}
+
+#[test]
 fn phase_witnesses_fail_fundamental_pair_center_selection() {
     use fluid_universe::single_model_test::fundamental_pair_center_allowed;
     for witness in WITNESSES {

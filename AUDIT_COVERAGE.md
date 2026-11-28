@@ -1,8 +1,8 @@
 # Audit coverage inventory
 
 This is a working inventory of G-001 evidence, not a claim-acceptance report.
-On 2026-11-27, `claims.md` contained 64 numbered rows marked PROVEN, NUMERIC,
-or VERIFIED; `results/rust_audit.json` now contains 57 audit records. Their
+On 2026-11-27, `claims.md` contained 65 numbered rows marked PROVEN, NUMERIC,
+or VERIFIED; `results/rust_audit.json` now contains 58 audit records. Their
 counts cannot be compared directly: a claim can need several checks, a record
 can cover only part of a claim, and a record can test a different proposition.
 The two-process `verify` command compares audit records; it does not establish
@@ -47,3 +47,4 @@ processes before treating it as G-001 evidence.
 
 | 79 | `audit.fundamental_pair_center_selection` | Independently checks the nine center charges; physical braiding requires additional fusion and phase-convention analysis. |
 | 80 | `audit.su3_four_point_dimensions` | Independently counts conjugate fundamental-pair summands; particle-phase identification is outside the claim. |
+| 81 | `audit.fundamental_pair_target_no_go` | Independently checks the integer and neighboring-ratio cases; other external fields and phase conventions are outside the claim. |
